@@ -7,6 +7,10 @@ $availableAlerts = Database::execSimpleSelect("SELECT * FROM `Alerts` WHERE `Sta
 $finalAlerts = [];
 
 for($x = 0; $x < count($availableAlerts); $x++) {
+    if(count(json_decode($availableAlerts[$x]['Apps'])) == 0) {
+        $finalAlerts[] = $availableAlerts[$x];
+        continue;
+    }
     if(in_array($_GET['app'], json_decode($availableAlerts[$x]['Apps']))) {
         $finalAlerts[] = $availableAlerts[$x];
     }
