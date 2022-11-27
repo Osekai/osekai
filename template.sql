@@ -8,7 +8,7 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 DELIMITER ;;
 
 DROP PROCEDURE IF EXISTS `FUNC_GetBeatmaps`;;
-CREATE DEFINER=`o2622922`@`%` PROCEDURE `FUNC_GetBeatmaps`(nUserID INTEGER(20), strName VARCHAR(50))
+CREATE PROCEDURE `FUNC_GetBeatmaps`(nUserID INTEGER(20), strName VARCHAR(50))
 SELECT Beatmaps.ID As ObjectID,
 	BeatmapID,
 	MapsetID,
@@ -33,7 +33,7 @@ WHERE MedalName = strName
 ORDER BY voteSUM DESC, ID DESC;;
 
 DROP PROCEDURE IF EXISTS `FUNC_GetCommentGroups`;;
-CREATE DEFINER=`o2622922`@`%` PROCEDURE `FUNC_GetCommentGroups`(strMedal VARCHAR(50))
+CREATE PROCEDURE `FUNC_GetCommentGroups`(strMedal VARCHAR(50))
 SELECT COALESCE(z.ParentComment, COALESCE(y.ParentComment, COALESCE(x.ParentComment, COALESCE(w.ParentComment, COALESCE(v.ParentComment, COALESCE(u.ParentComment, COALESCE(t.ParentComment, COALESCE(Comments.ParentComment, Comments.ID)))))))) AS GroupID
 FROM Comments
 LEFT JOIN Comments t ON Comments.ParentComment = t.ID
@@ -49,7 +49,7 @@ GROUP BY COALESCE(z.ParentComment, COALESCE(y.ParentComment, COALESCE(x.ParentCo
 ORDER BY SUM(Votes.Vote) DESC, COALESCE(z.ParentComment, COALESCE(y.ParentComment, COALESCE(x.ParentComment, COALESCE(w.ParentComment, COALESCE(v.ParentComment, COALESCE(u.ParentComment, COALESCE(t.ParentComment, COALESCE(Comments.ParentComment, Comments.ID)))))))) DESC;;
 
 DROP PROCEDURE IF EXISTS `FUNC_GetCommentsByGroup`;;
-CREATE DEFINER=`o2622922`@`%` PROCEDURE `FUNC_GetCommentsByGroup`(strGroup VARCHAR(10))
+CREATE PROCEDURE `FUNC_GetCommentsByGroup`(strGroup VARCHAR(10))
 SELECT Comments.ID,
 	Comments.PostText,
     Comments.UserID,
@@ -72,7 +72,7 @@ WHERE COALESCE(z.ParentComment, COALESCE(y.ParentComment, COALESCE(x.ParentComme
 GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.MedalName, Roles.RoleName;;
 
 DROP PROCEDURE IF EXISTS `FUNC_GetMedals`;;
-CREATE DEFINER=`o2622922`@`%` PROCEDURE `FUNC_GetMedals`(IN `strGrouping` varchar(30), IN `strName` varchar(50))
+CREATE PROCEDURE `FUNC_GetMedals`(IN `strGrouping` varchar(30), IN `strName` varchar(50))
 SELECT Medals.medalid AS MedalID
 	, Medals.name AS Name
 	, Medals.link AS Link
@@ -99,10 +99,10 @@ WHERE Medals.grouping LIKE CONCAT('%', strGrouping, '%') AND LOWER(Medals.name) 
 ORDER BY ModeOrder, Ordering DESC, MedalID;;
 
 DROP EVENT IF EXISTS `Clean sessions data`;;
-CREATE DEFINER=`o2622922`@`%` EVENT `Clean sessions data` ON SCHEDULE EVERY 1 DAY STARTS '2022-06-14 09:16:53' ON COMPLETION NOT PRESERVE DISABLE ON SLAVE COMMENT 'Without this, the site gets linearly slower over time.' DO DELETE FROM OsekaiSessions WHERE sessionData NOT LIKE "%token%";;
+CREATE EVENT `Clean sessions data` ON SCHEDULE EVERY 1 DAY STARTS '2022-06-14 09:16:53' ON COMPLETION NOT PRESERVE DISABLE ON SLAVE COMMENT 'Without this, the site gets linearly slower over time.' DO DELETE FROM OsekaiSessions WHERE sessionData NOT LIKE "%token%";;
 
 DROP EVENT IF EXISTS `Update Comment Names`;;
-CREATE DEFINER=`o2622922`@`%` EVENT `Update Comment Names` ON SCHEDULE EVERY 1 WEEK STARTS '2022-09-29 03:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'If someone renames. Makes it easier.' DO UPDATE Comments
+CREATE EVENT `Update Comment Names` ON SCHEDULE EVERY 1 WEEK STARTS '2022-09-29 03:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'If someone renames. Makes it easier.' DO UPDATE Comments
 INNER JOIN Ranking ON Comments.UserID = Ranking.id
 SET Comments.Username = Ranking.name
 WHERE Comments.Username <> Ranking.name;;
@@ -2286,15 +2286,15 @@ CREATE TABLE `Votes` (
 
 
 DROP TABLE IF EXISTS `BadgeListing`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`o2622922`@`%` SQL SECURITY INVOKER VIEW `BadgeListing` AS select `Ranking`.`name` AS `name`,`Ranking`.`badge_count` AS `badge_count`,`Ranking`.`total_pp` AS `total_pp`,`Ranking`.`id` AS `ProfileID`,`Ranking`.`standard_pp` AS `standard_pp`,`Ranking`.`mania_pp` AS `mania_pp`,`Ranking`.`ctb_pp` AS `ctb_pp`,`Ranking`.`taiko_pp` AS `taiko_pp`,`Countries`.`name_long` AS `name_long`,`Countries`.`link` AS `flag` from (`Ranking` join `Countries` on((`Ranking`.`country_code` = `Countries`.`name_short`))) order by `Ranking`.`badge_count` desc limit 1000;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY INVOKER VIEW `BadgeListing` AS select `Ranking`.`name` AS `name`,`Ranking`.`badge_count` AS `badge_count`,`Ranking`.`total_pp` AS `total_pp`,`Ranking`.`id` AS `ProfileID`,`Ranking`.`standard_pp` AS `standard_pp`,`Ranking`.`mania_pp` AS `mania_pp`,`Ranking`.`ctb_pp` AS `ctb_pp`,`Ranking`.`taiko_pp` AS `taiko_pp`,`Countries`.`name_long` AS `name_long`,`Countries`.`link` AS `flag` from (`Ranking` join `Countries` on((`Ranking`.`country_code` = `Countries`.`name_short`))) order by `Ranking`.`badge_count` desc limit 1000;
 
 DROP TABLE IF EXISTS `MedalListing`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`o2622922`@`%` SQL SECURITY INVOKER VIEW `MedalListing` AS select `Medals`.`medalid` AS `MedalID`,`Medals`.`name` AS `Name`,`Medals`.`description` AS `Description`,concat(format(`MedalRarity`.`frequency`,2),'%') AS `PossessionRate`,`Medals`.`link` AS `link`,`Medals`.`restriction` AS `restriction`,`Medals`.`grouping` AS `grouping` from (`Medals` left join `MedalRarity` on((`Medals`.`medalid` = `MedalRarity`.`id`))) group by `Medals`.`medalid` order by (`PossessionRate` + 0) limit 1000;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY INVOKER VIEW `MedalListing` AS select `Medals`.`medalid` AS `MedalID`,`Medals`.`name` AS `Name`,`Medals`.`description` AS `Description`,concat(format(`MedalRarity`.`frequency`,2),'%') AS `PossessionRate`,`Medals`.`link` AS `link`,`Medals`.`restriction` AS `restriction`,`Medals`.`grouping` AS `grouping` from (`Medals` left join `MedalRarity` on((`Medals`.`medalid` = `MedalRarity`.`id`))) group by `Medals`.`medalid` order by (`PossessionRate` + 0) limit 1000;
 
 DROP TABLE IF EXISTS `TPPListing`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`o2622922`@`%` SQL SECURITY INVOKER VIEW `TPPListing` AS select `Ranking`.`name` AS `name`,format(`Ranking`.`total_pp`,0) AS `totalpp`,`Ranking`.`id` AS `ProfileID`,format(`Ranking`.`standard_pp`,0) AS `standardpp`,format(`Ranking`.`mania_pp`,0) AS `maniapp`,format(`Ranking`.`ctb_pp`,0) AS `ctbpp`,format(`Ranking`.`taiko_pp`,0) AS `taikopp`,`Countries`.`name_long` AS `name_long`,`Countries`.`link` AS `flag` from (`Ranking` join `Countries` on((`Ranking`.`country_code` = `Countries`.`name_short`))) order by `Ranking`.`total_pp` desc limit 1000;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY INVOKER VIEW `TPPListing` AS select `Ranking`.`name` AS `name`,format(`Ranking`.`total_pp`,0) AS `totalpp`,`Ranking`.`id` AS `ProfileID`,format(`Ranking`.`standard_pp`,0) AS `standardpp`,format(`Ranking`.`mania_pp`,0) AS `maniapp`,format(`Ranking`.`ctb_pp`,0) AS `ctbpp`,format(`Ranking`.`taiko_pp`,0) AS `taikopp`,`Countries`.`name_long` AS `name_long`,`Countries`.`link` AS `flag` from (`Ranking` join `Countries` on((`Ranking`.`country_code` = `Countries`.`name_short`))) order by `Ranking`.`total_pp` desc limit 1000;
 
 DROP TABLE IF EXISTS `UserListing`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`o2622922`@`%` SQL SECURITY INVOKER VIEW `UserListing` AS select `Ranking`.`id` AS `id`,`Ranking`.`name` AS `name`,`Ranking`.`medal_count` AS `Medalcount`,format(((`Ranking`.`medal_count` * 100) / (select count(0) from `Medals`)),2) AS `Completion`,`Medals`.`name` AS `rarest_medal`,`Medals`.`link` AS `link`,`Countries`.`link` AS `flag`,`Countries`.`name_long` AS `name_long` from (((`Ranking` join `Medals` on((`Ranking`.`rarest_medal` = `Medals`.`medalid`))) join `MedalRarity` on((`Medals`.`medalid` = `MedalRarity`.`id`))) join `Countries` on((`Ranking`.`country_code` = `Countries`.`name_short`))) order by `Ranking`.`medal_count` desc,`MedalRarity`.`frequency` limit 1000;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY INVOKER VIEW `UserListing` AS select `Ranking`.`id` AS `id`,`Ranking`.`name` AS `name`,`Ranking`.`medal_count` AS `Medalcount`,format(((`Ranking`.`medal_count` * 100) / (select count(0) from `Medals`)),2) AS `Completion`,`Medals`.`name` AS `rarest_medal`,`Medals`.`link` AS `link`,`Countries`.`link` AS `flag`,`Countries`.`name_long` AS `name_long` from (((`Ranking` join `Medals` on((`Ranking`.`rarest_medal` = `Medals`.`medalid`))) join `MedalRarity` on((`Medals`.`medalid` = `MedalRarity`.`id`))) join `Countries` on((`Ranking`.`country_code` = `Countries`.`name_short`))) order by `Ranking`.`medal_count` desc,`MedalRarity`.`frequency` limit 1000;
 
 -- 2022-11-27 11:58:31
