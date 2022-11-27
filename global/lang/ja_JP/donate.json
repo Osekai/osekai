@@ -1,0 +1,16 @@
+{
+    "title": "寄付は必要ではありませんが、常に感謝しています。",
+    "body.p1": "We use them to cover the costs of running the website. For transparency you can see all the costs that the osekai website itself produced below.",
+    "body.p2": "We do want to provide all our services for free. The only 'advantage' you get from donating, is a little ❤ on your name when commenting and access to the osekai development discord channel, but similar things might be added in the future.",
+    "body.p3": "The top donator list below will not be updated instantly. But don't worry, we'll be sure to update it once we notice!",
+    "donate.title": "寄付する",
+    "donate.header": "Want to support us? Please send over a donation!",
+    "donate.body": "ユーザー名を表示するにはログインしている必要があることを忘れないでください。",
+    "donate.paypal": "PayPalで寄付",
+    "donate.paysafecard": "Paysafecardで寄付",
+    "costs.title": "Costs",
+    "costs.covered": "covered costs: $1 / $2",
+    "top.title": "Top Donators",
+    "recent.title": "Most Recent Donations",
+    "recent.message": "寄付者のコメント"
+}

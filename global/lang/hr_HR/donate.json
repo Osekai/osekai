@@ -1,0 +1,16 @@
+{
+    "title": "Donacije nikada nisu potrebne, ali su uvijek cijenjene :)",
+    "body.p1": "Koristimo ih za pokrivanje troškova vođenja web stranice. Radi transparentnosti možete vidjeti sve troškove koje je sama osekai web stranica proizvela u nastavku.",
+    "body.p2": "Želimo sve naše usluge pružati besplatno. Jedina 'prednost' koju dobivate od donacije je malo ❤ na vašem imenu kada komentirate i pristup osekai development discord kanalu, ali slične stvari bi se mogle dodati u budućnosti.",
+    "body.p3": "Popis najboljih donatora u nastavku neće se ažurirati odmah. Ali ne brinite, sigurno ćemo ga ažurirati čim primijetimo!",
+    "donate.title": "Donirajte!",
+    "donate.header": "Želite li nas podržati? Molimo pošaljite donaciju!",
+    "donate.body": "Imajte na umu da biste pokazali svoje korisničko ime, morate se prijaviti!",
+    "donate.paypal": "Donirajte putem PayPala",
+    "donate.paysafecard": "Donirajte putem Paysafecarda",
+    "costs.title": "Troškovi",
+    "costs.covered": "pokriveni troškovi: $1 / $2",
+    "top.title": "Najbolji donatori",
+    "recent.title": "Najnovije donacije",
+    "recent.message": "Poruka o donaciji"
+}

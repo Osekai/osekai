@@ -1,0 +1,56 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700');
+
+    .club-95 {
+        --accent1: 93, 89, 249;
+        --accent2: 134, 133, 197;
+        --accent3: 95, 255, 188;
+        --accent4: 207, 89, 249;
+        --circ-opacity: 0.25;
+    }
+
+    .club-90 {
+        --accent1: 106, 237, 244;
+        --accent2: 185, 251, 255;
+        --accent3: 106, 244, 178;
+        --accent4: 106, 145, 244;
+        --circ-opacity: 0.25;
+    }
+
+    .club-80 {
+        --accent1: 182, 106, 237;
+        --accent2: 113, 44, 163;
+        --accent3: 237, 106, 106;
+        --accent4: 106, 237, 229;
+        --circ-opacity: 0.1;
+    }
+
+    .club-60 {
+        --accent1: 255, 89, 111;
+        --accent2: 244, 139, 150;
+        --accent3: 97, 76, 227;
+        --accent4: 223, 111, 48;
+        --circ-opacity: 0.25;
+    }
+
+    .club-40 {
+        --accent1: 255, 140, 104;
+        --accent2: 245, 176, 154;
+        --accent3: 255, 104, 104;
+        --accent4: 255, 104, 176;
+        --circ-opacity: 0.25;
+    }
+
+    .club-none {
+        --accent1: 39, 53, 53;
+        --accent2: 68, 68, 78;
+        --accent3: 120, 120, 120;
+        --accent4: 20, 20, 20;
+        --circ-opacity: 0.25;
+    }
+
+    * {
+        --angle: 0;
+        font-family: Comfortaa, Torus, Inter, "Helvetica Neue", Tahoma, Arial, "Hiragino Kaku Gothic ProN", Meiryo, "Microsoft YaHei", "Apple SD Gothic Neo", sans-serif;
+    }
+</style>

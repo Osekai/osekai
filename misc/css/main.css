@@ -1,0 +1,86 @@
+html {
+    --accent: 137, 113, 234 !important;
+    --accentdark: 53, 46, 80 !important;
+}
+
+.misc__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px !important;
+    margin: 0px !important;
+    min-height: inherit !important;
+    margin-top: var(--extraheight) !important;
+    padding-bottom: 25px !important;
+}
+
+
+.misc__header {
+    width: 100%;
+    padding: 40px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgb(var(--accent));
+}
+
+.misc__header-inner {
+    max-width: 1110px;
+    width: 90vw;
+    padding: 0px 45px;
+    box-sizing: border-box;
+}
+
+.misc__header-inner h1 {
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.misc__header-inner p {
+    font-size: 15px;
+    font-weight: 100;
+    opacity: 0.7;
+    margin-bottom: -5px;
+}
+
+.misc__panel-container {
+    max-width: 1110px;
+    width: 90vw;
+}
+
+.misc__explainer {
+    padding: 30px 45px;
+    background: linear-gradient(180deg, rgba(var(--accent), 0.125) 0%, rgba(var(--accent), 0.25) 100%);
+    border-radius: 0px 0px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.misc__explainer p {
+    font-weight: 200;
+    font-size: 17px;
+}
+
+.misc__explainer h3 {
+    color: rgb(var(--accent));
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.misc__explainer mark {
+    background-color: transparent;
+    color: rgb(var(--accent));
+}
+
+.misc__explainer strong {
+    font-weight: 900;
+}
+
+
+.misc__panel-container .osekai__panel {
+    margin-bottom: 0px;
+    margin-top: 20px;
+}

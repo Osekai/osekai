@@ -1,0 +1,16 @@
+#
+# Your Crowdin credentials
+#
+"project_id" : "514246"
+"api_token" : "no"
+
+"base_url" : "https://api.crowdin.com"
+"base_path": "./lang/"
+"preserve_hierarchy": true
+
+"files": [
+  {
+      "source": "en_GB/*.json",                                          #source files filter
+      "translation": "%locale_with_underscore%/%original_file_name%"        #where translations are stored
+  }
+]

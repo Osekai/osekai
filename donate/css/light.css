@@ -1,0 +1,25 @@
+.osekai__header-panel .osekai__panel-header p{
+    color: #fff !important;
+}
+
+
+.donate__progress-bar-inner{
+    background-color: rgba(var(--accent), 5);
+}
+
+.donate__progress-bar{
+    border: 0px solid;
+    background-color: #2224;
+}
+
+
+.donate__panel {
+    background-color: #f1f1f1;
+    border: 1px solid #2221;
+    filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.1));
+}
+
+.donate__panel-header {
+    background-color: #e5e5e5;
+    border-bottom: 1px solid #2221;
+}

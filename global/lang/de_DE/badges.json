@@ -1,0 +1,20 @@
+{
+    "badges.title": "Abzeichen ($1)",
+    "sort.awardedAt.asc": "Verliehen am (aufsteigend)",
+    "sort.awardedAt.desc": "Verliehen am (absteigend)",
+    "sort.name.asc": "Name (a-z)",
+    "sort.name.desc": "Name (z-a)",
+    "sort.playerCount.asc": "Spielerzahl (aufsteigend)",
+    "sort.playerCount.desc": "Spielerzahl (absteigend)",
+    "search.placeholder": "nach einem Abzeichen suchen!",
+    "badge.firstAchieved": "zuerst erreicht am <strong>$1</strong>",
+    "badge.ownedBy": "im Besitz von <strong>$1</strong> Spielern",
+    "badge.ownedBySingular": "im Besitz von <strong>$1</strong> Spieler",
+    "badge.popup.playersWhoHave": "<strong>Spieler</strong> die dieses Abzeichen besitzen",
+    "badge.popup.1xVariant": "<strong>@1x</strong><br>Variante",
+    "paused": "Die Verarbeitung für Osekai-Abzeichen ist derzeit pausiert. Es werden nur Abzeichen vor dem $1 angezeigt.",
+    "viewtype.grid": "Raster",
+    "viewtype.compactList": "Kompakte Liste",
+    "viewtype.list": "Liste",
+    "viewtype.ultraCompact": "Ultrakompakt"
+}

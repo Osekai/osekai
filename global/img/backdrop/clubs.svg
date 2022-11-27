@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<rect class="rc1" width="100" height="100px"  fill="#5d59f9"/> <!-- 95% club -->
+<rect class="rc1" width="95"  height="100px" fill="#6aedf4"/> <!-- 90% club -->
+<rect class="rc1" width="90"  height="100px" fill="#B66AED"/> <!-- 80% club -->
+<rect class="rc1" width="80"  height="100px" fill="#ff596f"/> <!-- 60% club -->
+<rect class="rc1" width="60"  height="100px" fill="#ff8c68"/> <!-- 40% club -->
+<rect class="rc1" width="40"  height="100px" fill="#a1bece"/> <!-- 0% club -->
+</svg>

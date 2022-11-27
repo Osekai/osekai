@@ -1,0 +1,8 @@
+{
+    "title": "コメント",
+    "sorting.votes": "投票順",
+    "sorting.newest": "新しい順",
+    "delete.warning": "このコメントを削除してもよろしいですか？",
+    "replyingTo": "$1に<span class=\"comments__light\">リプライ中</span>",
+    "posted": "$1を<span class=\"comments__light\">投稿しました</span>"
+}

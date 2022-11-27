@@ -1,0 +1,110 @@
+.authenticator__panel {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 59px - var(--extraheight));
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 6vh;
+    box-sizing: border-box;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    overflow: hidden !important;
+}
+
+html {
+    background: linear-gradient(#7086c855, #7086c822), black;
+    overflow: hidden !important;
+}
+
+body{
+    overflow: hidden !important;
+}
+
+.errorbg {
+    background: linear-gradient(#c8707055, #c8707022), black !important;
+}
+
+.osekai__panel-container__blur{
+    filter: blur(10px) !important;
+}
+
+
+.loggedin h1, .loggedin p{
+    animation: textAnim 3.5s 0s cubic-bezier(.87,.01,.55,.99);
+}
+
+.authenticator__panel svg {
+    width: 100px;
+    margin: 40px auto 0;
+    animation: checkAnim 3.5s 0s cubic-bezier(.87,.01,.55,.99);
+}
+
+.path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+}
+
+.path.circle {
+    animation: dash 2.9s 0s cubic-bezier(1, -0.01, 0, 1);
+}
+
+.path.line {
+    animation: dash 2.9s 0s cubic-bezier(1, -0.01, 0, 1);
+}
+
+.path.check {
+    animation: dash-check 2.9s 0s cubic-bezier(1, -0.01, 0, 1);
+}
+
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: -400;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes checkAnim {
+    0%{
+        filter: drop-shadow(0px 0px 20px #fff0);
+        transform: translateY(50px) scale(2);
+    }
+    50%{
+        filter: drop-shadow(0px 0px 10px #fff);
+        transform: translateY(50px) scale(1.5);
+    }
+    100%{
+        transform: translateY(00px);
+        filter: drop-shadow(0px 5px 0px #fff0);
+    }
+}
+
+@keyframes textAnim {
+    0%{
+        opacity: 0;
+        transform: translateY(70px) scale(2);
+    }
+    50%{
+        opacity: 0;
+        transform: translateY(70px);
+    }
+    100%{
+        opacity: 1;
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "title": "Doações não são necessárias, mas sempre bem-vindas :)",
+    "body.p1": "Nós a usamos para cobrir os custos de funcionamento do site. Para transparência você pode ver todos os custos que o próprio osekai produziu abaixo.",
+    "body.p2": "Queremos prestar todos os nossos serviços gratuitamente. A única \"vantagem\" que você recebe ao doar, é um pequeno ❤ no seu nome ao comentar em qualquer lugar, e acessar o canal de desenvolvimento do osekai no nosso server do Discord, mas coisas semelhantes podem ser adicionadas no futuro.",
+    "body.p3": "A lista de doadores abaixo não será atualizada instantaneamente. Mas não se preocupe, não deixaremos de atualizá-la assim que percebermos!",
+    "donate.title": "Faça uma doação!",
+    "donate.header": "Quer nos ajudar? Por favor, envie uma doação!",
+    "donate.body": "Tenha em mente para mostrar seu nome de usuário, você precisa fazer o login!",
+    "donate.paypal": "Doar com PayPal",
+    "donate.paysafecard": "Doar com Paysafecard",
+    "costs.title": "Custos",
+    "costs.covered": "custos cobertos: $1 / $2",
+    "top.title": "Top Doadores",
+    "recent.title": "Doações Mais Recentes",
+    "recent.message": "Mensagem da Doação"
+}

@@ -1,0 +1,8 @@
+{
+    "title": "Коментарі",
+    "sorting.votes": "Голоси",
+    "sorting.newest": "Найновіші",
+    "delete.warning": "Ви впевнені, що бажаєте видалити цей коментар?",
+    "replyingTo": "<span class=\"comments__light\">у відповідь</span> $1",
+    "posted": "<span class=\"comments__light\">опублікований</span> $1"
+}

@@ -1,0 +1,76 @@
+.home__logo {
+    filter: invert(90%);
+}
+
+.home__cover-bottom svg path {
+    fill: #222 !important;
+}
+
+.home__cover-bottom p span {
+	color: #384653;
+}
+
+.home__panel {
+	background: rgba(var(--paccent-bright), 0.25);
+	border: 1px solid rgba(var(--paccent-bright), 0.25);
+}
+.home__long-panel  {
+    color: white;
+}
+
+.home__faq {
+	background-image: url("../img/faq-bg-light.png");
+	background-size: cover;
+	background-position: center;
+}
+
+.home__faq-answer {
+    background-color: #fffa;
+}
+
+.home__faq-question {
+	background: radial-gradient(50% 50% at 50% 50%, rgba(255,255,255, 0.2) 0%, rgba(255,255,255, 0) 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #e1e1feaa;
+	border: 1px solid rgba(50, 50, 50, 0.1);
+}
+
+.home__faq-question:hover {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(255,255,255, 0.2) 0%, rgba(255,255,255, 0) 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #ffffffaa;
+	border: 1px solid rgba(50, 50, 50, 0.1);
+}
+
+.home__faq-question-active {
+    background: #fff;
+    border: 1px solid rgba(50, 50, 50, 0.1);
+    filter: drop-shadow(0px 0px 10px rgba(255,255,255,0.5));
+}
+
+.home__team-panel-upper {
+	background: #fff;
+    border: 1px solid #5554;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.home__team-panel-lower {
+    background: #fff;
+    border: 1px solid #5552;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.02);
+}
+
+.home__team-panel-lower-social img {
+	filter: invert(100%);
+}
+
+.home__team-panel-lower-social:hover {
+    background-color: #222222;
+    color: #fff;
+}
+
+.home__team-panel-lower-social:hover img {
+    filter: invert(0%);
+}
+
+
+.home__team {
+	background-color: #fafafa;
+	box-shadow: 0px 0px 28px rgba(53, 61, 85, 0.1);
+}

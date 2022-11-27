@@ -1,0 +1,20 @@
+{
+    "badges.title": "Badget ($1)",
+    "sort.awardedAt.asc": "Palkittu aikaan (nouseva)",
+    "sort.awardedAt.desc": "Palkittu aikaan (laskeva)",
+    "sort.name.asc": "Nimi (a-z)",
+    "sort.name.desc": "Nimi (z-a)",
+    "sort.playerCount.asc": "Pelaajien määrä (nouseva)",
+    "sort.playerCount.desc": "Pelaajien määrä (laskeva)",
+    "search.placeholder": "etsi badgea!",
+    "badge.firstAchieved": "first achieved <strong>$1</strong>",
+    "badge.ownedBy": "owned by <strong>$1</strong> players",
+    "badge.ownedBySingular": "owned by <strong>$1</strong> player",
+    "badge.popup.playersWhoHave": "<strong>players</strong> who have this badge",
+    "badge.popup.1xVariant": "<strong>@1x</strong><br>variantti",
+    "paused": "Processing for Osekai Badges is currently paused. Only badges before $1 will be shown.",
+    "viewtype.grid": "Ruudukko",
+    "viewtype.compactList": "Kompakti Lista",
+    "viewtype.list": "Lista",
+    "viewtype.ultraCompact": "Ultra Kompakti"
+}

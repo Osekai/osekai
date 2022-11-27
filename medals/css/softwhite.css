@@ -1,0 +1,13 @@
+.medals__info-background-medal {
+    opacity: 0;
+}
+.medals__info-background-overlay {
+    background: #0000;
+}
+#medal__info.osekai__panel-header, #medal__info.osekai__panel-header-with-buttons {
+    border-bottom: 0px solid #fff0;
+}
+
+.osekai__mit-title{
+    color: #000d;
+}

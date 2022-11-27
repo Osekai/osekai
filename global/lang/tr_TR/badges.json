@@ -1,0 +1,20 @@
+{
+    "badges.title": "Rozetler ($1)",
+    "sort.awardedAt.asc": "Verildiği zaman (yükselen)",
+    "sort.awardedAt.desc": "Verildiği zaman (alçalan)",
+    "sort.name.asc": "İsim (a-z)",
+    "sort.name.desc": "İsim (z-a)",
+    "sort.playerCount.asc": "Oyuncu sayısı (yükselen)",
+    "sort.playerCount.desc": "Oyuncu sayısı (alçalan)",
+    "search.placeholder": "bir rozet ara!",
+    "badge.firstAchieved": "ilk alındığı zaman <strong>$1</strong>",
+    "badge.ownedBy": "buna sahip olan <strong>$1</strong> oyuncu var",
+    "badge.ownedBySingular": "buna sahip olan <strong>$1</strong> oyuncu var",
+    "badge.popup.playersWhoHave": "bu rozete sahip olan <strong>oyuncular</strong>",
+    "badge.popup.1xVariant": "<strong>@1x</strong><br>varyantı",
+    "paused": "Osekai Badges'in işlenmesi şu anda duraklatıldı. Sadece $1'den önceki rozetler gösterilecektir.",
+    "viewtype.grid": "Izgara",
+    "viewtype.compactList": "Kompakt Liste",
+    "viewtype.list": "Liste",
+    "viewtype.ultraCompact": "Aşırı Kompakt"
+}

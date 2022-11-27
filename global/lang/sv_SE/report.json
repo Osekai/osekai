@@ -1,0 +1,15 @@
+{
+    "new.finished.title": "Rapporterad!",
+    "new.finished.button": "Okej!",
+    "new.comment.title": "Rapportera denna kommentar",
+    "new.beatmap.title": "Rapportera denna beatmap",
+    "new.bug.title": "Rapportera en bugg",
+    "new.comment.body": "Du rapporterar för närvarande denna kommentar. Vänligen ge oss fördjupade detaljer om varför denna kommentar bör granskas eller tas bort. Var snäll och avstå från att rapportera kommentarer som skämtar.",
+    "new.beatmap.body": "Du rapporterar för närvarande detta beatmap förslag. Låt oss veta varför du tycker att denna beatmap är inte lämplig för denna medalj, och varför den ska tas bort.",
+    "new.bug.body": "Om du upplever en bugg på Osekai kan du rapportera den här! Var snäll och ge oss information om vad buggen håller på med och vilka steg du har försökt att åtgärda den.<br>Om du har inte ännu kan du prova CTRL+F5. Webbläsarens har behållande/cachad filer lokalt från servern för några dagar, och ibland kan dessa bli gamla och orsaka buggar. CTRL+F5 återställer denna cache, och en hel del av tiden fixar eventuella buggar du kan ha.",
+    "new.comment.finished": "Tack för att du har rapporterat denna kommentar! Vi kommer att granska det så snart som möjligt.",
+    "new.beatmap.finished": "Tack för att du har rapporterat denna beatmap! Vi kollar in den så snart som möjligt!",
+    "new.bug.finished": "Thanks for reporting this bug. Our development team will loo k into it as soon as possible! If you have more questions or issues, feel free to contact us through the osu! Medal Hunters Discord server, found in the Apps dropdown in the top left.",
+    "new.bug.finished.button": "Ok!",
+    "logged-out": "Vänligen logga in för att skicka en rapport."
+}

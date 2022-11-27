@@ -1,0 +1,92 @@
+<!-- FUNC_GetMedals -->
+DROP PROCEDURE FUNC_GetMedals;
+CREATE PROCEDURE FUNC_GetMedals(strGrouping VARCHAR(30), strName VARCHAR(50))
+SELECT Medals.medalid AS MedalID
+	, Medals.name AS Name
+	, Medals.link AS Link
+	, Medals.description AS Description
+	, Medals.restriction AS Restriction
+	, Medals.grouping AS Grouping
+	, Medals.instructions AS Instructions
+	, Solutions.solution AS Solution
+	, Solutions.mods AS Mods
+	, MedalStructure.Locked AS Locked
+    , Medals.video AS Video
+    , Medals.date AS Date
+    , Medals.packid as PackID
+	, (CASE WHEN restriction = 'osu' THEN 2 WHEN restriction = 'taiko' THEN 3 WHEN restriction = 'fruits' THEN 4 WHEN restriction = 'mania' THEN 5 ELSE 1 END) AS ModeOrder 
+	, Medals.ordering AS Ordering
+    , MedalRarity.frequency As Rarity
+FROM Medals 
+LEFT JOIN Solutions ON Medals.medalid = Solutions.medalid 
+LEFT JOIN MedalStructure ON MedalStructure.MedalID = Medals.medalid 
+LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid
+WHERE Medals.grouping LIKE CONCAT('%', strGrouping, '%') AND LOWER(Medals.name) LIKE CONCAT('%', strName, '%')
+ORDER BY ModeOrder, Ordering DESC, MedalID
+
+<!-- FUNC_GetBeatmaps -->
+DROP PROCEDURE FUNC_GetBeatmaps;
+CREATE PROCEDURE FUNC_GetBeatmaps(nUserID INTEGER(20), strName VARCHAR(50))
+SELECT Beatmaps.ID As ObjectID,
+	BeatmapID,
+	MapsetID,
+    Gamemode,
+    SongTitle,
+    Artist,
+    MapperID,
+    Mapper,
+    ROUND(Difficulty, 2) AS Difficulty,
+    DifficultyName,
+    DownloadUnavailable,
+	SubmittedBy,
+    SubmissionDate,
+    MedalName,
+    COALESCE(voteSum, 0) AS VoteSum,
+    HasVoted,
+    Note
+FROM Beatmaps 
+LEFT JOIN (SELECT SUM(Vote) As voteSum, ObjectID FROM Votes WHERE Type = '0' GROUP BY ObjectID) AS t ON t.ObjectID = Beatmaps.ID 
+LEFT JOIN (SELECT ObjectID AS hasVoted FROM Votes WHERE UserID = nUserID AND Type = '0' GROUP BY ObjectID) AS x ON x.hasVoted = Beatmaps.ID 
+WHERE MedalName = strName 
+ORDER BY voteSUM DESC, ID DESC
+
+<!-- FUNC_GetCommentGroups -->
+DROP PROCEDURE FUNC_GetCommentGroups;
+CREATE PROCEDURE FUNC_GetCommentGroups(strMedal VARCHAR(50))
+SELECT COALESCE(z.ParentComment, COALESCE(y.ParentComment, COALESCE(x.ParentComment, COALESCE(w.ParentComment, COALESCE(v.ParentComment, COALESCE(u.ParentComment, COALESCE(t.ParentComment, COALESCE(Comments.ParentComment, Comments.ID)))))))) AS GroupID
+FROM Comments
+LEFT JOIN Comments t ON Comments.ParentComment = t.ID
+LEFT JOIN Comments u ON t.ParentComment = u.ID
+LEFT JOIN Comments v ON u.ParentComment = v.ID
+LEFT JOIN Comments w ON v.ParentComment = w.ID
+LEFT JOIN Comments x ON w.ParentComment = x.ID
+LEFT JOIN Comments y ON x.ParentComment = y.ID
+LEFT JOIN Comments z ON y.ParentComment = z.ID
+LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 1
+WHERE Comments.MedalName = strMedal AND Comments.Reported < 2 AND (t.ID IS NOT NULL OR NULLIF(Comments.ParentComment, '') IS NULL)
+GROUP BY COALESCE(z.ParentComment, COALESCE(y.ParentComment, COALESCE(x.ParentComment, COALESCE(w.ParentComment, COALESCE(v.ParentComment, COALESCE(u.ParentComment, COALESCE(t.ParentComment, COALESCE(Comments.ParentComment, Comments.ID))))))))
+ORDER BY SUM(Votes.Vote) DESC, COALESCE(z.ParentComment, COALESCE(y.ParentComment, COALESCE(x.ParentComment, COALESCE(w.ParentComment, COALESCE(v.ParentComment, COALESCE(u.ParentComment, COALESCE(t.ParentComment, COALESCE(Comments.ParentComment, Comments.ID)))))))) DESC
+
+<!-- FUNC_GetCommentsByGroup -->
+DROP PROCEDURE FUNC_GetCommentsByGroup;
+CREATE PROCEDURE FUNC_GetCommentsByGroup(strGroup VARCHAR(10))
+SELECT Comments.ID,
+	Comments.PostText,
+    Comments.UserID,
+    Comments.PostDate,
+    Comments.ParentCommenter,
+    Comments.MedalName,
+    Roles.RoleName,
+    SUM(Votes.Vote) AS VoteSum
+FROM Comments
+LEFT JOIN Comments t ON Comments.ParentComment = t.ID
+LEFT JOIN Comments u ON t.ParentComment = u.ID
+LEFT JOIN Comments v ON u.ParentComment = v.ID
+LEFT JOIN Comments w ON v.ParentComment = w.ID
+LEFT JOIN Comments x ON w.ParentComment = x.ID
+LEFT JOIN Comments y ON x.ParentComment = y.ID
+LEFT JOIN Comments z ON y.ParentComment = z.ID
+LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 1
+LEFT JOIN Roles ON Roles.UserID = Comments.UserID
+WHERE COALESCE(z.ParentComment, COALESCE(y.ParentComment, COALESCE(x.ParentComment, COALESCE(w.ParentComment, COALESCE(v.ParentComment, COALESCE(u.ParentComment, COALESCE(t.ParentComment, COALESCE(Comments.ParentComment, Comments.ID)))))))) = strGroup
+GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.MedalName, Roles.RoleName

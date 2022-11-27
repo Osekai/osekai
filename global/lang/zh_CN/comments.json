@@ -1,0 +1,8 @@
+{
+    "title": "评论",
+    "sorting.votes": "票数",
+    "sorting.newest": "最近的",
+    "delete.warning": "您确定要删除此评论吗？",
+    "replyingTo": "<span class=\"comments__light\">回复</span> $1",
+    "posted": "<span class=\"comments__light\">发表于</span> $1"
+}

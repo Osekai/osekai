@@ -1,0 +1,1141 @@
+.medals__scroller {
+    height: 100%;
+    scrollbar-width: thin;
+    /* "auto" or "thin" */
+    scrollbar-color: rgba(var(--accentdark), 0.2) #0000;
+    /* scroll thumb and track */
+    border-radius: 8px;
+    padding-right: 10px;
+    overflow: auto;
+}
+
+#oMedalSection {
+    padding-bottom: 20px;
+}
+
+.medals__scroller:after {
+    content: "";
+    overflow-y: none;
+    height: calc(100% + 4px);
+    scrollbar-width: thin;
+    /* "auto" or "thin" */
+    scrollbar-color: rgba(var(--accentdark), 0.2) #0000;
+    /* scroll thumb and track */
+    border-radius: 8px;
+    padding-right: 10px;
+    background: linear-gradient(0deg, rgba(20, 7, 14, 1) 5%, rgba(20, 7, 14, 0) 15%, rgba(20, 7, 14, 0) 100%);
+    z-index: 8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    opacity: 0;
+    display: none;
+}
+
+.osekai__3col_col1 {
+    position: fixed;
+    height: calc(100vh - 42px - 42px - var(--navheight) + 35px);
+    top: calc(42px + var(--navheight));
+    left: 42px;
+    z-index: 6;
+}
+
+.medals__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
+    grid-auto-rows: 1fr;
+    width: 100%;
+    grid-gap: 10px;
+}
+
+.medals__grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.grid>*:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+}
+
+.medals__grid-medal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.medals__grid-medal {
+    height: 4rem;
+    /* height: calc(119px / 1.7);
+    width: calc(111px / 1.7); */
+    justify-self: center;
+    align-self: center;
+    transition: all 0.5s cubic-bezier(0, .84, .25, 1);
+    opacity: 0;
+    transform: scale(0.7) translateY(20px);
+    filter: brightness(0.5);
+}
+
+.medals__grid-medal-loaded {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+}
+
+.medals__grid-medal:hover {
+    transform: translateY(-3px) translateX(-0.2px) scale(1.02);
+    filter: drop-shadow(0 4px 8px #fff4);
+    cursor: pointer;
+    z-index: 4;
+}
+
+.medals__grid-medal:active {
+    transform: translateY(-2px) translateX(0px) scale(0.95);
+    filter: drop-shadow(0 4px 5px #fff4);
+    z-index: 4;
+}
+
+.medals__grid-medal__active {
+    transform: translateY(-2px) translateX(0px) scale(1.1);
+    filter: brightness(1.3) drop-shadow(0 0px 12px #fff);
+}
+
+.medals__search {
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), linear-gradient(270deg, rgba(var(--accentdark), 0.48) 0%, rgba(var(--accentdark), 0.74) 100%);
+    border-radius: 8px;
+    padding: 13px;
+    margin-bottom: 1px;
+    width: 100%;
+    display: flex;
+    transition: all 0.3s ease;
+}
+
+.medals__search-input {
+    padding: 0px;
+    margin: 0px;
+    color: white;
+    border: 0px solid;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    margin-left: 9px;
+    font-family: "Comfortaa";
+    width: 100%;
+}
+
+.osekai__3col_col1_spacer {
+    overflow-y: scroll;
+    height: 100%;
+    scrollbar-width: thin;
+    /* "auto" or "thin" */
+    scrollbar-color: rgba(var(--accentdark), 0.2) #0000;
+    /* scroll thumb and track */
+    border-radius: 8px;
+    padding-right: 10px;
+}
+
+.medals__info {
+    padding: 30px;
+    display: flex;
+    background: transparent;
+    align-items: center;
+}
+
+.osekai__mi-icon {
+    width: 80px;
+}
+
+.osekai__mi-text {
+    margin-left: 25px;
+}
+
+.osekai__mit-title {
+    font-family: Comfortaa;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 100%;
+}
+
+.osekai__mit-desc {
+    font-family: Comfortaa;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+}
+
+.osekai__mit-hint {
+    font-weight: 300;
+    font-size: 14px;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.medals__sol-header {
+    font-size: 20px;
+}
+
+.medals__sol-solution {
+    font-size: 15px;
+    padding-top: 8px;
+}
+
+.medals__info-sol {
+    padding: 25px 30px;
+}
+
+#oBeatmapContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.medals__addbeatmap-ifo1 {
+    font-size: 20px;
+}
+
+.medals__addbeatmap-ifo2 {
+    font-size: 16px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    opacity: 0.9;
+}
+
+.medals__bmid {
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.osekai__mi-mods {
+    margin-top: 4px;
+}
+
+.osekai__mi-mod {
+    height: 22px;
+    filter: contrast(1.5) brightness(1.2) grayscale(1);
+}
+
+.fa-dot-circle {
+    font-size: 70%;
+    transform: translateY(-2px);
+    margin-right: 4px;
+    color: rgb(9, 240, 105);
+    filter: drop-shadow(0px 0px 3px rgb(9, 240, 105));
+}
+
+.medals__bpr-bottom {
+    width: 100%;
+}
+
+.medals__bm-add {
+    border: 0px;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+}
+
+.medals__bm-count {
+    opacity: 0.5;
+    margin-left: 8px;
+}
+
+.osekai__mi-lock {
+    margin-left: auto;
+    font-size: 24px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: scale(0.7);
+    z-index: 9;
+}
+
+.medals-ico-lock {
+    width: 24px;
+    height: 19px;
+    border: 2px solid #fff;
+    border-radius: 7px;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.medals-ico-lock:before {
+    content: "";
+    display: block;
+    width: 13px;
+    height: 13px;
+    bottom: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -9px;
+    border: 2px solid #fff;
+    border-top-right-radius: 500px;
+    border-top-left-radius: 500px;
+    border-bottom: 0;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.medals-ico-lock-open:before {
+    transform: translateX(12px) !important;
+}
+
+.medals-ico-lock-open {
+    transform: translateX(-6px);
+}
+
+/* beatmap v2 */
+
+.medals__bmp2-panel {
+    border-radius: 8px;
+    width: 100%;
+    cursor: normal;
+    transition: all 0.1s ease;
+}
+
+.medals__bmp2-panel:hover {
+    transform: translateY(-3px);
+}
+
+.medals__bmp2-top {
+    padding: 15px;
+    display: flex;
+    text-decoration: none !important;
+}
+
+.medals__bmp2-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.medals__bmp2-top-right {
+    text-align: right;
+    margin-left: auto;
+}
+
+.medals__bmp2-tl-bmname, .medals__bmp2-tl-artist, .medals__bmp2-tr-difficulty, .medals__bmp2-tr-mapper {
+    text-overflow: ellipsis !important;
+    white-space: nowrap;
+    max-width: 100%;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    color: white;
+    text-decoration: none !important;
+}
+
+.medals__bmp2-tr-difficulty, .medals__bmp2-tr-mapper {
+    text-align: right;
+}
+
+.medals__bmp2-top-left, .medals__bmp2-top-right {
+    text-overflow: ellipsis;
+
+}
+
+.medals__bmp2-top-left {
+    max-width: 60%;
+}
+
+.medals__bmp2-top-right {
+    max-width: 40%;
+}
+
+.medals__bmp2-bottom {
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0px 0px 8px 8px;
+
+}
+
+.medals__bmp2-submitter, .medals__bmp2-delete, .medals__bmp2-r-note, .medals__bmp2-r-vote {
+    padding: 13px 15px;
+}
+
+.medals__bmp2-right {
+    display: flex;
+    margin-left: auto;
+}
+
+.medals__bmp2-right {
+    display: flex;
+}
+
+.medals__bmp2-r-vote {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.medals__bmp2-delete {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.medals__bmp2-delete:hover {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+.medals__bmp2-submitter, .medals__bmp2-tr-mapper, .medals__bmp2-tl-artist {
+    font-weight: 300;
+    cursor: normal !important;
+}
+
+.medals__bmp2-bold {
+    font-weight: 800;
+}
+
+.medals__bmp2-tr-mapper, .medals__bmp2-tl-artist {
+    font-size: 12px;
+}
+
+.medals__bmp2-tl-bmname, .medals__bmp2-tr-difficulty {
+    font-size: 20px;
+}
+
+.medals__bmp2-r-note-icon {
+    margin-left: 5px;
+}
+
+.medals__bmp2-r-vote:hover, .medals__bmp2-r-note:hover {
+    background: #fff4
+}
+
+.medals__bmp2-top:hover, .medals__bmp2-r-vote:hover, .medals__bmp2-r-note:hover {
+    cursor: pointer;
+}
+
+.medals__bmp2-r-vote-voted {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.medals__sol-gamemode {
+    height: 20px;
+}
+
+.medals__search__bar {
+    display: flex;
+    justify-content: stretch;
+    transition: all 0.3s ease;
+}
+
+.medals__search__area {
+    margin-bottom: calc(35px / 1.5);
+    position: sticky !important;
+    top: 0px;
+    z-index: 8;
+    border-radius: 8px;
+    background: linear-gradient(rgba(var(--accentdark), 0.2), rgba(var(--accentdark), 0.2)) #000;
+}
+
+.medals__search__filters-open .medals__search__filters {
+    opacity: 1;
+    margin-top: 0px;
+    transform: translateX(0px);
+    position: relative;
+    pointer-events: all;
+}
+
+.medals__search__filters {
+    transition: all 0.3s ease;
+    margin-top: -120px;
+    transform: translateY(90%);
+    opacity: 0;
+    pointer-events: none;
+    margin-bottom: 0px !important;
+    background: linear-gradient(rgba(var(--accentdark), 0.4), rgba(var(--accentdark), 0.4)), #000;
+}
+
+.medals__search__filters-icon {
+    width: 48px;
+    height: 40px;
+    background: linear-gradient(rgba(var(--accentdark), 0.6), rgba(var(--accentdark), 0.4));
+    /* inner drop shadow */
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    border-radius: 6px;
+    margin: 2px;
+    box-sizing: border-box;
+    margin-left: 1px;
+    position: absolute;
+    right: 0;
+}
+
+.medals__search__filters-icon:hover {
+    filter: brightness(1.25);
+    cursor: pointer;
+}
+
+.medals__search__filters-open .medals__search__filters-icon {
+    transition: all 0.3s ease;
+    background: linear-gradient(rgba(var(--accentdark), 0.6), rgba(var(--accentdark), 0.4)), #000a;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3) inset;
+}
+
+.medals__search__filters-open .medals__search {
+    border-radius: 8px 8px 0px 0px;
+    transition: all 0.3s ease;
+
+}
+
+.medals__search__filters .osekai__panel-header {
+    transition: all 0.3s ease;
+    border-radius: 0px;
+    background: linear-gradient(rgba(var(--accentdark), 0.9), rgba(var(--accentdark), 01)), #000;
+}
+
+.medals__medal-filtered {
+    opacity: 0.5;
+    filter: grayscale(1);
+}
+
+.medals__arrow-nomedal {
+    transform: translateX(-100%) !important;
+}
+
+.osekai__ct3-arrow_area {
+    transition: all 0.5s ease;
+    transform: translateX(0px);
+}
+
+@media (max-width: 900px) {
+    .medals__info {
+        flex-direction: column;
+        align-content: center;
+        padding: 20px 0px !important;
+    }
+
+    .medals__info p, .medals__info {
+        text-align: center;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .osekai__mi-text {
+        margin-left: 0px !important;
+        margin-top: 8px;
+    }
+
+    .osekai__mi-mods {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .medals__info-background-medal, .osekai__mi-icon-glow, .medals__info-background {
+        display: none;
+    }
+    .osekai__mi-lock {
+        position: absolute;
+        right: 0px;
+    }
+
+    .medals__info {
+        background-color: rgb(var(--accentdark));
+    }
+}
+
+.medals__nomedal {
+    width: calc(100% - 27px - 35px);
+    transition: all 0.5s cubic-bezier(0, .71, .25, 1);
+    z-index: 2;
+    border-radius: 8px;
+}
+
+.osekai__navbar__app-chevron {
+    transform: translateY(4px);
+}
+
+.medals__nomedal .osekai__panel {
+    width: calc(33.33333% - 22px);
+}
+
+.medals__nomedal .medals__search__filters {
+    width: 100% !important;
+}
+
+.medals__nomedal #oMedalSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+@media only screen and (max-width: 1500px) {
+    .medals__nomedal .osekai__panel {
+        width: calc(50% - 16px);
+    }
+}
+
+@media (max-width: 900px) {
+    .medals__nomedal .osekai__panel {
+        width: 100%;
+    }
+
+    .medals__nomedal #oMedalSection {
+        gap: 0px;
+    }
+
+    .medals__nomedal {
+        width: 100%;
+    }
+
+    .osekai__3col_col1 {
+        padding: 25px;
+    }
+
+}
+
+/* beatmap v3 */
+
+.medals__bmp3-panel {
+    border-radius: 8px;
+    width: 100%;
+    cursor: normal;
+    background-size: cover !important;
+    background-position: center !important;
+    z-index: 12;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.medals__bmp3-panel-outer:hover .medals__bmp3-panel {
+    transform: translateY(-2px);
+}
+
+.medals__bmp3-panel-outer {
+    width: 100%;
+    z-index: 8;
+    transition: all 0.3s ease;
+}
+
+.medals__bmp3-panel-outer {
+    transition: all 0.3s ease;
+    transform: perspective(20em);
+}
+
+.medals__bmp3-panel-outer:hover {
+    /* filter: drop-shadow(0px 0px 8px rgba(var(--accentdark), 0.5)); */
+
+    transform: scale(1.01);
+}
+
+.medals__bmp3-panel-outer:hover .medals__bmp3-panel {
+    box-shadow: 0px 0px 8px rgba(var(--accentdark), 1);
+    background-color: #fff;
+}
+
+.medals__bmp3-panel-outer:hover .medals__bmp3-hover-area {
+    margin-top: -4px;
+    z-index: 0;
+    transform: scale(0.99);
+}
+
+.medals__bmp3-hover-area {
+    position: relative;
+    z-index: 6;
+    margin-top: calc(-4px - 45px);
+    transition: all 0.3s ease;
+    background-color: rgba(var(--accentdark), 0.25);
+    border-radius: 0px 0px 8px 8px;
+    display: flex;
+    gap: 3px;
+}
+
+.medals__bmp3-hover-button {
+    font-weight: 100;
+}
+
+.medals__bmp3-hover-button strong {
+    font-weight: 900;
+}
+
+.medals__bmp3-hover-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 13px;
+    padding-top: 17px;
+    background-color: rgba(var(--accentdark), 0.25);
+    border-radius: 0px 0px 8px 8px;
+    flex-grow: 1;
+    transition: all 0.1s ease;
+}
+
+.medals__bmp3-hover-button:hover {
+    background-color: rgba(var(--accentdark), 0.45);
+    filter: drop-shadow(0px 0px 8px #fff2);
+}
+
+.medals__bmp3-hover-button:active {
+    background-color: rgba(var(--accentdark), 0.65);
+    filter: drop-shadow(0px 0px 4px #fff2);
+}
+
+.medals__bmp3-top {
+    padding: 15px;
+    display: flex;
+    text-decoration: none !important;
+}
+
+.medals__bmp3-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.medals__bmp3-top-right {
+    text-align: right;
+    margin-left: auto;
+}
+
+.medals__bmp3-tl-bmname, .medals__bmp3-tl-artist, .medals__bmp3-tr-difficulty, .medals__bmp3-tr-mapper {
+    text-overflow: ellipsis !important;
+    white-space: nowrap;
+    max-width: 100%;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    color: white;
+    text-decoration: none !important;
+}
+
+.medals__bmp3-tr-difficulty, .medals__bmp3-tr-mapper {
+    text-align: right;
+}
+
+.medals__bmp3-top-left, .medals__bmp3-top-right {
+    text-overflow: ellipsis;
+
+}
+
+.medals__bmp3-top-left {
+    max-width: 60%;
+}
+
+.medals__bmp3-top-right {
+    max-width: 40%;
+}
+
+.medals__bmp3-bottom {
+    display: flex;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(148, 148, 148, 0.2) 100%), rgba(var(--accentdark), 0.75);
+    background-blend-mode: luminosity, normal;
+    backdrop-filter: blur(6px);
+    border-radius: 0px 0px 8px 8px;
+
+}
+
+.medals__bmp3-submitter, .medals__bmp3-delete, .medals__bmp3-r-note, .medals__bmp3-r-vote {
+    padding: 13px 15px;
+}
+
+.medals__bmp3-right {
+    display: flex;
+    margin-left: auto;
+}
+
+.medals__bmp3-r-vote {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.medals__bmp3-submitter, .medals__bmp3-tr-mapper, .medals__bmp3-tl-artist {
+    font-weight: 300;
+    cursor: normal !important;
+}
+
+.medals__bmp3-bold {
+    font-weight: 800;
+}
+
+.medals__bmp3-tr-mapper, .medals__bmp3-tl-artist {
+    font-size: 12px;
+}
+
+.medals__bmp3-tl-bmname, .medals__bmp3-tr-difficulty {
+    font-size: 20px;
+}
+
+.medals__bmp3-r-note-icon {
+    margin-left: 5px;
+}
+
+.medals__bmp3-r-vote:hover, .medals__bmp3-r-note:hover {
+    background: #fff4
+}
+
+.medals__bmp3-top:hover, .medals__bmp3-r-vote:hover, .medals__bmp3-r-note:hover {
+    cursor: pointer;
+}
+
+.medals__bmp3-r-vote-voted {
+    background: #fff !important;
+    color: rgba(var(--accentdark), 1) !important;
+}
+
+.medals__bmp3_mobile {
+    display: flex;
+    border-radius: 8px;
+
+    width: 100%;
+    box-sizing: border-box;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.medals__bmp3_mobile-inner {
+    padding: 15px;
+    width: 100%;
+}
+
+.medals__bmp3_mobile-title {
+    font-size: 22px;
+}
+
+.medals__bmp3_mobile-artist {
+    font-size: 10px;
+    opacity: 0.75;
+    font-weight: 100;
+}
+
+.medals__bmp3_mobile-difficulty {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.medals__bmp3_mobile-mapper {
+    font-size: 12px;
+    font-weight: 100;
+    opacity: 0.75;
+}
+
+.medals__bmp3_mobile-submission-date {
+    font-size: 10px;
+    font-weight: 100;
+    opacity: 0.5;
+}
+
+.medals__bmp3_mobile-vote {
+    padding: 10px;
+    background: linear-gradient(0deg, rgba(var(--accentdark), 0.3), rgba(var(--accentdark), 0.3)), rgba(0, 0, 0, 0.6);
+    border-radius: 0px 0px 0px 8px;
+}
+
+.medals__bmp3_mobile-vote:hover, .medals__bmp3_mobile-report:hover {
+    filter: brightness(1.2);
+}
+
+.medals__bmp3_mobile-report {
+    padding: 7px;
+    background: linear-gradient(0deg, rgba(var(--accentdark), 0.3), rgba(var(--accentdark), 0.3)), rgba(0, 0, 0, 0.6);
+    margin-top: auto;
+    border-radius: 8px 0px 0px 0px;
+}
+
+.medals__bmp3_mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.osekai__mi-icon-glow {
+    position: absolute;
+    filter: blur(20px);
+    z-index: 0;
+}
+
+.osekai__mi-icon {
+    z-index: 1;
+}
+
+.medals__info {
+    position: relative;
+
+}
+
+.medals__info-background-medal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(50px);
+    transform: scale(1.2);
+}
+
+.medals__info-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgba(var(--accentdark), 0.5);
+    background-blend-mode: luminosity, normal;
+}
+
+.osekai__mi-text {
+    z-index: 2;
+}
+
+.medals__grid-medal-outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.medals__bmp3-tl-bmname, .medals__bmp3-tr-difficulty {
+    overflow: hidden;
+}
+
+.medals__bmp3-top-left {
+    flex: 1;
+}
+
+.medals__info {
+    border-radius: 8px;
+    overflow: hidden !important;
+}
+
+.medals__sol-header {
+    font-size: 22px;
+    margin-bottom: -5px;
+    color: rgba(var(--accent), 1);
+}
+
+
+.new-badge {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 3px 10px;
+    z-index: 1;
+    background-color: rgba(var(--accentdark), 0.8);
+    font-size: 10px;
+    border-radius: 90px;
+    color: #fff;
+    font-weight: 900;
+    pointer-events: none;
+}
+
+.medals__grid-medal-container {
+    position: relative;
+
+}
+
+
+
+.medals__viewpack {
+    /* background: rgba(var(--maincol), 1); */
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), rgba(var(--maincol), 1);
+    border-radius: 12px 22px 22px 12px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.medals__viewpack:hover {
+    filter: brightness(1.1);
+    transform: scale(1.01) translateY(-2px);
+}
+
+.medals__viewpack svg {
+    height: 21px;
+    padding: 16px;
+    transition: all 0.2s ease;
+}
+
+.medals__viewpack:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(var(--maincol), 0.5));
+}
+
+.medals__viewpack-textarea {
+    flex: 1;
+    align-self: stretch;
+    display: flex;
+    border-radius: 12px;
+    align-items: center;
+    padding: 0px 10px;
+    transition: all 0.2s ease;
+    position: relative;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), rgba(var(--maincol), 1);
+}
+
+.medals__viewpack:hover .medals__viewpack-textarea-extrabg {
+    background-color: #fff2;
+}
+
+.medals__viewpack-right {
+    margin-left: auto;
+    text-align: right;
+}
+
+.medals__viewpack-left, .medals__viewpack-right {
+    font-weight: 100;
+    font-size: 16px;
+    text-transform: lowercase;
+}
+
+.medals__viewpack-left strong, .medals__viewpack-right strong {
+    font-weight: 900;
+}
+
+#oBeatmapContainer_GetFromOsu {
+    gap: 10px;
+}
+
+.medals__sol-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.medals__sol-header-gamemode-tag {
+    padding: 4px;
+    border-radius: 90px;
+    background-color: rgba(var(--accentdark), 1);
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+    margin-bottom: -2px;
+}
+
+.medals__sol-header-gamemode-tag p {
+    margin: 0px 4px;
+    font-weight: 100;
+}
+
+.medals__sol-header-gamemode-tag p b {
+    font-weight: 900;
+}
+
+.medals__viewpack-textarea-extrabg {
+    position: absolute;
+    border-radius: 12px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: #0005;
+    transition: all 0.2s ease;
+}
+
+.medals__viewpack-left, .medals__viewpack-right {
+    z-index: 2;
+}
+
+.medals__viewpack-best {
+    background: white;
+}
+
+.medals__viewpack-best svg path {
+    fill: rgb(var(--maincol));
+    filter: brightness(0.5);
+}
+
+.medals__solution-panel {
+    margin-bottom: 0px;
+    background: rgba(var(--accentdark), 0.3);
+    border-radius: 8px;
+}
+
+.medals__info-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 14px 30px;
+}
+
+.medals__info-bar-texts-right {
+    margin-left: auto;
+}
+
+.medals__info-bar-text-right light {
+    color: #fffa;
+    font-weight: 100;
+}
+
+.medals__info-bar-text-right {
+    font-weight: 900;
+}
+
+.osekai__3col_right {
+    transition: all 0.8s cubic-bezier(0, .71, .25, 1);
+}
+
+.osekai__3col_right.hidden {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    display: inherit !important;
+    filter: blur(10px);
+}
+
+.medals__extrainfo-bar {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), rgb(var(--accentdark));
+    border-radius: 8px;
+}
+
+.medals__extrainfo-bar-left {
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 400;
+}
+.medals__extrainfo-bar-left i {
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+.medals__extrainfo-bar-right {
+    margin-left: auto;
+    height: 52px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), rgb(var(--accentdark));
+opacity: 0.8;
+box-shadow: inset 4px 4px 9px rgba(0, 0, 0, 0.25);
+border-radius: 8px;
+font-size: 17px;
+font-weight: 800;
+padding: 4px;
+box-sizing: border-box;
+}
+.medals__extrainfo-bar-right p {
+    margin-right: 12px;
+}
+.medals__extrainfo-bar-right-with-image img {
+    height: 100%;
+    border-radius: 5px;
+}
+#oExtraInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+

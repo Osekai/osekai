@@ -1,0 +1,8 @@
+{
+    "title": "留言",
+    "sorting.votes": "票數",
+    "sorting.newest": "最新的",
+    "delete.warning": "您確定要刪除此留言嗎?",
+    "replyingTo": "<span class=\"comments__light\">回覆</span> $1",
+    "posted": "$1 <span class=\"comments__light\">發佈</span>"
+}

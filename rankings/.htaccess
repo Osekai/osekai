@@ -1,0 +1,23 @@
+# medals / users
+Redirect /rankings/userMedals /rankings/?ranking=Medals&type=Users
+
+# medals / rarity
+Redirect /rankings/medalRankings /rankings/?ranking=Medals&type=Rarity
+
+# all mode / replays
+Redirect /rankings/replays /rankings/?ranking=All+Mode&type=Replays
+
+# all mode / standard deviation
+Redirect /rankings/stdevPP /rankings/?ranking=All+Mode&type=Standard+Deviation
+
+# all mode / total pp
+Redirect /rankings/totalPP /rankings/?ranking=All+Mode&type=Total+pp
+
+# mappers / loved mapsets
+Redirect /rankings/lovedmaps /rankings/?ranking=Mappers&type=Loved+Mapsets
+
+# mappers / ranked mapsets
+Redirect /rankings/rankedmaps /rankings/?ranking=Mappers&type=Ranked+Mapsets
+
+# badges
+Redirect /rankings/badges /rankings/?ranking=Badges&type=Badges

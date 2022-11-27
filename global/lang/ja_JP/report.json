@@ -1,0 +1,15 @@
+{
+    "new.finished.title": "報告が完了しました。",
+    "new.finished.button": "分かりました",
+    "new.comment.title": "このコメントを報告",
+    "new.beatmap.title": "このビートマップを報告",
+    "new.bug.title": "バグを報告する",
+    "new.comment.body": "このコメントが確認・削除されるべき理由を教えてください。 冗談としての報告はご遠慮ください。",
+    "new.beatmap.body": "このビートマップがこのメダルに適していないと思う理由を教えてください。",
+    "new.bug.body": "If you're experiencing a bug on Osekai, you can report it here! Please give us details on what bug is ocurring, and what steps you have tried to fix it.<br>If you have not yet, please try CTRL+F5. Browsers usually cache/retain files from the server locally for a few days, and sometimes these can get outdated and cause bugs. CTRL+F5 resets this cache, and alot of the time fixes any bugs you may be having.",
+    "new.comment.finished": "コメントを報告していただきありがとうございま\nす。できるだけ早く確認いたします。",
+    "new.beatmap.finished": "ビートマップを報告していただきありがとうございま\nす。できるだけ早く確認いたします。",
+    "new.bug.finished": "Thanks for reporting this bug. Our development team will loo k into it as soon as possible! If you have more questions or issues, feel free to contact us through the osu! Medal Hunters Discord server, found in the Apps dropdown in the top left.",
+    "new.bug.finished.button": "Alright!",
+    "logged-out": "Please log in to submit a report."
+}

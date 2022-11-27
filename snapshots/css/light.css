@@ -1,0 +1,92 @@
+.snapshots__scroller:after {
+    background: linear-gradient(0deg, #e8e8e8 5%, #e8e8e800 15%, #e8e8e800 100%) !important;
+}
+
+.snapshots__nomedal {
+	background: #e8e8e8;
+}
+
+.snapshots__search__area{
+    background-color: #e7e7e7;
+    filter: drop-shadow(0px 4px 8px #e7e7e7);
+}
+
+.snapshots__search__bar{
+    background-color: #e7e7e7;
+}
+
+.snapshots__search, .snapshots__search__filters-icon {
+    background-color: #fff;
+}
+
+
+.snapshots__search-input {
+    color: #222;
+}
+
+.snapshots__search__filters-icon svg{
+    filter: invert(1);
+    opacity: 0.7;
+}
+
+#oMedalSection .osekai__panel{
+    filter: none;
+}
+
+.osekai__3col_col1{
+    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.1));
+}
+
+.snapshots__version-header-overlay {
+    color: white;
+}
+
+.snapshots__list-version-info-row1{
+    border-bottom: 1px solid #2221;
+    background-color: #e8e8e8;
+}
+
+
+.snapshots__list-version-info-row2 {
+    background-color: #f1f1f1;
+}
+
+.snapshots__list-version:hover {
+    transform: perspective(20em) rotateX(5deg) translateY(-2px);
+    filter: brightness(1.1) drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.2));
+    cursor: pointer;
+}
+
+.snapshots__download-panel {
+    border: 1px solid #222;
+    color: #222;
+}
+
+.snapshots__download-panel:hover {
+    border: 1px solid rgba(var(--accent), 1);
+    background-color: rgba(var(--accent), 1);
+    color: white;
+}
+
+.snapshots__download-panel:hover svg {
+    filter: invert(0);
+    opacity: 1;
+}
+
+
+
+.snapshots__download-panel svg{
+    color: #222;
+    filter: invert(1);
+    opacity: 0.7;
+}
+
+.app__home-texts{
+    color: white;
+}
+
+.snapshots__list-version-active{
+    outline: 1px solid rgba(var(--accent), 1);
+    box-shadow: 0 0 7px rgba(var(--accent), 1);
+    transform: scale(1.025);
+}

@@ -1,0 +1,16 @@
+.medals__scroller::after {
+	background: linear-gradient(0deg, #060605 5%, #06060500 15%, rgba(20, 7, 14, 0) 100%);
+}
+
+.medals__search__area {
+	filter: drop-shadow(0px 4px 8px #0000);
+	background: #060605;
+}
+
+.medals__search {
+    background: #0b0b09;
+}
+
+.medals__search__filters-icon {
+    background-color: #10100f;
+}

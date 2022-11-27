@@ -1,0 +1,3 @@
+.snapshots__scroller::after {
+	background: linear-gradient(0deg, #060605 5%, #06060500 15%, rgba(20, 7, 14, 0) 100%);
+}

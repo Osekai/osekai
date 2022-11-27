@@ -1,0 +1,18 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+mod_gzip_on Yes
+
+# Caching einrichten
+
+FileETag MTime Size
+
+
+ExpiresActive On
+ExpiresByType text/css "access plus 1 weeks"
+ExpiresByType application/javascript "access plus 1 weeks"
+ExpiresByType application/x-javascript "access plus 1 weeks"
+ExpiresByType image/gif "access plus 1 months"
+ExpiresByType image/jpeg "access plus 1 months"
+ExpiresByType image/png "access plus 1 months"
+ExpiresByType image/x-icon "access plus 1 months"

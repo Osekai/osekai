@@ -1,0 +1,11 @@
+{
+    "title.this": "Report this $1",
+    "title.a": "Report a $1",
+    "body.deleted": "You are currently reporting a $1. Please give us in-depth details on why you think this $1 should be reviewed or deleted.",
+    "body.bug": "You are currently reporting a bug. Please give us in-depth details of the issue and the steps you have took to fix it. If you have not yet tried, please try CTRL+F5, as that will usually fix the issue.",
+    "finished.title": "Reported!",
+    "finished.body": "Thank you for reporting this $1. We will review it as soon as possible.",
+    "type.comment": "comment",
+    "type.beatmap": "beatmap",
+    "type.bug": "bug"
+}

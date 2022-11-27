@@ -1,0 +1,89 @@
+.donate__list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+}
+
+.donate__panel {
+    background-color: rgba(var(--accentdark), 0.2);
+    border: 1px solid #553552;
+    box-sizing: border-box;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.donate__panel-header{
+    padding: 15px;
+    background-color: rgba(var(--accentdark), 0.2);
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.donate__dh-text-right{
+    margin-left: auto;
+}
+
+.donate__panel-body{
+    display: flex;
+    padding: 15px;
+    align-items: center;
+}
+
+.donate__right{
+    margin-left: auto;
+    text-align: right !important;
+}
+
+.donate__right-header{
+    font-size: 16px;
+}
+
+.donate__right-text{
+    font-size: 14px;
+}
+
+.donate__pb-money{
+    font-size: 24px;
+}
+
+.donate__costs-progress{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.donate__progress-bar{
+    background: rgba(85, 53, 82, 0.2);
+/* OsekaiDonate */
+
+border: 1px solid #553552;
+box-sizing: border-box;
+border-radius: 6px;
+width: 100%;
+height: 12px;
+}
+
+.donate__progress-bar-inner{
+    background-color: white;
+    height: 12px;
+    border-radius: 6px;
+
+}
+
+.donate__progress-texts{
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+.donate__progress-texts h1{
+    font-weight: 300;
+}
+
+.donate__progress-texts p{
+    margin-bottom: 2px;
+}

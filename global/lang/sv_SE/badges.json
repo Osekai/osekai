@@ -1,0 +1,20 @@
+{
+    "badges.title": "Märken ($1)",
+    "sort.awardedAt.asc": "Delades ut vid (stigande)",
+    "sort.awardedAt.desc": "Delades ut vid (fallande)",
+    "sort.name.asc": "Namn (a-z)",
+    "sort.name.desc": "Namn (z-a)",
+    "sort.playerCount.asc": "Spelarantal (stigande)",
+    "sort.playerCount.desc": "Spelarantal (fallande)",
+    "search.placeholder": "sök efter ett märke!",
+    "badge.firstAchieved": "först uppnådd <strong>$1</strong>",
+    "badge.ownedBy": "ägs av <strong>$1</strong> spelare",
+    "badge.ownedBySingular": "ägs av <strong>$1</strong> spelare",
+    "badge.popup.playersWhoHave": "<strong>spelare</strong> som har detta märke",
+    "badge.popup.1xVariant": "<strong>@1x</strong><br>variant",
+    "paused": "Hanteringen av Osekai Badges är för närvarande pausad. Endast märken innan $1 kommer att visas.",
+    "viewtype.grid": "Rutnät",
+    "viewtype.compactList": "Kompakt lista",
+    "viewtype.list": "Lista",
+    "viewtype.ultraCompact": "Ultra kompakt"
+}

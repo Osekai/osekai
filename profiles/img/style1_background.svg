@@ -1,0 +1,61 @@
+<style>
+    .gamemode-icon-bg {
+        transform: scale(15) translateX(-5px);
+        opacity: 0.2;
+    }
+</style>
+<g clip-path="url(#clip0_6_552)">
+    <rect width="1400" height="250" fill="white" />
+    <rect width="1400" height="250" fill="url(#paint0_linear_2235_6899)" />
+    <rect width="1400" height="250" fill="black" fill-opacity="0.1" />
+    <g opacity="0.25" filter="url(#filter0_f_2235_6899)">
+        <circle cx="79.5" cy="77.5" r="446.5" fill="rgba(var(--accent3), var(--circ-opacity))" />
+    </g>
+    <g opacity="0.25" filter="url(#filter2_f_2235_6899)">
+        <circle cx="1273.5" cy="250.5" r="446.5" fill="rgba(var(--accent4), var(--circ-opacity))" />
+    </g>
+    <g filter="url(#filter3_f_2235_6899)">
+        <circle cx="1179" cy="236" r="282" stroke="white" stroke-opacity="0.06" stroke-width="50" />
+        <circle cx="1179" cy="236" r="201" stroke="white" stroke-opacity="0.04" stroke-width="50" />
+        <circle cx="1179" cy="236" r="119" stroke="white" stroke-opacity="0.02" stroke-width="50" />
+    </g>
+    <g style="mix-blend-mode:luminosity" filter="url(#filter1_f_2235_6899)" class="gamemode-icon-bg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="[GMICON]" fill="white" />
+    </g>
+</g>
+<defs>
+    <filter id="filter0_f_2235_6899" x="-867" y="-869" width="1893" height="1893" filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_2235_6899" />
+    </filter>
+    <filter id="filter1_f_2235_6899" x="-10" y="-86" width="422" height="422" filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feGaussianBlur stdDeviation="0.4" result="effect1_foregroundBlur_2235_6899" />
+    </filter>
+    <filter id="filter2_f_2235_6899" x="327" y="-696" width="1893" height="1893" filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_2235_6899" />
+    </filter>
+    <filter id="filter3_f_2235_6899" x="852" y="-91" width="654" height="654" filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+        <feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur_2235_6899" />
+    </filter>
+
+    <linearGradient class="gradient" id="paint0_linear_2235_6899" gradientUnits="userSpaceOnUse" x1="{GX1}" y1="{GY1}" x2="{GX2}" y2="{GY2}">
+        <stop offset="0%" stop-color="rgb(var(--accent1))" />
+        <stop offset="100%" stop-color="rgb(var(--accent2))" />
+    </linearGradient>
+    <clipPath id="clip0_2235_6899">
+        <rect width="1400" height="250" fill="white" />
+    </clipPath>
+    {ROUNDED}
+</defs>
+

@@ -1,0 +1,20 @@
+{
+    "badges.title": "獎牌 ($1)",
+    "sort.awardedAt.asc": "頒發時間 (升序)",
+    "sort.awardedAt.desc": "頒發時間 (降序)",
+    "sort.name.asc": "名稱 (a-z)",
+    "sort.name.desc": "名稱 (z-a)",
+    "sort.playerCount.asc": "被授予玩家數量 (升序)",
+    "sort.playerCount.desc": "被授予玩家數量 (降序)",
+    "search.placeholder": "搜尋任何獎牌!",
+    "badge.firstAchieved": "首次頒發於 <strong>$1</strong>",
+    "badge.ownedBy": "<strong>$1</strong> 位玩家擁有",
+    "badge.ownedBySingular": "<strong>$1</strong> 位玩家擁有",
+    "badge.popup.playersWhoHave": "擁有這面獎牌的<strong>玩家</strong>",
+    "badge.popup.1xVariant": "<strong>@1x</strong><br>縮放",
+    "paused": "目前Osekai Badges已經暫停更新，只會顯示 $1 以前頒發的獎牌。",
+    "viewtype.grid": "格狀",
+    "viewtype.compactList": "並排",
+    "viewtype.list": "列表",
+    "viewtype.ultraCompact": "僅顯示獎牌"
+}

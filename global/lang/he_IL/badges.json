@@ -1,0 +1,20 @@
+{
+    "badges.title": "תגים (1$)",
+    "sort.awardedAt.asc": "מוענק ב (הישן ביותר)",
+    "sort.awardedAt.desc": "מוענק ב (החדש ביותר)",
+    "sort.name.asc": "שם (א—ת)",
+    "sort.name.desc": "שם (ת—א)",
+    "sort.playerCount.asc": "מספר שחקנים (סדר עולה)",
+    "sort.playerCount.desc": "מספר שחקנים (סדר יורד)",
+    "search.placeholder": "חיפוש עבור תג!",
+    "badge.firstAchieved": "הושג לראשונה <strong>$1</strong>",
+    "badge.ownedBy": "שייך ל <strong> $1</strong> שחקנים",
+    "badge.ownedBySingular": "שייך ל <strong> $1</strong> שחקן",
+    "badge.popup.playersWhoHave": "<strong>שחקנים</strong> שהשיגו את התג",
+    "badge.popup.1xVariant": "<strong>@1x</strong><br>אחר",
+    "paused": "עיבוד תגי Osekai כרגע מושהה. רק תגים מלפני $1 מוצגים.",
+    "viewtype.grid": "משבצות",
+    "viewtype.compactList": "רשימה קומפקטית",
+    "viewtype.list": "רשימה",
+    "viewtype.ultraCompact": "אולטרה-קומפקטי"
+}

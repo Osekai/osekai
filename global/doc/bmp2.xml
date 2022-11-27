@@ -1,0 +1,37 @@
+//if(oBeatmap.MedalName == strCurrentMedalName && !document.body.contains(document.getElementById("subcontainer_" + oBeatmap.BeatmapID))) document.getElementById("oBeatmapContainer").innerHTML += '<div class="medals__bmp2-container" id="panel_' + oBeatmap.BeatmapID + '">' +
+    //                            '<div class="medals__bmp2-panel" style="background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%), url(' + CoverID + ');">' +
+    //                                '<a class="medals__bmp2-top" href="' + MapUrl + '">' +
+    //                                    '<div class="medals__bmp2-top-left">' +
+    //                                        '<p class="medals__bmp2-tl-bmname">' + oBeatmap.SongTitle + '</p>' +
+    //                                        '<p class="medals__bmp2-tl-artist">by <span class="medals__bmp2-bold">' + oBeatmap.Artist + '</span></p>' +
+    //                                    '</div>' +
+    //                                    '<div class="medals__bmp2-top-right">' +
+    //                                        '<p class="medals__bmp2-tr-difficulty">' + oBeatmap.DifficultyName + '</p>' +
+    //                                        '<p class="medals__bmp2-tr-mapper">mapped by <span class="medals__bmp2-bold user_hover_v2" userid="' + oBeatmap.MapperID + '">' + oBeatmap.Mapper + '</span></p>' +
+    //                                    '</div>' +
+    //                                '</a>' +
+    //                                '<div class="medals__bmp2-bottom">' +
+    //                                    '<a class="medals__bmp2-r-vote" href="osu://(' + oBeatmap.BeatmapID + ');">' +
+    //                                        '<i class="fas fa-download"></i>' +
+    //                                    '</a>' +
+    //                                    (bCanDelete ?
+    //                                    '<div class="medals__bmp2-delete" onclick="deleteMap(' + oBeatmap.BeatmapID + ');">' +
+    //                                        '<i class="fas fa-trash-alt"></i>' +
+    //                                    '</div>' 
+    //                                    : '') +
+    //                                    '<div class="medals__bmp2-delete" onclick="reportSys(0, ' + oBeatmap.BeatmapID + ');">' +
+    //                                        '<i class="fas fa-exclamation-triangle"></i>' +
+    //                                    '</div>' +
+    //                                    '<p class="medals__bmp2-submitter">' +
+    //                                    'submitted <span class="medals__bmp2-bold tooltip" tooltip="' + new Date(oBeatmap.SubmissionDate).toDateString() + '">' + TimeAgo.inWords(new Date(oBeatmap.SubmissionDate).getTime()) + '</span>' +
+    //                                    '</p>' +
+    //                                    '<div class="medals__bmp2-right" id="subcontainer_' + oBeatmap.BeatmapID + '">' +
+    //                                        (((oBeatmap.Note !== null && oBeatmap.Note.toString().replace(" ", "") !== "") || bCanDelete) ?
+    //                                        '<div class="medals__bmp2-r-note" onclick="notePanel(' + oBeatmap.BeatmapID + ', ' + bCanDelete + ');"> ' + (oBeatmap.Note == null || oBeatmap.Note.toString().replace(" ", "") == "" ? 'add a note' : 'view the note') + '<i class="fas fa-sticky-note medals__bmp2-r-note-icon"></i></div>'
+    //                                        :
+    //                                        '') +
+    //                                        '<div id="' + oBeatmap.ObjectID + '"' + (bLoggedIn ? ' onclick="vote(' + oBeatmap.ObjectID + ');"' : '') + ' class="medals__bmp2-r-vote' + (oBeatmap.HasVoted ? ' medals__bmp2-r-vote-voted' : ' ') + '">+' + oBeatmap.VoteSum + '</div>' +
+    //                                    '</div>' +
+    //                                '</div>' +
+    //                            '</div>' +
+    //                        '</div>';

@@ -1,0 +1,15 @@
+{
+    "new.finished.title": "제보됨",
+    "new.finished.button": "Okay!",
+    "new.comment.title": "댓글 신고하기",
+    "new.beatmap.title": "비트맵 신고하기",
+    "new.bug.title": "버그 제보하기",
+    "new.comment.body": "댓글을 신고하려고 하고 있습니다. 왜 이 댓글이 검증이 필요하거나 삭제되야 하는지 상세한 정보를 제공해주세요. 장난으로 댓글을 신고하는 것은 지양해주세요.",
+    "new.beatmap.body": "비트맵 제안을 신고하려고 하고 있습니다. 왜 이 비트맵이 이 메달과 맞지 않는지와 삭제되어야 하는 이유를 제공해주세요.",
+    "new.bug.body": "If you're experiencing a bug on Osekai, you can report it here! Please give us details on what bug is ocurring, and what steps you have tried to fix it.<br>If you have not yet, please try CTRL+F5. Browsers usually cache/retain files from the server locally for a few days, and sometimes these can get outdated and cause bugs. CTRL+F5 resets this cache, and alot of the time fixes any bugs you may be having.",
+    "new.comment.finished": "댓글을 제보해주셔서 감사합니다. 빠른 시일 내에 확인해보도록 하겠습니다.",
+    "new.beatmap.finished": "비트맵을 제보해주셔서 감사합니다. 빠른 시일 내에 확인해보도록 하겠습니다.",
+    "new.bug.finished": "Thanks for reporting this bug. Our development team will loo k into it as soon as possible! If you have more questions or issues, feel free to contact us through the osu! Medal Hunters Discord server, found in the Apps dropdown in the top left.",
+    "new.bug.finished.button": "Alright!",
+    "logged-out": "Please log in to submit a report."
+}

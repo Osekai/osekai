@@ -1,0 +1,20 @@
+{
+    "badges.title": "Badges ($1)",
+    "sort.awardedAt.asc": "Date d'obtention (croissant)",
+    "sort.awardedAt.desc": "Date d'obtention (décroissant)",
+    "sort.name.asc": "Nom (a-z)",
+    "sort.name.desc": "Nom (z-a)",
+    "sort.playerCount.asc": "Nombre de joueurs (croissant)",
+    "sort.playerCount.desc": "Nombre de joueurs (décroissant)",
+    "search.placeholder": "rechercher un badge !",
+    "badge.firstAchieved": "première obtention <strong>$1</strong>",
+    "badge.ownedBy": "possédé par <strong>$1</strong> joueurs",
+    "badge.ownedBySingular": "possédé par <strong>$1</strong> joueur",
+    "badge.popup.playersWhoHave": "<strong>joueurs</strong> ayant ce badge",
+    "badge.popup.1xVariant": "<strong>@1x</strong><br>variante",
+    "paused": "Le traitement des badges Osekai est actuellement suspendu. Seul les badges obtenus avant $1 seront affichés.",
+    "viewtype.grid": "Grille",
+    "viewtype.compactList": "Liste Compacte",
+    "viewtype.list": "Liste",
+    "viewtype.ultraCompact": "Ultra Compact"
+}

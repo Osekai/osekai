@@ -1,0 +1,99 @@
+html {
+    --accentdark: 91, 45, 45 !important;
+    --accent: 228, 97, 63 !important;
+
+    background: linear-gradient(rgba(var(--genericaccent), 0.4), rgba(var(--genericaccent), 0.2)), linear-gradient(#000, #000) !important;
+    color: white !important;
+}
+
+
+.nf__outer {
+    color: white !important;
+}
+
+.nf__outer .osekai__button {
+    color: white !important;
+}
+
+.nf_background {
+    background-image: url("/404/background-big.png");
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+    transform: scale(1.1);
+}
+
+.nf__outer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nf__ring {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 100%), rgba(58, 21, 21, 0.25);
+border: 5px solid #FFFFFF;
+box-shadow: 0px 4px 158px rgba(255, 255, 255, 0.25), 0px 4px 50px #FFFFFF;
+width: 167px;
+height: 167px;
+border-radius: 90px;
+font-size: 50px;
+display: flex;
+justify-content: center;
+user-select: none;
+font-weight: 900;
+padding-top: 6px;
+box-sizing: border-box;
+align-items: center;
+}
+
+.nf__container {
+    display: flex;
+}
+
+.nf__texts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 56px;
+}
+
+.nf__texts h2 {
+    font-weight: 900;
+    font-size: 34px;
+}
+
+.nf__texts h3 {
+    font-weight: 100;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 768px) { 
+    .nf__container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .nf__texts {
+        padding-top: 56px;
+        padding-left: 0px;
+        max-width: 90vw;
+    }
+}
+
+.osekai__button-row {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+

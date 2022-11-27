@@ -1,0 +1,376 @@
+.azelia__version-panel {
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.azelia__version-panel-upper {
+    background: linear-gradient(266.62deg, rgba(var(--accentdark), 0.25) -5%, rgba(106, 112, 185, 0) 40.49%), linear-gradient(92.63deg, #262C7C -7.45%, rgba(106, 112, 185, 0) 89.83%), var(--background);
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.azelia__version-panel-lower {
+    width: calc(100% - 50px);
+    background: linear-gradient(269.07deg, rgba(255, 255, 255, 0.1) 1.59%, rgba(0, 0, 0, 0.1) 98.64%), rgba(var(--accentdark), 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0px 0px 8px 8px;
+    border-top: 0px;
+    padding: 22px 16px;
+}
+
+.azelia__version-panel-upper-infobar {
+
+    background: linear-gradient(90.19deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), rgba(var(--accentdark), 0.5);
+    border-radius: 0px 0px 8px 8px;
+    padding: 5px 7px;
+    display: flex;
+    box-sizing: border-box;
+    box-shadow: inset 0 0px 1px rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.azelia__version-panel-upper-infobar-left, .azelia__version-panel-upper-infobar-right {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.azelia__version-panel-upper-infobar-button {
+    padding: 10px 10px;
+    white-space: nowrap;
+    border-radius: 15px;
+    user-select: none;
+}
+
+
+.azelia__version-panel-upper-infobar-left p i, .azelia__version-panel-upper-infobar-right p i {
+    margin: 0px 4px;
+    transition: all 0.2s ease;
+}
+
+.azelia__version-panel-upper-infobar-button:hover {
+    background-color: #fff2;
+    cursor:pointer;
+    box-shadow: 0px 0px 8px #fff1;
+}
+
+.azelia__version-info-overlay-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--background);
+    z-index: -1;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.4;
+    filter: blur(125px) brightness(0.4) saturate(0.5);
+}
+
+.azelia__version-panel-upper-infobar-left .azelia__version-panel-upper-infobar-button:hover p i {
+    transform: translateX(-2px);
+}
+
+.azelia__version-panel-upper-infobar-right .azelia__version-panel-upper-infobar-button:hover p i {
+    transform: translateX(2px);
+}
+
+
+.azelia__version-panel-upper-infobar-center {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.azelia__version-panel-upper-infobar-right {
+    justify-content: flex-end;
+}
+
+.azelia__version-panel-upper-banner {
+    padding: 27px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.azelia__version-pannel-upper-banner-left_texts h1 {
+    font-size: 30px;
+    font-weight: 100;
+}
+
+.azelia__version-pannel-upper-banner-left_texts h1 strong {
+    font-weight: 900;
+}
+
+.azelia__version-pannel-upper-banner-left_texts h1 span {
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 0.75;
+}
+
+.azelia__version-pannel-upper-banner-left_texts h2 {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.azelia__version-pannel-upper-banner-left_texts h2 strong {
+    font-weight: 900;
+}
+
+.azelia__version-pannel-upper-banner-left_texts h2 span {
+    font-size: 15px;
+    font-weight: 500;
+    opacity: 0.75;
+}
+
+.azelia__version-pannel-upper-banner-left_texts p {
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.azelia__version-pannel-upper-banner-left_texts p strong {
+    font-weight: 900;
+}
+
+.azelia__version-pannel-upper-banner-left_texts p img {
+    height: 30px;
+    margin-bottom: -11px;
+    border-radius: 90px;
+    margin-left: 5px;
+    margin-right: 5px;
+    transition: all 0.1s ease;
+    box-shadow: 0px 1px 3px 0px #0002;
+}
+
+.azelia__version-pannel-upper-banner-left_texts p a:hover img {
+    filter: brightness(1.3);
+    box-shadow: 0px 0px 0px 2px #fff5;
+}
+
+.azelia__version-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.azelia__version-grid:hover {
+    transform: translateY(-3px) scale(1.01);
+    filter: brightness(1.2) drop-shadow(0px 0px 10px #fff2);
+    cursor: pointer;
+}
+.azelia__version-grid:active {
+    transform: translateY(-2px) scale(0.99);
+    filter: brightness(0.9) drop-shadow(0px 0px 10px #0002);
+    cursor: pointer;
+}
+
+.azelia__version-grid img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 1px 3px 0px #0002;
+    border-radius: 12px 12px 0px 0px;
+    /* aspect-ratio: 16/9; */
+}
+
+.azelia__version-grid-info {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30.21%, rgba(0, 0, 0, 0.054) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 51.04%), linear-gradient(180deg, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0.25) 43.11%), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.086) 38.79%), rgb(var(--accentdark));
+background-blend-mode: normal, luminosity, saturation, normal, normal;
+border-radius: 0px 0px 12px 12px;
+    width: 100%;
+    padding: 18px 13px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.azelia__version-grid-stats {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40.1%, rgba(47, 47, 47, 0.2) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.4) 30.21%, rgba(0, 0, 0, 0.108) 100%), rgb(var(--accentdark));
+border-radius: 0px 0px 12px 12px;
+width: calc(100% - 10px);
+margin-top: -10px;
+height: calc(28px + 10px);
+padding-top: 11px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+z-index: 1;
+}
+
+.azelia__versions-listing-group-grid.grid {
+    display: grid;
+grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+grid-auto-rows: 1fr;
+width: 100%;
+grid-gap: 20px;
+}
+
+.azelia__version-grid-info-title{font-size: 20px; font-weight: 900;}
+.azelia__version-grid-info-releasedate, .azelia__version-grid-info-archiver {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.azelia__version-grid-info-releasedate strong, .azelia__version-grid-info-archiver strong {
+    font-weight: 900;
+}
+
+.azelia__version-grid-stats-views, .azelia__version-grid-stats-downloads {
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.azelia__version-grid-stats-views i, .azelia__version-grid-stats-downloads i {
+    font-size: 18px;
+    margin-right: 8px;
+    margin-bottom: 3px;
+}
+
+.azelia__versions-listing-group-year {
+    display: flex;
+    flex-direction: column;
+}
+
+.azelia__versions-listing-group-year-top {
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid rgba(var(--accentdark), 1);
+    margin-bottom: 20px;
+}
+
+.azelia__versions-listing-group-year-left {
+    width: 120px;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(var(--accentdark), 0.5) 0%, rgba(var(--accentdark), 0.1) 100%);
+}
+
+.azelia__versions-listing-group-year-left h2 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.azelia__versions-listing-group-year-right {
+    margin-left: auto;
+    text-align: right;
+}
+.azelia__versions-listing-group-year-right h3 {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.azelia__versions-listing-group-year-right p {
+    font-size: 14px;
+    font-weight: 100;
+    margin-top: -2px;
+}
+
+.azelia__versions-listing-group-header {
+    width: 100%;
+    height: 82px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(79.28% 830.83% at 50% 50%, rgba(var(--accentdark), 0.9) 0%, rgba(var(--accentdark), 0) 100%);
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.azelia__versions-listing-group-header h1 {
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.azelia__versions-listing-group-header h1 strong {
+    font-weight: 900;
+}
+
+.azelia__versions-listing-group-header h3 {
+    font-size: 16px;
+    font-weight: 100;
+    color: #fffa;
+}
+
+.azelia__versions-listing-group-header h3 strong {
+    font-weight: 900;
+    color: #fff;
+}
+
+.azelia__sidebar-title {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), rgb(var(--accent));
+    /* crop to text */
+    color: #fff0;
+    background-clip: text;
+-webkit-background-clip: text;
+    font-weight: 100;
+    
+}
+
+.azelia__sidebar-title-active {
+    color: #fff;
+    font-weight: 900;
+}
+
+.azelia__sidebar-section {
+    margin-bottom: 26px;
+}
+
+.azelia__sidebar-version-year {
+    color: #fff0;
+    background: linear-gradient(0deg, rgba(170, 170, 170, 0.5), rgba(170, 170, 170, 0.5)), rgba(var(--accent), 0.75);
+    background-clip: text;
+-webkit-background-clip: text;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.azelia__sidebar-versions {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.azelia__sidebar-version {
+    display: flex;
+    align-items: center;
+    padding-bottom: 7px;
+}
+
+.azelia__sidebar-version-count {
+    text-align: right;
+    margin-left: auto;
+    background: linear-gradient(0deg, rgba(var(--accent), 0.2), rgba(var(--accent), 0.2)), rgba(255, 255, 255, 0.9);
+    background-clip: text;
+-webkit-background-clip: text;
+    font-weight: 100;
+    font-size: 16px;
+    color: #fff0;
+}
+.azelia__sidebar-version-count strong {
+    font-weight: 900;
+}
+
+.azelia__sidebar-version-active .azelia__sidebar-version-year {
+    color: #fff;
+    font-weight: 900;
+}
+
+.azelia__versions-listing {
+    width: 100%;
+}
+
+.azelia__versions-listing-group-grid {
+    margin-bottom: 30px;
+}

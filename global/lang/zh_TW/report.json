@@ -1,0 +1,15 @@
+{
+    "new.finished.title": "已送出!",
+    "new.finished.button": "好耶!",
+    "new.comment.title": "回報/檢舉留言",
+    "new.beatmap.title": "回報圖譜",
+    "new.bug.title": "回報漏洞",
+    "new.comment.body": "您正在回報/檢舉此留言。請提供我們更詳細的回報理由，為何您認為這則留言應該被審核或刪除。請勿將此回報作為玩笑。",
+    "new.beatmap.body": "您正在回報這張建議圖譜。請提供我們更詳細的回報理由，為何您認為此圖譜不適合用來解鎖這張勳章，或是它為何應該被移除。",
+    "new.bug.body": "如果您在 Osekai 上遇到錯誤，可以在此處回報! 請向我們詳細說明發生了什麼錯誤以及您嘗試修復的步驟。<br>如果您還沒試著修復，請嘗試 CTRL+F5。瀏覽器通常會在本機暫存伺服器上的檔案數天，有時這些檔案可能會逾時並導致錯誤。CTRL+F5 可以重置此暫存，很多時候都有機會解決您可能遇到的任何錯誤。",
+    "new.comment.finished": "感謝您回報/檢舉留言! 我們會盡快對此內容進行審查。",
+    "new.beatmap.finished": "感謝您回報圖譜! 我們會盡快對此內容進行審查。",
+    "new.bug.finished": "Thanks for reporting this bug. Our development team will loo k into it as soon as possible! If you have more questions or issues, feel free to contact us through the osu! Medal Hunters Discord server, found in the Apps dropdown in the top left.",
+    "new.bug.finished.button": "好的!",
+    "logged-out": "Please log in to submit a report."
+}

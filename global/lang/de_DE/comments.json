@@ -1,0 +1,8 @@
+{
+    "title": "Kommentare",
+    "sorting.votes": "Stimmen",
+    "sorting.newest": "Neueste",
+    "delete.warning": "Bist du sicher, dass du diesen Kommentar löschen willst?",
+    "replyingTo": "<span class=\"comments__light\">Antwort an</span> $1",
+    "posted": "<span class=\"comments__light\">kommentiert </span> $1"
+}

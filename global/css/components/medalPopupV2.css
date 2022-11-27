@@ -1,0 +1,146 @@
+.osekai__medal-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(34, 34, 34, 0.4), rgba(34, 34, 34, 0.4)), linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), rgba(85, 85, 85, 0.2);
+    backdrop-filter: blur(55px);
+    z-index: 9;
+    /* padding-top: var(--navheight); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+
+.osekai__medal-popup-inner {
+    max-width: 860px;
+    width: 90vw;
+    transition: all 1.3s cubic-bezier(.15,-0.01,0,1);
+}
+
+.osekai__medal-popup-top {
+    background-color: rgb(var(--accentdark));
+    border-radius: 24px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 11;
+}
+
+.osekai__medal-popup-top-right {
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), rgb(var(--accentdark));
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.osekai__medal-popup-top-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.osekai__medal-popup-bottom {
+    width: calc(100% - (29px * 2));
+    margin-left: 29px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgb(var(--accentdark));
+    border-radius: 0px 0px 20px 20px;
+    overflow: hidden;
+    transition: all 1s cubic-bezier(0,1.13,.13,.96);
+    z-index: 10;
+}
+
+.osekai__medal-popup-bottom-toolbar {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03)), linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgb(var(--accentdark));
+    width: 100%;
+    padding: 13px 28px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.osekai__medal-popup-bottom-inner {
+    padding: 20px 28px;
+    box-sizing: border-box;
+}
+
+.osekai__medal-popup-bottom-toolbar-right {
+    margin-left: auto;
+    display: flex;
+}
+
+.osekai__medal-popup-top-left-icon {
+    z-index: 2;
+    position: relative;
+    height: 128px;
+    padding: 30px 50px;
+}
+
+.osekai__medal-popup-top-left-icon-blur {
+    position: absolute;
+    filter: blur(30px);
+    height: calc(128px * 4.5);
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.osekai__medal-popup-top {
+    display: flex;
+}
+
+.osekai__medal-popup-top-right-texts h3 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.osekai__medal-popup-top-right-texts p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.osekai__medal-popup-top-right-texts {
+    margin-left: 38px;
+}
+
+.osekai__medal-popup-bottom-inner h3 {
+    font-size: 23px;
+}
+
+.osekai__medal-popup-bottom-inner p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.osekai__medal-popup-closed {
+    /* this is duplicated in main.css because chrome is dumb and doesn't wait for this css to load before displaying the popup */
+    pointer-events: none;
+    opacity: 0;
+}
+
+.osekai__medal-popup-closed .osekai__medal-popup-bottom {
+    transform: translateY(-150px) scale(0.95);
+    opacity: 0.2;
+}
+
+.osekai__medal-popup-closed .osekai__medal-popup-inner {
+    transform: translateY(calc(150px / 2)) scale(0.91);
+    opacity: 0.4;
+}
+
+.osekai__medal-popup-mods {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.osekai__medal-popup-mod {
+    height: 26px;
+    mix-blend-mode: screen;
+    filter: contrast(1.5) grayscale(1);
+}

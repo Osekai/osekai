@@ -1,0 +1,8 @@
+{
+    "title": "הערות",
+    "sorting.votes": "הצבעות",
+    "sorting.newest": "הכי עדכני",
+    "delete.warning": "האם אתם בטוחים שברצונכם למחוק תגובה זאת?",
+    "replyingTo": "<span class=\"comments__light\">משיב ל </span> $1",
+    "posted": "<span class=\"comments__light\">פורסם </span> $1"
+}

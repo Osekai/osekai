@@ -1,0 +1,8 @@
+{
+    "title": "댓글",
+    "sorting.votes": "추천수",
+    "sorting.newest": "최신순",
+    "delete.warning": "이 댓글을 정말 삭제하시겠습니까?",
+    "replyingTo": "$1에게 <span class=\"comments__light\">답글 달기</span>",
+    "posted": "$1를 <span class=\"comments__light\">작성함</span>"
+}

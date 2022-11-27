@@ -1,0 +1,16 @@
+{
+    "title": "Spenden sind nie nötig, aber immer gern gesehen :)",
+    "body.p1": "Wir benutzen Sie um die Kosten zu decken, die die Website verursacht. Aus Transparenzgründen kannst du alle Kosten welche die Seite verursacht unten aufgelistet sehen.",
+    "body.p2": "Wir wollen alle Dienste kostenlos anbieten. Der einzige 'Vorteil' den du durch die Spende erhältst, ist ein kleines ❤ neben deinem Namen bei Kommentaren und Zutritt zum osekai Entwicklungs discord channel. Ähnliches könnte in Zukunft noch kommen.",
+    "body.p3": "Die Liste der top Spender (siehe unten) wird nicht sofort aktualisiert. Aber keine Sorge, wir aktualisieren Sie direkt, wenn wir die Spende authentifiziert haben!",
+    "donate.title": "Spenden",
+    "donate.header": "Willst du uns unterstützen? Lass uns eine Spende zukommen!",
+    "donate.body": "Beachte dass du dich anmelden musst, damit dein Name in den Spenden auftaucht!",
+    "donate.paypal": "Spenden via PayPal",
+    "donate.paysafecard": "Spenden via Paysafecard",
+    "costs.title": "Kosten",
+    "costs.covered": "gedeckte Kosten: $1 / $2",
+    "top.title": "Top Spender",
+    "recent.title": "Letzte Spenden",
+    "recent.message": "Spenden-Nachricht"
+}

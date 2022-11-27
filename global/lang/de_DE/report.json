@@ -1,0 +1,15 @@
+{
+    "new.finished.title": "Gemeldet",
+    "new.finished.button": "Okay!",
+    "new.comment.title": "Diesen Kommentar melden",
+    "new.beatmap.title": "Diese Beatmap melden",
+    "new.bug.title": "einen Fehler melden",
+    "new.comment.body": "Du meldest gerade diesen Kommentar. Bitte geb uns ausführliche Details warum dieser Kommentar überprüft oder entfernt werden sollte. Bitte unterlasse es, Kommentare als Scherz zu melden.",
+    "new.beatmap.body": "Du bist gerade dabei, diesen Beatmap-Vorschlag zu melden. Bitte teile uns mit, warum diese Beatmap nicht für diese Medaille geeignet ist und warum sie entfernt werden sollte.",
+    "new.bug.body": "Wenn Sie einen Fehler auf Osekai bemerken, können Sie ihn hier melden! Bitte gib uns Details über den Fehler und wie du bereits versucht hast ihn zu beheben.<br>Solltest du es noch nicht versucht haben, drücke bitte STRG+F5. Browser speichern normalerweise Dateien für einige Tage vom Server im Cache. Manchmal sind diese veraltet und können Fehler verursachen. STRG+F5 setzt diesen Cache zurück und behebt in den meisten Fällen alle Fehler, die du möglicherweise hast.",
+    "new.comment.finished": "Vielen Dank, dass du diesen Kommentar gemeldet hast! Wir werden ihn so schnell wie möglich überprüfen.",
+    "new.beatmap.finished": "Vielen Dank, dass du diese Beatmap gemeldet hast! Wir werden sie so schnell wie möglich überprüfen!",
+    "new.bug.finished": "Thanks for reporting this bug. Our development team will loo k into it as soon as possible! If you have more questions or issues, feel free to contact us through the osu! Medal Hunters Discord server, found in the Apps dropdown in the top left.",
+    "new.bug.finished.button": "Alles klar!",
+    "logged-out": "Please log in to submit a report."
+}

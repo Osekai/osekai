@@ -1,0 +1,3 @@
+Crowdin is currently not being used anymore, as our account was suspended.
+
+For now, I've included all the language files here. Please, do not edit them. When making new strings, just put them into the HTML, i'll go through all of them and put them into the lang files when we've got our new translation system up and running.

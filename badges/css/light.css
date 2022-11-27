@@ -1,0 +1,57 @@
+.badge {
+    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    border-radius: 17px;
+    transform: perspective(1000px);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.osekai__badge-list.ultra_compact .badge {
+    background: #fff0;
+    
+}
+
+.badge:hover {
+    transform: perspective(1000px) rotateX(10deg);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    box-shadow: none;
+    filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.3));
+}
+
+.badge:active {
+    transform: perspective(1000px) rotateX(5deg);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    background: #eee;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.badges__badge-overlay-panel {
+    background: linear-gradient(0deg, #fffa, #fffd);
+}
+
+.badges__bopl-img-1x-cont {
+    background-color: rgba(var(--accent), 1);
+}
+
+.badges__badge-overlay {
+	background: radial-gradient(50% 50% at 50% 50%, #edd5ff 0%, rgba(255, 255, 255, 0.77) 100%);
+}
+
+.badges__panel-header-viewtypes {
+    border-left: 1px solid #2222;
+}
+
+
+.badges__panel-header-viewtype  {
+    color: #2222223f;
+}
+
+.badges__panel-header-viewtype-active {
+    color: rgba(var(--accent), 1);
+}

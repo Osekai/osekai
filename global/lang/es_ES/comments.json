@@ -1,0 +1,8 @@
+{
+    "title": "Comentarios",
+    "sorting.votes": "Votos",
+    "sorting.newest": "Más Recientes",
+    "delete.warning": "¿Estás seguro de que quieres borrar este comentario?",
+    "replyingTo": "<span class=\"comments__light\">respondiendo a</span> $1",
+    "posted": "<span class=\"comments__light\">publicado</span> $1"
+}

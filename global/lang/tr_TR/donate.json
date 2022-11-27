@@ -1,0 +1,16 @@
+{
+    "title": "Bağışlar asla ihtiyaç duyulmaz, ama her zaman sevgiyle karşılanır :)",
+    "body.p1": "Bunları, web sitesini yürütme maliyetlerini karşılamak için kullanıyoruz. Şeffaflık için osekai web sitesinin kendisinin yaptığı tüm maliyetleri aşağıda görebilirsiniz.",
+    "body.p2": "Biz tüm servislerimizi bedava bir şekilde sunmak isteriz. Bağışlayarak aldığınız tek \"avantaj\", yorumlarken isminizin yanında görünen küçük bir ❤ ve osekai geliştirme Discord kanalına erişim, ama gelecekte benzer şeyler eklenebilir.",
+    "body.p3": "En iyi bağış yapanlar listesi anında güncellenmeyecektir. Fakat endişelenmeyin, fark ettiğimiz an güncelleyeceğiz!",
+    "donate.title": "Bağış yap!",
+    "donate.header": "Bize destek olmak mı istiyorsun? Lütfen bir bağış gönder!",
+    "donate.body": "Kullanıcı adını göstermeyi unutma, bunun için giriş yapmalısın!",
+    "donate.paypal": "PayPal ile bağış yap",
+    "donate.paysafecard": "Paysafecard ile bağış yap",
+    "costs.title": "Maliyetler",
+    "costs.covered": "karşılanan maliyetler: $1 / $2",
+    "top.title": "En Çok Bağış Yapanlar",
+    "recent.title": "En Son Bağışlar",
+    "recent.message": "Bağış Mesajı"
+}

@@ -1,0 +1,155 @@
+@font-face {
+  font-family: 'Osekai-Icon-Font';
+  src:
+    url('fonts/Osekai-Icon-Font.ttf?7135ou') format('truetype'),
+    url('fonts/Osekai-Icon-Font.woff?7135ou') format('woff'),
+    url('fonts/Osekai-Icon-Font.svg?7135ou#Osekai-Icon-Font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="oif-"], [class*=" oif-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Osekai-Icon-Font' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.oif-app-badges-icon:before {
+  content: "\e900";
+}
+.oif-app-dashboard:before {
+  content: "\e901";
+}
+.oif-app-dashboard-icon:before {
+  content: "\e902";
+}
+.oif-app-dating:before {
+  content: "\e903";
+}
+.oif-app-dating-icon:before {
+  content: "\e904";
+}
+.oif-app-medals:before {
+  content: "\e905";
+}
+.oif-app-medals-icon:before {
+  content: "\e906";
+}
+.oif-app-profiles:before {
+  content: "\e907";
+}
+.oif-app-profiles-icon:before {
+  content: "\e908";
+}
+.oif-app-rankings:before {
+  content: "\e909";
+}
+.oif-app-rankings-icon:before {
+  content: "\e90a";
+}
+.oif-app-skins:before {
+  content: "\e90b";
+}
+.oif-app-badges:before {
+  content: "\e90c";
+}
+.oif-app-skins-icon:before {
+  content: "\e90d";
+}
+.oif-app-snapshots:before {
+  content: "\e90e";
+}
+.oif-app-snapshots-icon:before {
+  content: "\e90f";
+}
+.oif-apps-tools-icon:before {
+  content: "\e910";
+}
+.oif-apps-trigen-icon:before {
+  content: "\e911";
+}
+.oif-app-teams:before {
+  content: "\e912";
+}
+.oif-app-teams-icon:before {
+  content: "\e913";
+}
+.oif-app-tools:before {
+  content: "\e914";
+}
+.oif-app-tournaments:before {
+  content: "\e915";
+}
+.oif-app-tournaments-icon:before {
+  content: "\e916";
+}
+.oif-app-trigen:before {
+  content: "\e917";
+}
+.oif-gamemode-catch:before {
+  content: "\e918";
+}
+.oif-gamemode-mania:before {
+  content: "\e919";
+}
+.oif-gamemode-standard:before {
+  content: "\e91a";
+}
+.oif-gamemode-taiko:before {
+  content: "\e91b";
+}
+.oif-goal-badges:before {
+  content: "\e91c";
+}
+.oif-goal-level:before {
+  content: "\e91d";
+}
+.oif-goal-medal:before {
+  content: "\e91e";
+}
+.oif-goal-pp:before {
+  content: "\e91f";
+}
+.oif-goal-rank:before {
+  content: "\e920";
+}
+.oif-goal-score:before {
+  content: "\e921";
+}
+.oif-goal-ss:before {
+  content: "\e922";
+}
+.oif-medal:before {
+  content: "\e923";
+}
+.oif-medal-filled:before {
+  content: "\e924";
+}
+.oif-medal-outlined:before {
+  content: "\e925";
+}
+.oif-osekai:before {
+  content: "\e926";
+}
+.oif-osu-medal-hunters:before {
+  content: "\e927";
+}
+.oif-pin:before {
+  content: "\e928";
+}
+.oif-question-mark:before {
+  content: "\e929";
+}
+.oif-question-mark-circle:before {
+  content: "\e92a";
+}

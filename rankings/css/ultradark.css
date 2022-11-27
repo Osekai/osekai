@@ -1,0 +1,20 @@
+.rankings__home-v2-button {
+    background: #0b0b09;
+    box-shadow: 0px 4px 18px #10100f55;
+    border: 1px solid #161615;
+}
+
+.rankings__home-v2-button:hover {
+    background: #10100f;
+    box-shadow: 0px 4px 18px rgba(255, 255, 255, 0.304);
+}
+
+.rankings__home-v2-header {
+    background-color: #10100f;
+}
+
+.rankings__cascade {
+    background-color: #0b0b0966;
+    border-right: 2px solid #10100f;
+    filter: none;
+}

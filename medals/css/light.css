@@ -1,0 +1,126 @@
+.medals__scroller:after {
+    background: linear-gradient(0deg, #e8e8e8 5%, #e8e8e800 15%, #e8e8e800 100%) !important;
+}
+
+.medals__nomedal {
+	background: #e8e8e8;
+}
+
+.medals__search__area{
+    background-color: #e7e7e7;
+    filter: drop-shadow(0px 4px 8px #e7e7e7);
+}
+
+.medals__search__bar{
+    background-color: #e7e7e7;
+}
+
+.medals__search, .medals__search__filters-icon {
+    background-color: #fff;
+}
+
+
+.medals__search-input {
+    color: #222;
+}
+
+.medals__search__filters-icon svg{
+    filter: invert(1);
+    opacity: 0.7;
+}
+
+#oMedalSection .osekai__panel{
+    filter: none;
+}
+
+.osekai__3col_col1{
+    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.1));
+}
+
+.medals__info{
+    background-color: #f1f1f1;
+}
+
+.osekai__mit-title{
+    color: rgba(var(--accentdark), 0.9);
+}
+
+.medals__sol-header{
+    color: rgba(var(--accentdark), 0.9);
+}
+
+.medals__bmp3-bottom{
+    background: #fffc;
+}
+
+.medals__bmp3-r-vote-voted{
+    background: rgba(var(--accent), 0.9);
+    color: white;
+}
+
+.medals__bmp3-hover-area{
+    color: white;
+}
+
+.medals__search__filters{
+    background-color: #fff;
+    background: #fff;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.medals__sol-gamemode{
+
+    opacity: 0.8;
+}
+
+.medals__info-background-medal {
+    opacity: 0.4;
+}
+
+.medals__info-background-overlay {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgba(255, 255, 255, 0.5)
+}
+
+.osekai__mit-title {
+    color: rgba(var(--accent), 0.9);
+}
+
+.medals__search {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), linear-gradient(270deg, rgba(var(--accent), 0.48) 0%, rgba(var(--accent), 0.74) 100%);
+    color: #222;
+}
+
+.medals__search__filters-icon {
+    background: linear-gradient(rgba(var(--accent), 0.3), rgba(var(--accent), 0.1));
+}
+
+.medals__search__filters-open .medals__search__filters-icon {
+	transition: all 0.3s ease;
+	background: linear-gradient(rgba(var(--accent), 0.6), rgba(var(--accent), 0.4)), #000a;
+	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3) inset;
+}
+
+.medals__search__filters-open svg {
+    filter: invert(0);
+    opacity: 0.7;
+}
+
+.medals__search__filters .osekai__panel-header {
+	transition: all 0.3s ease;
+	border-radius: 0px;
+	background: linear-gradient(rgba(var(--accent), 0), rgba(var(--accent), 0.1)), linear-gradient(#eee, #fff);
+}
+
+.medals__sol-header-gamemode-tag {
+    color: #eee;
+    background: rgb(var(--accent));
+}
+
+
+.medals__extrainfo-bar {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 100%), rgb(var(--accent));
+}
+
+.medals__extrainfo-bar-right {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1)), rgb(var(--accent));
+}

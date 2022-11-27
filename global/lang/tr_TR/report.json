@@ -1,0 +1,15 @@
+{
+    "new.finished.title": "Bildirildi!",
+    "new.finished.button": "Tamam!",
+    "new.comment.title": "Bu yorumu bildir",
+    "new.beatmap.title": "Bu beatmap'i bildir",
+    "new.bug.title": "Bir hata bildir",
+    "new.comment.body": "Bu yorumu bildirmektesiniz. Lütfen bize neden bu yorumun gözden geçirilmesini veya silinmesini istediğinizi detaylı bir şekilde anlatın. Lütfen şaka amaçlı yorum bildirmeyiniz.",
+    "new.beatmap.body": "Bu beatmap önerisini bildirmektesiniz. Lütfen bize neden bu beatmap'in bu madalyaya uygun olmadığını ve neden kaldırılması gerektiğini söyleyiniz.",
+    "new.bug.body": "Eğer Osekai'de bir hata yaşıyorsanız buradan bildirebilirsiniz! Lütfen bize hangi hatanın oluştuğuna ve hatayı çözmek için hangi yollara başvurduğunuza dair ayrıntı verin.<br>Eğer hala denemediyseniz, lütfen CTRL+F5'i deneyin. Tarayıcılar genellikle sunucudaki dosyaları birkaç gün yerel olarak önbelleğe alır/saklar, ve bu bazen hatalara sebep olabilir. CTRL+F5, bu önbelleği sıfırlar ve çoğu zaman karşılaştığınız hatayı düzeltir.",
+    "new.comment.finished": "Bu yorumu bildirdiğiniz için teşekkür ederiz. En yakın zamanda gözden geçireceğiz.",
+    "new.beatmap.finished": "Bu beatmapi bildirdiğiniz için teşekkürler! en kısa sürede bakacağız!",
+    "new.bug.finished": "Thanks for reporting this bug. Our development team will loo k into it as soon as possible! If you have more questions or issues, feel free to contact us through the osu! Medal Hunters Discord server, found in the Apps dropdown in the top left.",
+    "new.bug.finished.button": "Tamamdır!",
+    "logged-out": "Bu yorumu bildirmek için lütfen giriş yapın."
+}

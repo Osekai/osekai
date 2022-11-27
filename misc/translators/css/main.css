@@ -1,0 +1,105 @@
+.translators__language {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%), #352E50aa;
+    border-radius: 16px;
+    width: 100%;
+}
+
+.translators__language-header, .translators__language-grid {
+    flex: 1;
+    padding: 15px;
+}
+
+.translators__language-header {
+    display: flex;
+    align-items: center;
+}
+
+.translators__language-header {
+    background: rgba(0, 0, 0, 0.125);
+border-radius: 16px;
+}
+
+.translators__language-header-texts {
+    margin-left: 16px;
+}
+
+.translators__language-header-texts h1 {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.translators__language-header-texts h2 {
+    font-size: 16px;
+    font-weight: 200;
+    opacity: 0.8;
+}
+
+.translators__language-header-flag {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    background: linear-gradient(258.54deg, rgba(255, 255, 255, 0.1) 6.6%, rgba(255, 255, 255, 0) 58.43%), #352E50;
+border-radius: 10px;
+padding-right: 16px;
+}
+
+.translators__language-header-flag-amount {
+    padding-left: 8px;
+    padding-top: 3px;
+}
+
+.translators__language-header-flag-amount h1 {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.translators__language-header-flag-amount h1 strong {
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 10px;
+
+}
+
+.translators__language-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 8px;
+}
+
+.translators__language-translator img {
+    height: 64px;
+    border-radius: 11px;
+}
+
+.translators__language-translator {
+    
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%), rgba(53, 46, 80, 0.25);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+padding: 5px;
+display: flex;
+align-items: center;
+}
+
+.translators__language-translator-texts {
+    margin-left: 8px;
+}
+
+.translators__language-translator-texts p {
+    font-size: 14px;
+    font-weight: 100;
+    color: rgb(var(--accent));
+}
+
+.translators__language-translator-texts h1 {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.translators__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

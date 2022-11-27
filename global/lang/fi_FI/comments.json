@@ -1,0 +1,8 @@
+{
+    "title": "Kommentit",
+    "sorting.votes": "Äänet",
+    "sorting.newest": "Viimeisimmät",
+    "delete.warning": "Oletko varma, että haluat poistaa tämän kommentin?",
+    "replyingTo": "<span class=\"comments__light\">vastata</span> $1",
+    "posted": "<span class=\"comments__light\">lähetetty</span> $1"
+}

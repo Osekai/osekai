@@ -1,0 +1,23 @@
+.osekai__navbar {
+    background: #0b0b09;
+}
+html {
+    background: #060605;
+    --accentdark: 10, 5, 0;
+}
+
+.osekai__navbar__app-container {
+    background: #151514;
+}
+
+.osekai__panel-header, .osekai__panel-header-with-buttons {
+    background: #0b0b09;
+}
+
+.osekai__panel {
+    background: #10100f;
+}
+
+.osekai__panel-nav, .profiles__osekai__panel-nav {
+    background: #151514aa;
+}

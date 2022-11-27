@@ -1,0 +1,8 @@
+{
+    "title": "ความคิดเห็น",
+    "sorting.votes": "คะแนนโหวต",
+    "sorting.newest": "ล่าสุด",
+    "delete.warning": "แน่ใจหรือไม่ว่าคุณต้องการลบความคิดเห็นนี้?",
+    "replyingTo": "<span class=\"comments__light\">ตอบกลับ</span> $1",
+    "posted": "<span class=\"comments__light\">แสดงความคิดเห็นไว้เมื่อ</span>"
+}

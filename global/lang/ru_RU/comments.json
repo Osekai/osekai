@@ -1,0 +1,8 @@
+{
+    "title": "Комментарии",
+    "sorting.votes": "Голоса",
+    "sorting.newest": "Самые Последние",
+    "delete.warning": "Вы уверены, что хотите удалить этот комментарий?",
+    "replyingTo": "<span class=\"comments__light\">ответ</span> $1",
+    "posted": "<span class=\"comments__light\">опубликован</span> $1"
+}

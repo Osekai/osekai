@@ -1,0 +1,45 @@
+.osekai__navbar-pfp {
+    box-shadow: 0px 0px 0px 2px #ff9f22;
+    filter: drop-shadow(0px 0px 12px #ff9f2255);
+}
+
+.oseaki__nav-dropdown-user-v2-lowerpanel-warning {
+    border: 1px solid #ff9f22;
+    background-color: #ff9f2244;
+    padding: 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    filter: drop-shadow(0px 0px 12px #ff9f2255);
+}
+
+.oseaki__nav-dropdown-user-v2-lowerpanel-warning i {
+    font-size: 20px;
+    padding-right: 8px;
+}
+
+.oseaki__nav-dropdown-user-v2-lowerpanel-warning p {
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+
+    /* mobile stuffs */
+    #desktop_exp {
+        display: none !important;
+    }
+
+    .desktop_exp {
+        display: none !important;
+    }
+}
+
+@media (min-width: 900px) {
+    #mobile_exp {
+        display: none !important;
+    }
+
+    .mobile_exp {
+        display: none !important;
+    }
+}

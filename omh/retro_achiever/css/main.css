@@ -1,0 +1,162 @@
+@keyframes load {
+    0% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+        filter: blur(40px);
+        transform: translateY(50px);
+    }
+}
+@keyframes load_image {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+        filter: blur(5px);
+        transform: translateX(100px) translateZ(-150px) rotateY(-45deg) perspective(10em);
+    }
+}
+body {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: hidden;
+    background-image: url("../img/bg.png");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    
+}
+.main {
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 60px 80px;
+    display: flex;
+    align-items: center;
+    animation: 1.5s ease 0s 1 load;
+    transition: all 0.1s ease;
+    transform: 
+    perspective(100em)
+    rotateX(calc(var(--mousey)/2.5)) 
+    rotateY(calc(0deg - var(--mousex)/2.5)) 
+}
+
+.main-left {
+    flex: 1;
+}
+
+.main-right {
+    margin-left: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: -40px;
+}
+
+.main-right img {
+    height: calc(82vw / 1.5);
+    transform: perspective(10em);
+    animation: 2s ease 0s 1 load_image;
+    transition: all 0.1s ease;
+    transform: 
+    perspective(100em)
+    rotateX(calc(var(--mousey)*1.4)) 
+    rotateY(calc(0deg - var(--mousex)*1.4));
+}
+.main-right img:hover {
+    filter: brightness(1.1);
+    transform: 
+    perspective(100em)
+    rotateX(calc(var(--mousey)*1.7)) 
+    rotateY(calc(0deg - var(--mousex)*1.7))
+    scale(1.01);
+}
+
+.main-medals-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.main-medal {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border-radius: 42px;
+    transition: all 0.1s ease;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.17) 100%);
+    margin-right: -4px;
+    margin-bottom: 2px;
+}
+.main-medal:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.4) 100%);
+    transform: 
+    perspective(100em)
+    rotateX(calc(var(--mousey)*0.5)) 
+    rotateY(calc(0deg - var(--mousex)*0.5))
+    scale(1.1);
+    backdrop-filter: blur(10px);
+    z-index: 2;
+}
+.main-medal p {
+    margin-left: 4px;
+    font-weight: 900;
+    margin-right: 4px;
+}
+.main-medal img {
+    height: 24px;
+}
+
+
+.main-left-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.main-left-title p {
+    font-size: 30px;
+    font-weight: 100;
+}
+.main-left-title h1 {
+    font-size: 50px;
+    font-weight: 900;
+    color: #fff0;
+    background: linear-gradient(91.42deg, #5752FF 0.79%, #5484FF 49.93%, #9082FF 101.15%);
+    background-clip: text;
+-webkit-background-clip: text;
+width: auto;
+}
+
+@media (max-width: 1300px) {
+    body, html {
+        min-height: auto !important;
+        height: auto !important;
+        max-height: 3825982358092385px !important;
+    }
+    body {
+        overflow-y: auto;
+        text-align: center;
+    }
+    .main-medals-list {
+        align-items: center;
+        justify-content: center;
+    }
+    .main {
+        flex-direction: column;
+        height:auto;
+        align-items: center !important;
+    }
+    .main-right {
+        margin: 0px !important;
+        position: relative;
+        height:  auto;
+    }
+    .main-right img {
+        width: 90vw;
+        height: auto;
+        margin-top: -40px;
+        margin-bottom: -80px;
+    }
+}

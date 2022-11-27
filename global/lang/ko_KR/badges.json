@@ -1,0 +1,20 @@
+{
+    "badges.title": "뱃지 ($1)",
+    "sort.awardedAt.asc": "수여 날짜 (오름차순)",
+    "sort.awardedAt.desc": "수여 날짜 (내림차순)",
+    "sort.name.asc": "이름 (오름차순)",
+    "sort.name.desc": "이름 (내림차순)",
+    "sort.playerCount.asc": "플레이어 수 (오름차순)",
+    "sort.playerCount.desc": "플레이어 수 (내림차순)",
+    "search.placeholder": "뱃지 검색",
+    "badge.firstAchieved": "<strong>$1</strong>에 첫 달성",
+    "badge.ownedBy": "<strong>$1</strong>명 보유",
+    "badge.ownedBySingular": "<strong>$1</strong>명 보유",
+    "badge.popup.playersWhoHave": "이 뱃지를 가지고 있는 <strong>플레이어</strong>",
+    "badge.popup.1xVariant": "<strong>@1x</strong><br>크기",
+    "paused": "Osekai 뱃지의 처리가 현재 중지되었습니다. $1 이전의 뱃지만 보여질 것입니다.",
+    "viewtype.grid": "격자",
+    "viewtype.compactList": "소형 리스트",
+    "viewtype.list": "목록",
+    "viewtype.ultraCompact": "초소형"
+}

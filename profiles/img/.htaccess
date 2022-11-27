@@ -1,0 +1,4 @@
+# RewriteRule ^testcover.svg$ testcover.php [L]
+# redirect banner.svg to banner.php
+RewriteEngine on
+RewriteRule ^banner.svg$ banner.php [L]

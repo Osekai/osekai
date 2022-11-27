@@ -1,0 +1,440 @@
+.osekai__badge-list {
+    display: flex;
+}
+
+.osekai__badge-list.ultra_compact {
+    /* grid, each item 114x53 */
+    /* we can't resize any of the items, so we need to use a grid */
+    /* minxmax wont works because it'll resize the items */
+
+
+    grid-template-columns: repeat(auto-fill, minmax(114px, 1fr));
+    grid-auto-rows: 1fr;
+    width: 100%;
+    grid-gap: 6px 14px;
+    box-sizing: border-box;
+
+    display: grid;
+}
+
+.osekai__badge-list.ultra_compact .badge {
+    grid-column: span 1;
+    grid-row: span 1;
+    padding: 0px;
+    background-color: #0000 !important;
+    border: 0px solid #0000 !important;
+    border-radius: 0px;
+}
+
+.osekai__badge-list.ultra_compact .badge_texts {
+    display: none;
+}
+
+.osekai__badge-list.ultra_compact .badge_img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.osekai__badge-list.grid_large {
+    /* in html, this is just a list of elements. we need to make them into grid */
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-items: stretch;
+    /* force height of children to be the max of their row */
+    /* https://css-tricks.com/snippets/css/force-content-vertical-align/ */
+
+
+}
+
+.badge {
+    background: linear-gradient(#fff1, #0001), linear-gradient(rgba(var(--accentdark), 0.2), rgba(var(--accentdark), 0.3));
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    border-radius: 17px;
+    transform: perspective(1000px);
+    transition: all 0.2s ease-in-out;
+}
+
+.badge:hover {
+    transform: perspective(1000px) rotateX(10deg);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: brightness(1.3);
+}
+
+.badge:active {
+    transform: perspective(1000px) rotateX(5deg);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    filter: brightness(1.1);
+}
+
+.badge.grid_large {
+    /* this is what's inside oseaki__badge-list */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 174px;
+}
+
+.badge.grid_large .badge_texts {
+    text-align: center !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+.badge.grid_large .badge_img img {
+    height: 64px;
+
+}
+
+.badge_name {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+.badge_desc {
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.badge_info {
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.badge_info strong {
+    font-weight: 900;
+}
+
+.badges__panel-header-viewtypes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 18px;
+    padding-left: 18px;
+    border-left: 1px solid #FFFFFF3F;
+    gap: 16px;
+    height: 100%;
+}
+
+.badges__panel-header-viewtype {
+    font-size: 16px;
+    font-weight: 900;
+    color: #FFFFFF3F;
+    cursor: pointer;
+}
+
+.badges__panel-header-viewtype-active {
+    color: #FFFFFF;
+}
+
+.osekai__badge-list.list_2wide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.osekai__badge-list.list_1wide {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.badge.list_2wide, .badge.list_1wide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.badge.list_2wide .badge_img, .badge.list_1wide .badge_img {
+    margin-right: 10px;
+}
+
+.badge.list_2wide .badge_img img, .badge.list_1wide .badge_img img {
+    height: 50px;
+}
+
+.badges__badge-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: radial-gradient(50% 50% at 50% 50%, #201627 0%, rgba(32, 22, 39, 0.77) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+.badges__badge-overlay-panel {
+    background: linear-gradient(0deg, rgba(89, 62, 111, 0.4), rgba(89, 62, 111, 0.4)), rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    border-radius: 20px;
+    filter: drop-shadow(0px 7px 17px rgba(0, 0, 0, 0.25));
+    padding: 20px;
+    display: flex;
+    
+    width: 40vw;
+
+    z-index: 101;
+    pointer-events: all;
+
+    /* absolutely center */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-in-out;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+
+}
+
+.badges__badge-panel_hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+@media (max-width: 1000px) {
+    .badges__badge-overlay-panel {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 1400px) {
+    .badges__badge-overlay-panel {
+        width: 70vw;
+    }
+}
+
+
+
+.badges__badge-overlay_hidden {
+    opacity: 0;
+    pointer-events: none;
+    padding-bottom: 100px;
+}
+
+
+.badges__bop-left {
+    padding-right: 20px;
+    display: flex;
+    width: 172px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.badges__bopl-img {
+    width: 172px;
+}
+
+
+.badges__bopl-img-1x-cont {
+    width: 172px;
+    padding: 7px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #593E6Faa;
+    box-sizing: border-box;
+    margin-top: 8px;
+}
+
+.badges__bopl-img-1x {
+    width: calc(172px / 2);
+}
+
+.badges__bopl-img-1x-cont p {
+    color: #fffa;
+    font-size: 12px;
+    font-weight: 100;
+    text-align: right;
+    margin-left: auto;
+    padding-right: 5px;
+    justify-self: flex-end;
+}
+
+.badges__bopl-img-1x-cont p strong {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 900;
+
+}
+
+.badges__bopl-img-glow {
+    position: absolute;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+.badges__bopr-name {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+.badges__bopr-desc {
+    font-weight: 900;
+    font-size: 24px;
+    margin-bottom: 7px;
+}
+
+.badges__bopr-first-achieved {
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.badges__bopr-first-achieved strong {
+    font-weight: 900;
+}
+
+.badges__bopr-amount {
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.badges__bopr-amount strong {
+    font-weight: 900;
+}
+
+.badges__bop-right .osekai__divider {
+    background-color: #fff;
+    opacity: 0.5;
+}
+
+.badges__bop-right {
+    width: 100%;
+}
+
+
+
+.badge_user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.badges__bopr-players-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 8px;
+    padding-top: 6px;
+}
+
+.badge_user img {
+    border-radius: 32px;
+    height: 45px;
+    padding-right: 5px;
+}
+
+.badge_user p {
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.osekai__panel-header-with-buttons {
+    flex-wrap: wrap;
+}
+
+.osekai__panel-hwb-right {
+    flex-wrap: wrap;
+    min-height: 58px;
+    height: auto;
+}
+
+@media (max-width: 900px) {
+    .osekai__panel-header-with-buttons {
+        flex-direction: column;
+    }
+
+    .osekai__panel-hwb-right {
+        /* flex-direction: column; */
+        width: 100%;
+    }
+
+    .osekai__panel-header-input, .badges__panel-header-viewtypes, .osekai__panel-header-button {
+        border-left: 0px solid #fff0;
+        height: 58px;
+        border-top: 1px solid #fff2;
+        width: 100%;
+        padding: 0px;
+        justify-content: center;
+        align-items: center;
+        background-color: #0004;
+    }
+    .badges__panel-header-viewtypes {
+        width: 50%;
+        box-sizing: border-box;
+    }
+    .badges__panel-header-viewtypes-size {
+        justify-content: flex-start;
+        padding-left: 18px;
+        border-left: 1px solid #fff2;
+    }
+    .badges__panel-header-viewtypes-scale {
+        justify-content: flex-end;
+        padding-right: 18px;
+
+    }
+
+    .osekai__panel-hwb-left {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 800px) {
+    .badges__badge-overlay-panel {
+        width: 90vw;
+        flex-direction: column;
+    }
+
+    .badges__bop-left {
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+}
+
+.badges__processing-warning {
+    padding: 16px;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(180deg, rgba(251, 149, 54, 0.44) 0%, rgba(251, 125, 54, 0.14) 100%);
+border: 1px solid #FFC077;
+box-shadow: 0px 4px 10px rgba(255, 192, 119, 0.25), 0px 4px 108px rgba(255, 46, 0, 0.1), 0px 4px 39px rgba(255, 214, 167, 0.25);
+border-radius: 12px;
+margin-bottom: 15px;
+}

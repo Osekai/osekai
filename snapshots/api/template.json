@@ -1,0 +1,35 @@
+{
+    "version_info": {
+        "id": "0",
+        "release": 0,
+        "name": "0",
+        "version": "0"
+    },
+    "archive_info": {
+        "archiver": "0",
+        "archiver_url": null,
+        "archiver_id": "0",
+        "description": "0",
+        "description_short": "0",
+        "auto_update": false,
+        "requires_supporter": false,
+        "allows_comments": true,
+        "group": 1,
+        "approved": true,
+        "video": null,
+        "extra_info": null
+    },
+    "stats": {
+        "views": "0",
+        "downloads": "0"
+    },
+    "downloads": {
+        "main": {
+            "name": "Osekai Servers",
+            "link": "0.zip"
+        }
+    },
+    "screenshots": [
+        
+    ]
+}
