@@ -179,13 +179,11 @@ INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`,
 (1,	1,	'Osekai Rankings',	'??apps.rankings.slogan??',	'rankings',	'0, 66, 79',	'0, 194, 224',	'white/rankings',	'coloured/rankings',	'cover/rankings',	1,	0,	1),
 (2,	2,	'Osekai Medals',	'??apps.medals.slogan??',	'medals',	'102, 34, 68',	'255, 102, 170',	'white/medals',	'coloured/medals',	'cover/medals',	1,	0,	1),
 (3,	3,	'Osekai Profiles',	'??apps.profiles.slogan??',	'profiles',	'51, 68, 102',	'102, 143, 255',	'white/profiles',	'coloured/profiles',	'cover/profiles',	1,	0,	1),
-(4,	4,	'Osekai Skins',	'skins pog',	'skins',	'188, 57, 57',	'255, 63, 63',	'white/skins',	'coloured/skins',	'cover/skins',	0,	1,	0),
 (5,	5,	'Osekai Snapshots',	'??apps.snapshots.slogan??',	'snapshots',	'38, 44, 124',	'63, 77, 245',	'white/snapshots',	'coloured/snapshots',	'cover/snapshots',	1,	0,	1),
 (6,	6,	'Osekai Custom',	'it\'s a mystery',	'custom',	'32, 32, 32',	'32, 32, 32',	'osekai_light',	'osekai_dark',	'cover/none',	0,	0,	0),
 (7,	7,	'Osekai Badges',	'??apps.badges.slogan??',	'badges',	'89,62,110',	'170,102,255',	'white/badges',	'coloured/badges',	'cover/badges',	1,	0,	1),
 (8,	8,	'admin',	'owo',	'admin',	'82,21,21',	'80,10,20',	'osekai_light',	'osekai_light',	'home',	0,	0,	0),
 (9,	9,	'Osekai Azelia',	'coming soon',	'azelia',	'38, 44, 124',	'63, 77, 245',	'white/snapshots',	'coloured/snapshots',	'cover/snapshots',	1,	1,	0),
-(10,	10,	'Osekai Dating',	'finding the \'YOUdal\' to your \'MEdal\'',	'dating',	'',	'',	'white/dating',	'coloured/dating',	'cover/dating',	0,	1,	1),
 (11,	11,	'Osekai Teams',	'WIP',	'teams',	'42,94,84',	'50,227,195',	'white/teams',	'white/teams',	'cover/teams',	1,	1,	0),
 (12,	12,	'Osekai Tools',	'uwu',	'tools',	'47,77,104',	'45,118,186',	'white/tools',	'coloured/tools',	'',	1,	1,	0);
 
