@@ -221,7 +221,7 @@ function updateTheme() {
         } else {
             // light mode
             document.getElementById("css_cont").innerHTML = "<link id='" + theme + "' rel='stylesheet' type='text/css' href='/global/css/" + themes["light"].css[0] + "'>";
-            document.getElementById("css_cont").innerHTML += "<link id='" + theme + "' rel='stylesheet' type='text/css' href='css." + themes["light"].css[0] + "'>";
+            document.getElementById("css_cont").innerHTML += "<link id='" + theme + "' rel='stylesheet' type='text/css' href='css/" + themes["light"].css[0] + "'>";
         }
     }
     else {
