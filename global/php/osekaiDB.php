@@ -76,6 +76,7 @@ class Database
     public static function execSimpleSelect($strQuery)
     {
         $oQuery = self::getConnection()->query($strQuery);
+        $hits = array();
         while ($val = $oQuery->fetch_assoc()) {
             $hits[] = $val;
         }
