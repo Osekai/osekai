@@ -4,6 +4,8 @@ define("OSEKAI_VERSION", "2.0.2.0.9"); // cache invalidation
 define("AUTHENTICATOR_KEY", "key");
 define("VPS_IP", "ignore"); // internal stuff, such as reporting and alerts. ignore
 
+define("EXPERIMENTAL_KEY", "on");
+
 define("OSU_API_V1_KEY", "your_api_key_here");
 define("OSU_OAUTH_CLIENT_SECRET", "your_client_secret_here");
 define("OSU_OAUTH_CLIENT_ID", "your_client_id_here");
