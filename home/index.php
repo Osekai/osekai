@@ -205,7 +205,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                 </div>
                                 <div class="home__team-panel-upper-name">
                                     <h2>Tanza3D <span style="opacity: 0.75;">/ Hubz</span></h2>
-                                    <p>Lead Developer & Lead Designer</p>
+                                    <p>Project Lead, Developer & Lead Designer</p>
                                 </div>
                             </div>
                             <div class="home__team-panel-lower">
@@ -227,7 +227,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                 <a class="home__team-panel-lower-social" rel="me" href="https://mastodon.online/@tanza">
                                     <i class="fab fa-mastodon"></i>
                                 </a>
-
                             </div>
                         </div>
                         <div class="home__team-panel">
@@ -239,7 +238,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                     </div>
                                 </div>
                                 <div class="home__team-panel-upper-name">
-                                    <h2>Pedrito</h2>
+                                    <h2>EXtremeExploit <span style="opacity: 0.75;">/ Pedrito</span></h2>
                                         <p>Developer</p>
                                 </div>
                             </div>
