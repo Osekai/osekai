@@ -1,3 +1,6 @@
 [submodule "tools/src"]
 	path = tools/src
 	url = https://github.com/osekai/tools
+[submodule "admin"]
+	path = admin
+	url = https://github.com/osekai/osekai-admin
