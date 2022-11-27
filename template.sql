@@ -2296,3 +2296,10 @@ DROP TABLE IF EXISTS `UserListing`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY INVOKER VIEW `UserListing` AS select `Ranking`.`id` AS `id`,`Ranking`.`name` AS `name`,`Ranking`.`medal_count` AS `Medalcount`,format(((`Ranking`.`medal_count` * 100) / (select count(0) from `Medals`)),2) AS `Completion`,`Medals`.`name` AS `rarest_medal`,`Medals`.`link` AS `link`,`Countries`.`link` AS `flag`,`Countries`.`name_long` AS `name_long` from (((`Ranking` join `Medals` on((`Ranking`.`rarest_medal` = `Medals`.`medalid`))) join `MedalRarity` on((`Medals`.`medalid` = `MedalRarity`.`id`))) join `Countries` on((`Ranking`.`country_code` = `Countries`.`name_short`))) order by `Ranking`.`medal_count` desc,`MedalRarity`.`frequency` limit 1000;
 
 -- 2022-11-27 11:58:31
+
+
+
+
+/* 2022-11-27 add clickable alerts */
+ALTER TABLE `Alerts`
+ADD `Link` text COLLATE 'utf8mb4_bin' NOT NULL;
