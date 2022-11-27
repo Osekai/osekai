@@ -1,3 +1,4 @@
+<?php
 // modes:
 // - production
 //   live site on osekai.net, same setup
@@ -15,7 +16,7 @@ define("EXPERIMENTAL_KEY", "on");
 define("OSU_API_V1_KEY", "your_api_key_here");
 define("OSU_OAUTH_CLIENT_SECRET", "your_client_secret_here");
 define("OSU_OAUTH_CLIENT_ID", "your_client_id_here");
-define("OSU_OAUTH_REDIRECT_URI", "localhost:8080/global/php/login.php");
+define("OSU_OAUTH_REDIRECT_URI", "http://localhost:8080/global/php/login.php");
 
 define("DB_USER", "db_username");
 define("DB_PASSWORD", "db_password");
@@ -24,3 +25,5 @@ define("DB_HOSTNAME", "db_hostname");
 
 define("SNAPSHOTS_WEBHOOK", "webhook_url");
 define("SCRIPTS_RUST_KEY", "key");
+
+$rooturl = "http://localhost:8080/";
