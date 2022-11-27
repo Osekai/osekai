@@ -205,7 +205,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                 </div>
                                 <div class="home__team-panel-upper-name">
                                     <h2>Tanza3D <span style="opacity: 0.75;">/ Hubz</span></h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.hubz"); ?></p>
+                                    <p>Lead Developer & Lead Designer</p>
                                 </div>
                             </div>
                             <div class="home__team-panel-lower">
@@ -228,6 +228,37 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                     <i class="fab fa-mastodon"></i>
                                 </a>
 
+                            </div>
+                        </div>
+                        <div class="home__team-panel">
+                            <div class="home__team-panel-upper">
+                                <div class="home__team-panel-upper-pfpsection">
+                                    <img src="https://a.ppy.sh/9350342" class="home__team-panel-upper-pfp">
+                                    <div class="home__team-panel-upper-pfp-app osekai-inverted">
+                                        <img src="/global/img/branding/vector/osekai_light.svg" class="home__team-panel-upper-pfp-app-img">
+                                    </div>
+                                </div>
+                                <div class="home__team-panel-upper-name">
+                                    <h2>Pedrito</h2>
+                                        <p>Developer</p>
+                                </div>
+                            </div>
+                            <div class="home__team-panel-lower">
+                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/9350342">
+                                    <img src="/global/img/icons/osu-logo-white.svg">
+                                </a>
+                                <a class="home__team-panel-lower-social" href="/profiles/?user=9350342">
+                                    <img src="/global/img/branding/vector/white/profiles.svg">
+                                </a>
+                                <a class="home__team-panel-lower-social" href="https://github.com/EXtremeExploit/">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a class="home__team-panel-lower-social" href="https://www.twitch.tv/extremeexploit_">
+                                    <i class="fab fa-twitch"></i>
+                                </a>
+                                <a class="home__team-panel-lower-social" href="https://pedro.moe/">
+                                    <i class="fas fa-globe"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
