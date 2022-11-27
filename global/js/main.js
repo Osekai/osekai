@@ -675,7 +675,8 @@ mutation();
 
 var alertTypes = {
     "default": {
-        "template": `<div class="osekai__navbar-alert">
+        "template": `<a>
+        <div class="osekai__navbar-alert">
             <div class="osekai__navbar-alert-inner">
                 <div class="osekai__navbar-alert-inner-text">
                     <p>
@@ -686,10 +687,12 @@ var alertTypes = {
                     <i class="fas fa-times"></i>
                 </div>
             </div>
-        </div>`
+        </div>
+        </a>`
     },
     "warning": {
-        "template": `<div class="osekai__navbar-alert osekai__navbar-alert-warning"> 
+        "template": `<a>
+        <div class="osekai__navbar-alert osekai__navbar-alert-warning"> 
             <div class="osekai__navbar-alert-inner">
                 <div class="osekai__navbar-alert-inner-text">
                     <i class="fas fa-exclamation-triangle osekai__navbar-alert-glowing-icon"></i>
@@ -701,7 +704,7 @@ var alertTypes = {
                     <i class="fas fa-times"></i>
                 </div>
             </div>
-        </div>`
+        </div></a>`
     }
 }
 
@@ -739,15 +742,17 @@ function getAlerts() {
             let alert = oResponse[x];
             if (!closedAlerts.includes(alert['Id'])) {
                 shown = true;
-                console.log(alert);
                 var type = "default";
                 if (alert['Type'] != "") type = alert['Type'];
                 var template = alertTypes[type]['template'];
                 template = template.replace("{text}", alert['Text']);
-                console.log(template);
                 let htmlObject = document.createElement('div');
                 htmlObject.innerHTML = template;
                 htmlObject.id = "alert_" + alert['Id'];
+                if(alert['Link'] != null && alert['Link'] != "") {
+                    htmlObject.querySelector(".osekai__navbar-alert").classList.add("osekai__navbar-alert-clickable")
+                    htmlObject.querySelector("a").href = alert['Link'];
+                }
                 if (alert['Permanent'] == 0) {
                     htmlObject.querySelector(".osekai__navbar-alert-close").addEventListener("click", (event) => {
                         closeAlert(alert, htmlObject);

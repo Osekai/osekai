@@ -4920,6 +4920,20 @@ input[type=range]:focus::-ms-fill-upper {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), var(--accentdark);
 }
 
+.osekai__navbar-alert-clickable {
+    border: 2px solid var(--accent);
+    box-shadow: 0px 0px 40px var(--accentdark);
+    transition: all 0.2s ease;
+}
+.osekai__navbar-alert-clickable:hover {
+    transform: perspective(10em) rotateX(2deg); 
+    box-shadow: 0px 0px 30px var(--accent);
+}
+.osekai__navbar-alert-clickable p {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+}
+
 .osekai__navbar-alert-inner-text {
     padding: 0px 16px;
     display: flex;
