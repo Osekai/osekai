@@ -14,7 +14,7 @@ RewriteRule ^(.*)$ $1.php [NC,L]
 
 # rewrite to NON-WWW
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ /$1 [R=301,L]
+RewriteRule ^(.*)$ https://osekai.net/$1 [R=301,L]
 
 
 # rewrite to HTTPS
@@ -52,7 +52,6 @@ DirectoryIndex index.php
 
 # 404 doc
 ErrorDocument 404 /404/index.php
-# 503 document goes here. it's in plaintext, yes.
 ErrorDocument 503 '<link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><style>    *{        padding: 0px;        margin: 0px;        color: #fff;        font-family: "Comfortaa";    }    body{        background-color: #0b0c11;    }</style><div style="height: 100vh; width: 100vw; display: flex; flex-direction: column; justify-content: center; align-content: center; justify-items: center; align-items: center;"><h1>Oh no, our servers seem to be having a little trouble.</h1><p>Please try again in a bit.</p></div>'
 
 # ! < TOOLS REWRITING > ! #
@@ -66,10 +65,11 @@ RedirectMatch 404 ^/tools/src/(.*)/index.php$
 
 # tempdown
 
-#RewriteRule profiles(.*)$ /offline-application.html [L]
-#RewriteRule snapshots(.*)$ /offline-application.html [L]
-#RewriteRule rankings(.*)$ /offline-application.html [L]
+#RewriteRule profiles(.*)$ /tempdown.html [L]
+#RewriteRule snapshots(.*)$ /tempdown.html [L]
+#RewriteRule rankings(.*)$ /tempdown.html [L]
 
-<If "%{REMOTE_ADDR} != 'your_ip_here' >
-    #RewriteRule ^(.*)$ /offline-difficultues.html [L]
+<If "%{REMOTE_ADDR} != '86.182.216.247' && %{REMOTE_ADDR} != '178.219.94.104' && %{REMOTE_ADDR} != '2a02:810d:2c3f:da70:8479:3271:3188:6feb'">
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ /offline-work.html [L]
 </If>

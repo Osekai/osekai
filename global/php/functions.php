@@ -44,7 +44,6 @@ if (count($restrictedCheck) > 0 && $restrictedCheck[0]['Active'] == 1) {
 
 
 
-$rooturl = "http://localhost:8080"; //
 $actual_link = $rooturl . $_SERVER['REQUEST_URI'];
 
 
