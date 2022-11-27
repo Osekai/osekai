@@ -1,4 +1,11 @@
 <?php
+// modes:
+// - production
+//   live site on osekai.net, same setup
+// - local
+//   same as live site, but with admin and expeirmental walls removed
+// - dev
+//   everyone has experimental mode, even when logged out
 define("MODE", "local");
 define("OSEKAI_VERSION", "2.0.2.0.9"); // cache invalidation
 define("AUTHENTICATOR_KEY", "key");
