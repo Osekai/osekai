@@ -25,7 +25,7 @@ $gitStr = file_get_contents($gitBasePath . '/HEAD');
 $gitBranchName = rtrim(preg_replace("/(.*?\/){2}/", '', $gitStr));
 $gitPathBranch = $gitBasePath . '/refs/heads/' . $gitBranchName;
 $gitHash = file_get_contents($gitPathBranch);
-$gitDate = date(DATE_ATOM, filemtime($gitPathBranch));
+$gitDate = gmdate("Y-m-d@H:i:s", filemtime($gitPathBranch));
 
 echo "version date: " . $gitDate . "<br>branch: " . $gitBranchName . "<br> commit: " . $gitHash;
 ?>
@@ -43,7 +43,9 @@ echo "version date: " . $gitDate . "<br>branch: " . $gitBranchName . "<br> commi
         </div>
         <p><?php echo GetStringRaw("general", "page.generatedIn", ["<strong>" . $time . "</strong>"]); ?></p>
         <p>Aborted Session Saves: <strong><?php echo $abortedSaves; ?></strong></p>
-        <p style="font-size: 10px">Commit <strong><?= $gitHash ?></strong> at <?= $gitDate; ?> (branch <strong><?= $gitBranchName ?></strong>)</p>
+        <p style="font-size: 10px">Commit <strong><a href="https://github.com/Osekai/osekai/commit/<?= $gitHash ?>"><?= $gitHash ?></a></strong>
+            (branch <strong><a href="https://github.com/Osekai/osekai/tree/<?= $gitBranchName ?>"><?= $gitBranchName ?></a></strong>)</p>
+        <p style="font-size: 10px"><?= $gitDate; ?> UTC</p>
     </div>
 </div>
 
