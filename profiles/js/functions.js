@@ -351,6 +351,14 @@ async function FillData(uid, mode, completeReload = true) {
     if (oData.user_achievements_total.global_rank != null) document.getElementById("medal__rank__global").innerHTML = "#" + FormatNumber(oData.user_achievements_total.global_rank);
     if (oData.user_achievements_total.completion != null) {
       document.getElementById("completion__bar").style = "width: " + oData.user_achievements_total.completion + "%;";
+      document.getElementById("completion__bar__scheme").classList.forEach((v, k) => {
+        if (v == "col95club" ||
+          v == "col90club" ||
+          v == "col80club" ||
+          v == "col60club" ||
+          v == "col40club")
+            document.getElementById("completion__bar__scheme").classList.remove(v)
+      });
       document.getElementById("completion__bar__scheme").classList.add(ColorizeBar(oData.user_achievements_total.completion));
       // completion = user_achievements_total.completion (88,12%)
       // medalcount = Object.keys(oData.user_achievements).length (230)
