@@ -26,8 +26,6 @@ $gitBranchName = rtrim(preg_replace("/(.*?\/){2}/", '', $gitStr));
 $gitPathBranch = $gitBasePath . '/refs/heads/' . $gitBranchName;
 $gitHash = file_get_contents($gitPathBranch);
 $gitDate = gmdate("Y-m-d@H:i:s", filemtime($gitPathBranch));
-
-echo "version date: " . $gitDate . "<br>branch: " . $gitBranchName . "<br> commit: " . $gitHash;
 ?>
 <meta charset="utf-8">
 <div class="debug">
