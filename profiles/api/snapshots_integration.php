@@ -7,6 +7,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $test = Database::execSimpleSelect("SELECT * FROM SnapshotVersions ORDER BY `release` DESC");
+if($test == null){
+    echo "No results found";
+    return;
+}
 
 $userId = $_GET['userId'];
 
