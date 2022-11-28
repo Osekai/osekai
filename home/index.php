@@ -238,7 +238,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                     </div>
                                 </div>
                                 <div class="home__team-panel-upper-name">
-                                    <h2>MegaMix_Craft</h2>
+                                    <h2>MegaMix_Craft <span style="opacity: 0.75;">/ minusQuantumNeko</span></h2>
                                         <p><?php echo GetStringRaw("home", "team.role.megamix"); ?></p>
                                 </div>
                             </div>
