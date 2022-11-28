@@ -46,6 +46,9 @@ if (count($restrictedCheck) > 0 && $restrictedCheck[0]['Active'] == 1) {
 
 $actual_link = $rooturl . $_SERVER['REQUEST_URI'];
 
+if(MODE == "dev") {
+    $oSession['role']['rights'] = 2;
+}
 
 if (isset($app)) {
     if (MODE != "production") {
@@ -680,6 +683,9 @@ function medal_popup_v2()
 
 function isExperimental()
 {
+    if(MODE == "dev") { 
+        return true;
+    }
     if (isset($_SESSION['options']) && isset($_SESSION['options']['experimental']) && $_SESSION['options']['experimental'] == 1) return true;
     return false;
 }
