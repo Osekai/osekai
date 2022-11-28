@@ -1,8 +1,0 @@
-{
-    "title": "Kommentarer",
-    "sorting.votes": "Röster",
-    "sorting.newest": "Senaste",
-    "delete.warning": "Är du säker på att du vill radera denna kommentar?",
-    "replyingTo": "<span class=\"comments__light\">svarar till</span> $1",
-    "posted": "<span class=\"comments__light\">postad</span> $1"
-}

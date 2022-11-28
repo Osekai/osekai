@@ -1,8 +1,0 @@
-{
-    "title": "Commentaires",
-    "sorting.votes": "Votes",
-    "sorting.newest": "Plus récent",
-    "delete.warning": "Êtes-vous sûr de vouloir supprimer ce commentaire ?",
-    "replyingTo": "<span class=\"comments__light\">réponse à</span> $1",
-    "posted": "<span class=\"comments__light\">posté le</span> $1"
-}

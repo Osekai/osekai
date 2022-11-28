@@ -1,8 +1,0 @@
-{
-    "title": "Komentáre",
-    "sorting.votes": "Hlasy",
-    "sorting.newest": "Nedávne",
-    "delete.warning": "Si si istý, že chceš odstrániť tento komentár?",
-    "replyingTo": "<span class=\"comments__light\">odpovedáš</span> $1",
-    "posted": "<span class=\"comments__light\">postnuté</span> $1"
-}
