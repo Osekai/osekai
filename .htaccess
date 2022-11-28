@@ -70,6 +70,6 @@ RedirectMatch 404 ^/tools/src/(.*)/index.php$
 #RewriteRule rankings(.*)$ /tempdown.html [L]
 
 <If "%{REMOTE_ADDR} != '86.182.216.247' && %{REMOTE_ADDR} != '178.219.94.104' && %{REMOTE_ADDR} != '2a02:810d:2c3f:da70:8479:3271:3188:6feb'">
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ /offline-work.html [L]
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^(.*)$ /offline-work.html [L]
 </If>
