@@ -106,6 +106,8 @@
     margin-left: 17px;
     flex: 1;
     max-width: 100%;
+    min-width: 0;
+    
     align-self: stretch;
 }
 
