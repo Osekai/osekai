@@ -166,7 +166,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             <div class="home__team">
                 <h1><?php echo GetStringRaw("home", "team.title"); ?></h1>
                 <div class="home__team-section">
-                    <p class="home__team-section-title">Main Development</p>
+                    <p class="home__team-section-title"><?php echo GetStringRaw("home", "team.title.main"); ?></p>
                     <div class="home__team-grid">
                         <!--  -->
                         <div class="home__team-panel">
@@ -205,7 +205,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                 </div>
                                 <div class="home__team-panel-upper-name">
                                     <h2>Tanza3D <span style="opacity: 0.75;">/ Hubz</span></h2>
-                                    <p>Project Lead, Developer & Lead Designer</p>
+                                    <p><?php echo GetStringRaw("home", "team.role.tanza"); ?></p>
                                 </div>
                             </div>
                             <div class="home__team-panel-lower">
@@ -232,6 +232,40 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                         <div class="home__team-panel">
                             <div class="home__team-panel-upper">
                                 <div class="home__team-panel-upper-pfpsection">
+                                    <img src="https://a.ppy.sh/18152711" class="home__team-panel-upper-pfp">
+                                    <div class="home__team-panel-upper-pfp-app osekai-inverted">
+                                        <img src="/global/img/branding/vector/osekai_light.svg" class="home__team-panel-upper-pfp-app-img">
+                                    </div>
+                                </div>
+                                <div class="home__team-panel-upper-name">
+                                    <h2>MegaMix_Craft</h2>
+                                        <p><?php echo GetStringRaw("home", "team.role.megamix"); ?></p>
+                                </div>
+                            </div>
+                            <div class="home__team-panel-lower">
+                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/18152711">
+                                    <img src="/global/img/icons/osu-logo-white.svg">
+                                </a>
+                                <a class="home__team-panel-lower-social" href="/profiles/?user=18152711">
+                                    <img src="/global/img/branding/vector/white/profiles.svg">
+                                </a>
+                                <a class="home__team-panel-lower-social" href="https://twitter.com/MegaMix_Craft">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a class="home__team-panel-lower-social" href="https://www.youtube.com/MegaMix_Craft">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a class="home__team-panel-lower-social" rel="me" href="https://mastodon.world/@MegaMix_Craft">
+                                    <i class="fab fa-mastodon"></i>
+                                </a>
+                                <a class="home__team-panel-lower-social" rel="me" href="https://www.speedrun.com/user/MegaMix_Craft">
+                                    <i class="fas fa-trophy"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="home__team-panel">
+                            <div class="home__team-panel-upper">
+                                <div class="home__team-panel-upper-pfpsection">
                                     <img src="https://a.ppy.sh/9350342" class="home__team-panel-upper-pfp">
                                     <div class="home__team-panel-upper-pfp-app osekai-inverted">
                                         <img src="/global/img/branding/vector/osekai_light.svg" class="home__team-panel-upper-pfp-app-img">
@@ -239,7 +273,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                 </div>
                                 <div class="home__team-panel-upper-name">
                                     <h2>EXtremeExploit <span style="opacity: 0.75;">/ Pedrito</span></h2>
-                                        <p>Developer</p>
+                                        <p><?php echo GetStringRaw("home", "team.role.generic.developer"); ?></p>
                                 </div>
                             </div>
                             <div class="home__team-panel-lower">
@@ -263,7 +297,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </div>
                 <div class="home__team-section">
-                    <p class="home__team-section-title">App Development</p>
+                    <p class="home__team-section-title"><?php echo GetStringRaw("home", "team.title.appdev"); ?></p>
                     <div class="home__team-grid">
                         <!--  -->
                         <div class="home__team-panel">
@@ -348,7 +382,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                 </div>
                                 <div class="home__team-panel-upper-name">
                                     <h2>Coppertine</h2>
-                                        <p>Admin Tools Development</p>
+                                        <p><?php echo GetStringRaw("home", "team.role.coppertine"); ?></p>
                                 </div>
                             </div>
                             <div class="home__team-panel-lower">
@@ -372,7 +406,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </div>
                 <div class="home__team-section">
-                    <p class="home__team-section-title">Community Management</p>
+                    <p class="home__team-section-title"><?php echo GetStringRaw("home", "team.title.communityManagement"); ?></p>
                     <div class="home__team-grid">
                         <div class="home__team-panel">
                             <div class="home__team-panel-upper">
@@ -433,7 +467,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                 </div>
                                 <div class="home__team-panel-upper-name">
                                     <h2>chromb</h2>
-                                        <p>Community Manager</p>
+                                        <p><?php echo GetStringRaw("home", "team.role.generic.communityManager"); ?></p>
                                 </div>
                             </div>
                             <div class="home__team-panel-lower">
@@ -452,40 +486,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                             </div>
                         </div>
                         <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/18152711" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app osekai-inverted">
-                                        <img src="/global/img/branding/vector/osekai_light.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>MegaMix_Craft</h2>
-                                        <p>Community Manager</p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/18152711">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=18152711">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://twitter.com/MegaMix_Craft">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://www.youtube.com/MegaMix_Craft">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" rel="me" href="https://mastodon.world/@MegaMix_Craft">
-                                    <i class="fab fa-mastodon"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" rel="me" href="https://www.speedrun.com/user/MegaMix_Craft">
-                                    <i class="fas fa-trophy"></i>
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

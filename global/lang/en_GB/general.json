@@ -20,5 +20,7 @@
     "language.switch": "Switching language!",
     "locked.login": "Log In to use this feature!",
     "page.generatedIn": "Page generated in $1 seconds.",
-    "ok": "Okay"
+    "ok": "Okay",
+    "loading": "Loading",
+    "loading.longer": "Loading..."
 }
