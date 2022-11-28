@@ -4,7 +4,7 @@ var colGroups = [];
 var strGoalType = "Medals";
 var bTimelineHover = false;
 var dJoined;
-var oInterval;
+var oTimeout;
 
 window.addEventListener('popstate', function (event) {
   Initialize();
@@ -85,13 +85,13 @@ function addEvents() {
 }
 
 function HideTimelineInfo() {
+  document.querySelectorAll("[selector='timeline__dot']").forEach((oControl) => {
+    if (oControl.classList.contains("profiles__timeline-dot-active") && !oControl.mouseIsOver) oControl.classList.remove("profiles__timeline-dot-active");
+  });
   if (bTimelineHover) return;
   if (Exists(document.getElementById("timeline__edit"))) return;
   if (!document.getElementById("timeline__info").classList.contains("profiles__info-panel-closed")) document.getElementById("timeline__info").classList.add("profiles__info-panel-closed");
-  document.querySelectorAll("[selector='timeline__dot']").forEach((oControl) => {
-    if (oControl.classList.contains("profiles__timeline-dot-active")) oControl.classList.remove("profiles__timeline-dot-active");
-  });
-  clearInterval(oInterval);
+  clearTimeout(oTimeout);
 }
 
 function loadHome() {
@@ -981,7 +981,8 @@ function LoadTimelineEntries(Data) {
       oDot.classList.add("profiles__timeline-dot");
       oDot.style.setProperty("--pos", CalculateRelativeTime(Data, oEntry.Date) + "%");
 
-      oDot.addEventListener("mouseover", function () {
+      oDot.addEventListener("mouseover", function (e) {
+        e.target.mouseIsOver = true;
         bTimelineHover = true;
         if (!this.classList.contains("profiles__timeline-dot-active")) this.classList.add("profiles__timeline-dot-active");
 
@@ -1061,8 +1062,9 @@ function LoadTimelineEntries(Data) {
         })
       })
 
-      oDot.addEventListener("mouseout", function () {
-        oInterval = setInterval(HideTimelineInfo, 1200);
+      oDot.addEventListener("mouseout", function (e) {
+        e.target.mouseIsOver = false;
+        oTimeout = setTimeout(HideTimelineInfo, 100);
         bTimelineHover = false;
       });
 
