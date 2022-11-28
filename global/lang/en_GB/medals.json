@@ -25,7 +25,7 @@
     "extraInfo.title": "Extra Info",
     "extraInfo.dateReleased": "Date Released",
     "extraInfo.dateAchieved": "Date Achieved",
-    "extraInfo.AchievedBy": "Achieved By",
+    "extraInfo.achievedBy": "Achieved By",
     "extraInfo.none": "We don't have any extra info for this medal."
     
 }
