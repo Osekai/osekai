@@ -174,7 +174,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                         <div class="profiles__cover-info">
                             <div class="profiles__cover-info-content">
                                 <img class="profiles__cover-info-pfp" src="https://a.ppy.sh/1" selector="pfp">
-                                <h1 id="name__sub">Loading...</h1>
+                                <h1 id="name__sub"><?php echo GetStringRaw("general", "loading.longer"); ?></h1>
                                 <h2 id="current__rank__global">Global #?</h2>
                             </div>
                         </div>
@@ -182,32 +182,32 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     <div class="profiles__cover-back-content">
                         <div class="profiles__cover-back-info-row">
                             <div class="profiles__cover-back-info_text">
-                                <p id="location"><i class="fas fa-map-marker-alt"></i> Loading...</p>
+                                <p id="location"><i class="fas fa-map-marker-alt"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
                             </div>
                             <div class="profiles__cover-back-info_text">
-                                <p id="arrival__date"><span class="light">joined</span> Loading...</p>
+                                <p id="arrival__date"><span class="light">joined</span> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
                             </div>
                             <div class="profiles__cover-back-info_text">
-                                <p id="hardware"><span class="light">plays with</span> Loading...</p>
+                                <p id="hardware"><span class="light">plays with</span> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
                             </div>
                         </div>
                         <div id="bar__interests" class="profiles__cover-back-info-row">
                             <div class="profiles__cover-back-info_text">
-                                <p id="interests"><i class="fas fa-heart"></i> Loading...</p>
+                                <p id="interests"><i class="fas fa-heart"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
                             </div>
                             <div class="profiles__cover-back-info_text">
-                                <p id="occupation"><i class="fas fa-briefcase"></i> Loading...</p>
+                                <p id="occupation"><i class="fas fa-briefcase"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
                             </div>
                         </div>
                         <div id="bar__social" class="profiles__cover-back-info-row">
                             <div class="profiles__cover-back-info_text">
-                                <p><i class="fab fa-discord"></i><a target="_blank" id="discord">Loading...</a></p>
+                                <p><i class="fab fa-discord"></i><a target="_blank" id="discord"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
                             </div>
                             <div class="profiles__cover-back-info_text">
-                                <p><i class="fab fa-twitter"></i><a target="_blank" id="twitter">Loading...</a></p>
+                                <p><i class="fab fa-twitter"></i><a target="_blank" id="twitter"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
                             </div>
                             <div class="profiles__cover-back-info_text">
-                                <p><i class="fas fa-link"></i><a target="_blank" id="website">Loading...</a></p>
+                                <p><i class="fas fa-link"></i><a target="_blank" id="website"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
                             </div>
                         </div>
                     </div>
@@ -397,7 +397,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                 <section class="osekai__panel" id="banner-panel">
 
                     <div class="osekai__panel-header">
-                    <i class="fas fa-user"></i><p>User Banner</p>
+                    <i class="fas fa-user"></i><p><?= GetStringRaw("profiles", "profile.banner.title"); ?></p>
                     </div>
                     <div class="osekai__panel-inner osekai__flex-vertical-container">
 
@@ -420,14 +420,14 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                             <div class="profiles__userbanner-top">
                                 <div class="profiles__userbanner-top-toggle">
                                     <div id="banner-toggle-type_bbcode" class="profiles__userbanner-top-toggle-item" onclick="UserBanner.SwitchUrl('bbcode')">
-                                        BBCode (osu!)
+                                    <?= GetStringRaw("profiles", "profile.banner.copyType.bbcode"); ?>
                                     </div>
                                     <div id="banner-toggle-type_raw" class="profiles__userbanner-top-toggle-item" onclick="UserBanner.SwitchUrl('raw')">
-                                        Raw Link
+                                    <?= GetStringRaw("profiles", "profile.banner.copyType.raw"); ?>
                                     </div>
                                 </div>
                                 <div class="profiles__userbanner-top-text">
-                                    <pre id="banner-copy-placeholder">loading...</pre>
+                                    <pre id="banner-copy-placeholder"><?php echo GetStringRaw("general", "loading.longer"); ?></pre>
                                 </div>
                                 <div class="profiles__userbanner-top-copy" onclick="UserBanner.CopyUrl();">
                                     <i class="fas fa-clipboard"></i>
@@ -448,7 +448,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                 <div class="profiles__userbanner-bottom">
                                     <div class="profiles__userbanner-bottom-top">
                                         <div class="profiles__dropdown-with-header" id="dropdown-section-backdrop">
-                                            <p class="profiles__userbanner-dropdown-header">Backdrop Style</p>
+                                            <p class="profiles__userbanner-dropdown-header"><?= GetStringRaw("profiles", "profile.banner.backdropStyle.title"); ?></p>
                                             <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="UserBanner.OpenDropdown('banner-dropdown-background-style')">
                                                 <p id="dropdown__themes-text">Club Glows</p>
                                                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
@@ -457,7 +457,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                             </div>
                                         </div>
                                         <div class="profiles__dropdown-with-header" id="dropdown-section-foreground">
-                                            <p class="profiles__userbanner-dropdown-header">Foreground Style</p>
+                                            <p class="profiles__userbanner-dropdown-header"><?= GetStringRaw("profiles", "profile.banner.foregroundStyle.title"); ?></p>
                                             <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="UserBanner.OpenDropdown('banner-dropdown-foreground-style')">
                                                 <p id="dropdown__themes-text">Medal-Oriented</p>
                                                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
@@ -467,10 +467,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                         </div>
                                     </div>
                                     <div class="profiles__userbanner-bottom-bottom" id="custom-background-settings">
-                                        <h1>Custom Background Settings</h1>
+                                        <h1><?= GetStringRaw("profiles", "profile.banner.customBackground.title"); ?></h1>
                                         <div class="profiles__userbanner-bottom-right-controlbar">
                                             <div class="profiles__userbanner-bottom-right-controlbar-dropdown" id="dropdown-section-customstyle">
-                                                <p class="profiles__userbanner-dropdown-header">Style</p>
+                                                <p class="profiles__userbanner-dropdown-header"><?= GetStringRaw("profiles", "profile.banner.customBackground.style.title"); ?></p>
                                                 <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="UserBanner.OpenDropdown('banner-dropdown-custom-style')">
                                                     <p id="dropdown__themes-text">Gradient</p>
                                                     <i class="fas fa-chevron-down" aria-hidden="true"></i>
@@ -479,7 +479,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                                 </div>
                                             </div>
                                             <div class="profiles__gradient-picker" id="banner-gradient-picker">
-                                                <p class="profiles__userbanner-dropdown-header">Gradient</p>
+                                                <p class="profiles__userbanner-dropdown-header"><?= GetStringRaw("profiles", "profile.banner.customBackground.gradient"); ?></p>
                                                 <div class="osekai__gradient-bar" id="colourbar">
                                                     <div class="osekai__gradient-bar-left"><input type="text"></input></div>
                                                     <div class="osekai__gradient-bar-bar"></div>
@@ -487,7 +487,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                                 </div>
                                             </div>
                                             <div class="profiles__angle-picker" id="banner-angle-picker">
-                                                <p class="profiles__userbanner-dropdown-header">Angle</p>
+                                                <p class="profiles__userbanner-dropdown-header"><?= GetStringRaw("profiles", "profile.banner.customBackground.angle"); ?></p>
                                                 <div class="osekai__slider-with-input">
                                                     <div class="osekai__slider-input-container">
                                                         <input type="text" id="angle-input" value="0" class="osekai__input" onchange="UserBanner.UpdateAngle('input')">
@@ -498,7 +498,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                                                 </div>
                                             </div>
                                             <div class="profiles__gradient-picker hidden" id="banner-solid-picker">
-                                                <p class="profiles__userbanner-dropdown-header">Colour</p>
+                                                <p class="profiles__userbanner-dropdown-header"><?= GetStringRaw("profiles", "profile.banner.customBackground.colour"); ?></p>
                                                 <div class="osekai__colour-picker" id="colour-solid-picker">
                                                     <input type="text"></input>
                                                 </div>
@@ -622,7 +622,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                             </div>
                         </a>
                         <div id="rarest__medal__panel__error" class="profiles__medalinfo-error hidden">
-                            We could not fetch your rarest medal. Sorry!
+                            <?= GetStringRaw("profiles", "profile.medals.rarest.fail") ?>
                         </div>
                         <div id="medals__history" class="profiles__medal-history">
                         </div>
@@ -632,7 +632,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
                 <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                    <i class="oif-medal-outlined"></i><p>Unachieved Medals</p>
+                    <i class="oif-medal-outlined"></i><p><?= GetStringRaw("profiles", "profile.unachievedMedals.title") ?></p>
                     </div>
                     <div id="unachieved_panel" class="osekai__panel-inner osekai__flex-vertical-container">
                         <!-- <div class="profiles__unachievedmedals-section hush-hush">

@@ -8,15 +8,15 @@ colour_picker();
 ?>
 
 <script>
-    const apps = <?php echo json_encode($apps); ?>;
-    const currentlyApp = <?php echo json_encode($app); ?>;
+    const apps = <?= json_encode($apps); ?>;
+    const currentlyApp = <?= json_encode($app); ?>;
 </script>
 
-<img src="https://osu.ppy.sh/assets/images/mod_hidden.cfc32448.png?t=<?php echo time(); ?>" onerror="cantContactOsu()" hidden class="hidden">
+<img src="https://osu.ppy.sh/assets/images/mod_hidden.cfc32448.png?t=<?= time(); ?>" onerror="cantContactOsu()" hidden class="hidden">
 
 <div id="osekai__popup_overlay"></div>
 <div class="osekai__blur-overlay" id="blur_overlay" onclick="hide_dropdowns()"></div>
-<h1 style="display: none;"><?php echo $apps[$app]['name']; ?></h1>
+<h1 style="display: none;"><?= $apps[$app]['name']; ?></h1>
 
 <div class="osekai__navbar-container">
     <div class="osekai__navbar">
@@ -46,7 +46,7 @@ colour_picker();
                 <div onclick='hideOtherApps(); navflip(); open_apps_dropdown()' class="osekai__navbar__app-container">
 
                     <div class="osekai__navbar__app-logo">
-                        <img rel="preload" alt="<?php echo $apps[$app]['name']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?php echo $apps[$app]['logo']; ?>.svg">
+                        <img rel="preload" alt="<?= $apps[$app]['name']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $apps[$app]['logo']; ?>.svg">
                     </div>
                     <i class="fas fa-caret-down nav_chevron" id="nav_chevron"></i>
                 </div>
@@ -68,7 +68,7 @@ colour_picker();
                     <i class="fas fa-search"></i>
                 </div>
 
-                <img alt="Your profile picture" src="<?php echo getpfp(); ?>" onclick='dropdown("osekai__nav-dropdown-hidden", "dropdown__user", 1)' class="osekai__navbar-pfp <?php if (isExperimental()) {
+                <img alt="Your profile picture" src="<?= getpfp(); ?>" onclick='dropdown("osekai__nav-dropdown-hidden", "dropdown__user", 1)' class="osekai__navbar-pfp <?php if (isExperimental()) {
                                                                                                                                                                                     echo 'osekai__navbar-pfp-experimental';
                                                                                                                                                                                 } ?>">
             </div>
@@ -137,11 +137,11 @@ foreach ($apps as $a) {
 <div id="dropdown__apps_mobile" class="osekai__apps-dropdown-mobile-hidden osekai__apps-dropdown-mobile mobile">
     <div class="osekai__apps-dropdown-mobile-section" style="--height: 76px;">
         <?php foreach ($showable_apps as $a) { ?>
-            <a class="osekai__apps-dropdown-mobile-button osekai__apps-dropdown-mobile-app" href="/<?php echo $a['app']['simplename']; ?>">
-                <img alt="Logo for <?php echo $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?php echo $a['app']['logo']; ?>.svg">
+            <a class="osekai__apps-dropdown-mobile-button osekai__apps-dropdown-mobile-app" href="/<?= $a['app']['simplename']; ?>">
+                <img alt="Logo for <?= $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
                 <div class="osekai__apps-dropdown-mobile-app-texts">
-                    <h2>osekai <strong><?php echo $a['app']['simplename']; ?></strong></h2>
-                    <h3><?php echo $a['app']['slogan']; ?></h3>
+                    <h2>osekai <strong><?= $a['app']['simplename']; ?></strong></h2>
+                    <h3><?= $a['app']['slogan']; ?></h3>
                 </div>
             </a>
         <?php } ?>
@@ -214,14 +214,14 @@ foreach ($apps as $a) {
                 <?php foreach ($showable_apps as $a) {
 
                 ?>
-                    <a onmouseover="setCardDetails('<?php echo $a['app']['simplename']; ?>')" href="/<?php echo $a['app']['simplename']; ?>" class="osekai__apps-dropdown-applist-app<?php if ($currentApp == true) {
+                    <a onmouseover="setCardDetails('<?= $a['app']['simplename']; ?>')" href="/<?= $a['app']['simplename']; ?>" class="osekai__apps-dropdown-applist-app<?php if ($currentApp == true) {
                                                                                                                                                                                                             echo " osekai__apps-dropdown-applist-app-active";
                                                                                                                                                                                                         } ?>">
 
                         <div class="osekai__apps-dropdown-applist-app-icon">
-                            <img alt="Logo for <?php echo $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?php echo $a['app']['logo']; ?>.svg">
+                            <img alt="Logo for <?= $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
                         </div>
-                        <p>osekai <strong><?php echo $a['app']['simplename']; ?></strong></p>
+                        <p>osekai <strong><?= $a['app']['simplename']; ?></strong></p>
                     </a>
                 <?php
 
@@ -241,10 +241,10 @@ foreach ($apps as $a) {
         <div class="osekai__apps-dropdown-applist-right">
             <div id="dropdown_card" class="osekai__apps-dropdown-applist-right-card">
                 <div class="osekai__apps-dropdown-applist-right-card-inner">
-                    <img id="dropdown_card_icon" alt="Logo" src="https://www.osekai.net/global/img/branding/vector/<?php echo $apps[$app]['logo']; ?>.svg">
+                    <img id="dropdown_card_icon" alt="Logo" src="https://www.osekai.net/global/img/branding/vector/<?= $apps[$app]['logo']; ?>.svg">
                     <div class="osekai__apps-dropdown-applist-right-card-texts">
-                        <h3 id="dropdown_card_title">osekai <strong><?php echo $apps[$app]['simplename']; ?></strong></h3>
-                        <p id="dropdown_card_content"><?php echo $apps[$app]['slogan']; ?> </p>
+                        <h3 id="dropdown_card_title">osekai <strong><?= $apps[$app]['simplename']; ?></strong></h3>
+                        <p id="dropdown_card_content"><?= $apps[$app]['slogan']; ?> </p>
                     </div>
                 </div>
             </div>
@@ -253,32 +253,32 @@ foreach ($apps as $a) {
 
     <div class="osekai__apps-dropdown-bottomleft">
         <!-- support -->
-        <a class="osekai__apps-dropdown-bottomleft-extra" href="<?php echo $rooturl; ?>/donate">
-            <p><?php echo GetStringRaw("navbar", "apps.support"); ?></p>
+        <a class="osekai__apps-dropdown-bottomleft-extra" href="<?= $rooturl; ?>/donate">
+            <p><?= GetStringRaw("navbar", "apps.support"); ?></p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fas fa-heart"></i>
             </div>
         </a>
         <a class="osekai__apps-dropdown-bottomleft-extra" href="https://twitter.com/osekaiapp">
-            <p><?php echo GetStringRaw("navbar", "apps.twitter"); ?></p>
+            <p><?= GetStringRaw("navbar", "apps.twitter"); ?></p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fab fa-twitter"></i>
             </div>
         </a>
         <a rel="me" href="https://mastodon.world/@osekai" class="osekai__apps-dropdown-bottomleft-extra">
-            <p>check out osekai on mastodon! (twitter mirror)</p>
+            <p><?= GetStringRaw("navbar", "apps.mastodon"); ?></p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fab fa-mastodon"></i>
             </div>
         </a>
         <a class="osekai__apps-dropdown-bottomleft-extra" href="https://discord.com/invite/8qpNTs6">
-            <p><?php echo GetStringRaw("navbar", "apps.discord"); ?></p>
+            <p><?= GetStringRaw("navbar", "apps.discord"); ?></p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fab fa-discord"></i>
             </div>
         </a>
         <a class="osekai__apps-dropdown-bottomleft-extra" href="https://discord.gg/uZ9CsQBvqM">
-            <p><?php echo GetStringRaw("navbar", "apps.developmentDiscord"); ?></p>
+            <p><?= GetStringRaw("navbar", "apps.developmentDiscord"); ?></p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fab fa-discord"></i>
             </div>
@@ -287,13 +287,13 @@ foreach ($apps as $a) {
 
     <div class="osekai__apps-dropdown-bottomright">
         <div class="links">
-            <a href="https://github.com/Osekai">github</a>
-            <a href="https://github.com/Osekai/api-docs/wiki">API documentation</a>
-            <a href="<?php echo $rooturl; ?>/legal/contact"><?php echo GetStringRaw("navbar", "apps.contact"); ?></a>
-            <a href="<?php echo $rooturl; ?>/legal/privacy"><?php echo GetStringRaw("navbar", "apps.privacy"); ?></a>
+            <a href="https://github.com/Osekai/osekai"><?= GetStringRaw("navbar", "apps.github"); ?></a>
+            <a href="https://github.com/Osekai/api-docs/wiki"><?= GetStringRaw("navbar", "apps.apiDocumentation"); ?></a>
+            <a href="<?= $rooturl; ?>/legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
+            <a href="<?= $rooturl; ?>/legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
         </div>
         <div class="osekai__apps-dropdown-bottomright-copyright">
-            © Osekai 2019-<?php echo date("Y"); ?>
+            © Osekai 2019-<?= date("Y"); ?>
         </div>
     </div>
 </div>
@@ -302,15 +302,15 @@ foreach ($apps as $a) {
 <?php if (loggedin()) { ?>
     <style>
         .osekai__userdropdown-bg {
-            background-image: linear-gradient(to left, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.5)), url(<?php echo getcover(); ?>);
+            background-image: linear-gradient(to left, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.5)), url(<?= getcover(); ?>);
         }
 
         .osekai__userdropdown_v2-bg {
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.51) 23.05%, rgba(0, 0, 0, 0) 100%), center/100% url(<?php echo getcover(); ?>);
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.51) 23.05%, rgba(0, 0, 0, 0) 100%), center/100% url(<?= getcover(); ?>);
         }
 
         .osekai__nav-dropdown-v2-mainpanel {
-            background: linear-gradient(263.14deg, rgba(var(--accentdark), 0.568) -1.04%, rgba(var(--accentdark), 0.8) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url(<?php echo getcover(); ?>), linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), rgba(0, 0, 0, 0.5);
+            background: linear-gradient(263.14deg, rgba(var(--accentdark), 0.568) -1.04%, rgba(var(--accentdark), 0.8) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url(<?= getcover(); ?>), linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), rgba(0, 0, 0, 0.5);
             background-blend-mode: normal, luminosity, normal, normal, normal;
             background-size: cover, cover, cover, cover, cover;
             background-position: center, center, center, center, center;
@@ -324,7 +324,7 @@ foreach ($apps as $a) {
 <div id="dropdown__user" class="osekai__nav-dropdown-v2 osekai__nav-dropdown-hidden">
     <?php if (loggedin()) { ?>
         <div class="osekai__nav-dropdown-v2-mainpanel">
-            <a href="/profiles?user=<?php echo $_SESSION['osu']['id']; ?>"><img class="osekai__nav-dropdown-v2-mainpanel-avatar" src="<?php echo getpfp(); ?>"></a>
+            <a href="/profiles?user=<?= $_SESSION['osu']['id']; ?>"><img class="osekai__nav-dropdown-v2-mainpanel-avatar" src="<?= getpfp(); ?>"></a>
             <div class="osekai__nav-dropdown-v2-mainpanel-texts osekai__nav-dropdown-v2-mainpanel-texts-loading" id="userdropdown_texts-loading">
                 <svg viewBox="0 0 50 50" class="spinner">
                     <circle class="ring" cx="25" cy="25" r="22.5"></circle>
@@ -333,7 +333,7 @@ foreach ($apps as $a) {
             </div>
             <div class="osekai__nav-dropdown-v2-mainpanel-texts hidden" id="userdropdown_texts">
                 <div class="osekai__nav-dropdown-v2-mainpanel-texts-top">
-                    <p class="osekai__nav-dropdown-v2-mainpanel-texts-left"><?php echo $_SESSION['osu']['username']; ?></p>
+                    <p class="osekai__nav-dropdown-v2-mainpanel-texts-left"><?= $_SESSION['osu']['username']; ?></p>
                     <p class="osekai__nav-dropdown-v2-mainpanel-texts-right" id="userdropdown_club">0% Club</p>
                 </div>
                 <div class="osekai__progress-bar">
@@ -349,11 +349,11 @@ foreach ($apps as $a) {
             <?php if ($_SESSION['options']['experimental'] == 1) { ?>
                 <!-- <div class="oseaki__nav-dropdown-user-v2-lowerpanel-warning">
                     <i class="fas fa-exclamation-triangle"></i>
-                    <p><?php echo GetStringRaw("navbar", "profile.experimentalMode"); ?></p>
+                    <p><?= GetStringRaw("navbar", "profile.experimentalMode"); ?></p>
                 </div> -->
                 <div class="osekai__generic-warning">
                     <i class="fas fa-exclamation-triangle"></i>
-                    <p><?php echo GetStringRaw("navbar", "profile.experimentalMode"); ?></p>
+                    <p><?= GetStringRaw("navbar", "profile.experimentalMode"); ?></p>
                 </div>
                 <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 100, 0" onclick="ExperimentalOff()">
                     <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
@@ -362,28 +362,28 @@ foreach ($apps as $a) {
                     </p>
                 </a>
             <?php } ?>
-            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 104, 143, 255" href="/profiles?user=<?php echo $_SESSION['osu']['id']; ?>">
+            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 104, 143, 255" href="/profiles?user=<?= $_SESSION['osu']['id']; ?>">
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
                 <p>
-                    <?php echo GetStringRaw("navbar", "profile.viewOnOsekaiProfiles"); ?>
+                    <?= GetStringRaw("navbar", "profile.viewOnOsekaiProfiles"); ?>
                 </p>
             </a>
-            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 102, 170" href="https://osu.ppy.sh/users/<?php echo $_SESSION['osu']['id']; ?>">
+            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 102, 170" href="https://osu.ppy.sh/users/<?= $_SESSION['osu']['id']; ?>">
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
                 <p>
-                    <?php echo GetStringRaw("navbar", "profile.viewOnOsu"); ?>
+                    <?= GetStringRaw("navbar", "profile.viewOnOsu"); ?>
                 </p>
             </a>
             <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 0, 0" href="https://www.osekai.net/global/php/logout.php">
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
-                <p><?php echo GetStringRaw("navbar", "profile.logOut"); ?></p>
+                <p><?= GetStringRaw("navbar", "profile.logOut"); ?></p>
             </a>
         </div>
     <?php } else { ?>
         <div class="osekai__nav-dropdown-v2-lowerpanel">
-            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 102, 170" href="<?php echo $loginurl; ?>" onclick="openLoader('Logging you in...'); hide_dropdowns();">
+            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 102, 170" href="<?= $loginurl; ?>" onclick="openLoader('Logging you in...'); hide_dropdowns();">
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
-                <p><?php echo GetStringRaw("navbar", "profile.logIn"); ?></p>
+                <p><?= GetStringRaw("navbar", "profile.logIn"); ?></p>
             </a>
 
         </div>
@@ -394,14 +394,14 @@ foreach ($apps as $a) {
     <div class="osekai__nav-dropdown-v2-mainpanel">
         <img src="/global/img/branding/vector/osekai_light.svg" class="osekai__nav-dropdown-v2-mainpanel-logo">
         <div class="osekai__nav-dropdown-v2-mainpanel-texts">
-            <h2><?php echo GetStringRaw("navbar", "settings.title"); ?></h2>
-            <p><?php echo GetStringRaw("navbar", "settings.subtitle"); ?></p>
+            <h2><?= GetStringRaw("navbar", "settings.title"); ?></h2>
+            <p><?= GetStringRaw("navbar", "settings.subtitle"); ?></p>
         </div>
     </div>
     <div class="osekai__nav-dropdown-v2-lowerpanel">
 
-        <h1 class="osekai__dropdown-button-head"><?php echo GetStringRaw("navbar", "settings.global.title"); ?></h1>
-        <h2 class="osekai__dropdown-button-subhead"><?php echo GetStringRaw("navbar", "settings.global.theme"); ?></h2>
+        <h1 class="osekai__dropdown-button-head"><?= GetStringRaw("navbar", "settings.global.title"); ?></h1>
+        <h2 class="osekai__dropdown-button-subhead"><?= GetStringRaw("navbar", "settings.global.theme"); ?></h2>
         <div class="osekai__nav-dropdown-v2-dropdowncontainer">
             <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="OpenSettingsDropdown('dropdown__themes');">
                 <p id="dropdown__themes-text">system theme</p>
@@ -429,10 +429,10 @@ foreach ($apps as $a) {
             </div>
         </div>
         <?php if (1 == 1) { ?>
-            <h2 class="osekai__dropdown-button-subhead"><?php echo GetStringRaw("navbar", "settings.global.language"); ?></h2>
+            <h2 class="osekai__dropdown-button-subhead"><?= GetStringRaw("navbar", "settings.global.language"); ?></h2>
             <div class="osekai__nav-dropdown-v2-dropdowncontainer">
                 <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="OpenSettingsDropdown('dropdown__languages');">
-                    <p id="dropdown__languages-text"><?php echo $currentLocale['name']; ?></p>
+                    <p id="dropdown__languages-text"><?= $currentLocale['name']; ?></p>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="osekai__dropdown osekai__dropdown-hidden" id="dropdown__languages">
@@ -443,8 +443,8 @@ foreach ($apps as $a) {
                             continue;
                         }
                     ?>
-                        <div class="osekai__dropdown-item" onclick="setLanguage('<?php echo $language['code']; ?>');">
-                            <img src="<?php echo $language["flag"]; ?>" class="osekai__dropdown-item-flag">
+                        <div class="osekai__dropdown-item" onclick="setLanguage('<?= $language['code']; ?>');">
+                            <img src="<?= $language["flag"]; ?>" class="osekai__dropdown-item-flag">
 
                             <?php
 
@@ -461,15 +461,15 @@ foreach ($apps as $a) {
             </div>
         <?php } ?>
 
-        <h1 class="osekai__dropdown-button-head"><?php echo GetStringRaw("navbar", "settings.profiles.title"); ?></h1>
+        <h1 class="osekai__dropdown-button-head"><?= GetStringRaw("navbar", "settings.profiles.title"); ?></h1>
         <div class="osekai__flex_row osekai__fr_centered osekai_100">
-            <p class="osekai__checkbox-label"><?php echo GetStringRaw("navbar", "settings.profiles.showMedalsFromAllModes"); ?></p>
+            <p class="osekai__checkbox-label"><?= GetStringRaw("navbar", "settings.profiles.showMedalsFromAllModes"); ?></p>
             <input class="osekai__checkbox" id="settings_profiles__showmedalsfromallmodes" type="checkbox" value="value1" onchange="saveSettings();">
             <label for="settings_profiles__showmedalsfromallmodes"></label>
         </div>
-        <h1 class="osekai__dropdown-button-head">Medals</h1>
+        <h1 class="osekai__dropdown-button-head"><?= GetStringRaw("navbar", "settings.medals.title"); ?></h1>
         <div class="osekai__flex_row osekai__fr_centered osekai_100">
-            <p class="osekai__checkbox-label">Completely hide medals when unobtained filter enabled</p>
+            <p class="osekai__checkbox-label"><?= GetStringRaw("navbar", "settings.medals.hideMedalsWhenFilterEnabled"); ?></p>
             <input class="osekai__checkbox" id="settings_medals__hidemedalswhenunobtainedfilteron" type="checkbox" value="value1" onchange="saveSettings();">
             <label for="settings_medals__hidemedalswhenunobtainedfilteron"></label>
         </div>
@@ -481,17 +481,17 @@ foreach ($apps as $a) {
         <div class="osekai__nav-dropdown-v2-mainpanel">
             <i class="fas fa-bell"></i>
             <div class="osekai__nav-dropdown-v2-mainpanel-texts">
-                <h2><?php echo GetStringRaw("navbar", "notifications.title"); ?></h2>
-                <p>catch up with what's goin' on</p>
+                <h2><?= GetStringRaw("navbar", "notifications.title"); ?></h2>
+                <p><?= GetStringRaw("navbar", "notifications.subtitle"); ?></p>
             </div>
         </div>
         <div class="osekai__nav-dropdown-v2-lowerpanel">
             <div class="osekai__nav-dropdown-v2-notifications-header">
                 <div class="osekai__nav-dropdown-v2-notifications-header-left">
-                    <p><strong selector="NotificationCount">5</strong> notifications</p>
+                    <p><?= GetStringRaw("navbar", "notifications.count"); ?></p>
                 </div>
                 <div class="osekai__nav-dropdown-v2-notifications-header-right">
-                    <p>clear all</p> <i class="far fa-times-circle"></i>
+                    <p><?= GetStringRaw("navbar", "notifications.clearAll"); ?></p> <i class="far fa-times-circle"></i>
                 </div>
             </div>
             <div id="notification__list__v2" class="osekai__nav-dropdown-v2-notifications-list">
@@ -516,7 +516,7 @@ foreach ($apps as $a) {
 <?php } else { ?>
     <div id="dropdown__notifs" class="osekai__nav-dropdown-hidden osekai__nav-dropdown osekai__nav-dropdown-notifs">
         <div class="osekai__notifications-header">
-            <?php echo GetStringRaw("navbar", "notifications.title"); ?>
+            <?= GetStringRaw("navbar", "notifications.title"); ?>
             <div id="notification__counter" class="osekai__notifications-header-right">
             </div>
         </div>
@@ -544,11 +544,11 @@ if ($coltype == "3") {
 
 <div id="css_cont"></div>
 
-<script type="text/javascript" src="<?php echo $rooturl; ?>/global/js/variables.js?v=<?php echo OSEKAI_VERSION; ?>"></script>
-<script type="text/javascript" src="<?php echo $rooturl; ?>/global/js/main.js?v=<?php echo OSEKAI_VERSION; ?>"></script>
+<script type="text/javascript" src="<?= $rooturl; ?>/global/js/variables.js?v=<?= OSEKAI_VERSION; ?>"></script>
+<script type="text/javascript" src="<?= $rooturl; ?>/global/js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
 
 <script>
-    if (<?php echo $_SESSION['options']['experimental'] ?? 0; ?> == 1) toggleExperimental();
+    if (<?= $_SESSION['options']['experimental'] ?? 0; ?> == 1) toggleExperimental();
 </script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -560,7 +560,7 @@ include("search_overlay.php");
 ?>
 
 
-<script src="<?php echo $rooturl; ?>/global/js/navbar.js"></script>
+<script src="<?= $rooturl; ?>/global/js/navbar.js"></script>
 
 <?php
 if ($christmas == true) { ?>

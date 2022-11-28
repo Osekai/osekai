@@ -1503,27 +1503,7 @@ var UserBanner = {
       document.getElementById("banner-copy-placeholder").innerHTML = "[url=/profiles?user=" + nUserID + "][img]/profiles/img/banner.svg?id=" + nUserID + "[/img][/url]"
     }
   },
-  AvailableBackgroundStyles: {
-    "custom": {
-      "name": "Custom"
-    },
-    "clubglows": {
-      "name": "Club Glows"
-    }
-  },
-  AvailableForegroundStyles: {
-    "medal-oriented": {
-      "name": "Medal-Oriented"
-    }
-  },
-  AvailableCustomBackgroundStyles: {
-    "gradient": {
-      "name": "Gradient"
-    },
-    "solid": {
-      "name": "Solid"
-    }
-  },
+
   BackgroundStyle: "custom",
   ForegroundStyle: "medal-oriented",
   CustomBackground: {
@@ -1764,6 +1744,28 @@ var UserBanner = {
     document.getElementById("angle-slider").value = UserBanner.CustomBackground.Angle;
   },
   InitUserBanner: function () {
+    UserBanner.AvailableBackgroundStyles = {
+      "custom": {
+        "name": GetStringRawNonAsync("profiles", "profile.banner.backdropStyle.custom")
+      },
+      "clubglows": {
+        "name": GetStringRawNonAsync("profiles", "profile.banner.backdropStyle.clubGlows")
+      }
+    }
+    UserBanner.AvailableForegroundStyles = {
+      "medal-oriented": {
+        "name": GetStringRawNonAsync("profiles", "profile.banner.foregroundStyle.medalOriented")
+      }
+    }
+    UserBanner.AvailableCustomBackgroundStyles = {
+      "gradient": {
+        "name": GetStringRawNonAsync("profiles", "profile.banner.customBackground.style.gradient")
+      },
+      "solid": {
+        "name": GetStringRawNonAsync("profiles", "profile.banner.customBackground.style.solid")
+      }
+    }
+
     UserBanner.PopulateDropdown(document.getElementById("banner-dropdown-background-style"), UserBanner.AvailableBackgroundStyles, "UserBanner.SetBackgroundStyle", "banner-dropdown-background-style-");
     UserBanner.PopulateDropdown(document.getElementById("banner-dropdown-foreground-style"), UserBanner.AvailableForegroundStyles, "UserBanner.SetForegroundStyle", "banner-dropdown-foreground-style-");
     UserBanner.PopulateDropdown(document.getElementById("banner-dropdown-custom-style"), UserBanner.AvailableCustomBackgroundStyles, "UserBanner.SetCustomBackgroundStyle", "banner-dropdown-custom-style-");

@@ -4,6 +4,7 @@
     "searchbar.filters.title": "Filtering options",
     "searchbar.filters.unobtainedMedals": "Unobtained Medals",
     "solution.title": "Solution",
+    "solution.rarity": "<light>rarity</light> $1",
     "beatmaps.title": "Beatmaps <p id=\"beatmap_count\" class=\"medals__bm-count\">0</p>",
     "beatmaps.note.add": "add a note",
     "beatmaps.note.view": "view the note",
@@ -20,5 +21,11 @@
     "beatmaps.add.body": "Add a beatmap to the medal $1",
     "beatmaps.add.p1": "Keep in mind that this beatmap must result in receiving the medal. If it does not it will be removed from the listing.",
     "beatmaps.add.url.placeholder": "Beatmap URL",
-    "beatmaps.add.note.placeholder": "Note"
+    "beatmaps.add.note.placeholder": "Note",
+    "extraInfo.title": "Extra Info",
+    "extraInfo.dateReleased": "Date Released",
+    "extraInfo.dateAchieved": "Date Achieved",
+    "extraInfo.AchievedBy": "Achieved By",
+    "extraInfo.none": "We don't have any extra info for this medal."
+    
 }

@@ -228,6 +228,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     var rarity = parseFloat(colMedals[strMedalName].Rarity);
     //console.log(rarity);
     document.getElementById("strMedalRarity").innerHTML = "<light>rarity</light> " + Math.round(rarity * 100) / 100 + "%";
+    document.getElementById("strMedalRarity").innerHTML = await GetStringRaw("medals", "solution.rarity", [Math.round(rarity * 100) / 100 + "%"])
     //console.log(colMedals[strMedalName]);
     document.getElementById("strMedalGroup").innerHTML = colMedals[strMedalName].Grouping;
     if (updateAdminPanel) {
@@ -729,18 +730,18 @@ function loadExtraInfo(medalid) {
         var any = false;
         if (resp.date != null && resp.date != "0000-00-00") {
             any = true;
-            container.innerHTML += generateExtraInfoBar("fa-calendar-day", "Date Released", resp.date);
+            container.innerHTML += generateExtraInfoBar("fa-calendar-day", GetStringRawNonAsync("medals", "extraInfo.dateReleased"), resp.date);
         }
         if (resp.firstachieveddate != null && resp.firstachieveddate != "0000-00-00") {
             any = true;
-            container.innerHTML += generateExtraInfoBar("fa-calendar-check", "Date Achieved", resp.firstachieveddate);
+            container.innerHTML += generateExtraInfoBar("fa-calendar-check", GetStringRawNonAsync("medals", "extraInfo.dateAchieved"), resp.firstachieveddate);
         }
         if (resp.firstachievedby != null && resp.firstachievedby.id != 0) {
             any = true;
-            container.innerHTML += generateExtraInfoBar("fa-user", "Achieved By", resp.firstachievedby['username'], "https://a.ppy.sh/" + resp.firstachievedby['id'], "/profiles/?user=" + resp.firstachievedby['id'])
+            container.innerHTML += generateExtraInfoBar("fa-user", GetStringRawNonAsync("medals", "extraInfo.achievedBy"), resp.firstachievedby['username'], "https://a.ppy.sh/" + resp.firstachievedby['id'], "/profiles/?user=" + resp.firstachievedby['id'])
         }
         if (any == false) {
-            container.innerHTML = "We don't have any extra info for this medal.";
+            container.innerHTML = GetStringRawNonAsync("medals", "extraInfo.none");
         }
     }
     xhr.send();
