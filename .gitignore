@@ -1,3 +1,4 @@
 config.php
 snapshots/versions
 internal/
+global/crowdin.yml

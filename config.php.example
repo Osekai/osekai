@@ -26,4 +26,7 @@ define("DB_HOSTNAME", "db_hostname");
 define("SNAPSHOTS_WEBHOOK", "webhook_url");
 define("SCRIPTS_RUST_KEY", "key");
 
+define("LANG_UPDATE_KEY", "key");
+define("CROWDIN_API_KEY", "key");
+
 $rooturl = "http://localhost:8080/";
