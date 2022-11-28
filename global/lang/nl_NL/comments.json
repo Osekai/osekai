@@ -1,8 +1,0 @@
-{
-    "title": "Reacties",
-    "sorting.votes": "Stemmen",
-    "sorting.newest": "Meest Recent",
-    "delete.warning": "Weet u zeker dat u deze reactie wilt verwijderen?",
-    "replyingTo": "<span class=\"comments__light\">reageert op</span> $1",
-    "posted": "<span class=\"comments__light\">geplaatst</span> $1"
-}

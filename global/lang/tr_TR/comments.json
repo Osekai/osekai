@@ -1,8 +1,0 @@
-{
-    "title": "Yorumlar",
-    "sorting.votes": "Oylar",
-    "sorting.newest": "En Son",
-    "delete.warning": "Bu yorumu silmek istediğinizden emin misiniz?",
-    "replyingTo": "<span class=\"comments__light\">şuna yanıt veriliyor</span> $1",
-    "posted": "<span class=\"comments__light\">gönderildiği zaman</span> $1"
-}

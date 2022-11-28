@@ -1,8 +1,0 @@
-{
-    "title": "Komentari",
-    "sorting.votes": "Glasovi",
-    "sorting.newest": "Najnovije",
-    "delete.warning": "Jeste li sigurni da želite izbrisati ovaj komentar?",
-    "replyingTo": "<span class=\"comments__light\">odgovaranje na</span> $1",
-    "posted": "<span class=\"comments__light\">objavljeno</span> $1"
-}

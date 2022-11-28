@@ -2,3 +2,5 @@ config.php
 snapshots/versions
 internal/
 global/crowdin.yml
+global/lang
+!global/lang/en_GB

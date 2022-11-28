@@ -1,8 +1,0 @@
-{
-    "title": "Komentar",
-    "sorting.votes": "Jumlah Suara",
-    "sorting.newest": "Terbaru",
-    "delete.warning": "Apakah kamu ingin menghapus komentar ini?",
-    "replyingTo": "<span class=\"comments__light\">membalas</span> $1",
-    "posted": "<span class=\"comments__light\">dikirim pada</span> $1"
-}
