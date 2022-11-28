@@ -1,13 +1,13 @@
 <?php
-$apiKey = "no";
+include("../../config.php");
 
-$key = "hgxVyx79GA58sKtD";
+$apiKey = CROWDIN_API_KEY;
+
+$key = LANG_UPDATE_KEY;
 if($_GET['key'] != $key)
 {
     die("Invalid key");
 }
-
-
 
 // get latest builds
 $url = "https://api.crowdin.com/api/v2/projects/514246/translations/builds";
