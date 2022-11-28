@@ -195,12 +195,23 @@ async function FillData(uid, mode, completeReload = true) {
   if (completeReload) {
     openLoader(GetStringRawNonAsync("profiles", "loading"));
   }
+  let url = new URL(window.location);
   
   nUserID != new URLSearchParams(window.location.search).get("user") ? document.querySelectorAll("[selector='user__control']").forEach((oControl) => oControl.classList.add("hidden")) : document.querySelectorAll("[selector='user__control']").forEach((oControl) => oControl.classList.remove("hidden"));
+  // If mode is null then default to osu as its the most common one
+  let oldmode = mode
+  if (mode == null) {
+    mode = "osu";
+    url.searchParams.set('mode', "osu");
+    window.history.replaceState({}, '', url);
+  }
+
   let oData = JSON.parse(await API_GetUser(uid, mode));
 
-  if (mode == null) {
-    let url = new URL(window.location);
+  // If mode wasn't specified and modes don't match, fetch the correct gamemode
+  // Else if mode WAS specified then we already have the correct data
+  // Due to the code above that defaults to standard, this makes it so that users that play standard are actually fetched once as we already fetched standard
+  if (mode != oData.playmode && oldmode == null) {
     url.searchParams.set('mode', oData['playmode']);
     window.history.replaceState({}, '', url);
     loadMode(new URLSearchParams(window.location.search).get("mode"));
