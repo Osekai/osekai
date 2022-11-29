@@ -53,7 +53,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             <div class="home__cover-middle">
                 <div class="home__cover-middle-logo">
                     <!-- <img src="img/osekai.svg" class="home__logo"> -->
-                    <lottie-player id="player" src="img/osekai-logo.json"  background="transparent"  speed="1"  style="height: 300px; margin: -90px 0px;"></lottie-player>
+                    <lottie-player class="home__logo-lottie" id="player" src="img/osekai-logo.json"  background="transparent"  speed="1"  style="height: 300px; margin: -90px 0px;"></lottie-player>
                 </div>
                 <p><?php echo GetStringRaw("home", "cover.subtitle"); ?></p>
             </div>
