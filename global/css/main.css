@@ -1125,7 +1125,7 @@ a {
     min-width: 401px;
     max-width: 800px;
     transition: all 0.2s ease;
-    z-index: 5;
+    z-index: 9999;
 }
 
 .osekai__userpanel-v2:hover {
