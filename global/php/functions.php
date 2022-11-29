@@ -46,35 +46,34 @@ if (count($restrictedCheck) > 0 && $restrictedCheck[0]['Active'] == 1) {
 
 $actual_link = $rooturl . $_SERVER['REQUEST_URI'];
 
-if(MODE == "dev") {
+if (MODE == "dev") {
     $oSession['role']['rights'] = 2;
 }
 
 $userGroups = null;
 
 if (isset($app)) {
-    
+
     if (MODE != "production") {
         // production site uses htaccess file to avoid issue
         // dev and local doesn't work
-        if (!isset($_GET['page']) || substr($_GET['page'], -1) !== '/') {
-            $site_adress = ((((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
-            $whole_url = $site_adress . $_SERVER['REQUEST_URI'];
 
-            $pos = strpos($whole_url, "?");
-            $changed_url = FALSE;
-            if ($pos !== FALSE && $whole_url[$pos - 1] != "/") {
-                $whole_url = substr_replace($whole_url, "/", $pos, 0);
-                $changed_url = TRUE;
-            } else if ($pos == FALSE && substr($whole_url, -1) != '/') {
-                $whole_url = $whole_url . "/";
-                $changed_url = TRUE;
-            }
-            if ($changed_url) {
-                header("HTTP/1.1 301 Moved Permanently");
-                header("Location: " . $whole_url);
-                exit();
-            }
+        $site_adress = ((((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+        $whole_url = $site_adress . $_SERVER['REQUEST_URI'];
+
+        $pos = strpos($whole_url, "?");
+        $changed_url = FALSE;
+        if ($pos !== FALSE && $whole_url[$pos - 1] != "/") {
+            $whole_url = substr_replace($whole_url, "/", $pos, 0);
+            $changed_url = TRUE;
+        } else if ($pos == FALSE && substr($whole_url, -1) != '/') {
+            $whole_url = $whole_url . "/";
+            $changed_url = TRUE;
+        }
+        if ($changed_url) {
+            header("HTTP/1.1 301 Moved Permanently");
+            header("Location: " . $whole_url);
+            exit();
         }
     }
     $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
@@ -330,7 +329,8 @@ function fontawesome()
     echo '<link rel="stylesheet" href="/global/fonts/osekai-icon-font/style.css?v=' . OSEKAI_VERSION . '">';
 }
 
-function lottie() {
+function lottie()
+{
     echo '<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>';
 }
 
@@ -688,7 +688,7 @@ function medal_popup_v2()
 
 function isExperimental()
 {
-    if(MODE == "dev") { 
+    if (MODE == "dev") {
         return true;
     }
     if (isset($_SESSION['options']) && isset($_SESSION['options']['experimental']) && $_SESSION['options']['experimental'] == 1) return true;
@@ -706,18 +706,20 @@ if (isset($app_extra)) {
     }
 }
 
-function getGroupFromId($id) {
+function getGroupFromId($id)
+{
     global $userGroups;
-    if($userGroups == null) {
+    if ($userGroups == null) {
         $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
     }
-    foreach($userGroups as $group) {
-        if($group['Id'] == $id) {
+    foreach ($userGroups as $group) {
+        if ($group['Id'] == $id) {
             return $group;
         }
     }
 }
 
-function badgeHtmlFromGroup($group, $size) {
+function badgeHtmlFromGroup($group, $size)
+{
     return "<div class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</div>";
 }
