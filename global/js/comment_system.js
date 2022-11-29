@@ -138,13 +138,7 @@ function Comments_Create(oParent, MedalID) {
         if (oComment.ParentCommenter) oBox.classList.add("comments__reply");
         oBox.setAttribute("CommentCreator", oComment.Username);
 
-        var rolehtml = "";
-        if (oComment.Role) {
-            var role = getRole(oComment.Role);
-            if (role != false && role != undefined) {
-                rolehtml = '<div class="osekai__user-badge badge-v2-' + role['Badge'] + ' tooltip-v2" tooltip-content="' + role['Name'] + '">' + role['BadgeText'] + '</div>';
-            }
-        }
+        var rolehtml = groupUtils.badgeHtmlFromCommaSeperatedList(oComment['Groups']);
 
         var postedText = GetStringRawNonAsync("comments", "posted", [TimeAgo.inWords(new Date(oComment.PostDate).getTime())]);
         if (oComment.ParentCommenter) {

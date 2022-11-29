@@ -207,6 +207,9 @@
     gap: 6px;
     align-items: center;
 }
+.comments__comment-top-username_area a {
+    margin-bottom: -2px;
+}
 
 .comments__comment-top-text {
     font-size: 14px;

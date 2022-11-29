@@ -16,17 +16,16 @@ if(isset($_POST['bGetComments'])) {
                 ", Comments.Username " .
                 ", Comments.AvatarURL " .
                 ", Comments.MedalID " .
-                ", Roles.RoleName " .
-                ", Roles.Role" .
+                ", GROUP_CONCAT(GroupAssignments.GroupId SEPARATOR ',') as Groups" .
                 ", (SELECT Votes.Vote FROM Votes WHERE Votes.UserID = ? AND Votes.ObjectID = Comments.ID AND Votes.Type = 1) AS HasVoted " .
                 ", SUM(Votes.Vote) AS VoteSum "  .
             "FROM Comments " . 
             "LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 1 " . 
-            "LEFT JOIN Roles ON Roles.UserID = Comments.UserID " . 
+            "LEFT JOIN GroupAssignments ON GroupAssignments.UserId = Comments.UserID " . 
             "WHERE MedalID = ? " . 
-            "GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.MedalID, Roles.RoleName, Roles.Role, Comments.ParentComment", "is", array($_SESSION['osu']['id'], $_POST['strMedalID']));
+            "GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.MedalID, Comments.ParentComment", "is", array($_SESSION['osu']['id'], $_POST['strMedalID']));
         } else {
-            $colComments = Database::execSelect("SELECT Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Coalesce(Comments.ParentComment, 0) AS Parent, Comments.Username, Comments.AvatarURL, Comments.MedalID, Roles.RoleName, Roles.Role,SUM(Votes.Vote) AS VoteSum FROM Comments LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 1 LEFT JOIN Roles ON Roles.UserID = Comments.UserID WHERE MedalID = ? GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.MedalID, Roles.RoleName, Roles.Role, Comments.ParentComment", "s", array($_POST['strMedalID']));
+            $colComments = Database::execSelect("SELECT Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Coalesce(Comments.ParentComment, 0) AS Parent, Comments.Username, Comments.AvatarURL, Comments.MedalID, GROUP_CONCAT(GroupAssignments.GroupId SEPARATOR ',') as Groups, SUM(Votes.Vote) AS VoteSum FROM Comments LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 1 LEFT JOIN GroupAssignments ON GroupAssignments.UserId = Comments.UserID WHERE MedalID = ? GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.MedalID, Comments.ParentComment", "s", array($_POST['strMedalID']));
         }
     } elseif(isset($_POST['nVersionId'])) {
         if(isset($_SESSION['osu']['id'])) {
@@ -39,17 +38,16 @@ if(isset($_POST['bGetComments'])) {
                 ", Comments.Username " .
                 ", Comments.AvatarURL " .
                 ", Comments.VersionId AS MedalID " .
-                ", Roles.RoleName " .
-                ", Roles.Role" .
+                ", GROUP_CONCAT(GroupAssignments.GroupId SEPARATOR ',') as Groups" .
                 ", (SELECT Votes.Vote FROM Votes WHERE Votes.UserID = ? AND Votes.ObjectID = Comments.ID AND Votes.Type = 3) AS HasVoted " .
                 ", SUM(Votes.Vote) AS VoteSum "  .
             "FROM Comments " . 
             "LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 3 " . 
-            "LEFT JOIN Roles ON Roles.UserID = Comments.UserID " . 
+            "LEFT JOIN GroupAssignments ON GroupAssignments.UserId = Comments.UserID " . 
             "WHERE VersionId = ? " . 
-            "GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.VersionId, Roles.RoleName, Comments.ParentComment", "ii", array($_SESSION['osu']['id'], $_POST['nVersionId']));
+            "GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.VersionId, Comments.ParentComment", "ii", array($_SESSION['osu']['id'], $_POST['nVersionId']));
         } else {
-            $colComments = Database::execSelect("SELECT Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Coalesce(Comments.ParentComment, 0) AS Parent, Comments.Username, Comments.AvatarURL, Comments.VersionId AS MedalID, Roles.RoleName, SUM(Votes.Vote) AS VoteSum FROM Comments LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 3 LEFT JOIN Roles ON Roles.UserID = Comments.UserID WHERE VersionId = ? GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.VersionId, Roles.RoleName, Comments.ParentComment", "i", array($_POST['nVersionId']));
+            $colComments = Database::execSelect("SELECT Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Coalesce(Comments.ParentComment, 0) AS Parent, Comments.Username, Comments.AvatarURL, Comments.VersionId AS MedalID, GROUP_CONCAT(GroupAssignments.GroupId SEPARATOR ',') as Groups, SUM(Votes.Vote) AS VoteSum FROM Comments LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 3 LEFT JOIN GroupAssignments ON GroupAssignments.UserId = Comments.UserID WHERE VersionId = ? GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.VersionId, GROUP_CONCAT(GroupAssignments.GroupId SEPARATOR ',') as Groups,Comments.ParentComment", "i", array($_POST['nVersionId']));
         }
     } elseif(isset($_POST['nProfileId'])) {
         if(isset($_SESSION['osu']['id'])) {
@@ -62,17 +60,31 @@ if(isset($_POST['bGetComments'])) {
                 ", Comments.Username " .
                 ", Comments.AvatarURL " .
                 ", Comments.ProfileID AS MedalID " .
-                ", Roles.RoleName " .
-                ", Roles.Role" .
+                ", GROUP_CONCAT(GroupAssignments.GroupId SEPARATOR ',') as Groups" .
                 ", (SELECT Votes.Vote FROM Votes WHERE Votes.UserID = ? AND Votes.ObjectID = Comments.ID AND Votes.Type = 4) AS HasVoted " .
                 ", SUM(Votes.Vote) AS VoteSum "  .
             "FROM Comments " . 
             "LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 4 " . 
-            "LEFT JOIN Roles ON Roles.UserID = Comments.UserID " . 
+            "LEFT JOIN GroupAssignments ON GroupAssignments.UserId = Comments.UserID " . 
             "WHERE ProfileID = ? " . 
-            "GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.ProfileID, Roles.RoleName, Comments.ParentComment", "ii", array($_SESSION['osu']['id'], $_POST['nProfileId']));
+            "GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.ProfileID, Comments.ParentComment", "ii", array($_SESSION['osu']['id'], $_POST['nProfileId']));
         } else {
-            $colComments = Database::execSelect("SELECT Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Coalesce(Comments.ParentComment, 0) AS Parent, Comments.Username, Comments.AvatarURL, Comments.ProfileID AS MedalID, Roles.RoleName, SUM(Votes.Vote) AS VoteSum FROM Comments LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = 4 LEFT JOIN Roles ON Roles.UserID = Comments.UserID WHERE ProfileID = ? GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.ProfileID, Roles.RoleName, Comments.ParentComment", "i", array($_POST['nProfileId']));
+            $colComments = Database::execSelect("SELECT 
+            Comments.ID, 
+            Comments.PostText, 
+            Comments.UserID, 
+            Comments.PostDate, 
+            Comments.ParentCommenter, 
+            Coalesce(Comments.ParentComment, 0) AS Parent, 
+            Comments.Username, Comments.AvatarURL, 
+            Comments.ProfileID AS MedalID, 
+            GROUP_CONCAT(GroupAssignments.GroupId SEPARATOR ',') as Groups,
+            SUM(Votes.Vote) 
+            AS VoteSum FROM Comments LEFT JOIN Votes ON 
+            Votes.ObjectID = Comments.ID AND 
+            Votes.Type = 4 
+            LEFT JOIN GroupAssignments ON GroupAssignments.UserId = Comments.UserID WHERE ProfileID = ? 
+            GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.ProfileID, Comments.ParentComment", "i", array($_POST['nProfileId']));
         }
     }
     echo json_encode($colComments);
