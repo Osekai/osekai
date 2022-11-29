@@ -93,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // console.log(event.target.shadowRoot.querySelector('svg').style.transform);
             event.target.shadowRoot.querySelector('svg').style.transform = '';
         });
-        elements[i].play(); // trigger (again)
 
     }
 });
