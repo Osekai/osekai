@@ -786,6 +786,7 @@ var groupUtils = {
         return `<div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
     },
     badgeHtmlFromCommaSeperatedList: function(list, size = "small") {
+        if(list == null) return "";
         var orderedList = [];
         var split = list.split(",");
         for(var x = 0; x < split.length; x++) {
