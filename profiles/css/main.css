@@ -149,6 +149,13 @@
     font-weight: 500;
 }
 
+.profiles__cover-back-info_text p:not(#arrival__date):not(#hardware) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+    max-width: calc((100vw - 48px) / 2 - 61px);
+}
+
 .profiles__cover-back-info_text p .light {
     font-weight: 100;
     opacity: 0.7;
