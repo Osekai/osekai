@@ -18,6 +18,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
+require_once('gitInfo.php');
+define("OSEKAI_VERSION", $gitHash); // cache invalidation
+
 require_once('osekaiDB.php');
 require_once('osekaiSessionManager.php');
 require_once('osekaiCache.php');

@@ -18,14 +18,6 @@ $tooltipText = "This debug panel is so that you, and our team, can make sure Ose
 //$tooltipText .= "\n  |  Load time: Seconds taken to generate the page";
 //$tooltipText .= "\n  |  Aborted Session Saves: Amount of times a session has attempted to be saved, but no data has changed.";
 
-
-$gitBasePath = $_SERVER['DOCUMENT_ROOT']  . '/.git'; // e.g in laravel: base_path().'/.git';
-
-$gitStr = file_get_contents($gitBasePath . '/HEAD');
-$gitBranchName = rtrim(preg_replace("/(.*?\/){2}/", '', $gitStr));
-$gitPathBranch = $gitBasePath . '/refs/heads/' . $gitBranchName;
-$gitHash = file_get_contents($gitPathBranch);
-$gitDate = gmdate("Y-m-d@H:i:s", filemtime($gitPathBranch));
 ?>
 <meta charset="utf-8">
 <div class="debug">
