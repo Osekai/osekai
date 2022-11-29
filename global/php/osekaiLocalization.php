@@ -242,7 +242,7 @@ $currentLocale = null;
 $currentLocale = $locales['en_GB'];
 
 $enabled = true;
-if (isset($_SESSION['options']) && isset($_SESSION['options']['experimental']) && $_SESSION['options']['experimental'] == 1) {
+if (isExperimental()) {
     $enabled = true;
 }
 
