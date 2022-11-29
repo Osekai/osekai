@@ -175,14 +175,14 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     addMember(
                         1309242,
                         "mulraf",
-                        "Project Lead & Lead Developer",
+                        GetStringRaw("home", "team.role.mulraf"),
                         null,
                         [social("https://youtube.com/mulraf", "Youtube")]
                     );
                     addMember(
                         10379965,
                         "Tanza3D",
-                        "Project lead, Developer, & Lead Designer",
+                        GetStringRaw("home", "team.role.tanza"),
                         "Hubz",
                         [
                             social("https://twitter.com/Tanza3D", "Twitter"),
@@ -194,7 +194,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     addMember(
                         18152711,
                         "MegaMix_Craft",
-                        "Osekai Team Manager & Community Manager",
+                        GetStringRaw("home", "team.role.megamix"),
                         "minusQuantumNeko",
                         [
                             social("https://twitter.com/Tanza3D", "Twitter"),
@@ -206,7 +206,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     addMember(
                         9350342,
                         "EXtremeExploit",
-                        "Developer",
+                        GetStringRaw("home", "team.role.generic.developer"),
                         "Pedrito",
                         [
                             social("https://github.com/EXtremeExploit/", "Github"),
@@ -217,7 +217,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     addMember(
                         7279762,
                         "Coppertine",
-                        "Admin Tools Development",
+                        GetStringRaw("home", "team.role.coppertine"),
                         null,
                         [
                             social("https://twitter.com/shuffler2001", "Twitter"),
@@ -228,28 +228,28 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     addMember(
                         14125695,
                         "TheEggo",
-                        "Snapshots Developer",
+                        GetStringRaw("home", "team.role.generic.snapshotsDeveloper"),
                         null,
                         []
                     );
                     addMember(
                         2211396,
                         "Badewanne3",
-                        "Rankings Data Engineer",
+                        GetStringRaw("home", "team.role.generic.rankingsDataEngineer"),
                         null,
                         [social("https://github.com/MaxOhn", "Github")]
                     );
                     addMember(
                         3357640,
                         "Electroyan",
-                        "Rankings Data Engineer",
+                        GetStringRaw("home", "team.role.generic.rankingsDataEngineer"),
                         null,
                         []
                     );
                     addMember(
                         10238680,
                         "chromb",
-                        "Community Manager",
+                        GetStringRaw("home", "team.role.generic.communityManager"),
                         null,
                         [
                             social("https://www.youtube.com/channel/UCq37paEnfI4pmwE5j3rO5eg", "Youtube"),
@@ -259,27 +259,27 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     addMember(
                         1699875,
                         "Remyria",
-                        "Community Manager",
+                        GetStringRaw("home", "team.role.generic.communityManager"),
                         null,
                         [social("https://twitch.tv/remyria", "Twitch")]
                     );
                     addMember(
                         16487835,
                         "ILuvSkins",
-                        "Snapshots Manager",
+                        GetStringRaw("home", "team.role.generic.snapshotsManager"),
                         null,
                         []
                     );
                     addMember(
                         26544843,
                         "Mono x Mellow",
-                        "Video Editor & Motion Graphic Designer",
+                        GetStringRaw("home", "team.role.monoxmellow"),
                         null,
                         [
                             social("https://twitter.com/Mono_x_Mellow", "Twitter"),
                             social("https://www.youtube.com/channel/UC7ZW8exqZ1c6eOhyajMnyZg", "Youtube"),
                             social("https://www.twitch.tv/monoxmellow", "Twitch"),
-                                social("https://discord.com/users/194863870559387648", "Discord")
+                            social("https://discord.com/users/194863870559387648", "Discord")
                         ]
                     );
                     printTeam();
