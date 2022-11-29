@@ -114,46 +114,46 @@ SET NAMES utf8mb4;
 DROP TABLE IF EXISTS `AdminFunImages`;
 CREATE TABLE `AdminFunImages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `path` text COLLATE utf8mb4_bin NOT NULL,
-  `caption` text COLLATE utf8mb4_bin NOT NULL,
-  `by` text COLLATE utf8mb4_bin NOT NULL,
+  `path` text NOT NULL,
+  `caption` text NOT NULL,
+  `by` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `AdminLogs`;
 CREATE TABLE `AdminLogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) NOT NULL,
-  `data` text COLLATE utf8mb4_bin NOT NULL,
+  `data` text NOT NULL,
   `app` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `importance` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `AdminNotes`;
 CREATE TABLE `AdminNotes` (
-  `Id` text COLLATE utf8mb4_bin NOT NULL,
+  `Id` text NOT NULL,
   `Author` int(11) NOT NULL,
-  `Text` text COLLATE utf8mb4_bin NOT NULL,
+  `Text` text NOT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Alerts`;
 CREATE TABLE `Alerts` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` text COLLATE utf8mb4_bin NOT NULL,
+  `Name` text NOT NULL,
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
   `Permanent` int(11) NOT NULL,
-  `Type` text COLLATE utf8mb4_bin NOT NULL,
-  `Text` text COLLATE utf8mb4_bin NOT NULL,
-  `Apps` text COLLATE utf8mb4_bin NOT NULL,
+  `Type` text NOT NULL,
+  `Text` text NOT NULL,
+  `Apps` text NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Apps`;
@@ -172,7 +172,7 @@ CREATE TABLE `Apps` (
   `experimental` int(11) NOT NULL,
   `hascover` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`) VALUES
 (-1,	-1,	'Osekai Home',	'??apps.home.slogan??',	'home',	'53, 61, 85',	'53, 61, 85',	'osekai_light',	'osekai_dark',	'cover/none',	1,	0,	0),
@@ -195,7 +195,7 @@ CREATE TABLE `AuthenticatorTokens` (
   `minecraft_uuid` text NOT NULL,
   `type` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `AuthenticatorUsers`;
@@ -207,7 +207,7 @@ CREATE TABLE `AuthenticatorUsers` (
   `Percentage` text NOT NULL,
   `MinecraftUUID` text NOT NULL,
   `Type` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `AvailableRoles`;
@@ -216,7 +216,7 @@ CREATE TABLE `AvailableRoles` (
   `Name` text NOT NULL,
   `Badge` text NOT NULL,
   `BadgeText` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `AvailableRoles` (`RoleID`, `Name`, `Badge`, `BadgeText`) VALUES
 (1,	'Developer',	'dev',	'DEV'),
@@ -243,7 +243,7 @@ CREATE TABLE `Badges` (
   `awarded_at` date NOT NULL,
   `users` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Badges2`;
@@ -253,30 +253,30 @@ CREATE TABLE `Badges2` (
   `description` text NOT NULL,
   `awarded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `url` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Beatmaps`;
 CREATE TABLE `Beatmaps` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `MedalName` varchar(50) COLLATE latin1_german1_ci NOT NULL,
+  `MedalName` varchar(50) NOT NULL,
   `BeatmapID` int(20) NOT NULL,
   `MapsetID` int(20) NOT NULL,
-  `Gamemode` varchar(10) COLLATE latin1_german1_ci NOT NULL,
-  `SongTitle` varchar(80) COLLATE latin1_german1_ci NOT NULL,
-  `Artist` varchar(80) COLLATE latin1_german1_ci NOT NULL,
+  `Gamemode` varchar(10) NOT NULL,
+  `SongTitle` varchar(80) NOT NULL,
+  `Artist` varchar(80) NOT NULL,
   `MapperID` int(10) NOT NULL,
-  `Mapper` varchar(40) COLLATE latin1_german1_ci NOT NULL,
-  `Source` varchar(200) COLLATE latin1_german1_ci NOT NULL,
+  `Mapper` varchar(40) NOT NULL,
+  `Source` varchar(200) NOT NULL,
   `bpm` double NOT NULL,
   `Difficulty` double NOT NULL,
-  `DifficultyName` varchar(80) COLLATE latin1_german1_ci NOT NULL,
+  `DifficultyName` varchar(80) NOT NULL,
   `DownloadUnavailable` tinyint(1) NOT NULL,
   `SubmittedBy` int(20) NOT NULL,
   `SubmissionDate` datetime NOT NULL,
-  `Note` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Note` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DELIMITER ;;
@@ -291,19 +291,19 @@ DELIMITER ;
 DROP TABLE IF EXISTS `Comments`;
 CREATE TABLE `Comments` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `PostText` varchar(1000) COLLATE utf8mb4_bin NOT NULL,
+  `PostText` varchar(1000) NOT NULL,
   `MedalID` int(11) DEFAULT NULL,
   `VersionID` int(10) DEFAULT NULL,
   `ProfileID` int(20) DEFAULT NULL,
-  `Username` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(100) NOT NULL,
   `UserID` int(20) NOT NULL,
-  `AvatarURL` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `AvatarURL` varchar(200) NOT NULL,
   `PostDate` datetime NOT NULL,
   `Reported` int(5) DEFAULT '0',
   `ParentComment` int(10) DEFAULT NULL,
-  `ParentCommenter` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ParentCommenter` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DELIMITER ;;
@@ -320,11 +320,11 @@ DELIMITER ;
 
 DROP TABLE IF EXISTS `Countries`;
 CREATE TABLE `Countries` (
-  `name_short` varchar(3) COLLATE latin1_german1_ci NOT NULL,
-  `name_long` varchar(30) COLLATE latin1_german1_ci NOT NULL,
-  `link` varchar(70) COLLATE latin1_german1_ci NOT NULL,
+  `name_short` varchar(3) NOT NULL,
+  `name_long` varchar(30) NOT NULL,
+  `link` varchar(70) NOT NULL,
   PRIMARY KEY (`name_short`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `Countries` (`name_short`, `name_long`, `link`) VALUES
 ('AD',	'Andorra',	'https://osu.ppy.sh/images/flags/AD.png'),
@@ -498,44 +498,44 @@ CREATE TABLE `DeletedComments` (
   `ParentComment` int(10) DEFAULT NULL,
   `ParentCommenter` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `DeletedMaps`;
 CREATE TABLE `DeletedMaps` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `MedalName` varchar(50) COLLATE latin1_german1_ci NOT NULL,
+  `MedalName` varchar(50) NOT NULL,
   `BeatmapID` int(20) NOT NULL,
   `MapsetID` int(20) NOT NULL,
-  `Gamemode` varchar(10) COLLATE latin1_german1_ci NOT NULL,
-  `SongTitle` varchar(80) COLLATE latin1_german1_ci NOT NULL,
-  `Artist` varchar(80) COLLATE latin1_german1_ci NOT NULL,
-  `Mapper` varchar(40) COLLATE latin1_german1_ci NOT NULL,
-  `Source` varchar(200) COLLATE latin1_german1_ci NOT NULL,
+  `Gamemode` varchar(10) NOT NULL,
+  `SongTitle` varchar(80) NOT NULL,
+  `Artist` varchar(80) NOT NULL,
+  `Mapper` varchar(40) NOT NULL,
+  `Source` varchar(200) NOT NULL,
   `bpm` double NOT NULL,
   `Difficulty` double NOT NULL,
-  `DifficultyName` varchar(80) COLLATE latin1_german1_ci NOT NULL,
+  `DifficultyName` varchar(80) NOT NULL,
   `DownloadUnavailable` tinyint(1) NOT NULL,
   `Votes` int(20) NOT NULL,
-  `SubmittedBy` varchar(30) COLLATE latin1_german1_ci NOT NULL,
+  `SubmittedBy` varchar(30) NOT NULL,
   `DeletionDate` date NOT NULL,
-  `Note` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Note` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Donations`;
 CREATE TABLE `Donations` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `osuID` int(10) DEFAULT NULL,
-  `Username` varchar(50) COLLATE latin1_german1_ci DEFAULT NULL,
-  `Message` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Username` varchar(50) DEFAULT NULL,
+  `Message` varchar(500) DEFAULT NULL,
   `DonoDate` datetime NOT NULL,
-  `Code` varchar(20) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Code` varchar(20) DEFAULT NULL,
   `DonoAmount` decimal(10,2) DEFAULT NULL,
   `Checked` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `FAQ`;
@@ -548,7 +548,7 @@ CREATE TABLE `FAQ` (
   PRIMARY KEY (`ID`),
   KEY `App` (`App`),
   CONSTRAINT `FAQ_ibfk_1` FOREIGN KEY (`App`) REFERENCES `Apps` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `FAQ` (`ID`, `App`, `Title`, `Content`, `LocalizationPrefix`) VALUES
 (1,	-1,	'Does the website\'s name have any meaning?',	'<p>[mulraf]: The name \"Osekai\" is a portmanteau of \"osu!\", the name of the rhythm game we all know and love, and the name of the anime genre isekai. Isekai generally means \"other world\" or \"different world\". While I\'m not the biggest fan of the isekai genre, this website was originally intended for something else. I wanted to build up a \"team\" for osu! with a website that hosts not only its own community, but also leaderboards, minigames and much more. Sort of like a \"different world\" within osu!</p>',	'nameMeaning'),
@@ -576,21 +576,21 @@ CREATE TABLE `GlobalCache` (
   `Date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `Expiration` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `Data` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Goals`;
 CREATE TABLE `Goals` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `UserID` int(20) NOT NULL,
-  `Value` varchar(200) COLLATE latin1_german1_ci NOT NULL,
-  `Type` varchar(50) COLLATE latin1_german1_ci NOT NULL,
-  `Gamemode` varchar(20) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Value` varchar(200) NOT NULL,
+  `Type` varchar(50) NOT NULL,
+  `Gamemode` varchar(20) DEFAULT NULL,
   `CreationDate` datetime NOT NULL,
   `Claimed` datetime(1) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `UserID` (`UserID`,`Value`,`Type`,`Gamemode`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `GroupAssignments`;
@@ -599,7 +599,7 @@ CREATE TABLE `GroupAssignments` (
   `GroupId` int(11) NOT NULL,
   KEY `GroupId` (`GroupId`),
   CONSTRAINT `GroupAssignments_ibfk_1` FOREIGN KEY (`GroupId`) REFERENCES `Groups` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `GroupAssignments` (`UserId`, `GroupId`) VALUES
 (1309242,	2),
@@ -630,14 +630,14 @@ INSERT INTO `GroupAssignments` (`UserId`, `GroupId`) VALUES
 DROP TABLE IF EXISTS `Groups`;
 CREATE TABLE IF NOT EXISTS `Groups` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` text COLLATE utf8mb4_bin NOT NULL,
-  `ShortName` text COLLATE utf8mb4_bin NOT NULL,
-  `Description` text COLLATE utf8mb4_bin DEFAULT NULL,
-  `Colour` text COLLATE utf8mb4_bin DEFAULT NULL,
+  `Name` text NOT NULL,
+  `ShortName` text NOT NULL,
+  `Description` text DEFAULT NULL,
+  `Colour` text DEFAULT NULL,
   `Order` int(11) DEFAULT NULL,
   `Hidden` int(11) DEFAULT 0,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
 	(1, 'Osekai Community Management Team', 'CMT', '', '255,124,89', 1, 0);
@@ -665,7 +665,8 @@ INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order
 	(12, 'Lead', 'LEAD', '', '99,199,255', -1, 0);
 INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
 	(13, 'Social Team', 'SOCIAL', NULL, '157,32,255', 3, 0);
-  
+
+DROP TABLE IF EXISTS `MedalListing`;
 DROP VIEW IF EXISTS `MedalListing`;
 CREATE TABLE `MedalListing` (`MedalID` int(5), `Name` varchar(50), `Description` varchar(500), `PossessionRate` varchar(50), `link` varchar(70), `restriction` varchar(8), `grouping` varchar(30));
 
@@ -676,7 +677,7 @@ CREATE TABLE `MedalRarity` (
   `frequency` float NOT NULL,
   `count` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `MedalRarity` (`id`, `frequency`, `count`) VALUES
 (1,	59.1559,	74214),
@@ -972,20 +973,20 @@ INSERT INTO `MedalRarity` (`id`, `frequency`, `count`) VALUES
 DROP TABLE IF EXISTS `Medals`;
 CREATE TABLE `Medals` (
   `medalid` int(5) NOT NULL,
-  `name` varchar(50) COLLATE latin1_german1_ci DEFAULT NULL,
-  `link` varchar(70) COLLATE latin1_german1_ci DEFAULT NULL,
-  `description` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
-  `restriction` varchar(8) COLLATE latin1_german1_ci DEFAULT NULL,
-  `grouping` varchar(30) COLLATE latin1_german1_ci DEFAULT NULL,
-  `instructions` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `link` varchar(70) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `restriction` varchar(8) DEFAULT NULL,
+  `grouping` varchar(30) DEFAULT NULL,
+  `instructions` varchar(500) DEFAULT NULL,
   `ordering` int(11) NOT NULL,
-  `packid` text COLLATE latin1_german1_ci,
-  `video` text COLLATE latin1_german1_ci,
+  `packid` text ,
+  `video` text ,
   `date` date DEFAULT NULL,
   `firstachieveddate` date DEFAULT NULL,
   `firstachievedby` int(10) DEFAULT NULL,
   PRIMARY KEY (`medalid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `Medals` (`medalid`, `name`, `link`, `description`, `restriction`, `grouping`, `instructions`, `ordering`, `packid`, `video`, `date`, `firstachieveddate`, `firstachievedby`) VALUES
 (1,	'500 Combo',	'https://assets.ppy.sh/medals/web/osu-combo-500.png',	'500 big ones! You\'re moving up in the world!',	'osu',	'Skill',	'aiming for a combo of 500 or higher on any beatmap',	0,	NULL,	NULL,	'2008-08-02',	NULL,	NULL),
@@ -1282,7 +1283,7 @@ DROP TABLE IF EXISTS `MedalsBeatmapPacks`;
 CREATE TABLE `MedalsBeatmapPacks` (
   `Id` int(11) NOT NULL,
   `Count` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `MedalsBeatmapPacks` (`Id`, `Count`) VALUES
 (0,	1),
@@ -1451,7 +1452,7 @@ CREATE TABLE `MedalStructure` (
   `Locked` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `MedalID` (`MedalID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `MedalStructure` (`ID`, `MedalID`, `Locked`) VALUES
 (2,	51,	1),
@@ -1647,7 +1648,7 @@ CREATE TABLE `Members` (
   `id` int(15) NOT NULL,
   `OPT_Experimental` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `MembersRestrictions`;
@@ -1655,10 +1656,10 @@ CREATE TABLE `MembersRestrictions` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `UserID` int(11) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `Reason` text COLLATE utf8mb4_bin NOT NULL,
+  `Reason` text NOT NULL,
   `Active` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Notifications`;
@@ -1675,7 +1676,7 @@ CREATE TABLE `Notifications` (
   `Cleared` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `SystemID` (`SystemID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `OsekaiSessions`;
@@ -1685,17 +1686,17 @@ CREATE TABLE `OsekaiSessions` (
   `sessionData` text,
   `sessionLastChange` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`sessionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Payments`;
 CREATE TABLE `Payments` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Reason` varchar(200) COLLATE latin1_german1_ci NOT NULL,
+  `Reason` varchar(200) NOT NULL,
   `Amount` decimal(5,2) NOT NULL,
   `PayDate` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `ProfilesBanners`;
@@ -1708,7 +1709,7 @@ CREATE TABLE `ProfilesBanners` (
   `CustomImage` text,
   `CustomStyle` text,
   PRIMARY KEY (`UserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `ProfilesShowcasePanel`;
@@ -1716,7 +1717,7 @@ CREATE TABLE `ProfilesShowcasePanel` (
   `UserID` int(11) NOT NULL,
   `Type` text NOT NULL,
   `Ids` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `ProfilesUserinfo`;
@@ -1725,7 +1726,7 @@ CREATE TABLE `ProfilesUserinfo` (
   `Username` text NOT NULL,
   `Rank` int(11) NOT NULL,
   PRIMARY KEY (`osuID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `ProfilesVisited`;
@@ -1733,13 +1734,13 @@ CREATE TABLE `ProfilesVisited` (
   `visited_by` int(11) NOT NULL,
   `visited_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Ranking`;
 CREATE TABLE `Ranking` (
   `id` int(11) NOT NULL,
-  `name` text COLLATE latin1_german1_ci NOT NULL,
+  `name` text  NOT NULL,
   `total_pp` int(11) NOT NULL,
   `stdev_pp` int(11) NOT NULL,
   `standard_pp` int(11) NOT NULL,
@@ -1749,7 +1750,7 @@ CREATE TABLE `Ranking` (
   `medal_count` int(11) NOT NULL,
   `rarest_medal` int(11) NOT NULL,
   `rarest_medal_achieved` datetime DEFAULT NULL,
-  `country_code` text COLLATE latin1_german1_ci NOT NULL,
+  `country_code` text  NOT NULL,
   `standard_global` int(20) DEFAULT NULL,
   `taiko_global` int(20) DEFAULT NULL,
   `ctb_global` int(20) DEFAULT NULL,
@@ -1760,9 +1761,9 @@ CREATE TABLE `Ranking` (
   `subscribers` int(20) NOT NULL DEFAULT '0',
   `followers` int(20) NOT NULL,
   `replays_watched` int(12) NOT NULL,
-  `avatar_url` text COLLATE latin1_german1_ci NOT NULL,
+  `avatar_url` text  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `RankingLoopHistory`;
@@ -1770,18 +1771,18 @@ CREATE TABLE `RankingLoopHistory` (
   `Id` int(11) NOT NULL,
   `Date` int(11) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `LoopType` text COLLATE utf8mb4_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `LoopType` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `RankingLoopInfo`;
 CREATE TABLE `RankingLoopInfo` (
-  `CurrentLoop` text COLLATE utf8mb4_bin NOT NULL,
+  `CurrentLoop` text NOT NULL,
   `CurrentCount` bigint(20) NOT NULL,
   `TotalCount` bigint(20) NOT NULL,
   `EtaSeconds` bigint(20) NOT NULL,
   `LastEtaUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `RankingMedalChampionHistory`;
@@ -1790,19 +1791,19 @@ CREATE TABLE `RankingMedalChampionHistory` (
   `UserId` int(11) NOT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Roles`;
 CREATE TABLE `Roles` (
   `RoleID` int(10) NOT NULL AUTO_INCREMENT,
-  `User` varchar(50) COLLATE latin1_german1_ci NOT NULL,
+  `User` varchar(50) NOT NULL,
   `UserID` int(20) NOT NULL,
-  `RoleName` varchar(50) COLLATE latin1_german1_ci NOT NULL,
+  `RoleName` varchar(50) NOT NULL,
   `Role` int(11) NOT NULL,
-  `Rights` varchar(20) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Rights` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`RoleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `Roles` (`RoleID`, `User`, `UserID`, `RoleName`, `Role`, `Rights`) VALUES
 (1,	'mulraf',	1309242,	'DEV',	1,	'2'),
@@ -1833,11 +1834,11 @@ INSERT INTO `Roles` (`RoleID`, `User`, `UserID`, `RoleName`, `Role`, `Rights`) V
 DROP TABLE IF EXISTS `SnapshotGroups`;
 CREATE TABLE `SnapshotGroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text COLLATE utf32_bin NOT NULL,
-  `description` text COLLATE utf32_bin NOT NULL,
-  `image` text COLLATE utf32_bin NOT NULL,
+  `name` text NOT NULL,
+  `description` text NOT NULL,
+  `image` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `SnapshotsAzeliaDownloads`;
@@ -1850,7 +1851,7 @@ CREATE TABLE `SnapshotsAzeliaDownloads` (
   PRIMARY KEY (`Id`),
   KEY `ReferencedVersion` (`ReferencedVersion`),
   CONSTRAINT `SnapshotsAzeliaDownloads_ibfk_1` FOREIGN KEY (`ReferencedVersion`) REFERENCES `SnapshotsAzeliaVersions` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `SnapshotsAzeliaScreenshots`;
@@ -1863,14 +1864,14 @@ CREATE TABLE `SnapshotsAzeliaScreenshots` (
   KEY `Order` (`Order`),
   KEY `ReferencedVersion` (`ReferencedVersion`),
   CONSTRAINT `SnapshotsAzeliaScreenshots_ibfk_1` FOREIGN KEY (`ReferencedVersion`) REFERENCES `SnapshotsAzeliaVersions` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `SnapshotsAzeliaSubmissions`;
 CREATE TABLE `SnapshotsAzeliaSubmissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `SnapshotsAzeliaVersions`;
@@ -1891,7 +1892,7 @@ CREATE TABLE `SnapshotsAzeliaVersions` (
   `Downloads` int(11) DEFAULT NULL,
   `Group` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `SnapshotSubmissions`;
@@ -1905,7 +1906,7 @@ CREATE TABLE `SnapshotSubmissions` (
   `status` int(11) NOT NULL,
   `processing` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `SnapshotVersions`;
@@ -1924,12 +1925,12 @@ DROP TABLE IF EXISTS `Solutions`;
 CREATE TABLE `Solutions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `medalid` int(10) NOT NULL,
-  `solution` varchar(500) COLLATE latin1_german1_ci NOT NULL,
-  `submittedby` varchar(50) COLLATE latin1_german1_ci NOT NULL,
-  `mods` varchar(50) COLLATE latin1_german1_ci DEFAULT NULL,
+  `solution` varchar(500) NOT NULL,
+  `submittedby` varchar(50) NOT NULL,
+  `mods` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `medalid` (`medalid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `Solutions` (`id`, `medalid`, `solution`, `submittedby`, `mods`) VALUES
 (1,	119,	'Pass any map with the following mod. Can\'t use any other mods.',	'mulraf',	'SD'),
@@ -2235,7 +2236,7 @@ CREATE TABLE `StatsPageViews` (
   `ip_grab_time` float NOT NULL,
   `devicetype` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Timeline`;
@@ -2247,19 +2248,19 @@ CREATE TABLE `Timeline` (
   `Mode` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `UserID` (`UserID`,`Date`,`Note`,`Mode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Tools`;
 CREATE TABLE `Tools` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` text COLLATE utf8mb4_bin NOT NULL,
-  `Creators` text COLLATE utf8mb4_bin NOT NULL,
-  `Github` text COLLATE utf8mb4_bin NOT NULL,
-  `Description` text COLLATE utf8mb4_bin NOT NULL,
+  `Name` text NOT NULL,
+  `Creators` text NOT NULL,
+  `Github` text NOT NULL,
+  `Description` text NOT NULL,
   `Featured` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `Tools` (`Id`, `Name`, `Creators`, `Github`, `Description`, `Featured`) VALUES
 (1,	'Medal Percentage Calculator',	'[18152711]',	'https://github.com/Osekai/tools-medal_percentage',	'Quickly calculate how many medals you need to get to a certain percentage, or how many medals a certain percentage is. Based on current medal count.',	0),
@@ -2268,6 +2269,7 @@ INSERT INTO `Tools` (`Id`, `Name`, `Creators`, `Github`, `Description`, `Feature
 
 
 DROP TABLE IF EXISTS `TPPListing`;
+DROP VIEW IF EXISTS `TPPListing`;
 CREATE TABLE `TPPListing` (`name` text, `totalpp` varchar(47), `ProfileID` int(11), `standardpp` varchar(47), `maniapp` varchar(47), `ctbpp` varchar(47), `taikopp` varchar(47), `name_long` varchar(30), `flag` varchar(70));
 
 
@@ -2278,11 +2280,21 @@ CREATE TABLE `Translators` (
   `Role` text NOT NULL,
   `Native` int(11) NOT NULL DEFAULT '1',
   `Username` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `UserListing`;
-CREATE TABLE `UserListing` (`id` int(11), `name` text, `Medalcount` int(11), `Completion` varchar(58), `rarest_medal` varchar(50), `link` varchar(70), `flag` varchar(70), `name_long` varchar(30));
+DROP VIEW IF EXISTS `UserListing`;
+CREATE TABLE `UserListing` (
+  `id` int(11),
+  `name` text,
+  `Medalcount` int(11),
+  `Completion` varchar(58),
+  `rarest_medal` varchar(50),
+  `link` varchar(70),
+  `flag` varchar(70),
+  `name_long` varchar(30)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `Votes`;
@@ -2292,9 +2304,9 @@ CREATE TABLE `Votes` (
   `ObjectID` int(20) NOT NULL,
   `Vote` tinyint(1) NOT NULL,
   `Type` int(11) NOT NULL DEFAULT '0',
-  `PollID` varchar(50) COLLATE latin1_german1_ci DEFAULT NULL,
+  `PollID` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `BadgeListing`;
