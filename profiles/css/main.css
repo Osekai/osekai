@@ -155,6 +155,12 @@
     overflow-x: hidden;
     max-width: calc((100vw - 48px) / 2 - 61px);
 }
+  
+@media screen and (max-width: 1200px) {
+    .profiles__cover-back-info_text p:not(#arrival__date):not(#hardware) {
+        max-width: calc(100vw - 88px);
+    }
+}
 
 .profiles__cover-back-info_text p .light {
     font-weight: 100;
@@ -1276,6 +1282,10 @@ input[type=number] {
 
     .profiles__panel-row {
         flex-direction: column;
+    }
+
+    .profiles__cover-back-info_text p:not(#arrival__date):not(#hardware) {
+        max-width: calc(100vw - 62px);
     }
 }
 
