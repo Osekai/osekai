@@ -25,3 +25,11 @@ Any issues contact me (hubz)
 ## Osekai Tools
 
 Run `git submodule update --init --recursive` to pull all the tool source code, as they're in separate repositories.
+
+## Windows
+
+On Windows, SSL will not function with cURL, and Login will not work. To fix, please download [cacert.pem](https://curl.se/docs/caextract.html) and place it in a folder. Then in your `php.ini` under `[curl]` add `curl.cainfo = "C:\php\cacert.pem"` and under `[openssl]` add `openssl.cafile = "C:\php\cacert.pem"`. Should look like so:
+
+![image](https://user-images.githubusercontent.com/33783503/204513078-8edb42f0-94db-4a8f-9a79-ade9996c7303.png)
+
+You should now be able to login.
