@@ -1675,3 +1675,10 @@ margin-top: 12px;
     box-sizing: border-box;
     z-index: 5;
 }
+
+.profiles__user-badges {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-top: -3px;
+}
