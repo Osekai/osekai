@@ -50,7 +50,7 @@ mobileManager();
 <body>
     <?php navbar(); 
     
-    $allTranslators = Database::execSimpleSelect("SELECT * FROM Translators");
+    $allTranslators = Database::execSimpleSelect("SELECT Translators.*, Ranking.name as OsuUsername FROM Translators LEFT JOIN Ranking ON Ranking.id = Translators.Id");
     ?>
     <div class="osekai__panel-container misc__container">
         <div class="misc__header">
@@ -156,7 +156,7 @@ mobileManager();
                                 <img src="https://a.ppy.sh/' . $translator['Id'] . '">
                                 <div class="translators__language-translator-texts">
                                     <p>' . $translator['Role'] . '</p>
-                                    <h1>' . $translator['Username'] . '</h1>
+                                    <h1>' . $translator['OsuUsername'] . '</h1>
                                 </div>
                             </div>';
                             }
