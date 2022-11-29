@@ -54,7 +54,7 @@ function printTeam()
             $badgeHtml .= badgeHtmlFromGroup($group, "small");
         }
         foreach($member['socials'] as $social) {
-            $socialHtml .= '<a class="home__team-member-social" href="'.$social['link'].'">
+            $socialHtml .= '<a class="home__team-member-social tooltip-v2" href="'.$social['link'].'" tooltip-content="'.$social['name'].'">
             <i class="'.$social['icon'].'" aria-hidden="true"></i>
         </a>';
         }
@@ -80,10 +80,10 @@ function printTeam()
         </div>
         <div class="home__team-member-socials">
             <div class="home__team-member-socials-inner">
-                <a class="home__team-member-social" href="https://osu.ppy.sh/users/' . $member['id'] . '">
+                <a class="home__team-member-social tooltip-v2" tooltip-content="osu! Profile" href="https://osu.ppy.sh/users/' . $member['id'] . '">
                     <i class="oif-osu-logo" aria-hidden="true"></i>
                 </a>
-                <a class="home__team-member-social" href="/profiles/?user=' . $member['id'] . '">
+                <a class="home__team-member-social tooltip-v2" tooltip-content="Osekai Profiles" href="/profiles/?user=' . $member['id'] . '">
                     <i class="oif-app-profiles" aria-hidden="true"></i>
                 </a>
                 ' . $socialHtml . '
