@@ -144,6 +144,10 @@
     align-items: center;
 }
 
+.profiles__cover-back-info_text {
+    max-width: 100%;
+}
+
 .profiles__cover-back-info_text p {
     font-size: 15px;
     font-weight: 500;
@@ -153,13 +157,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow-x: hidden;
-    max-width: calc((100vw - 48px) / 2 - 61px);
-}
-  
-@media screen and (max-width: 1200px) {
-    .profiles__cover-back-info_text p:not(#arrival__date):not(#hardware) {
-        max-width: calc(100vw - 88px);
-    }
 }
 
 .profiles__cover-back-info_text p .light {
@@ -1282,10 +1279,6 @@ input[type=number] {
 
     .profiles__panel-row {
         flex-direction: column;
-    }
-
-    .profiles__cover-back-info_text p:not(#arrival__date):not(#hardware) {
-        max-width: calc(100vw - 62px);
     }
 }
 
