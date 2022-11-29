@@ -51,6 +51,7 @@ if(MODE == "dev") {
 }
 
 if (isset($app)) {
+    
     if (MODE != "production") {
         // production site uses htaccess file to avoid issue
         // dev and local doesn't work
@@ -75,7 +76,8 @@ if (isset($app)) {
         }
     }
     $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
-    $medals = Database::execSelect("CALL FUNC_GetMedals(?, ?)", "ss", ['', ''])
+    $medals = Database::execSelect("CALL FUNC_GetMedals(?, ?)", "ss", ['', '']);
+    $groups = Database::execSimpleSelect("SELECT * FROM Groups");
 ?>
     <script type="text/javascript">
         const nAppId = "<?php echo $apps[$app]['id']; ?>";
@@ -111,6 +113,7 @@ if (isset($app)) {
                                     echo "0";
                                 } ?>;
         const roles = <?php echo json_encode($roles); ?>;
+        const userGroups = <?php echo json_encode($groups); ?>;
         const medals = <?php echo json_encode($medals); ?>;
         const restrictedState = <?php if (isRestricted()) echo "1";
                                 else echo "0"; ?>;

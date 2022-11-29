@@ -771,3 +771,31 @@ function getAlerts() {
 document.addEventListener("DOMContentLoaded", function () {
     getAlerts();
 });
+
+
+var groupUtils = {
+    getGroupFromId: function(id) {
+        for(var x = 0; x < userGroups.length; x++) {
+            if(userGroups[x]['Id'] == id) {
+                return userGroups[x];
+            }
+        }
+    },
+    badgeHtmlFromGroupId: function(id) {
+        var group = this.getGroupFromId(id);
+        return `<div class="osekai__group-badge osekai__group-badge-small" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
+    },
+    badgeHtmlFromCommaSeperatedList: function(list) {
+        var orderedList = [];
+        var split = list.split(",");
+        for(var x = 0; x < split.length; x++) {
+            orderedList.push(this.getGroupFromId(split[x]));
+        }
+        orderedList.sort((a, b) => a.Order - b.Order)
+        var finalHtml = "";
+        for(var x = 0; x < orderedList.length; x++) {
+            finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id']);
+        }
+        return finalHtml;
+    }
+}

@@ -628,30 +628,44 @@ INSERT INTO `GroupAssignments` (`UserId`, `GroupId`) VALUES
 (13641450,	6);
 
 DROP TABLE IF EXISTS `Groups`;
-CREATE TABLE `Groups` (
+CREATE TABLE IF NOT EXISTS `Groups` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` text COLLATE utf8mb4_bin NOT NULL,
   `ShortName` text COLLATE utf8mb4_bin NOT NULL,
-  `Description` text COLLATE utf8mb4_bin NOT NULL,
-  `Colour` text COLLATE utf8mb4_bin NOT NULL,
-  `ColourDark` text COLLATE utf8mb4_bin NOT NULL,
-  `Hidden` int(11) NOT NULL DEFAULT '0',
+  `Description` text COLLATE utf8mb4_bin DEFAULT NULL,
+  `Colour` text COLLATE utf8mb4_bin DEFAULT NULL,
+  `Order` int(11) DEFAULT NULL,
+  `Hidden` int(11) DEFAULT 0,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `ColourDark`, `Hidden`) VALUES
-(1,	'Osekai Community Management Team',	'CMT',	'',	'',	'',	0),
-(2,	'Osekai Developers',	'DEV',	'',	'',	'',	0),
-(3,	'Osekai App Developers',	'APP DEV',	'',	'',	'',	0),
-(4,	'Tools Contributor',	'TOOLS',	'',	'',	'',	0),
-(5,	'Translator',	'TRANSLATOR',	'',	'',	'',	0),
-(6,	'Supporter - Rank 1',	'<i class=\"fa fa-heart\" aria-hidden=\"true\"></i>',	'',	'',	'',	1),
-(7,	'Supporter - Rank 2',	'<i class=\"fa fa-heart\" aria-hidden=\"true\"></i><i class=\"fa fa-heart\" aria-hidden=\"true\"></i>',	'',	'',	'',	1),
-(8,	'Supporter - Rank 3',	'<i class=\"fa fa-heart\" aria-hidden=\"true\"></i><i class=\"fa fa-heart\" aria-hidden=\"true\"></i><i class=\"fa fa-heart\" aria-hidden=\"true\"></i>',	'',	'',	'',	1),
-(9,	'chromb',	'chromb',	'chromb',	'',	'',	1),
-(10,	'Snapshots Moderator',	'<i class=\"oif-app-snapshots\"></i> MOD',	'',	'',	'',	0),
-(11,	'Moderator',	'',	'',	'',	'',	0);
-
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(1, 'Osekai Community Management Team', 'CMT', '', '255,124,89', 1, 0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(2, 'Osekai Developers', 'DEV', '', '99,128,255', 0, 0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(3, 'Osekai App Developers', 'APP DEV', '', '87,200,180', 2, 0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(4, 'Tools Contributor', 'TOOLS', '', '30,90,144', 3, 0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(5, 'Translator', 'TRANSLATOR', '', '144,30,126', 8, 0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(6, 'Supporter - Rank 1', '<i class="fa fa-heart" aria-hidden="true"></i>', '', '255,114,241', 5, 1);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(7, 'Supporter - Rank 2', '<i class="fa fa-heart" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i>', '', '255,114,241', 5, 1);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(8, 'Supporter - Rank 3', '<i class="fa fa-heart" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i>', '', '255,114,241', 5, 1);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(9, 'chromb', 'chromb', 'chromb', '100,100,100', 6, 1);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(10, 'Snapshots Moderator', '<i class="oif-app-snapshots"></i> MOD', '', '28,25,171', 7, 0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(11, 'Moderator', 'MOD', '', '29,74,29', 4, 0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(12, 'Lead', 'LEAD', '', '99,199,255', -1, 0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
+	(13, 'Social Team', 'SOCIAL', NULL, '157,32,255', 3, 0);
+  
 DROP VIEW IF EXISTS `MedalListing`;
 CREATE TABLE `MedalListing` (`MedalID` int(5), `Name` varchar(50), `Description` varchar(500), `PossessionRate` varchar(50), `link` varchar(70), `restriction` varchar(8), `grouping` varchar(30));
 

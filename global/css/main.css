@@ -5028,3 +5028,14 @@ font-size: 18px;
 #otherapplist .osekai__apps-dropdown-applist-left {
     min-width: 250px;
 }
+
+.osekai__group-badge {
+    border-radius: 90px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgb(var(--colour));
+}
+
+.osekai__group-badge-small {
+    font-size: 12px;
+    font-weight: 900;
+    padding: 3px 8px;
+}
