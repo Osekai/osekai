@@ -1,5 +1,8 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
+
+if(!loggedin()) return;
+
 if (isset($_GET['key'])) {
     if ($_GET['key'] == EXPERIMENTAL_KEY) {
         if (isset($_SESSION['osu'])) {
