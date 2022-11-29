@@ -818,9 +818,10 @@ a {
 }
 
 .osekai__2col_col1, .osekai__2col_col2 {
-    flex: 25%;
+    flex: 1;
     transition: all 0.8s ease;
-    max-width: calc((100vw - 84px) / 2);
+    max-width: 100%;
+    min-width: 0;
 }
 
 @media screen and (max-width: 1200px) {
@@ -828,9 +829,7 @@ a {
         gap: 0px;
         flex-direction: column;
     }
-    .osekai__2col_col1, .osekai__2col_col2 {
-        max-width: initial;
-    }
+    
     .osekai__2col_col2 {
         margin-top: 00px;
     }
