@@ -26,7 +26,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <meta property="og:url" content="https://www.osekai.net/" />
 
 <?php
-if ($_SESSION['role']['rights'] < 1) {
+if (!isset($_SESSION['role']['rights']) || $_SESSION['role']['rights'] < 1) {
     redirect($rooturl . "/home");
     exit;
 }

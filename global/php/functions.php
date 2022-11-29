@@ -55,8 +55,8 @@ if (isset($app)) {
     if (MODE != "production") {
         // production site uses htaccess file to avoid issue
         // dev and local doesn't work
-        if (substr($_GET['page'], -1) !== '/') {
-            $site_adress = (((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+        if (isset($_GET['page']) && substr($_GET['page'], -1) !== '/') {
+            $site_adress = ((((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
             $whole_url = $site_adress . $_SERVER['REQUEST_URI'];
 
             $pos = strpos($whole_url, "?");
@@ -107,7 +107,7 @@ if (isset($app)) {
         const strRootUrl = <?php echo "'" . $rooturl . "'"; ?>;
         const medalAmount = <?php echo count($medals); ?>;
         const experimental = <?php
-                                if (isset($_SESSION['options']['experimental']) && $_SESSION['options']['experimental'] == 1) {
+                                if (isExperimental()) {
                                     echo $_SESSION['options']['experimental'];
                                 } else {
                                     echo "0";
@@ -189,7 +189,7 @@ function css()
     $path = $_SERVER['DOCUMENT_ROOT'] . "/" . $app . "/css/";
     $path_public = $rooturl . "/" . $app . "/";
 
-    //if ($_SESSION['options']['experimental'] == 1) {
+    //if (isExperimental()) {
     //    echo '<link rel="stylesheet" href="/global/css/experimental.css?v=' . OSEKAI_VERSION . '">';
     //    $curUrl = $rooturl . $_SERVER['REQUEST_URI'];
     //
@@ -207,7 +207,7 @@ function css()
 
     echo '<link rel="stylesheet" href="' . $path_public . 'css/main.css?v=' . OSEKAI_VERSION . '">';
     echo '<link rel="stylesheet" href="./css/main.css?v=' . OSEKAI_VERSION . '">';
-    if ($_SESSION['options']['experimental'] == 1) {
+    if (isExperimental()) {
         echo '<link rel="stylesheet" href="/global/css/experimental.css?v=' . OSEKAI_VERSION . '">';
     }
 
@@ -469,11 +469,7 @@ function tooltip_system()
 function loggedin()
 {
     // check if user is logged in
-    if (isset($_SESSION['osu'])) {
-        return true;
-    } else {
-        return false;
-    }
+    return isset($_SESSION['osu']);
 }
 
 function redirect($url = null)

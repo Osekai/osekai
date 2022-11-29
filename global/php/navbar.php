@@ -147,7 +147,7 @@ foreach ($apps as $a) {
         <?php } ?>
     </div>
     <?php
-    if ($_SESSION['options']['experimental'] == 1) {
+    if (isExperimental()) {
     ?>
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
             <a class="osekai__apps-dropdown-mobile-button">
@@ -229,7 +229,7 @@ foreach ($apps as $a) {
                 ?>
             </div>
             <?php
-            if ($_SESSION['options']['experimental'] == 1) {
+            if (isExperimental()) {
             ?>
                 <div class="osekai__apps-dropdown-applist-left-bottom" onclick="showOtherApps()">
                     Other Apps
@@ -346,7 +346,7 @@ foreach ($apps as $a) {
             </div>
         </div>
         <div class="osekai__nav-dropdown-v2-lowerpanel">
-            <?php if ($_SESSION['options']['experimental'] == 1) { ?>
+            <?php if (isExperimental()) { ?>
                 <!-- <div class="oseaki__nav-dropdown-user-v2-lowerpanel-warning">
                     <i class="fas fa-exclamation-triangle"></i>
                     <p><?= GetStringRaw("navbar", "profile.experimentalMode"); ?></p>
@@ -438,8 +438,9 @@ foreach ($apps as $a) {
                 <div class="osekai__dropdown osekai__dropdown-hidden" id="dropdown__languages">
                     <?php
                     //print_r($locales);
+                    // Ignore experimental languages if the user isn't experimental
                     foreach ($locales as $language) {
-                        if ($language['experimental'] == true && $_SESSION['options']['experimental'] == 0) {
+                        if (isset($language['experimental']) && $language['experimental'] == true && !isExperimental()) {
                             continue;
                         }
                     ?>
@@ -476,7 +477,7 @@ foreach ($apps as $a) {
     </div>
 </div>
 
-<?php if ($_SESSION['options']['experimental'] == 1) { ?>
+<?php if (isExperimental()) { ?>
     <div id="dropdown__notifs" class="osekai__nav-dropdown-v2 osekai__nav-dropdown-v2-generic osekai__nav-dropdown-v2-notifications osekai__nav-dropdown-hidden">
         <div class="osekai__nav-dropdown-v2-mainpanel">
             <i class="fas fa-bell"></i>
@@ -548,7 +549,7 @@ if ($coltype == "3") {
 <script type="text/javascript" src="<?= $rooturl; ?>/global/js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
 
 <script>
-    if (<?= $_SESSION['options']['experimental'] ?? 0; ?> == 1) toggleExperimental();
+    if (<?= (int)isExperimental(); ?> == 1) toggleExperimental();
 </script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">

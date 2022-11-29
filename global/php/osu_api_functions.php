@@ -65,7 +65,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
 
     $oUserRoles = Database::execSelect("SELECT * FROM Roles WHERE UserID = ?", "i", array($userID));
 
-    $oUserRole = $oUserRoles[0]['Role'];
+    $oUserRole = isset($oUserRoles[0]['Role']) ? isset($oUserRoles[0]['Role']) : null;
 
     $oMedals = Database::execSimpleSelect("SELECT * From Medals LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid " .
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals) t ON 1 = 1 " .
@@ -144,7 +144,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
 
             sort($colData['user_achievements']);
 
-            $colData['user_achievements_total']['global_rank'] = $oUserMedals[0]['rank'] ?: 0;
+            $colData['user_achievements_total']['global_rank'] = isset($oUserMedals[0]['rank']) ? $oUserMedals[0]['rank'] : 0;
             $colData['user_achievements_total']['completion'] = round(count($colData['user_achievements']) * 100 / $colData['max_medals'], 2) ?: 0;
 
             $colData['unachieved'] = [];
@@ -182,7 +182,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
 
         $colData['goals'] = $oUserGoals;
         $colData['timeline'] = $oUserTimeline;
-        $colData['roles'] = $oUserRoles[0];
+        $colData['roles'] = isset($oUserRoles[0]) ? $oUserRoles[0] : null;;
         $colData['role'] = $oUserRole;
 
         return json_encode($colData);
@@ -318,7 +318,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $OsuPP = $colOsu['statistics']['pp'];
         $colOsu['goals'] = $oUserGoals;
         $colOsu['timeline'] = $oUserTimeline;
-        $colOsu['roles'] = $oUserRoles[0];
+        $colOsu['roles'] = isset($oUserRoles[0]) ? $oUserRoles[0] : null;
         $colOsu['role'] = $oUserRole;
 
         $colOsu['statistics']['global_rank'] = $oUserSPP[0]['rank'] ?: 0;

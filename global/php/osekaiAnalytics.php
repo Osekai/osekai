@@ -11,7 +11,7 @@ $countryCode = $ip_data->geoplugin_countryCode;
 if($countryCode == null || $countryCode == "") $countryCode = "??";
 
 $url = $_SERVER['REQUEST_URI'];
-$urlQuery = $_SERVER['QUERY_STRING'];
+$urlQuery = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : null;
 
 
 
@@ -45,7 +45,7 @@ if($time > 7)
         . "&url="
         . urlencode($rooturl . $url);
 
-    if($_SESSION['options']['experimental'] == 1) {
+    if(isExperimental()) {
         //echo $url;
     }
     $ch = curl_init();

@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 $apps = (array)Database::execSimpleSelect("SELECT * FROM Apps");
 
 $allowExperimental = false;
-if($_SESSION['options']['experimental'] == 1)
+if(isExperimental())
 {
     $allowExperimental = true;
 }
@@ -24,9 +24,9 @@ if($allowExperimental = false)
 }
 // remove hidden ones
 $apps = array_filter($apps, function($app)
-{
-    return $app['hidden'] == 0;
-});
+    {
+        return $app['visible'] == 1;
+    });
 
 for($x = 0; $x > count($apps); $x++)
 {
@@ -38,7 +38,7 @@ foreach($faq as $question)
 {
     for($x = 0; $x < count($apps); $x++)
     {
-        if($apps[$x]['id'] == $question['App'])
+        if(isset($apps[$x]) && $apps[$x]['id'] == $question['App'])
         {
             $apps[$x]['questions'][] = $question;
         }
