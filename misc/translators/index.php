@@ -156,7 +156,7 @@ mobileManager();
                                 <img src="https://a.ppy.sh/' . $translator['Id'] . '">
                                 <div class="translators__language-translator-texts">
                                     <p>' . $translator['Role'] . '</p>
-                                    <h1>' . $translator['OsuUsername'] . '</h1>
+                                    <h1>' . $translator['OsuUsername'] ? $translator['OsuUsername'] : $translator['Username'] . '</h1>
                                 </div>
                             </div>';
                             }
