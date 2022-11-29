@@ -38,7 +38,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     ?>
 </head>
 
-<body onload="positionNav();"> <!-- it refuses to position!!!! -->
+<body onload="positionNav();">
+    <!-- it refuses to position!!!! -->
     <?php navbar(); ?>
 
     <div class="osekai__panel-container nopadding home__loader-wait" id="home">
@@ -47,13 +48,13 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
         </div> -->
 
         <div class="home__cover" onload="positionNav();">
-        <div class="home__cover-background">
-            <img src="img/background.png">
-        </div>
+            <div class="home__cover-background">
+                <img src="img/background.png">
+            </div>
             <div class="home__cover-middle">
                 <div class="home__cover-middle-logo">
                     <!-- <img src="img/osekai.svg" class="home__logo"> -->
-                    <lottie-player class="home__logo-lottie" id="player" src="img/osekai-logo.json"  background="transparent"  speed="1"  style="height: 300px; margin: -90px 0px;"></lottie-player>
+                    <lottie-player class="home__logo-lottie" id="player" src="img/osekai-logo.json" background="transparent" speed="1" style="height: 300px; margin: -90px 0px;"></lottie-player>
                 </div>
                 <p><?php echo GetStringRaw("home", "cover.subtitle"); ?></p>
             </div>
@@ -165,330 +166,124 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     <div id="home__faq-answer-answer" class="home__faq-answer-answer"><?php echo GetStringRaw("home", "faq.welcome.intro"); ?></div>
                 </div>
             </div>
-            <div class="home__team">
+            <div class="home__panel home__team">
                 <h1><?php echo GetStringRaw("home", "team.title"); ?></h1>
-                <div class="home__team-section">
-                    <p class="home__team-section-title"><?php echo GetStringRaw("home", "team.title.main"); ?></p>
-                    <div class="home__team-grid">
-                        <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/1309242" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app osekai">
-                                        <img src="/global/img/branding/vector/osekai_dark.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>mulraf</h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.mulraf"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/1309242">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=1309242">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://youtube.com/mulraf">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/10379965" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app osekai">
-                                        <img src="/global/img/branding/vector/osekai_dark.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>Tanza3D <span style="opacity: 0.75;">/ Hubz</span></h2>
-                                    <p><?php echo GetStringRaw("home", "team.role.tanza"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/10379965">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=10379965">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://twitter.com/hubziii">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://twitch.tv/tanza_live">
-                                    <i class="fab fa-twitch"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://www.hubza.co.uk">
-                                    <i class="fas fa-globe"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" rel="me" href="https://mastodon.online/@tanza">
-                                    <i class="fab fa-mastodon"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/18152711" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app osekai-inverted">
-                                        <img src="/global/img/branding/vector/osekai_light.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>MegaMix_Craft <span style="opacity: 0.75;">/ minusQuantumNeko</span></h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.megamix"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/18152711">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=18152711">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://twitter.com/MegaMix_Craft">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://www.youtube.com/MegaMix_Craft">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" rel="me" href="https://mastodon.world/@MegaMix_Craft">
-                                    <i class="fab fa-mastodon"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" rel="me" href="https://www.speedrun.com/user/MegaMix_Craft">
-                                    <i class="fas fa-trophy"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/9350342" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app osekai-inverted">
-                                        <img src="/global/img/branding/vector/osekai_light.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>EXtremeExploit <span style="opacity: 0.75;">/ Pedrito</span></h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.generic.developer"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/9350342">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=9350342">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://github.com/EXtremeExploit/">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://www.twitch.tv/extremeexploit_">
-                                    <i class="fab fa-twitch"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://pedro.moe/">
-                                    <i class="fas fa-globe"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="home__team-section">
-                    <p class="home__team-section-title"><?php echo GetStringRaw("home", "team.title.appdev"); ?></p>
-                    <div class="home__team-grid">
-                        <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/3357640" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app rankings">
-                                        <img src="/global/img/branding/vector/white/rankings.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>Electroyan</h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.electroyan"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/3357640">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=3357640">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                            </div>
-                        </div>
-                        <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/14125695" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app snapshots">
-                                        <img src="/global/img/branding/vector/white/snapshots.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>TheEggo</h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.generic.snapshotsDeveloper"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/14125695">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=14125695">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                            </div>
-                        </div>
-                        <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/2211396" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app rankings">
-                                        <img src="/global/img/branding/vector/white/rankings.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>Badewanne3</h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.electroyan"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/2211396">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=2211396">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://github.com/MaxOhn">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/7279762" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app admin">
-                                        <img src="/global/img/branding/vector/osekai_light.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>Coppertine</h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.coppertine"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/7279762">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=7279762">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://twitter.com/shuffler2001">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://www.twitch.tv/coppertine">
-                                    <i class="fab fa-twitch"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://www.artstation.com/coppertine">
-                                    <i class="fas fa-globe"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="home__team-section">
-                    <p class="home__team-section-title"><?php echo GetStringRaw("home", "team.title.communityManagement"); ?></p>
-                    <div class="home__team-grid">
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/1699875" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app discord">
-                                        <img src="/home/img/medalhunters.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>Remyria</h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.remyria"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/1699875">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=1699875">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://twitch.tv/remyria">
-                                    <i class="fab fa-twitch"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://a.ppy.sh/16487835" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app snapshots">
-                                        <img src="/global/img/branding/vector/white/snapshots.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>ILuvSkins</h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.generic.snapshotsManager"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/16487835">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=16487835">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                            </div>
-                        </div>
-                        <!--  -->
-                        <div class="home__team-panel">
-                            <div class="home__team-panel-upper">
-                                <div class="home__team-panel-upper-pfpsection">
-                                    <img src="https://chromb.uk/chromb.png" class="home__team-panel-upper-pfp">
-                                    <div class="home__team-panel-upper-pfp-app osekai-inverted">
-                                        <img src="/global/img/branding/vector/osekai_light.svg" class="home__team-panel-upper-pfp-app-img">
-                                    </div>
-                                </div>
-                                <div class="home__team-panel-upper-name">
-                                    <h2>chromb</h2>
-                                        <p><?php echo GetStringRaw("home", "team.role.generic.communityManager"); ?></p>
-                                </div>
-                            </div>
-                            <div class="home__team-panel-lower">
-                                <a class="home__team-panel-lower-social" href="https://osu.ppy.sh/users/10238680">
-                                    <img src="/global/img/icons/osu-logo-white.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="/profiles/?user=10238680">
-                                    <img src="/global/img/branding/vector/white/profiles.svg">
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://www.youtube.com/channel/UCq37paEnfI4pmwE5j3rO5eg">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                                <a class="home__team-panel-lower-social" href="https://twitch.tv/chr0mb">
-                                    <i class="fab fa-twitch"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!--  -->
-                    </div>
+                <div class="home__team-grid">
+                    <?php
+                    include("team.php");
+
+                    addMember(
+                        1309242,
+                        "mulraf",
+                        "Project Lead & Lead Developer",
+                        null,
+                        [social("https://youtube.com/mulraf", "Youtube")]
+                    );
+                    addMember(
+                        10379965,
+                        "Tanza3D",
+                        "Project lead, Developer, & Lead Designer",
+                        "Hubz",
+                        [
+                            social("https://twitter.com/Tanza3D", "Twitter"),
+                            social("https://twitch.tv/tanza_live", "Twitch"),
+                            social("https://www.hubza.co.uk/", "Website"),
+                            social("https://mastodon.online/@tanza", "Mastodon")
+                        ]
+                    );
+                    addMember(
+                        18152711,
+                        "MegaMix_Craft",
+                        "Osekai Team Manager & Community Manager",
+                        "minusQuantumNeko",
+                        [
+                            social("https://twitter.com/Tanza3D", "Twitter"),
+                            social("https://www.youtube.com/MegaMix_Craft", "Youtube"),
+                            social("https://mastodon.world/@MegaMix_Craft", "Mastodon"),
+                            social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com")
+                        ]
+                    );
+                    addMember(
+                        9350342,
+                        "EXtremeExploit",
+                        "Developer",
+                        "Pedrito",
+                        [
+                            social("https://github.com/EXtremeExploit/", "Github"),
+                            social("https://www.twitch.tv/extremeexploit_", "Twitch"),
+                            social("https://pedro.moe/", "Website")
+                        ]
+                    );
+                    addMember(
+                        7279762,
+                        "Coppertine",
+                        "Admin Tools Development",
+                        null,
+                        [
+                            social("https://twitter.com/shuffler2001", "Twitter"),
+                            social("https://www.twitch.tv/coppertine", "Twitch"),
+                            social("https://www.artstation.com/coppertine", "Website")
+                        ]
+                    );
+                    addMember(
+                        14125695,
+                        "TheEggo",
+                        "Snapshots Developer",
+                        null,
+                        []
+                    );
+                    addMember(
+                        2211396,
+                        "Badewanne3",
+                        "Rankings Data Engineer",
+                        null,
+                        [social("https://github.com/MaxOhn", "Github")]
+                    );
+                    addMember(
+                        3357640,
+                        "Electroyan",
+                        "Rankings Data Engineer",
+                        null,
+                        []
+                    );
+                    addMember(
+                        10238680,
+                        "chromb",
+                        "Community Manager",
+                        null,
+                        [
+                            social("https://www.youtube.com/channel/UCq37paEnfI4pmwE5j3rO5eg", "Youtube"),
+                            social("https://twitch.tv/chr0mb", "Twitch")
+                        ]
+                    );
+                    addMember(
+                        1699875,
+                        "Remyria",
+                        "Community Manager",
+                        null,
+                        [social("https://twitch.tv/remyria", "Twitch")]
+                    );
+                    addMember(
+                        16487835,
+                        "ILuvSkins",
+                        "Snapshots Manager",
+                        null,
+                        []
+                    );
+                    addMember(
+                        26544843,
+                        "Mono x Mellow",
+                        "Video Editor & Motion Graphic Designer",
+                        null,
+                        [
+                            social("https://twitter.com/Mono_x_Mellow", "Twitter"),
+                            social("https://www.youtube.com/channel/UC7ZW8exqZ1c6eOhyajMnyZg", "Youtube"),
+                            social("https://www.twitch.tv/monoxmellow", "Twitch"),
+                                social("https://discord.com/users/194863870559387648", "Discord")
+                        ]
+                    );
+                    printTeam();
+                    ?>
                 </div>
             </div>
         </div>
@@ -500,13 +295,15 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <script>
     //document.getElementById("home").classList.remove('home__loader-wait')
     document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(() => { 
-        document.getElementById("home").classList.remove('home__loader-wait')
-        setTimeout(() => { 
-        document.getElementById("player").play();
-        }, 400);
+        setTimeout(() => {
+            document.getElementById("home").classList.remove('home__loader-wait')
+            setTimeout(() => {
+                document.getElementById("player").play();
+            }, 400);
         }, 1000);
     });
 </script>
-<script>positionNav();</script>
+<script>
+    positionNav();
+</script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>
