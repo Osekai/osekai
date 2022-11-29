@@ -63,9 +63,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $strSearch .= "/" . $mode;
     }
 
-    $oUserRoles = Database::execSelect("SELECT * FROM Roles WHERE UserID = ?", "i", array($userID));
-
-    $oUserRole = isset($oUserRoles[0]['Role']) ? isset($oUserRoles[0]['Role']) : null;
+    $oUserGroups = Database::execSelect("SELECT * FROM GroupAssignments WHERE UserId = ?", "i", array($userID));
 
     $oMedals = Database::execSimpleSelect("SELECT * From Medals LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid " .
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals) t ON 1 = 1 " .
@@ -182,8 +180,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
 
         $colData['goals'] = $oUserGoals;
         $colData['timeline'] = $oUserTimeline;
-        $colData['roles'] = isset($oUserRoles[0]) ? $oUserRoles[0] : null;;
-        $colData['role'] = $oUserRole;
+        $colData['usergroups'] = $oUserGroups; // would use 'groups' but osu! already uses that for their groups
 
         return json_encode($colData);
     } else {
@@ -318,8 +315,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $OsuPP = $colOsu['statistics']['pp'];
         $colOsu['goals'] = $oUserGoals;
         $colOsu['timeline'] = $oUserTimeline;
-        $colOsu['roles'] = isset($oUserRoles[0]) ? $oUserRoles[0] : null;
-        $colOsu['role'] = $oUserRole;
+        $colOsu['groups'] = $oUserGroups;
 
         $colOsu['statistics']['global_rank'] = $oUserSPP[0]['rank'] ?: 0;
         unset($colOsu['rank_history']['data']);

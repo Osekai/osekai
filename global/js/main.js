@@ -781,11 +781,11 @@ var groupUtils = {
             }
         }
     },
-    badgeHtmlFromGroupId: function(id) {
+    badgeHtmlFromGroupId: function(id, size = "small") {
         var group = this.getGroupFromId(id);
-        return `<div class="osekai__group-badge osekai__group-badge-small" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
+        return `<div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
     },
-    badgeHtmlFromCommaSeperatedList: function(list) {
+    badgeHtmlFromCommaSeperatedList: function(list, size = "small") {
         var orderedList = [];
         var split = list.split(",");
         for(var x = 0; x < split.length; x++) {
@@ -794,7 +794,7 @@ var groupUtils = {
         orderedList.sort((a, b) => a.Order - b.Order)
         var finalHtml = "";
         for(var x = 0; x < orderedList.length; x++) {
-            finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id']);
+            finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id'], size);
         }
         return finalHtml;
     }

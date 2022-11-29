@@ -5039,3 +5039,9 @@ font-size: 18px;
     font-weight: 900;
     padding: 3px 8px;
 }
+
+.osekai__group-badge-medium {
+    font-size: 14px;
+    font-weight: 900;
+    padding: 2px 9px;
+}
