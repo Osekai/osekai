@@ -325,6 +325,10 @@ function fontawesome()
     echo '<link rel="stylesheet" href="/global/fonts/osekai-icon-font/style.css?v=' . OSEKAI_VERSION . '">';
 }
 
+function lottie() {
+    echo '<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>';
+}
+
 $hoversystemloaded = false;
 
 function user_hover_system()

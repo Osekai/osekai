@@ -27,6 +27,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     dropdown_system();
     mobileManager();
     echo $head;
+    lottie();
 
     //notification_system();
     //user_hover_system();
@@ -51,7 +52,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
         </div>
             <div class="home__cover-middle">
                 <div class="home__cover-middle-logo">
-                    <img src="img/osekai.svg" class="home__logo">
+                    <!-- <img src="img/osekai.svg" class="home__logo"> -->
+                    <lottie-player id="player" src="img/osekai-logo.json"  background="transparent"  speed="1"  style="height: 300px; margin: -90px 0px;"></lottie-player>
                 </div>
                 <p><?php echo GetStringRaw("home", "cover.subtitle"); ?></p>
             </div>
@@ -500,6 +502,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => { 
         document.getElementById("home").classList.remove('home__loader-wait')
+        setTimeout(() => { 
+        document.getElementById("player").play();
+        }, 400);
         }, 1000);
     });
 </script>

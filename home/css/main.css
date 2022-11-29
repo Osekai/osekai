@@ -36,7 +36,7 @@
 }
 
 .home__cover-middle p, .home__cover-bottom, .home__cover-arrow {
-    transition: all 2s cubic-bezier(0,.33,0,1.01);
+    transition: all 2s cubic-bezier(0,.33,0,1.01) !important;
 }
 .home__loader-wait .home__cover-middle p {
     transform: scale(0.5) translateY(50px);
@@ -47,8 +47,14 @@
     filter: blur(10px) brightness(0);
 }
 .home__loader-wait .home__cover-arrow {
-    transform: translateY(10px);
+    transform: translateY(20px) scale(0.2);
     opacity: 0;
+}
+.home__loader-wait .home__cover-background {
+    opacity: 0;
+}
+.home__cover-background {
+    transition: all 1s ease;
 }
 
 
