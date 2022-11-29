@@ -5033,16 +5033,20 @@ font-size: 18px;
     color: white;
     border-radius: 90px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgb(var(--colour));
+    border: 1px solid rgb(var(--colour));
+    box-shadow: 0px 4px 10px rgba(var(--colour), 0.4);
 }
 
 .osekai__group-badge-small {
     font-size: 12px;
     font-weight: 900;
     padding: 3px 8px;
+    padding-top: 4px;
 }
 
 .osekai__group-badge-medium {
     font-size: 14px;
     font-weight: 900;
-    padding: 2px 9px;
+    padding: 3px 9px;
+    padding-top: 4px;
 }

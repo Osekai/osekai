@@ -57,7 +57,7 @@ if (isset($app)) {
     if (MODE != "production") {
         // production site uses htaccess file to avoid issue
         // dev and local doesn't work
-        if (isset($_GET['page']) && substr($_GET['page'], -1) !== '/') {
+        if (!isset($_GET['page']) || substr($_GET['page'], -1) !== '/') {
             $site_adress = ((((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
             $whole_url = $site_adress . $_SERVER['REQUEST_URI'];
 
@@ -700,7 +700,6 @@ function isRestricted()
     return $restrictedState;
 }
 //echo "<style>body{ background: -webkit-linear-gradient(rgba(var(--accentdark), 0.2), rgba(var(--accentdark), 0.2)), black; )</style>";
-
 if (isset($app_extra)) {
     if ($app_extra == "other") {
         include_once($_SERVER['DOCUMENT_ROOT'] . "//misc/php/main.php");
