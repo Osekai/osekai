@@ -50,6 +50,8 @@ if(MODE == "dev") {
     $oSession['role']['rights'] = 2;
 }
 
+$userGroups = null;
+
 if (isset($app)) {
     
     if (MODE != "production") {
@@ -77,7 +79,7 @@ if (isset($app)) {
     }
     $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
     $medals = Database::execSelect("CALL FUNC_GetMedals(?, ?)", "ss", ['', '']);
-    $groups = Database::execSimpleSelect("SELECT * FROM Groups");
+    $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
 ?>
     <script type="text/javascript">
         const nAppId = "<?php echo $apps[$app]['id']; ?>";
@@ -113,7 +115,7 @@ if (isset($app)) {
                                     echo "0";
                                 } ?>;
         const roles = <?php echo json_encode($roles); ?>;
-        const userGroups = <?php echo json_encode($groups); ?>;
+        const userGroups = <?php echo json_encode($userGroups); ?>;
         const medals = <?php echo json_encode($medals); ?>;
         const restrictedState = <?php if (isRestricted()) echo "1";
                                 else echo "0"; ?>;
@@ -703,4 +705,20 @@ if (isset($app_extra)) {
     if ($app_extra == "other") {
         include_once($_SERVER['DOCUMENT_ROOT'] . "//misc/php/main.php");
     }
+}
+
+function getGroupFromId($id) {
+    global $userGroups;
+    if($userGroups == null) {
+        $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
+    }
+    foreach($userGroups as $group) {
+        if($group['Id'] == $id) {
+            return $group;
+        }
+    }
+}
+
+function badgeHtmlFromGroup($group, $size) {
+    return "<div class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</div>";
 }

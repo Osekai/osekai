@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'Osekai-Icon-Font';
   src:
-    url('fonts/Osekai-Icon-Font.ttf?7135ou') format('truetype'),
-    url('fonts/Osekai-Icon-Font.woff?7135ou') format('woff'),
-    url('fonts/Osekai-Icon-Font.svg?7135ou#Osekai-Icon-Font') format('svg');
+    url('fonts/Osekai-Icon-Font.ttf?xxiqfi') format('truetype'),
+    url('fonts/Osekai-Icon-Font.woff?xxiqfi') format('woff'),
+    url('fonts/Osekai-Icon-Font.svg?xxiqfi#Osekai-Icon-Font') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.oif-osu-logo:before {
+  content: "\e92b";
+}
 .oif-app-badges-icon:before {
   content: "\e900";
 }

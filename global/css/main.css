@@ -5030,6 +5030,7 @@ font-size: 18px;
 }
 
 .osekai__group-badge {
+    color: white;
     border-radius: 90px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgb(var(--colour));
 }
