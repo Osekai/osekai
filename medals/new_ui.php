@@ -149,7 +149,7 @@ if (isset($_GET['medal'])) {
                         </div>
                         <div class="osekai__panel-inner medals__info-sol">
                             <div class="medals__solution">
-                                <p id="strMedalHeader" class="medals__sol-header"><img id="gamemodeImg" class="medals__sol-gamemode" src="<?php echo $rooturl; ?>/global/img/gamemodes/standard.svg">Solution</p>
+                                <p id="strMedalHeader" class="medals__sol-header"><img id="gamemodeImg" class="medals__sol-gamemode" src="<?= ROOT_URL ?>/global/img/gamemodes/standard.svg">Solution</p>
                                 <p id="strMedalSolution" class="medals__sol-solution">Give us a moment...</p>
                             </div>
                         </div>

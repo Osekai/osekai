@@ -47,7 +47,7 @@ if (count($restrictedCheck) > 0 && $restrictedCheck[0]['Active'] == 1) {
 
 
 
-$actual_link = $rooturl . $_SERVER['REQUEST_URI'];
+$actual_link = ROOT_URL . $_SERVER['REQUEST_URI'];
 
 if (MODE == "dev") {
     $oSession['role']['rights'] = 2;
@@ -109,7 +109,6 @@ if (isset($app)) {
                         } else {
                             echo "''";
                         } ?>;
-        const strRootUrl = <?php echo "'" . $rooturl . "'"; ?>;
         const medalAmount = <?php echo count($medals); ?>;
         const experimental = <?php
                                 if (isExperimental()) {
@@ -171,7 +170,7 @@ if (isset($app)) {
     $vapp = $apps[$app]['colour_logo'];
 }
 
-$favi = $rooturl . "/global/img/branding/vector/" . $vapp . ".svg";
+$favi = ROOT_URL . "/global/img/branding/vector/" . $vapp . ".svg";
 $head = '<link rel="alternate icon" type="image/svg" href="' . $favi . '" />';
 
 function css()
@@ -180,7 +179,6 @@ function css()
 
     global $app;
     global $apps;
-    global $rooturl;
 
 
     // imports custom css, if it exists.
@@ -192,14 +190,14 @@ function css()
     // https://web.dev/render-blocking-resources/?utm_source=lighthouse&utm_medium=lr
     //echo "</style>";
     $path = $_SERVER['DOCUMENT_ROOT'] . "/" . $app . "/css/";
-    $path_public = $rooturl . "/" . $app . "/";
+    $path_public = ROOT_URL . "/" . $app . "/";
 
     //if (isExperimental()) {
     //    echo '<link rel="stylesheet" href="/global/css/experimental.css?v=' . OSEKAI_VERSION . '">';
-    //    $curUrl = $rooturl . $_SERVER['REQUEST_URI'];
+    //    $curUrl = ROOT_URL . $_SERVER['REQUEST_URI'];
     //
     //    $path = $_SERVER['DOCUMENT_ROOT'] . "/" . $app . "/css/";
-    //    $path_public = $rooturl . "/" . $app . "/";
+    //    $path_public = ROOT_URL . "/" . $app . "/";
     //    if (file_exists($path . "experimental.css")) {
     //        echo '<link rel="stylesheet" href="'.$path_public.'css/experimental.css?v=' . OSEKAI_VERSION . '">';
     //    } else {
@@ -228,7 +226,6 @@ function css()
 
 function comments_system()
 {
-    global $rooturl;
     tippy();
 
     // twemoji for emojis
@@ -263,7 +260,6 @@ function mobileManager()
 {
     // imports css
 
-    global $rooturl;
     global $mmLoaded;
 
     // imports main css
@@ -294,7 +290,6 @@ function navbar()
     global $apps;
     global $coltype;
     global $server_root;
-    global $rooturl;
     global $actual_link;
     global $loginurl;
     global $christmas;
@@ -308,7 +303,6 @@ function dropdown_system()
 {
     // loads dropdown system
 
-    global $rooturl;
     echo '<script type="text/javascript" src="/global/js/dropdown_system.js"></script>';
 }
 
@@ -321,7 +315,6 @@ function init3col()
     global $coltype;
     $coltype = "3"; // tells the arrow thing on the left to exist
 
-    global $rooturl;
     echo '<script type="text/javascript" src="/global/js/3col.js"></script>';
 }
 
@@ -343,7 +336,6 @@ $hoversystemloaded = false;
 function user_hover_system()
 {
     global $hoversystemloaded;
-    global $rooturl;
 
     // loads hover system
 
@@ -387,7 +379,6 @@ function user_hover_system()
 
     // should be an include lmao
 
-    global $rooturl;
     echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js"></script>';
     $hoversystemloaded = true;
     // nothing ever checks this lmao
@@ -401,7 +392,6 @@ function report_system()
 
     global $reportsystemloaded;
 
-    global $rooturl;
     if ($reportsystemloaded == false) {
         echo '<script type="module" type="text/javascript" src="/global/js/report_system.js"></script>';
         $reportsystemloaded = true;
@@ -420,13 +410,11 @@ function notification_system()
 
 function osu_api()
 {
-    global $rooturl;
     echo '<script type="module" type="text/javascript" src="/global/js/osu_api.js"></script>';
 }
 
 function xhr_requests()
 {
-    global $rooturl;
     echo '<script type="module" type="text/javascript" src="/global/js/xhr.js"></script>';
 }
 
@@ -450,7 +438,6 @@ function medal_hover_system()
         </div>
     </a>';
 
-    global $rooturl;
     echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js"></script>';
     $hoversystemloaded = true;
 }
@@ -467,7 +454,6 @@ function tooltip_system()
     </div>
     ';
 
-    global $rooturl;
     echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js"></script>';
     $hoversystemloaded = true;
 }
@@ -480,9 +466,8 @@ function loggedin()
 
 function redirect($url = null)
 {
-    global $rooturl;
     if ($url == null) {
-        $url = $rooturl;
+        $url = ROOT_URL;
     }
     // redirects by placing js on the page
     // usage: redirect("url");
@@ -633,7 +618,6 @@ function print_home_panel()
 {
     global $app;
     global $apps;
-    global $rooturl;
 
     // print errors
     ini_set('display_errors', 1);

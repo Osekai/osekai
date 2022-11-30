@@ -255,7 +255,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     let strImgMode = strCurrentMedalMode.replace("osu", "standard");
     if (strImgMode != "NULL") {
         document.getElementById("gamemodeImg").classList.remove("hidden");
-        oImg.src = strRootUrl + '/global/img/gamemodes/' + strImgMode + '.svg';
+        oImg.src = '/global/img/gamemodes/' + strImgMode + '.svg';
         oImg.classList.add("medals__sol-gamemode");
         oImg.id = "gamemodeImg";
         oImg.alt = strImgMode;

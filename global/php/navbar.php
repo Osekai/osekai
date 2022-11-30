@@ -101,7 +101,7 @@ $showable_apps = [];
 
 foreach ($apps as $a) {
 
-    $cover = $rooturl . "/global/img/" . $a['cover'] . ".jpg";
+    $cover = ROOT_URL . "/global/img/" . $a['cover'] . ".jpg";
 
     $show = true;
     if ($a['experimental'] == true) {
@@ -118,7 +118,7 @@ foreach ($apps as $a) {
     if ($a['simplename'] == $app) {
         $currentApp = true;
     }
-    $url = $rooturl . "/" . $a['simplename'];
+    $url = ROOT_URL . "/" . $a['simplename'];
 
 
     $app_x = [
@@ -253,7 +253,7 @@ foreach ($apps as $a) {
 
     <div class="osekai__apps-dropdown-bottomleft">
         <!-- support -->
-        <a class="osekai__apps-dropdown-bottomleft-extra" href="<?= $rooturl; ?>/donate">
+        <a class="osekai__apps-dropdown-bottomleft-extra" href="<?= ROOT_URL; ?>/donate">
             <p><?= GetStringRaw("navbar", "apps.support"); ?></p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fas fa-heart"></i>
@@ -289,8 +289,8 @@ foreach ($apps as $a) {
         <div class="links">
             <a href="https://github.com/Osekai/osekai"><?= GetStringRaw("navbar", "apps.github"); ?></a>
             <a href="https://github.com/Osekai/api-docs/wiki"><?= GetStringRaw("navbar", "apps.apiDocumentation"); ?></a>
-            <a href="<?= $rooturl; ?>/legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
-            <a href="<?= $rooturl; ?>/legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
+            <a href="<?= ROOT_URL; ?>/legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
+            <a href="<?= ROOT_URL; ?>/legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
         </div>
         <div class="osekai__apps-dropdown-bottomright-copyright">
             © Osekai 2019-<?= date("Y"); ?>
@@ -678,7 +678,7 @@ if ($christmas == true) { ?>
 
 <?php } ?>
 
-<script type="text/javascript" src="<?= $rooturl; ?>/global/js/variables.js?v=<?= OSEKAI_VERSION; ?>"></script>
-<script type="text/javascript" src="<?= $rooturl; ?>/global/js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
+<script type="text/javascript" src="<?= ROOT_URL; ?>/global/js/variables.js?v=<?= OSEKAI_VERSION; ?>"></script>
+<script type="text/javascript" src="<?= ROOT_URL; ?>/global/js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
 
-<script src="<?= $rooturl; ?>/global/js/navbar.js"></script>
+<script src="<?= ROOT_URL; ?>/global/js/navbar.js"></script>

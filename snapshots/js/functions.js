@@ -12,7 +12,7 @@ function OnInput() {
     this.style.height = (this.scrollHeight) + "px";
 }
 
-const API_URL = "https://osekai.net/snapshots/api/api.php";
+const API_URL = "/snapshots/api/api.php";
 
 let params = new URLSearchParams(window.location.search);
 
@@ -280,7 +280,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     form.append('verID', thisver['version_info']['id']);
     form.append('type', "view");
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://osekai.net/snapshots/api/update_counter', true);
+    xhr.open('POST', '/snapshots/api/update_counter', true);
     xhr.onload = function () {
         console.log(this.responseText);
     };
@@ -298,7 +298,7 @@ function deleteDownloadMirror(from, name) {
     form.append('id', id);
     form.append('downloadName', name);
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://osekai.net/snapshots/api/admin_deletemirror', true);
+    xhr.open('POST', '/snapshots/api/admin_deletemirror', true);
     xhr.onload = function () {
         console.log(this.responseText);
     };
@@ -314,7 +314,7 @@ function addDownloadMirror(name, link) {
     form.append('downloadName', name);
     form.append('downloadLink', link);
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://osekai.net/snapshots/api/admin_addmirror', true);
+    xhr.open('POST', '/snapshots/api/admin_addmirror', true);
     xhr.onload = function () {
         console.log(this.responseText);
     };
@@ -340,7 +340,7 @@ function adminDeleteScreenshot(id, index, obje) {
     form.append('id', id);
     form.append('screenshotIndex', index);
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://osekai.net/snapshots/api/admin_deletescreenshot', true);
+    xhr.open('POST', '/snapshots/api/admin_deletescreenshot', true);
     xhr.onload = function () {
         console.log(this.responseText);
     };
@@ -364,7 +364,7 @@ function downloadVer(id, downloadlink) {
     form.append('verID', id);
     form.append('type', "download");
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://osekai.net/snapshots/api/update_counter', true);
+    xhr.open('POST', '/snapshots/api/update_counter', true);
     xhr.onload = function () {
         console.log(this.responseText);
     };
@@ -518,7 +518,7 @@ function submitSubmission() {
     data.append('submission_userID', nUserID);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://osekai.net/snapshots/api/user_submit', true);
+    xhr.open('POST', '/snapshots/api/user_submit', true);
     xhr.onload = function () {
         // do something to response
         if (this.responseText == "SUCCESS") {
@@ -615,7 +615,7 @@ var submissions;
 var submissionIndexChangingId;
 
 function refreshSubmissions() {
-    var xhr = createXHR("https://osekai.net/snapshots/api/get_submissions");
+    var xhr = createXHR("/snapshots/api/get_submissions");
     xhr.send();
     xhr.onreadystatechange = function () {
         var sublist = document.getElementById("submission_list");
@@ -664,7 +664,7 @@ function switchWIP(index) {
     {
         dot.classList.remove("green");
         // need to contact the apis
-        var xhr = createXHR("https://osekai.net/snapshots/api/set_processing");
+        var xhr = createXHR("/snapshots/api/set_processing");
         xhr.send("id=" + submissions[index]['id'] + "&processing=0");
         xhr.onreadystatechange = function () {
             var oResponse = getResponse(xhr);
@@ -676,7 +676,7 @@ function switchWIP(index) {
     {
         dot.classList.add("green");
         // need to contact the apis
-        var xhr = createXHR("https://osekai.net/snapshots/api/set_processing");
+        var xhr = createXHR("/snapshots/api/set_processing");
         xhr.send("id=" + submissions[index]['id'] + "&processing=1");
         xhr.onreadystatechange = function () {
             var oResponse = getResponse(xhr);
@@ -703,7 +703,7 @@ function changeSubmissionStatus(id, userid) {
     data.append('notification', document.getElementById("submission_status_notification").value);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://osekai.net/snapshots/api/change_submission_status', true);
+    xhr.open('POST', '/snapshots/api/change_submission_status', true);
     xhr.onload = function () {
         // do something to response
         if (this.responseText == "SUCCESS") {
@@ -728,7 +728,7 @@ function admin_deleteVer() {
             data.append('id', id);
             data.append('version', name);
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'https://osekai.net/snapshots/api/admin_delete', true);
+            xhr.open('POST', '/snapshots/api/admin_delete', true);
             xhr.onload = function () {
                 // do something to response
                 if (this.responseText == "SUCCESS") {
@@ -783,7 +783,7 @@ function upload_deletescreenshot(id) {
 
 function loadSplash() {
     if (!document.getElementById("home").classList.contains("hidden")) {
-        var xhr = createXHR("https://osekai.net/snapshots/api/splash");
+        var xhr = createXHR("/snapshots/api/splash");
         xhr.send();
         xhr.onreadystatechange = function () {
             document.getElementById("splash").innerHTML = this.responseText;

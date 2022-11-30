@@ -18,7 +18,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <title name="title">Osekai Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:url" content="https://www.osekai.net/legal/contact" />
+    <meta property="og:url" content="<?= ROOT_URL ?>/legal/contact" />
 
     <?php
     font();

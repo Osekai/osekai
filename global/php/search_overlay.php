@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo $rooturl ?>/global/css/search.css" type="text/css" />
+<link rel="stylesheet" href="<?= ROOT_URL ?>/global/css/search.css" type="text/css" />
 
 <div class="search__overlay search__closed" id="searchOverlay">
     <div class="search__closeonclick" onclick="openSearch(document.getElementById('navbar_searchbut'))"></div>
@@ -18,7 +18,7 @@
             <div class="search__results-row1">
                 <div class="search__result-app">
                     <div class="search__result-title">
-                        <img src="<?php echo $rooturl ?>/global/img/branding/vector/white/profiles.svg" alt="app icon" />
+                        <img src="<?= ROOT_URL ?>/global/img/branding/vector/white/profiles.svg" alt="app icon" />
                         <p>Osekai <strong>Profiles</strong></p>
                     </div>
                     <div class="search__result-list" id="profilesResult">
@@ -29,7 +29,7 @@
             <div class="search__results-row2">
                 <div class="search__result-app">
                     <div class="search__result-title">
-                        <img src="<?php echo $rooturl ?>/global/img/branding/vector/white/medals.svg" alt="app icon" />
+                        <img src="<?= ROOT_URL ?>/global/img/branding/vector/white/medals.svg" alt="app icon" />
                         <p>Osekai <strong>Medals</strong></p>
                     </div>
                     <div class="search__result-list" id="medalsResult">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="search__result-app">
                     <div class="search__result-title">
-                        <img src="<?php echo $rooturl ?>/global/img/branding/vector/white/snapshots.svg" alt="app icon" />
+                        <img src="<?= ROOT_URL ?>/global/img/branding/vector/white/snapshots.svg" alt="app icon" />
                         <p>Osekai <strong>Snapshots</strong></p>
                     </div>
                     <div class="search__result-list" id="snapshotsResult">
@@ -50,4 +50,4 @@
     </div>
 </div>
 
-<script type="text/javascript" src="<?php echo $rooturl ?>/global/js/search.js"></script>
+<script type="text/javascript" src="<?= ROOT_URL ?>/global/js/search.js"></script>

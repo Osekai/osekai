@@ -13,15 +13,15 @@ if(isset($_GET['version'])){
 
         if($decoded['version_info']['version'] == $_GET['version']){
             echo $t['id'];
-            redirect($rooturl . "/snapshots?fromLegacy=true&version=" . $t['id']);
+            redirect(ROOT_URL . "/snapshots?fromLegacy=true&version=" . $t['id']);
         }else{
             $nover = true;
         }
     }
 
     if($nover == true){
-        redirect($rooturl . "/snapshots?fromLegacy=true");
+        redirect(ROOT_URL . "/snapshots?fromLegacy=true");
     }
 }else{
-    redirect($rooturl . "/snapshots");
+    redirect(ROOT_URL . "/snapshots");
 }

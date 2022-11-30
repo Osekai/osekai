@@ -20,7 +20,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/donate/php/functions.php");
     <meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:url" content="https://www.osekai.net/medals" />
+    <meta property="og:url" content="<?= ROOT_URL ?>/medals" />
     <style>
     body {
         --accentdark: 85, 53, 82 !important;
