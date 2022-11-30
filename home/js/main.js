@@ -66,7 +66,7 @@ function LoadFAQ() {
             var data = JSON.parse(xhr.responseText);
             PopulateFAQ(data);
         }
-    }
+    };
     xhr.send();
 }
 

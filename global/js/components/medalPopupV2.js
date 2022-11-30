@@ -1,16 +1,16 @@
 const medalPopupV2 = {
     showMedalFromName: function (name) {
-        for (var x = 0; x < medals.length; x++) {
+        for (let x = 0; x < medals.length; x++) {
             if (medals[x]["Name"] == name) {
                 return medalPopupV2.showMedalFromId(medals[x]["MedalID"]);
             }
         }
     },
     showMedalFromId: function (id) {
-        document.getElementById("mhv2-overlay").classList.remove("hidden")
-        for (var x = 0; x < medals.length; x++) {
+        document.getElementById("mhv2-overlay").classList.remove("hidden");
+        for (let x = 0; x < medals.length; x++) {
             if (medals[x]["MedalID"] == id) {
-                var medal = medals[x];
+                const medal = medals[x];
                 console.log(medal);
                 document.getElementById("mhv2-name").innerHTML = medal["Name"];
                 document.getElementById("mhv2-text").innerHTML = medal["Description"];
@@ -20,7 +20,7 @@ const medalPopupV2 = {
                 document.getElementById("mhv2-icon-blur").src = "/medals/img/unknown_medal.png";
                 document.getElementById("mhv2-icon").src = medal["Link"].replace(".png", "@2x.png");
                 document.getElementById("mhv2-icon-blur").src = medal["Link"].replace(".png", "@2x.png");
-                document.getElementById("mhv2-overlay").classList.remove("osekai__medal-popup-closed")
+                document.getElementById("mhv2-overlay").classList.remove("osekai__medal-popup-closed");
                 if (medal['Mods'] != null && medal['Mods'] != "") {
                     document.getElementById("mhv2-mods").innerHTML = "";
                     document.getElementById("mhv2-mods").classList.remove("hidden");
@@ -37,7 +37,7 @@ const medalPopupV2 = {
         }
     },
     hideOverlay: function () {
-        document.getElementById("mhv2-overlay").classList.add("osekai__medal-popup-closed")
+        document.getElementById("mhv2-overlay").classList.add("osekai__medal-popup-closed");
     }
-}
+};
 
