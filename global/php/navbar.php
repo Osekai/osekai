@@ -69,8 +69,8 @@ colour_picker();
                 </div>
 
                 <img alt="Your profile picture" src="<?= getpfp(); ?>" onclick='dropdown("osekai__nav-dropdown-hidden", "dropdown__user", 1)' class="osekai__navbar-pfp <?php if (isExperimental()) {
-                                                                                                                                                                                    echo 'osekai__navbar-pfp-experimental';
-                                                                                                                                                                                } ?>">
+                                                                                                                                                                            echo 'osekai__navbar-pfp-experimental';
+                                                                                                                                                                        } ?>">
             </div>
         </div>
     </div>
@@ -215,8 +215,8 @@ foreach ($apps as $a) {
 
                 ?>
                     <a onmouseover="setCardDetails('<?= $a['app']['simplename']; ?>')" href="/<?= $a['app']['simplename']; ?>" class="osekai__apps-dropdown-applist-app<?php if ($currentApp == true) {
-                                                                                                                                                                                                            echo " osekai__apps-dropdown-applist-app-active";
-                                                                                                                                                                                                        } ?>">
+                                                                                                                                                                            echo " osekai__apps-dropdown-applist-app-active";
+                                                                                                                                                                        } ?>">
 
                         <div class="osekai__apps-dropdown-applist-app-icon">
                             <img alt="Logo for <?= $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
@@ -461,7 +461,13 @@ foreach ($apps as $a) {
                 </div>
             </div>
         <?php } ?>
-
+        <?php if ($christmas == 1) { ?>
+            <div class="osekai__flex_row osekai__fr_centered osekai_100">
+                <p class="osekai__checkbox-label"><i class="fas fa-snowflake" style="margin-right: 4px;"> </i> Snowflakes</p>
+                <input class="osekai__checkbox" id="settings_global__snowflakes" type="checkbox" value="value1" onchange="saveSettings();">
+                <label for="settings_global__snowflakes"></label>
+            </div>
+        <?php } ?>
         <h1 class="osekai__dropdown-button-head"><?= GetStringRaw("navbar", "settings.profiles.title"); ?></h1>
         <div class="osekai__flex_row osekai__fr_centered osekai_100">
             <p class="osekai__checkbox-label"><?= GetStringRaw("navbar", "settings.profiles.showMedalsFromAllModes"); ?></p>
@@ -545,8 +551,6 @@ if ($coltype == "3") {
 
 <div id="css_cont"></div>
 
-<script type="text/javascript" src="<?= $rooturl; ?>/global/js/variables.js?v=<?= OSEKAI_VERSION; ?>"></script>
-<script type="text/javascript" src="<?= $rooturl; ?>/global/js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
 
 <script>
     if (<?= (int)isExperimental(); ?> == 1) toggleExperimental();
@@ -561,8 +565,6 @@ include("search_overlay.php");
 ?>
 
 
-<script src="<?= $rooturl; ?>/global/js/navbar.js"></script>
-
 <?php
 if ($christmas == true) { ?>
 
@@ -572,9 +574,8 @@ if ($christmas == true) { ?>
             color: #fff;
             font-size: 1em;
             font-family: Arial, sans-serif;
-            text-shadow: 0 0 5px #000;
-            filter: drop-shadow(0 0 5px #fff4);
-            opacity: 0.5;
+            text-shadow: 0 0 5px #0005, 0px 0px 25px #fffa;
+            opacity: 1;
             pointer-events: none;
         }
 
@@ -620,14 +621,14 @@ if ($christmas == true) { ?>
             }
 
             50% {
-                transform: translateX(80px)
+                transform: translateX(80px) translatey(40px)
             }
         }
 
         .snowflake {
             position: fixed;
             top: -10%;
-            z-index: 9999;
+            z-index: 0;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -644,116 +645,40 @@ if ($christmas == true) { ?>
             animation-iteration-count: infinite, infinite;
             animation-play-state: running, running
         }
-
-        .snowflake:nth-of-type(0) {
-            left: 1%;
-            -webkit-animation-delay: 0s, 0s;
-            animation-delay: 0s, 0s
-        }
-
-        .snowflake:nth-of-type(1) {
-            left: 10%;
-            -webkit-animation-delay: 1s, 1s;
-            animation-delay: 1s, 1s
-        }
-
-        .snowflake:nth-of-type(2) {
-            left: 20%;
-            -webkit-animation-delay: 6s, .5s;
-            animation-delay: 6s, .5s
-        }
-
-        .snowflake:nth-of-type(3) {
-            left: 30%;
-            -webkit-animation-delay: 4s, 2s;
-            animation-delay: 4s, 2s
-        }
-
-        .snowflake:nth-of-type(4) {
-            left: 40%;
-            -webkit-animation-delay: 2s, 2s;
-            animation-delay: 2s, 2s
-        }
-
-        .snowflake:nth-of-type(5) {
-            left: 50%;
-            -webkit-animation-delay: 8s, 3s;
-            animation-delay: 8s, 3s
-        }
-
-        .snowflake:nth-of-type(6) {
-            left: 60%;
-            -webkit-animation-delay: 6s, 2s;
-            animation-delay: 6s, 2s
-        }
-
-        .snowflake:nth-of-type(7) {
-            left: 70%;
-            -webkit-animation-delay: 2.5s, 1s;
-            animation-delay: 2.5s, 1s
-        }
-
-        .snowflake:nth-of-type(8) {
-            left: 80%;
-            -webkit-animation-delay: 1s, 0s;
-            animation-delay: 1s, 0s
-        }
-
-        .snowflake:nth-of-type(9) {
-            left: 90%;
-            -webkit-animation-delay: 3s, 1.5s;
-            animation-delay: 3s, 1.5s
-        }
-
-        .snowflake:nth-of-type(10) {
-            left: 25%;
-            -webkit-animation-delay: 2s, 0s;
-            animation-delay: 2s, 0s
-        }
-
-        .snowflake:nth-of-type(11) {
-            left: 65%;
-            -webkit-animation-delay: 4s, 2.5s;
-            animation-delay: 4s, 2.5s
-        }
     </style>
-    <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
-        <div class="snowflake">
-            <i class="fas fa-snowflake"></i>
-        </div>
+    <div class="snowflakes" aria-hidden="true" id="snowflakes">
+        <?php
+        for ($x = 0; $x < 40; $x++) {
+            if (false == true) {
+                // experimental mode which makes the app icon fall
+                // i don't like how it looks but thought i'd leave it in
+                echo '<div class="snowflake">
+                    <i class="oif-app-' . $app . '"></i>
+                </div>';
+            } else {
+                echo '<div class="snowflake">
+                    <i class="fas fa-snowflake"></i>
+                </div>';
+            }
+        }
+        echo "<style>";
+        for ($x = 0; $x < 40; $x++) {
+            $delay1 = (mt_rand() / mt_getrandmax()) * 10;
+            $delay2 = (mt_rand() / mt_getrandmax()) * 10;
+            $position = (mt_rand() / mt_getrandmax()) * 100;
+            echo ".snowflake:nth-of-type({$x}) {
+            left: {$position}%;
+            -webkit-animation-delay: {$delay1}s, {$delay2}s;
+            animation-delay: {$delay1}s, {$delay2}s
+        }";
+        }
+        echo "</style>";
+        ?>
     </div>
 
 <?php } ?>
+
+<script type="text/javascript" src="<?= $rooturl; ?>/global/js/variables.js?v=<?= OSEKAI_VERSION; ?>"></script>
+<script type="text/javascript" src="<?= $rooturl; ?>/global/js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
+
+<script src="<?= $rooturl; ?>/global/js/navbar.js"></script>

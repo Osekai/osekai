@@ -9,7 +9,7 @@ if (isset($app)) {
 
 $time_start = microtime(true);
 $request_time = $_SERVER['REQUEST_TIME_FLOAT'];
-$christmas = false;
+$christmas = true;
 
 $useJS = true;
 
@@ -84,6 +84,7 @@ if (isset($app)) {
     $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
 ?>
     <script type="text/javascript">
+        const christmas = "<?php echo $christmas; ?>";
         const nAppId = "<?php echo $apps[$app]['id']; ?>";
         const version = "<?php echo OSEKAI_VERSION; ?>";
         //const medalAmount = 261; // this should be pulled from the database in the future
