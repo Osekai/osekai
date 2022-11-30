@@ -503,7 +503,7 @@ function closeWelcomePanel() {
 }
 
 function AddSettingCheckbox(id, internalName, defaultValue, optionExperimental = false, callback = null) {
-    if(optionExperimental == true && experimental != 1) return;
+    if (optionExperimental == true && experimental != 1) return;
     if (window.localStorage.getItem(internalName) == null) {
         // sets to default value
         document.getElementById(id).checked = defaultValue;
@@ -514,9 +514,9 @@ function AddSettingCheckbox(id, internalName, defaultValue, optionExperimental =
 
     document.getElementById(id).addEventListener('change', (event) => {
         if (event.currentTarget.checked) {
-            if(callback != null) callback(true);
+            if (callback != null) callback(true);
         } else {
-            if(callback != null) callback(false);
+            if (callback != null) callback(false);
         }
         window.localStorage.setItem(internalName, event.currentTarget.checked);
     })
@@ -525,9 +525,9 @@ function AddSettingCheckbox(id, internalName, defaultValue, optionExperimental =
 AddSettingCheckbox("settings_profiles__showmedalsfromallmodes", "profiles__showmedalsfromallmodes", true)
 AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals__hidemedalswhenunobtainedfilteron", false, false, function (enabled) {
     var filtered = document.getElementsByClassName("medals__medal-filtered");
-    for(var x = 0; x < filtered.length; x++) {
+    for (var x = 0; x < filtered.length; x++) {
         var parent = filtered[x].parentElement;
-        if(enabled) {
+        if (enabled) {
             parent.classList.add("hidden");
         } else {
             parent.classList.remove("hidden");
@@ -535,6 +535,22 @@ AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals_
     }
 });
 
+if (christmas) {
+    function snowflakes(enabled) {
+        console.log("SNOWFLAKES: " + enabled);
+        if (enabled == true || enabled == "true") {
+            document.getElementById("snowflakes").classList.remove("hidden");
+        } else {
+            document.getElementById("snowflakes").classList.add("hidden");
+        }
+    }
+
+    AddSettingCheckbox("settings_global__snowflakes", "settings_global__snowflakes", true, false, function (enabled) {
+        snowflakes(enabled);
+    })
+
+    snowflakes(window.localStorage.getItem('settings_global__snowflakes'))
+}
 //document.getElementById("settings_profiles__showmedalsfromallmodes").checked = true;
 
 function defaultSettings() {
@@ -749,7 +765,7 @@ function getAlerts() {
                 let htmlObject = document.createElement('div');
                 htmlObject.innerHTML = template;
                 htmlObject.id = "alert_" + alert['Id'];
-                if(alert['Link'] != null && alert['Link'] != "") {
+                if (alert['Link'] != null && alert['Link'] != "") {
                     htmlObject.querySelector(".osekai__navbar-alert").classList.add("osekai__navbar-alert-clickable")
                     htmlObject.querySelector("a").href = alert['Link'];
                 }
@@ -774,27 +790,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 var groupUtils = {
-    getGroupFromId: function(id) {
-        for(var x = 0; x < userGroups.length; x++) {
-            if(userGroups[x]['Id'] == id) {
+    getGroupFromId: function (id) {
+        for (var x = 0; x < userGroups.length; x++) {
+            if (userGroups[x]['Id'] == id) {
                 return userGroups[x];
             }
         }
     },
-    badgeHtmlFromGroupId: function(id, size = "small") {
+    badgeHtmlFromGroupId: function (id, size = "small") {
         var group = this.getGroupFromId(id);
         return `<div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
     },
-    badgeHtmlFromCommaSeperatedList: function(list, size = "small") {
-        if(list == null) return "";
+    badgeHtmlFromCommaSeperatedList: function (list, size = "small") {
+        if (list == null) return "";
         var orderedList = [];
         var split = list.split(",");
-        for(var x = 0; x < split.length; x++) {
+        for (var x = 0; x < split.length; x++) {
             orderedList.push(this.getGroupFromId(split[x]));
         }
         orderedList.sort((a, b) => a.Order - b.Order)
         var finalHtml = "";
-        for(var x = 0; x < orderedList.length; x++) {
+        for (var x = 0; x < orderedList.length; x++) {
             finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id'], size);
         }
         return finalHtml;
