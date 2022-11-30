@@ -103,7 +103,7 @@ if (isset($app)) {
                         } else {
                             echo "-1";
                         } ?>;
-        const strRole = <?php if (isset($_SESSION['role']) && $_SESSION['role'] != "") {
+        const strRole = <?php if (isset($_SESSION['role']['name']) && $_SESSION['role']['name'] != "") {
                             echo "'" . $_SESSION['role']['name'] . "'";
                         } else {
                             echo "''";
@@ -145,7 +145,7 @@ $loginurl = "https://osu.ppy.sh/oauth/authorize?response_type=code&client_id=" .
 
 
 if (isset($app)) {
-    if ($_SESSION['options']['experimental'] == 0 && $apps[$app]['experimental'] == 1 && MODE == "production") {
+    if (!isExperimental() && $apps[$app]['experimental'] == 1 && MODE == "production") {
         include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
         exit;
     }

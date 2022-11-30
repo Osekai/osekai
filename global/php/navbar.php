@@ -105,7 +105,7 @@ foreach ($apps as $a) {
 
     $show = true;
     if ($a['experimental'] == true) {
-        if ($_SESSION['options']['experimental'] == false) {
+        if (!isExperimental()) {
             $show = false;
         } else {
             $show = true;
