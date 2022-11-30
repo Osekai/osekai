@@ -1947,6 +1947,7 @@ a {
 .osekai__checkbox-label {
     font-size: 16px;
     margin-top: 1px;
+    padding-right: 12px;
 }
 
 .osekai__checkbox, .osekai__checkbox-label {
@@ -3695,6 +3696,7 @@ figcaption {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    backdrop-filter: blur(10px);
 }
 
 .osekai__nav-dropdown-v2-lowerpanel .osekai__dropdown {
