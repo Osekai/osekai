@@ -197,7 +197,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                         GetStringRaw("home", "team.role.megamix"),
                         "minusQuantumNeko",
                         [
-                            social("https://twitter.com/Tanza3D", "Twitter"),
+                            social("https://twitter.com/MegaMix_Craft", "Twitter"),
+                            social("https://github.com/minusQuantumNeko/", "Github"),
+                            social("https://twitch.tv/megamix_craft", "Twitch"),
+                            social("https://discord.com/users/494883957117288448", "Discord")
                             social("https://www.youtube.com/MegaMix_Craft", "Youtube"),
                             social("https://mastodon.world/@MegaMix_Craft", "Mastodon"),
                             social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com")
