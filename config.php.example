@@ -28,4 +28,5 @@ define("SCRIPTS_RUST_KEY", "key");
 define("LANG_UPDATE_KEY", "key");
 define("CROWDIN_API_KEY", "key");
 
-$rooturl = "http://localhost:8080/";
+// Must NOT include the / at the end
+define("ROOT_URL", "http://localhost:8080");

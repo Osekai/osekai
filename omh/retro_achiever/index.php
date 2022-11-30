@@ -16,7 +16,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <title name="title">Medals required for Retro Achiever</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:url" content="https://www.osekai.net/legal/privacy" />
+<meta property="og:url" content="<?= ROOT_URL ?>/legal/privacy" />
 
 <head>
     <meta charset="utf-8" />
