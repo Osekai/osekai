@@ -4,3 +4,4 @@
 [submodule "admin"]
 	path = admin
 	url = https://github.com/osekai/osekai-admin
+	branch = main
