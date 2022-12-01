@@ -4572,12 +4572,16 @@ input[type=range]:focus::-ms-fill-upper {
     padding: 13px 16px;
     background: linear-gradient(180deg, rgba(255, 92, 0, 0.2) 0%, rgba(255, 140, 5, 0.108) 100%);
     border: 1px solid #FFB800;
-    box-shadow: 0px 4px 20px rgba(255, 92, 0, 0.25), inset 8px 8px 30px rgba(255, 184, 0, 0.1);
     border-radius: 10px;
     width: 100%;
     display: flex;
     box-sizing: border-box;
     align-items: center;
+}
+@media (min-width: 900px) {
+    .osekai__generic-warning {
+        box-shadow: 0px 4px 20px rgba(255, 92, 0, 0.25), inset 8px 8px 30px rgba(255, 184, 0, 0.1);
+    }
 }
 
 .osekai__generic-warning p {
