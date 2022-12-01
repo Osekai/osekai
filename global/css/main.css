@@ -91,38 +91,42 @@ html {
     --maincol: var(--mania);
 }
 
-.osekai__loadnewpage {
-    transition: all 0.4s ease;
-    opacity: 0;
-    background: #000;
-    filter: blur(20px);
-}
 
-.osekai__loadnewpage_over2s {
-    transition: all 0.4s ease;
-    opacity: 1;
-    background: #000;
-}
+@media (min-width: 900px) {
+    .osekai__loadnewpage {
+        transition: all 0.4s ease;
+        opacity: 0;
+        background: #000;
+        filter: blur(20px);
+    }
 
-.osekai__loadnewpage_over2s * {
-    opacity: 0;
-}
 
-.osekai__loadnewpage_text, .osekai__loadnewpage_text p, body {
-    opacity: 1 !important;
-}
+    .osekai__loadnewpage_over2s {
+        transition: all 0.4s ease;
+        opacity: 1;
+        background: #000;
+    }
 
-.osekai__loadnewpage_text {
-    display: flex;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    position: fixed;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    color: #fffa;
+    .osekai__loadnewpage_over2s * {
+        opacity: 0;
+    }
+
+    .osekai__loadnewpage_text, .osekai__loadnewpage_text p, body {
+        opacity: 1 !important;
+    }
+
+    .osekai__loadnewpage_text {
+        display: flex;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        position: fixed;
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        color: #fffa;
+    }
 }
 
 body {
@@ -135,7 +139,12 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    animation: 1.2s ease 0s 1 waitForBG;
+}
+
+@media (min-width: 900px) {
+    body {
+        animation: 1.2s ease 0s 1 waitForBG;
+    }
 }
 
 * {
@@ -362,7 +371,7 @@ a {
     cursor: pointer;
 }
 
-.osekai__notification-counter{
+.osekai__notification-counter {
     position: absolute;
     top: 0;
     right: -6px;
@@ -580,8 +589,7 @@ a {
 
 .osekai__panel-container {
     padding: 42px;
-    animation: 0.6s ease 0s 1 panel_loader;
-    transition: all 0.6s ease;
+    /* transition: all 0.6s ease; */
     box-sizing: border-box;
     /* padding-top: calc(var(--navheight)); */
     width: 100%;
@@ -589,9 +597,17 @@ a {
     min-height: 100vh;
 }
 
-.osekai__panel-container .osekai__3col_col1 {
-    animation: 0.6s ease 0s 1 osekai_3col_col1_loader;
+@media (min-width: 900px) {
+    .osekai__panel-container {
+
+        animation: 0.6s ease 0s 1 panel_loader;
+    }
+    .osekai__panel-container .osekai__3col_col1 {
+        animation: 0.6s ease 0s 1 osekai_3col_col1_loader;
+    }
 }
+
+
 
 .osekai__panel-container__blur {
     /* transform: scale(0.95); */
@@ -4556,12 +4572,16 @@ input[type=range]:focus::-ms-fill-upper {
     padding: 13px 16px;
     background: linear-gradient(180deg, rgba(255, 92, 0, 0.2) 0%, rgba(255, 140, 5, 0.108) 100%);
     border: 1px solid #FFB800;
-    box-shadow: 0px 4px 20px rgba(255, 92, 0, 0.25), inset 8px 8px 30px rgba(255, 184, 0, 0.1);
     border-radius: 10px;
     width: 100%;
     display: flex;
     box-sizing: border-box;
     align-items: center;
+}
+@media (min-width: 900px) {
+    .osekai__generic-warning {
+        box-shadow: 0px 4px 20px rgba(255, 92, 0, 0.25), inset 8px 8px 30px rgba(255, 184, 0, 0.1);
+    }
 }
 
 .osekai__generic-warning p {
@@ -4927,10 +4947,12 @@ input[type=range]:focus::-ms-fill-upper {
     box-shadow: 0px 0px 40px var(--accentdark);
     transition: all 0.2s ease;
 }
+
 .osekai__navbar-alert-clickable:hover {
-    transform: perspective(10em) rotateX(2deg); 
+    transform: perspective(10em) rotateX(2deg);
     box-shadow: 0px 0px 30px var(--accent);
 }
+
 .osekai__navbar-alert-clickable p {
     text-decoration: underline;
     text-decoration-color: var(--accent);
@@ -4958,13 +4980,14 @@ input[type=range]:focus::-ms-fill-upper {
     --accent: #FFAA04;
     --accentdark: #504737;
 }
+
 .osekai__navbar-alert-glowing-icon {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), var(--accent);
-text-shadow: 0px -4px 33px var(--accent), 0px 0px 15px var(--accent);
-background-clip: text;
-font-size: 24px;
--webkit-background-clip: text;
-margin-right: 10px;
+    text-shadow: 0px -4px 33px var(--accent), 0px 0px 15px var(--accent);
+    background-clip: text;
+    font-size: 24px;
+    -webkit-background-clip: text;
+    margin-right: 10px;
 }
 
 
@@ -5012,19 +5035,19 @@ margin-right: 10px;
 .osekai__apps-dropdown-other-content {
     margin-top: -15px;
     background: linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), #111111;
-border: 1px solid rgba(255, 255, 255, 0.25);
-border-radius: 16px;
-padding: 7px;
-z-index: 999;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    padding: 7px;
+    z-index: 999;
 }
 
 
 .osekai__apps-dropdown-other-content-button {
     padding: 10px calc(21px - 7px);
     background: rgba(217, 217, 223, 0.1);
-border: 1px solid rgba(255, 255, 255, 0.25);
-border-radius: 9px;
-font-size: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9px;
+    font-size: 18px;
 }
 
 #otherapplist .osekai__apps-dropdown-applist-left {

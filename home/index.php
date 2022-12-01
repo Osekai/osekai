@@ -117,9 +117,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </a>
             </div>
-            <a class="home__long-panel home__panel-hoverable" style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/medalhunters-bg.svg');" href="https://discord.gg/8qpNTs6">
+            <a class="home__long-panel home__panel-hoverable" style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/medalhunters-bg.png');" href="https://discord.gg/8qpNTs6">
                 <div class="home__vertical-glowbar"></div>
-                <img class="home__long-img" src="img/medalhunters.svg" style="transform: scale(1.3);">
+                <img class="home__long-img" src="img/medalhunters-logo.png" style="transform: scale(1.3);">
                 <div class="home__long-texts">
                     <h1><?php echo GetStringRaw("home", "discord.title"); ?></h1>
                     <p><?php echo GetStringRaw("home", "discord.text"); ?></p>
