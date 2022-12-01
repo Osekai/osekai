@@ -233,6 +233,9 @@ function css()
         --accent_saturation: ' . $colourHsl[1] . '%;
         --accentdark_value: ' . $colourDarkHsl[2] . '%;
         --accent_value: ' . $colourHsl[2] . '%;
+
+        --accentdark_valueoffset: ' . $apps[$app]['dark_value_multiplier'] . ';
+        --accent_valueoffset: ' . $apps[$app]['value_mulitplier'] . ';
     }
     </style>
     <style id="custom_theme_container"></style>';

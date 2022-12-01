@@ -137,8 +137,8 @@ body {
     overflow-x: hidden;
     /* background: linear-gradient(rgba(var(--genericaccent), 0.46), rgba(var(--genericaccent), 0.1)), linear-gradient(#000, #000); */
     background: linear-gradient(
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 10%),
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 6%)
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(6% * var(--accentdark_valueoffset)))
     );
     background-size: cover;
     background-position: center;
@@ -185,8 +185,8 @@ a {
 .osekai__navbar {
     /* background: linear-gradient(rgba(var(--genericaccent), 0.7), rgba(var(--genericaccent), 0.9)), linear-gradient(#fff3, #fff0); */
     background: linear-gradient(
-    hsla(var(--accentdark_hue), var(--accentdark_saturation), 25%, 0.9),
-    hsla(var(--accentdark_hue), var(--accentdark_saturation), 30%, 0.8)
+    hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)), 0.9),
+    hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.8)
 );
     display: flex;
     flex-direction: column;
@@ -209,8 +209,8 @@ a {
     width: 59px;
     /* background: linear-gradient(#fff1, #fff2), linear-gradient(rgba(var(--genericaccent), 1), rgba(var(--genericaccent), 0.9)); */
     background: linear-gradient(
-    hsl(var(--accentdark_hue), var(--accentdark_saturation), 35%),
-    hsl(var(--accentdark_hue), var(--accentdark_saturation), 30%)
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(35% * var(--accentdark_valueoffset))),
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
 );
     margin-left: 12px;
     border-radius: 0px 0px 4px 4px;
@@ -653,8 +653,8 @@ a {
 .osekai__panel {
     /* background: linear-gradient(rgba(var(--accentdark), 0.1), rgba(var(--accentdark), 0.25)); */
     background: linear-gradient(
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 14%),
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 10%)
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset)))
     );
     border-radius: 8px;
     box-shadow: 0px 0px 0px 1px #fff1;
@@ -674,8 +674,8 @@ a {
 
 .osekai__panel-header, .osekai__panel-header-with-buttons {
     background: linear-gradient(
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%),
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 30%)
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
     );
 }
 
@@ -694,8 +694,8 @@ a {
 
 .osekai__panel-nav {
     background: linear-gradient(
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%),
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 25%)
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)))
     );
     padding: 20px 18px;
     top: var(--navheight);
@@ -4561,8 +4561,8 @@ input[type=range]:focus::-ms-fill-upper {
     align-items: center;
     justify-content: center;
     background: linear-gradient(
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%),
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 15%)
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset)))
     );
     border-radius: 8px 8px 0px 0px;
 }

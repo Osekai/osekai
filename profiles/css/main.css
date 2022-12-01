@@ -205,8 +205,8 @@
     padding: 17px;
     /* background-color: rgba(var(--accentdark), 0.2); */
     background: linear-gradient(
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%),
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 15%)
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset)))
     );
     border-radius: 0px 0px 8px 8px;
     /* border-left: 1px solid white; */
@@ -381,8 +381,8 @@
 .profiles__panel {
     padding: 16px;
     background: linear-gradient(
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%),
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 15%)
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset)))
     );
     border-radius: 8px;
     box-sizing: border-box;
@@ -1005,8 +1005,8 @@ input[type=number] {
 .profiles__medalinfo-section {
     /* background: rgba(var(--accentdark), 0.2); */
     background: linear-gradient(
-    hsl(var(--accentdark_hue), var(--accentdark_saturation), 17%),
-    hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%)
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(17% * var(--accentdark_valueoffset))),
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset)))
 );
     border-radius: 8px;
     min-height: 40px;
@@ -1029,8 +1029,8 @@ input[type=number] {
 .profiles__medalinfo-section-bar {
     padding: 15px 14px;
     background: linear-gradient(
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 26%),
-        hsl(var(--accentdark_hue), var(--accentdark_saturation), 32%)
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(26% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(32% * var(--accentdark_valueoffset)))
     );
     display: flex;
     justify-content: center;

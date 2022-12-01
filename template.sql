@@ -157,7 +157,7 @@ CREATE TABLE `Alerts` (
 
 
 DROP TABLE IF EXISTS `Apps`;
-CREATE TABLE `Apps` (
+CREATE TABLE IF NOT EXISTS `Apps` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'apps in the dropdown are ordered by this. feel free to change them up',
   `order` int(11) NOT NULL,
   `name` text NOT NULL,
@@ -171,21 +171,33 @@ CREATE TABLE `Apps` (
   `visible` int(11) NOT NULL,
   `experimental` int(11) NOT NULL,
   `hascover` int(1) NOT NULL,
+  `dark_value_multiplier` float NOT NULL DEFAULT 1,
+  `value_mulitplier` float NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
-INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`) VALUES
-(-1,	-1,	'Osekai Home',	'??apps.home.slogan??',	'home',	'53, 61, 85',	'53, 61, 85',	'osekai_light',	'osekai_dark',	'cover/none',	1,	0,	0),
-(1,	1,	'Osekai Rankings',	'??apps.rankings.slogan??',	'rankings',	'0, 66, 79',	'0, 194, 224',	'white/rankings',	'coloured/rankings',	'cover/rankings',	1,	0,	1),
-(2,	2,	'Osekai Medals',	'??apps.medals.slogan??',	'medals',	'102, 34, 68',	'255, 102, 170',	'white/medals',	'coloured/medals',	'cover/medals',	1,	0,	1),
-(3,	3,	'Osekai Profiles',	'??apps.profiles.slogan??',	'profiles',	'51, 68, 102',	'102, 143, 255',	'white/profiles',	'coloured/profiles',	'cover/profiles',	1,	0,	1),
-(5,	5,	'Osekai Snapshots',	'??apps.snapshots.slogan??',	'snapshots',	'38, 44, 124',	'63, 77, 245',	'white/snapshots',	'coloured/snapshots',	'cover/snapshots',	1,	0,	1),
-(6,	6,	'Osekai Custom',	'it\'s a mystery',	'custom',	'32, 32, 32',	'32, 32, 32',	'osekai_light',	'osekai_dark',	'cover/none',	0,	0,	0),
-(7,	7,	'Osekai Badges',	'??apps.badges.slogan??',	'badges',	'89,62,110',	'170,102,255',	'white/badges',	'coloured/badges',	'cover/badges',	1,	0,	1),
-(8,	8,	'admin',	'owo',	'admin',	'82,21,21',	'80,10,20',	'osekai_light',	'osekai_light',	'home',	0,	0,	0),
-(9,	9,	'Osekai Azelia',	'coming soon',	'azelia',	'38, 44, 124',	'63, 77, 245',	'white/snapshots',	'coloured/snapshots',	'cover/snapshots',	1,	1,	0),
-(11,	11,	'Osekai Teams',	'WIP',	'teams',	'42,94,84',	'50,227,195',	'white/teams',	'white/teams',	'cover/teams',	1,	1,	0),
-(12,	12,	'Osekai Tools',	'uwu',	'tools',	'47,77,104',	'45,118,186',	'white/tools',	'coloured/tools',	'',	1,	1,	0);
+-- Dumping data for table osekai.Apps: ~13 rows (approximately)
+DELETE FROM `Apps`;
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(-1, -1, 'Osekai Home', '??apps.home.slogan??', 'home', '53, 61, 85', '53, 61, 85', 'osekai_light', 'osekai_dark', 'cover/none', 1, 0, 0, 1, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(1, 1, 'Osekai Rankings', '??apps.rankings.slogan??', 'rankings', '0, 66, 79', '0, 194, 224', 'white/rankings', 'coloured/rankings', 'cover/rankings', 1, 0, 1, 0.5, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(2, 2, 'Osekai Medals', '??apps.medals.slogan??', 'medals', '102, 34, 68', '255, 102, 170', 'white/medals', 'coloured/medals', 'cover/medals', 1, 0, 1, 1, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(3, 3, 'Osekai Profiles', '??apps.profiles.slogan??', 'profiles', '51, 68, 102', '102, 143, 255', 'white/profiles', 'coloured/profiles', 'cover/profiles', 1, 0, 1, 1, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(5, 5, 'Osekai Snapshots', '??apps.snapshots.slogan??', 'snapshots', '38, 44, 124', '63, 77, 245', 'white/snapshots', 'coloured/snapshots', 'cover/snapshots', 1, 0, 1, 1, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(6, 6, 'Osekai Custom', 'it\'s a mystery', 'custom', '32, 32, 32', '32, 32, 32', 'osekai_light', 'osekai_dark', 'cover/none', 0, 0, 0, 1, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(7, 7, 'Osekai Badges', '??apps.badges.slogan??', 'badges', '89,62,110', '170,102,255', 'white/badges', 'coloured/badges', 'cover/badges', 1, 0, 1, 1, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(9, 9, 'Osekai Azelia', 'coming soon', 'azelia', '38, 44, 124', '63, 77, 245', 'white/snapshots', 'coloured/snapshots', 'cover/snapshots', 1, 1, 0, 1, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(11, 11, 'Osekai Teams', 'WIP', 'teams', '42,94,84', '50,227,195', 'white/teams', 'white/teams', 'cover/teams', 1, 1, 0, 1, 1);
+INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
+	(12, 12, 'Osekai Tools', 'uwu', 'tools', '47,77,104', '45,118,186', 'white/tools', 'coloured/tools', '', 1, 1, 0, 1, 1);
 
 DROP TABLE IF EXISTS `AuthenticatorTokens`;
 CREATE TABLE `AuthenticatorTokens` (
