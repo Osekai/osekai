@@ -631,11 +631,11 @@ function checkLock(callback) {
     xhr.send("bCheckLock=true&nMedalID=" + nCurrentMedalID);
     xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
-        if (handleUndefined(oResponse)) {
+        if (handleUndefined(oResponse)) return;
+        if(oResponse == 1)
+            callback(true);
+        else
             callback(false);
-            return;
-        }
-        if (oResponse.toString() == "1") callback(true);
     };
 }
 

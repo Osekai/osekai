@@ -68,17 +68,23 @@ if(isset($_POST['strBeatmap'])) {
 }
 
 if(isset($_POST['bCheckLock'])) {
-    $bLocked = Database::execSelect("SELECT Locked FROM MedalStructure WHERE MedalID = ?", "i", array($_POST['nMedalID']));
-    echo json_encode($bLocked[0]['Locked']);
+    $bLocked = Database::execSelect("SELECT Locked FROM MedalStructure WHERE MedalID = ?", "i", [$_POST['nMedalID']]);
+    if (isset($bLocked[0]['Locked'])) {
+        echo json_encode($bLocked[0]['Locked']);
+    } else {
+        // Default to nonlocked for medals that don't exists in the MedalStructure table
+        echo json_encode(0);
+    }
 }
 
 if(isset($_POST['bCurrentlyLocked'])) {
     if(isset($_SESSION['osu']['id'])) {
         if($_SESSION['role']['rights'] > 0) {
+            // Toggle the lock, if it is currently locked remove it from the table so it defaults to nonlocked
             if($_POST['bCurrentlyLocked'] == "false") {
-                Database::execOperation("INSERT IGNORE INTO MedalStructure (Locked, MedalID) VALUES ('1', ?)", "i", array($_POST['nMedalID']));
+                Database::execOperation("INSERT IGNORE INTO MedalStructure (Locked, MedalID) VALUES ('1', ?)", "i", [$_POST['nMedalID']]);
             } else {
-                Database::execOperation("DELETE FROM MedalStructure Where MedalID = ?", "i", array($_POST['nMedalID']));
+                Database::execOperation("DELETE FROM MedalStructure Where MedalID = ?", "i", [$_POST['nMedalID']]);
             }
             echo json_encode("true");
         }
