@@ -135,7 +135,11 @@ body {
     color: white;
     padding-top: var(--navheight);
     overflow-x: hidden;
-    background: linear-gradient(rgba(var(--genericaccent), 0.46), rgba(var(--genericaccent), 0.1)), linear-gradient(#000, #000);
+    /* background: linear-gradient(rgba(var(--genericaccent), 0.46), rgba(var(--genericaccent), 0.1)), linear-gradient(#000, #000); */
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(6% * var(--accentdark_valueoffset)))
+    );
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -179,7 +183,11 @@ a {
 }
 
 .osekai__navbar {
-    background: linear-gradient(rgba(var(--genericaccent), 0.7), rgba(var(--genericaccent), 0.9)), linear-gradient(#fff3, #fff0);
+    /* background: linear-gradient(rgba(var(--genericaccent), 0.7), rgba(var(--genericaccent), 0.9)), linear-gradient(#fff3, #fff0); */
+    background: linear-gradient(
+    hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)), 0.9),
+    hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.8)
+);
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -199,7 +207,11 @@ a {
 .osekai__navbar__app-container {
     height: 62px;
     width: 59px;
-    background: linear-gradient(#fff1, #fff2), linear-gradient(rgba(var(--genericaccent), 1), rgba(var(--genericaccent), 0.9));
+    /* background: linear-gradient(#fff1, #fff2), linear-gradient(rgba(var(--genericaccent), 1), rgba(var(--genericaccent), 0.9)); */
+    background: linear-gradient(
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(35% * var(--accentdark_valueoffset))),
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
+);
     margin-left: 12px;
     border-radius: 0px 0px 4px 4px;
     display: flex;
@@ -639,13 +651,17 @@ a {
 }
 
 .osekai__panel {
-    background: linear-gradient(rgba(var(--accentdark), 0.1), rgba(var(--accentdark), 0.25));
+    /* background: linear-gradient(rgba(var(--accentdark), 0.1), rgba(var(--accentdark), 0.25)); */
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset)))
+    );
     border-radius: 8px;
     box-shadow: 0px 0px 0px 1px #fff1;
+    position: relative;
 }
 
 .osekai__panel-header {
-    background: linear-gradient(rgba(var(--accentdark), 0.7), rgba(var(--accentdark), 1)), linear-gradient(#fff3, #fff0);
     border-bottom: 1px solid #0002;
     border-top: 1px solid #fff1;
     padding: 20px 18px;
@@ -656,12 +672,18 @@ a {
     align-items: flex-start;
 }
 
+.osekai__panel-header, .osekai__panel-header-with-buttons {
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
+    );
+}
+
 .osekai__panel-header i, .osekai__panel-header-with-buttons i {
     margin-right: 8px;
 }
 
 .osekai__panel-header-with-buttons {
-    background: linear-gradient(rgba(var(--accentdark), 0.7), rgba(var(--accentdark), 1)), linear-gradient(#fff3, #fff0);
     border-bottom: 1px solid #0002;
     border-top: 1px solid #fff1;
     border-radius: 8px 8px 0px 0px;
@@ -671,7 +693,10 @@ a {
 }
 
 .osekai__panel-nav {
-    background: linear-gradient(rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), #000a;
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)))
+    );
     padding: 20px 18px;
     top: var(--navheight);
     position: sticky;
@@ -679,15 +704,6 @@ a {
     z-index: 8;
 }
 
-@-moz-document url-prefix() {
-
-    /* this is just for firefox */
-    .osekai__panel-nav {
-        background: linear-gradient(rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), #000e;
-    }
-
-    /* note a few months later: WHY IS IT JUST FOR FIREFOX??? AAAAAAA */
-}
 
 .osekai__panel-nav__lrcont {
     padding: 0px;
@@ -4544,7 +4560,11 @@ input[type=range]:focus::-ms-fill-upper {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, rgba(var(--accentdark), 0.5) 0%, rgba(var(--accentdark), 0.1) 100%);
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset)))
+    );
+    border-radius: 8px 8px 0px 0px;
 }
 
 .osekai__section-header-left h2 {
