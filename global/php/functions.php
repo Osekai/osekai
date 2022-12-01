@@ -40,9 +40,12 @@ foreach ($appsTemp as $appa) {
 
 $restrictedState = false;
 
-$restrictedCheck = Database::execSelect("SELECT * FROM MembersRestrictions WHERE UserID = ?", "i", [$_SESSION['osu']['id']]);
-if (count($restrictedCheck) > 0 && $restrictedCheck[0]['Active'] == 1) {
-    $restrictedState = true;
+if(isset($_SESSION['osu']['id']))
+{
+    $restrictedCheck = Database::execSelect("SELECT * FROM MembersRestrictions WHERE UserID = ?", "i", [$_SESSION['osu']['id']]);
+    if (count($restrictedCheck) > 0 && $restrictedCheck[0]['Active'] == 1) {
+        $restrictedState = true;
+    }
 }
 
 
