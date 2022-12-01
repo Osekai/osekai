@@ -9,6 +9,6 @@ flushSession();
         window.location.href = localStorage.getItem("url");
     }
     else{
-        window.location.href = "<?php echo $rooturl; ?>";
+        window.location.href = "<?= ROOT_URL ?>";
     }
 </script>

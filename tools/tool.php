@@ -33,7 +33,7 @@ $meta = '<meta charset="utf-8">
 <meta name="msapplication-TileColor" content="#353d55">
 <meta name="theme-color" content="#353d55">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:url" content="https://www.osekai.net/rankings" />';
+<meta property="og:url" content="' . ROOT_URL .'/rankings" />';
 
 $name = "Osekai Tools • Taiko PP Calculator";
 $description = "Taiko PP calc temp description";

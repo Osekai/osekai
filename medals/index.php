@@ -159,7 +159,7 @@ if (isset($_GET['medal'])) {
                                 <div class="medals__solution">
                                     <div class="medals__sol-header-container">
                                         <p id="strMedalHeader" class="medals__sol-header"><?= GetStringRaw("medals", "solution.title"); ?></p>
-                                        <div class="medals__sol-header-gamemode-tag"><img id="gamemodeImg" class="medals__sol-gamemode" src="<?= $rooturl; ?>/global/img/gamemodes/standard.svg">
+                                        <div class="medals__sol-header-gamemode-tag"><img id="gamemodeImg" class="medals__sol-gamemode" src="<?= ROOT_URL ?>/global/img/gamemodes/standard.svg">
                                             <p id="gamemodeText"><strong>osu!</strong> only</p>
                                         </div>
                                     </div>

@@ -25,7 +25,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osu_api_functions.php");
 <meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:url" content="https://www.osekai.net/" />
+<meta property="og:url" content="<?= ROOT_URL ?>" />
 
 <?php
 font();
@@ -74,46 +74,24 @@ mobileManager();
             <div class="osekai__panel">
                 <div class="osekai__panel-header">Translators</div>
                 <div class="osekai__panel-inner translators__list">
-                    <!-- <div class="translators__language">
-                        <div class="translators__language-header">
-                            <div class="translators__language-header-flag">
-                                <img src="https://assets.ppy.sh/old-flags/UA.png">
-                                <div class="translators__language-header-flag-amount">
-                                    <h1><strong>10</strong><br>translators</h1>
-                                </div>
-                            </div>
-                            <div class="translators__language-header-texts">
-                                <h1>Ukrainian</h1>
-                                <h2>Українська</h2>
-                            </div>
-                        </div>
-                        <div class="translators__language-grid">
-                            <div class="translators__language-translator">
-                                <img src="https://a.ppy.sh/2">
-                                <div class="translators__language-translator-texts">
-                                    <p>Manager</p>
-                                    <h1>Username</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <?php
-                    
-
                     error_reporting(E_ALL);
                     ini_set('display_errors', 0);
                     ini_set('display_startup_errors', 0);
 
                     for($x = 0; $x < count($allTranslators); $x++)
                     {
-                        if($allTranslators[$x]['Username'] == null || $allTranslators[$x]['Username'] == "")
+                        if($allTranslators[$x]['Id'] != 0 && ($allTranslators[$x]['OsuUsername'] == null || $allTranslators[$x]['OsuUsername'] == ""))
                         {
-                            echo $allTranslators[$x]['Id'] . " does not have a username<br>";
-                            $allTranslators[$x]['Username'] = "";
+                            // Translator has osu acc but its not in the rankings
+                            // Fetch its username and put it in the OsuUsername field so we use that
+                            $allTranslators[$x]['OsuUsername'] = "";
                             $data = json_decode(v2_getUser($allTranslators[$x]['Id'], "osu", false, false), true);
-                            $allTranslators[$x]['Username'] = $data['username'];
-                            echo $allTranslators[$x]['Username'];
-                            Database::execOperation("UPDATE `Translators` SET `Username` = ? WHERE `Id` = ?", "si", [$allTranslators[$x]['Username'], $allTranslators[$x]['Id']]);
+                            $allTranslators[$x]['OsuUsername'] = $data['username'];
+                            // Add the translators osu acc into members so it gets processed in the next batch
+                            $inDb = count(Database::execSelect("SELECT * FROM Members WHERE id = ?", "i", [$allTranslators[$x]['Id']]));
+                            if(!$inDb)
+                                Database::execOperation("INSERT INTO Members (id) VALUES (?)", "i", [$allTranslators[$x]['Id']]);
                         }
                     }
 
@@ -129,44 +107,40 @@ mobileManager();
                                 $translators++;
                             }
                         }
-
                         if($translators == 0) { continue; }
 
                         //echo "<br>";
                         echo '<div class="translators__language">
-                        <div class="translators__language-header">
-                            <div class="translators__language-header-flag">
-                                <img src="' . $lang['flag'] . '">
-                                <div class="translators__language-header-flag-amount">
-                                    <h1><strong>' . $translators . '</strong><br>translators</h1>
+                                <div class="translators__language-header">
+                                    <div class="translators__language-header-flag">
+                                        <img src="' . $lang['flag'] . '">
+                                            <div class="translators__language-header-flag-amount">
+                                            <h1><strong>' . $translators . '</strong><br>translators</h1>
+                                    </div>
                                 </div>
-                            </div>
                             <div class="translators__language-header-texts">
                                 <h1>' . nameToEnglish($lang['code']) . '</h1>
                                 <h2>' . $lang['name'] . '</h2>
                             </div>
-                        </div>
-                        <div class="translators__language-grid">';
-                        
+                        </div>';
+
+                        echo '<div class="translators__language-grid">';
                         foreach($allTranslators as $translator)
                         {
-                            if($translator['LanguageCode'] == $lang['code'])
-                            {
-                                echo '<div class="translators__language-translator">
-                                <img src="https://a.ppy.sh/' . $translator['Id'] . '">
-                                <div class="translators__language-translator-texts">
-                                    <p>' . $translator['Role'] . '</p>
-                                    <h1>' . $translator['OsuUsername'] ? $translator['OsuUsername'] : $translator['Username'] . '</h1>
-                                </div>
-                            </div>';
-                            }
+                            if($translator['LanguageCode'] != $lang['code']) continue;
+                            echo '<div class="translators__language-translator">';
+                                    echo '<img src="';
+                                    echo  $translator['Id'] != 0 ? 'https://a.ppy.sh/' . $translator['Id'] : 'https://osu.ppy.sh/assets/images/avatar-guest.8a2df920.png';
+                                    echo '">';
+                                    echo '<div class="translators__language-translator-texts">';
+                                        echo '<p>' . $translator['Role'] . '</p>';
+                                        echo '<h1>';
+                                        echo $translator['OsuUsername'] ? $translator['OsuUsername'] : $translator['Username'];
+                                        echo  '</h1>';
+                                    echo '</div>
+                                </div>';
                         }
-
-
-                        echo '</div>
-                    </div>';
-
-                        //echo "<br><br>";
+                        echo '</div></div>';
                     }
                     ?>
                 </div>

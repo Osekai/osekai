@@ -14,14 +14,20 @@ RewriteRule ^(.*)$ $1.php [NC,L]
 
 # rewrite to NON-WWW
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteCond %{HTTP_HOST} !=localhost
 RewriteRule ^(.*)$ https://osekai.net/$1 [R=301,L]
 
 
 # rewrite to HTTPS
 RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} !=localhost
+RewriteCond %{HTTP_HOST} !=127.0.0.1
+RewriteCond %{REMOTE_ADDR} !=127.0.0.1
+RewriteCond %{REMOTE_ADDR} !=::1
+RewriteCond %{HTTP_HOST} !^192\.(.*)\.(.*)\.(.*)(?::\d+)?$
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
-Header always set Content-Security-Policy "upgrade-insecure-requests;"
-
+#Header always set Content-Security-Policy "upgrade-insecure-requests;"
+# ^ need to make sure that these updates dont break prod
 
 # shit ton of caching
 ExpiresActive On

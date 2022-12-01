@@ -64,7 +64,6 @@ $locales = [
     ],
     "fi_FI" => [
         "name" => "Suomi",
-        "wip" => true,
         "code" => "fi_FI",
         "short" => "fi",
         "flag" => "https://assets.ppy.sh/old-flags/FI.png",
@@ -107,7 +106,7 @@ $locales = [
     "zh_CN" => [
         "name" => "简体中文",
         "wip" => true,
-        "experimental" => true,
+        "experimental" => false,
         "code" => "zh_CN",
         "short" => "zh",
         "flag" => "https://assets.ppy.sh/old-flags/CN.png"
@@ -195,7 +194,34 @@ $locales = [
         "code" => "es_ES",
         "short" => "es",
         "flag" => "https://assets.ppy.sh/old-flags/ES.png",
+    ],
+    "tl_PH" => [
+        "name" => "Tagalog",
+        "wip" => true,
+        "experimental" => true,
+        "code" => "tl_PH",
+        "short" => "ph",
+        "flag" => "https://assets.ppy.sh/old-flags/PH.png"
+    ],
+    /* bulgarian */
+    "bg_BG" => [
+        "name" => "български",
+        "wip" => true,
+        "experimental" => true,
+        "code" => "bg_BG",
+        "short" => "bg",
+        "flag" => "https://assets.ppy.sh/old-flags/BG.png"
+    ],
+    /* portugese */
+    "pt_PT" => [
+        "name" => "Português",
+        "wip" => true,
+        "experimental" => true,
+        "code" => "pt_PT",
+        "short" => "pt",
+        "flag" => "https://assets.ppy.sh/old-flags/PT.png"
     ]
+
 ];
 
 function nameToEnglish($code)

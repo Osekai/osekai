@@ -11,7 +11,7 @@
         opacity: 1;
     }
 }
-
+@media (min-width: 900px) {
 .home__loader-wait {
     opacity: 0;
     filter: brightness(2);
@@ -63,7 +63,7 @@
 .home__cover-background {
     transition: all 1s ease;
 }
-
+}
 
 .home__warning-bar {
     padding: 20px 42px;
@@ -75,10 +75,8 @@
 
 .home__cover {
     height: calc(100vh - var(--navheight));
-    /* background-image: url("../img/background.png");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat; */
 
     display: flex;
     align-items: center;
@@ -192,7 +190,18 @@
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 16px;
     display: flex;
-    transition: all 0.2s ease;
+}
+
+@media (min-width: 900px) {
+    .home__panel {
+        transition: all 0.2s ease;
+    }
+}
+@media (max-width: 900px) {
+    .home__panel {
+        background: rgb(var(--paccent));
+        border: 0px solid #fff0;
+    }
 }
 
 .home__panel .home__panel-hoverable:hover {
@@ -217,7 +226,6 @@
 
 .home__vertical-glowbar {
     background: rgba(var(--paccent-bright), 1);
-    /* box-shadow: 1px 0px 25px rgba(var(--paccent-bright), 1), 2px 0px 19px rgba(var(--paccent-bright), 1); */
     border-radius: 32px;
     width: 4px;
     min-width: 4px;
@@ -228,7 +236,6 @@
 .home__horizontal-glowbar {
     height: 2px;
     background: rgba(var(--paccent-bright), 1);
-    /* box-shadow: 1px 0px 25px rgba(var(--paccent-bright), 1), 2px 0px 19px rgba(var(--paccent-bright), 1); */
     border-radius: 32px;
     width: 100%;
     margin: 10px 0px;
@@ -244,7 +251,6 @@
     box-sizing: border-box;
     height: 21vw;
     flex: 1;
-    /* box-shadow: 0px 4px 34px rgba(var(--paccent-bright), 0.25); */
 }
 
 .home__new-badge {
@@ -325,7 +331,6 @@
 
 @media (max-width: 1200px) {
 
-    /* ! we need to make the wide panels tall instead, because ✨ phone ✨ */
     .home__panel {
         flex-direction: column;
     }
@@ -335,7 +340,6 @@
         height: auto;
     }
 
-    /* padding should take off of the home__panel_vertical style */
     .home__panel-inner {
         padding: 25px;
     }
@@ -354,7 +358,6 @@
 
 @media (max-width: 600px) {
 
-    /* smaller font size */
     .home__panel-inner-texts h1 {
         font-size: 30px;
     }
@@ -458,7 +461,6 @@
     flex: 1;
     width: 100%;
     background: rgba(55, 52, 85, 0.75);
-    /* Note: backdrop-filter has minimal browser support */
 
     border-radius: 16px;
 }
@@ -703,5 +705,42 @@ code {
 @media (max-width: 1400px) {
     .home__team-grid {
       grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .home__panel-container {
+        padding: 21px;
+    }
+    .home__panel_vertical .home__panel-inner-texts {
+        padding: 0px 15px;
+    }
+    .home__panel_vertical .home__panel-inner {
+        padding: 15px;
+    }
+    .home__long-img {
+        padding: 15px;
+    }
+    .home__faq-questions-list, .home__faq-answer {
+        padding: 30px;
+
+    }
+    .home__team {
+        padding: 0px;
+        background-color: transparent;
+        border: 0px solid #fff0;
+    }
+    .home__team-member-info-texts-name {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .home__team-member-info-texts-badges {
+        margin-left: 0px;
+    }
+    .home__team-member-info-texts {
+        padding: 10px 0px;
+    }
+    .home__team-member-background {
+        display: none;
     }
 }

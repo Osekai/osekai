@@ -43,7 +43,7 @@ if($time > 7)
     $url = "http://".VPS_IP.":19302/fucked?time="
         . $time
         . "&url="
-        . urlencode($rooturl . $url);
+        . urlencode(ROOT_URL . $url);
 
     if(isExperimental()) {
         //echo $url;

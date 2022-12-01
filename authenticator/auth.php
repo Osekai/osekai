@@ -84,7 +84,7 @@ if (loggedin()) {
     <title name="title">Osekai Authenticator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:url" content="https://www.osekai.net/legal/contact" />
+    <meta property="og:url" content="<?= ROOT_URL ?>/legal/contact" />
 
     <?php
     echo $head;

@@ -19,7 +19,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:url" content="https://www.osekai.net/home" />
+    <meta property="og:url" content="<?= ROOT_URL ?>/home" />
 
     <?php
     font();
@@ -117,9 +117,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </a>
             </div>
-            <a class="home__long-panel home__panel-hoverable" style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/medalhunters-bg.svg');" href="https://discord.gg/8qpNTs6">
+            <a class="home__long-panel home__panel-hoverable" style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/medalhunters-bg.png');" href="https://discord.gg/8qpNTs6">
                 <div class="home__vertical-glowbar"></div>
-                <img class="home__long-img" src="img/medalhunters.svg" style="transform: scale(1.3);">
+                <img class="home__long-img" src="img/medalhunters-logo.png" style="transform: scale(1.3);">
                 <div class="home__long-texts">
                     <h1><?php echo GetStringRaw("home", "discord.title"); ?></h1>
                     <p><?php echo GetStringRaw("home", "discord.text"); ?></p>
@@ -197,7 +197,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                         GetStringRaw("home", "team.role.megamix"),
                         "minusQuantumNeko",
                         [
-                            social("https://twitter.com/Tanza3D", "Twitter"),
+                            social("https://twitter.com/MegaMix_Craft", "Twitter"),
+                            social("https://github.com/minusQuantumNeko/", "Github"),
+                            social("https://twitch.tv/megamix_craft", "Twitch"),
+                            social("https://discord.com/users/494883957117288448", "Discord"),
                             social("https://www.youtube.com/MegaMix_Craft", "Youtube"),
                             social("https://mastodon.world/@MegaMix_Craft", "Mastodon"),
                             social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com")

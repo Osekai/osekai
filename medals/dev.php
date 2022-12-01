@@ -62,7 +62,7 @@ if (isset($_GET['medal'])) {
     <meta name="twitter:description" content="How to get a certain medal? How difficult is that medal? Any ideas that can move medal hunting further? This is the place you\'re looking for!" />
     <title name="title">Osekai Medals • Need a medal solution? We have it!</title>
     <meta name="keywords" content="achivements,osekai,solutions,tricks,tips,osu,medal,medals,solution,solutions,osu!,osu!game,osugame,game,video game,award,achievement">
-    <meta property="og:url" content="https://www.osekai.net/snapshots" />';
+    <meta property="og:url" content="<?= ROOT_URL ?>/snapshots" />';
 }
 
 ?>
@@ -82,7 +82,7 @@ if (isset($_GET['medal'])) {
     <title name="title">Osekai Medals • Need a medal solution? We have it!</title>
     <meta name="keywords" content="achivements,osekai,solutions,tricks,tips,osu,medal,medals,solution,solutions,osu!,osu!game,osugame,game,video game,award,achievement ">
     <meta charset="utf-8">
-    <meta property="og:url" content="https://www.osekai.net/medals" />-->
+    <meta property="og:url" content="<?= ROOT_URL ?>/medals" />-->
 
     <?php echo $meta; ?>
 
@@ -103,7 +103,6 @@ if (isset($_GET['medal'])) {
                         } else {
                             echo "''";
                         } ?>;
-        const strRootUrl = <?php echo "'" . $rooturl . "'"; ?>;
     </script>
     <?php
     css();

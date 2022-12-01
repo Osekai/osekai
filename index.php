@@ -23,11 +23,11 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:url" content="https://www.osekai.net/" />
+<meta property="og:url" content="<?= ROOT_URL ?>" />
 
 <?php
 if (!isset($_SESSION['role']['rights']) || $_SESSION['role']['rights'] < 1) {
-    redirect($rooturl . "/home");
+    redirect(ROOT_URL . "/home");
     exit;
 }
 
