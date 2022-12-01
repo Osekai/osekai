@@ -519,7 +519,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     <div class="osekai__panel-header">
                     <i class="fas fa-chart-line"></i><p><?php echo GetStringRaw("profiles", "profile.stats.title"); ?></p>
                     </div>
-                    <div class="profiles__osekai__panel-nav osekai__flex_row">
+                    <div class="profiles__osekai__panel-nav osekai__panel-nav osekai__flex_row">
                         <div class="profiles__rank-nav forcetooltip">
                             <?php echo GetStringRaw("profiles", "profile.stats.globalRank"); ?> <strong id="current__global__rank">?</strong>
                         </div>
@@ -575,7 +575,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     <div class="osekai__panel-header">
                     <i class="oif-medal"></i><p><?php echo GetStringRaw("profiles", "profile.medals.title"); ?></p>
                     </div>
-                    <div class="profiles__osekai__panel-nav osekai__flex_row">
+                    <div class="profiles__osekai__panel-nav osekai__panel-nav osekai__flex_row">
                         <div class="profiles__rank-nav">
                             <?php echo GetStringRaw("profiles", "profile.medals.medals"); ?> <strong id="medal__count">?</strong>
                         </div>

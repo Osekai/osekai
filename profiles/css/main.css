@@ -204,7 +204,11 @@
 .profiles__mhs-right {
     padding: 17px;
     /* background-color: rgba(var(--accentdark), 0.2); */
-    background: linear-gradient(45deg, rgba(var(--accentdark), 0.4), rgba(var(--accentdark), 0.1));
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), 15%)
+    );
+    border-radius: 0px 0px 8px 8px;
     /* border-left: 1px solid white; */
 }
 
@@ -997,7 +1001,10 @@ input[type=number] {
 
 .profiles__medalinfo-section {
     /* background: rgba(var(--accentdark), 0.2); */
-    background: linear-gradient(to bottom, rgba(var(--accentdark), 0.3), rgba(var(--accentdark), 0.1)), linear-gradient(to bottom, #fff0, #fff1);
+    background: linear-gradient(
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), 17%),
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%)
+);
     border-radius: 8px;
     min-height: 40px;
     width: 100%;
@@ -1018,7 +1025,10 @@ input[type=number] {
 
 .profiles__medalinfo-section-bar {
     padding: 15px 14px;
-    background: rgba(var(--accentdark), 0.5);
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), 26%),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), 32%)
+    );
     display: flex;
     justify-content: center;
     align-items: center;
