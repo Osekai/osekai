@@ -380,7 +380,10 @@
 
 .profiles__panel {
     padding: 16px;
-    background-color: rgba(var(--accentdark), 0.15);
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), 20%),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), 15%)
+    );
     border-radius: 8px;
     box-sizing: border-box;
     display: flex;
