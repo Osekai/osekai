@@ -64,7 +64,6 @@ $locales = [
     ],
     "fi_FI" => [
         "name" => "Suomi",
-        "wip" => true,
         "code" => "fi_FI",
         "short" => "fi",
         "flag" => "https://assets.ppy.sh/old-flags/FI.png",
