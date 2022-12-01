@@ -221,7 +221,8 @@ $locales = [
         "code" => "pt_PT",
         "short" => "pt",
         "flag" => "https://assets.ppy.sh/old-flags/PT.png"
-    ],
+    ]
+
 ];
 
 function nameToEnglish($code)
