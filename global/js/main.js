@@ -802,7 +802,8 @@ var groupUtils = {
         return `<div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
     },
     orderBadgeArray: function(array) {
-        array = array.sort((a, b) => a.Order - b.Order)
+        return array.sort((a, b) => a.Order - b.Order)
+
         return array;
     },
     badgeHtmlFromArray: function (array, size = "small") {
