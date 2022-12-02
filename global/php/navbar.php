@@ -628,7 +628,8 @@ if ($christmas == true) { ?>
         .snowflake {
             position: fixed;
             top: -10%;
-            z-index: 0;
+            z-index: 9999;
+            opacity: 0.8;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
