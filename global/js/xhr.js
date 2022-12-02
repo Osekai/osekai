@@ -15,4 +15,5 @@ window.handleUndefined = function (obj) {
     return false;
 };
 
-getNotifications();
+if (nUserID != -1)
+    getNotifications();
