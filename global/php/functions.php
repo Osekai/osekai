@@ -729,6 +729,13 @@ function badgeHtmlFromGroup($group, $size)
     return "<div class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</div>";
 }
 
+function orderBadgeArray($array) {
+    usort($array, function($a, $b)
+    {
+        return strcmp($a['Order'], $b['Order']);
+    });
+    return $array;
+}
 
 function rgbToHsl( $r, $g, $b ) {
 	$oldR = $r;

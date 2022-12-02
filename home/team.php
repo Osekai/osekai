@@ -50,6 +50,7 @@ function printTeam()
         }
         $socialHtml = '';
         $badgeHtml = '';
+        $groups = orderBadgeArray($groups);
         foreach($groups as $group) {
             $badgeHtml .= badgeHtmlFromGroup($group, "small");
         }
