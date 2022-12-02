@@ -801,18 +801,30 @@ var groupUtils = {
         var group = this.getGroupFromId(id);
         return `<div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
     },
-    badgeHtmlFromCommaSeperatedList: function (list, size = "small") {
-        if (list == null) return "";
+    orderBadgeArray: function(array) {
+        return array.sort((a, b) => a.Order - b.Order)
+    },
+    badgeHtmlFromArray: function (array, size = "small") {
+        console.log(array);
         var orderedList = [];
-        var split = list.split(",");
-        for (var x = 0; x < split.length; x++) {
-            orderedList.push(this.getGroupFromId(split[x]));
+        for (var x = 0; x < array.length; x++) {
+            orderedList.push(this.getGroupFromId(array[x]));
         }
-        orderedList.sort((a, b) => a.Order - b.Order)
+        orderedList = this.orderBadgeArray(orderedList);
+        console.log(orderedList);
         var finalHtml = "";
         for (var x = 0; x < orderedList.length; x++) {
             finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id'], size);
         }
         return finalHtml;
+    },
+    badgeHtmlFromCommaSeperatedList: function (list, size = "small") {
+        if (list == null) return "";
+        var array = [];
+        var split = list.split(",");
+        for (var x = 0; x < split.length; x++) {
+            array.push(split[x]);
+        }
+        return this.badgeHtmlFromArray(array, size);
     }
 }

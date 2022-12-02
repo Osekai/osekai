@@ -252,11 +252,11 @@ async function FillData(uid, mode, completeReload = true) {
         });
     }
     if (Exists(oData.usergroups)) {
-        var html = "";
-        for (var x = 0; x < oData.usergroups.length; x++) {
-            html += groupUtils.badgeHtmlFromGroupId(oData.usergroups[x].GroupId, "medium");
+        array = [];
+        for(var x = 0; x < oData.usergroups.length; x++) {
+            array.push(oData.usergroups[x]['GroupId'])
         }
-        document.getElementById("user__badges").innerHTML = html;
+        document.getElementById("user__badges").innerHTML = groupUtils.badgeHtmlFromArray(array);
         document.getElementById("user__badges").classList.remove("hidden");
     } else {
         document.getElementById("user__badges").classList.add("hidden");
