@@ -804,7 +804,6 @@ var groupUtils = {
     orderBadgeArray: function(array) {
         return array.sort((a, b) => a.Order - b.Order)
 
-        return array;
     },
     badgeHtmlFromArray: function (array, size = "small") {
         console.log(array);
