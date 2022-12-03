@@ -60,8 +60,8 @@ $userGroups = null;
 
 if(!isset($app)) {
     $useJS = false;
+    include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
 }
-include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
 
 function frontend() {
     global $useJS;
@@ -156,6 +156,7 @@ function frontend() {
     <?php
     }
 
+    include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
 }
 
 if (!(isset($manual_frontend) && $manual_frontend === true))
