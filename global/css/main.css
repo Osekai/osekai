@@ -141,6 +141,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    min-height: calc(100vh - var(--navheight));
 }
 
 @media (min-width: 900px) {
@@ -4399,10 +4400,11 @@ input[type=range]:focus::-ms-fill-upper {
     height: calc(100vh - (59px + var(--extraheight)));
     width: 100vw;
     z-index: 68;
-    overflow-y: auto;
+    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     transition: all 0.4s ease;
+    overflow-x: hidden;
 }
 
 .osekai__apps-dropdown-mobile-section {
@@ -4470,6 +4472,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__apps-dropdown-mobile-button i {
     margin-right: 15px;
+    font-size: 20px;
 }
 
 .osekai__navbar-harumachicup {
@@ -4604,7 +4607,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__generic-warning p {
     margin-left: 13px;
-    font-size: 14px;
+    font-size: 14px;not 
 }
 
 .osekai__generic-warning i {
@@ -5051,25 +5054,37 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .osekai__apps-dropdown-other-content {
-    margin-top: -15px;
     background: linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), #111111;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 16px;
-    padding: 7px;
+    border-radius: 13px;
+    margin: -1px;
+    margin-top: -15px;
+    padding: 10px 0px;
     z-index: 999;
+    display: flex;
+    flex-direction: column;
 }
 
 
 .osekai__apps-dropdown-other-content-button {
-    padding: 10px calc(21px - 7px);
-    background: rgba(217, 217, 223, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 12px 21px;
     border-radius: 9px;
-    font-size: 18px;
+    font-size: 16px;
+}
+.osekai__apps-dropdown-other-content-button i {
+    font-size: 20px;
+    margin-right: 6px;
+}
+.osekai__apps-dropdown-other-content-button:hover {
+    background: linear-gradient(
+        to right,
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
+    );
 }
 
 #otherapplist .osekai__apps-dropdown-applist-left {
-    min-width: 250px;
+    min-width: 350px;
 }
 
 .osekai__group-badge {
@@ -5105,4 +5120,34 @@ input[type=range]:focus::-ms-fill-upper {
 .osekai__group-badge-large {
     font-size: 15px;
     padding: 6px 15px;
+}
+
+@keyframes osekai__apps-dropdown-mobile-open {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.osekai__apps-dropdown-mobile-inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    transition: all 0.0s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    animation: 0.5s ease 0s 1 osekai__apps-dropdown-mobile-open;
+}
+
+.osekai__apps-dropdown-mobile-hidden {
+    position: absolute;
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+    transition: all 0.5s ease;
 }

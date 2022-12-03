@@ -314,6 +314,7 @@ function navbar()
     global $actual_link;
     global $loginurl;
     global $christmas;
+    global $otherApps; // what the fuck
 
     $_SESSION['redirect_url'] = true;
 
@@ -784,3 +785,4 @@ function rgbToHsl( $r, $g, $b ) {
 	return array( round( $h, 2 ), round( $s*100, 2 ), round( $l*100, 2 ) );
     // don't question the multiplications, it works
 }
+
