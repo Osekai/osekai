@@ -1,0 +1,7 @@
+{
+    "title": "user groups",
+    "description": "Welcome to <strong>Groups</strong>! This page lists <strong>all</strong> groups that currently exist on Osekai!<br>You can click on each group to view its own page, listing members of it, what they do and all members' groups!",
+    "groupList.title": "Groups",
+    "groupInfo.title": "Group Info",
+    "users": "$1 Users"
+}
