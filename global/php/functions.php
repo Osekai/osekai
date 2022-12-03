@@ -40,8 +40,7 @@ foreach ($appsTemp as $appa) {
 
 $restrictedState = false;
 
-if(isset($_SESSION['osu']['id']))
-{
+if (isset($_SESSION['osu']['id'])) {
     $restrictedCheck = Database::execSelect("SELECT * FROM MembersRestrictions WHERE UserID = ?", "i", [$_SESSION['osu']['id']]);
     if (count($restrictedCheck) > 0 && $restrictedCheck[0]['Active'] == 1) {
         $restrictedState = true;
@@ -58,12 +57,9 @@ if (MODE == "dev") {
 
 $userGroups = null;
 
-if(!isset($app)) {
-    $useJS = false;
-    include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
-}
 
-function frontend() {
+function frontend()
+{
     global $useJS;
     global $christmas;
     global $apps;
@@ -103,7 +99,7 @@ function frontend() {
         $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
         $medals = Database::execSelect("CALL FUNC_GetMedals(?, ?)", "ss", ['', '']);
         $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
-    ?>
+?>
         <script type="text/javascript">
             const christmas = "<?php echo $christmas; ?>";
             const nAppId = "<?php echo $apps[$app]['id']; ?>";
@@ -144,8 +140,10 @@ function frontend() {
                                     else echo "0"; ?>;
         </script>
         <?php
-        
+        include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
+
         foreach ($apps as $appa) {
+
             $apps[$appa['simplename']]['slogan'] = LocalizeText($apps[$appa['simplename']]['slogan']);
         }
         ?>
@@ -153,15 +151,17 @@ function frontend() {
             loadSource("<?php echo $app; ?>");
             loadSource("general");
         </script>
-    <?php
+<?php
     }
-
-    include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
 }
 
 if (!(isset($manual_frontend) && $manual_frontend === true))
     frontend();
 
+if (!isset($app)) {
+    $useJS = false;
+    include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
+}
 
 $loginurl = "https://osu.ppy.sh/oauth/authorize?response_type=code&client_id=" . OSU_OAUTH_CLIENT_ID . "&redirect_uri=" . htmlentities(OSU_OAUTH_REDIRECT_URI);
 
@@ -239,7 +239,7 @@ function css()
     }
 
     // set the accent
-    if(isset($accent_override)) {
+    if (isset($accent_override)) {
         $apps[$app]['color_dark'] = implode(",", $accent_override[1]);
         $apps[$app]['color'] = implode(",", $accent_override[0]);
     }
@@ -755,55 +755,55 @@ function badgeHtmlFromGroup($group, $size)
     return "<div class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</div>";
 }
 
-function orderBadgeArray($array) {
-    usort($array, function($a, $b)
-    {
+function orderBadgeArray($array)
+{
+    usort($array, function ($a, $b) {
         return strcmp($a['Order'], $b['Order']);
     });
     return $array;
 }
 
-function rgbToHsl( $r, $g, $b ) {
-	$oldR = $r;
-	$oldG = $g;
-	$oldB = $b;
+function rgbToHsl($r, $g, $b)
+{
+    $oldR = $r;
+    $oldG = $g;
+    $oldB = $b;
 
-	$r /= 255;
-	$g /= 255;
-	$b /= 255;
+    $r /= 255;
+    $g /= 255;
+    $b /= 255;
 
-    $max = max( $r, $g, $b );
-	$min = min( $r, $g, $b );
+    $max = max($r, $g, $b);
+    $min = min($r, $g, $b);
 
-	$h;
-	$s;
-	$l = ( $max + $min ) / 2;
-	$d = $max - $min;
+    $h;
+    $s;
+    $l = ($max + $min) / 2;
+    $d = $max - $min;
 
-    	if( $d == 0 ){
-        	$h = $s = 0; // achromatic
-    	} else {
-        	$s = $d / ( 1 - abs( 2 * $l - 1 ) );
+    if ($d == 0) {
+        $h = $s = 0; // achromatic
+    } else {
+        $s = $d / (1 - abs(2 * $l - 1));
 
-		switch( $max ){
-	            case $r:
-	            	$h = 60 * fmod( ( ( $g - $b ) / $d ), 6 ); 
-                        if ($b > $g) {
-	                    $h += 360;
-	                }
-	                break;
+        switch ($max) {
+            case $r:
+                $h = 60 * fmod((($g - $b) / $d), 6);
+                if ($b > $g) {
+                    $h += 360;
+                }
+                break;
 
-	            case $g: 
-	            	$h = 60 * ( ( $b - $r ) / $d + 2 ); 
-	            	break;
+            case $g:
+                $h = 60 * (($b - $r) / $d + 2);
+                break;
 
-	            case $b: 
-	            	$h = 60 * ( ( $r - $g ) / $d + 4 ); 
-	            	break;
-	        }			        	        
-	}
+            case $b:
+                $h = 60 * (($r - $g) / $d + 4);
+                break;
+        }
+    }
 
-	return array( round( $h, 2 ), round( $s*100, 2 ), round( $l*100, 2 ) );
+    return array(round($h, 2), round($s * 100, 2), round($l * 100, 2));
     // don't question the multiplications, it works
 }
-
