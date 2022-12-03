@@ -115,7 +115,7 @@ async function loadGroup(id, push = false) {
                     <div class="groups__userpanel-inner">
                         <img src="https://a.ppy.sh/${user['UserId']}">
                         <div class="groups__userpanel-text">
-                            <p>${user['Username']}</p>
+                            <p>${user['name']}</p>
                             <div class="groups__userpanel-badges">
                             ${groupUtils.badgeHtmlFromArray(user['GroupsIds'])}
                             </div>
