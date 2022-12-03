@@ -1,0 +1,120 @@
+.groups__list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.groups__group-list-item-bottom {
+    display: flex;
+    align-items: center;
+}
+
+.groups__group-list-item-bottom small {
+    margin-left: 6px;
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+.groups__group-list-item-inner h3 {
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.groups__group-list-item-inner {
+    background: linear-gradient(180deg, rgba(17, 17, 17, 0.25) 0%, rgba(17, 17, 17, 0) 100%), rgb(var(--accentdark));
+    border-radius: 10px;
+    margin-left: 14px;
+    padding: 20px 17px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.groups__group-list-item {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%), rgb(var(--colour));
+    border-radius: 10px;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.groups__group-list-item:hover .groups__group-list-item-inner  {
+    filter: brightness(1.2);
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.groups__group-list-item:hover {
+    box-shadow: -10px 0px 20px rgba(var(--colour), 0.5);
+}
+
+.groups__header {
+    display: flex;
+    padding: 34px 31px;
+    background: linear-gradient(87.94deg, rgba(255, 30, 30, 0.1) 0.17%, rgba(0, 255, 133, 0.1) 99.88%), linear-gradient(92.24deg, rgba(0, 0, 0, 0.2) -0.61%, rgba(255, 255, 255, 0.2) 100%), rgb(var(--colour));
+    height: 216px;
+}
+.groups__header-left {
+    flex: 1;
+}
+.groups__header-right{
+    flex: 1;
+    margin-left: auto;
+    text-align: right;
+}
+
+.groups__userpanel {
+    position: relative;
+    overflow: hidden;
+    background-color: #fff1;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 3px solid rgb(var(--colour));
+}
+
+.groups__userpanel-background {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(60px);
+    mix-blend-mode: color;
+    transform: scale(1.1);
+}
+
+.groups__userpanel-inner {
+    display: flex;
+    align-items: center;
+    padding: 13px;
+    z-index: 4;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.groups__userpanel-inner img {
+    border-radius: 6px;
+    height: 70px;
+}
+
+.groups__userpanel-text {
+    margin-left: 14px;
+
+}
+
+.groups__userpanel-text p {
+    font-size: 18px;
+}
+
+.groups__userlist {
+    display: grid;
+    width: 100%;
+grid-template-columns: 1fr 1fr;
+grid-gap: 20px;
+box-sizing: border-box;
+}
+
+.groups__userpanel-badges {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+}
