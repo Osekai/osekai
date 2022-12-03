@@ -82,15 +82,22 @@ mobileManager();
                             // Translator has osu acc but its not in the rankings
                             // Fetch its username and put it in the OsuUsername field so we use that
                             $allTranslators[$x]['OsuUsername'] = "";
-                            $data = json_decode(v2_getUser($allTranslators[$x]['Id'], "osu", false, false), true);
-                            $allTranslators[$x]['OsuUsername'] = $data['username'];
-                            // Add the translators osu acc into members so it gets processed in the next batch
-                            Database::execOperation("INSERT INTO Members (id) VALUES (?) ON DUPLICATE KEY UPDATE id = id", "i", [$allTranslators[$x]['Id']]);
+                            $user = v2_getUser($allTranslators[$x]['Id'], "osu", false, false);
+
+                            // User is restricted or bad input, change id to 0 so it treats him as not having an osu acc at all
+                            if ($user == null){
+                                Database::execOperation("UPDATE Translators SET Id = 0 WHERE Id = ? AND LanguageCode = ?", "i", [$allTranslators[$x]['Id'],$allTranslators[$x]['LanguageCode']]);
+                                $allTranslators[$x]['Id'] = 0;
+                            } else {
+                                $data = json_decode($user, true);
+                                $allTranslators[$x]['OsuUsername'] = $data['username'];
+                                // Add the translators osu acc into members so it gets processed in the next batch
+                                Database::execOperation("INSERT INTO Members (id) VALUES (?) ON DUPLICATE KEY UPDATE id = id", "i", [$allTranslators[$x]['Id']]);
+                            }
                         }
                     }
 
                     foreach ($locales as $lang) {
-                        //print_r($lang);
                         $translators = 0;
 
                         foreach($allTranslators as $translator)
@@ -121,14 +128,18 @@ mobileManager();
                         foreach($allTranslators as $translator)
                         {
                             if($translator['LanguageCode'] != $lang['code']) continue;
+
+                            $avatar = $translator['Id'] != 0 ? 'https://a.ppy.sh/' . $translator['Id'] : 'https://osu.ppy.sh/assets/images/avatar-guest.8a2df920.png';
+                            $name = $translator['OsuUsername'] ? $translator['OsuUsername'] : $translator['Username'];
+
                             echo '<div class="translators__language-translator">';
                                     echo '<img src="';
-                                    echo  $translator['Id'] != 0 ? 'https://a.ppy.sh/' . $translator['Id'] : 'https://osu.ppy.sh/assets/images/avatar-guest.8a2df920.png';
+                                    echo  $avatar;
                                     echo '">';
                                     echo '<div class="translators__language-translator-texts">';
                                         echo '<p>' . $translator['Role'] . '</p>';
                                         echo '<h1>';
-                                        echo $translator['OsuUsername'] ? $translator['OsuUsername'] : $translator['Username'];
+                                        echo $name;
                                         echo  '</h1>';
                                     echo '</div>
                                 </div>';
