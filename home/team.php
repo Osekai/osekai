@@ -24,6 +24,7 @@ $nameMapping = [
     "Speedrun.com" => "fas fa-trophy",
 ];
 
+
 function social($link, $name, $icon = null)
 {
     global $nameMapping;

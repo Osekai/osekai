@@ -5,6 +5,21 @@ xhr_requests();
 tippy();
 tooltip_system(); // to replace old ones
 colour_picker();
+
+$otherApps = [];
+function addOtherApp($icon, $link, $name)
+{
+    global $otherApps;
+    array_push($otherApps, [
+        "icon" => $icon,
+        "link" => $link,
+        "name" => $name
+    ]);;
+}
+addOtherApp("fas fa-globe-africa", "https://osekai.net/misc/translators", "Translators");
+//addOtherApp("fas fa-layer-group", "https://osekai.net/misc/groups", "User Groups");
+//addOtherApp("fas fa-question-circle", "https://osekai.net/misc/faq", "FAQ");
+// note: these two can be enabled later after functionality is added. for now ignore
 ?>
 
 <script>
@@ -135,59 +150,83 @@ foreach ($apps as $a) {
 
 
 <div id="dropdown__apps_mobile" class="osekai__apps-dropdown-mobile-hidden osekai__apps-dropdown-mobile mobile">
-    <div class="osekai__apps-dropdown-mobile-section" style="--height: 76px;">
-        <?php foreach ($showable_apps as $a) { ?>
-            <a class="osekai__apps-dropdown-mobile-button osekai__apps-dropdown-mobile-app" href="/<?= $a['app']['simplename']; ?>">
-                <img alt="Logo for <?= $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
-                <div class="osekai__apps-dropdown-mobile-app-texts">
-                    <h2>osekai <strong><?= $a['app']['simplename']; ?></strong></h2>
-                    <h3><?= $a['app']['slogan']; ?></h3>
-                </div>
-            </a>
+    <div id="dropdown__apps-mobile-base" class="osekai__apps-dropdown-mobile-inner">
+        <div class="osekai__apps-dropdown-mobile-section" style="--height: 76px;">
+            <?php foreach ($showable_apps as $a) { ?>
+                <a class="osekai__apps-dropdown-mobile-button osekai__apps-dropdown-mobile-app" href="/<?= $a['app']['simplename']; ?>">
+                    <img alt="Logo for <?= $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
+                    <div class="osekai__apps-dropdown-mobile-app-texts">
+                        <h2>osekai <strong><?= $a['app']['simplename']; ?></strong></h2>
+                        <h3><?= $a['app']['slogan']; ?></h3>
+                    </div>
+                </a>
+            <?php } ?>
+        </div>
+        <?php
+        if (isExperimental()) {
+        ?>
+            <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
+                <a class="osekai__apps-dropdown-mobile-button" onclick="showOtherApps()">
+                    <p>other pages</p>
+                </a>
+            </div>
         <?php } ?>
-    </div>
-    <?php
-    if (isExperimental()) {
-    ?>
-        <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
-            <a class="osekai__apps-dropdown-mobile-button">
-                <p>other pages</p>
+        <div class="osekai__apps-dropdown-mobile-section" style="--height: 46px;">
+            <a class="osekai__apps-dropdown-mobile-button" href="/donate">
+                <i class="fas fa-heart"></i>
+                <p>support us!</p>
+            </a>
+            <a class="osekai__apps-dropdown-mobile-button" href="https://twitter.com/osekaiapp">
+                <i class="fab fa-twitter"></i>
+                <p>check out osekai on twitter!</p>
+            </a>
+            <a class="osekai__apps-dropdown-mobile-button" href="https://discord.com/invite/8qpNTs6">
+                <i class="fab fa-discord"></i>
+                <p>join the <strong>osu! Medal Hunters</strong> discord server!</p>
+            </a>
+            <a class="osekai__apps-dropdown-mobile-button" href="https://discord.gg/uZ9CsQBvqM">
+                <i class="fab fa-discord"></i>
+                <p>join our development discord!</p>
             </a>
         </div>
-    <?php } ?>
-    <div class="osekai__apps-dropdown-mobile-section" style="--height: 46px;">
-        <a class="osekai__apps-dropdown-mobile-button" href="/donate">
-            <i class="fas fa-heart"></i>
-            <p>support us!</p>
-        </a>
-        <a class="osekai__apps-dropdown-mobile-button" href="https://twitter.com/osekaiapp">
-            <i class="fab fa-twitter"></i>
-            <p>check out osekai on twitter!</p>
-        </a>
-        <a class="osekai__apps-dropdown-mobile-button" href="https://discord.com/invite/8qpNTs6">
-            <i class="fab fa-discord"></i>
-            <p>join the <strong>osu! Medal Hunters</strong> discord server!</p>
-        </a>
-        <a class="osekai__apps-dropdown-mobile-button" href="https://discord.gg/uZ9CsQBvqM">
-            <i class="fab fa-discord"></i>
-            <p>join our development discord!</p>
-        </a>
-    </div>
 
-    <div class="osekai__apps-dropdown-mobile-section" style="--height: 38px;">
-        <a class="osekai__apps-dropdown-mobile-button" href="/legal/privacy">
-            <p>privacy policy</p>
-        </a>
-        <a class="osekai__apps-dropdown-mobile-button" href="/legal/contact">
-            <p>contact us</p>
-        </a>
-    </div>
+        <div class="osekai__apps-dropdown-mobile-section" style="--height: 38px;">
+            <a class="osekai__apps-dropdown-mobile-button" href="/legal/privacy">
+                <p>privacy policy</p>
+            </a>
+            <a class="osekai__apps-dropdown-mobile-button" href="/legal/contact">
+                <p>contact us</p>
+            </a>
+        </div>
 
-    <div class="osekai__apps-dropdown-mobile-copyright">
-        © Osekai 2019-2022
+        <div class="osekai__apps-dropdown-mobile-copyright">
+            © Osekai 2019-2022
+        </div>
+        <div class="extra-space"></div>
     </div>
-    <div class="extra-space"></div>
+    <div id="dropdown__apps-mobile-other" class="osekai__apps-dropdown-mobile-inner">
+        <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
+            <a class="osekai__apps-dropdown-mobile-button" onclick="hideOtherApps()">
+                <i class="fas fa-chevron-left"></i>
+                <p>back to apps</p>
+            </a>
+        </div>
+        <div class="osekai__apps-dropdown-mobile-section" style="--height: 70px;">
+            <?php
+            foreach ($otherApps as $oapp) {
+                // would name this $app but for whatever fucking reason php decides that it's
+                // a great idea to replace the variable "$app" with it and never put it 
+                // back globally across the entire project if you dare to do that so we
+                // have to kinda just be careful not to?? i hate this
+                echo "<a class=\"osekai__apps-dropdown-mobile-button\" href=\"{$oapp['link']}\">
+                    <i class=\"{$oapp['icon']}\"></i><p>{$oapp['name']}</p>
+                </a>";
+            }
+            ?>
+        </div>
+    </div>
 </div>
+
 
 <div id="dropdown__apps" class="osekai__apps-dropdown-hidden osekai__apps-dropdown desktop">
     <div class="osekai__apps-dropdown-image" id="background_image">
@@ -198,12 +237,20 @@ foreach ($apps as $a) {
 
             <div class="osekai__apps-dropdown-applist-left-top">
                 <div class="osekai__apps-dropdown-applist-left-bottom" onclick="hideOtherApps()">
-                    Back to Apps
+                    <p><i class="fas fa-chevron-left"></i> back to apps</p>
                 </div>
                 <div class="osekai__apps-dropdown-other-content">
-                    <a class="osekai__apps-dropdown-other-content-button" href="/misc/translators/">
-                        Translators
-                    </a>
+                    <?php
+                    foreach ($otherApps as $oapp) {
+                        // would name this $app but for whatever fucking reason php decides that it's
+                        // a great idea to replace the variable "$app" with it and never put it 
+                        // back globally across the entire project if you dare to do that so we
+                        // have to kinda just be careful not to?? i hate this
+                        echo "<a class=\"osekai__apps-dropdown-other-content-button\" href=\"{$oapp['link']}\">
+                            <p><i class=\"{$oapp['icon']}\"></i> {$oapp['name']}</p>
+                        </a>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
