@@ -16,9 +16,9 @@ function addOtherApp($icon, $link, $name)
         "name" => $name
     ]);;
 }
-addOtherApp("fas fa-globe-africa", "https://osekai.net/misc/translators", "Translators");
-//addOtherApp("fas fa-layer-group", "https://osekai.net/misc/groups", "User Groups");
-//addOtherApp("fas fa-question-circle", "https://osekai.net/misc/faq", "FAQ");
+addOtherApp("fas fa-globe-africa", "/misc/translators", "Translators");
+//addOtherApp("fas fa-layer-group", "/misc/groups", "User Groups");
+//addOtherApp("fas fa-question-circle", "/misc/faq", "FAQ");
 // note: these two can be enabled later after functionality is added. for now ignore
 ?>
 
