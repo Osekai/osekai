@@ -22,7 +22,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osu_api_functions.php");
 <meta property="og:description" content="everyone who've dedicated their time to help translate Osekai into their native language!" />
 <meta name="twitter:title" content="Osekai • other / translators" />
 <meta name="twitter:description" content="everyone who've dedicated their time to help translate Osekai into their native language!" />
-<title name="title">Osekai • other / translators</title>
+<title name="title">Osekai • other / groups</title>
 <meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,14 +54,15 @@ notification_system();
     <?php navbar(); ?>
     <div class="osekai__panel-container misc__container">
         <div class="misc__header">
-            <div class="misc__header-inner">
+            <div class="misc__header-inner misc__header-inner-clickable" onclick="goHome()">
                 <p>other / </p>
                 <h1>user groups</h1>
-            </div>
+</div>
         </div>
         <div class="misc__panel-container">
             <div class="misc__explainer">
-                <p>Placeholder Text</p>
+                <p>Welcome to <strong>Groups</strong>! This page lists <strong>all</strong> groups that currently exist on Osekai! 
+You can click on each group to view its own page, listing members of it, what they do and all members' groups!</p>
             </div>
             <div class="osekai__panel" id="grouplist">
                 <div class="osekai__panel-header">Groups</div>

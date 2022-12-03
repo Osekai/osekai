@@ -4,7 +4,7 @@ var params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
 });
 
-function updateURLParameter(url, param, paramVal){
+function updateURLParameter(url, param, paramVal) {
     var newAdditionalURL = "";
     var tempArray = url.split("?");
     var baseURL = tempArray[0];
@@ -12,8 +12,8 @@ function updateURLParameter(url, param, paramVal){
     var temp = "";
     if (additionalURL) {
         tempArray = additionalURL.split("&");
-        for (var i=0; i<tempArray.length; i++){
-            if(tempArray[i].split('=')[0] != param){
+        for (var i = 0; i < tempArray.length; i++) {
+            if (tempArray[i].split('=')[0] != param) {
                 newAdditionalURL += temp + tempArray[i];
                 temp = "&";
             }
@@ -26,7 +26,7 @@ function updateURLParameter(url, param, paramVal){
 
 function getPathFromUrl(url) {
     return url.split(/[?#]/)[0];
-  }
+}
 
 function loadData() {
     openLoader("Loading...");
@@ -60,7 +60,7 @@ function checkGroupChange() {
     params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
     });
-    if(params.group == null) {
+    if (params.group == null) {
         document.getElementById("group").classList.add("hidden");
         document.getElementById("grouplist").classList.remove("hidden");
     } else {
@@ -69,7 +69,7 @@ function checkGroupChange() {
 }
 
 window.addEventListener('popstate', function (event) {
-	checkGroupChange();
+    checkGroupChange();
 });
 
 
@@ -80,10 +80,10 @@ function loadGroup(id, push = false) {
     var found = false;
 
     var html = "";
-    for(var x = 0; x < data.length; x++) {
-        if(data[x]['Id'] == id) {
+    for (var x = 0; x < data.length; x++) {
+        if (data[x]['Id'] == id) {
             found = true;
-            if(push) window.history.pushState('', '', updateURLParameter(window.location.href, "group", id));
+            if (push) window.history.pushState('', '', updateURLParameter(window.location.href, "group", id));
 
             group = data[x];
             document.getElementById("group").style = "--colour: " + group['Colour'];
@@ -92,13 +92,13 @@ function loadGroup(id, push = false) {
             document.getElementById("users").innerHTML = group['Users'].length + " Users";
             document.getElementById("description").innerHTML = group['Description'];
 
-            for(var y = 0; y < data[x]['Users'].length; y++) {
+            for (var y = 0; y < data[x]['Users'].length; y++) {
                 user = data[x]['Users'][y];
                 user['Groups'] = [];
                 user['GroupsIds'] = [];
-                for(var z = 0; z < data.length; z++) {
-                    for(var e = 0; e < data[z]['Users'].length; e++) {
-                        if(data[z]['Users'][e]['UserId'] == user['UserId']) {
+                for (var z = 0; z < data.length; z++) {
+                    for (var e = 0; e < data[z]['Users'].length; e++) {
+                        if (data[z]['Users'][e]['UserId'] == user['UserId']) {
                             user['Groups'].push(data[z]);
                             user['GroupsIds'].push(data[z]['Id']);
                         }
@@ -123,7 +123,7 @@ function loadGroup(id, push = false) {
         }
     }
 
-    if(found == false) {
+    if (found == false) {
         document.getElementById("group").classList.add("hidden");
         document.getElementById("grouplist").classList.remove("hidden");
         generatenotification("error", "Group not found.");
@@ -131,6 +131,12 @@ function loadGroup(id, push = false) {
     } else {
         document.getElementById("group__user-list").innerHTML = html;
     }
+}
+
+function goHome() {
+    document.getElementById("group").classList.add("hidden");
+    document.getElementById("grouplist").classList.remove("hidden");
+    window.history.pushState('', '', getPathFromUrl(window.location.href));
 }
 
 loadData();

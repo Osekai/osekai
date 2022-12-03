@@ -33,6 +33,10 @@ html {
     box-sizing: border-box;
 }
 
+.misc__header-inner-clickable:hover {
+    cursor: pointer;
+}
+
 .misc__header-inner h1 {
     font-weight: 900;
     font-size: 30px;
