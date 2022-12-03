@@ -260,7 +260,7 @@ $locales = $temp;
 
 
 
-$sourcesNames = ["report", "apps", "badges", "comments", "faq", "general", "home", "medals", "navbar", "profiles", "rankings", "snapshots", "donate", "contact"];
+$sourcesNames = ["report", "apps", "badges", "comments", "faq", "general", "home", "medals", "navbar", "profiles", "rankings", "snapshots", "donate", "contact", "misc/translators", "misc/groups", "misc/global"];
 $sources = array();
 
 $currentLocale = null;
