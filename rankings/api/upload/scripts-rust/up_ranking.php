@@ -14,7 +14,7 @@ $columns = ["id", "name", "total_pp", "stdev_pp", "standard_pp", "taiko_pp", "ct
 "rarest_medal_achieved"];
 
 $sql = sqlbuilder("Ranking", $columns);
-$types = "isiiiiiiiisiiiiiiiiiss";
+$types = "isiiiiiiiisiiiiiiiiiiss";
 
 $current_champion = Database::execSimpleSelect("SELECT * FROM RankingMedalChampionHistory ORDER BY Date LIMIT 1")[0];
 
