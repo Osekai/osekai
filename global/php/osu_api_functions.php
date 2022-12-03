@@ -43,6 +43,21 @@ function GetHeaders()
     ];
 }
 
+function curlRequestUser($strSearch) {
+    $handle = curl_init();
+    curl_setopt($handle, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $strSearch);
+    curl_setopt($handle, CURLOPT_HTTPHEADER, GetHeaders());
+    curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
+
+    $result = curl_exec($handle);
+    $response_code = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+
+    if ($response_code == 404)
+        return null;
+
+    return json_decode($result, true);
+}
+
 function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = true)
 {
     $useAllMedals = filter_var($useAllMedals, FILTER_VALIDATE_BOOLEAN);
@@ -51,13 +66,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
 
     $strSearch = $userID;
     if ($mode == "null" || $mode == "undefined") {
-        $oMode = curl_init();
-        curl_setopt($oMode, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $userID . "/");
-        curl_setopt($oMode, CURLOPT_HTTPHEADER, GetHeaders());
-        curl_setopt($oMode, CURLOPT_RETURNTRANSFER, TRUE);
-        $colMode = json_decode(curl_exec($oMode), true);
-
-        return json_encode($colMode);
+        return curlRequestUser($userID . "/");
     }
     if ($mode != null && $mode != "all") {
         $strSearch .= "/" . $mode;
@@ -77,11 +86,10 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapSpotlights FROM Medals WHERE grouping = 'Beatmap Spotlights') a ON 1 = 1 ");
 
     if ($mode != "all") {
-        $oUser = curl_init();
-        curl_setopt($oUser, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $strSearch);
-        curl_setopt($oUser, CURLOPT_HTTPHEADER, GetHeaders());
-        curl_setopt($oUser, CURLOPT_RETURNTRANSFER, TRUE);
-        $colData = json_decode(curl_exec($oUser), true);
+        $colData = curlRequestUser($strSearch);
+
+        if (!isset($colData))
+            return null;
 
         $oUserGoals = Database::execSelect("SELECT * FROM Goals WHERE UserID = ? AND Gamemode = ? Order by Claimed", "is", array($userID, $mode));
         $oUserTimeline = Database::execSelect("SELECT * FROM Timeline WHERE UserID = ? AND Mode = ?", "is", array($userID, $mode)) ?? array();
@@ -188,11 +196,12 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $oUserGoals = Database::execSelect("SELECT * FROM Goals WHERE UserID = ? Order by Claimed", "i", array($userID));
         $oUserTimeline = Database::execSelect("SELECT * FROM Timeline WHERE UserID = ?", "i", array($userID)) ?? array();
 
-        $oUserOsu = curl_init();
-        curl_setopt($oUserOsu, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $userID . "/osu");
-        curl_setopt($oUserOsu, CURLOPT_HTTPHEADER, GetHeaders());
-        curl_setopt($oUserOsu, CURLOPT_RETURNTRANSFER, TRUE);
-        $colOsu = json_decode(curl_exec($oUserOsu), true);
+        $colOsu = curlRequestUser($userID . "/osu");
+        
+        // If osu user is found, the other modes should be found too (?)
+        // So the null check is just done once
+        if (!isset($colOsu))
+            return null;
 
         if ($sendMedals == true) {
             $oUserMedals = Database::execSelect("SELECT * FROM ( " .
@@ -207,11 +216,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
                 ") t3 WHERE id = ?", "i", array($userID));
         }
 
-        $oUserCatch = curl_init();
-        curl_setopt($oUserCatch, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $userID . "/fruits");
-        curl_setopt($oUserCatch, CURLOPT_HTTPHEADER, GetHeaders());
-        curl_setopt($oUserCatch, CURLOPT_RETURNTRANSFER, TRUE);
-        $colCatch = json_decode(curl_exec($oUserCatch), true);
+        $colCatch = curlRequestUser($userID . "/fruits");
 
         $oUserSPP = Database::execSelect("SELECT * FROM ( " .
             "SELECT @r := @r+1 AS rank, t1.* FROM ( " .
@@ -221,11 +226,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
             ") t1, (SELECT @r:=0) t2 LIMIT 3000 " .
             ") t3 WHERE id = ?", "i", array($userID));
 
-        $oUserTaiko = curl_init();
-        curl_setopt($oUserTaiko, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $userID . "/taiko");
-        curl_setopt($oUserTaiko, CURLOPT_HTTPHEADER, GetHeaders());
-        curl_setopt($oUserTaiko, CURLOPT_RETURNTRANSFER, TRUE);
-        $colTaiko = json_decode(curl_exec($oUserTaiko), true);
+        $colTaiko = curlRequestUser($userID . "/taiko");
 
         $oUserSPPCountry = Database::execSelect("SELECT * FROM ( " .
             "SELECT @r := @r+1 AS rank, t1.* FROM ( " .
@@ -236,11 +237,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
             ") t1, (SELECT @r:=0) t2 LIMIT 1000 " .
             ") t3 WHERE id = ?", "si", array($colOsu['country_code'], $userID));
 
-        $oUserMania = curl_init();
-        curl_setopt($oUserMania, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $userID . "/mania");
-        curl_setopt($oUserMania, CURLOPT_HTTPHEADER, GetHeaders());
-        curl_setopt($oUserMania, CURLOPT_RETURNTRANSFER, TRUE);
-        $colMania = json_decode(curl_exec($oUserMania), true);
+        $colMania = curlRequestUser($userID . "/mania");
 
         $colOsu['max_medals'] = $oMedals[0]['MedalCount'];
         $colOsu['max_medals_group'] = [];

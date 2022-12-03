@@ -58,88 +58,108 @@ if (MODE == "dev") {
 
 $userGroups = null;
 
-if (isset($app)) {
-
-    if (MODE != "production") {
-        // production site uses htaccess file to avoid issue
-        // dev and local doesn't work
-
-        $site_adress = ((((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
-        $whole_url = $site_adress . $_SERVER['REQUEST_URI'];
-
-        $pos = strpos($whole_url, "?");
-        $changed_url = FALSE;
-        if ($pos !== FALSE && $whole_url[$pos - 1] != "/") {
-            $whole_url = substr_replace($whole_url, "/", $pos, 0);
-            $changed_url = TRUE;
-        } else if ($pos == FALSE && substr($whole_url, -1) != '/') {
-            $whole_url = $whole_url . "/";
-            $changed_url = TRUE;
-        }
-        if ($changed_url) {
-            header("HTTP/1.1 301 Moved Permanently");
-            header("Location: " . $whole_url);
-            exit();
-        }
-    }
-    $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
-    $medals = Database::execSelect("CALL FUNC_GetMedals(?, ?)", "ss", ['', '']);
-    $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
-?>
-    <script type="text/javascript">
-        const christmas = "<?php echo $christmas; ?>";
-        const nAppId = "<?php echo $apps[$app]['id']; ?>";
-        const version = "<?php echo OSEKAI_VERSION; ?>";
-        //const medalAmount = 261; // this should be pulled from the database in the future
-        const nUserID = <?php if (isset($_SESSION['osu']) && $_SESSION['osu'] != "") {
-                            echo $_SESSION['osu']['id'];
-                        } else {
-                            echo "-1";
-                        } ?>;
-        const nUsername = '<?php if (isset($_SESSION['osu']) && $_SESSION['osu'] != "") {
-                                echo $_SESSION['osu']['username'];
-                            } else {
-                                echo "guest";
-                            } ?>';
-
-        const nRights = <?php if (isset($_SESSION['role']) && $_SESSION['role'] != "" && $_SESSION['role'] != null && $_SESSION['role']['rights'] != null) {
-                            echo $_SESSION['role']['rights'];
-                        } else {
-                            echo "-1";
-                        } ?>;
-        const strRole = <?php if (isset($_SESSION['role']['name']) && $_SESSION['role']['name'] != "") {
-                            echo "'" . $_SESSION['role']['name'] . "'";
-                        } else {
-                            echo "''";
-                        } ?>;
-        const medalAmount = <?php echo count($medals); ?>;
-        const experimental = <?php
-                                if (isExperimental()) {
-                                    echo $_SESSION['options']['experimental'];
-                                } else {
-                                    echo "0";
-                                } ?>;
-        const roles = <?php echo json_encode($roles); ?>;
-        const userGroups = <?php echo json_encode($userGroups); ?>;
-        const medals = <?php echo json_encode($medals); ?>;
-        const restrictedState = <?php if (isRestricted()) echo "1";
-                                else echo "0"; ?>;
-    </script>
-    <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
-    foreach ($apps as $appa) {
-        $apps[$appa['simplename']]['slogan'] = LocalizeText($apps[$appa['simplename']]['slogan']);
-    }
-    ?>
-    <script>
-        loadSource("<?php echo $app; ?>");
-        loadSource("general");
-    </script>
-<?php
-} else {
+if(!isset($app)) {
     $useJS = false;
-    include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
 }
+include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
+
+function frontend() {
+    global $useJS;
+    global $christmas;
+    global $apps;
+    global $manual_frontend;
+    global $app;
+    global $currentLocale;
+    global $locales;
+    global $sourcesNames;
+    global $sources;
+    global $enabled;
+
+
+    if (isset($app)) {
+
+        if (MODE != "production") {
+            // production site uses htaccess file to avoid issue
+            // dev and local doesn't work
+
+            $site_adress = ((((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+            $whole_url = $site_adress . $_SERVER['REQUEST_URI'];
+
+            $pos = strpos($whole_url, "?");
+            $changed_url = FALSE;
+            if ($pos !== FALSE && $whole_url[$pos - 1] != "/") {
+                $whole_url = substr_replace($whole_url, "/", $pos, 0);
+                $changed_url = TRUE;
+            } else if ($pos == FALSE && substr($whole_url, -1) != '/') {
+                $whole_url = $whole_url . "/";
+                $changed_url = TRUE;
+            }
+            if ($changed_url) {
+                header("HTTP/1.1 301 Moved Permanently");
+                header("Location: " . $whole_url);
+                exit();
+            }
+        }
+        $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
+        $medals = Database::execSelect("CALL FUNC_GetMedals(?, ?)", "ss", ['', '']);
+        $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
+    ?>
+        <script type="text/javascript">
+            const christmas = "<?php echo $christmas; ?>";
+            const nAppId = "<?php echo $apps[$app]['id']; ?>";
+            const version = "<?php echo OSEKAI_VERSION; ?>";
+            //const medalAmount = 261; // this should be pulled from the database in the future
+            const nUserID = <?php if (isset($_SESSION['osu']) && $_SESSION['osu'] != "") {
+                                echo $_SESSION['osu']['id'];
+                            } else {
+                                echo "-1";
+                            } ?>;
+            const nUsername = '<?php if (isset($_SESSION['osu']) && $_SESSION['osu'] != "") {
+                                    echo $_SESSION['osu']['username'];
+                                } else {
+                                    echo "guest";
+                                } ?>';
+
+            const nRights = <?php if (isset($_SESSION['role']) && $_SESSION['role'] != "" && $_SESSION['role'] != null && $_SESSION['role']['rights'] != null) {
+                                echo $_SESSION['role']['rights'];
+                            } else {
+                                echo "-1";
+                            } ?>;
+            const strRole = <?php if (isset($_SESSION['role']['name']) && $_SESSION['role']['name'] != "") {
+                                echo "'" . $_SESSION['role']['name'] . "'";
+                            } else {
+                                echo "''";
+                            } ?>;
+            const medalAmount = <?php echo count($medals); ?>;
+            const experimental = <?php
+                                    if (isExperimental()) {
+                                        echo $_SESSION['options']['experimental'];
+                                    } else {
+                                        echo "0";
+                                    } ?>;
+            const roles = <?php echo json_encode($roles); ?>;
+            const userGroups = <?php echo json_encode($userGroups); ?>;
+            const medals = <?php echo json_encode($medals); ?>;
+            const restrictedState = <?php if (isRestricted()) echo "1";
+                                    else echo "0"; ?>;
+        </script>
+        <?php
+        
+        foreach ($apps as $appa) {
+            $apps[$appa['simplename']]['slogan'] = LocalizeText($apps[$appa['simplename']]['slogan']);
+        }
+        ?>
+        <script>
+            loadSource("<?php echo $app; ?>");
+            loadSource("general");
+        </script>
+    <?php
+    }
+
+}
+
+if (!(isset($manual_frontend) && $manual_frontend === true))
+    frontend();
 
 
 $loginurl = "https://osu.ppy.sh/oauth/authorize?response_type=code&client_id=" . OSU_OAUTH_CLIENT_ID . "&redirect_uri=" . htmlentities(OSU_OAUTH_REDIRECT_URI);

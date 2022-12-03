@@ -1,53 +1,54 @@
 <?php
 $app = "profiles";
+$manual_frontend = true;
+
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-
-
-<head>
-
-    <?php
-    if (isset($_GET['user'])) {
-        //$colBadges = Database::execSelect("SELECT * FROM Badges where id = ?", "i", array($_GET['badge']));
-        //include("../global/php/osu_api_functions.php");
-        // we can cache this like forever
-        $cache = Caching::getCache("profiles_meta_" . $_GET['user']);
-        $user = "";
-        if ($cache != null) {
-            $user = $cache;
-        } else {
-            $user = v2_getUser($_GET['user']);
+if (isset($_GET['user'])) {
+    //$colBadges = Database::execSelect("SELECT * FROM Badges where id = ?", "i", array($_GET['badge']));
+    //include("../global/php/osu_api_functions.php");
+    // we can cache this like forever
+    $cache = Caching::getCache("profiles_meta_" . $_GET['user']);
+    $user = "";
+    if ($cache != null) {
+        $user = $cache;
+    } else {
+        $user = v2_getUser($_GET['user']);
+        
+        if (isset($user)) {
             Caching::saveCache("profiles_meta_" . $_GET['user'], 172800, $user);
         }
+    }
+
+    if (isset($user)) {
         $user = json_decode($user, true);
 
-        if (isset($user)) {
-            $user_id = $user['id'];
-            $user_name = $user['username'];
+        $user_id = $user['id'];
+        $user_name = $user['username'];
 
-            $title = "Osekai Profiles • " . $user_name;
-            $desc = "Check out the Osekai Profiles page for " . $user_name . "! Including stats, medals, goals, timeline, and more!";
-            $keyword = $user_name;
-            $keyword2 = "osekai profiles";
+        $title = "Osekai Profiles • " . $user_name;
+        $desc = "Check out the Osekai Profiles page for " . $user_name . "! Including stats, medals, goals, timeline, and more!";
+        $keyword = $user_name;
+        $keyword2 = "osekai profiles";
 
-            $meta = '<meta charset="utf-8" />
-            <meta name="msapplication-TileColor" content="#303f5e">
-            <meta name="theme-color" content="#303f5e">
-            <meta property="og:image" content="https://a.ppy.sh/' . $user_id . '" />
-            <meta name="description" content="' . htmlspecialchars($desc) . '" />
-            <meta property="og:title" content="' . htmlspecialchars($title) . '" />
-            <meta property="og:description" content="' . htmlspecialchars($desc) . '" />
-            <meta name="twitter:title" content="' . htmlspecialchars($title) . '" />
-            <meta name="twitter:description" content="' . htmlspecialchars($desc) . '" />
-            <title name="title">' . htmlspecialchars($title) . '</title>
-            <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,profile,user_profile,' . $keyword . ',' . $keyword2 . ',graph,chart,goals">';
-        }
+        $meta = '<meta charset="utf-8" />
+        <meta name="msapplication-TileColor" content="#303f5e">
+        <meta name="theme-color" content="#303f5e">
+        <meta property="og:image" content="https://a.ppy.sh/' . $user_id . '" />
+        <meta name="description" content="' . htmlspecialchars($desc) . '" />
+        <meta property="og:title" content="' . htmlspecialchars($title) . '" />
+        <meta property="og:description" content="' . htmlspecialchars($desc) . '" />
+        <meta name="twitter:title" content="' . htmlspecialchars($title) . '" />
+        <meta name="twitter:description" content="' . htmlspecialchars($desc) . '" />
+        <title name="title">' . htmlspecialchars($title) . '</title>
+        <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,profile,user_profile,' . $keyword . ',' . $keyword2 . ',graph,chart,goals">';
     } else {
+        http_response_code(404);
+        frontend();
+        include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
+        exit; 
+    }
+} else {
         $title = "Osekai Profiles • Home";
         // ! temporary description
         $desc = "Check out Osekai Profiles! Featuring stats, medals, goals, timeline, and more, for every single osu! user!";
@@ -63,7 +64,19 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
         <title name="title">' . htmlspecialchars($title) . '</title>
         <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,profile,user_profile,badges,graph,chart,goals">
         <meta property="og:url" content="/profiles" />';
-    }
+}
+frontend();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+<head>
+    <?php
+
     echo $meta;
     echo $head;
 
