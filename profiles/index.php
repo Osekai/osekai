@@ -1,5 +1,7 @@
 <?php
 $app = "profiles";
+$manual_frontend = true;
+
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
 if (isset($_GET['user'])) {
@@ -41,7 +43,9 @@ if (isset($_GET['user'])) {
         <title name="title">' . htmlspecialchars($title) . '</title>
         <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,profile,user_profile,' . $keyword . ',' . $keyword2 . ',graph,chart,goals">';
     } else {
-        include_once($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
+        http_response_code(404);
+        frontend();
+        include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
         exit; 
     }
 } else {
@@ -61,6 +65,7 @@ if (isset($_GET['user'])) {
         <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,profile,user_profile,badges,graph,chart,goals">
         <meta property="og:url" content="/profiles" />';
 }
+
 ?>
 
 <!DOCTYPE html>
