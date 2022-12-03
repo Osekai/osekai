@@ -1,5 +1,7 @@
 <?php
 $app = "badges";
+$manual_frontend = true;
+
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 ?>
 
@@ -16,44 +18,48 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <?php
     // print errors
 
-    if (isset($_GET['badge'])) {
+        if (isset($_GET['badge'])) {
 
-        $colBadges = (array)Database::execSelect("SELECT * FROM Badges where id = ?", "i", array($_GET['badge']));
+            $colBadges = (array)Database::execSelect("SELECT * FROM Badges where id = ?", "i", array($_GET['badge']));
 
+            if (count($colBadges) == 1) {
+                $badge = $colBadges[0];
 
-        if (count($colBadges) == 1) {
-            $badge = $colBadges[0];
+                $title = "Badge: " . $badge['description'];
+                $desc = $badge['name'] . " - owned by " . count((array)$badge['users']) . " users - first achieved on " . $badge['awarded_at'];
+                $keyword = $badge['name'] . "," . $badge['description'];
+                $keyword2 = $badge['name'] . "," . $badge['description'];
 
-            $title = "Badge: " . $badge['description'];
-            $desc = $badge['name'] . " - owned by " . count((array)$badge['users']) . " users - first achieved on " . $badge['awarded_at'];
-            $keyword = $badge['name'] . "," . $badge['description'];
-            $keyword2 = $badge['name'] . "," . $badge['description'];
-
+                $meta = '<meta charset="utf-8" />
+                <meta name="msapplication-TileColor" content="#533b65">
+                <meta name="theme-color" content="#533b65">
+                <meta property="og:image" content="' . $badge['image_url'] . '">
+                <meta name="description" content="' . htmlspecialchars($desc) . '" />
+                <meta property="og:title" content="' . htmlspecialchars($title) . '" />
+                <meta property="og:description" content="' . htmlspecialchars($desc) . '" />
+                <meta name="twitter:title" content="' . htmlspecialchars($title) . '" />
+                <meta name="twitter:description" content="' . htmlspecialchars($desc) . '" />
+                <title name="title">' . htmlspecialchars($title) . '</title>
+                <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,' . $keyword . ',' . $keyword2 . ',badge,badges">';
+            } else {
+                http_response_code(404);
+                frontend();
+                include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
+                exit;      
+            }
+        } else {
             $meta = '<meta charset="utf-8" />
+            <meta name="description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
             <meta name="msapplication-TileColor" content="#533b65">
             <meta name="theme-color" content="#533b65">
-            <meta property="og:image" content="' . $badge['image_url'] . '">
-            <meta name="description" content="' . htmlspecialchars($desc) . '" />
-            <meta property="og:title" content="' . htmlspecialchars($title) . '" />
-            <meta property="og:description" content="' . htmlspecialchars($desc) . '" />
-            <meta name="twitter:title" content="' . htmlspecialchars($title) . '" />
-            <meta name="twitter:description" content="' . htmlspecialchars($desc) . '" />
-            <title name="title">' . htmlspecialchars($title) . '</title>
-            <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,' . $keyword . ',' . $keyword2 . ',badge,badges">';
+            <meta property="og:title" content="Osekai Badges • All of osu!\'s Badges!" />
+            <meta property="og:description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
+            <meta name="twitter:title" content="Osekai Badges • All of osu!\'s Badges!" />
+            <meta name="twitter:description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
+            <title name="title">Osekai Badges • All of osu!\'s Badges!</title>
+            <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,badge,badges">
+            <meta property="og:url" content="/badges" />';
         }
-    } else {
-        $meta = '<meta charset="utf-8" />
-        <meta name="description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
-        <meta name="msapplication-TileColor" content="#533b65">
-        <meta name="theme-color" content="#533b65">
-        <meta property="og:title" content="Osekai Badges • All of osu!\'s Badges!" />
-        <meta property="og:description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
-        <meta name="twitter:title" content="Osekai Badges • All of osu!\'s Badges!" />
-        <meta name="twitter:description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
-        <title name="title">Osekai Badges • All of osu!\'s Badges!</title>
-        <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,badge,badges">
-        <meta property="og:url" content="/badges" />';
-    }
     echo $meta;
 
     ?>
