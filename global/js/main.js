@@ -42,6 +42,52 @@ setTimeout(function () {
 //    }
 //
 
+var colours = {
+    RGBToHSL: function (r, g, b) {
+        var oldR = r;
+        var oldG = g;
+        var oldB = b;
+
+        r /= 255;
+        g /= 255;
+        b /= 255;
+
+        var max = Math.max(r, g, b);
+        var min = Math.min(r, g, b);
+
+        var h;
+        var s;
+        var l = (max + min) / 2;
+        var d = max - min;
+
+        if (d == 0) {
+            h = s = 0; // achromatic
+        } else {
+            s = d / (1 - Math.abs(2 * l - 1));
+
+            switch (max) {
+                case r:
+                    h = 60 * (((g - b) / d) % 6);
+                    if (b > g) {
+                        h += 360;
+                    }
+                    break;
+
+                case g:
+                    h = 60 * ((b - r) / d + 2);
+                    break;
+
+                case b:
+                    h = 60 * ((r - g) / d + 4);
+                    break;
+            }
+        }
+
+        return [Math.round(h, 2), Math.round(s * 100, 2), Math.round(l * 100, 2)];
+        // don\'t question the multiplications, it works
+    }
+}
+
 function OpenSettingsDropdown(id) {
     var dropdown = document.getElementById(id);
     dropdown.classList.toggle("osekai__dropdown-hidden");
@@ -214,7 +260,7 @@ var cp_accent = null;
 function updateTheme() {
     //console.log("switching to: " + theme);
     document.getElementById("custom_theme_container").innerHTML = "";
-    console.log("theme is " + theme.internal);
+
     if (theme.internal == "system") {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             // dark mode
@@ -235,15 +281,35 @@ function updateTheme() {
     }
 
     if (theme.internal == "custom" || theme.internal == "custom-light") {
+        var accentDark_split = String(customTheme.accent_dark).split(",");
+        var accent_split = String(customTheme.accent).split(",");
+        var accentDark_hsl = colours.RGBToHSL(accentDark_split[0], accentDark_split[1], accentDark_split[2]);
+        var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[2], accent_split[1]);
+
         document.getElementById("custom_theme_container").innerHTML = `html{
             --accentdark: ${customTheme.accent_dark} !important;
             --accent: ${customTheme.accent} !important;
+            
+            --accentdark_hue: ${accentDark_hsl[0]}deg;
+            --accent_hue: ${accent_hsl[0]}deg;
+            --accentdark_saturation: ${accentDark_hsl[1]}%;
+            --accent_saturation: ${accent_hsl[1]}%;
+            --accentdark_value: ${accentDark_hsl[2]}%;
+            --accent_value: ${accent_hsl[2]}%;
+
+            --accentdark_valueoffset: ${accentDark_hsl[2] / 45 + 0.2};
+            --accent_valueoffset: ${accentDark_hsl[2] / 50 + 0.2};
         }`;
+        // NOTE: i can't test the accent_valueoffset yet since the light mode doesn't support the new HSL colours just yet.
+        // this probably will look weird when that's finished since the values are tailored for dark mode instead.
+
+        // NOTE 2: this'd look better if "valueoffset" was actually an offset and not just a multiplication
+        // of the base value, but sadly that's not a thing so we have to live with not actually giving
+        // the user the brightness of the colour they've selected. fine, it works, but bit annoying
         window.localStorage.setItem("accent_dark", customTheme.accent_dark);
         window.localStorage.setItem("accent", customTheme.accent);
         document.getElementById("customThemePicker").classList.remove("hidden");
         if (cp_accent == null) {
-            console.log("making cp with default " + customTheme.accent_dark)
             cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
                 customTheme.accent_dark = col;
                 updateTheme();
@@ -801,7 +867,7 @@ var groupUtils = {
         var group = this.getGroupFromId(id);
         return `<div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
     },
-    orderBadgeArray: function(array) {
+    orderBadgeArray: function (array) {
         return array.sort((a, b) => a.Order - b.Order)
     },
     badgeHtmlFromArray: function (array, size = "small") {
