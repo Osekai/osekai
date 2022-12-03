@@ -238,7 +238,7 @@ foreach ($apps as $a) {
                 <div class="osekai__apps-dropdown-applist-left-bottom" onclick="hideOtherApps()">
                     <p><i class="fas fa-chevron-left"></i> back to apps</p>
                 </div>
-                <div class="osekai__apps-dropdown-other-content">                    
+                <div class="osekai__apps-dropdown-other-content">
                     <?php
                     foreach ($otherApps as $oapp) {
                         // would name this $app but for whatever fucking reason php decides that it's
