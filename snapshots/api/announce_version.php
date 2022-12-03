@@ -23,7 +23,7 @@ foreach($test as $t){
     $thisver = $t;
 }
 
-$webhookurl = "https://discord.com/api/webhooks/892411512512204830/9NTxPfDjejnhgtm6ohq-kHVerzsxLdkF6pdV2k-LZZtqNEdXc5uva5XcFpqjQ7LTuPzr";
+$webhookurl = SNAPSHOTS_WEBHOOK;
 
 //=======================================================================================================
 // Compose message. You can use Markdown

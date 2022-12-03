@@ -218,10 +218,24 @@ function css()
     }
 
     // set the accent
+    $colourDark = explode(",", $apps[$app]['color_dark']);
+    $colourDarkHsl = rgbToHsl($colourDark[0], $colourDark[1], $colourDark[2]);
+    $colour = explode(",", $apps[$app]['color_dark']);
+    $colourHsl = rgbToHsl($colour[0], $colour[1], $colour[2]);
     echo '<style>
     html{
         --accentdark: ' . $apps[$app]['color_dark'] . ';
         --accent: ' . $apps[$app]['color'] . ';
+
+        --accentdark_hue: ' . $colourDarkHsl[0] . 'deg;
+        --accent_hue: ' . $colourHsl[0] . 'deg;
+        --accentdark_saturation: ' . $colourDarkHsl[1] . '%;
+        --accent_saturation: ' . $colourHsl[1] . '%;
+        --accentdark_value: ' . $colourDarkHsl[2] . '%;
+        --accent_value: ' . $colourHsl[2] . '%;
+
+        --accentdark_valueoffset: ' . $apps[$app]['dark_value_multiplier'] . ';
+        --accent_valueoffset: ' . $apps[$app]['value_mulitplier'] . ';
     }
     </style>
     <style id="custom_theme_container"></style>';
@@ -296,6 +310,7 @@ function navbar()
     global $actual_link;
     global $loginurl;
     global $christmas;
+    global $otherApps; // what the fuck
 
     $_SESSION['redirect_url'] = true;
 
@@ -714,3 +729,56 @@ function badgeHtmlFromGroup($group, $size)
 {
     return "<div class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</div>";
 }
+
+function orderBadgeArray($array) {
+    usort($array, function($a, $b)
+    {
+        return strcmp($a['Order'], $b['Order']);
+    });
+    return $array;
+}
+
+function rgbToHsl( $r, $g, $b ) {
+	$oldR = $r;
+	$oldG = $g;
+	$oldB = $b;
+
+	$r /= 255;
+	$g /= 255;
+	$b /= 255;
+
+    $max = max( $r, $g, $b );
+	$min = min( $r, $g, $b );
+
+	$h;
+	$s;
+	$l = ( $max + $min ) / 2;
+	$d = $max - $min;
+
+    	if( $d == 0 ){
+        	$h = $s = 0; // achromatic
+    	} else {
+        	$s = $d / ( 1 - abs( 2 * $l - 1 ) );
+
+		switch( $max ){
+	            case $r:
+	            	$h = 60 * fmod( ( ( $g - $b ) / $d ), 6 ); 
+                        if ($b > $g) {
+	                    $h += 360;
+	                }
+	                break;
+
+	            case $g: 
+	            	$h = 60 * ( ( $b - $r ) / $d + 2 ); 
+	            	break;
+
+	            case $b: 
+	            	$h = 60 * ( ( $r - $g ) / $d + 4 ); 
+	            	break;
+	        }			        	        
+	}
+
+	return array( round( $h, 2 ), round( $s*100, 2 ), round( $l*100, 2 ) );
+    // don't question the multiplications, it works
+}
+

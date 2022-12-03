@@ -4,7 +4,7 @@ include("base_api.php");
 $data = json_decode($_POST['data'], true);
 
 // this needs to fill out MedalListing.php. it's literally duplicate data kind of smashed together so i won't bother bade with it
-$url = "https://discord.com/api/webhooks/1017796683532341378/GLyAd_sTEi1mT-GVAt5WszGEBwLAnZLuCtvTYb_vegyhbqrRVl07emhwwIENf7MrNnxX";
+$url = SCRIPTS_WEBHOOK;
 $data = array('content' => 'SCRIPTS-RUST Progress Update:
 ' . json_encode($data));
 $options = array(

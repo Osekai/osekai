@@ -135,7 +135,7 @@ function requestMedals(bInit, strKey, strValue, strUrl) {
                 if (bInit) colMedals[innerObj.Name] = innerObj;
                 if (innerObj.Name == "chromb") return;
                 if ((typeof strLastRestriction !== 'undefined' && strLastRestriction !== null) && innerObj.Restriction !== strLastRestriction) imgList += '</div><div class="osekai__divider"></div><div class="medals__grid">';
-                imgList += '<div class="medals__grid-medal-container" data-tippy-content="' + innerObj.Name + '">';
+                imgList += '<div class="medals__grid-medal-container">';
                 // if date is not null, and it is less than a week ago, it's new!
                 //console.log(innerObj);
                 if (innerObj.Date != null) {
@@ -148,7 +148,7 @@ function requestMedals(bInit, strKey, strValue, strUrl) {
                         imgList += '<div class="new-badge">NEW</div>';
                     }
                 }
-                imgList += '<img onload="medalImageLoaded(this)" onclick="changeState(\'' + innerObj.Name.replace(/'/g, "\\'") + '\')" alt="' + innerObj.Name + '" id="medal_' + innerObj.MedalID + '"  class="medals__grid-medal lazy" src="' + innerObj.Link + '">';
+                imgList += '<img onload="medalImageLoaded(this)" data-tippy-content="' + innerObj.Name + '" onclick="changeState(\'' + innerObj.Name.replace(/'/g, "\\'") + '\')" alt="' + innerObj.Name + '" id="medal_' + innerObj.MedalID + '"  class="medals__grid-medal lazy" src="' + innerObj.Link + '">';
                 imgList += '</div>';
                 strLastRestriction = innerObj.Restriction;
             });
@@ -631,11 +631,11 @@ function checkLock(callback) {
     xhr.send("bCheckLock=true&nMedalID=" + nCurrentMedalID);
     xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
-        if (handleUndefined(oResponse)) {
+        if (handleUndefined(oResponse)) return;
+        if(oResponse == 1)
+            callback(true);
+        else
             callback(false);
-            return;
-        }
-        if (oResponse.toString() == "1") callback(true);
     };
 }
 

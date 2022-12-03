@@ -124,11 +124,17 @@ loadUserDropdown();
 function showOtherApps() {
     document.getElementById("outer-app-list").classList.add("osekai__apps-dropdown-hidden");
     document.getElementById("otherapplist").classList.remove("osekai__apps-dropdown-hidden");
+
+    document.getElementById("dropdown__apps-mobile-base").classList.add("osekai__apps-dropdown-mobile-hidden");
+    document.getElementById("dropdown__apps-mobile-other").classList.remove("osekai__apps-dropdown-mobile-hidden");
 }
 
 function hideOtherApps() {
     document.getElementById("outer-app-list").classList.remove("osekai__apps-dropdown-hidden");
     document.getElementById("otherapplist").classList.add("osekai__apps-dropdown-hidden");
+
+    document.getElementById("dropdown__apps-mobile-base").classList.remove("osekai__apps-dropdown-mobile-hidden");
+    document.getElementById("dropdown__apps-mobile-other").classList.add("osekai__apps-dropdown-mobile-hidden");
 }
 
 function open_dropdown(classname, id)

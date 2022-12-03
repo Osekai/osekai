@@ -11,7 +11,8 @@ if ($info['firstachievedby'] != null) {
         $info['firstachievedby']['username'] = $userinfo[0]['name'];
     } else {
         // this user isn't in the ranking
-        Database::execOperation("INSERT INTO Members (id) VALUES (?)", "i", array($info['firstachievedby']['id']));
+        // Add the user to Members so it gets procesed later if its not already in the queue
+        Database::execOperation("INSERT INTO Members (id) VALUES (?) ON DUPLICATE KEY UPDATE id = id", "i", array($info['firstachievedby']['id']));
         $info['firstachievedby'] = null;
     }
 }

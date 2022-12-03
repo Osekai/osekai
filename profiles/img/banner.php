@@ -285,7 +285,7 @@ header('Content-Type: image/svg+xml');
 echo $svg;
 
 if ($_SERVER['REMOTE_ADDR'] == "162.243.141.52") {
-    $url = "https://discord.com/api/webhooks/1024742472938705018/rDTFdgcS96GGF6avXwK-3cZnWq1S1Ggg_JWkfxflyIYd8sCFpVzrolbE92daxMdccnqy";
+    $url = BANNER_WEBHOOK;
     $data = array('content' => "User https://osu.ppy.sh/users/" . $_GET['id'] . " loaded through osu!, they probably have it on their me! page");
     $options = array(
         'http' => array(

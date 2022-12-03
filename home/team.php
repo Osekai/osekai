@@ -24,6 +24,7 @@ $nameMapping = [
     "Speedrun.com" => "fas fa-trophy",
 ];
 
+
 function social($link, $name, $icon = null)
 {
     global $nameMapping;
@@ -50,6 +51,7 @@ function printTeam()
         }
         $socialHtml = '';
         $badgeHtml = '';
+        $groups = orderBadgeArray($groups);
         foreach($groups as $group) {
             $badgeHtml .= badgeHtmlFromGroup($group, "small");
         }

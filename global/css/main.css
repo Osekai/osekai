@@ -17,10 +17,8 @@
  * ⣿⣿⣿⣿⣿⣿⣿⣷⣤⣀⠀⠀⠀⠀⠉⠉⠉⠉⠀⠀⠀⠀⣀⣤⣾⣿⣿⣿⣿⣿⣿⣿
  * ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⣀⠀⠀⠀⠀⣀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
  *
- *  This CSS file is copyrighted. Without permission, you cannot use content from this file in your own projects.
- *  Feel free to take small snippets, but you cannot use it all. 
- *  
- *  Osekai 2021 (cant find a copyright symbol)
+ *  Copyright (c) Osekai. Licensed under the MIT Licence.
+ *  See the LICENCE file in the repository root for full licence text.
  *
  ****************************************************************************/
 
@@ -135,10 +133,15 @@ body {
     color: white;
     padding-top: var(--navheight);
     overflow-x: hidden;
-    background: linear-gradient(rgba(var(--genericaccent), 0.46), rgba(var(--genericaccent), 0.1)), linear-gradient(#000, #000);
+    /* background: linear-gradient(rgba(var(--genericaccent), 0.46), rgba(var(--genericaccent), 0.1)), linear-gradient(#000, #000); */
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(6% * var(--accentdark_valueoffset)))
+    );
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    min-height: calc(100vh - var(--navheight));
 }
 
 @media (min-width: 900px) {
@@ -179,7 +182,11 @@ a {
 }
 
 .osekai__navbar {
-    background: linear-gradient(rgba(var(--genericaccent), 0.7), rgba(var(--genericaccent), 0.9)), linear-gradient(#fff3, #fff0);
+    /* background: linear-gradient(rgba(var(--genericaccent), 0.7), rgba(var(--genericaccent), 0.9)), linear-gradient(#fff3, #fff0); */
+    background: linear-gradient(
+    hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)), 0.9),
+    hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.8)
+);
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -199,7 +206,11 @@ a {
 .osekai__navbar__app-container {
     height: 62px;
     width: 59px;
-    background: linear-gradient(#fff1, #fff2), linear-gradient(rgba(var(--genericaccent), 1), rgba(var(--genericaccent), 0.9));
+    /* background: linear-gradient(#fff1, #fff2), linear-gradient(rgba(var(--genericaccent), 1), rgba(var(--genericaccent), 0.9)); */
+    background: linear-gradient(
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(35% * var(--accentdark_valueoffset))),
+    hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
+);
     margin-left: 12px;
     border-radius: 0px 0px 4px 4px;
     display: flex;
@@ -639,13 +650,17 @@ a {
 }
 
 .osekai__panel {
-    background: linear-gradient(rgba(var(--accentdark), 0.1), rgba(var(--accentdark), 0.25));
+    /* background: linear-gradient(rgba(var(--accentdark), 0.1), rgba(var(--accentdark), 0.25)); */
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset)))
+    );
     border-radius: 8px;
     box-shadow: 0px 0px 0px 1px #fff1;
+    position: relative;
 }
 
 .osekai__panel-header {
-    background: linear-gradient(rgba(var(--accentdark), 0.7), rgba(var(--accentdark), 1)), linear-gradient(#fff3, #fff0);
     border-bottom: 1px solid #0002;
     border-top: 1px solid #fff1;
     padding: 20px 18px;
@@ -656,12 +671,18 @@ a {
     align-items: flex-start;
 }
 
+.osekai__panel-header, .osekai__panel-header-with-buttons {
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
+    );
+}
+
 .osekai__panel-header i, .osekai__panel-header-with-buttons i {
     margin-right: 8px;
 }
 
 .osekai__panel-header-with-buttons {
-    background: linear-gradient(rgba(var(--accentdark), 0.7), rgba(var(--accentdark), 1)), linear-gradient(#fff3, #fff0);
     border-bottom: 1px solid #0002;
     border-top: 1px solid #fff1;
     border-radius: 8px 8px 0px 0px;
@@ -671,7 +692,10 @@ a {
 }
 
 .osekai__panel-nav {
-    background: linear-gradient(rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), #000a;
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)))
+    );
     padding: 20px 18px;
     top: var(--navheight);
     position: sticky;
@@ -679,15 +703,6 @@ a {
     z-index: 8;
 }
 
-@-moz-document url-prefix() {
-
-    /* this is just for firefox */
-    .osekai__panel-nav {
-        background: linear-gradient(rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), #000e;
-    }
-
-    /* note a few months later: WHY IS IT JUST FOR FIREFOX??? AAAAAAA */
-}
 
 .osekai__panel-nav__lrcont {
     padding: 0px;
@@ -4385,10 +4400,11 @@ input[type=range]:focus::-ms-fill-upper {
     height: calc(100vh - (59px + var(--extraheight)));
     width: 100vw;
     z-index: 68;
-    overflow-y: auto;
+    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     transition: all 0.4s ease;
+    overflow-x: hidden;
 }
 
 .osekai__apps-dropdown-mobile-section {
@@ -4456,6 +4472,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__apps-dropdown-mobile-button i {
     margin-right: 15px;
+    font-size: 20px;
 }
 
 .osekai__navbar-harumachicup {
@@ -4544,7 +4561,11 @@ input[type=range]:focus::-ms-fill-upper {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, rgba(var(--accentdark), 0.5) 0%, rgba(var(--accentdark), 0.1) 100%);
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset)))
+    );
+    border-radius: 8px 8px 0px 0px;
 }
 
 .osekai__section-header-left h2 {
@@ -5033,25 +5054,37 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .osekai__apps-dropdown-other-content {
-    margin-top: -15px;
     background: linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), #111111;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 16px;
-    padding: 7px;
+    border-radius: 13px;
+    margin: -1px;
+    margin-top: -15px;
+    padding: 10px 0px;
     z-index: 999;
+    display: flex;
+    flex-direction: column;
 }
 
 
 .osekai__apps-dropdown-other-content-button {
-    padding: 10px calc(21px - 7px);
-    background: rgba(217, 217, 223, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 12px 21px;
     border-radius: 9px;
-    font-size: 18px;
+    font-size: 16px;
+}
+.osekai__apps-dropdown-other-content-button i {
+    font-size: 20px;
+    margin-right: 6px;
+}
+.osekai__apps-dropdown-other-content-button:hover {
+    background: linear-gradient(
+        to right,
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
+    );
 }
 
 #otherapplist .osekai__apps-dropdown-applist-left {
-    min-width: 250px;
+    min-width: 350px;
 }
 
 .osekai__group-badge {
@@ -5074,4 +5107,35 @@ input[type=range]:focus::-ms-fill-upper {
     font-weight: 900;
     padding: 3px 9px;
     padding-top: 4px;
+}
+
+
+@keyframes osekai__apps-dropdown-mobile-open {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.osekai__apps-dropdown-mobile-inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    transition: all 0.0s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    animation: 0.5s ease 0s 1 osekai__apps-dropdown-mobile-open;
+}
+
+.osekai__apps-dropdown-mobile-hidden {
+    position: absolute;
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+    transition: all 0.5s ease;
 }

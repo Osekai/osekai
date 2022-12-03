@@ -89,9 +89,7 @@ mobileManager();
                             $data = json_decode(v2_getUser($allTranslators[$x]['Id'], "osu", false, false), true);
                             $allTranslators[$x]['OsuUsername'] = $data['username'];
                             // Add the translators osu acc into members so it gets processed in the next batch
-                            $inDb = count(Database::execSelect("SELECT * FROM Members WHERE id = ?", "i", [$allTranslators[$x]['Id']]));
-                            if(!$inDb)
-                                Database::execOperation("INSERT INTO Members (id) VALUES (?)", "i", [$allTranslators[$x]['Id']]);
+                            Database::execOperation("INSERT INTO Members (id) VALUES (?) ON DUPLICATE KEY UPDATE id = id", "i", [$allTranslators[$x]['Id']]);
                         }
                     }
 
