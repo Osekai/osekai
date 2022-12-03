@@ -56,24 +56,19 @@ mobileManager();
     <div class="osekai__panel-container misc__container">
         <div class="misc__header">
             <div class="misc__header-inner">
-                <p>other / </p>
-                <h1>translators</h1>
+                <p><?= GetStringRaw("misc/global", "title") ?> / </p>
+                <h1><?= GetStringRaw("misc/translators", "title") ?></h1>
             </div>
         </div>
         <div class="misc__panel-container">
             <div class="misc__explainer">
-                <p>So many people have helped to translate Osekai into their native
-                    language, and allow people from all over the world to use the
-                    site much easier than ever before. To be specific, <mark><strong><?php echo count($allTranslators); ?></strong> people</mark> have helped! 
-                    And we appreciate every single one of the translators who have helped to make this a reality, from the people
-                    who just did a few little strings, to the people who did their entire language in just a few days!</p>
-                <p>It is insane how many people have helped, so this page is to credit each and every single person which has helped to translate
-                    Osekai. And again, thanks to everyone who helped withe the translations.</p>
-                <p>Oh, one last thing. The translators probably translated this string too. How interesting! Thanks to our translators for doing that, too!</p>
-                <h3>- the Osekai team</h3>
+                <p><?= GetStringRaw("misc/translators", "description.1", [count($allTranslators)]) ?></p>
+                <p><?= GetStringRaw("misc/translators", "description.2") ?></p>
+                <p><?= GetStringRaw("misc/translators", "description.3") ?></p>
+                <h3><?= GetStringRaw("misc/translators", "description.4") ?></h3>
             </div>
             <div class="osekai__panel">
-                <div class="osekai__panel-header">Translators</div>
+                <div class="osekai__panel-header"><?= GetStringRaw("misc/translators", "list.title") ?></div>
                 <div class="osekai__panel-inner translators__list">
                     <?php
                     error_reporting(E_ALL);
@@ -94,7 +89,6 @@ mobileManager();
                         }
                     }
 
-
                     foreach ($locales as $lang) {
                         //print_r($lang);
                         $translators = 0;
@@ -114,7 +108,7 @@ mobileManager();
                                     <div class="translators__language-header-flag">
                                         <img src="' . $lang['flag'] . '">
                                             <div class="translators__language-header-flag-amount">
-                                            <h1><strong>' . $translators . '</strong><br>translators</h1>
+                                            <h1>' . GetStringRaw("misc/translators", "translatorCount", [$translators]) . '
                                     </div>
                                 </div>
                             <div class="translators__language-header-texts">

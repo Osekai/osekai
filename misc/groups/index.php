@@ -55,17 +55,16 @@ notification_system();
     <div class="osekai__panel-container misc__container">
         <div class="misc__header">
             <div class="misc__header-inner misc__header-inner-clickable" onclick="goHome()">
-                <p>other / </p>
-                <h1>user groups</h1>
+                <p><?= GetStringRaw("misc/global", "title") ?> / </p>
+                <h1><?= GetStringRaw("misc/groups", "title") ?></h1>
 </div>
         </div>
         <div class="misc__panel-container">
             <div class="misc__explainer">
-                <p>Welcome to <strong>Groups</strong>! This page lists <strong>all</strong> groups that currently exist on Osekai! 
-You can click on each group to view its own page, listing members of it, what they do and all members' groups!</p>
+                <p><?= GetStringRaw("misc/groups", "description") ?></p>
             </div>
             <div class="osekai__panel" id="grouplist">
-                <div class="osekai__panel-header">Groups</div>
+                <div class="osekai__panel-header"><?= GetStringRaw("misc/groups", "groupList.title") ?></div>
                 <div class="osekai__panel-inner groups__list" id="groups__list">
 
                 </div>
@@ -73,7 +72,7 @@ You can click on each group to view its own page, listing members of it, what th
         </div>
         <div class="misc__panel-container" id="group" style="--colour: 255, 50, 50">
             <div class="osekai__panel">
-                <div class="osekai__panel-header">Group Name</div>
+                <div class="osekai__panel-header"><?= GetStringRaw("misc/groups", "groupInfo.title") ?></div>
                 <div class="groups__header">
                     <div class="groups__header-left">
                         <h1 id="title">Osekai Developers</h1>

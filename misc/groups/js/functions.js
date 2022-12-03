@@ -28,10 +28,11 @@ function getPathFromUrl(url) {
     return url.split(/[?#]/)[0];
 }
 
-function loadData() {
+async function loadData() {
     openLoader("Loading...");
     document.getElementById("group").classList.add("hidden");
     document.getElementById("grouplist").classList.add("hidden");
+    await loadSource("misc/groups")
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "api/api.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -45,7 +46,7 @@ function loadData() {
                 <h3>${data[x]['Name']}</h3>
                 <div class="groups__group-list-item-bottom">
                     <div class="osekai__group-badge osekai__group-badge-large">${data[x]['ShortName']}</div>
-                    <small>${data[x]['Users'].length} Users</small>
+                    <small>${GetStringRawNonAsync("misc\/groups", "users", [data[x]['Users'].length])}</small>
                 </div>
             </div>
         </div>`;
@@ -73,13 +74,15 @@ window.addEventListener('popstate', function (event) {
 });
 
 
-function loadGroup(id, push = false) {
+async function loadGroup(id, push = false) {
     console.log("Loading group: " + id);
     document.getElementById("group").classList.remove("hidden");
     document.getElementById("grouplist").classList.add("hidden");
     var found = false;
 
     var html = "";
+    await loadSource("misc/groups")
+
     for (var x = 0; x < data.length; x++) {
         if (data[x]['Id'] == id) {
             found = true;
@@ -89,7 +92,7 @@ function loadGroup(id, push = false) {
             document.getElementById("group").style = "--colour: " + group['Colour'];
             document.getElementById("title").innerHTML = group['Name'];
             document.getElementById("badge").innerHTML = group['ShortName'];
-            document.getElementById("users").innerHTML = group['Users'].length + " Users";
+            document.getElementById("users").innerHTML = GetStringRawNonAsync("misc\/groups", "users", [group['Users'].length]);
             document.getElementById("description").innerHTML = group['Description'];
 
             for (var y = 0; y < data[x]['Users'].length; y++) {
