@@ -207,7 +207,8 @@ foreach ($apps as $a) {
     <div id="dropdown__apps-mobile-other" class="osekai__apps-dropdown-mobile-inner">
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
             <a class="osekai__apps-dropdown-mobile-button" onclick="hideOtherApps()">
-                <p><i class="fas fa-chevron-left"></i> back to apps</p>
+                <i class="fas fa-chevron-left"></i>
+                <p>back to apps</p>
             </a>
         </div>
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 70px;">
@@ -218,7 +219,7 @@ foreach ($apps as $a) {
                 // back globally across the entire project if you dare to do that so we
                 // have to kinda just be careful not to?? i hate this
                 echo "<a class=\"osekai__apps-dropdown-mobile-button\" href=\"{$oapp['link']}\">
-                    <p><i class=\"{$oapp['icon']}\"></i> {$oapp['name']}</p>
+                    <i class=\"{$oapp['icon']}\"></i><p>{$oapp['name']}</p>
                 </a>";
             }
             ?>
