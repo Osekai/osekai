@@ -3,7 +3,7 @@ snapshots/versions
 internal/
 global/crowdin.yml
 global/lang
-add !global/lang/en_GB/*/*
+!global/lang/en_GB/*/*
 # Editor stuff
 .vscode
 .vs
