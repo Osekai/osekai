@@ -58,6 +58,11 @@ if (MODE == "dev") {
 
 $userGroups = null;
 
+if(!isset($app)) {
+    $useJS = false;
+}
+include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
+
 function frontend() {
     global $useJS;
     global $christmas;
@@ -139,7 +144,7 @@ function frontend() {
                                     else echo "0"; ?>;
         </script>
         <?php
-        include($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
+        
         foreach ($apps as $appa) {
             $apps[$appa['simplename']]['slogan'] = LocalizeText($apps[$appa['simplename']]['slogan']);
         }
@@ -149,9 +154,6 @@ function frontend() {
             loadSource("general");
         </script>
     <?php
-    } else {
-        $useJS = false;
-        include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
     }
 
 }

@@ -65,7 +65,7 @@ if (isset($_GET['user'])) {
         <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,profile,user_profile,badges,graph,chart,goals">
         <meta property="og:url" content="/profiles" />';
 }
-
+frontend();
 ?>
 
 <!DOCTYPE html>

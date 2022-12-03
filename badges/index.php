@@ -60,6 +60,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,badge,badges">
             <meta property="og:url" content="/badges" />';
         }
+        frontend();
     echo $meta;
 
     ?>
