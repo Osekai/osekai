@@ -86,7 +86,7 @@ mobileManager();
 
                             // User is restricted or bad input, change id to 0 so it treats him as not having an osu acc at all
                             if ($user == null){
-                                Database::execOperation("UPDATE Translators SET Id = 0 WHERE Id = ? AND LanguageCode = ?", "i", [$allTranslators[$x]['Id'],$allTranslators[$x]['LanguageCode']]);
+                                Database::execOperation("UPDATE Translators SET Id = 0 WHERE Id = ? AND LanguageCode = ?", "ii", [$allTranslators[$x]['Id'],$allTranslators[$x]['LanguageCode']]);
                                 $allTranslators[$x]['Id'] = 0;
                             } else {
                                 $data = json_decode($user, true);
