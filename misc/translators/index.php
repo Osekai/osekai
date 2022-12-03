@@ -6,6 +6,7 @@
 
 $app = "home";
 $app_extra = "other";
+$accent_override = [[137, 113, 254], [53, 46, 80]];
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osu_api_functions.php");
 ?>

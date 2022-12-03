@@ -4607,7 +4607,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__generic-warning p {
     margin-left: 13px;
-    font-size: 14px;
+    font-size: 14px;not 
 }
 
 .osekai__generic-warning i {
@@ -5090,9 +5090,17 @@ input[type=range]:focus::-ms-fill-upper {
 .osekai__group-badge {
     color: white;
     border-radius: 90px;
+    font-weight: 900;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgb(var(--colour));
     border: 1px solid rgb(var(--colour));
     box-shadow: 0px 4px 10px rgba(var(--colour), 0.4);
+}
+
+.osekai__group-badge-monochrome {
+    color: rgb(var(--accentdark));
+    background: linear-gradient(#ddd, #fff);
+    border: #eee;
+    color: rgb(var(--colour));
 }
 
 .osekai__group-badge-small {
@@ -5109,6 +5117,10 @@ input[type=range]:focus::-ms-fill-upper {
     padding-top: 4px;
 }
 
+.osekai__group-badge-large {
+    font-size: 15px;
+    padding: 6px 15px;
+}
 
 @keyframes osekai__apps-dropdown-mobile-open {
     0% {

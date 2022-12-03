@@ -179,7 +179,7 @@ $head = '<link rel="alternate icon" type="image/svg" href="' . $favi . '" />';
 function css()
 {
     // imports css
-
+    global $accent_override;
     global $app;
     global $apps;
 
@@ -218,6 +218,10 @@ function css()
     }
 
     // set the accent
+    if(isset($accent_override)) {
+        $apps[$app]['color_dark'] = implode(",", $accent_override[1]);
+        $apps[$app]['color'] = implode(",", $accent_override[0]);
+    }
     $colourDark = explode(",", $apps[$app]['color_dark']);
     $colourDarkHsl = rgbToHsl($colourDark[0], $colourDark[1], $colourDark[2]);
     $colour = explode(",", $apps[$app]['color_dark']);
