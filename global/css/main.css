@@ -4468,10 +4468,13 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__apps-dropdown-mobile-button p {
     font-size: 14px;
+    display: flex;
+    align-items: center;
 }
 
 .osekai__apps-dropdown-mobile-button i {
     margin-right: 15px;
+    margin-top: -3px;
     font-size: 20px;
 }
 
