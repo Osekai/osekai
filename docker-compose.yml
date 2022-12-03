@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  database:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=admin # Change it to a more secure one if needed
+      - MARIADB_DATABASE=osekai
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d:ro
+  website:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    build: .
+    environment:
+      - ROOT_URL=localhost:8080
+      - OSU_API_V1_KEY= # Required
+      - OSU_OAUTH_CLIENT_SECRET= # Required
+      - OSU_OAUTH_CLIENT_ID= # Required
+      - DB_USER=root
+      - DB_PASSWORD=admin
+      - DB_NAME=osekai
+      - DB_HOSTNAME=database
+    volumes:
+      - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+      - ./:/var/www/html:rw
+    ports:
+      - 8080:80
+  adminer:
+    image: adminer
+    ports:
+      - 3000:8080
