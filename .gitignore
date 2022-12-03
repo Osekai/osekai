@@ -4,6 +4,7 @@ internal/
 global/crowdin.yml
 global/lang
 !global/lang/en_GB
+!global/lang/en_GB/misc
 
 # Editor stuff
 .vscode
