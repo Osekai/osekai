@@ -16,7 +16,7 @@ if(isset($_POST['bGetComments'])) {
         $type = 3;
         $colname = "VersionID";
         $data = $_POST['nVersionID'];
-    } elseif(isset($_POST['nProfileId'])) {
+    } elseif(isset($_POST['nProfileID'])) {
         $type = 4;
         $colname = "ProfileID";
         $data = $_POST['nProfileID'];
