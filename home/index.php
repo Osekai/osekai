@@ -218,6 +218,15 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                         ]
                     );
                     addMember(
+                        7197172,
+                        "jiniux",
+                        GetStringRaw("home", "team.role.generic.developer"),
+                        "AlexS4v",
+                        [
+                            social("https://github.com/jiniux/", "Github")
+                        ]
+                    );
+                    addMember(
                         7279762,
                         "Coppertine",
                         GetStringRaw("home", "team.role.coppertine"),
