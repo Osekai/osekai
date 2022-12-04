@@ -4607,7 +4607,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__generic-warning p {
     margin-left: 13px;
-    font-size: 14px;not 
+    font-size: 14px;
 }
 
 .osekai__generic-warning i {
@@ -5150,4 +5150,48 @@ input[type=range]:focus::-ms-fill-upper {
     pointer-events: none;
     animation: none;
     transition: all 0.5s ease;
+}
+
+.osekai__group-dropdown-arrow {
+    position: relative;
+    margin-left: 6px;
+    display: flex;
+
+}
+
+
+@keyframes osekai__group-dropdown-open {
+    0% {
+        opacity: 0;
+        top: 30px;
+    }
+    100% {
+        opacity: 1;
+        top: 18px;
+    }
+}
+
+.osekai__group-dropdown {
+    position: absolute;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #fff4;
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(26% * var(--accentdark_valueoffset)))
+    );
+    display: flex;
+    gap: 6px;
+    width: 150px;
+    flex-wrap: wrap;
+    text-align: center;
+    top: 18px;
+    transition: all 0.3s ease;
+    animation: 0.3s ease 0s 1 osekai__group-dropdown-open;
+}
+
+.osekai__group-dropdown-hidden {
+    opacity: 0;
+    pointer-events: none;
+    top: 30px;
 }
