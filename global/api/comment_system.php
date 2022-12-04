@@ -16,10 +16,10 @@ if(isset($_POST['bGetComments'])) {
         $type = 3;
         $colname = "VersionID";
         $data = $_POST['nVersionID'];
-    } elseif(isset($_POST['nProfileID'])) {
+    } elseif(isset($_POST['nProfileId'])) {
         $type = 4;
         $colname = "ProfileID";
-        $data = $_POST['nProfileID'];
+        $data = $_POST['nProfileId'];
     }
     // note: inserting the $colname variable directly into sql here
     // is fine, since it's set up there manually by code, and doesn't
