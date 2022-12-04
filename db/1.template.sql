@@ -640,16 +640,17 @@ INSERT INTO `GroupAssignments` (`UserId`, `GroupId`) VALUES
 (13641450,	6);
 
 DROP TABLE IF EXISTS `Groups`;
-CREATE TABLE IF NOT EXISTS `Groups` (
+CREATE TABLE `Groups` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` text COLLATE utf8mb4_bin NOT NULL,
   `ShortName` text COLLATE utf8mb4_bin NOT NULL,
-  `Description` text COLLATE utf8mb4_bin DEFAULT NULL,
-  `Colour` text COLLATE utf8mb4_bin DEFAULT NULL,
+  `Description` text COLLATE utf8mb4_bin,
+  `Colour` text COLLATE utf8mb4_bin,
   `Order` int(11) DEFAULT NULL,
-  `Hidden` int(11) DEFAULT 0,
+  `Hidden` int(1) DEFAULT '0',
+  `ForceVisible` int(1) DEFAULT '0',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
 	(1, 'Osekai Community Management Team', 'CMT', '', '255,124,89', 1, 0);
