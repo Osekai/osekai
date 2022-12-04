@@ -52,7 +52,7 @@ var sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), 
 var currentSorting = "awarded_at_desc";
 
 
-loadSource("badges.json").then(function () {
+loadSource("badges").then(function () {
     sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), GetStringRawNonAsync("badges", "sort.awardedAt.desc"), GetStringRawNonAsync("badges", "sort.name.asc"), GetStringRawNonAsync("badges", "sort.name.desc"), GetStringRawNonAsync("badges", "sort.playerCount.asc"), GetStringRawNonAsync("badges", "sort.playerCount.desc")];
     // grab these again in case the like fuckin' 10% chance they didnt load the last time hits
     // i dont know why this is an issue
