@@ -5186,6 +5186,7 @@ input[type=range]:focus::-ms-fill-upper {
     flex-wrap: wrap;
     text-align: center;
     top: 18px;
+    transition: all 0.3s ease;
     animation: 0.3s ease 0s 1 osekai__group-dropdown-open;
 }
 
@@ -5193,5 +5194,4 @@ input[type=range]:focus::-ms-fill-upper {
     opacity: 0;
     pointer-events: none;
     top: 30px;
-    transition: all 0.3s ease;
 }
