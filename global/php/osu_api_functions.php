@@ -43,7 +43,8 @@ function GetHeaders()
     ];
 }
 
-function curlRequestUser($strSearch) {
+function curlRequestUser($strSearch)
+{
     $handle = curl_init();
     curl_setopt($handle, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $strSearch);
     curl_setopt($handle, CURLOPT_HTTPHEADER, GetHeaders());
@@ -62,7 +63,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
 {
     $useAllMedals = filter_var($useAllMedals, FILTER_VALIDATE_BOOLEAN);
     if (IsExpired() == true) GetBearer();
-    if($userID == 727) $userID = 124493; //chocomint exception
+    if ($userID == 727) $userID = 124493; //chocomint exception
 
     $strSearch = $userID;
     if ($mode == "null" || $mode == "undefined") {
@@ -94,7 +95,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $oUserGoals = Database::execSelect("SELECT * FROM Goals WHERE UserID = ? AND Gamemode = ? Order by Claimed", "is", array($userID, $mode));
         $oUserTimeline = Database::execSelect("SELECT * FROM Timeline WHERE UserID = ? AND Mode = ?", "is", array($userID, $mode)) ?? array();
 
-        if($sendMedals == true) {
+        if ($sendMedals == true) {
             $oUserMedals = Database::execSelect("SELECT * FROM ( " .
                 "SELECT @r := @r+1 AS rank, t1.* FROM ( " .
                 "SELECT Ranking.id " .
@@ -105,18 +106,18 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
                 ") t1, (SELECT @r:=0) t2 LIMIT 3000 " .
                 ") t3 WHERE id = ?", "i", array($userID));
 
-            if($useAllMedals == false) {
+            if ($useAllMedals == false) {
                 $oMedals = Database::execSelect("SELECT * From Medals LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals WHERE restriction = 'NULL' Or restriction = ?) t ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSkill FROM Medals WHERE grouping = 'Skill' AND (restriction = 'NULL' Or restriction = ?)) u ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHush FROM Medals WHERE grouping = 'Hush-Hush' AND (restriction = 'NULL' Or restriction = ?)) v ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountDedication FROM Medals WHERE grouping = 'Dedication' AND (restriction = 'NULL' Or restriction = ?)) w ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapChallengePacks FROM Medals WHERE grouping = 'Beatmap Challenge Packs' AND (restriction = 'NULL' Or restriction = ?)) x ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapPacks FROM Medals WHERE grouping = 'Beatmap Packs' AND (restriction = 'NULL' Or restriction = ?)) y ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSeasonalSpotlights FROM Medals WHERE grouping = 'Seasonal Spotlights' AND (restriction = 'NULL' Or restriction = ?)) z ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountModIntroduction FROM Medals WHERE grouping = 'Mod Introduction' AND (restriction = 'NULL' Or restriction = ?)) b ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapSpotlights FROM Medals WHERE grouping = 'Beatmap Spotlights' AND (restriction = 'NULL' Or restriction = ?)) a ON 1 = 1 " .
-        "WHERE (restriction = 'NULL' Or restriction = ?)", "ssssssssss", array($mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode));
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals WHERE restriction = 'NULL' Or restriction = ?) t ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSkill FROM Medals WHERE grouping = 'Skill' AND (restriction = 'NULL' Or restriction = ?)) u ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHush FROM Medals WHERE grouping = 'Hush-Hush' AND (restriction = 'NULL' Or restriction = ?)) v ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountDedication FROM Medals WHERE grouping = 'Dedication' AND (restriction = 'NULL' Or restriction = ?)) w ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapChallengePacks FROM Medals WHERE grouping = 'Beatmap Challenge Packs' AND (restriction = 'NULL' Or restriction = ?)) x ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapPacks FROM Medals WHERE grouping = 'Beatmap Packs' AND (restriction = 'NULL' Or restriction = ?)) y ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSeasonalSpotlights FROM Medals WHERE grouping = 'Seasonal Spotlights' AND (restriction = 'NULL' Or restriction = ?)) z ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountModIntroduction FROM Medals WHERE grouping = 'Mod Introduction' AND (restriction = 'NULL' Or restriction = ?)) b ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapSpotlights FROM Medals WHERE grouping = 'Beatmap Spotlights' AND (restriction = 'NULL' Or restriction = ?)) a ON 1 = 1 " .
+                    "WHERE (restriction = 'NULL' Or restriction = ?)", "ssssssssss", array($mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode));
             }
 
             $colData['max_medals'] = $oMedals[0]['MedalCount'];
@@ -197,7 +198,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $oUserTimeline = Database::execSelect("SELECT * FROM Timeline WHERE UserID = ?", "i", array($userID)) ?? array();
 
         $colOsu = curlRequestUser($userID . "/osu");
-        
+
         // If osu user is found, the other modes should be found too (?)
         // So the null check is just done once
         if (!isset($colOsu))
@@ -270,7 +271,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
 
             $colOsu['user_achievements_total']['global_rank'] = $oUserMedals[0]['rank'] ?: 0;
             $colOsu['user_achievements_total']['completion'] = $oUserMedals[0]['completion'] ?: round(count($colOsu['user_achievements']) * 100 / $colOsu['max_medals'], 2) ?: 0;
-            
+
             $colOsu['unachieved'] = [];
             foreach ($oMedals as $medalkey => $medal) {
                 $colOsu['unachieved'][$medalkey]['medalid'] = $medal['medalid'];
@@ -312,7 +313,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $OsuPP = $colOsu['statistics']['pp'];
         $colOsu['goals'] = $oUserGoals;
         $colOsu['timeline'] = $oUserTimeline;
-        $colOsu['groups'] = $oUserGroups;
+        $colOsu['usergroups'] = $oUserGroups;
 
         $colOsu['statistics']['global_rank'] = $oUserSPP[0]['rank'] ?: 0;
         unset($colOsu['rank_history']['data']);
@@ -325,7 +326,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $colOsu['statistics']['grade_counts']['sh'] = $colOsu['statistics']['grade_counts']['sh'] + $colCatch['statistics']['grade_counts']['sh'] + $colMania['statistics']['grade_counts']['sh'] + $colTaiko['statistics']['grade_counts']['sh'];
         $colOsu['statistics']['grade_counts']['s'] = $colOsu['statistics']['grade_counts']['s'] + $colCatch['statistics']['grade_counts']['s'] + $colMania['statistics']['grade_counts']['s'] + $colTaiko['statistics']['grade_counts']['s'];
         $colOsu['statistics']['grade_counts']['a'] = $colOsu['statistics']['grade_counts']['a'] + $colCatch['statistics']['grade_counts']['a'] + $colMania['statistics']['grade_counts']['a'] + $colTaiko['statistics']['grade_counts']['a'];
-        if($colOsu['statistics']['pp'] && $colCatch['statistics']['pp'] && $colMania['statistics']['pp'] && $colTaiko['statistics']['pp']) {
+        if ($colOsu['statistics']['pp'] && $colCatch['statistics']['pp'] && $colMania['statistics']['pp'] && $colTaiko['statistics']['pp']) {
             $colOsu['statistics']['hit_accuracy'] = (($OsuPP * $colOsu['statistics']['hit_accuracy']) + ($colCatch['statistics']['pp'] * $colCatch['statistics']['hit_accuracy']) + ($colMania['statistics']['pp'] * $colMania['statistics']['hit_accuracy']) + ($colTaiko['statistics']['pp'] * $colTaiko['statistics']['hit_accuracy'])) / $colOsu['statistics']['pp'];
         } else {
             $colOsu['statistics']['hit_accuracy'] = 0;
@@ -339,7 +340,7 @@ function v2_search($query)
 {
     if (IsExpired() == true) GetBearer();
 
-    $strSearch = "?mode=user&query=" . str_replace ( ' ', '%20',$query);
+    $strSearch = "?mode=user&query=" . str_replace(' ', '%20', $query);
     $oUser = curl_init();
     curl_setopt($oUser, CURLOPT_URL, "https://osu.ppy.sh/api/v2/search/" . $strSearch);
     curl_setopt($oUser, CURLOPT_HTTPHEADER, GetHeaders());
@@ -348,9 +349,10 @@ function v2_search($query)
     return curl_exec($oUser);
 }
 
-function v2_recent_scores($gamemode = "osu", $user = null) {
+function v2_recent_scores($gamemode = "osu", $user = null)
+{
     if (IsExpired() == true) GetBearer();
-    if($user == null) $user = $_SESSION['osu']['id'];
+    if ($user == null) $user = $_SESSION['osu']['id'];
 
     $oUser = curl_init();
     //echo "https://osu.ppy.sh/api/v2/users/" . $user . "/scores/recent?gamemode=" . $gamemode;
