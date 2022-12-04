@@ -138,7 +138,7 @@ function Comments_Create(oParent, MedalID) {
         if (oComment.ParentCommenter) oBox.classList.add("comments__reply");
         oBox.setAttribute("CommentCreator", oComment.Username);
 
-        var rolehtml = groupUtils.badgeHtmlFromCommaSeperatedList(oComment['Groups']);
+        var rolehtml = groupUtils.badgeHtmlFromCommaSeperatedList(oComment['Groups'], "small", 2);
 
         var postedText = GetStringRawNonAsync("comments", "posted", [TimeAgo.inWords(new Date(oComment.PostDate).getTime())]);
         if (oComment.ParentCommenter) {

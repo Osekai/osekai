@@ -695,6 +695,12 @@ window.addEventListener('click', function (e) {
             colItems.classList.add("osekai__dropdown-hidden");
         });
     }
+    console.log(e.target.classList);
+    if (e.target.closest(".osekai__group-dropdown-arrow") == null) {
+        document.querySelectorAll(".osekai__group-dropdown").forEach((colItems) => {
+            colItems.classList.add("osekai__group-dropdown-hidden");
+        });
+    }
 });
 
 function strip(html) {
@@ -855,6 +861,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+var groupDropdownCounter = 0; // global, dumb shit
 var groupUtils = {
     getGroupFromId: function (id) {
         for (var x = 0; x < userGroups.length; x++) {
@@ -870,7 +877,7 @@ var groupUtils = {
     orderBadgeArray: function (array) {
         return array.sort((a, b) => a.Order - b.Order)
     },
-    badgeHtmlFromArray: function (array, size = "small") {
+    badgeHtmlFromArray: function (array, size = "small", limit = "none") {
         console.log(array);
         var orderedList = [];
         for (var x = 0; x < array.length; x++) {
@@ -879,18 +886,54 @@ var groupUtils = {
         orderedList = this.orderBadgeArray(orderedList);
         console.log(orderedList);
         var finalHtml = "";
+        let hiddenGroups = []
+        let createExtraDropdown = false;
         for (var x = 0; x < orderedList.length; x++) {
-            finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id'], size);
+            if (limit == "none" || x < limit) {
+                finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id'], size);
+            } else {
+                if (this.getGroupFromId(orderedList[x]['Id'])['ForceVisible'] == 1) {
+                    finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id'], size);
+                } else {
+                    hiddenGroups.push(orderedList[x]['Id']);
+                    createExtraDropdown = true;
+                }
+            }
+        }
+        if (createExtraDropdown) {
+            finalHtml += '<div class="osekai__group-dropdown-arrow" onclick="groupUtils.openDropdown(this, \'' + hiddenGroups + '\')"><i class="fas fa-chevron-down"></i></div>';
         }
         return finalHtml;
     },
-    badgeHtmlFromCommaSeperatedList: function (list, size = "small") {
+    badgeHtmlFromCommaSeperatedList: function (list, size = "small", limit = "none") {
         if (list == null) return "";
         var array = [];
         var split = list.split(",");
         for (var x = 0; x < split.length; x++) {
             array.push(split[x]);
         }
-        return this.badgeHtmlFromArray(array, size);
+        return this.badgeHtmlFromArray(array, size, limit);
+    },
+    openDropdown: function (arrow, list) {
+        if (arrow.querySelector("div")) {
+            if (arrow.querySelector("div").classList.contains("osekai__group-dropdown-hidden")) {
+                var dropdowns = document.getElementsByClassName("osekai__group-dropdown");
+                for (var x = 0; x < dropdowns.length; x++) {
+                    dropdowns[x].classList.add("osekai__group-dropdown-hidden");
+                }
+            }
+            arrow.querySelector("div").classList.toggle("osekai__group-dropdown-hidden");
+            return;
+        }
+
+        var dropdowns = document.getElementsByClassName("osekai__group-dropdown");
+        for (var x = 0; x < dropdowns.length; x++) {
+            dropdowns[x].classList.add("osekai__group-dropdown-hidden");
+        }
+        
+        var dropdown = document.createElement('div');
+        dropdown.classList.add("osekai__group-dropdown");
+        dropdown.innerHTML = this.badgeHtmlFromCommaSeperatedList(list);
+        arrow.appendChild(dropdown);
     }
 }
