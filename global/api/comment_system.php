@@ -37,12 +37,12 @@ if(isset($_POST['bGetComments'])) {
             ", Comments.".$colname." AS MedalID " .
             ", GROUP_CONCAT(DISTINCT GroupAssignments.GroupId SEPARATOR ',') as Groups" .
             ", (SELECT Votes.Vote FROM Votes WHERE Votes.UserID = ? AND Votes.ObjectID = Comments.ID AND Votes.Type = ?) AS HasVoted " .
-            ", (SELECT SUM(Votes.Vote) FROM Votes WHERE Votes.UserID = ? AND Votes.ObjectID = Comments.ID AND Votes.Type = ?) AS VoteSum "  .
+            ", (SELECT SUM(Votes.Vote) FROM Votes Votes.ObjectID = Comments.ID AND Votes.Type = ?) AS VoteSum "  .
         "FROM Comments " . 
         "LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = ? " . 
         "LEFT JOIN GroupAssignments ON GroupAssignments.UserId = Comments.UserID " . 
         "WHERE ".$colname." = ? " . 
-        "GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.".$colname.", Comments.ParentComment", "iiiiii", array($_SESSION['osu']['id'], $type, $_SESSION['osu']['id'], $type, $type, $data));
+        "GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.".$colname.", Comments.ParentComment", "iiiii", array($_SESSION['osu']['id'], $type, $type, $type, $data));
     } else {
         $colComments = Database::execSelect("SELECT 
         Comments.ID, 
