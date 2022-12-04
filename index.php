@@ -153,7 +153,7 @@ medal_popup_v2();
                                 <div class="osekai__userpanel-v2-inner">
                                     <img src="https://a.ppy.sh/1309242" class="osekai__userpanel-v2-pfp">
                                     <div class="osekai__userpanel-v2-texts">
-                                        <div class="oseaki__userpanel-v2-top">
+                                        <div class="osekai__userpanel-v2-top">
                                             <p class="osekai__userpanel-v2-username">mulraf</p>
                                             <img src="/global/img/gamemodes/standard.svg" class="osekai__userpanel-v2-gamemode">
                                             <p class="osekai__userpanel-v2-rank">#48,376 <span class="osekai__transparent-text">global</span></p>

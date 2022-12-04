@@ -394,7 +394,7 @@ foreach ($apps as $a) {
         </div>
         <div class="osekai__nav-dropdown-v2-lowerpanel">
             <?php if (isExperimental()) { ?>
-                <!-- <div class="oseaki__nav-dropdown-user-v2-lowerpanel-warning">
+                <!-- <div class="osekai__nav-dropdown-user-v2-lowerpanel-warning">
                     <i class="fas fa-exclamation-triangle"></i>
                     <p><?= GetStringRaw("navbar", "profile.experimentalMode"); ?></p>
                 </div> -->
