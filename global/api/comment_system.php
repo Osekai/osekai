@@ -37,7 +37,7 @@ if(isset($_POST['bGetComments'])) {
             ", Comments.".$colname." AS MedalID " .
             ", GROUP_CONCAT(DISTINCT GroupAssignments.GroupId SEPARATOR ',') as Groups" .
             ", (SELECT Votes.Vote FROM Votes WHERE Votes.UserID = ? AND Votes.ObjectID = Comments.ID AND Votes.Type = ?) AS HasVoted " .
-            ", (SELECT SUM(Votes.Vote) FROM Votes Votes.ObjectID = Comments.ID AND Votes.Type = ?) AS VoteSum "  .
+            ", (SELECT SUM(Votes.Vote) FROM Votes WHERE Votes.ObjectID = Comments.ID AND Votes.Type = ?) AS VoteSum "  .
         "FROM Comments " . 
         "LEFT JOIN Votes ON Votes.ObjectID = Comments.ID AND Votes.Type = ? " . 
         "LEFT JOIN GroupAssignments ON GroupAssignments.UserId = Comments.UserID " . 
