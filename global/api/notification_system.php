@@ -17,7 +17,7 @@ if(isset($_POST['pushNotifToUser'])) {
 }
 
 if(isset($_POST['markRead'])) {
-    Database::execOperation("UPDATE Notifications SET Cleared = 1 WHERE id = ? AND UserID = ?", "ii", array($_POST['id'], $_SESSION['osu']['id']));
+    Database::execOperation("UPDATE Notifications SET Cleared = 1 WHERE UserID = ?", "i", array($_SESSION['osu']['id']));
     echo json_encode("Success!");
 }
 
