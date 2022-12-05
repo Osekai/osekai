@@ -161,17 +161,22 @@ function ExperimentalOff() {
 }
 
 // >Start> Notification System
-// setTimeout(function() {GetNotifications(false, false)}, 1000); //Loads the Amount of Notifications on the bell icon before opening the dropdown
-// var NotificationBell = document.getElementById("notif__bell__button");
-// NotificationBell && NotificationBell.addEventListener("click", () => {
-//     dropdown("osekai__nav-dropdown-hidden", "dropdown__notifs", 1);
-//     if (!document.getElementById("dropdown__notifs").classList.contains("osekai__nav-dropdown-hidden")) {
-//         GetNotifications(false, true);
-//     }
-// })
+setTimeout(function() {GetNotifications(false, false)}, 1000); //Loads the Amount of Notifications on the bell icon before opening the dropdown
+var NotificationBell = document.getElementById("notif__bell__button");
+NotificationBell && NotificationBell.addEventListener("click", () => {
+    dropdown("osekai__nav-dropdown-hidden", "dropdown__notifs", 1);
+    if (!document.getElementById("dropdown__notifs").classList.contains("osekai__nav-dropdown-hidden")) {
+        GetNotifications(false, true);
+    }
+})
+
+ClearAll.addEventListener("click", () => {
+    markRead();
+})
 
 const NOTIFICATION_SYSTEM_API_URL = "/global/api/notification_system.php"
 function GetNotifications(ShowCleared, UI) {
+    if(UI) document.getElementById("notification__list__v2").innerHTML = ""; //in case the xhrequest fails still get rid of the panel
     let xhr = createXHR(NOTIFICATION_SYSTEM_API_URL);
     xhr.send(`ShowCleared=${ShowCleared}`);
     xhr.onreadystatechange = function () {
@@ -185,16 +190,17 @@ function CreateNotifications(Notifications, UI) {
     let NotificationList
     if(UI) {
         NotificationList = document.getElementById("notification__list__v2");
-        NotificationList.innerHTML = "";
+        document.getElementById("notification__list__v2").innerHTML = ""; // get rid of the panel again in case loading takes longer and someone rapid clicks on the icon
     }
 
     let nCount = 0;
-    document.querySelectorAll("[selector='NotificationCount']").forEach((oCount) => {CreateCount(oCount, nCount);});
     Object.keys(Notifications).forEach(function (obj) {
         if(UI) CreateNotificationItem(NotificationList, Notifications[obj]);
         nCount += 1;
     });
-    document.querySelectorAll("[selector='NotificationCount']").forEach((oCount) => {CreateCount(oCount, nCount);});
+    document.getElementById("NotificationCountIcon").innerHTML = nCount;
+    if(nCount > 0 && document.getElementById("NotificationCountIcon").classList.contains("hidden")) document.getElementById("NotificationCountIcon").classList.remove("hidden");
+    document.getElementById("NotificationCount").innerHTML = GetStringRawNonAsync("navbar", "notifications.count", [nCount]);
 }
 
 function CreateNotificationItem(List, Notification) {
@@ -258,7 +264,17 @@ function CreateNotificationItem(List, Notification) {
     List.appendChild(Outer);
 }
 
-function CreateCount(Element, Count) {
-    Element.innerHTML = Count;
+function markRead() {
+    let xhr = createXHR("/global/api/notification_system.php");
+    xhr.send("markRead=1");
+    xhr.onreadystatechange = function () {
+        var oResponse = getResponse(xhr);
+        if (handleUndefined(oResponse)) return;
+        if (oResponse.toString() == "Success!") {
+            dropdown("osekai__nav-dropdown-hidden", "dropdown__notifs", 1);
+            if(!document.getElementById("NotificationCountIcon").classList.contains("hidden")) document.getElementById("NotificationCountIcon").classList.add("hidden");
+            GetNotifications(false, true);
+        }
+    };
 }
 // <End> Notification System

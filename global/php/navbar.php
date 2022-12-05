@@ -70,9 +70,7 @@ addOtherApp("fas fa-globe-africa", "/misc/translators", "Translators");
                 <?php if (loggedin()) { ?>
                     <div class="osekai__navbar-button tooltip-v2" id="notif__bell__button" tooltip-content="<?= GetStringRaw("navbar", "tooltip.notifications"); ?>">
                         <i class="fas fa-bell"></i>
-                        <?php if (isExperimental()) { ?>
-                            <div class="osekai__notification-counter" selector="NotificationCount">2</div>
-                        <?php } ?>
+                        <div class="osekai__notification-counter hidden" id="NotificationCountIcon">0</div>
                     </div>
                 <?php } ?>
                 <div onclick='dropdown("osekai__nav-dropdown-hidden", "dropdown__settings", 1)' class="osekai__navbar-button tooltip-v2" tooltip-content="<?= GetStringRaw("navbar", "tooltip.settings"); ?>">
@@ -530,54 +528,27 @@ foreach ($apps as $a) {
     </div>
 </div>
 
-<?php if (isExperimental()) { ?>
-    <div id="dropdown__notifs" class="osekai__nav-dropdown-v2 osekai__nav-dropdown-v2-generic osekai__nav-dropdown-v2-notifications osekai__nav-dropdown-hidden">
-        <div class="osekai__nav-dropdown-v2-mainpanel">
-            <i class="fas fa-bell"></i>
-            <div class="osekai__nav-dropdown-v2-mainpanel-texts">
-                <h2><?= GetStringRaw("navbar", "notifications.title"); ?></h2>
-                <p><?= GetStringRaw("navbar", "notifications.subtitle"); ?></p>
-            </div>
-        </div>
-        <div class="osekai__nav-dropdown-v2-lowerpanel">
-            <div class="osekai__nav-dropdown-v2-notifications-header">
-                <div class="osekai__nav-dropdown-v2-notifications-header-left">
-                    <p><?= GetStringRaw("navbar", "notifications.count"); ?></p>
-                </div>
-                <div class="osekai__nav-dropdown-v2-notifications-header-right">
-                    <p><?= GetStringRaw("navbar", "notifications.clearAll"); ?></p> <i class="far fa-times-circle"></i>
-                </div>
-            </div>
-            <div id="notification__list__v2" class="osekai__nav-dropdown-v2-notifications-list">
-                <div class="osekai__nav-dropdown-v2-notification">
-                    <div class="osekai__nav-dropdown-v2-notification-upper">
-                        <img src="/global/img/branding/vector/osekai_light.svg">
-                        <p>Test notification text</p>
-                    </div>
-                </div>
-                <div class="osekai__nav-dropdown-v2-notification">
-                    <a class="osekai__nav-dropdown-v2-notification-upper osekai__nav-dropdown-v2-notification-upper-clickable" href="test">
-                        <img src="/global/img/branding/vector/white/profiles.svg">
-                        <p>Test notification text with description</p>
-                    </a>
-                    <div class="osekai__nav-dropdown-v2-notification-lower">
-                        <p>what a cool description we have here!</p>
-                    </div>
-                </div>
-            </div>
+<div id="dropdown__notifs" class="osekai__nav-dropdown-v2 osekai__nav-dropdown-v2-generic osekai__nav-dropdown-v2-notifications osekai__nav-dropdown-hidden">
+    <div class="osekai__nav-dropdown-v2-mainpanel">
+        <i class="fas fa-bell"></i>
+        <div class="osekai__nav-dropdown-v2-mainpanel-texts">
+            <h2><?= GetStringRaw("navbar", "notifications.title"); ?></h2>
+            <p><?= GetStringRaw("navbar", "notifications.subtitle"); ?></p>
         </div>
     </div>
-<?php } else { ?>
-    <div id="dropdown__notifs" class="osekai__nav-dropdown-hidden osekai__nav-dropdown osekai__nav-dropdown-notifs">
-        <div class="osekai__notifications-header">
-            <?= GetStringRaw("navbar", "notifications.title"); ?>
-            <div id="notification__counter" class="osekai__notifications-header-right">
+    <div class="osekai__nav-dropdown-v2-lowerpanel">
+        <div class="osekai__nav-dropdown-v2-notifications-header">
+            <div class="osekai__nav-dropdown-v2-notifications-header-left">
+                <p id="NotificationCount"><?= GetStringRaw("navbar", "notifications.count"); ?></p>
+            </div>
+            <div id="ClearAll" class="osekai__nav-dropdown-v2-notifications-header-right">
+                <p><?= GetStringRaw("navbar", "notifications.clearAll"); ?></p> <i class="far fa-times-circle"></i>
             </div>
         </div>
-        <div id="notification__list" class="osekai__notifications-list">
+        <div id="notification__list__v2" class="osekai__nav-dropdown-v2-notifications-list">
         </div>
     </div>
-<?php } ?>
+</div>
 <?php
 if ($coltype == "3") {
 ?>
