@@ -176,7 +176,7 @@ ClearAll.addEventListener("click", () => {
 
 const NOTIFICATION_SYSTEM_API_URL = "/global/api/notification_system.php"
 function GetNotifications(ShowCleared, UI) {
-    if(UI) document.getElementById("notification__list__v2").innerHTML = "";
+    if(UI) document.getElementById("notification__list__v2").innerHTML = ""; //in case the xhrequest fails still get rid of the panel
     let xhr = createXHR(NOTIFICATION_SYSTEM_API_URL);
     xhr.send(`ShowCleared=${ShowCleared}`);
     xhr.onreadystatechange = function () {
@@ -188,7 +188,10 @@ function GetNotifications(ShowCleared, UI) {
 
 function CreateNotifications(Notifications, UI) {
     let NotificationList
-    if(UI) NotificationList = document.getElementById("notification__list__v2");
+    if(UI) {
+        NotificationList = document.getElementById("notification__list__v2");
+        document.getElementById("notification__list__v2").innerHTML = ""; // get rid of the panel again in case loading takes longer and someone rapid clicks on the icon
+    }
 
     let nCount = 0;
     Object.keys(Notifications).forEach(function (obj) {
@@ -196,6 +199,7 @@ function CreateNotifications(Notifications, UI) {
         nCount += 1;
     });
     document.getElementById("NotificationCountIcon").innerHTML = nCount;
+    if(nCount > 0 && document.getElementById("NotificationCountIcon").classList.contains("hidden")) document.getElementById("NotificationCountIcon").classList.remove("hidden");
     document.getElementById("NotificationCount").innerHTML = GetStringRawNonAsync("navbar", "notifications.count", [nCount]);
 }
 
@@ -268,6 +272,7 @@ function markRead() {
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
             dropdown("osekai__nav-dropdown-hidden", "dropdown__notifs", 1);
+            if(!document.getElementById("NotificationCountIcon").classList.contains("hidden")) document.getElementById("NotificationCountIcon").classList.add("hidden");
             GetNotifications(false, true);
         }
     };
