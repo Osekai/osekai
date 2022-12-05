@@ -71,7 +71,7 @@ addOtherApp("fas fa-globe-africa", "/misc/translators", "Translators");
                     <div class="osekai__navbar-button tooltip-v2" id="notif__bell__button" tooltip-content="<?= GetStringRaw("navbar", "tooltip.notifications"); ?>">
                         <i class="fas fa-bell"></i>
                         <?php if (isExperimental()) { ?>
-                            <div class="osekai__notification-counter" selector="NotificationCount">2</div>
+                            <div class="osekai__notification-counter" id="NotificationCountIcon">0</div>
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -542,28 +542,13 @@ foreach ($apps as $a) {
         <div class="osekai__nav-dropdown-v2-lowerpanel">
             <div class="osekai__nav-dropdown-v2-notifications-header">
                 <div class="osekai__nav-dropdown-v2-notifications-header-left">
-                    <p><?= GetStringRaw("navbar", "notifications.count"); ?></p>
+                    <p id="NotificationCount"><?= GetStringRaw("navbar", "notifications.count"); ?></p>
                 </div>
-                <div class="osekai__nav-dropdown-v2-notifications-header-right">
+                <div id="ClearAll" class="osekai__nav-dropdown-v2-notifications-header-right">
                     <p><?= GetStringRaw("navbar", "notifications.clearAll"); ?></p> <i class="far fa-times-circle"></i>
                 </div>
             </div>
             <div id="notification__list__v2" class="osekai__nav-dropdown-v2-notifications-list">
-                <div class="osekai__nav-dropdown-v2-notification">
-                    <div class="osekai__nav-dropdown-v2-notification-upper">
-                        <img src="/global/img/branding/vector/osekai_light.svg">
-                        <p>Test notification text</p>
-                    </div>
-                </div>
-                <div class="osekai__nav-dropdown-v2-notification">
-                    <a class="osekai__nav-dropdown-v2-notification-upper osekai__nav-dropdown-v2-notification-upper-clickable" href="test">
-                        <img src="/global/img/branding/vector/white/profiles.svg">
-                        <p>Test notification text with description</p>
-                    </a>
-                    <div class="osekai__nav-dropdown-v2-notification-lower">
-                        <p>what a cool description we have here!</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
