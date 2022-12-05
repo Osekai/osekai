@@ -274,15 +274,15 @@ function comments_system()
     echo '<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>';
 
     // emoji picker
-    echo '<script src="/global/js/picmo/picmo.js?v=2"></script>';
-    echo '<script src="/global/js/picmo/picmo-popup.js"></script>';
+    echo '<script src="/global/js/picmo/picmo.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script src="/global/js/picmo/picmo-popup.js?v='.OSEKAI_VERSION.'"></script>';
 
     // imports main css
     echo '<link rel="stylesheet" href="/global/css/comments.css">';
 
     // bbcode
-    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-config.js"></script>';
-    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-parser.js"></script>';
+    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-config.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-parser.js?v='.OSEKAI_VERSION.'"></script>';
 
     /* imports comment system
     please import xhr before using this */
@@ -306,7 +306,7 @@ function mobileManager()
 
     // imports main css
     if ($mmLoaded == false) {
-        echo '<script type="text/javascript" src="/global/js/mobileManager.js"></script>';
+        echo '<script type="text/javascript" src="/global/js/mobileManager.js?v='.OSEKAI_VERSION.'"></script>';
         $mmLoaded = true;
     }
 }
@@ -346,7 +346,7 @@ function dropdown_system()
 {
     // loads dropdown system
 
-    echo '<script type="text/javascript" src="/global/js/dropdown_system.js"></script>';
+    echo '<script type="text/javascript" src="/global/js/dropdown_system.js?v='.OSEKAI_VERSION.'"></script>';
 }
 
 function init3col()
@@ -358,7 +358,7 @@ function init3col()
     global $coltype;
     $coltype = "3"; // tells the arrow thing on the left to exist
 
-    echo '<script type="text/javascript" src="/global/js/3col.js"></script>';
+    echo '<script type="text/javascript" src="/global/js/3col.js?v='.OSEKAI_VERSION.'"></script>';
 }
 
 function fontawesome()
@@ -422,7 +422,7 @@ function user_hover_system()
 
     // should be an include lmao
 
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js"></script>';
+    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
     $hoversystemloaded = true;
     // nothing ever checks this lmao
 }
@@ -436,7 +436,7 @@ function report_system()
     global $reportsystemloaded;
 
     if ($reportsystemloaded == false) {
-        echo '<script type="module" type="text/javascript" src="/global/js/report_system.js"></script>';
+        echo '<script type="module" type="text/javascript" src="/global/js/report_system.js?v='.OSEKAI_VERSION.'"></script>';
         $reportsystemloaded = true;
     }
 }
@@ -453,12 +453,12 @@ function notification_system()
 
 function osu_api()
 {
-    echo '<script type="module" type="text/javascript" src="/global/js/osu_api.js"></script>';
+    echo '<script type="module" type="text/javascript" src="/global/js/osu_api.js?v='.OSEKAI_VERSION.'"></script>';
 }
 
 function xhr_requests()
 {
-    echo '<script type="module" type="text/javascript" src="/global/js/xhr.js"></script>';
+    echo '<script type="module" type="text/javascript" src="/global/js/xhr.js?v='.OSEKAI_VERSION.'"></script>';
 }
 
 function medal_hover_system()
@@ -481,7 +481,7 @@ function medal_hover_system()
         </div>
     </a>';
 
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js"></script>';
+    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
     $hoversystemloaded = true;
 }
 
@@ -497,7 +497,7 @@ function tooltip_system()
     </div>
     ';
 
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js"></script>';
+    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
     $hoversystemloaded = true;
 }
 
