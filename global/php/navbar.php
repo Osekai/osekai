@@ -70,9 +70,7 @@ addOtherApp("fas fa-globe-africa", "/misc/translators", "Translators");
                 <?php if (loggedin()) { ?>
                     <div class="osekai__navbar-button tooltip-v2" id="notif__bell__button" tooltip-content="<?= GetStringRaw("navbar", "tooltip.notifications"); ?>">
                         <i class="fas fa-bell"></i>
-                        <?php if (isExperimental()) { ?>
-                            <div class="osekai__notification-counter" id="NotificationCountIcon">0</div>
-                        <?php } ?>
+                        <div class="osekai__notification-counter hidden" id="NotificationCountIcon">0</div>
                     </div>
                 <?php } ?>
                 <div onclick='dropdown("osekai__nav-dropdown-hidden", "dropdown__settings", 1)' class="osekai__navbar-button tooltip-v2" tooltip-content="<?= GetStringRaw("navbar", "tooltip.settings"); ?>">
