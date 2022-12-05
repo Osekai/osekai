@@ -15,4 +15,4 @@ window.handleUndefined = function (obj) {
     return false;
 };
 
-GetNotifications(false, true));
+GetNotifications(false, true);
