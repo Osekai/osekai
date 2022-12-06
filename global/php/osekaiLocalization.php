@@ -105,8 +105,6 @@ $locales = [
     /* chinese simplified */
     "zh_CN" => [
         "name" => "简体中文",
-        "wip" => true,
-        "experimental" => false,
         "code" => "zh_CN",
         "short" => "zh",
         "flag" => "https://assets.ppy.sh/old-flags/CN.png"
@@ -198,7 +196,6 @@ $locales = [
     "tl_PH" => [
         "name" => "Tagalog",
         "wip" => true,
-        "experimental" => true,
         "code" => "tl_PH",
         "short" => "ph",
         "flag" => "https://assets.ppy.sh/old-flags/PH.png"
@@ -220,6 +217,12 @@ $locales = [
         "code" => "pt_PT",
         "short" => "pt",
         "flag" => "https://assets.ppy.sh/old-flags/PT.png"
+    ],
+    "vi_VN" => [
+        "name" => "Tiếng Việt",
+        "code" => "vi_VN",
+        "short" => "vi",
+        "flag" => "https://assets.ppy.sh/old-flags/VI.png"
     ]
 
 ];
