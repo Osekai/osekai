@@ -244,3 +244,7 @@
 .profiles__cover-bottom_text p a {
     text-decoration-color: #0005 !important;
 }
+
+.profiles__cover {
+    box-shadow: none;
+}
