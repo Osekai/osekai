@@ -3,6 +3,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 ini_set('display_errors', 1);
 ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
+
+header("Content-Type: application/json");
+
 if(isset($_POST['bGetComments'])) {
     $colComments = array();
     $type = 0;
