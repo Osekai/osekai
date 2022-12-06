@@ -3,11 +3,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors',1);
-error_reporting(E_ALL);
+error_reporting(E_ERROR | E_PARSE);
 
 header("Content-Type: application/json");
 
-function error_early_return($message, $code = 404) {
+function error_early_return($message, $code = 400) {
     http_response_code($code);
     echo json_encode($message);
     exit;
@@ -208,7 +208,15 @@ if(isset($_POST['nCommentDeletion'])) {
             // END LOGGING
             Database::execOperation("DELETE FROM Comments WHERE ID = ?", "i", array($_POST['nCommentDeletion']));
         } else {
-            Database::execOperation("DELETE FROM Comments WHERE ID = ? AND UserID = ?", "ii", array($_POST['nCommentDeletion'], $_SESSION['osu']['id']));
+            $comment = get_comment($_POST['nCommentDeletion']);
+
+            if (!isset($comment))
+                error_early_return("Comment does not exist");
+
+            if ($comment['ProfileID'] != $_SESSION['osu']['id'])
+                error_early_return("The requesting user is not the original poster");
+
+            Database::execOperation("DELETE FROM Comments WHERE (ID = ? AND UserID = ?)", "ii", array($_POST['nCommentDeletion'], $_SESSION['osu']['id']));
         }
         echo json_encode("Success!");
         exit;
