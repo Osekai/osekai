@@ -620,18 +620,6 @@ code {
     border-radius: 14px;
 }
 
-.home__team-member-background {
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    height: 100%;
-    mix-blend-mode: color;
-    filter: blur(56px);
-}
-
 .home__team-member-info-inner, .home__team-member-socials-inner {
     z-index: 9;
     position: relative;
