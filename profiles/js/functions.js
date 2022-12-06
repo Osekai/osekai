@@ -240,7 +240,8 @@ async function FillData(uid, mode, completeReload = true) {
             <h1>${oData.username}</h1> 
         </div>
         <div id="user__badges" class="profiles__user-badges"></div>`;
-        document.getElementById("osu_link").href=  `https://osu.ppy.sh/users/${oData.id}`;
+        document.getElementById("osu_link").href = `https://osu.ppy.sh/users/${oData.id}`;
+
         // <a data-tippy-content="View profile on osu.ppy.sh" href="https://osu.ppy.sh/users/${oData.id}" target="_blank" class="profiles__cover-link"><i class="fas fa-external-link-alt"></i>
         tippy(document.getElementById("name__sub").querySelectorAll("[data-tippy-content]"));
         if (oData.cover_url != null) {
