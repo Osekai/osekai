@@ -14,7 +14,7 @@ if (isset($_GET['user'])) {
         $user = $cache;
     } else {
         $user = v2_getUser($_GET['user']);
-        
+
         if (isset($user)) {
             Caching::saveCache("profiles_meta_" . $_GET['user'], 172800, $user);
         }
@@ -46,14 +46,14 @@ if (isset($_GET['user'])) {
         http_response_code(404);
         frontend();
         include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
-        exit; 
+        exit;
     }
 } else {
-        $title = "Osekai Profiles • Home";
-        // ! temporary description
-        $desc = "Check out Osekai Profiles! Featuring stats, medals, goals, timeline, and more, for every single osu! user!";
+    $title = "Osekai Profiles • Home";
+    // ! temporary description
+    $desc = "Check out Osekai Profiles! Featuring stats, medals, goals, timeline, and more, for every single osu! user!";
 
-        $meta = '<meta charset="utf-8" />
+    $meta = '<meta charset="utf-8" />
         <meta name="description" content="' . htmlspecialchars($desc) . '" />
         <meta name="msapplication-TileColor" content="#303f5e">
         <meta name="theme-color" content="#303f5e">
@@ -124,9 +124,10 @@ frontend();
                 <?php } ?>
                 <section class="osekai__panel" style="margin-top: 25px;">
                     <div class="osekai__panel-header">
-                    <i class="fas fa-eye"></i><p>
-                        <?php if (loggedin()) echo GetStringRaw("profiles", "home.recentlyViewed.title");
-                        else echo GetStringRaw("profiles", "home.mostViewed.title"); ?>
+                        <i class="fas fa-eye"></i>
+                        <p>
+                            <?php if (loggedin()) echo GetStringRaw("profiles", "home.recentlyViewed.title");
+                            else echo GetStringRaw("profiles", "home.mostViewed.title"); ?>
                         </p>
                     </div>
                     <div class="osekai__panel-inner profiles__ranking" id="recentlyviewed">
@@ -143,7 +144,8 @@ frontend();
                 <section class="osekai__panel">
                     <div class="osekai__panel-header-with-buttons">
                         <div class="osekai__panel-hwb-left">
-                        <i class="fas fa-chart-line"></i><p><?php echo GetStringRaw("profiles", "home.globalRankings.title"); ?></p>
+                            <i class="fas fa-chart-line"></i>
+                            <p><?php echo GetStringRaw("profiles", "home.globalRankings.title"); ?></p>
                         </div>
                         <div id="mode__list__home" class="osekai__panel-hwb-right" style="padding-right: 7px;">
                             <img mode="all" tooltip-content="all mode" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/all.svg">
@@ -181,46 +183,54 @@ frontend();
         </div>
         <div class="osekai__2col-panels">
             <div class="osekai__2col_col1">
-                <section class="osekai__panel profiles__cover-back">
+                <section class="osekai__panel profiles__cover">
                     <div class="profiles__cover-top">
-                        <div id="cover__img" style="background-image: #0a0e14;" class="profiles__cover"></div>
-                        <div class="profiles__cover-info">
-                            <div class="profiles__cover-info-content">
+                        <div id="cover__img" class="profiles__cover-banner">
+                        </div>
+                        <div class="profiles__cover-userinfo">
+                            <img selector="cover_blur_img" class="osekai__pfp-blur-bg">
+                            <div class="profiles__cover-userinfo-inner">
+                                <a tooltip-content="View profile on osu.ppy.sh" id="osu_link" target="_blank" class="profiles__cover-link tooltip-v2"><i class="fas fa-external-link-alt"></i></a>
                                 <img class="profiles__cover-info-pfp" src="https://a.ppy.sh/1" selector="pfp">
-                                <h1 id="name__sub"><?php echo GetStringRaw("general", "loading.longer"); ?></h1>
-                                <h2 id="current__rank__global">Global #?</h2>
+                                <div class="profiles__cover-info-content">
+                                    <div id="name__sub" class="profiles__cover-info-sub"><?php echo GetStringRaw("general", "loading.longer"); ?></div>
+                                    <h2 id="current__rank__global">Global #?</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="profiles__cover-back-content">
-                        <div class="profiles__cover-back-info-row">
-                            <div class="profiles__cover-back-info_text">
-                                <p id="location"><i class="fas fa-map-marker-alt"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
+                    <div class="profiles__cover-bottom">
+                        <img selector="cover_blur_img" class="osekai__pfp-blur-bg">
+                        <div class="profiles__cover-bottom-inner">
+                            <div id="bar__social" class="profiles__cover-bottom-row">
+                                <div class="profiles__cover-bottom_text">
+                                    <p><i class="fab fa-discord"></i><a target="_blank" id="discord"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
+                                </div>
+                                <div class="profiles__cover-bottom_text">
+                                    <p><i class="fab fa-twitter"></i><a target="_blank" id="twitter"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
+                                </div>
+                                <div class="profiles__cover-bottom_text">
+                                    <p><i class="fas fa-link"></i><a target="_blank" id="website"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
+                                </div>
                             </div>
-                            <div class="profiles__cover-back-info_text">
-                                <p id="arrival__date"><span class="light">joined</span> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
+                            <div class="profiles__cover-bottom-row">
+                                <div class="profiles__cover-bottom_text">
+                                    <p id="location"><i class="fas fa-map-marker-alt"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
+                                </div>
+                                <div class="profiles__cover-bottom_text">
+                                    <p id="arrival__date"><span class="light">joined</span> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
+                                </div>
+                                <div class="profiles__cover-bottom_text">
+                                    <p id="hardware"><span class="light">plays with</span> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
+                                </div>
                             </div>
-                            <div class="profiles__cover-back-info_text">
-                                <p id="hardware"><span class="light">plays with</span> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
-                            </div>
-                        </div>
-                        <div id="bar__interests" class="profiles__cover-back-info-row">
-                            <div class="profiles__cover-back-info_text">
-                                <p id="interests"><i class="fas fa-heart"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
-                            </div>
-                            <div class="profiles__cover-back-info_text">
-                                <p id="occupation"><i class="fas fa-briefcase"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
-                            </div>
-                        </div>
-                        <div id="bar__social" class="profiles__cover-back-info-row">
-                            <div class="profiles__cover-back-info_text">
-                                <p><i class="fab fa-discord"></i><a target="_blank" id="discord"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
-                            </div>
-                            <div class="profiles__cover-back-info_text">
-                                <p><i class="fab fa-twitter"></i><a target="_blank" id="twitter"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
-                            </div>
-                            <div class="profiles__cover-back-info_text">
-                                <p><i class="fas fa-link"></i><a target="_blank" id="website"><?php echo GetStringRaw("general", "loading.longer"); ?></a></p>
+                            <div id="bar__interests" class="profiles__cover-bottom-row">
+                                <div class="profiles__cover-bottom_text">
+                                    <p id="interests"><i class="fas fa-heart"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
+                                </div>
+                                <div class="profiles__cover-bottom_text">
+                                    <p id="occupation"><i class="fas fa-briefcase"></i> <?php echo GetStringRaw("general", "loading.longer"); ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -300,7 +310,8 @@ frontend();
                 <section class="osekai__panel">
                     <div id="AddEntryPanel" class="osekai__panel-header-with-buttons">
                         <div class="osekai__panel-hwb-left">
-                        <i class="fas fa-stream"></i><p><?php echo GetStringRaw("profiles", "profile.timeline.title"); ?></p>
+                            <i class="fas fa-stream"></i>
+                            <p><?php echo GetStringRaw("profiles", "profile.timeline.title"); ?></p>
                         </div>
                     </div>
                     <div class="osekai__panel-inner osekai__flex-vertical-container">
@@ -335,7 +346,8 @@ frontend();
                 </section>
                 <section id="goals__section" class="osekai__panel">
                     <div class="osekai__panel-header">
-                    <i class="fas fa-bullseye"></i><p><?php echo GetStringRaw("profiles", "profile.goals.title"); ?></p>
+                        <i class="fas fa-bullseye"></i>
+                        <p><?php echo GetStringRaw("profiles", "profile.goals.title"); ?></p>
                     </div>
                     <div class="osekai__panel-inner osekai__flex-vertical-container">
                         <div class="profiles__feature-introduction profiles__feature-introduction-goals hidden" id="goals__welcome">
@@ -410,7 +422,8 @@ frontend();
                 <section class="osekai__panel" id="banner-panel">
 
                     <div class="osekai__panel-header">
-                    <i class="fas fa-user"></i><p><?= GetStringRaw("profiles", "profile.banner.title"); ?></p>
+                        <i class="fas fa-user"></i>
+                        <p><?= GetStringRaw("profiles", "profile.banner.title"); ?></p>
                     </div>
                     <div class="osekai__panel-inner osekai__flex-vertical-container">
 
@@ -433,10 +446,10 @@ frontend();
                             <div class="profiles__userbanner-top">
                                 <div class="profiles__userbanner-top-toggle">
                                     <div id="banner-toggle-type_bbcode" class="profiles__userbanner-top-toggle-item" onclick="UserBanner.SwitchUrl('bbcode')">
-                                    <?= GetStringRaw("profiles", "profile.banner.copyType.bbcode"); ?>
+                                        <?= GetStringRaw("profiles", "profile.banner.copyType.bbcode"); ?>
                                     </div>
                                     <div id="banner-toggle-type_raw" class="profiles__userbanner-top-toggle-item" onclick="UserBanner.SwitchUrl('raw')">
-                                    <?= GetStringRaw("profiles", "profile.banner.copyType.raw"); ?>
+                                        <?= GetStringRaw("profiles", "profile.banner.copyType.raw"); ?>
                                     </div>
                                 </div>
                                 <div class="profiles__userbanner-top-text">
@@ -530,7 +543,8 @@ frontend();
             <div class="osekai__2col_col2">
                 <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                    <i class="fas fa-chart-line"></i><p><?php echo GetStringRaw("profiles", "profile.stats.title"); ?></p>
+                        <i class="fas fa-chart-line"></i>
+                        <p><?php echo GetStringRaw("profiles", "profile.stats.title"); ?></p>
                     </div>
                     <div class="profiles__osekai__panel-nav osekai__panel-nav osekai__flex_row">
                         <div class="profiles__rank-nav forcetooltip">
@@ -586,7 +600,8 @@ frontend();
                 </section>
                 <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                    <i class="oif-medal"></i><p><?php echo GetStringRaw("profiles", "profile.medals.title"); ?></p>
+                        <i class="oif-medal"></i>
+                        <p><?php echo GetStringRaw("profiles", "profile.medals.title"); ?></p>
                     </div>
                     <div class="profiles__osekai__panel-nav osekai__panel-nav osekai__flex_row">
                         <div class="profiles__rank-nav">
@@ -645,7 +660,8 @@ frontend();
 
                 <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                    <i class="oif-medal-outlined"></i><p><?= GetStringRaw("profiles", "profile.unachievedMedals.title") ?></p>
+                        <i class="oif-medal-outlined"></i>
+                        <p><?= GetStringRaw("profiles", "profile.unachievedMedals.title") ?></p>
                     </div>
                     <div id="unachieved_panel" class="osekai__panel-inner osekai__flex-vertical-container">
                         <!-- <div class="profiles__unachievedmedals-section hush-hush">
@@ -688,7 +704,8 @@ frontend();
                 <!-- snapshots integration -->
                 <section class="osekai__panel" id="snapshots--panel">
                     <div class="osekai__panel-header">
-                    <i class="fas fa-camera"></i><p><?php echo GetStringRaw("profiles", "profile.snapshots.title"); ?></light>
+                        <i class="fas fa-camera"></i>
+                        <p><?php echo GetStringRaw("profiles", "profile.snapshots.title"); ?></light>
                         </p>
                     </div>
                     <div class="osekai__panel-inner osekai__flex-vertical-container" id="snapshots--container">

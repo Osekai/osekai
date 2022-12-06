@@ -5201,3 +5201,14 @@ input[type=range]:focus::-ms-fill-upper {
     pointer-events: none;
     top: 30px;
 }
+
+.osekai__pfp-blur-bg {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(60px);
+    mix-blend-mode: color;
+    transform: scale(1.1);
+}

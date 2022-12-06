@@ -111,7 +111,7 @@ async function loadGroup(id, push = false) {
                 console.log(user);
                 html += `
                 <a class="groups__userpanel" style="--colour: ${user['Groups'][0]['Colour']}" href="https://osekai.net/profiles/?user=${user['UserId']}">
-                    <img src="https://a.ppy.sh/${user['UserId']}" class="groups__userpanel-background">
+                    <img src="https://a.ppy.sh/${user['UserId']}" class="osekai__pfp-blur-bg">
                     <div class="groups__userpanel-inner">
                         <img src="https://a.ppy.sh/${user['UserId']}">
                         <div class="groups__userpanel-text">

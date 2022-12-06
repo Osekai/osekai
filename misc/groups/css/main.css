@@ -71,17 +71,6 @@
     border: 3px solid rgb(var(--colour));
 }
 
-.groups__userpanel-background {
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    filter: blur(60px);
-    mix-blend-mode: color;
-    transform: scale(1.1);
-}
-
 .groups__userpanel-inner {
     display: flex;
     align-items: center;
