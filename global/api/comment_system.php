@@ -213,7 +213,7 @@ if(isset($_POST['nCommentDeletion'])) {
             if (!isset($comment))
                 error_early_return("Comment does not exist");
 
-            if ($comment['ProfileID'] != $_SESSION['osu']['id'])
+            if ($comment['UserID'] != $_SESSION['osu']['id'])
                 error_early_return("The requesting user is not the original poster");
 
             Database::execOperation("DELETE FROM Comments WHERE (ID = ? AND UserID = ?)", "ii", array($_POST['nCommentDeletion'], $_SESSION['osu']['id']));
