@@ -235,10 +235,22 @@ async function FillData(uid, mode, completeReload = true) {
             document.getElementById("name__main").innerHTML = GetStringRawNonAsync("profiles", "profile.bar.user.new", [oData.username]);
         }
         if (oData.username != null) document.getElementById("name__sub").innerHTML = `
-    <img class="profiles__cover-country" src="https://osu.ppy.sh/images/flags/${oData.country_code}.png" id="country__flag"> ${oData.username} <div id="user__badges" class="profiles__user-badges"></div>
-    <a data-tippy-content="View profile on osu.ppy.sh" href="https://osu.ppy.sh/users/${oData.id}" target="_blank" class="profiles__cover-link"><i class="fas fa-external-link-alt"></i></a>`;
+        <div class="profiles__cover-info-name">
+            <img class="profiles__cover-country" src="https://osu.ppy.sh/images/flags/${oData.country_code}.png" id="country__flag">
+            <h1>${oData.username}</h1> 
+        </div>
+        <div id="user__badges" class="profiles__user-badges"></div>`;
+        document.getElementById("osu_link").href = `https://osu.ppy.sh/users/${oData.id}`;
+
+        // <a data-tippy-content="View profile on osu.ppy.sh" href="https://osu.ppy.sh/users/${oData.id}" target="_blank" class="profiles__cover-link"><i class="fas fa-external-link-alt"></i>
         tippy(document.getElementById("name__sub").querySelectorAll("[data-tippy-content]"));
-        if (oData.cover_url != null) document.getElementById("cover__img").style.setProperty("background-image", "url('" + oData.cover_url + "')");
+        if (oData.cover_url != null) {
+            document.getElementById("cover__img").style.setProperty("background-image", "url('" + oData.cover_url + "')");
+            var bi = document.querySelectorAll("[selector='cover_blur_img']");
+            for (var x = 0; x < bi.length; x++) {
+                bi[x].src = oData.cover_url;
+            }
+        }
     }
     //if (oData.statistics.global_rank != null) document.getElementById("current__rank__global").innerHTML = "Global #" + FormatNumber(oData.statistics.global_rank);
     if (oData.statistics.global_rank > 0) {
@@ -253,7 +265,7 @@ async function FillData(uid, mode, completeReload = true) {
     }
     if (Exists(oData.usergroups)) {
         array = [];
-        for(var x = 0; x < oData.usergroups.length; x++) {
+        for (var x = 0; x < oData.usergroups.length; x++) {
             array.push(oData.usergroups[x]['GroupId'])
         }
         document.getElementById("user__badges").innerHTML = groupUtils.badgeHtmlFromArray(array);
