@@ -181,7 +181,7 @@ DELETE FROM `Apps`;
 INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
 	(-1, -1, 'Osekai Home', '??apps.home.slogan??', 'home', '53, 61, 85', '53, 61, 85', 'osekai_light', 'osekai_dark', 'cover/none', 1, 0, 0, 1, 1);
 INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
-	(1, 1, 'Osekai Rankings', '??apps.rankings.slogan??', 'rankings', '0, 66, 79', '0, 194, 224', 'white/rankings', 'coloured/rankings', 'cover/rankings', 1, 0, 1, 0.5, 1);
+	(1, 1, 'Osekai Rankings', '??apps.rankings.slogan??', 'rankings', '0, 66, 79', '0, 194, 224', 'white/rankings', 'coloured/rankings', 'cover/rankings', 1, 0, 1, 0.5, 0.7);
 INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
 	(2, 2, 'Osekai Medals', '??apps.medals.slogan??', 'medals', '102, 34, 68', '255, 102, 170', 'white/medals', 'coloured/medals', 'cover/medals', 1, 0, 1, 1, 1);
 INSERT INTO `Apps` (`id`, `order`, `name`, `slogan`, `simplename`, `color_dark`, `color`, `logo`, `colour_logo`, `cover`, `visible`, `experimental`, `hascover`, `dark_value_multiplier`, `value_mulitplier`) VALUES
