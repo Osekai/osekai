@@ -62,7 +62,7 @@ function printTeam()
         }
         // TODO: somehow use user cover for the background instead of pfp. didn't wanna setup api stuff
         echo '<div class="home__team-member">
-        <img class="home__team-member-background" src="https://a.ppy.sh/' . $member['id'] . '">
+        <img class="osekai__pfp-blur-bg" src="https://a.ppy.sh/' . $member['id'] . '">
         <div class="home__team-member-info">
             <div class="home__team-member-info-inner">
                 <img src="https://a.ppy.sh/' . $member['id'] . '">

@@ -26,10 +26,10 @@ function GetBearer()
 function IsExpired()
 {
     if (isset($_SESSION['access_token_expiration'])) {
-        $timer = intval($_SESSION['access_token_expiration']);
+        $timer = intval($_SESSION['access_token_timer']);
         $expiration = $_SESSION['access_token_expiration'] + $timer;
         $date = new DateTime();
-        return $expiration > $date->getTimestamp();
+        return $expiration < $date->getTimestamp();
     } else {
         return true;
     }
