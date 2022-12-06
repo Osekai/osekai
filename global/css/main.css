@@ -4816,7 +4816,10 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .osekai__nav-dropdown-v2-notification {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(263.14deg, rgba(var(--genericaccent), 0.4) -1.04%, rgba(var(--genericaccent), 0.284) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.1) 65.1%, rgba(255, 255, 255, 0.1) 100%);
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)))
+    );
     background-blend-mode: normal, normal, luminosity;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 4px;
@@ -4824,7 +4827,10 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .osekai__nav-dropdown-v2-notification-upper {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(263.14deg, rgba(var(--genericaccent), 0.568) -1.04%, rgba(var(--genericaccent), 0.8) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
+    );
     background-blend-mode: normal, normal, luminosity;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 4px;
