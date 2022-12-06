@@ -17,33 +17,15 @@
 }
 
 .profiles__gamemode-button-active {
-	opacity: 1;
-	filter: drop-shadow(0px 0px 6px #000a);
+    opacity: 1;
+    filter: drop-shadow(0px 0px 6px #000a);
 }
 
 .profiles__gamemode-button {
     filter: invert(0.9);
 }
 
-.profiles__cover-top {
-	background-color: rgba(var(--accent), 0.05);
-	/* border: 1px solid rgba(var(--accentdark), 1) !important; */
 
-        /* border: 1px solid rgba(var(--accentdark), 1) !important; */
-        border-radius: 8px;
-        box-sizing: border-box;
-        box-shadow: inset 1px 0px 0px 0px #2220;
-        border-bottom: 1px solid rgba(var(--accentdark), 0.1) !important;
-    border-radius: 0px;
-}
-
-.profiles__cover-back {
-    box-shadow: inset 0px 0px 0px 0px #2220;
-}
-
-.profiles__cover {
-    border-radius: 8px 0px;
-}
 
 .profiles__graph-area {
     background-color: rgba(var(--accent), 0.02);
@@ -67,6 +49,7 @@
 .profiles__mhs-right {
     border-left: 1px solid rgba(var(--accent), 1);
 }
+
 .profiles__mhs-right {
     background-color: #fff;
 }
@@ -93,7 +76,7 @@
 }
 
 .profiles__sidebar-button {
-	background-color: rgba(var(--accent), 0.1);
+    background-color: rgba(var(--accent), 0.1);
 }
 
 
@@ -108,14 +91,14 @@
 }
 
 .profiles__info-panel {
-	background: #fffa linear-gradient(rgba(var(--accent), 0.1), rgba(var(--accent), 0.2));
-	border: 1px solid rgba(var(--accentdark), 0.1);
-	box-shadow: 0px 0px 0px 0px #0000;
+    background: #fffa linear-gradient(rgba(var(--accent), 0.1), rgba(var(--accent), 0.2));
+    border: 1px solid rgba(var(--accentdark), 0.1);
+    box-shadow: 0px 0px 0px 0px #0000;
 }
 
 .profiles__timeline-dot {
-	background-color: rgba(var(--accent), 1);
-	box-shadow: 0px 0px 0px 3px #f7f8fb;
+    background-color: rgba(var(--accent), 1);
+    box-shadow: 0px 0px 0px 3px #f7f8fb;
 }
 
 .profiles__timeline-dot-active {
@@ -132,31 +115,26 @@
     position: relative;
 }
 
-.profiles__cover-top {
-	background: linear-gradient(rgba(var(--accent), 0.2), rgba(var(--accent), 0.1));
-	border-bottom: 1px solid rgba(var(--accentdark), 0.1) !important;
-	border-radius: 0px;
-}
 
 .profiles__user-bar, .profiles__top-bar-home {
 
-        background: linear-gradient(rgba(var(--accent), 0.1), rgba(var(--accent), 0.2)), linear-gradient(#fff, #fff) !important;
- 
-        border: 1px solid #fff2;
-    
+    background: linear-gradient(rgba(var(--accent), 0.1), rgba(var(--accent), 0.2)), linear-gradient(#fff, #fff) !important;
+
+    border: 1px solid #fff2;
+
 }
 
 .profiles__goal-input {
-	border-radius: 8px;
-	border: 1px solid #fff1;
-	background: linear-gradient(to top, rgba(var(--accent), 0.1), rgba(var(--accent), 0.2)), linear-gradient(#fff, #fff) !important;
+    border-radius: 8px;
+    border: 1px solid #fff1;
+    background: linear-gradient(to top, rgba(var(--accent), 0.1), rgba(var(--accent), 0.2)), linear-gradient(#fff, #fff) !important;
     box-shadow: 2px 3px 9px rgba(0, 0, 0, 0.1);
 }
 
 .profiles__goal-input-amount {
     color: #222;
 
-	box-shadow: inset 4px 4px 12px 3px #12192411;
+    box-shadow: inset 4px 4px 12px 3px #12192411;
 
     background: linear-gradient(to top, rgba(var(--accent), 0.2), rgba(var(--accent), 0.1)), linear-gradient(#fff, #fff) !important;
 }
@@ -167,24 +145,24 @@
 }
 
 .profiles__medalinfo-section {
-	/* background: rgba(51, 68, 102, 0.2); */
-	background: linear-gradient(to bottom, rgba(var(--accent), 0.3), rgba(var(--accent), 0.1)), linear-gradient(to bottom, #fff0, #fff1);
+    /* background: rgba(51, 68, 102, 0.2); */
+    background: linear-gradient(to bottom, rgba(var(--accent), 0.3), rgba(var(--accent), 0.1)), linear-gradient(to bottom, #fff0, #fff1);
 }
 
 .profiles__medal-progress-percentage {
-	filter: drop-shadow(0px 0px 14px rgba(var(--maincol), 0.5)) brightness(0.5);
+    filter: drop-shadow(0px 0px 14px rgba(var(--maincol), 0.5)) brightness(0.5);
 }
 
 .profiles__medalinfo-section_rarest-medalinfo .background {
-	opacity: 0.4;
+    opacity: 0.4;
 }
 
 .profiles__medalinfo-section_rarest-medalinfo {
-	background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .profiles__mhs-right {
-	background: linear-gradient(45deg, rgba(var(--accent), 0.4), rgba(var(--accent), 0.1));
+    background: linear-gradient(45deg, rgba(var(--accent), 0.4), rgba(var(--accent), 0.1));
 }
 
 .profiles__feature-introduction-goals {
@@ -201,20 +179,20 @@
 }
 
 .profiles__userbanner-bottom-container {
-	background: #fff !important;
+    background: #fff !important;
 }
 
 .profiles__userbanner {
-	background: linear-gradient(180deg, rgba(var(--accent), 0.2) 60.42%, rgba(var(--accent) 0.1) 100%), #eee !important;
-	border: 1px solid #2221;
+    background: linear-gradient(180deg, rgba(var(--accent), 0.2) 60.42%, rgba(var(--accent) 0.1) 100%), #eee !important;
+    border: 1px solid #2221;
 }
 
 .profiles__userbanner-bottom-bottom {
-	padding: 16px;
-	background: #fafafa;
-	border-radius: 11px;
-	position: relative;
-	transition: all 0.2s ease;
+    padding: 16px;
+    background: #fafafa;
+    border-radius: 11px;
+    position: relative;
+    transition: all 0.2s ease;
 }
 
 .profiles__userbanner-top-toggle-item {
@@ -231,7 +209,7 @@
 }
 
 .profiles__unachievedmedals-section-inner {
-	background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.75);
 }
 
 .profiles__unachievedmedals-section-header {
@@ -244,4 +222,25 @@
 
 .profiles__unachievedmedals-section-progress-medal {
     --maincol: var(--col) !important;
+}
+
+.profiles__cover-top {
+    background: #bbb;
+}
+
+.profiles__cover-bottom {
+    background: #ccc;
+}
+
+.profiles__cover-bottom_text
+{
+    color: #000a;
+}
+
+#bar__social .profiles__cover-bottom_text {
+    color: #000e;
+}
+
+.profiles__cover-bottom_text p a {
+    text-decoration-color: #0005 !important;
 }
