@@ -222,7 +222,7 @@ $locales = [
         "name" => "Tiếng Việt",
         "code" => "vi_VN",
         "short" => "vi",
-        "flag" => "https://assets.ppy.sh/old-flags/VI.png"
+        "flag" => "https://assets.ppy.sh/old-flags/VN.png"
     ]
 
 ];
