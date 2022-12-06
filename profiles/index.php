@@ -311,7 +311,8 @@ frontend();
                     <div id="AddEntryPanel" class="osekai__panel-header-with-buttons">
                         <div class="osekai__panel-hwb-left">
                             <i class="fas fa-stream"></i>
-                            <p><?php echo GetStringRaw("profiles", "profile.timeline.title"); ?></p>
+                            <p><?= GetStringRaw("profiles", "profile.timeline.title"); ?></p>
+
                         </div>
                     </div>
                     <div class="osekai__panel-inner osekai__flex-vertical-container">
