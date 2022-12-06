@@ -347,7 +347,8 @@ frontend();
                 <section id="goals__section" class="osekai__panel">
                     <div class="osekai__panel-header">
                         <i class="fas fa-bullseye"></i>
-                        <p><?php echo GetStringRaw("profiles", "profile.goals.title"); ?></p>
+                        <p><?= GetStringRaw("profiles", "profile.goals.title"); ?></p>
+
                     </div>
                     <div class="osekai__panel-inner osekai__flex-vertical-container">
                         <div class="profiles__feature-introduction profiles__feature-introduction-goals hidden" id="goals__welcome">
