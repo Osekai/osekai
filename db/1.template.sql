@@ -303,18 +303,20 @@ DELIMITER ;
 DROP TABLE IF EXISTS `Comments`;
 CREATE TABLE `Comments` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `PostText` varchar(1000) COLLATE utf8mb4_bin NOT NULL,
+  `PostText` varchar(1000) NOT NULL,
   `MedalID` int(11) DEFAULT NULL,
   `VersionID` int(10) DEFAULT NULL,
   `ProfileID` int(20) DEFAULT NULL,
-  `Username` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `UserID` int(20) NOT NULL,
-  `AvatarURL` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `AvatarURL` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `PostDate` datetime NOT NULL,
-  `Reported` int(5) DEFAULT '0',
+  `Reported` int(5) DEFAULT 0,
   `ParentComment` int(10) DEFAULT NULL,
-  `ParentCommenter` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `ParentCommenter` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ParentComment` (`ParentComment`),
+  CONSTRAINT `Comments_ibfk_1` FOREIGN KEY (`ParentComment`) REFERENCES `Comments` (`ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 

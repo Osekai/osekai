@@ -1,8 +1,68 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors',1);
-error_reporting(E_ALL);
+error_reporting(E_ERROR | E_PARSE);
+
+header("Content-Type: application/json");
+
+function error_early_return($message, $code = 400) {
+    http_response_code($code);
+    echo json_encode($message);
+    exit;
+}
+
+function get_comment($commentId) {
+    $rows = Database::execSelect("SELECT * FROM Comments WHERE ID = ? LIMIT 1", "i", [$commentId]);
+
+    if (count($rows) == 0)
+        return null;
+    
+    return $rows[0];
+}
+
+class CommentQuery {
+    private string $query;
+    private string $typeSignature;
+
+    function __construct(string $query, string $typeSignature)
+    {
+        $this->query = $query;
+        $this->typeSignature = $typeSignature;
+    }
+
+    function execute(array $params) {
+        Database::execOperation($this->query, $this->typeSignature, $params); 
+    }
+}
+
+class CommentQueryBuilder {
+    private ?string $section = null;
+    private bool $hasParentCommentInfo = false;
+
+    public function setSection(string $section) {
+        $this->section = $section;
+    }
+
+    public function setHasParentCommentInfo(bool $hasParentCommentInfo) {
+        $this->hasParentCommentInfo = $hasParentCommentInfo;
+    }
+
+    public function build(): CommentQuery {
+        if (!isset($this->section))
+            throw new Exception("Section is not specified");
+
+        $query = "INSERT INTO Comments (PostText, " . $this->section . ", Username, UserID, AvatarURL, ";
+
+        if ($this->hasParentCommentInfo)
+            return new CommentQuery($query ."ParentComment, ParentCommenter, PostDate) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())", "sisisis");
+        else
+            return new CommentQuery($query . "PostDate) VALUES (?, ?, ?, ?, ?, NOW())", "sisis");
+    }
+
+}
+
 if(isset($_POST['bGetComments'])) {
     $colComments = array();
     $type = 0;
@@ -26,6 +86,7 @@ if(isset($_POST['bGetComments'])) {
     // actually take any user input. no worse than having the horrible
     // wall of if statements there was before. just much, much better.
     if(isset($_SESSION['osu']['id'])) {
+        
         $colComments = Database::execSelect("SELECT Comments.ID " .
             ", Comments.PostText " .
             ", Comments.UserID " . 
@@ -62,36 +123,48 @@ if(isset($_POST['bGetComments'])) {
         GROUP BY Comments.ID, Comments.PostText, Comments.UserID, Comments.PostDate, Comments.ParentCommenter, Comments.".$colname.", Comments.ParentComment", "iii", array($type, $type, $data));
     }
     echo json_encode($colComments);
+    // Prevent other actions 
+    exit;
 }
 
 if(isset($_POST['strComment'])) {
     if(isRestricted()) return;
     if(isset($_SESSION['osu']['id'])) {
+        $commentQueryBuilder = new CommentQueryBuilder();
+        $sectionId;
+        
         if(isset($_POST['strCommentMedalID'])) {
-            if(isset($_POST['nParentComment'])) {
-                Database::execOperation("INSERT INTO Comments (PostText, MedalID, Username, UserID, AvatarURL, ParentComment, ParentCommenter, PostDate) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())", "sssisis", array($_POST['strComment'], $_POST['strCommentMedalID'], $_SESSION['osu']['username'], $_SESSION['osu']['id'], $_SESSION['osu']['avatar_url'], $_POST['nParentComment'], $_POST['strParentCommenter']));
-                echo json_encode("Success!");
-            } else {
-                Database::execOperation("INSERT INTO Comments (PostText, MedalID, Username, UserID, AvatarURL, PostDate) VALUES (?, ?, ?, ?, ?, NOW())", "sssis", array($_POST['strComment'], $_POST['strCommentMedalID'], $_SESSION['osu']['username'], $_SESSION['osu']['id'], $_SESSION['osu']['avatar_url']));
-                echo json_encode("Success!");
-            }
-        } elseif(isset($_POST['nVersionId'])) {
-            if(isset($_POST['nParentComment'])) {
-                Database::execOperation("INSERT INTO Comments (PostText, VersionId, Username, UserID, AvatarURL, ParentComment, ParentCommenter, PostDate) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())", "sisisis", array($_POST['strComment'], intval($_POST['nVersionId']), $_SESSION['osu']['username'], $_SESSION['osu']['id'], $_SESSION['osu']['avatar_url'], $_POST['nParentComment'], $_POST['strParentCommenter']));
-                echo json_encode("Success!");
-            } else {
-                Database::execOperation("INSERT INTO Comments (PostText, VersionId, Username, UserID, AvatarURL, PostDate) VALUES (?, ?, ?, ?, ?, NOW())", "sisis", array($_POST['strComment'], intval($_POST['nVersionId']), $_SESSION['osu']['username'], $_SESSION['osu']['id'], $_SESSION['osu']['avatar_url']));
-                echo json_encode("Success!");
-            }
-        } elseif(isset($_POST['nProfileId'])) {
-            if(isset($_POST['nParentComment'])) {
-                Database::execOperation("INSERT INTO Comments (PostText, ProfileID, Username, UserID, AvatarURL, ParentComment, ParentCommenter, PostDate) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())", "sisisis", array($_POST['strComment'], intval($_POST['nProfileId']), $_SESSION['osu']['username'], $_SESSION['osu']['id'], $_SESSION['osu']['avatar_url'], $_POST['nParentComment'], $_POST['strParentCommenter']));
-                echo json_encode("Success!");
-            } else {
-                Database::execOperation("INSERT INTO Comments (PostText, ProfileID, Username, UserID, AvatarURL, PostDate) VALUES (?, ?, ?, ?, ?, NOW())", "sisis", array($_POST['strComment'], intval($_POST['nProfileId']), $_SESSION['osu']['username'], $_SESSION['osu']['id'], $_SESSION['osu']['avatar_url']));
-                echo json_encode("Success!");
-            }
+            $commentQueryBuilder->setSection("MedalID");
+            $sectionId = $_POST['strCommentMedalID'];
+        } elseif (isset($_POST['nVersionId'])) {
+            $commentQueryBuilder->setSection("VersionId");
+            $sectionId = $_POST['nVersionId'];
+        } elseif (isset($_POST['nProfileId'])) {
+            $commentQueryBuilder->setSection("ProfileID");
+            $sectionId = $_POST['nProfileId'];
+        } else {
+            error_early_return("Invalid section");
         }
+
+
+        if(isset($_POST['nParentComment'])) {
+            $commentQueryBuilder->setHasParentCommentInfo(true);
+
+            $comment = get_comment(intval($_POST['nParentComment']));
+
+            if (!isset($comment))
+                error_early_return("ParentComment does not exist");
+
+            if ($comment['Username'] != $_POST['strParentCommenter'])
+                error_early_return("ParentCommenter name mismatches");
+         
+            $commentQueryBuilder->build()->execute(array($_POST['strComment'], intval($sectionId), $_SESSION['osu']['username'], $_SESSION['osu']['id'], $_SESSION['osu']['avatar_url'], $_POST['nParentComment'], $_POST['strParentCommenter']));
+        } else {
+            $commentQueryBuilder->build()->execute(array($_POST['strComment'], intval($sectionId), $_SESSION['osu']['username'], $_SESSION['osu']['id'], $_SESSION['osu']['avatar_url']));
+        }
+
+        echo json_encode("Success!");
+        exit;
     }
 }
 
@@ -110,8 +183,9 @@ if(isset($_POST['nObject'])) {
         } else {
             Database::execOperation("INSERT INTO Votes (UserID, ObjectID, Vote, Type) VALUES (?, ?, 1, ?)", "iii", array($_SESSION['osu']['id'], $_POST['nObject'], $_POST['nType']));
         }
-        
+
         echo json_encode($hasVoted);
+        exit;
     }
 }
 
@@ -134,9 +208,18 @@ if(isset($_POST['nCommentDeletion'])) {
             // END LOGGING
             Database::execOperation("DELETE FROM Comments WHERE ID = ?", "i", array($_POST['nCommentDeletion']));
         } else {
-            Database::execOperation("DELETE FROM Comments WHERE ID = ? AND UserID = ?", "ii", array($_POST['nCommentDeletion'], $_SESSION['osu']['id']));
+            $comment = get_comment($_POST['nCommentDeletion']);
+
+            if (!isset($comment))
+                error_early_return("Comment does not exist");
+
+            if ($comment['UserID'] != $_SESSION['osu']['id'])
+                error_early_return("The requesting user is not the original poster");
+
+            Database::execOperation("DELETE FROM Comments WHERE (ID = ? AND UserID = ?)", "ii", array($_POST['nCommentDeletion'], $_SESSION['osu']['id']));
         }
         echo json_encode("Success!");
+        exit;
     }
 }
 ?>
