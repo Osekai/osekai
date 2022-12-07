@@ -11,8 +11,10 @@ function get_goal($userId, $value, $type, $gamemode)
     );    
 }
 
-define("VALUE_REGEX", "/^\d+(?:\.\d{1,2})?$/");
+define("VALUE_DECIMAL_REGEX", "/^\d+(?:\.\d{1,2})?$/");
+define("VALUE_INT_REGEX", "/^\d+$/");
 define("VALID_GAMEMODES", array("taiko", "mania", "osu", "fruits"));
+define("TYPES_WITH_VALUE_DECIMAL", array("PP", "% Medals", "Level", "Ranked Score"));
 define("VALID_TYPES", array("PP", "Rank", "Country Rank", "Medals", "% Medals", "SS Count", "Badges", "Level", "Ranked Score"));
 
 class GoalsApiController extends ApiController
@@ -22,11 +24,6 @@ class GoalsApiController extends ApiController
             return new UnauthorizedJsonResponse();
 
         if(isset($_POST['Value'])) {
-            $value = $_POST['Value'];
-            
-            if (!preg_match(VALUE_REGEX, $value))
-                return new BadRequestJsonResponse("Invalid Value format");
-
             $userId = $_SESSION['osu']['id'];
             $type = $_POST['Type'];
 
@@ -37,6 +34,16 @@ class GoalsApiController extends ApiController
 
             if (!in_array($gamemode, VALID_GAMEMODES))
                 return new BadRequestJsonResponse("Invalid Gamemode");
+
+            $value = $_POST['Value'];
+            $can_have_decimal_value = in_array($type, TYPES_WITH_VALUE_DECIMAL);
+
+            if (
+                ($can_have_decimal_value && !preg_match(VALUE_DECIMAL_REGEX, $value)) || 
+                (!$can_have_decimal_value && !preg_match(VALUE_INT_REGEX, $value))
+            ) {
+                return new BadRequestJsonResponse("Invalid Value format");
+            }
 
             if (get_goal($userId, $value, $type, $gamemode) != null)
                 return new BadRequestJsonResponse("Goal already exists");
