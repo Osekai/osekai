@@ -23,6 +23,12 @@ if (isset($_GET['user'])) {
     if (isset($user)) {
         $user = json_decode($user, true);
 
+        if(!is_numeric($_GET['user'])) {
+            // redirects from username, so you can go to https://osekai.net/profiles?user=Tanza3D and it'll auto-redirect
+            redirect("/profiles?user=" . $user['id']);
+            exit;
+        }
+
         $user_id = $user['id'];
         $user_name = $user['username'];
 
