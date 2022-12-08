@@ -1,19 +1,17 @@
 <?php
 
-class Response {
+class ApiResult {
     private int $statusCode;
-    private string $contentType;
-    private mixed $content;
+    private mixed $value;
 
     /**
      * @param int $statusCode 
      * @param string $contentType 
      * @param mixed $content 
      */
-    public function __construct(mixed $content, string $contentType, int $statusCode = 200) {
+    public function __construct(mixed $value, int $statusCode) {
     	$this->statusCode = $statusCode;
-    	$this->contentType = $contentType;
-    	$this->content = $content;
+    	$this->value = $value;
     }
 
 	/**
@@ -24,75 +22,109 @@ class Response {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function getContentType(): string {
-		return $this->contentType;
-	}
-
-	/**
 	 * @return mixed
 	 */
-	public function getContent(): mixed {
-		return $this->content;
+	public function getValue(): mixed {
+		return $this->value;
 	}
 }
 
-class NotImplementedResponse extends Response {
+class EmptyContent {}
+
+class OkApiResult extends ApiResult {
+    public function __construct(mixed $value) {
+        parent::__construct($value, 200);
+    }
+}
+
+class NotImplementedApiResult extends ApiResult {
     /**
      * @param int $statusCode 
      * @param string $contentType 
      * @param mixed $content 
      */
     public function __construct() {
-        parent::__construct("", "text/plain", 501);
+        parent::__construct(new EmptyContent, 501);
     }
 }
 
-class JsonResponse extends Response {
-    public function __construct(mixed $json_content, int $statusCode = 200) {
-        parent::__construct(json_encode($json_content), "application/json", $statusCode);
-    }
-}
-
-class BadRequestJsonResponse extends JsonResponse {
+class BadArgumentsApiResult extends ApiResult {
     public function __construct(mixed $error = "Bad request") {
         parent::__construct($error, 400);
     }
 }
 
-class UnauthorizedJsonResponse extends JsonResponse {
+class ResourceNotFoundApiResult extends ApiResult {
+    public function __construct(mixed $error = "Bad request") {
+        parent::__construct($error, 404);
+    }
+}
+
+class UnknownErrorResult extends ApiResult {
+    public function __construct(mixed $error = "Unknown Error") {
+        parent::__construct($error, 500);
+    }
+}
+
+class UnauthorizedResult extends ApiResult {
     public function __construct(mixed $error = "Unauthorized") {
         parent::__construct($error, 401);
     }
 }
 
 class ApiController {
-    protected function get(): Response { 
-        return new NotImplementedResponse; 
+    public function get(): ApiResult { 
+        return new NotImplementedApiResult; 
     }
 
-    protected function post(): Response { 
-        return new NotImplementedResponse; 
+    public function post(): ApiResult { 
+        return new NotImplementedApiResult; 
     }
+}
 
-    public function execute() {
-        $method = $_SERVER['REQUEST_METHOD'];
+interface ApiResultSerializer {
+    function serialize(ApiResult $result): string;
+    function getContentType(): string;
+}
 
-        switch ($method) {
-            case 'POST':
-                $response = $this->post();
-                break;
-            case 'GET':
-                $response = $this->get();
-                break;
-            default:
-                $response = new NotImplementedResponse;
-                break;
+class JsonApiResultSerializer implements ApiResultSerializer {
+    public function serialize(ApiResult $result): string {
+        return json_encode($result->getValue());
+    }
+    public function getContentType(): string {
+        return "application/json";
+    }
+}
+
+class ApiControllerExecutor {
+    public static function execute(ApiController $controller, ApiResultSerializer $serializer) {
+        try {
+            $method = $_SERVER['REQUEST_METHOD'];
+
+            switch ($method) {
+                case 'POST':
+                    $result = $controller->post();
+                    break;
+                case 'GET':
+                    $result = $controller->get();
+                    break;
+                default:
+                    $result = new NotImplementedApiResult;
+                    break;
+            }
+        } catch (InvalidParameterException $exception) {
+            $result = new BadArgumentsApiResult($exception->getMessage());
+        } catch (InvalidOperationException $exception) {
+            $result = new BadArgumentsApiResult($exception->getMessage());
+        } catch (ResourceNotFoundException $exception) {
+            $result = new ResourceNotFoundApiResult($exception->getMessage());
+        } catch (Exception $exception) {
+            Logging::PutLog("Got exception in " . $controller::class . ":" . $exception->getMessage());
+            $result = new UnknownErrorResult();
         }
 
-        http_response_code($response->getStatusCode());
-        header("Content-Type: " . $response->getContentType());
-        echo $response->getContent();
+        http_response_code($result->getStatusCode());
+        header("Content-Type: " . $serializer->getContentType());
+        echo $serializer->serialize($result);
     }
 }
