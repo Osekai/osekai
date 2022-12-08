@@ -1505,16 +1505,17 @@ var UserBanner = {
         generatenotification("normal", "Copied Image URL!");
     },
     SwitchUrl: function (type) {
+        let host = window.location.origin;
         document.getElementById("banner-toggle-type_bbcode").classList.remove("profiles__userbanner-top-toggle-item-active");
         document.getElementById("banner-toggle-type_raw").classList.remove("profiles__userbanner-top-toggle-item-active");
 
         if (type == "raw") {
             document.getElementById("banner-toggle-type_raw").classList.add("profiles__userbanner-top-toggle-item-active");
-            document.getElementById("banner-copy-placeholder").innerHTML = "/profiles/img/banner.svg?id=" + nUserID;
+            document.getElementById("banner-copy-placeholder").innerHTML = `${host}/profiles/img/banner.svg?id=${nUserID}`;
         }
         if (type == "bbcode") {
             document.getElementById("banner-toggle-type_bbcode").classList.add("profiles__userbanner-top-toggle-item-active");
-            document.getElementById("banner-copy-placeholder").innerHTML = "[url=/profiles?user=" + nUserID + "][img]/profiles/img/banner.svg?id=" + nUserID + "[/img][/url]"
+            document.getElementById("banner-copy-placeholder").innerHTML = `[url=${host}/profiles?user=${nUserID}][img]${host}/profiles/img/banner.svg?id=${nUserID}[/img][/url]`
         }
     },
 
