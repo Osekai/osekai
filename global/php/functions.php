@@ -807,3 +807,25 @@ function rgbToHsl($r, $g, $b)
     return array(round($h, 2), round($s * 100, 2), round($l * 100, 2));
     // don't question the multiplications, it works
 }
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/exceptions.php");
+
+function api_controller_base_classes()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/api_controller.php");
+}
+
+function goals_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/goals_repository.php");
+}
+
+function goals_service()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/goals_service.php");
+}
+
+function utils_classes()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/utils.php");
+}

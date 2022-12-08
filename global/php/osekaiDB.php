@@ -68,6 +68,14 @@ class Database
         return (array)$hits;
     }
 
+    public static function execSelectFirstOrNull($strQuery, $strTypes, $colVariables) {
+        $rows = Database::execSelect($strQuery, $strTypes, $colVariables);
+        if (count($rows) == 0)
+            return null;
+
+        return $rows[0];
+    }
+
     /**
      * @param string $strQuery
      * 
