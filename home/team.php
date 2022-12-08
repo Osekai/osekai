@@ -24,6 +24,10 @@ $nameMapping = [
     "Speedrun.com" => "fas fa-trophy",
 ];
 
+$extraHtml = [
+    "Mastodon" => "rel=\"me\""
+];
+
 
 function social($link, $name, $icon = null)
 {
@@ -41,6 +45,7 @@ function social($link, $name, $icon = null)
 function printTeam()
 {
     global $team;
+    global $extraHtml;
     $assignedGroups = Database::execSimpleSelect("SELECT * FROM GroupAssignments");
     foreach ($team as $member) {
         $groups = [];
@@ -56,7 +61,7 @@ function printTeam()
             $badgeHtml .= badgeHtmlFromGroup($group, "small");
         }
         foreach($member['socials'] as $social) {
-            $socialHtml .= '<a class="home__team-member-social tooltip-v2" href="'.$social['link'].'" tooltip-content="'.$social['name'].'">
+            $socialHtml .= '<a class="home__team-member-social tooltip-v2" href="'.$social['link'].'" tooltip-content="'.$social['name'].'" '.$extraHtml[$social['name']].'>
             <i class="'.$social['icon'].'" aria-hidden="true"></i>
         </a>';
         }
