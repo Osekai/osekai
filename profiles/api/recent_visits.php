@@ -11,7 +11,7 @@ class RecentlyVisitedApiController extends ApiController
             return new UnauthorizedResult;
         }
 
-        return new OkApiResult(ProfilesVisitedRepository::getRecentlyVisited($_SESSION['osu']['id'], 5));
+        return new OkApiResult(ProfilesVisitedRepository::getRecentlyVisited($_SESSION['osu']['id'], 10));
     }
 }
 
