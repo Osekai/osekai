@@ -1426,10 +1426,9 @@ function LoadRecentlyViewed() {
             let html = "";
 
             for (let i = 0; i < json.length; i++) {
-                if (json[i].userdata == null) continue;
-                html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].visited_id});"><img src="https://a.ppy.sh/${json[i].visited_id}" class="profiles__ranking-pfp">
+                html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].visited_id});"><img src="https://a.ppy.sh/${json[i].UserID}" class="profiles__ranking-pfp">
           <div class="profiles__ranking-texts">
-            <p class="profiles__ranking-username">${json[i].userdata.Username}</p>
+            <p class="profiles__ranking-username">${json[i].Username}</p>
           </div>
         </div>`;
             }

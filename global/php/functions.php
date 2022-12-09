@@ -820,6 +820,11 @@ function goals_repository()
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/goals_repository.php");
 }
 
+function profiles_visited_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/profiles_visited_repository.php");
+}
+
 function goals_service()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/goals_service.php");
