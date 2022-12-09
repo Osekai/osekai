@@ -75,7 +75,7 @@ if(isset($_POST['bGetComments'])) {
     } elseif(isset($_POST['nVersionId'])) {
         $type = 3;
         $colname = "VersionID";
-        $data = $_POST['nVersionID'];
+        $data = $_POST['nVersionId'];
     } elseif(isset($_POST['nProfileId'])) {
         $type = 4;
         $colname = "ProfileID";
