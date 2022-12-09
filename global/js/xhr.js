@@ -15,4 +15,6 @@ window.handleUndefined = function (obj) {
     return false;
 };
 
-GetNotifications(false, true);
+if(typeof GetNotifications !== "undefined") {
+    GetNotifications(false, true);
+}
