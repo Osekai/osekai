@@ -9,4 +9,13 @@ class ProfilesVisitedRepository {
             "i",
             [$limit]);
     }
+
+    public static function getRecentlyVisited($userId, $limit = PHP_INT_MAX) {
+        return Database::execSelect(
+            "SELECT p.osuID as UserID, p.Username as Username FROM ProfilesVisited
+            INNER JOIN ProfilesUserinfo p ON p.osuID = visited_id 
+            WHERE visited_by = ? GROUP BY UserID ORDER BY MAX(date) DESC LIMIT ?",
+            "ii",
+            [$userId, $limit]);
+    }
 }
