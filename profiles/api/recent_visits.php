@@ -1,30 +1,18 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
-if(loggedin()) {
-    $visits = Database::execSelect("SELECT * FROM ProfilesVisited WHERE visited_by = ? ORDER BY date DESC", "i", array($_SESSION['osu']['id']));
-    
-    $final = array();
+api_controller_base_classes();
+profiles_visited_repository();
 
-    
-    //for($i = 0; $i < count($visits); $i++) {
-    //    $user = Database::execSelect("SELECT * FROM ProfilesUserinfo WHERE osuID = ?", "i", array($visits[$i]['visited_id']))[0];
-    //    $visits[$i]['userdata'] = $user;
-    //}
-    
-    foreach($visits as $visit) {
-        foreach($final as $f) {
-            if($f['visited_id'] == $visit['visited_id']) {
-                continue 2;
-            }
+class RecentlyVisitedApiController extends ApiController
+{
+    public function get(): ApiResult {
+        if (!loggedin()) {
+            return new UnauthorizedResult;
         }
-        $user = Database::execSelect("SELECT * FROM ProfilesUserinfo WHERE osuID = ?", "i", array($visit['visited_id']))[0];
-        $final[] = array(
-            'visited_id' => $visit['visited_id'],
-            'userdata' => $user
-        );
+
+        return new OkApiResult(ProfilesVisitedRepository::getRecentlyVisited($_SESSION['osu']['id'], 10));
     }
-
-
-    echo json_encode($final);
 }
+
+ApiControllerExecutor::execute(new RecentlyVisitedApiController, new JsonApiResultSerializer);

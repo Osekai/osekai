@@ -1426,7 +1426,7 @@ function LoadRecentlyViewed() {
             let html = "";
 
             for (let i = 0; i < json.length; i++) {
-                html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].visited_id});"><img src="https://a.ppy.sh/${json[i].UserID}" class="profiles__ranking-pfp">
+                html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].UserID});"><img src="https://a.ppy.sh/${json[i].UserID}" class="profiles__ranking-pfp">
           <div class="profiles__ranking-texts">
             <p class="profiles__ranking-username">${json[i].Username}</p>
           </div>
