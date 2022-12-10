@@ -2336,7 +2336,7 @@ CREATE TABLE `ChangelogEntries` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `ChangelogId` int(11) NOT NULL,
   `Name` text COLLATE utf8mb4_bin NOT NULL,
-  `Tags` text COLLATE utf8mb4_bin NOT NULL,
+  `Tags` json NOT NULL,
   `User` text COLLATE utf8mb4_bin NOT NULL,
   `Link` text COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`Id`)
@@ -2345,11 +2345,11 @@ CREATE TABLE `ChangelogEntries` (
 TRUNCATE `ChangelogEntries`;
 INSERT INTO `ChangelogEntries` (`Id`, `ChangelogId`, `Name`, `Tags`, `User`, `Link`) VALUES
 (1,	1,	'Addition Test for 2022-12-09',	'[\"Backend\", \"size/XS\", \"changelog:Addition\"]',	'Tanza3D',	'https://github.com/Osekai/osekai/pull/101'),
-(2,	1,	'Change test for 2022-12-09',	'[\'Code\', \'Design\', \'changelog:Change\']',	'Tanza3D',	'https://github.com/Osekai/osekai/pull/101'),
-(3,	1,	'Removal test for 2022-12-09',	'[\'Bug\', \'Design\', \'Code\', \'changelog:Removal\']',	'Someone Else',	'https://github.com/Osekai/osekai/pull/101'),
-(4,	2,	'Addition test for 2022-12-10',	'[\'Enhancement\', \'Documentation\', \'changelog:Addition\']',	'jiniux',	'https://github.com/Osekai/osekai/pull/101'),
-(5,	2,	'Change test for 2022-12-10',	'[\'changelog:Change\', \'Code\', \'Design\']',	'EXtremeExploit',	'https://github.com/Osekai/osekai/pull/101'),
-(6,	2,	'Removal test for 2022-12-10',	'[\'Enhancement\', \'Bug\', \'changelog:Removal\']',	'Tanza3D',	'https://github.com/Osekai/osekai/pull/101');
+(2,	1,	'Change test for 2022-12-09',	'[\"Code\", \"Design\", \"changelog:Change\"]',	'Tanza3D',	'https://github.com/Osekai/osekai/pull/101'),
+(3,	1,	'Removal test for 2022-12-09',	'[\"Bug\", \"Design\", \"Code\", \"changelog:Removal\"]',	'Someone Else',	'https://github.com/Osekai/osekai/pull/101'),
+(4,	2,	'Addition test for 2022-12-10',	'[\"Enhancement\", \"Documentation\", \"changelog:Addition\"]',	'jiniux',	'https://github.com/Osekai/osekai/pull/101'),
+(5,	2,	'Change test for 2022-12-10',	'[\"changelog:Change\", \"Code\", \"Design\"]',	'EXtremeExploit',	'https://github.com/Osekai/osekai/pull/101'),
+(6,	2,	'Removal test for 2022-12-10',	'[\"Enhancement\", \"Bug\", \"changelog:Removal\"]',	'Tanza3D',	'https://github.com/Osekai/osekai/pull/101');
 
 DROP TABLE IF EXISTS `Changelogs`;
 CREATE TABLE `Changelogs` (
