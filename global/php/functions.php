@@ -286,7 +286,7 @@ function comments_system()
 
     /* imports comment system
     please import xhr before using this */
-    echo '<script type="text/javascript" src="/global/js/comment_system.js?v=' . OSEKAI_VERSION . '"></script>';
+    echo '<script rel="preload" type="text/javascript" src="/global/js/comment_system.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function chart_js()
@@ -458,7 +458,7 @@ function osu_api()
 
 function xhr_requests()
 {
-    echo '<script type="module" type="text/javascript" src="/global/js/xhr.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script rel="preload" type="module" type="text/javascript" src="/global/js/xhr.js?v='.OSEKAI_VERSION.'"></script>';
 }
 
 function medal_hover_system()
