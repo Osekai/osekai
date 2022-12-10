@@ -497,7 +497,7 @@ function AddSettingCheckbox(id, internalName, defaultValue, optionExperimental =
 
 AddSettingCheckbox("settings_profiles__showmedalsfromallmodes", "profiles__showmedalsfromallmodes", true)
 AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals__hidemedalswhenunobtainedfilteron", false, false, async () => {
-    requestMedals(false, document.getElementById("txtMedalSearch").value);
+    filterAchieved(document.getElementById('styled-checkbox-1').checked, true);
 });
 
 if (christmas) {
