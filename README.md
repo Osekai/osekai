@@ -20,7 +20,7 @@ At that point you just need to fill in each field in config.php, and it should w
 For Snapshots and Admin Panel to work, you must install the PHP `gd` Extension:
 - `sudo apt install php-gd` / `sudo pacman -S php-gd` and add to php.ini
 
-Any issues contact me (Hubz/Tanza)
+On any issues - please contact me! (Hubz/Tanza)
 
 ## Osekai Tools
 
