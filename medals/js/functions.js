@@ -173,57 +173,60 @@ async function requestMedals(init, strValue) {
     Object.keys(filteredMedalsArrayByGroup).forEach(async (group) => {
         let grids = [];
         let totalMedals = 0;
-        // let medalsPromise = new Promise((resolve) => {
-        filteredMedalsArrayByGroup[group].forEach((medal) => {
-            if (MedalsAchievedFilterArray.includes(medal.MedalID))
-                return;
-
-            let medal_grid_i = 0;
-            switch (medal.Restriction) {
-                case 'NULL': medal_grid_i = 0; break;
-                case 'osu': medal_grid_i = 1; break;
-                case 'taiko': medal_grid_i = 2; break;
-                case 'fruits': medal_grid_i = 3; break;
-                case 'mania': medal_grid_i = 4; break;
-            }
-
-            let medalDiv = document.createElement('div');
-            medalDiv.classList.add('medals__grid-medal-container');
-
-            if (medal.Date != null) { // It has a date!, check if its less than a week old
-                let date = new Date(medal.Date);
-                let now = new Date();
-                let diff = now.getTime() - date.getTime();
-                if (diff < 604800000) {
-                    // IT IS!, add the new badge 8)
-                    let newBadge = document.createElement('div');
-                    newBadge.classList.add('new-badge');
-                    newBadge.textContent = 'NEW';
-                    medalDiv.appendChild(newBadge);
+        let medalsPromise = new Promise((resolve) => {
+            filteredMedalsArrayByGroup[group].forEach((medal) => {
+                totalMedals++;
+                if (document.getElementById('settings_medals__hidemedalswhenunobtainedfilteron').checked && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
+                    if (totalMedals == filteredMedalsArrayByGroup[group].length)
+                        resolve();
+                    return;
                 }
-            }
-            let medalImg = document.createElement('img');
-            medalImg.setAttribute('data-tippy-content', medal.Name);
-            medalImg.classList.add('medals__grid-medal');
-            medalImg.classList.add('lazy');
-            medalImg.src = medal.Link;
-            medalImg.alt = medal.Name;
-            medalImg.id = `medal_${medal.MedalID}`;
-            medalImg.onload = medalImageLoaded(medalImg);
-            medalImg.onclick = () => {
-                changeState(medal.Name);
-            };
 
-            medalDiv.appendChild(medalImg);
+                let medal_grid_i = 0;
+                switch (medal.Restriction) {
+                    case 'NULL': medal_grid_i = 0; break;
+                    case 'osu': medal_grid_i = 1; break;
+                    case 'taiko': medal_grid_i = 2; break;
+                    case 'fruits': medal_grid_i = 3; break;
+                    case 'mania': medal_grid_i = 4; break;
+                }
 
-            if (typeof grids[medal_grid_i] == 'undefined')
-                grids[medal_grid_i] = [];
-            grids[medal_grid_i].push(medalDiv);
-            totalMedals++;
-            if (totalMedals == filteredMedalsArrayByGroup[group].length)
-                resolve();
+                let medalDiv = document.createElement('div');
+                medalDiv.classList.add('medals__grid-medal-container');
+
+                if (medal.Date != null) { // It has a date!, check if its less than a week old
+                    let date = new Date(medal.Date);
+                    let now = new Date();
+                    let diff = now.getTime() - date.getTime();
+                    if (diff < 604800000) {
+                        // IT IS!, add the new badge 8)
+                        let newBadge = document.createElement('div');
+                        newBadge.classList.add('new-badge');
+                        newBadge.textContent = 'NEW';
+                        medalDiv.appendChild(newBadge);
+                    }
+                }
+                let medalImg = document.createElement('img');
+                medalImg.setAttribute('data-tippy-content', medal.Name);
+                medalImg.classList.add('medals__grid-medal');
+                medalImg.classList.add('lazy');
+                medalImg.src = medal.Link;
+                medalImg.alt = medal.Name;
+                medalImg.id = `medal_${medal.MedalID}`;
+                medalImg.onload = medalImageLoaded(medalImg);
+                medalImg.onclick = () => {
+                    changeState(medal.Name);
+                };
+
+                medalDiv.appendChild(medalImg);
+
+                if (typeof grids[medal_grid_i] == 'undefined')
+                    grids[medal_grid_i] = [];
+                grids[medal_grid_i].push(medalDiv);
+                if (totalMedals == filteredMedalsArrayByGroup[group].length)
+                    resolve();
+            });
         });
-        // });
 
         let section = document.createElement('section');
         section.classList.add('osekai__panel');
@@ -246,7 +249,7 @@ async function requestMedals(init, strValue) {
         let panelMedalsContainer = document.createElement('div');
         panelMedalsContainer.classList.add('medals__grid-container');
 
-        // await medalsPromise;
+        await medalsPromise;
 
         for (let i = 0; i < grids.length; i++) {
             if (grids[i] == undefined) continue;
@@ -268,8 +271,8 @@ async function requestMedals(init, strValue) {
             // Medal grid end
             document.getElementById('oMedalSection').appendChild(section);
         }
-        filterAchieved(document.getElementById('styled-checkbox-1').checked);
     });
+    filterAchieved(document.getElementById('styled-checkbox-1').checked);
     tippy('[data-tippy-content]', {
         appendTo: document.getElementById('oMedalSection'),
         arrow: true
