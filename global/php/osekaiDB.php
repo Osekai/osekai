@@ -1,4 +1,60 @@
 <?php
+
+enum SqlTimeSpecifierUnit
+{
+    case Microsecond;
+    case Second;
+    case Minute;
+    case Hour;
+    case Day;
+    case Week;
+    case Month;
+    case Quarter;
+    case Year;
+}
+
+class SqlTimeSpecifier {
+    private SqlTimeSpecifierUnit $unit; 
+    private int $value;
+
+    public function __construct(SqlTimeSpecifierUnit $unit, int $value) {
+        $this->value = intval($value);
+        $this->unit = $unit;
+    }
+
+    public function getSql()
+    {
+        $unit = match ($this->unit) {
+            SqlTimeSpecifierUnit::Microsecond   => "MICROSECOND",
+            SqlTimeSpecifierUnit::Second        => "SECOND",
+            SqlTimeSpecifierUnit::Minute        => "MINUTE",
+            SqlTimeSpecifierUnit::Hour          => "HOUR",
+            SqlTimeSpecifierUnit::Day           => "DAY",
+            SqlTimeSpecifierUnit::Week          => "WEEK",
+            SqlTimeSpecifierUnit::Month         => "MONTH",
+            SqlTimeSpecifierUnit::Quarter       => "QUARTER",
+
+            default => throw new RuntimeException("Invalid value for SqlTimeSpecifierUnit")
+        };
+
+        return $this->value . " " . $unit;
+    }
+
+	/**
+	 * @return int
+	 */
+	public function getValue(): int {
+		return $this->value;
+	}
+
+	/**
+	 * @return SqlTimeSpecifierUnit
+	 */
+	public function getUnit(): SqlTimeSpecifierUnit {
+		return $this->unit;
+	}
+}
+
 class Database
 {
 
