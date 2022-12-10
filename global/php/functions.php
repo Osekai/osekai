@@ -825,9 +825,24 @@ function profiles_visited_repository()
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/profiles_visited_repository.php");
 }
 
+function changelog_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/changelog_repository.php");
+}
+
+function changelog_entry_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/changelog_entry_repository.php");
+}
+
 function goals_service()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/goals_service.php");
+}
+
+function changelog_service()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/changelog_service.php");
 }
 
 function utils_classes()

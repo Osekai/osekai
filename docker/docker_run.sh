@@ -32,6 +32,8 @@ define("OSU_OAUTH_CLIENT_SECRET", "$OSU_OAUTH_CLIENT_SECRET");
 define("OSU_OAUTH_CLIENT_ID", "$OSU_OAUTH_CLIENT_ID");
 define("OSU_OAUTH_REDIRECT_URI", "http://${ROOT_URL}/global/php/login.php");
 
+define("CHANGELOG_KEY", "$CHANGELOG_KEY");
+
 define("DB_USER", "$DB_USER");
 define("DB_PASSWORD", "$DB_PASSWORD");
 define("DB_NAME", "$DB_NAME");

@@ -32,7 +32,7 @@ class ApiResult {
 class EmptyContent {}
 
 class OkApiResult extends ApiResult {
-    public function __construct(mixed $value) {
+    public function __construct(mixed $value = "Ok") {
         parent::__construct($value, 200);
     }
 }
@@ -55,7 +55,7 @@ class BadArgumentsApiResult extends ApiResult {
 }
 
 class ResourceNotFoundApiResult extends ApiResult {
-    public function __construct(mixed $error = "Bad request") {
+    public function __construct(mixed $error = "Resource not found") {
         parent::__construct($error, 404);
     }
 }
