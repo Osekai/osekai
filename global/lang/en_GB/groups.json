@@ -1,3 +1,22 @@
 {
-    
+    "developers.name": "Osekai Developers",
+    "developers.description": "Members of this group are <strong>core developers</strong> of Osekai, they are responsible for keeping things work, squashing bugs and fun Pull Requests names :3",
+    "communityManager.name": "Osekai Community Management Team",
+    "communityManager.description": "<strong>Community Management Team</strong> (aka CMT) are <strong>Osekai Team</strong> members, responsible for managing Osekai social media accounts, <a href=\"https://discord.com/invite/8qpNTs6\">Official Discord server</a> and any discussions on Osekai in general! CMT members make sure users are having a great time using Osekai and interacting with people in community.<br>Also expect them to appear if you got any insane medals recently... 👀",
+    "appDeveloper.name": "Osekai App Developers",
+    "appDeveloper.description": "<strong>Osekai App Developers</strong> (aka APP DEV) are Osekai team members, being main developers for specific apps and maintaining them. Thanks to their efforts, we can enjoy high-quality and bugs-free Osekai apps!<br>Visit <a href=\"/home/\">homepage</a> to see what app exactly each developer works on.",
+    "toolsContributor.name": "Tools Contributor",
+    "toolsContributor.description": "<strong>Tools Contributor</strong> (aka TOOLS) is a group given to users for contributing one or more of their tools to <a href=\"/tools/\">Osekai Tools</a>! This can be anything useful or fun, from medals percent calculator to medal names quiz!<br><br>Please join <a href=\"https://discord.com/invite/uZ9CsQBvqM\">Osekai Internal</a> Discord server and contact <a href=\"/profiles/?user=10379965\">Tanza</a> in DMs if you wish to make one!",
+    "translator.name": "Translator",
+    "translator.description": "Translators are amazing community members who have helped/are helping us in translating Osekai to their native languages! Giant thanks from everyone here at the Osekai Team to all of 'em!<br><br>We currently require everyone to join <a href=\"https://discord.com/invite/uZ9CsQBvqM\">Osekai Internal</a> Discord server to be able to translate Osekai.",
+    "snapshotsModerator.name": "Snapshots Moderator",
+    "snapshotsModerator.description": "Members of this group are responsible for moderating (approving, rejecting, reviewing, etc.) osu! versions submitted to <a href=\"/snapshots/\">Osekai Snapshots</a>. They are making sure that all versions there are safe to install and use!",
+    "moderator.name": "Moderator",
+    "moderator.description": "<strong>Moderator</strong> (aka MOD) group members are responsible for keeping Osekai safe and nice by moderating comments, notes, etc. all across the website!",
+    "lead.name": "Osekai Lead",
+    "lead.description": "LEAD group members are Osekai and all its social media <strong>owners</strong>.<br>Thanks to them, website is able to keep working!",
+    "social.name": "Osekai Social Team",
+    "social.description": "<strong>Social Team</strong> (aka SOCIAL) are users working on Osekai social media accounts one way or another. This includes but is not limited to: Making memes for Twitter, writing updates announcements, editing YouTube videos.<br>To get more detailed info on what each member of the group does - check their role in \"The Team\" list, located on Osekai <a href=\"/home/\">homepage</a>.",
+    "teamLead.name": "Osekai Team Organization Lead",
+    "teamLead.description": "<strong>Osekai Team Organization Lead</strong> (aka TEAM LEAD) is a group that indicates the fact user(s) in it is/are responsible for Osekai team organization, while sharing other responsibilities with <a href=\"/misc/groups/?group=14\">Community Management Team</a>!<br>Their job also includes management of Osekai Github repository and <a href=\"https://discord.com/invite/uZ9CsQBvqM\">Osekai Internal</a> Discord server!"
 }
