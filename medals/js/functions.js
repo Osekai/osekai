@@ -262,12 +262,12 @@ async function requestMedals(init, strValue) {
                 panelMedalsContainer.appendChild(dividerDiv);
             }
         }
-
-        panelInner.appendChild(panelMedalsContainer);
-        section.appendChild(panelInner);
-        // Medal grid end
-
-        document.getElementById('oMedalSection').appendChild(section);
+        if (grids.length != 0) {
+            panelInner.appendChild(panelMedalsContainer);
+            section.appendChild(panelInner);
+            // Medal grid end
+            document.getElementById('oMedalSection').appendChild(section);
+        }
         filterAchieved(document.getElementById('styled-checkbox-1').checked);
     });
     tippy('[data-tippy-content]', {
