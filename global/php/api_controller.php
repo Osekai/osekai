@@ -119,6 +119,7 @@ class ApiControllerExecutor {
         } catch (ResourceNotFoundException $exception) {
             $result = new ResourceNotFoundApiResult($exception->getMessage());
         } catch (Exception $exception) {
+            error_log($exception->getMessage());
             Logging::PutLog("Got exception in " . $controller::class . ":" . $exception->getMessage());
             $result = new UnknownErrorResult();
         }
