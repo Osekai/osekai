@@ -496,8 +496,9 @@ function AddSettingCheckbox(id, internalName, defaultValue, optionExperimental =
 }
 
 AddSettingCheckbox("settings_profiles__showmedalsfromallmodes", "profiles__showmedalsfromallmodes", true)
-AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals__hidemedalswhenunobtainedfilteron", false, false, async () => {
-    filterAchieved(document.getElementById('styled-checkbox-1').checked, true);
+AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals__hidemedalswhenunobtainedfilteron", false, false, (enabled) => {
+    if (typeof filterAchieved != 'undefined')
+        filterAchieved(enabled, true);
 });
 
 if (christmas) {
@@ -829,7 +830,7 @@ var groupUtils = {
         for (var x = 0; x < dropdowns.length; x++) {
             dropdowns[x].classList.add("osekai__group-dropdown-hidden");
         }
-        
+
         var dropdown = document.createElement('div');
         dropdown.classList.add("osekai__group-dropdown");
         dropdown.innerHTML = this.badgeHtmlFromCommaSeperatedList(list);
