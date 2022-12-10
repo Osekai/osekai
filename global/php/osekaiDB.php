@@ -1,23 +1,20 @@
 <?php
 
-enum SqlTimeSpecifierUnit
-{
-    case Microsecond;
-    case Second;
-    case Minute;
-    case Hour;
-    case Day;
-    case Week;
-    case Month;
-    case Quarter;
-    case Year;
-}
+define("SQL_TIMESPECIFIER_UNIT_MICROSECOND", 1);
+define("SQL_TIMESPECIFIER_UNIT_SECOND", 2);
+define("SQL_TIMESPECIFIER_UNIT_MINUTE", 3);
+define("SQL_TIMESPECIFIER_UNIT_HOUR", 4);
+define("SQL_TIMESPECIFIER_UNIT_DAY", 5);
+define("SQL_TIMESPECIFIER_UNIT_WEEK", 6);
+define("SQL_TIMESPECIFIER_UNIT_MONTH", 7);
+define("SQL_TIMESPECIFIER_UNIT_QUARTER", 8);
+define("SQL_TIMESPECIFIER_UNIT_YEAR", 9);
 
 class SqlTimeSpecifier {
-    private SqlTimeSpecifierUnit $unit; 
+    private int $unit; 
     private int $value;
 
-    public function __construct(SqlTimeSpecifierUnit $unit, int $value) {
+    public function __construct(int $unit, int $value) {
         $this->value = intval($value);
         $this->unit = $unit;
     }
@@ -25,16 +22,17 @@ class SqlTimeSpecifier {
     public function getSql()
     {
         $unit = match ($this->unit) {
-            SqlTimeSpecifierUnit::Microsecond   => "MICROSECOND",
-            SqlTimeSpecifierUnit::Second        => "SECOND",
-            SqlTimeSpecifierUnit::Minute        => "MINUTE",
-            SqlTimeSpecifierUnit::Hour          => "HOUR",
-            SqlTimeSpecifierUnit::Day           => "DAY",
-            SqlTimeSpecifierUnit::Week          => "WEEK",
-            SqlTimeSpecifierUnit::Month         => "MONTH",
-            SqlTimeSpecifierUnit::Quarter       => "QUARTER",
+            SQL_TIMESPECIFIER_UNIT_MICROSECOND   => "MICROSECOND",
+            SQL_TIMESPECIFIER_UNIT_SECOND        => "SECOND",
+            SQL_TIMESPECIFIER_UNIT_MINUTE        => "MINUTE",
+            SQL_TIMESPECIFIER_UNIT_HOUR          => "HOUR",
+            SQL_TIMESPECIFIER_UNIT_DAY           => "DAY",
+            SQL_TIMESPECIFIER_UNIT_WEEK          => "WEEK",
+            SQL_TIMESPECIFIER_UNIT_MONTH         => "MONTH",
+            SQL_TIMESPECIFIER_UNIT_QUARTER       => "QUARTER",
+            SQL_TIMESPECIFIER_UNIT_YEAR          => "YEAR",
 
-            default => throw new RuntimeException("Invalid value for SqlTimeSpecifierUnit")
+            default => throw new RuntimeException("Invalid value for unit")
         };
 
         return $this->value . " " . $unit;
@@ -50,7 +48,7 @@ class SqlTimeSpecifier {
 	/**
 	 * @return SqlTimeSpecifierUnit
 	 */
-	public function getUnit(): SqlTimeSpecifierUnit {
+	public function getUnit(): int {
 		return $this->unit;
 	}
 }
@@ -74,6 +72,36 @@ class Database
             die();
         }
         $this->connection->set_charset("utf8mb4"); // to fix emojis in comments
+    }
+
+    public static function wrapInTransaction(callable $function, $flags = MYSQLI_TRANS_START_WITH_CONSISTENT_SNAPSHOT) {
+        $connection = self::getConnection();
+
+        $connection->begin_transaction($flags);
+        try {
+            $result = $function();
+            $connection->commit();
+        } catch (Exception $e) {
+            $connection->rollback();
+            throw $e;
+        }
+
+        return $result;
+    }
+
+    public static function wrapInTransactionReadOnly(callable $function) {
+        $connection = self::getConnection();
+
+        $connection->begin_transaction(MYSQLI_TRANS_START_READ_ONLY);
+        try {
+            $result = $function();
+            $connection->commit();
+        } catch (Exception $e) {
+            $connection->rollback();
+            throw $e;
+        }
+
+        return $result;
     }
 
     function __destruct()
