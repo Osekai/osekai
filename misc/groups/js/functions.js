@@ -33,17 +33,18 @@ async function loadData() {
     document.getElementById("group").classList.add("hidden");
     document.getElementById("grouplist").classList.add("hidden");
     await loadSource("misc/groups")
+    await loadSource("groups")
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "api/api.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     xhr.send();
-    xhr.onload = function () {
+    xhr.onload = async function () {
         data = JSON.parse(xhr.responseText);
         var html = "";
         for (var x = 0; x < data.length; x++) {
             html += `<div onclick="loadGroup(${data[x]['Id']}, true)" class="groups__group-list-item" style="--colour: ${data[x]['Colour']}">
             <div class="groups__group-list-item-inner">
-                <h3>${data[x]['Name']}</h3>
+                <h3>${await LocalizeText(data[x]['Name'])}</h3>
                 <div class="groups__group-list-item-bottom">
                     <div class="osekai__group-badge osekai__group-badge-large">${data[x]['ShortName']}</div>
                     <small>${GetStringRawNonAsync("misc\/groups", "users", [data[x]['Users'].length])}</small>
