@@ -97,7 +97,7 @@ function frontend()
             }
         }
         $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
-        $medals = Database::execSelect("CALL FUNC_GetMedals(?, ?)", "ss", ['', '']);
+        $medals = Database::execSelect("CALL FUNC_GetMedals(?, '')", "s", ['']);
         $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
 ?>
         <script type="text/javascript">

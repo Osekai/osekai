@@ -496,16 +496,8 @@ function AddSettingCheckbox(id, internalName, defaultValue, optionExperimental =
 }
 
 AddSettingCheckbox("settings_profiles__showmedalsfromallmodes", "profiles__showmedalsfromallmodes", true)
-AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals__hidemedalswhenunobtainedfilteron", false, false, function (enabled) {
-    var filtered = document.getElementsByClassName("medals__medal-filtered");
-    for (var x = 0; x < filtered.length; x++) {
-        var parent = filtered[x].parentElement;
-        if (enabled) {
-            parent.classList.add("hidden");
-        } else {
-            parent.classList.remove("hidden");
-        }
-    }
+AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals__hidemedalswhenunobtainedfilteron", false, false, () =>{
+    filterAchieved(document.getElementById("styled-checkbox-1").checked);
 });
 
 if (christmas) {

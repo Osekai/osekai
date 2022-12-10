@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         filterAchieved(true);
     }
     if (new URLSearchParams(window.location.search).get("medal") == null) landingPage();
-    requestMedals(true, "strSearch", "", "/medals/api/medals.php");
+    requestMedals(true, "");
     //if (document.getElementById("styled-checkbox-1").checked) filterAchieved(); // unneeded with new localstorage save method
 });
 
@@ -46,7 +46,7 @@ window.addEventListener('popstate', function (event) {
 });
 
 document.getElementById("txtMedalSearch").addEventListener("input", function () {
-    requestMedals(false, "strSearch", document.getElementById("txtMedalSearch").value, "/medals/api/medals.php");
+    requestMedals(false, document.getElementById("txtMedalSearch").value);
 }, false);
 
 document.querySelector(".medals__search__filters-icon").addEventListener("click", () => {
@@ -81,89 +81,202 @@ document.getElementById("filter__votes").addEventListener("click", function () {
     Comments_Sort(document.getElementById("comments__box"), nCurrentMedalID, -1, -1);
 });
 
-function filterAchieved(on) {
-    if (on) {
-        var xhr = createXHR("/medals/api/filters.php");
-        xhr.send("strSearch=" + document.getElementById("txtMedalSearch").value);
-        xhr.onreadystatechange = function () {
-            var oResponse = getResponse(xhr);
-            if (handleUndefined(oResponse)) return;
-            Object.keys(oResponse).forEach(function (obj) {
-                document.getElementById("medal_" + oResponse[obj]).classList.add("medals__medal-filtered");
-                if(localStorage.getItem("medals__hidemedalswhenunobtainedfilteron") == "true") {
-                    //console.log("filter :)");
-                    document.getElementById("medal_" + oResponse[obj]).parentElement.classList.add("hidden");
-                }
-            });
-        };
-    } else {
-        // the following lines are insanely dumb and shouldn't have to be here
-        // but for whatever reason it seems the array "used" is shrinking *as i read from it*
-        // and i am unsure how to fix it, so this is my best shot at it. enjoy pain
-        var used = document.getElementsByClassName("medals__medal-filtered");
-        var ids = []; // dumb
-        for (var x = 0; x < used.length; x++) {
-            ids.push(used[x].id);
-        }
-        for (var x = 0; x < ids.length; x++) {
-            document.getElementById(ids[x]).classList.remove("medals__medal-filtered")
-            if(localStorage.getItem("medals__hidemedalswhenunobtainedfilteron") == "true") {
-                document.getElementById(ids[x]).parentElement.classList.remove("hidden");
+let MedalsAchievedFilterArray = [];
+async function getMedalsFilterArray() {
+    return new Promise((resolve) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/medals/api/filters.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                let oResponse = JSON.parse(xhr.responseText);
+                resolve(oResponse);
             }
+        };
+        xhr.send();
+    });
+}
+async function filterAchieved(on) {
+    if (MedalsAchievedFilterArray.length == 0) {
+        MedalsAchievedFilterArray = await getMedalsFilterArray();
+    }
+
+    if (on) {
+        for (let i = 0; i < MedalsAchievedFilterArray.length; i++) {
+            let medalid = MedalsAchievedFilterArray[i];
+            if (document.getElementById('medal_' + medalid)) {
+                document.getElementById('medal_' + medalid).classList.add('medals__medal-filtered');
+            }
+        }
+    } else {
+        let filteredMedals = document.getElementsByClassName('medals__medal-filtered').length;
+        for (let i = 0; i < filteredMedals; i++) {
+            document.getElementsByClassName('medals__medal-filtered')[0].classList.remove('medals__medal-filtered');
+        }
+    }
+
+    var filtered = document.getElementsByClassName("medals__medal-filtered");
+    for (var x = 0; x < filtered.length; x++) {
+        var parent = filtered[x].parentElement;
+        if (document.getElementById('settings_medals__hidemedalswhenunobtainedfilteron').checked) {
+            parent.classList.add("hidden");
+        } else {
+            parent.classList.remove("hidden");
         }
     }
 }
 
 function medalImageLoaded(el) {
-    el.classList.add("medals__grid-medal-loaded")
+    el.classList.add("medals__grid-medal-loaded");
 }
 
-function requestMedals(bInit, strKey, strValue, strUrl) {
-    var xhr = createXHR(strUrl);
-    xhr.send(strKey + "=" + strValue);
-
-    xhr.onreadystatechange = function () {
-        document.getElementById("oMedalSection").innerHTML = "";
-        var oResponse = getResponse(xhr);
-        let strLastRestriction;
-        if (handleUndefined(oResponse)) return;
-        Object.keys(oResponse).forEach(function (obj) {
-            let imgList = "";
-            if (handleUndefined(obj)) return;
-            oResponse[obj].forEach(function (innerObj) {
-                //console.log(innerObj.Name)
-                if (bInit) colMedals[innerObj.Name] = innerObj;
-                if (innerObj.Name == "chromb") return;
-                if ((typeof strLastRestriction !== 'undefined' && strLastRestriction !== null) && innerObj.Restriction !== strLastRestriction) imgList += '</div><div class="osekai__divider"></div><div class="medals__grid">';
-                imgList += '<div class="medals__grid-medal-container">';
-                // if date is not null, and it is less than a week ago, it's new!
-                //console.log(innerObj);
-                if (innerObj.Date != null) {
-                    let date = new Date(innerObj.Date);
-                    let now = new Date();
-                    let diff = now.getTime() - date.getTime();
-                    //console.log(diff);
-                    if (diff < 604800000) {
-                        //console.log("new");
-                        imgList += '<div class="new-badge">NEW</div>';
-                    }
-                }
-                imgList += '<img onload="medalImageLoaded(this)" data-tippy-content="' + innerObj.Name + '" onclick="changeState(\'' + innerObj.Name.replace(/'/g, "\\'") + '\')" alt="' + innerObj.Name + '" id="medal_' + innerObj.MedalID + '"  class="medals__grid-medal lazy" src="' + innerObj.Link + '">';
-                imgList += '</div>';
-                strLastRestriction = innerObj.Restriction;
+async function initColMedals() {
+    return new Promise((resolve) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/medals/api/medals.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.onreadystatechange = function () {
+            var oResponse = getResponse(xhr);
+            if (handleUndefined(oResponse)) return;
+            Object.keys(oResponse).forEach(function (obj) {
+                if (handleUndefined(obj)) return;
+                oResponse[obj].forEach(function (innerObj) {
+                    colMedals[innerObj.Name] = innerObj;
+                });
             });
-            strLastRestriction = null;
-            oMedalSection.innerHTML += '<section class="osekai__panel"><div class="osekai__panel-header"><p>' + obj + '</p></div><div class="osekai__panel-inner"><div class="medals__grid-container"><div class="medals__grid">' + imgList + '</div></div></div></section>';
+            resolve();
+        };
+        xhr.send('strSearch=');
+    });
+}
+
+async function requestMedals(init, strValue) {
+    if (init || Object.values(colMedals).length == 0)  // Init the colMedals object
+        await initColMedals();
+
+    let filteredMedalsArrayByGroup = [];
+    for (let v of Object.values(colMedals)) {
+        // Match Name, Solution, Description, Instructions and medal id
+        if (v.Name.toLowerCase().includes(strValue.toLowerCase()) ||
+            v.Solution?.toLowerCase().includes(strValue.toLowerCase()) ||
+            v.Description?.toLowerCase().includes(strValue.toLowerCase()) ||
+            v.Instructions?.toLowerCase().includes(strValue.toLowerCase()) ||
+            v.MedalID == parseInt(strValue)) {
+            if (filteredMedalsArrayByGroup[v.Grouping] == null) filteredMedalsArrayByGroup[v.Grouping] = [];
+            filteredMedalsArrayByGroup[v.Grouping].push(v);
+        }
+    }
+    if (MedalsAchievedFilterArray.length == 0) {
+        MedalsAchievedFilterArray = await getMedalsFilterArray();
+    }
+    document.getElementById('oMedalSection').textContent = '';
+    Object.keys(filteredMedalsArrayByGroup).forEach(async (group) => {
+        let grids = [];
+        let totalMedals = 0;
+        // let medalsPromise = new Promise((resolve) => {
+        filteredMedalsArrayByGroup[group].forEach((medal) => {
+            if (MedalsAchievedFilterArray.includes(medal.MedalID))
+                return;
+
+            let medal_grid_i = 0;
+            switch (medal.Restriction) {
+                case 'NULL': medal_grid_i = 0; break;
+                case 'osu': medal_grid_i = 1; break;
+                case 'taiko': medal_grid_i = 2; break;
+                case 'fruits': medal_grid_i = 3; break;
+                case 'mania': medal_grid_i = 4; break;
+            }
+
+            let medalDiv = document.createElement('div');
+            medalDiv.classList.add('medals__grid-medal-container');
+
+            if (medal.Date != null) { // It has a date!, check if its less than a week old
+                let date = new Date(medal.Date);
+                let now = new Date();
+                let diff = now.getTime() - date.getTime();
+                if (diff < 604800000) {
+                    // IT IS!, add the new badge 8)
+                    let newBadge = document.createElement('div');
+                    newBadge.classList.add('new-badge');
+                    newBadge.textContent = 'NEW';
+                    medalDiv.appendChild(newBadge);
+                }
+            }
+            let medalImg = document.createElement('img');
+            medalImg.setAttribute('data-tippy-content', medal.Name);
+            medalImg.classList.add('medals__grid-medal');
+            medalImg.classList.add('lazy');
+            medalImg.src = medal.Link;
+            medalImg.alt = medal.Name;
+            medalImg.id = `medal_${medal.MedalID}`;
+            medalImg.onload = medalImageLoaded(medalImg);
+            medalImg.onclick = () => {
+                changeState(medal.Name);
+            };
+
+            medalDiv.appendChild(medalImg);
+
+            if (typeof grids[medal_grid_i] == 'undefined')
+                grids[medal_grid_i] = [];
+            grids[medal_grid_i].push(medalDiv);
+            totalMedals++;
+            if (totalMedals == filteredMedalsArrayByGroup[group].length)
+                resolve();
         });
+        // });
+
+        let section = document.createElement('section');
+        section.classList.add('osekai__panel');
+
+        // Header
+        let sectionHeader = document.createElement('div');
+        sectionHeader.classList.add('osekai__panel-header');
+
+        let sectionHeaderP = document.createElement('p');
+        sectionHeaderP.textContent = group;
+
+        sectionHeader.appendChild(sectionHeaderP);
+        section.appendChild(sectionHeader);
+        // Header end
+
+        // Medal grid
+        let panelInner = document.createElement('div');
+        panelInner.classList.add('osekai__panel-inner');
+
+        let panelMedalsContainer = document.createElement('div');
+        panelMedalsContainer.classList.add('medals__grid-container');
+
+        // await medalsPromise;
+
+        for (let i = 0; i < grids.length; i++) {
+            if (grids[i] == undefined) continue;
+            let medalsContainer = document.createElement('div');
+            medalsContainer.classList.add('medals__grid');
+            for (let j = 0; j < grids[i].length; j++)
+                medalsContainer.appendChild(grids[i][j]);
+            panelMedalsContainer.appendChild(medalsContainer);
+
+            if (grids.length - 1 != i) {
+                let dividerDiv = document.createElement('div');
+                dividerDiv.classList.add('osekai__divider');
+                panelMedalsContainer.appendChild(dividerDiv);
+            }
+        }
+
+        panelInner.appendChild(panelMedalsContainer);
+        section.appendChild(panelInner);
+        // Medal grid end
+
+        document.getElementById('oMedalSection').appendChild(section);
+        filterAchieved(document.getElementById('styled-checkbox-1').checked);
+    });
+    tippy('[data-tippy-content]', {
+        appendTo: document.getElementById('oMedalSection'),
+        arrow: true
+    });
 
 
-        tippy('[data-tippy-content]', {
-            appendTo: document.getElementsByClassName("medals__scroller")[0],
-            arrow: true,
-        });
-
-        if (bInit && new URLSearchParams(window.location.search).get("medal") !== null) loadMedal(new URLSearchParams(window.location.search).get("medal"));
-    };
+    if (init && new URLSearchParams(window.location.search).get('medal') !== null) loadMedal(new URLSearchParams(window.location.search).get('medal'));
 }
 function landingPage() {
     document.getElementById("osekai__col1").classList.add("medals__nomedal");
@@ -632,7 +745,7 @@ function checkLock(callback) {
     xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
-        if(oResponse == 1)
+        if (oResponse == 1)
             callback(true);
         else
             callback(false);
