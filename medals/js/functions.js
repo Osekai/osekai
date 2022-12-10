@@ -128,13 +128,8 @@ async function filterAchieved(on, request) {
             document.getElementsByClassName('medals__medal-filtered')[0].classList.remove('medals__medal-filtered');
         }
     }
-
-
 }
 
-function medalImageLoaded(el) {
-    el.classList.add("medals__grid-medal-loaded");
-}
 
 async function initColMedals() {
     return new Promise((resolve) => {
@@ -214,7 +209,9 @@ async function requestMedals(init, strValue) {
             medalImg.src = medal.Link;
             medalImg.alt = medal.Name;
             medalImg.id = `medal_${medal.MedalID}`;
-            medalImg.onload = medalImageLoaded(medalImg);
+            medalImg.onload = () => {
+                medalImg.classList.add("medals__grid-medal-loaded");
+            };
             medalImg.onclick = () => {
                 changeState(medal.Name);
             };
