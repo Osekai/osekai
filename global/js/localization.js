@@ -32,7 +32,7 @@ async function loadSource(source, locale = currentLocale) {
 
     sources[source] = {};
 
-    var location = "/global/lang/" + currentLocale["code"] + "/" + source + ".json?v=3";
+    var location = "/global/lang/" + currentLocale["code"] + "/" + source + ".json?v=" + version;
 
     var xhr = new XMLHttpRequest();
     var promise = new Promise(function (resolve, reject) {

@@ -82,7 +82,7 @@ async function loadGroup(id, push = false) {
 
     var html = "";
     await loadSource("misc/groups")
-
+    await loadSource("groups")
     for (var x = 0; x < data.length; x++) {
         if (data[x]['Id'] == id) {
             found = true;
@@ -90,10 +90,10 @@ async function loadGroup(id, push = false) {
 
             group = data[x];
             document.getElementById("group").style = "--colour: " + group['Colour'];
-            document.getElementById("title").innerHTML = group['Name'];
+            document.getElementById("title").innerHTML = await LocalizeText(group['Name']);
             document.getElementById("badge").innerHTML = group['ShortName'];
             document.getElementById("users").innerHTML = GetStringRawNonAsync("misc\/groups", "users", [group['Users'].length]);
-            document.getElementById("description").innerHTML = group['Description'];
+            document.getElementById("description").innerHTML = await LocalizeText(group['Description']);
 
             for (var y = 0; y < data[x]['Users'].length; y++) {
                 user = data[x]['Users'][y];

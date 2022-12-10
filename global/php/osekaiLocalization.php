@@ -239,7 +239,6 @@ function nameToEnglish($code)
     return $name;
 }
 
-
 // sort locales by name without removing keys
 $locales = array_values($locales);
 usort($locales, function ($a, $b) {
@@ -260,10 +259,7 @@ foreach ($locales as $locale) {
 }
 $locales = $temp;
 
-
-
-
-$sourcesNames = ["report", "apps", "badges", "comments", "faq", "general", "home", "medals", "navbar", "profiles", "rankings", "snapshots", "donate", "contact", "misc/translators", "misc/groups", "misc/global"];
+$sourcesNames = ["groups", "report", "apps", "badges", "comments", "faq", "general", "home", "medals", "navbar", "profiles", "rankings", "snapshots", "donate", "contact", "misc/translators", "misc/groups", "misc/global"];
 $sources = array();
 
 $currentLocale = null;
@@ -352,7 +348,6 @@ function loadSource($source)
     $json = json_decode($json, true);
     $sources[$source] = $json;
 }
-
 
 function sourceLoaded($source)
 {
