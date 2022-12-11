@@ -586,12 +586,12 @@ INSERT INTO `FAQ` (`ID`, `App`, `Title`, `Content`, `LocalizationPrefix`) VALUES
 
 DROP TABLE IF EXISTS `GlobalCache`;
 CREATE TABLE `GlobalCache` (
-  `Title` text NOT NULL,
+  `Title` varchar(250) NOT NULL,
   `Date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `Expiration` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `Data` mediumtext NOT NULL
+  `Data` longtext NOT NULL,
+  PRIMARY KEY (`Title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 DROP TABLE IF EXISTS `Goals`;
 CREATE TABLE `Goals` (
@@ -1699,7 +1699,8 @@ CREATE TABLE `OsekaiSessions` (
   `sessionToken` varchar(48) NOT NULL,
   `sessionData` text,
   `sessionLastChange` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`sessionID`)
+  PRIMARY KEY (`sessionID`),
+  KEY `sessionToken` (`sessionToken`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
