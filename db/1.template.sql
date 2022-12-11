@@ -2363,4 +2363,4 @@ CREATE TABLE `Changelogs` (
 TRUNCATE `Changelogs`;
 INSERT INTO `Changelogs` (`Id`, `Name`, `Date`) VALUES
 (1,	20221209,	'2022-12-09'),
-(2,	20221210,	'2022-12-10');g
+(2,	20221210,	'2022-12-10');
