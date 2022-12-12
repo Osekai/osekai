@@ -1,0 +1,39 @@
+#rarest__medal__bg {
+    display: none;
+}
+
+.profiles__medalinfo-section {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)));
+}
+
+.profiles__userbanner-bottom-container {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)));
+}
+.profiles__userbanner-bottom-bottom {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)));
+}
+
+.profiles__userbanner {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset)));
+}
+
+.profiles__feature-introduction-goals {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)));
+}
+
+.profiles__medalinfo-section-bar, .profiles__medalinfo-section_rarest-medalinfo {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(35% * var(--accentdark_valueoffset)));
+}
+
+.profiles__medals-section-top-right-percentage span {
+    filter: none !important;
+}
+
+.profiles__userbanner {
+    display: none;
+}
+
+#banner-panel .osekai__panel-inner:before {
+    content: "User banner is not available on Lightweight theme.";
+    font-size: 20px;
+}

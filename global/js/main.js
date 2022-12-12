@@ -122,6 +122,11 @@ themes = {
         "css": ["light.css", "softwhite.css"],
         "experimental": true
     },
+    "lightweight": {
+        "internal": "lightweight",
+        "name": "lightweight theme",
+        "css": ['lightweight.css']
+    },
     "system": {
         "internal": "system",
         "name": "loading...",
