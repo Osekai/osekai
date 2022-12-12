@@ -849,3 +849,9 @@ function utils_classes()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/utils.php");
 }
+
+function osekai_http_request()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osekaiHttpRequest.php");
+}
+
