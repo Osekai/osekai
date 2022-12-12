@@ -777,7 +777,7 @@ var groupUtils = {
     },
     badgeHtmlFromGroupId: function (id, size = "small") {
         var group = this.getGroupFromId(id);
-        return `<a href="/misc/groups/?group=id"><div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div></a>`;
+        return `<a href="/misc/groups/?group=${id}"><div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div></a>`;
     },
     orderBadgeArray: function (array) {
         return array.sort((a, b) => a.Order - b.Order)
