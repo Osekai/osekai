@@ -5179,6 +5179,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__group-dropdown {
     position: absolute;
+    right: 0;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #fff4;
@@ -5191,7 +5192,7 @@ input[type=range]:focus::-ms-fill-upper {
     width: 150px;
     flex-wrap: wrap;
     text-align: center;
-    top: 18px;
+    top: 25px;
     transition: all 0.3s ease;
     animation: 0.3s ease 0s 1 osekai__group-dropdown-open;
 }
