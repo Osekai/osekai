@@ -1,0 +1,25 @@
+.medals__search {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)));
+}
+
+.medals__search__filters-icon{
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)));
+}
+
+.medals__grid-medal-loaded {
+    filter: none !important;
+    transform: none !important;
+}
+
+.medals__info-background-medal, .osekai__mi-icon-glow, .medals__info-background-overlay {
+    display: none;
+}
+
+.medals__info {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)));
+}
+
+.medals__solution-panel{
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset)));
+}
+
