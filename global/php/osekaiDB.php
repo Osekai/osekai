@@ -72,9 +72,18 @@ class Database
             die();
         }
         $this->connection->set_charset("utf8mb4"); // to fix emojis in comments
+        $inTransaction = false;
     }
 
+    private static bool $inTransaction = false;
+
     public static function wrapInTransaction(callable $function, $flags = MYSQLI_TRANS_START_WITH_CONSISTENT_SNAPSHOT) {
+        if (self::$inTransaction) {
+            return $function();
+        }
+
+        self::$inTransaction = true;
+
         $connection = self::getConnection();
 
         $connection->begin_transaction($flags);
@@ -82,8 +91,10 @@ class Database
             $result = $function();
             $connection->commit();
         } catch (Exception $e) {
-            $connection->rollback();
             throw $e;
+        } finally {
+            $connection->rollback();
+            self::$inTransaction = false;
         }
 
         return $result;
@@ -188,6 +199,11 @@ class Database
         $stmt = $mysql->prepare($strQuery);
         $stmt->bind_param($strTypes, ...$colVariables);
         $stmt->execute();
+    }
+
+    public static function getLastInsertedId() : int {
+        $mysql = self::getConnection();
+        return $mysql->insert_id;
     }
 
     /**

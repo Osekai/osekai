@@ -3,15 +3,17 @@
 class ApiResult {
     private int $statusCode;
     private mixed $value;
+    private bool $doNotEncode;
 
     /**
      * @param int $statusCode 
      * @param string $contentType 
      * @param mixed $content 
      */
-    public function __construct(mixed $value, int $statusCode) {
+    public function __construct(mixed $value, int $statusCode, bool $doNotEncode = false) {
     	$this->statusCode = $statusCode;
     	$this->value = $value;
+        $this->doNotEncode = $doNotEncode;
     }
 
 	/**
@@ -27,13 +29,20 @@ class ApiResult {
 	public function getValue(): mixed {
 		return $this->value;
 	}
+
+	/**
+	 * @return bool
+	 */
+	public function getDoNotEncode(): bool {
+		return $this->doNotEncode;
+	}
 }
 
 class EmptyContent {}
 
 class OkApiResult extends ApiResult {
-    public function __construct(mixed $value) {
-        parent::__construct($value, 200);
+    public function __construct(mixed $value = "Ok", $doNotEncode = false) {
+        parent::__construct($value, 200, $doNotEncode);
     }
 }
 
@@ -55,7 +64,7 @@ class BadArgumentsApiResult extends ApiResult {
 }
 
 class ResourceNotFoundApiResult extends ApiResult {
-    public function __construct(mixed $error = "Bad request") {
+    public function __construct(mixed $error = "Resource not found") {
         parent::__construct($error, 404);
     }
 }
@@ -89,6 +98,9 @@ interface ApiResultSerializer {
 
 class JsonApiResultSerializer implements ApiResultSerializer {
     public function serialize(ApiResult $result): string {
+        if ($result->getDoNotEncode())
+            return $result->getValue();
+
         return json_encode($result->getValue());
     }
     public function getContentType(): string {
