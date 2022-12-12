@@ -17,9 +17,9 @@ function addOtherApp($icon, $link, $name)
     ]);;
 }
 addOtherApp("fas fa-globe-africa", "/misc/translators", "Translators");
-//addOtherApp("fas fa-layer-group", "/misc/groups", "User Groups");
+addOtherApp("fas fa-layer-group", "/misc/groups", "User Groups");
 //addOtherApp("fas fa-question-circle", "/misc/faq", "FAQ");
-// note: these two can be enabled later after functionality is added. for now ignore
+// note: this one can be enabled later after functionality is added. for now ignore
 ?>
 
 <script>
