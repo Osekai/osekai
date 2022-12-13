@@ -71,6 +71,7 @@ html {
     /* "auto" or "thin" */
     scrollbar-color: #fffe rgba(var(--genericaccent), 1);
 
+    --body-font: "Cabin";
 }
 
 .standard {
@@ -4882,7 +4883,8 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__nav-dropdown-v2-notification-lower p {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 13px;
+    font-family: var(--body-font);
 }
 
 .osekai__nav-dropdown-v2-split-colour-picker {

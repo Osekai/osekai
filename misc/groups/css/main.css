@@ -57,8 +57,9 @@
     flex: 1;
 }
 .groups__header-right{
-    flex: 1;
+    flex: 1.5;
     margin-left: auto;
+    font-family: var(--body-font);
     text-align: right;
 }
 
