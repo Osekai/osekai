@@ -77,8 +77,7 @@ window.addEventListener('popstate', function (event) {
 
 async function loadGroup(id, push = false) {
     console.log("Loading group: " + id);
-    document.getElementById("group").classList.remove("hidden");
-    document.getElementById("grouplist").classList.add("hidden");
+
     var found = false;
 
     var html = "";
@@ -126,6 +125,10 @@ async function loadGroup(id, push = false) {
             }
         }
     }
+
+    // doing this down here instead stops the flash of the placeholder content when clicking
+    document.getElementById("group").classList.remove("hidden");
+    document.getElementById("grouplist").classList.add("hidden");
 
     if (found == false) {
         document.getElementById("group").classList.add("hidden");

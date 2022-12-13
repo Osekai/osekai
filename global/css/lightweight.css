@@ -13,6 +13,9 @@
     background: rgb(var(--colour));
     border: 0px solid white !important;
 }
+.osekai__group-badge-monochrome {
+    background: white;
+}
 
 .osekai__navbar {
     background:  hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)));
