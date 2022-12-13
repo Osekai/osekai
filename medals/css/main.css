@@ -192,6 +192,7 @@
 .medals__sol-solution {
     font-size: 15px;
     padding-top: 8px;
+    font-family: var(--body-font);
 }
 
 .medals__info-sol {
