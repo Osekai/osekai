@@ -14,20 +14,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osu_api_functions.php");
 <!DOCTYPE html>
 <html lang="en">
 
-<meta charset="utf-8" />
-<meta name="msapplication-TileColor" content="#353d55">
-<meta name="theme-color" content="#353d55">
-<meta name="description" content="Osekai • other / translators" />
-<meta property="og:title" content="Osekai • other / translators" />
-<meta property="og:description" content="everyone who've dedicated their time to help translate Osekai into their native language!" />
-<meta name="twitter:title" content="Osekai • other / translators" />
-<meta name="twitter:description" content="everyone who've dedicated their time to help translate Osekai into their native language!" />
-<title name="title">Osekai • other / groups</title>
-<meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:url" content="<?= ROOT_URL ?>" />
-
 <?php
 font();
 css();
@@ -39,15 +25,9 @@ notification_system();
 
 <head>
     <meta charset="utf-8">
-
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:url" content="" />
-    <meta property=“og:description“ content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:description" content="" />
-    <title></title>
+    <?php
+    DoMeta("groups", "all the groups on osekai!", "groups");
+    ?>
 </head>
 
 <body>
