@@ -2,6 +2,11 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osu_api_functions.php");
 
+if(!loggedin()) {
+    echo json_encode("Logged out");
+    exit;
+}
+
 $groups = Database::execSimpleSelect("SELECT DISTINCT Grouping FROM Medals ORDER BY (CASE WHEN grouping = 'Hush-Hush' THEN 1 WHEN grouping = 'Skill' THEN 2 WHEN grouping = 'Dedication' THEN 3 WHEN grouping = 'Beatmap Packs' THEN 4 WHEN grouping = 'Seasonal Spotlights' THEN 5 WHEN grouping = 'Beatmap Spotlights' Then 6 WHEN grouping = 'Mod Introduction' THEN 7 ELSE 8 END)");
 
 $user = json_decode(v2_getUser($_SESSION['osu']['id'], null, false), true);
