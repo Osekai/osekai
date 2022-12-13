@@ -160,15 +160,13 @@ foreach ($apps as $a) {
                 </a>
             <?php } ?>
         </div>
-        <?php
-        if (isExperimental()) {
-        ?>
-            <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
-                <a class="osekai__apps-dropdown-mobile-button" onclick="showOtherApps()">
-                    <p>other pages</p>
-                </a>
-            </div>
-        <?php } ?>
+
+        <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
+            <a class="osekai__apps-dropdown-mobile-button" onclick="showOtherApps()">
+                <p>other pages</p>
+            </a>
+        </div>
+
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 46px;">
             <a class="osekai__apps-dropdown-mobile-button" href="/donate">
                 <i class="fas fa-heart"></i>
@@ -262,7 +260,6 @@ foreach ($apps as $a) {
                     <a onmouseover="setCardDetails('<?= $a['app']['simplename']; ?>')" href="/<?= $a['app']['simplename']; ?>" class="osekai__apps-dropdown-applist-app<?php if ($currentApp == true) {
                                                                                                                                                                             echo " osekai__apps-dropdown-applist-app-active";
                                                                                                                                                                         } ?>">
-
                         <div class="osekai__apps-dropdown-applist-app-icon">
                             <img alt="Logo for <?= $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
                         </div>
@@ -273,15 +270,11 @@ foreach ($apps as $a) {
                 }
                 ?>
             </div>
-            <?php
-            if (isExperimental()) {
-            ?>
-                <div class="osekai__apps-dropdown-applist-left-bottom" onclick="showOtherApps()">
-                    Other Apps
-                </div>
-            <?php
-            }
-            ?>
+
+            <div class="osekai__apps-dropdown-applist-left-bottom" onclick="showOtherApps()">
+                other pages
+            </div>
+
         </div>
         <div class="osekai__apps-dropdown-applist-right">
             <div id="dropdown_card" class="osekai__apps-dropdown-applist-right-card">
