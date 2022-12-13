@@ -753,7 +753,7 @@ function getGroupFromId($id)
 
 function badgeHtmlFromGroup($group, $size)
 {
-    return "<div class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</div>";
+    return "<a href=\"/misc/groups/?group={$group['Id']}\" class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</a>";
 }
 
 function orderBadgeArray($array)
