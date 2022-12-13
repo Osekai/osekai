@@ -87,7 +87,7 @@ overflow: hidden;
 transition: box-shadow 0.1s ease;
 }
 
-.translators__language-translator:hover {
+.translators__language-translator-hoverable:hover {
     box-shadow: 0px 0px 18px #fff2;
     cursor: pointer;
 }

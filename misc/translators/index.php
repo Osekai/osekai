@@ -112,7 +112,7 @@ mobileManager();
                             $avatar = $translator['Id'] != 0 ? 'https://a.ppy.sh/' . $translator['Id'] : 'https://osu.ppy.sh/assets/images/avatar-guest.8a2df920.png';
                             $name = $translator['OsuUsername'] ? $translator['OsuUsername'] : $translator['Username'];
                             if($translator['Id'] != 0) {
-                                echo '<a class="translators__language-translator" href="/profiles?user='.$translator['Id'].'">';
+                                echo '<a class="translators__language-translator translators__language-translator-hoverable" href="/profiles?user='.$translator['Id'].'">';
                             } else {
                                 echo '<a class="translators__language-translator">';
                             }
