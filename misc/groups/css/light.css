@@ -1,0 +1,14 @@
+.groups__group-list-item-inner {
+    background: linear-gradient(
+        hsl(var(--accent_hue), var(--accent_saturation), calc(85% * var(--accent_valueoffset))),
+        hsl(var(--accent_hue), var(--accent_saturation), calc(80% * var(--accent_valueoffset)))
+    );
+}
+
+.groups__header {
+    background: linear-gradient(87.49deg, #fffc, #fff8), linear-gradient(87.94deg, rgba(255, 30, 30, 0.1) 0.17%, rgba(0, 255, 133, 0.1) 99.88%), linear-gradient(92.24deg, rgba(0, 0, 0, 0.2) -0.61%, rgba(255, 255, 255, 0.2) 100%), rgb(var(--colour))
+}
+
+.groups__header-right a {
+    color: hsl(var(--accentdark_hue), 100%, 20%)
+}

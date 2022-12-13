@@ -1,0 +1,30 @@
+.translators__language {
+    background: linear-gradient(
+        hsl(var(--accent_hue), var(--accent_saturation), calc(85% * var(--accent_valueoffset))),
+        hsl(var(--accent_hue), var(--accent_saturation), calc(90% * var(--accent_valueoffset)))
+    );
+}
+
+.translators__language-header {
+    background: linear-gradient(
+        hsl(var(--accent_hue), var(--accent_saturation), calc(85% * var(--accent_valueoffset))),
+        hsl(var(--accent_hue), var(--accent_saturation), calc(80% * var(--accent_valueoffset)))
+    );
+}
+
+.translators__language-header-flag {
+    background: linear-gradient(
+        to right,
+        hsl(var(--accent_hue), var(--accent_saturation), calc(40% * var(--accent_valueoffset))),
+        hsl(var(--accent_hue), var(--accent_saturation), calc(60% * var(--accent_valueoffset)))
+    );
+    color: white;
+}
+
+.translators__language-translator {
+    background: #ddd;
+}
+
+.translators__language-translator-texts p {
+    font-weight: 900;
+}

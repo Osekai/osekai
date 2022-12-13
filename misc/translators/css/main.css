@@ -71,6 +71,7 @@ padding-right: 16px;
 .translators__language-translator img {
     height: 64px;
     border-radius: 11px;
+    z-index: 2;
 }
 
 .translators__language-translator {
@@ -81,10 +82,19 @@ border-radius: 16px;
 padding: 5px;
 display: flex;
 align-items: center;
+position: relative;
+overflow: hidden;
+transition: box-shadow 0.1s ease;
+}
+
+.translators__language-translator:hover {
+    box-shadow: 0px 0px 18px #fff2;
+    cursor: pointer;
 }
 
 .translators__language-translator-texts {
     margin-left: 8px;
+    z-index: 2;
 }
 
 .translators__language-translator-texts p {
