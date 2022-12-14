@@ -777,7 +777,8 @@ var groupUtils = {
     },
     badgeHtmlFromGroupId: function (id, size = "small") {
         var group = this.getGroupFromId(id);
-        return `<a href="/misc/groups/?group=${id}"><div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div></a>`;
+        // this is technically illegal according to html spec but i don't care
+        return `<object><a href="/misc/groups/?group=${id}" class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</a></object>`;
     },
     orderBadgeArray: function (array) {
         return array.sort((a, b) => a.Order - b.Order)
