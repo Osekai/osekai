@@ -7,6 +7,7 @@
 // - dev
 //   everyone has experimental mode, even when logged out
 define("MODE", "local");
+define("ENVIRONMENT", "php_development_server"); // or "apache2"
 define("AUTHENTICATOR_KEY", "key");
 define("VPS_IP", "ignore"); // internal stuff, such as reporting and alerts. ignore
 

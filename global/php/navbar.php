@@ -328,6 +328,7 @@ foreach ($apps as $a) {
             <a href="https://github.com/Osekai/osekai"><?= GetStringRaw("navbar", "apps.github"); ?></a>
             <a href="https://github.com/Osekai/api-docs/wiki"><?= GetStringRaw("navbar", "apps.apiDocumentation"); ?></a>
             <a href="<?= ROOT_URL; ?>/legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
+            <a href="<?= ROOT_URL; ?>/legal/contact">Licence</a>
             <a href="<?= ROOT_URL; ?>/legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
         </div>
         <div class="osekai__apps-dropdown-bottomright-copyright">

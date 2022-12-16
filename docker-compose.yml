@@ -14,6 +14,7 @@ services:
     build: .
     environment:
       - ROOT_URL=localhost:8080
+      - ENVIRONMENT=apache2
       - OSU_API_V1_KEY= # Required
       - OSU_OAUTH_CLIENT_SECRET= # Required
       - OSU_OAUTH_CLIENT_ID= # Required

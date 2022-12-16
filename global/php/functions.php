@@ -74,7 +74,7 @@ function frontend()
 
     if (isset($app)) {
 
-        if (MODE != "production") {
+        if (MODE != "production" && ENVIRONMENT == "php_development_server") {
             // production site uses htaccess file to avoid issue
             // dev and local doesn't work
 
