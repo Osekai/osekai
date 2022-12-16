@@ -18,6 +18,8 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+  text-decoration: none !important;
+  text-decoration-color: #fff0 !important;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;

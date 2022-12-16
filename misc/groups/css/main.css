@@ -110,8 +110,3 @@ box-sizing: border-box;
     gap: 4px;
     margin-top: 4px;
 }
-
-.groups__header-right a {
-    color: hsl(var(--accentdark_hue), 100%, 90%);
-    text-decoration: underline;
-}

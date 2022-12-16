@@ -161,6 +161,16 @@ a {
     color: inherit;
 }
 
+.osekai__panel-inner a {
+    color: hsl(var(--accentdark_hue), 100%, 90%);
+    text-decoration: underline;
+}
+
+.nolink {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
 @keyframes navbar_loader {
     0% {
         transform: translateY(-50px);
@@ -5096,16 +5106,18 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .osekai__group-badge {
-    color: white;
+    color: white !important;
     border-radius: 90px;
     font-weight: 900;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgb(var(--colour));
     border: 1px solid rgb(var(--colour));
     box-shadow: 0px 4px 10px rgba(var(--colour), 0.4);
+    white-space: nowrap;
+    text-decoration: none !important;
 }
 
 .osekai__group-badge-monochrome {
-    color: rgb(var(--accentdark));
+    color: rgb(var(--accentdark)) !important;
     background: linear-gradient(#ddd, #fff);
     border: #eee;
     color: rgb(var(--colour));
