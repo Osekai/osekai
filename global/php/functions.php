@@ -21,6 +21,15 @@ ini_set('display_startup_errors', 1);
 require_once('gitInfo.php');
 define("OSEKAI_VERSION", str_replace("\n", "", $gitHash)); // cache invalidation
 
+$server = $_SERVER['SERVER_SOFTWARE'];
+if(str_contains($server, "Apache")) {
+    define("ENVIRONMENT", "apache2");
+} else if(str_contains($server, "Development Server") && str_contains($server, "PHP")) {
+    define("ENVIRONMENT", "php_development_server");
+} else {
+    define("ENVIRONMENT", "unknown");
+}
+
 require_once('osekaiDB.php');
 require_once('osekaiSessionManager.php');
 require_once('osekaiCache.php');
@@ -74,7 +83,7 @@ function frontend()
 
     if (isset($app)) {
 
-        if (MODE != "production") {
+        if (MODE != "production" && ENVIRONMENT == "php_development_server") {
             // production site uses htaccess file to avoid issue
             // dev and local doesn't work
 
