@@ -193,6 +193,9 @@ foreach ($apps as $a) {
             <a class="osekai__apps-dropdown-mobile-button" href="/legal/contact">
                 <p>contact us</p>
             </a>
+            <a class="osekai__apps-dropdown-mobile-button" href="/legal/licence">
+                <p>licence</p>
+            </a>
         </div>
 
         <div class="osekai__apps-dropdown-mobile-copyright">
@@ -328,7 +331,7 @@ foreach ($apps as $a) {
             <a href="https://github.com/Osekai/osekai"><?= GetStringRaw("navbar", "apps.github"); ?></a>
             <a href="https://github.com/Osekai/api-docs/wiki"><?= GetStringRaw("navbar", "apps.apiDocumentation"); ?></a>
             <a href="<?= ROOT_URL; ?>/legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
-            <a href="<?= ROOT_URL; ?>/legal/contact">Licence</a>
+            <a href="<?= ROOT_URL; ?>/legal/licence">Licence</a>
             <a href="<?= ROOT_URL; ?>/legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
         </div>
         <div class="osekai__apps-dropdown-bottomright-copyright">
