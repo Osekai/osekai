@@ -22,6 +22,7 @@ ensure_not_null "DB_HOSTNAME"
 cat >/var/www/html/config.php <<EOL
 <?php
 define("MODE", "local");
+define("ENVIRONMENT", "apache2");
 define("AUTHENTICATOR_KEY", "key");
 define("VPS_IP", "ignore"); 
 

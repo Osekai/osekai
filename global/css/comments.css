@@ -216,14 +216,6 @@
     margin-bottom: -2px;
 }
 
-
-
-.comments__comment-top-text a {
-    color: rgb(var(--accent));
-    filter: brightness(2);
-    text-decoration: underline;
-}
-
 .comments__comment-top {
     padding: 14px;
 }
