@@ -24,7 +24,7 @@ define("OSEKAI_VERSION", str_replace("\n", "", $gitHash)); // cache invalidation
 $server = $_SERVER['SERVER_SOFTWARE'];
 if(str_contains($server, "Apache")) {
     define("ENVIRONMENT", "apache2");
-} else if(str_contains($server, "Development Server")) {
+} else if(str_contains($server, "Development Server") && str_contains($server, "PHP")) {
     define("ENVIRONMENT", "php_development_server");
 } else {
     define("ENVIRONMENT", "unknown");
