@@ -125,8 +125,3 @@
     margin-top: 4px;
     flex-wrap: wrap;
 }
-
-.groups__header-right a {
-    color: hsl(var(--accentdark_hue), 100%, 90%);
-    text-decoration: underline;
-}
