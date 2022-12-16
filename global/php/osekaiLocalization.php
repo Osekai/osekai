@@ -88,7 +88,7 @@ $locales = [
         "flag" => "https://assets.ppy.sh/old-flags/KR.png",
         "extra_html" => '<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">',
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">',
         "extra_css" => 'body { font-family: "Comfortaa", "Noto Sans KR", sans-serif !important; }',
     ],
     "ja_JP" => [
@@ -99,7 +99,7 @@ $locales = [
         "flag" => "https://assets.ppy.sh/old-flags/JP.png",
         "extra_html" => '<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet"> ',
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet"> ',
         "extra_css" => 'body { font-family: "Comfortaa", "M PLUS Rounded 1c", sans-serif !important; }',
     ],
     /* chinese simplified */
@@ -119,7 +119,7 @@ $locales = [
         "flag" => "https://assets.ppy.sh/old-flags/TW.png",
         "extra_html" => '<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap" rel="stylesheet"> ',
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"> ',
         "extra_css" => 'body { font-family: "Comfortaa", "Noto Sans TC", sans-serif !important; }',
     ],
     /* hebrew */
@@ -134,7 +134,7 @@ $locales = [
         "rtl" => true,
         "extra_html" => '<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet"> ',
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet"> ',
         "extra_css" => 'body { font-family: "Comfortaa", "M PLUS Rounded 1c", sans-serif !important; }',
     ],
     /* italian */

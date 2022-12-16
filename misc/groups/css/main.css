@@ -37,7 +37,7 @@
     transition: all 0.2s ease;
 }
 
-.groups__group-list-item:hover .groups__group-list-item-inner  {
+.groups__group-list-item:hover .groups__group-list-item-inner {
     filter: brightness(1.2);
     margin-left: 25px;
     cursor: pointer;
@@ -51,12 +51,14 @@
     display: flex;
     padding: 34px 31px;
     background: linear-gradient(87.94deg, rgba(255, 30, 30, 0.1) 0.17%, rgba(0, 255, 133, 0.1) 99.88%), linear-gradient(92.24deg, rgba(0, 0, 0, 0.2) -0.61%, rgba(255, 255, 255, 0.2) 100%), rgb(var(--colour));
-    height: 216px;
+    min-height: 216px;
 }
+
 .groups__header-left {
     flex: 1.3;
 }
-.groups__header-right{
+
+.groups__header-right {
     flex: 1.5;
     margin-left: auto;
     font-family: var(--body-font);
@@ -100,13 +102,26 @@
 .groups__userlist {
     display: grid;
     width: 100%;
-grid-template-columns: 1fr 1fr;
-grid-gap: 20px;
-box-sizing: border-box;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1000px) {
+    .groups__userlist {
+        grid-template-columns: 1fr;
+    }
+    .groups__header {
+        flex-direction: column;
+    }
+    .groups__header-right {
+        margin-top: 40px;
+    }
 }
 
 .groups__userpanel-badges {
     display: flex;
     gap: 4px;
     margin-top: 4px;
+    flex-wrap: wrap;
 }
