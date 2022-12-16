@@ -140,7 +140,8 @@ class Database
     {
         $mysql = self::getConnection();
         $stmt = $mysql->prepare($strQuery);
-        $stmt->bind_param($strTypes, ...$colVariables);
+        if ($strTypes != '')
+            $stmt->bind_param($strTypes, ...$colVariables);
         $stmt->execute();
         $meta = $stmt->result_metadata();
 

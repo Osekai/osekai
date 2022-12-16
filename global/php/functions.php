@@ -340,7 +340,7 @@ function navbar()
 
     $_SESSION['redirect_url'] = true;
 
-    include($server_root . "global/php/navbar.php");
+        include($server_root . "global/php/navbar.php");
 }
 
 function dropdown_system()
@@ -835,6 +835,18 @@ function changelog_entry_repository()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/changelog_entry_repository.php");
 }
+
+function stats_page_views_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/stats_page_views_repository.php");
+}
+
+function stats_page_views_service()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/stats_page_views_service.php");
+}
+
+
 
 function goals_service()
 {
