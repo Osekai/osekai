@@ -61,7 +61,7 @@ addOtherApp("fas fa-layer-group", "/misc/groups", "User Groups");
                 <div onclick='hideOtherApps(); navflip(); open_apps_dropdown()' class="osekai__navbar__app-container">
 
                     <div class="osekai__navbar__app-logo">
-                        <img rel="preload" alt="<?= $apps[$app]['name']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $apps[$app]['logo']; ?>.svg">
+                        <img rel="preload" alt="<?= $apps[$app]['name']; ?>" src="/global/img/branding/vector/<?= $apps[$app]['logo']; ?>.svg">
                     </div>
                     <i class="fas fa-caret-down nav_chevron" id="nav_chevron"></i>
                 </div>
@@ -152,7 +152,7 @@ foreach ($apps as $a) {
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 76px;">
             <?php foreach ($showable_apps as $a) { ?>
                 <a class="osekai__apps-dropdown-mobile-button osekai__apps-dropdown-mobile-app" href="/<?= $a['app']['simplename']; ?>">
-                    <img alt="Logo for <?= $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
+                    <img alt="Logo for <?= $a['app']['simplename']; ?>" src="/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
                     <div class="osekai__apps-dropdown-mobile-app-texts">
                         <h2>osekai <strong><?= $a['app']['simplename']; ?></strong></h2>
                         <h3><?= $a['app']['slogan']; ?></h3>
@@ -264,7 +264,7 @@ foreach ($apps as $a) {
                                                                                                                                                                             echo " osekai__apps-dropdown-applist-app-active";
                                                                                                                                                                         } ?>">
                         <div class="osekai__apps-dropdown-applist-app-icon">
-                            <img alt="Logo for <?= $a['app']['simplename']; ?>" src="https://www.osekai.net/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
+                            <img alt="Logo for <?= $a['app']['simplename']; ?>" src="/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
                         </div>
                         <p>osekai <strong><?= $a['app']['simplename']; ?></strong></p>
                     </a>
@@ -282,7 +282,7 @@ foreach ($apps as $a) {
         <div class="osekai__apps-dropdown-applist-right">
             <div id="dropdown_card" class="osekai__apps-dropdown-applist-right-card">
                 <div class="osekai__apps-dropdown-applist-right-card-inner">
-                    <img id="dropdown_card_icon" alt="Logo" src="https://www.osekai.net/global/img/branding/vector/<?= $apps[$app]['logo']; ?>.svg">
+                    <img id="dropdown_card_icon" alt="Logo" src="/global/img/branding/vector/<?= $apps[$app]['logo']; ?>.svg">
                     <div class="osekai__apps-dropdown-applist-right-card-texts">
                         <h3 id="dropdown_card_title">osekai <strong><?= $apps[$app]['simplename']; ?></strong></h3>
                         <p id="dropdown_card_content"><?= $apps[$app]['slogan']; ?> </p>
@@ -416,7 +416,7 @@ foreach ($apps as $a) {
                     <?= GetStringRaw("navbar", "profile.viewOnOsu"); ?>
                 </p>
             </a>
-            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 0, 0" href="https://www.osekai.net/global/php/logout.php">
+            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 0, 0" href="/global/php/logout.php">
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
                 <p><?= GetStringRaw("navbar", "profile.logOut"); ?></p>
             </a>
