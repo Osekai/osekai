@@ -3,7 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osu_api_functions.php");
 
 if(!loggedin()) {
-    echo json_encode("Logged out");
+    echo json_encode([]);
     exit;
 }
 

@@ -78,7 +78,7 @@ document.getElementById("filter__votes").addEventListener("click", function () {
     Comments_Sort(document.getElementById("comments__box"), nCurrentMedalID, -1, -1);
 });
 
-let MedalsAchievedFilterArray = [];
+let MedalsAchievedFilterArray = null;
 async function getMedalsFilterArray() {
     return new Promise((resolve) => {
         var xhr = new XMLHttpRequest();
@@ -94,7 +94,7 @@ async function getMedalsFilterArray() {
     });
 }
 async function filterAchieved(on, request) {
-    if (MedalsAchievedFilterArray.length == 0) {
+    if (MedalsAchievedFilterArray == null) {
         MedalsAchievedFilterArray = await getMedalsFilterArray();
     }
 
@@ -167,7 +167,7 @@ async function requestMedals(init, strValue) {
             filteredMedalsArrayByGroup[v.Grouping].push(v);
         }
     }
-    if (MedalsAchievedFilterArray.length == 0) {
+    if (MedalsAchievedFilterArray == null) {
         MedalsAchievedFilterArray = await getMedalsFilterArray();
     }
     document.getElementById('oMedalSection').textContent = '';
