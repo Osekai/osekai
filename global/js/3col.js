@@ -1,10 +1,10 @@
 function switch3col() {
     // just adds/removes a shit ton of classes from stuff
 
-    var threemain = document.getElementsByClassName("osekai__3col_col1")[0];
-    var spacer = document.getElementsByClassName("osekai__3col_col1_spacer")[0];
-    var fucking = document.getElementsByClassName("osekai__3col_right");
-    var sidebar = document.getElementsByClassName("osekai__ct3-arrow_area")[0];
+    const threemain = document.getElementsByClassName("osekai__3col_col1")[0];
+    const spacer = document.getElementsByClassName("osekai__3col_col1_spacer")[0];
+    const fucking = document.getElementsByClassName("osekai__3col_right");
+    const sidebar = document.getElementsByClassName("osekai__ct3-arrow_area")[0];
 
     if (threemain.classList.contains("osekai__3col_col1_hide")) {
         threemain.classList.remove("osekai__3col_col1_hide");
@@ -19,11 +19,11 @@ function switch3col() {
     }
 
     if (fucking[0].classList.contains("osekai__3col_right_hide")) {
-        Object.keys(fucking).forEach(function(key, index){
+        Object.keys(fucking).forEach(function(key){
             fucking[key].classList.remove("osekai__3col_right_hide");
         });
     } else {
-        Object.keys(fucking).forEach(function(key, index){
+        Object.keys(fucking).forEach(function(key){
             fucking[key].classList.add("osekai__3col_right_hide");
         });
     }

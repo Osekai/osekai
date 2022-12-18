@@ -1,20 +1,18 @@
 function getMostVisibleElement(els) {
+    const viewportHeight = window.innerHeight;
 
-    var viewportHeight = window.innerHeight
+    let maxtop = 999999999;
+    let mostVisibleEl = null;
 
-    var maxtop = 999999999;
-    var mostVisibleEl = null
-
-    for (var el of Array.from(els)) {
+    for (let el of Array.from(els)) {
         if (!el.classList.contains("azelia__versions-listing-group-year")) {
             continue;
         }
-        var viewportOffset = el.getBoundingClientRect();
+        const viewportOffset = el.getBoundingClientRect();
         // these are relative to the viewport, i.e. the window
-        var top = viewportOffset.top;
+        const top = viewportOffset.top;
         /* console.log("top: " + top); */
         /* console.log("offsetHeight: " + el.offsetHeight) */
-        var left = viewportOffset.left;
         if (top < maxtop && top > (0 - (el.offsetHeight - (viewportHeight / 3)))) {
             /* console.log("smaller"); */
             mostVisibleEl = el;
@@ -38,12 +36,12 @@ const pages = {
         'url': '?page=versionlisting',
         'element': document.getElementById('versionlisting')
     }
-}
+};
 
-activePage = null;
+let activePage = null;
 
 function goToPage(pageName) {
-    for (page in pages) {
+    for (let page in pages) {
         if (page == pageName) {
             pages[page].element.classList.remove('hidden');
             document.title = pages[page].title;
@@ -67,14 +65,13 @@ function getActivePageFromURL() {
     } else {
         return params.get("page");
     }
-    return page;
 }
 
-window.onpopstate = function (event) {
+window.onpopstate = function () {
     goToPage(getActivePageFromURL());
     module_version.toggleOverlay();
     module_version.loadVersionFromUrl(); // just in case it's changed, likely
-}
+};
 
 const Groups = {
     'stable': {
@@ -90,19 +87,13 @@ const Groups = {
         'id': 1,
         'color': '#ff0000'
     },
-}
-
-var module_home = {
-    loadPage: function () {
-
-    }
-}
+};
 
 document.onscroll = function () {
     module_versionlisting.calcVisible();
-}
+};
 
-var module_versionlisting = {
+const module_versionlisting = {
     versionListingContent: document.getElementById('versionlisting_content'),
     loadPage: function () {
         module_version.loadVersions().then(function () {
@@ -115,14 +106,14 @@ var module_versionlisting = {
 
     },
     calcVisible: function () {
-        var visible = getMostVisibleElement(document.getElementById("versionlisting_content").childNodes);
+        const visible = getMostVisibleElement(document.getElementById("versionlisting_content").childNodes);
         if (visible != null) {
-            var visible_group = visible.getAttribute("data-group");
-            var visible_year = visible.getAttribute("data-year");
+            const visible_group = visible.getAttribute("data-group");
+            const visible_year = visible.getAttribute("data-year");
             console.log(visible_group);
             console.log(visible_year);
-            var buttons = document.getElementsByClassName("azelia__sidebar-version");
-            for (var x = 0; x < buttons.length; x++) {
+            let buttons = document.getElementsByClassName("azelia__sidebar-version");
+            for (let x = 0; x < buttons.length; x++) {
                 buttons[x].classList.remove("azelia__sidebar-version-active");
             }
             console.log(visible);
@@ -130,14 +121,13 @@ var module_versionlisting = {
         }
     },
     generateHeader: function (title, number, group) {
-        html = `<div class="azelia__versions-listing-group-header" id="groupheader_${group}">
+        return `<div class="azelia__versions-listing-group-header" id="groupheader_${group}">
         <h1>${title}</h1>
         <h3><strong>${number}</strong> ${number == 1 ? 'version' : 'versions'}</h3>
         </div>`;
-        return html;
     },
     generateYearGroup: function (year, versioncount, archivercount, viewtype, group) {
-        html = `<div class="azelia__versions-listing-group-year" data-year="` + year + `" data-group="` + group + `">
+        return `<div class="azelia__versions-listing-group-year" data-year="` + year + `" data-group="` + group + `">
         <div class="azelia__versions-listing-group-year-top">
             <div class="azelia__versions-listing-group-year-left">
                 <h2>${year}</h2>
@@ -151,26 +141,25 @@ var module_versionlisting = {
             {template}
         </div>
         </div>`;
-        return html;
     },
-    goToYear: function(group, year) {
-        var elements = document.getElementsByClassName("azelia__versions-listing-group-year");
-        for(var x = 0; x < elements.length; x++) {
-            if(elements[x].getAttribute("data-year") == year && elements[x].getAttribute("data-group") == group) {
+    goToYear: function (group, year) {
+        let elements = document.getElementsByClassName("azelia__versions-listing-group-year");
+        for (let x = 0; x < elements.length; x++) {
+            if (elements[x].getAttribute("data-year") == year && elements[x].getAttribute("data-group") == group) {
                 osekaiScrollTo(elements[x]);
             }
         }
     },
-    goToGroup: function(group) {
+    goToGroup: function (group) {
         osekaiScrollTo(document.getElementById(`groupheader_${group}`));
     },
     addGroupToSidebar: function (group, years) {
-        var html = `<div class="azelia__sidebar-section" id="versionlisting_sidebar_` + group + `">`;
+        let html = `<div class="azelia__sidebar-section" id="versionlisting_sidebar_` + group + `">`;
         html += `<h1 class="azelia__sidebar-title" onclick="module_versionlisting.goToGroup('${group}')">osu!` + Groups[group].name.toLowerCase() + `</h1>`;
         html += `<div class="azelia__sidebar-versions">`;
 
-        for (year in years) {
-            var version = years[year];
+        for (let year in years) {
+            const version = years[year];
             console.log(version);
             html += `<div class="azelia__sidebar-version" id="versionlisting_sidebar_` + group + `_` + years[year].year + `" onclick="module_versionlisting.goToYear('${group}', '${years[year].year}');">
             <p class="azelia__sidebar-version-year">` + years[year].year + `</p>
@@ -183,33 +172,33 @@ var module_versionlisting = {
     },
     loadListing: function () {
         document.getElementById("versionlisting_sidebar").innerHTML = "";
-        var html = ``;
+        let html = ``;
         console.log(Groups);
-        for (group in Groups) {
-            var versions = [];
+        for (let group in Groups) {
+            let versions = [];
             console.log("Group: " + Groups[group].name);
 
-            for (var i = 0; i < module_version.versions.length; i++) {
-                var thisVersion = module_version.versions[i];
+            for (let i = 0; i < module_version.versions.length; i++) {
+                let thisVersion = module_version.versions[i];
                 if (parseInt(thisVersion.Group) == Groups[group].id) {
                     // TODO: add version html
-                    //html += "temp: " + thisVersion.Name + "<br>";
-                    //html += `<p class="osekai__button" onclick="module_version.loadVersion(${i})">${thisVersion.Name}</p>`;
+                    // html += "temp: " + thisVersion.Name + "<br>";
+                    // html += `<p class="osekai__button" onclick="module_version.loadVersion(${i})">${thisVersion.Name}</p>`;
                     versions.push(thisVersion);
                 } else {
                     console.log("Not in group: " + thisVersion.group);
                 }
             }
 
-            var name = "<strong>osu!</strong>" + Groups[group].name.toLowerCase();
-            var count = versions.length;
+            let name = "<strong>osu!</strong>" + Groups[group].name.toLowerCase();
+            let count = versions.length;
             html += this.generateHeader(name, count, group);
 
-            var years = {};
-            for (var i = 0; i < versions.length; i++) {
-                var thisVersion = versions[i];
-                //console.log(thisVersion);
-                var year = thisVersion.ReleaseDate.split('-')[0];
+            let years = {};
+            for (let i = 0; i < versions.length; i++) {
+                const thisVersion = versions[i];
+                // console.log(thisVersion);
+                const year = thisVersion.ReleaseDate.split('-')[0];
                 if (years[year] == undefined) {
                     years[year] = [];
                     years[year]['year'] = year;
@@ -218,8 +207,8 @@ var module_versionlisting = {
                 years[year]['versions'].push(thisVersion);
             }
             // order array by year
-            var yearsArray = [];
-            for (var i = 0; i < Object.keys(years).length; i++) {
+            let yearsArray = [];
+            for (let i = 0; i < Object.keys(years).length; i++) {
                 yearsArray.push(years[Object.keys(years)[i]]);
             }
             yearsArray.sort(function (a, b) {
@@ -228,17 +217,17 @@ var module_versionlisting = {
             years = yearsArray;
             console.log(years);
             this.addGroupToSidebar(group, years);
-            for (year in years) {
-                var versioncount = years[year].versions.length;
-                var archivercount = 0;
+            for (let year in years) {
+                const versioncount = years[year].versions.length;
+                const archivercount = 0;
                 html += this.generateYearGroup(years[year].year, versioncount, archivercount, module_versionlisting.config.style, group);
-                var yearhtml = ``;
+                let yearhtml = ``;
                 // sort versions by ReleaseDate
                 years[year].versions.sort(function (a, b) {
                     return new Date(b.ReleaseDate) - new Date(a.ReleaseDate);
                 });
-                for (var i = 0; i < years[year].versions.length; i++) {
-                    var thisVersion = years[year].versions[i];
+                for (let i = 0; i < years[year].versions.length; i++) {
+                    let thisVersion = years[year].versions[i];
                     yearhtml += `<div class="azelia__version-grid" id="versionlisting_grid_` + years[year].year + `" onclick="module_version.loadVersion(` + thisVersion['Id'] + `)">
                     <img src="/snapshots/versions/` + thisVersion.Name + `/thumbnail.jpg">
                     <div class="azelia__version-grid-info">
@@ -257,7 +246,7 @@ var module_versionlisting = {
                         </p>
                     </div>
                 </div>`;
-                    //yearhtml += "<p class='osekai__button' onclick='module_version.loadVersion(" + i + ")'>" + thisVersion.Name + "</p>";
+                    // yearhtml += "<p class='osekai__button' onclick='module_version.loadVersion(" + i + ")'>" + thisVersion.Name + "</p>";
                 }
                 html = html.replace('{template}', yearhtml);
             }
@@ -266,7 +255,7 @@ var module_versionlisting = {
         this.calcVisible();
     },
     reorderVersions: function () {
-        var newVersions = [];
+        let newVersions = [];
         if (this.config.sort == 'date') {
             newVersions = module_version.versions.sort(function (a, b) {
                 return new Date(a.Date) - new Date(b.Date);
@@ -282,37 +271,40 @@ var module_versionlisting = {
         }
         module_version.versions = newVersions;
     }
-}
+};
 
-var module_version = {
+const module_version = {
     overlayOpen: false,
     versions: null,
     overlay: document.getElementById("versionInfoOverlay"),
     toggleOverlay: function () {
         const params = new URLSearchParams(location.search);
         if (params.get("version") != null) {
-            this.overlay.classList.remove("osekai__ox2-closed")
+            this.overlay.classList.remove("osekai__ox2-closed");
             this.overlayOpen = true;
         } else {
-            this.overlay.classList.add("osekai__ox2-closed")
+            this.overlay.classList.add("osekai__ox2-closed");
             this.overlayOpen = false;
         }
     },
     loadVersion: function (version) {
         console.log(version);
-        var url = new URL(window.location.href);
+        const url = new URL(window.location.href);
         url.searchParams.set('version', version);
         window.history.pushState(null, pages[page].title, url);
         this.loadVersionFromUrl();
         this.toggleOverlay();
     },
+    getThumbnailFromVersion(version) {
+        return "/snapshots/versions/" + version["Name"] + "/thumbnail.jpg";
+    },
     loadVersionFromUrl: function () {
         this.loadVersions().then(function () {
             const params = new URLSearchParams(location.search);
             if (params.get("version") != null) {
-                var versionId = params.get("version");
-                var thisVersion = null;
-                for (var x = 0; x < module_version.versions.length; x++) {
+                const versionId = params.get("version");
+                let thisVersion = null;
+                for (let x = 0; x < module_version.versions.length; x++) {
                     if (module_version.versions[x].Id == versionId) {
                         thisVersion = module_version.versions[x];
                         break;
@@ -324,7 +316,7 @@ var module_version = {
                     return;
                 }
                 console.log(thisVersion);
-                //0: Object { Id: "13", Name: "20160906", Title: "osu!lazer 20160906", … }
+                // 0: Object { Id: "13", Name: "20160906", Title: "osu!lazer 20160906", … }
                 //  ArchivalDate: "1970-01-01 01:00:00"
                 //  Archiver: "Hubz"
                 //  ArchiverID: "10379965"
@@ -348,17 +340,15 @@ var module_version = {
                 //  1: Object { Id: 33493, ReferencedVersion: 13, Order: 1, … }
                 //      Video: ""
                 //      Views: "1445"
-                function getImageFromVersion(version, screenshotIndex) {
-                    return "/snapshots/versions/" + version["Name"] + "/" + version["VersionScreenshots"][screenshotIndex]["ImageLink"];
-                }
-                function getThumbnailFromVersion(version) {
-                    return "/snapshots/versions/" + version["Name"] + "/thumbnail.jpg";
-                }
-                module_version.overlay.style.setProperty("--background", "url(" + getThumbnailFromVersion(thisVersion) + ")");
+                // function getImageFromVersion(version, screenshotIndex) {
+                //     return "/snapshots/versions/" + version["Name"] + "/" + version["VersionScreenshots"][screenshotIndex]["ImageLink"];
+                // }
+
+                module_version.overlay.style.setProperty("--background", "url(" + this.getThumbnailFromVersion(thisVersion) + ")");
                 document.getElementById("vio_name").innerHTML = thisVersion["Title"] + " <strong>" + thisVersion["Name"] + "</strong>";
-                document.getElementById("vio_release").innerHTML = "released <strong>" + new Date(thisVersion['ReleaseDate']).toLocaleDateString("en-gb", { day: "numeric", month: "long", year: "numeric" }) + "</strong>"
+                document.getElementById("vio_release").innerHTML = "released <strong>" + new Date(thisVersion['ReleaseDate']).toLocaleDateString("en-gb", { day: "numeric", month: "long", year: "numeric" }) + "</strong>";
                 document.getElementById("vio_description").innerHTML = thisVersion["Description"];
-                var archival_date = new Date(thisVersion['ArchivalDate']).getTime();
+                const archival_date = new Date(thisVersion['ArchivalDate']).getTime();
                 console.log(archival_date);
                 document.getElementById("vio_archival-date").innerHTML = `added to snapshots <strong class="tooltip-v2" tooltip-content="` + thisVersion['ArchivalDate'] + `">` + TimeAgo.inWords(archival_date) + "</strong>";
                 if (archival_date == 0) {
@@ -370,7 +360,7 @@ var module_version = {
         });
     },
     closeVersionPanel: function (setHistory = true) {
-        var url = new URL(window.location.href);
+        const url = new URL(window.location.href);
         url.searchParams.delete('version');
         if (setHistory == true) {
             window.history.pushState(null, pages[page].title, url);
@@ -381,9 +371,9 @@ var module_version = {
     },
     loadVersions: function (forced = false) {
         console.log('loading versions');
-        var p = new Promise(function (resolve, reject) {
+        return new Promise(function (resolve, reject) {
             if (forced == true || module_version.versions == null) {
-                var xhr = new XMLHttpRequest();
+                const xhr = new XMLHttpRequest();
                 xhr.open('GET', '/azelia/api/get_versions.php', true);
                 xhr.onload = function () {
                     if (this.status == 200) {
@@ -394,15 +384,14 @@ var module_version = {
                     } else {
                         reject();
                     }
-                }
+                };
                 xhr.send();
             } else {
                 resolve();
             }
         });
-        return p;
     }
-}
+};
 
 
 function Init() {

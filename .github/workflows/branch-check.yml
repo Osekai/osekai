@@ -1,0 +1,18 @@
+name: branch
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  destination:
+    runs-on: ubuntu-latest
+    if: ${{ github.base_ref != 'main' }}
+    steps:
+      - name: Fail on destination branch
+        run: exit 1
+  source:
+    runs-on: ubuntu-latest
+    if: ${{ github.head_ref == 'main' }}
+    steps:
+      - name: Fail on source branch
+        run: exit 1
+

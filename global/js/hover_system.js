@@ -1,50 +1,49 @@
 // dont even try to read any of this
 
-//#region vars
+// #region vars
 
-var loading_icon = "";
-var loading_name = "";
-var loading_desc = "Loading...";
+let loading_icon = "";
+let loading_desc = "Loading...";
 
-var m_icon = "";
-var m_name = "";
-var m_desc = "Loading...";
+let m_icon = "";
+let m_name = "";
+let m_desc = "Loading...";
 
-var loading_id = 0;
-var loading_avatar = "";
-var loading_name = "Loading...";
-var loading_countrycode = "XX";
+let loading_id = 0;
+let loading_avatar = "";
+let loading_name = "Loading...";
+let loading_countrycode = "XX";
 
-var u_id = 0;
-var u_avatar = "";
-var u_name = "Loading...";
-var u_countrycode = "XX";
+let u_id = 0;
+let u_avatar = "";
+let u_name = "Loading...";
+let u_countrycode = "XX";
 
 const bmpanel = document.getElementById("beatmap_hover_panel");
-var hovering = 0;
-var timeoutId = "";
+let hovering = 0;
+let timeoutId = "";
 
 const userpanel = document.getElementById("userhoverpanel_v2");
-var user_hovering = 0;
-var user_timeoutId = "";
+let user_hovering = 0;
+let user_timeoutId = "";
 
 const mdpanel = document.getElementById("medal_hover_panel");
-var medal_hovering = 0;
-var medal_timeoutId = "";
+let medal_hovering = 0;
+let medal_timeoutId = "";
 
 const tooltip = document.getElementById("tooltip");
-var tooltip_hovering = 0;
-var tooltip_timeoutId = "";
+let tooltip_hovering = 0;
+let tooltip_timeoutId = "";
 
-var tooltip_parent = document.getElementById("tooltip");
+let tooltip_parent = document.getElementById("tooltip");
 
 //#endregion
 
 function offset(el) {
-    var rect = el.getBoundingClientRect(),
+    const rect = el.getBoundingClientRect(),
         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return { top: rect.top, left: rect.left }
+    return { top: rect.top, left: rect.left };
 }
 
 function update_tooltip_position() {
@@ -72,7 +71,7 @@ function update_tooltip_position() {
 }
 
 
-document.addEventListener('mousemove', evt => {
+document.addEventListener('mousemove', (evt) => {
     // if (hovering == 0) {
     //     let x = evt.clientX / innerWidth;
     //     let y = evt.clientY / innerHeight;
@@ -112,7 +111,7 @@ document.addEventListener('mousemove', evt => {
 });
 
 
-document.addEventListener('scroll', evt => {
+document.addEventListener('scroll', (evt) => {
     update_tooltip_position();
 });
 
@@ -151,20 +150,20 @@ window.onload = function fw() {
     if (document.medals == null) {
         // /medals/api/medals
         // send with POST "strSearch="
-        var xhttp = new XMLHttpRequest();
+        const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.medals = JSON.parse(this.responseText);
-                //console.log(medals);
+                // console.log(medals);
             }
-        }
+        };
         xhttp.open("POST", "/medals/api/medals_nogrouping", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("strSearch=");
     }
     document.onmouseover = function fa(e) {
-        var e = e || window.event,
-            el = e.target || el.srcElement;
+        e = e || window.event;
+        let el = e.target || el.srcElement;
 
         // medal hover
 
@@ -173,19 +172,19 @@ window.onload = function fw() {
                 window.setTimeout(function eo() {
                     mdpanel.classList.remove("medal_hover_panel_hidden");
 
-                    var obj;
+                    let obj;
 
-                    var id = el.getAttribute("medalname");
+                    const id = el.getAttribute("medalname");
 
-                    //fetch('/api/medals/get_medal.php?name=' + id)
+                    // fetch('/api/medals/get_medal.php?name=' + id)
                     //    .then(res => res.json())
                     //    .then(data => obj = data)
                     //    .then(() => medal_loaddata(obj))
 
-                    for (var i = 0; i < document.medals.length; i++) {
+                    for (let i = 0; i < document.medals.length; i++) {
                         if (document.medals[i]['name'] == id) {
                             obj = document.medals[i];
-                            //console.log(obj);
+                            // console.log(obj);
                             break;
                         }
                     }
@@ -228,20 +227,19 @@ window.onload = function fw() {
             document.getElementById("userhoverpanel_v2_pp").innerHTML = 0;
             document.getElementById("userhoverpanel_v2_pfp").src = "https://osu.ppy.sh/assets/images/avatar-guest.8a2df920.png";
             document.getElementById("userhoverpanel_v2_blur").src = "https://osu.ppy.sh/assets/images/avatar-guest.8a2df920.png";
-            document.getElementById("userhoverpanel_v2").href = "https://osu.ppy.sh/users/" + 0
+            document.getElementById("userhoverpanel_v2").href = "https://osu.ppy.sh/users/" + 0;
 
             timeoutId = window.setTimeout(function fo() {
-                window.setTimeout(function fe() {
+                window.setTimeout(async function fe() {
                     userpanel.classList.remove("osekai__userpanel-hoverpanel-hidden");
 
-                    var obj;
+                    let obj;
 
-                    var id = el.getAttribute("userid");
+                    const id = el.getAttribute("userid");
 
-                    fetch('/api/profiles/get_user.php?id=' + id)
-                        .then(res => res.json())
-                        .then(data => obj = data)
-                        .then(() => userpanel_load(obj))
+                    let res = await fetch('/api/profiles/get_user.php?id=' + id);
+                    obj = await res.json();
+                    userpanel_load(obj);
 
                     user_hovering = 1;
 
@@ -256,7 +254,7 @@ window.onload = function fw() {
         if (el.closest('.tooltip')) {
             el = el.closest("div, h1, h2, b, p, img, .medals__bmp3-bold, .forcetooltip");
             document.getElementById("tooltip_text").innerHTML = el.getAttribute("tooltip");
-            //console.log("tooltip: " + el.getAttribute("tooltip"));
+            // console.log("tooltip: " + el.getAttribute("tooltip"));
             tooltip_parent = el;
             tooltip_timeoutId = window.setTimeout(function fo() {
                 tooltip.classList.remove("tooltip_hidden");
@@ -267,8 +265,8 @@ window.onload = function fw() {
     };
 
     document.onmouseout = function fp(e) {
-        var e = e || window.event,
-            el = e.target || el.srcElement;
+        e = e || window.event;
+        let el = e.target || el.srcElement;
 
         // medal hover
 
@@ -281,10 +279,10 @@ window.onload = function fw() {
                 }
                 window.setTimeout(function () {
                     medal_hovering = 0;
-                    //document.getElementById('bhp_avi').src = loading_avatar;
-                    //document.getElementById('bhp_ctc').src = loading_countrycode;
-                    //document.getElementById('bhp_usn').innerHTML = loading_name;
-                    //mdpanel.href = "https://osu.ppy.sh/users/" + loading_id;
+                    // document.getElementById('bhp_avi').src = loading_avatar;
+                    // document.getElementById('bhp_ctc').src = loading_countrycode;
+                    // document.getElementById('bhp_usn').innerHTML = loading_name;
+                    // mdpanel.href = "https://osu.ppy.sh/users/" + loading_id;
                 }, 500);
             }
         }
@@ -341,10 +339,10 @@ function numberWithCommas(x) {
 }
 
 function userpanel_load(obj) {
-    var playmode = obj["playmode"];
+    const playmode = obj["playmode"];
     document.getElementById("userhoverpanel_v2_gamemode").src = "/global/img/gamemodes/" + playmode + ".svg";
 
-    //console.log(obj);
+    // console.log(obj);
     document.getElementById("userhoverpanel_v2_username").innerHTML = obj['username'];
     try {
         document.getElementById("userhoverpanel_v2_rank").innerHTML = "#" + numberWithCommas(obj['statistics']['global_rank']);
@@ -386,5 +384,5 @@ function medal_loaddata(obj) {
     document.getElementById('mhp_dsc').innerHTML = m_desc;
     document.getElementById('mhp_sol').innerHTML = obj['instructions'].replace("NULL", "");
     // mdpanel.href = "/medals";
-};
+}
 

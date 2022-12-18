@@ -1,0 +1,97 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "ignorePatterns": [
+        "global/js/bbcode/",
+        "global/js/colourpicker/",
+        "global/js/picmo/",
+        "global/js/popper/",
+        "global/js/tippy/",
+        "admin/",
+        "tools/src",
+        // TODO: format these. no warnings nor errors
+        "badges/",
+        "home/",
+        "medals/",
+        "misc/",
+        "profiles/",
+        "rankings/",
+        "snapshots/",
+        "global/js/colourpicker.js",
+        "global/js/comment_system.js",
+        "global/js/dropdown_system.js",
+        "global/js/hover_system.js",
+        "global/js/localization.js",
+        "global/js/main.js",
+        "global/js/mobileManager.js",
+        "global/js/navbar.js",
+        "global/js/osekaiReportSystem.js",
+        "global/js/osu_api.js",
+        "global/js/report_system.js",
+        "global/js/search.js",
+        "global/js/variables.js"
+    ],
+    "rules": {
+        "no-var": "error",
+        "no-unused-vars": [
+            "warn",
+            {
+                "vars": "local"
+                // place variables/functions here that eslint thinks aren't used
+            }
+        ],
+        "indent": [
+            "error",
+            4,
+            {
+                "MemberExpression": 1,
+                "SwitchCase": 1
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "spaced-comment": "error",
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-spacing": [
+            "error",
+            {
+                "after": true
+            }
+        ],
+        "arrow-parens": [
+            "error"
+        ],
+        "no-undef": "warn",
+        "eol-last": "error",
+        "no-trailing-spaces": "error",
+        "keyword-spacing":"warn"
+    },
+    // place here variables that are defined somewhere eslint doesn't know about
+    "globals": {
+        "osekaiScrollTo": "readonly",
+        "page": "readonly",
+        "TimeAgo": "readonly",
+        "generatenotification": "readonly",
+        "openLoader": "readonly",
+        "closeLoader": "readonly",
+        "GetNotifications": "readonly",
+        "medals": "readonly",
+        "colLinks": "readonly",
+        "colMods": "readonly",
+        "colRealNames": "readonly"
+    }
+}
