@@ -231,7 +231,7 @@ function nameToEnglish($code)
 {
     $name = Locale::getDisplayLanguage($code, 'en_GB');
     if ($code == "zh_TW") {
-        $name = "Simplified " . $name;
+        $name = "Traditional " . $name;
     }
     if ($code == "zh_CN") {
         $name = "Simplified " . $name;
