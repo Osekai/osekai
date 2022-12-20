@@ -113,8 +113,9 @@
 }
 
 .medals__search {
-
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), linear-gradient(270deg, rgba(var(--accentdark), 0.48) 0%, rgba(var(--accentdark), 0.74) 100%);
+    backdrop-filter: blur(120px);
+    background-color: #fff1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), linear-gradient(270deg, rgba(var(--accentdark), 0.9) 0%, rgba(var(--accentdark), 1) 100%);
     border-radius: 8px;
     padding: 13px;
     margin-bottom: 1px;
@@ -436,12 +437,11 @@
 }
 
 .medals__search__area {
-    margin-bottom: calc(35px / 1.5);
     position: sticky !important;
     top: 0px;
     z-index: 8;
     border-radius: 8px;
-    background: linear-gradient(rgba(var(--accentdark), 0.2), rgba(var(--accentdark), 0.2)) #000;
+    margin-bottom: 10px;
 }
 
 .medals__search__filters-open .medals__search__filters {
