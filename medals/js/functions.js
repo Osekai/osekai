@@ -246,17 +246,62 @@ async function requestMedals(init, strValue) {
 
         for (let i = 0; i < grids.length; i++) {
             if (typeof grids[i] == 'undefined') continue;
+
+            if (grids.length != i) {
+                let modetxt = '';
+                switch (i) {
+                    case 0: modetxt = "All"; break;
+                    case 1: modetxt = "Standard"; break;
+                    case 2: modetxt = "Taiko"; break;
+                    case 3: modetxt = "Catch"; break;
+                    case 4: modetxt = "Mania"; break;
+                }
+
+                let headerLeftModeDiv = document.createElement('div');
+                headerLeftModeDiv.classList.add("osekai__section-header-left")
+
+                let headerLeftMode = document.createElement('h2')
+                headerLeftMode.textContent = modetxt;
+
+                headerLeftModeDiv.appendChild(headerLeftMode);
+
+                let headerRightModeDiv = document.createElement('div');
+                headerRightModeDiv.classList.add("osekai__section-header-right")
+
+                let headerRightMode = document.createElement('h3');
+
+                let medalCountSpan = document.createElement('span')
+                medalCountSpan.style.fontWeight = 900;
+                medalCountSpan.textContent = grids[i].length;
+
+                headerRightMode.appendChild(medalCountSpan)
+
+                if (grids[i].length == 1)
+                    headerRightMode.innerHTML += `  <light style="font-weight: 200;">medal</light>`;
+                else
+                    headerRightMode.innerHTML += `  <light style="font-weight: 200;">medals</light>`;
+
+                headerRightModeDiv.appendChild(headerRightMode);
+
+                let dividerDiv = document.createElement('div');
+                dividerDiv.classList.add('osekai__section-header');
+                dividerDiv.style.marginBottom = "10px";
+
+                dividerDiv.appendChild(headerLeftModeDiv);
+                dividerDiv.appendChild(headerRightModeDiv);
+
+                panelMedalsContainer.appendChild(dividerDiv);
+            }
             let medalsContainer = document.createElement('div');
             medalsContainer.classList.add('medals__grid');
+            if (i !== grids.length - 1) {
+                medalsContainer.style.paddingBottom = "20px";
+
+            }
+
             for (let j = 0; j < grids[i].length; j++)
                 medalsContainer.appendChild(grids[i][j]);
             panelMedalsContainer.appendChild(medalsContainer);
-
-            if (grids.length - 1 != i) {
-                let dividerDiv = document.createElement('div');
-                dividerDiv.classList.add('osekai__divider');
-                panelMedalsContainer.appendChild(dividerDiv);
-            }
         }
         if (grids.length != 0) {
             panelInner.appendChild(panelMedalsContainer);
@@ -679,7 +724,7 @@ function openBeatmapPanel() {
         '<a class="osekai__button osekai__left" onclick="addBeatmap();">' + GetStringRawNonAsync("general", "add") + '</a> ' +
         '</div> ' +
         '</div> ' +
-        '</section> ' +
+        '</section> ' + // LINE 727 WYSI OMG WHEN YOU SEE IT ITS THE FUNNY NUMBER NO FUCKING WAY
         '</div>';
 }
 
