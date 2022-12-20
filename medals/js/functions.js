@@ -277,9 +277,9 @@ async function requestMedals(init, strValue) {
                 headerRightMode.appendChild(medalCountSpan)
 
                 if (grids[i].length == 1)
-                    headerRightMode.innerHTML += `  <light style="font-weight: 200;">medal</light>`;
+                    headerRightMode.innerHTML += ` <light style="font-weight: 200;">medal</light>`;
                 else
-                    headerRightMode.innerHTML += `  <light style="font-weight: 200;">medals</light>`;
+                    headerRightMode.innerHTML += ` <light style="font-weight: 200;">medals</light>`;
 
                 headerRightModeDiv.appendChild(headerRightMode);
 
