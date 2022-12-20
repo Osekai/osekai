@@ -225,6 +225,7 @@ async function requestMedals(init, strValue) {
 
         let section = document.createElement('section');
         section.classList.add('osekai__panel');
+        section.classList.add('osekai__panel-collapsable');
 
         // Header
         let sectionHeader = document.createElement('div');
@@ -233,7 +234,17 @@ async function requestMedals(init, strValue) {
         let sectionHeaderP = document.createElement('p');
         sectionHeaderP.textContent = group;
 
+        let collapsableButton = document.createElement('div');
+        collapsableButton.classList.add('osekai__panel-header-right')
+
+        let collapsableButtonI = document.createElement('i');
+        collapsableButtonI.classList.add('fas');
+        collapsableButtonI.classList.add('fa-chevron-down');
+
+        collapsableButton.appendChild(collapsableButtonI);
+
         sectionHeader.appendChild(sectionHeaderP);
+        sectionHeader.appendChild(collapsableButton);
         section.appendChild(sectionHeader);
         // Header end
 
