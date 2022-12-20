@@ -508,22 +508,31 @@ AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals_
     }
 });
 
-if (christmas) {
-    function snowflakes(enabled) {
-        console.log("SNOWFLAKES: " + enabled);
-        if (enabled == true || enabled == "true") {
-            document.getElementById("snowflakes").classList.remove("hidden");
-        } else {
-            document.getElementById("snowflakes").classList.add("hidden");
-        }
+
+function snowflakes(enabled) {
+    console.log("SNOWFLAKES: " + enabled);
+    if (enabled == true || enabled == "true") {
+        document.getElementById("snowflakes").classList.remove("hidden");
+    } else {
+        document.getElementById("snowflakes").classList.add("hidden");
     }
-
-    AddSettingCheckbox("settings_global__snowflakes", "settings_global__snowflakes", true, false, function (enabled) {
-        snowflakes(enabled);
-    })
-
-    snowflakes(window.localStorage.getItem('settings_global__snowflakes'))
 }
+
+
+// the reason for this, is so that during christmas the option can be stored in a different place
+// so that if you have never turned them on, during christmas they'll auto-turn on
+var snowflakesDefault = false;
+var snowflakesOption = "settings_global__snowflakes-nochristmas";
+if(christmas) {
+    var snowflakesDefault = true;
+    var snowflakesOption = "settings_global__snowflakes";
+}
+
+AddSettingCheckbox("settings_global__snowflakes", snowflakesOption, snowflakesDefault, false, function (enabled) {
+    snowflakes(enabled);
+})
+
+snowflakes(window.localStorage.getItem(snowflakesOption))
 //document.getElementById("settings_profiles__showmedalsfromallmodes").checked = true;
 
 function defaultSettings() {
@@ -593,8 +602,6 @@ function cantContactOsu() {
 
 let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
 let active = false;
-
-
 
 window.addEventListener('click', function (e) {
     if (!e.target.classList.contains("osekai__dropdown") && !e.target.classList.contains("osekai__dropdown-item") && !e.target.classList.contains("osekai__dropdown-opener") && (e.target.closest(".osekai__dropdown-opener") == null)) {
