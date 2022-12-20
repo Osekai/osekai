@@ -45,7 +45,7 @@ body {
     padding-bottom: 7px;
     font-weight: 900;
     font-size: 16px;
-    color: #222;
+    color: #222 !important;
     border-radius: 5px;
     background-color: transparent;
     font-family: "Comfortaa" !important;
@@ -74,7 +74,7 @@ body {
 
 .osekai__button:hover {
 
-    color: #fff;
+    color: #fff !important;
 }
 
 .osekai__button:hover:before {

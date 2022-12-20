@@ -911,7 +911,8 @@ a {
     padding-bottom: 7px;
     font-weight: 900;
     font-size: 16px;
-    color: white;
+    color: white !important;
+    text-decoration: none !important;
     border-radius: 5px;
     background-color: transparent;
     font-family: "Comfortaa" !important;
@@ -996,7 +997,7 @@ a {
 
 .osekai__button:hover {
 
-    color: rgba(var(--accentdark), 1);
+    color: rgba(var(--accentdark), 1) !important;
 }
 
 .osekai__button-wide:hover:before {

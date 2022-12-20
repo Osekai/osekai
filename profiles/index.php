@@ -638,7 +638,7 @@ frontend();
                                 </div>
                             </div>
                         </div>
-                        <a id="rarest__medal__panel" class="profiles__medalinfo-section">
+                        <div id="rarest__medal__panel" class="profiles__medalinfo-section">
                             <div class="profiles__medals-section-top">
                                 <p><?= GetStringRaw("profiles", "profile.medals.rarest"); ?></p>
                                 <!-- <p class="profiles__medals-section-top-right">only <strong id="rarest__medal__frequency">?% of players</strong> have this medal</p> -->
@@ -656,7 +656,7 @@ frontend();
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                </div>
                         <div id="rarest__medal__panel__error" class="profiles__medalinfo-error hidden">
                             <?= GetStringRaw("profiles", "profile.medals.rarest.fail") ?>
                         </div>
