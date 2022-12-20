@@ -576,22 +576,18 @@
 }
 
 .medals__nomedal #oMedalSection {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
+    columns: 28rem;
+    gap: 16px;
+    counter-reset: grid;
 }
 
-@media only screen and (max-width: 1500px) {
-    .medals__nomedal .osekai__panel {
-        width: calc(50% - 16px);
-    }
+.medals__nomedal .osekai__panel {
+    width: 100%;
+    break-inside: avoid-column;
+    margin-bottom: 16px;
 }
 
 @media (max-width: 900px) {
-    .medals__nomedal .osekai__panel {
-        width: 100%;
-    }
-
     .medals__nomedal #oMedalSection {
         gap: 0px;
     }
