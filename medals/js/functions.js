@@ -16,10 +16,6 @@ for (let i = 0; i < tx.length; i++) {
     tx[i].addEventListener("input", OnInput, false);
 }
 
-function OnInput() {
-    this.style.height = "auto";
-    this.style.height = (this.scrollHeight) + "px";
-}
 
 document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.getItem("medals__unobtained-medals-filter") == null || localStorage.getItem("medals__unobtained-medals-filter") == false) {

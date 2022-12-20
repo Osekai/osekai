@@ -593,12 +593,17 @@ let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
 let active = false;
 
 
+function closeAllDropdowns(excluded = null) {
+    document.querySelectorAll(".osekai__dropdown").forEach((colItems) => {
+        if(colItems != excluded) {
+            colItems.classList.add("osekai__dropdown-hidden");
+        }
+    });
+}
 
 window.addEventListener('click', function (e) {
     if (!e.target.classList.contains("osekai__dropdown") && !e.target.classList.contains("osekai__dropdown-item") && !e.target.classList.contains("osekai__dropdown-opener") && (e.target.closest(".osekai__dropdown-opener") == null)) {
-        document.querySelectorAll(".osekai__dropdown").forEach((colItems) => {
-            colItems.classList.add("osekai__dropdown-hidden");
-        });
+        closeAllDropdowns();
     }
     console.log(e.target.classList);
     if (e.target.closest(".osekai__group-dropdown-arrow") == null) {

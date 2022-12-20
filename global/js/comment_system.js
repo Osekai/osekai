@@ -140,47 +140,20 @@ function Comments_Create(oParent, MedalID) {
 
         var rolehtml = groupUtils.badgeHtmlFromCommaSeperatedList(oComment['Groups'], "small", 2);
 
-        var postedText = GetStringRawNonAsync("comments", "posted", [TimeAgo.inWords(new Date(oComment.PostDate).getTime())]);
+        var postedText = '<i class="fas fa-calendar-alt"></i>' + TimeAgo.inWords(new Date(oComment.PostDate).getTime());
         if (oComment.ParentCommenter) {
             var replyingText = GetStringRawNonAsync("comments", "replyingTo", [oComment.ParentCommenter]);
         }
 
         // this is cursed
-        var userText =  BBCodeParser.process(parser.parseFromString(oComment.PostText, "text/html").body.textContent).replaceAll(new RegExp(/(?<!=")(\b[\w]+:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/, 'g'), "<a href='$1' target='_blank'>$1</a>");
+        var userText = BBCodeParser.process(parser.parseFromString(oComment.PostText, "text/html").body.textContent).replaceAll(new RegExp(/(?<!=")(\b[\w]+:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/, 'g'), "<a href='$1' target='_blank'>$1</a>");
 
         //document.getElementById("user__badge").innerHTML = role['BadgeText'];
         //document.getElementById("user__badge").classList.add("badge-v2-" + role['Badge']);
 
         oBox.innerHTML = oBox.innerHTML +
+            '<div class="comments__comment-pfp-area">' +
             '<a href="/profiles?user=' + oComment.UserID + '"><img src="' + oComment.AvatarURL + '" class="comments__pb-user-pfp"></a>' +
-            '<div class="comments__comment-div">' +
-            '<div class="comments__comment-top">' +
-            '<div class="comments__comment-top-username_area">' +
-            '<a href="/profiles?user=' + oComment.UserID + '"><p class="comments__comment-top-username nolink">' + oComment.Username + '</p></a>' +
-            rolehtml +
-            '</div>' +
-            // this is cursed, so many steps of parsing and s
-            '<p class="comments__comment-top-text">' + userText + '</p>' +
-            '</div>' +
-            '<div class="comments__comment-bottom">' +
-            (oComment.UserID != nUserID || nRights > 1 ?
-                `<div class="comments__comment-report" onclick="doReport('comment', ` + oComment.ID + `, {'commentText': '` + encodeURIComponent(oComment.PostText).replace(/'/g, "%27") + `'})">` +
-                '<i aria-hidden="true" class="fas fa-exclamation-triangle"></i></div>'
-                : '') +
-            (oComment.UserID == nUserID || nRights > 0 ?
-                '<div class="comments__comment-delete" onclick="deleteComment(' + oComment.ID + ');"><i aria-hidden="true" class="fas fa-trash"></i></div>'
-                : '') +
-            '<div class="comments__cb-inner">' +
-            '<div class="comments__cbi-posted tooltip-v2" tooltip-content="' + new Date(oComment.PostDate).toUTCString() + '">' +
-            '<p class="comments__cbi-posted-text">' + postedText + '</p>' +
-            '</div>' +
-            (oComment.ParentCommenter ? '<div class="comments__cbi-replying">' +
-                '<p class="comments__cbi-replying-text"><i class="fas fa-reply"></i> ' + replyingText + '</p>' +
-                '</div>' : '') +
-            '</div>' +
-            (bLoggedIn ?
-                '<div onclick="openReply(\'' + oBox.id + '\');" class="comments__comment-reply"><i class="fas fa-reply"></i></div>'
-                : '') +
             (bLoggedIn ?
                 (oComment.HasVoted ?
                     '<div onclick="voteComment(' + oComment.ID + ');" class="comments__comment-vote comments__comment-vote-voted">' +
@@ -193,6 +166,40 @@ function Comments_Create(oParent, MedalID) {
                 '<p id="Comment__' + oComment.ID + '" class="comments__comment-vote-text">+' + (oComment.VoteSum ?? 0) + '</p>' +
                 '</div>') +
             '</div>' +
+            '<div class="comments__comment-content">' +
+            '<div class="comments__comment-top">' +
+            '<div class="comments__comment-top-username_area">' +
+            '<a href="/profiles?user=' + oComment.UserID + '" class="nolink"><p class="comments__comment-top-username">' + oComment.Username + '</p></a>' +
+            rolehtml +
+            '</div>' +
+            // this is cursed, so many steps of parsing and s
+            '<p class="comments__comment-top-text">' + userText + '</p>' +
+            '</div>' +
+            '<div class="comments__comment-bottom">' +
+            '<div class="comments__cb-inner">' +
+            '<div class="comments__cbi-posted tooltip-v2" tooltip-content="' + new Date(oComment.PostDate).toUTCString() + '">' +
+            '<p class="comments__cbi-posted-text">' + postedText + '</p>' +
+            '</div>' +
+            (oComment.ParentCommenter ? '<div class="comments__cbi-replying">' +
+                '<p class="comments__cbi-replying-text"><i class="fas fa-reply"></i>' + replyingText + '</p>' +
+                '</div>' : '') +
+            '</div>' +
+            (bLoggedIn ?
+                '<div onclick="openReply(\'' + oBox.id + '\');" class="comments__cbi-button"><i class="fas fa-reply"></i></div>'
+                : '') +
+                (bLoggedIn ?
+                    '<div class="comments__cbi-button osekai__dropdown-opener" onclick="openCommentExtraDropdown(\'' + oBox.id + '\');"><i class="fas fa-ellipsis-h"></i>' +
+                    '<div class="osekai__dropdown osekai__dropdown-hidden">' : '') +
+                    (oComment.UserID != nUserID || nRights > 1 ?
+                        `<div class="osekai__dropdown-item comments__comment-report" onclick="doReport('comment', ` + oComment.ID + `, {'commentText': '` + encodeURIComponent(oComment.PostText).replace(/'/g, "%27") + `'})">` +
+                        '<i aria-hidden="true" class="fas fa-exclamation-triangle"></i> Report</div>'
+                        : '') +
+                    (oComment.UserID == nUserID || nRights > 0 ?
+                        '<div class="osekai__dropdown-item comments__comment-delete" onclick="deleteComment(' + oComment.ID + ');"><i aria-hidden="true" class="fas fa-trash"></i> Delete</div>'
+                        : '') +
+                    (bLoggedIn ? '</div></div>' : '') +
+            '</div>' +
+            '</div>' +
             '</div>';
         //oImgContainer.setAttribute("data-tippy-content", new Date(oAchievement.achieved_at).toDateString());
         //var date = new Date(oComment.PostDate).toUTCString();
@@ -201,6 +208,13 @@ function Comments_Create(oParent, MedalID) {
         COMMENTS_boxes[MedalID].push(oBox);
     })
     if (Object.keys(COMMENTS_col_medals[MedalID]).length == Object.keys(COMMENTS_boxes[MedalID]).length) Comments_Out(oParent, MedalID);
+}
+
+function openCommentExtraDropdown(id) {
+    console.log(id);
+    dropdown = document.getElementById(id).querySelectorAll('.comments__comment-bottom')[0].querySelectorAll('.osekai__dropdown')[0];
+    closeAllDropdowns(dropdown);
+    dropdown.classList.toggle("osekai__dropdown-hidden");
 }
 
 function commentsSendClick(nVersionID = -1, nProfileId = -1) {
@@ -333,8 +347,15 @@ function deleteComment(nID) {
 }
 
 function textAreaAdjust(o) {
+    return;
     //o.style.height = "1px";
     o.style.height = (o.scrollHeight) + "px";
+}
+
+function OnInput() {
+    return;
+    this.style.height = "auto";
+    this.style.height = (this.scrollHeight) + "px";
 }
 
 function urlify(text) {
