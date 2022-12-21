@@ -503,13 +503,11 @@ foreach ($apps as $a) {
                 </div>
             </div>
         <?php } ?>
-        <?php if ($christmas == 1) { ?>
-            <div class="osekai__flex_row osekai__fr_centered osekai_100">
-                <p class="osekai__checkbox-label"><i class="fas fa-snowflake" style="margin-right: 4px;"> </i> Snowflakes</p>
-                <input class="osekai__checkbox" id="settings_global__snowflakes" type="checkbox" value="value1" onchange="saveSettings();">
-                <label for="settings_global__snowflakes"></label>
-            </div>
-        <?php } ?>
+        <div class="osekai__flex_row osekai__fr_centered osekai_100">
+            <p class="osekai__checkbox-label"><i class="fas fa-snowflake" style="margin-right: 4px;"> </i> Snowflakes</p>
+            <input class="osekai__checkbox" id="settings_global__snowflakes" type="checkbox" value="value1" onchange="saveSettings();">
+            <label for="settings_global__snowflakes"></label>
+        </div>
         <h1 class="osekai__dropdown-button-head"><?= GetStringRaw("navbar", "settings.profiles.title"); ?></h1>
         <div class="osekai__flex_row osekai__fr_centered osekai_100">
             <p class="osekai__checkbox-label"><?= GetStringRaw("navbar", "settings.profiles.showMedalsFromAllModes"); ?></p>
@@ -580,119 +578,115 @@ include("search_overlay.php");
 ?>
 
 
-<?php
-if ($christmas == true) { ?>
+<style>
+    /* customizable snowflake styling */
+    .snowflake {
+        color: #fff;
+        font-size: 1em;
+        font-family: Arial, sans-serif;
+        text-shadow: 0 0 5px #0005, 0px 0px 25px #fffa;
+        opacity: 1;
+        pointer-events: none;
+    }
 
-    <style>
-        /* customizable snowflake styling */
-        .snowflake {
-            color: #fff;
-            font-size: 1em;
-            font-family: Arial, sans-serif;
-            text-shadow: 0 0 5px #0005, 0px 0px 25px #fffa;
-            opacity: 1;
-            pointer-events: none;
+    @-webkit-keyframes snowflakes-fall {
+        0% {
+            top: -10%
         }
 
-        @-webkit-keyframes snowflakes-fall {
-            0% {
-                top: -10%
-            }
+        100% {
+            top: 100%
+        }
+    }
 
-            100% {
-                top: 100%
-            }
+    @-webkit-keyframes snowflakes-shake {
+
+        0%,
+        100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0)
         }
 
-        @-webkit-keyframes snowflakes-shake {
+        50% {
+            -webkit-transform: translateX(80px);
+            transform: translateX(80px)
+        }
+    }
 
-            0%,
-            100% {
-                -webkit-transform: translateX(0);
-                transform: translateX(0)
-            }
-
-            50% {
-                -webkit-transform: translateX(80px);
-                transform: translateX(80px)
-            }
+    @keyframes snowflakes-fall {
+        0% {
+            top: -10%
         }
 
-        @keyframes snowflakes-fall {
-            0% {
-                top: -10%
-            }
+        100% {
+            top: 100%
+        }
+    }
 
-            100% {
-                top: 100%
-            }
+    @keyframes snowflakes-shake {
+
+        0%,
+        100% {
+            transform: translateX(0)
         }
 
-        @keyframes snowflakes-shake {
-
-            0%,
-            100% {
-                transform: translateX(0)
-            }
-
-            50% {
-                transform: translateX(80px) translatey(40px)
-            }
+        50% {
+            transform: translateX(80px) translatey(40px)
         }
+    }
 
-        .snowflake {
-            position: fixed;
-            top: -10%;
-            z-index: 9999;
-            opacity: 0.8;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            cursor: default;
-            -webkit-animation-name: snowflakes-fall, snowflakes-shake;
-            -webkit-animation-duration: 10s, 3s;
-            -webkit-animation-timing-function: linear, ease-in-out;
-            -webkit-animation-iteration-count: infinite, infinite;
-            -webkit-animation-play-state: running, running;
-            animation-name: snowflakes-fall, snowflakes-shake;
-            animation-duration: 10s, 3s;
-            animation-timing-function: linear, ease-in-out;
-            animation-iteration-count: infinite, infinite;
-            animation-play-state: running, running
-        }
-    </style>
-    <div class="snowflakes" aria-hidden="true" id="snowflakes">
-        <?php
-        for ($x = 0; $x < 40; $x++) {
-            if (false == true) {
-                // experimental mode which makes the app icon fall
-                // i don't like how it looks but thought i'd leave it in
-                echo '<div class="snowflake">
+    .snowflake {
+        position: fixed;
+        top: -10%;
+        z-index: 9999;
+        opacity: 0.8;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+        -webkit-animation-name: snowflakes-fall, snowflakes-shake;
+        -webkit-animation-duration: 10s, 3s;
+        -webkit-animation-timing-function: linear, ease-in-out;
+        -webkit-animation-iteration-count: infinite, infinite;
+        -webkit-animation-play-state: running, running;
+        animation-name: snowflakes-fall, snowflakes-shake;
+        animation-duration: 10s, 3s;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: infinite, infinite;
+        animation-play-state: running, running
+    }
+</style>
+<div class="snowflakes" aria-hidden="true" id="snowflakes">
+    <?php
+    for ($x = 0; $x < 40; $x++) {
+        if (false == true) {
+            // experimental mode which makes the app icon fall
+            // i don't like how it looks but thought i'd leave it in
+            echo '<div class="snowflake">
                     <i class="oif-app-' . $app . '"></i>
                 </div>';
-            } else {
-                echo '<div class="snowflake">
+        } else {
+            echo '<div class="snowflake">
                     <i class="fas fa-snowflake"></i>
                 </div>';
-            }
         }
-        echo "<style>";
-        for ($x = 0; $x < 40; $x++) {
-            $delay1 = (mt_rand() / mt_getrandmax()) * 10;
-            $delay2 = (mt_rand() / mt_getrandmax()) * 10;
-            $position = (mt_rand() / mt_getrandmax()) * 100;
-            echo ".snowflake:nth-of-type({$x}) {
+    }
+    echo "<style>";
+    for ($x = 0; $x < 40; $x++) {
+        $delay1 = (mt_rand() / mt_getrandmax()) * 10;
+        $delay2 = (mt_rand() / mt_getrandmax()) * 10;
+        $position = (mt_rand() / mt_getrandmax()) * 100;
+        echo ".snowflake:nth-of-type({$x}) {
             left: {$position}%;
             -webkit-animation-delay: {$delay1}s, {$delay2}s;
             animation-delay: {$delay1}s, {$delay2}s
         }";
-        }
-        echo "</style>";
-        ?>
-    </div>
+    }
+    echo "</style>";
+    ?>
+</div>
 
-<?php } ?>
 
 <script type="text/javascript" src="<?= ROOT_URL; ?>/global/js/variables.js?v=<?= OSEKAI_VERSION; ?>"></script>
 <script type="text/javascript" src="<?= ROOT_URL; ?>/global/js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
