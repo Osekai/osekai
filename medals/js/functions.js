@@ -286,12 +286,10 @@ async function requestMedals(init, strValue) {
 
             headerRightMode.appendChild(medalCountSpan);
 
-            (async () => {
-                if (grids[i].length == 1)
-                    headerRightMode.innerHTML += ` <light style="font-weight: 200;">${await GetStringRaw("general", "medal")}</light>`;
-                else
-                    headerRightMode.innerHTML += ` <light style="font-weight: 200;">${await GetStringRaw("general", "medals")}</light>`;
-            })();
+            if (grids[i].length == 1)
+                headerRightMode.innerHTML += ` <light style="font-weight: 200;">medal</light>`;
+            else
+                headerRightMode.innerHTML += ` <light style="font-weight: 200;">medals</light>`;
 
             headerRightModeDiv.appendChild(headerRightMode);
 
