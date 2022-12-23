@@ -486,7 +486,7 @@ foreach ($apps as $a) {
                             continue;
                         }
                     ?>
-                        <div class="osekai__dropdown-item" onclick="setLanguage('<?= $language['code']; ?>');">
+                        <div class="osekai__dropdown-item tooltip-v2" tooltip-content="<?= nameToEnglish($language['code']) ?>" onclick="setLanguage('<?= $language['code']; ?>');">
                             <img src="<?= $language["flag"]; ?>" class="osekai__dropdown-item-flag">
 
                             <?php
