@@ -26,7 +26,7 @@ var sources = [];
 
 async function loadSource(source, locale = currentLocale) {
     // javascirpt
-    if (!sourcesNames.includes(source)) {
+    if (!sourcesNames.includes(source) || source == "db_DB") {
         return;
     }
 
@@ -43,7 +43,7 @@ async function loadSource(source, locale = currentLocale) {
                     resolve(xhr.responseText);
                 } else {
                     sources[source] = {};
-                    reject(xhr.status);
+                    resolve(xhr.status);
                 }
             }
         }

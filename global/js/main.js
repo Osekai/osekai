@@ -134,12 +134,12 @@ themes = {
     },
     "custom": {
         "internal": "custom",
-        "name": "custom colours",
+        "name": "loading...",
         "css": "none"
     },
     "custom-light": {
         "internal": "custom-light",
-        "name": "custom colours (Light Mode)",
+        "name": "loading...",
         "css": ["light.css"]
     }
 }
@@ -180,7 +180,9 @@ async function loadThemes() {
     themes["ultradark"].name = await GetStringRaw("navbar", "settings.global.theme.ultraDark");
     themes["colddark"].name = await GetStringRaw("navbar", "settings.global.theme.coldDark");
     themes["system"].name = await GetStringRaw("navbar", "settings.global.theme.system");
-
+    themes["custom"].name = await GetStringRaw("navbar", "settings.global.theme.custom");
+    themes["custom-light"].name = await GetStringRaw("navbar", "settings.global.theme.custom.lightMode");
+    themes["lightweight"].name = await GetStringRaw("navbar", "settings.global.theme.lightweight");
     loadThemesDropdown();
 }
 

@@ -65,5 +65,6 @@
     "profile.banner.customBackground.colour": "Colour",
     "profile.banner.customBackground.angle": "Gradient",
     "profile.unachievedMedals.title": "Unachieved Medals",
+    "profile.unachiededMedals.trackingWarning": "Progress will only be tracked for the currently selected gamemode!",
     "loading": "Loading profile"
 }

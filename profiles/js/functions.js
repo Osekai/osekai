@@ -575,7 +575,7 @@ async function FillData(uid, mode, completeReload = true) {
                         oIWarning.classList.add("fa-info-circle");
 
                         let oTextWarning = document.createElement("p");
-                        oTextWarning.innerHTML = "Progress will only be tracked for the currently selected gamemode!";
+                        oTextWarning.innerHTML = GetStringRawNonAsync("profiles", "profile.unachiededMedals.trackingWarning");
 
                         oDivWarning.appendChild(oIWarning);
                         oDivWarning.appendChild(oTextWarning);

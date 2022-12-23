@@ -280,16 +280,10 @@ async function requestMedals(init, strValue) {
 
             let headerRightMode = document.createElement('h3');
 
-            let medalCountSpan = document.createElement('span')
-            medalCountSpan.style.fontWeight = 900;
-            medalCountSpan.textContent = grids[i].length;
-
-            headerRightMode.appendChild(medalCountSpan);
-
             if (grids[i].length == 1)
-                headerRightMode.innerHTML += ` <light style="font-weight: 200;">medal</light>`;
+                headerRightMode.innerHTML = GetStringRawNonAsync("medals", "medalCount.singular", [grids[i].length])
             else
-                headerRightMode.innerHTML += ` <light style="font-weight: 200;">medals</light>`;
+                headerRightMode.innerHTML =  GetStringRawNonAsync("medals", "medalCount", [grids[i].length])
 
             headerRightModeDiv.appendChild(headerRightMode);
 

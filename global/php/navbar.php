@@ -16,8 +16,8 @@ function addOtherApp($icon, $link, $name)
         "name" => $name
     ]);;
 }
-addOtherApp("fas fa-globe-africa", "/misc/translators", "Translators");
-addOtherApp("fas fa-layer-group", "/misc/groups", "User Groups");
+addOtherApp("fas fa-globe-africa", "/misc/translators", GetStringRaw("navbar", "otherApps.translators"));
+addOtherApp("fas fa-layer-group", "/misc/groups", GetStringRaw("navbar", "otherApps.userGroups"));
 //addOtherApp("fas fa-question-circle", "/misc/faq", "FAQ");
 // note: this one can be enabled later after functionality is added. for now ignore
 ?>
@@ -41,7 +41,7 @@ addOtherApp("fas fa-layer-group", "/misc/groups", "User Groups");
     </div> -->
         <?php } ?>
         <div class="osekai__navbar-warning hidden" id="cantContactOsu">
-            Osekai cannot contact osu!'s servers. This may be because osu! is down, or you could be connected to a private server. If you are connected to a private server, please disconnect from it.
+        <?= GetStringRaw("navbar", "misc.cantContactOsu"); ?>
         </div>
         <?php if (isRestricted()) { ?>
             <div class="osekai__navbar-restriction">
@@ -49,8 +49,8 @@ addOtherApp("fas fa-layer-group", "/misc/groups", "User Groups");
                     <i class="fas fa-user-slash"></i>
                 </div>
                 <div class="osekai__navbar-restriction-text">
-                    <h3>Your account on Osekai has been restricted.</h3>
-                    <p>To appeal this, please contact us on the <a href="https://discord.com/invite/8qpNTs6">osu! Medal Hunters Discord server</a></p>
+                    <h3><?= GetStringRaw("navbar", "misc.restriction.title"); ?></h3>
+                    <p><?= GetStringRaw("navbar", "misc.restriction.description"); ?></p>
                 </div>
             </div>
         <?php } ?>
@@ -163,43 +163,43 @@ foreach ($apps as $a) {
 
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
             <a class="osekai__apps-dropdown-mobile-button" onclick="showOtherApps()">
-                <p>other pages</p>
+                <p><?= GetStringRaw("navbar", "otherApps.title"); ?></p>
             </a>
         </div>
 
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 46px;">
             <a class="osekai__apps-dropdown-mobile-button" href="/donate">
                 <i class="fas fa-heart"></i>
-                <p>support us!</p>
+                <p><?= GetStringRaw("navbar", "apps.support"); ?></p>
             </a>
             <a class="osekai__apps-dropdown-mobile-button" href="https://twitter.com/osekaiapp">
                 <i class="fab fa-twitter"></i>
-                <p>check out osekai on twitter!</p>
+                <p><?= GetStringRaw("navbar", "apps.twitter"); ?></p>
             </a>
             <a class="osekai__apps-dropdown-mobile-button" href="https://discord.com/invite/8qpNTs6">
                 <i class="fab fa-discord"></i>
-                <p>join the <strong>osu! Medal Hunters</strong> discord server!</p>
+                <p><?= GetStringRaw("navbar", "apps.discord"); ?></p>
             </a>
             <a class="osekai__apps-dropdown-mobile-button" href="https://discord.gg/uZ9CsQBvqM">
                 <i class="fab fa-discord"></i>
-                <p>join our development discord!</p>
+                <p><?= GetStringRaw("navbar", "apps.developmentDiscord"); ?></p>
             </a>
         </div>
 
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 38px;">
             <a class="osekai__apps-dropdown-mobile-button" href="/legal/privacy">
-                <p>privacy policy</p>
+                <p><?= GetStringRaw("navbar", "apps.privacy"); ?></p>
             </a>
             <a class="osekai__apps-dropdown-mobile-button" href="/legal/contact">
-                <p>contact us</p>
+                <p><?= GetStringRaw("navbar", "apps.contact"); ?></p>
             </a>
             <a class="osekai__apps-dropdown-mobile-button" href="/legal/licences">
-                <p>licence</p>
+                <p><?= GetStringRaw("navbar", "apps.licences"); ?></p>
             </a>
         </div>
 
         <div class="osekai__apps-dropdown-mobile-copyright">
-            © Osekai 2019-2022
+            © Osekai 2019-<?= date("Y"); ?>
         </div>
         <div class="extra-space"></div>
     </div>
@@ -207,7 +207,7 @@ foreach ($apps as $a) {
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 59px;">
             <a class="osekai__apps-dropdown-mobile-button" onclick="hideOtherApps()">
                 <i class="fas fa-chevron-left"></i>
-                <p>back to apps</p>
+                <p><?= GetStringRaw("navbar", "otherApps.back"); ?></p>
             </a>
         </div>
         <div class="osekai__apps-dropdown-mobile-section" style="--height: 70px;">
@@ -236,7 +236,7 @@ foreach ($apps as $a) {
 
             <div class="osekai__apps-dropdown-applist-left-top">
                 <div class="osekai__apps-dropdown-applist-left-bottom" onclick="hideOtherApps()">
-                    <p><i class="fas fa-chevron-left"></i> back to apps</p>
+                    <p><i class="fas fa-chevron-left"></i> <?= GetStringRaw("navbar", "otherApps.back"); ?></p>
                 </div>
                 <div class="osekai__apps-dropdown-other-content">
                     <?php
@@ -275,7 +275,7 @@ foreach ($apps as $a) {
             </div>
 
             <div class="osekai__apps-dropdown-applist-left-bottom" onclick="showOtherApps()">
-                other pages
+                <?= GetStringRaw("navbar", "otherApps.title"); ?>
             </div>
 
         </div>
@@ -331,7 +331,7 @@ foreach ($apps as $a) {
             <a href="https://github.com/Osekai/osekai"><?= GetStringRaw("navbar", "apps.github"); ?></a>
             <a href="https://github.com/Osekai/api-docs/wiki"><?= GetStringRaw("navbar", "apps.apiDocumentation"); ?></a>
             <a href="<?= ROOT_URL; ?>/legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
-            <a href="<?= ROOT_URL; ?>/legal/licences">Licence</a>
+            <a href="<?= ROOT_URL; ?>/legal/licences"><?= GetStringRaw("navbar", "apps.licences"); ?></a>
             <a href="<?= ROOT_URL; ?>/legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
         </div>
         <div class="osekai__apps-dropdown-bottomright-copyright">
@@ -504,7 +504,7 @@ foreach ($apps as $a) {
             </div>
         <?php } ?>
         <div class="osekai__flex_row osekai__fr_centered osekai_100">
-            <p class="osekai__checkbox-label"><i class="fas fa-snowflake" style="margin-right: 4px;"> </i> Snowflakes</p>
+            <p class="osekai__checkbox-label"><i class="fas fa-snowflake" style="margin-right: 4px;"> </i> <?= GetStringRaw("navbar", "settings.global.snowflakes"); ?></p>
             <input class="osekai__checkbox" id="settings_global__snowflakes" type="checkbox" value="value1" onchange="saveSettings();">
             <label for="settings_global__snowflakes"></label>
         </div>
