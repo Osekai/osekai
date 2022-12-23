@@ -114,7 +114,7 @@ mobileManager();
                             if($translator['Id'] != 0) {
                                 echo '<a class="translators__language-translator translators__language-translator-hoverable nolink" href="/profiles?user='.$translator['Id'].'">';
                             } else {
-                                echo '<a class="translators__language-translator">';
+                                echo '<a class="translators__language-translator nolink">';
                             }
                             
                             echo '<img src="'.$avatar.'" class="osekai__pfp-blur-bg">';
