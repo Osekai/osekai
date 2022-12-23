@@ -2127,6 +2127,7 @@ a {
     border-left: 1px solid white;
     outline-offset: -1px;
     margin-left: 5px;
+    cursor: pointer;
 }
 
 .osekai__dropdown-item-active {
