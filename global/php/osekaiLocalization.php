@@ -203,7 +203,7 @@ $locales = [
     ],
     /* bulgarian */
     "bg_BG" => [
-        "name" => "български",
+        "name" => "Български",
         "code" => "bg_BG",
         "short" => "bg",
         "flag" => "https://assets.ppy.sh/old-flags/BG.png"
