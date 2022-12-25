@@ -71,15 +71,14 @@ var userInfo;
 
 function loadUserDropdown() {
     let userid = nUserID;
-    if(userid != -1)
-    {
+    if (userid != -1) {
         // /api/profiles/get_user.php?id=4598966
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "/api/profiles/get_user.php?id=" + userid, true);
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             if (this.readyState != 4) return;
             if (this.status != 200) return; // or whatever error handling you want
-                
+
             let resp = JSON.parse(xhr.responseText);
             // amount of medals in resp['user_achievements']
             let medals = resp['user_achievements'].length;
@@ -87,19 +86,18 @@ function loadUserDropdown() {
             // possible percentage clubs: 40%, 60%, 80%, 90%, 95%
             // we have a variable called "medalAmount" which is maximum of medals
             var percentage = medals / medalAmount * 100;
-            if(percentage < 40) club = "no";
-            if(percentage >= 40) club = 40;
-            if(percentage >= 60) club = 60;
-            if(percentage >= 80) club = 80;
-            if(percentage >= 90) club = 90;
-            if(percentage >= 95) club = 95;
+            if (percentage < 40) club = "no";
+            if (percentage >= 40) club = 40;
+            if (percentage >= 60) club = 60;
+            if (percentage >= 80) club = 80;
+            if (percentage >= 90) club = 90;
+            if (percentage >= 95) club = 95;
             document.getElementById("dropdown__user").classList.add("col" + club + "club");
-            let perctext =percentage.toFixed(2) + "%";
+            let perctext = percentage.toFixed(2) + "%";
             // surround all text after '.' with <span>
             perctext = perctext.replace(/\.([^.]+)/g, ".<span>$1</span>");
             document.getElementById("userdropdown_club").innerHTML = perctext
-            if(club == "no")
-            {
+            if (club == "no") {
                 /* document.getElementById("userdropdown_club").classList.add("hidden"); */
             }
             let roundedpp = resp['statistics']['pp'];
@@ -137,31 +135,25 @@ function hideOtherApps() {
     document.getElementById("dropdown__apps-mobile-other").classList.add("osekai__apps-dropdown-mobile-hidden");
 }
 
-function open_dropdown(classname, id)
-{
+function open_dropdown(classname, id) {
     document.getElementById(id).classList.remove(classname);
 }
 
-function close_dropdown(classname, id)
-{
+function close_dropdown(classname, id) {
     document.getElementById(id).classList.add(classname);
 }
 
-function open_apps_dropdown() {
-    dropdown("osekai__apps-dropdown-mobile-hidden", "dropdown__apps_mobile", 1);
-    dropdown("osekai__apps-dropdown-hidden", "dropdown__apps", 1);
-}
 
 function ExperimentalOff() {
-    openDialog("Disable Experimental Mode", "Are you sure?", "Unless you have the expon.php link, you can't turn it back on!", "Cancel", function() {
+    openDialog("Disable Experimental Mode", "Are you sure?", "Unless you have the expon.php link, you can't turn it back on!", "Cancel", function () {
         return;
-    }, "Disable", function() {
+    }, "Disable", function () {
         window.location.href = "/global/api/expoff.php";
     });
 }
 
 // >Start> Notification System
-setTimeout(function() {GetNotifications(false, false)}, 1000); //Loads the Amount of Notifications on the bell icon before opening the dropdown
+setTimeout(function () { GetNotifications(false, false) }, 1000); //Loads the Amount of Notifications on the bell icon before opening the dropdown
 var NotificationBell = document.getElementById("notif__bell__button");
 NotificationBell && NotificationBell.addEventListener("click", () => {
     dropdown("osekai__nav-dropdown-hidden", "dropdown__notifs", 1);
@@ -176,7 +168,7 @@ ClearAll.addEventListener("click", () => {
 
 const NOTIFICATION_SYSTEM_API_URL = "/global/api/notification_system.php"
 function GetNotifications(ShowCleared, UI) {
-    if(UI) document.getElementById("notification__list__v2").innerHTML = ""; //in case the xhrequest fails still get rid of the panel
+    if (UI) document.getElementById("notification__list__v2").innerHTML = ""; //in case the xhrequest fails still get rid of the panel
     let xhr = createXHR(NOTIFICATION_SYSTEM_API_URL);
     xhr.send(`ShowCleared=${ShowCleared}`);
     xhr.onreadystatechange = function () {
@@ -188,18 +180,18 @@ function GetNotifications(ShowCleared, UI) {
 
 function CreateNotifications(Notifications, UI) {
     let NotificationList
-    if(UI) {
+    if (UI) {
         NotificationList = document.getElementById("notification__list__v2");
         document.getElementById("notification__list__v2").innerHTML = ""; // get rid of the panel again in case loading takes longer and someone rapid clicks on the icon
     }
 
     let nCount = 0;
     Object.keys(Notifications).forEach(function (obj) {
-        if(UI) CreateNotificationItem(NotificationList, Notifications[obj]);
+        if (UI) CreateNotificationItem(NotificationList, Notifications[obj]);
         nCount += 1;
     });
     document.getElementById("NotificationCountIcon").innerHTML = nCount;
-    if(nCount > 0 && document.getElementById("NotificationCountIcon").classList.contains("hidden")) document.getElementById("NotificationCountIcon").classList.remove("hidden");
+    if (nCount > 0 && document.getElementById("NotificationCountIcon").classList.contains("hidden")) document.getElementById("NotificationCountIcon").classList.remove("hidden");
     document.getElementById("NotificationCount").innerHTML = GetStringRawNonAsync("navbar", "notifications.count", [nCount]);
 }
 
@@ -208,12 +200,12 @@ function CreateNotificationItem(List, Notification) {
     let Outer = document.createElement("div");
     Outer.classList.add("osekai__nav-dropdown-v2-notification");
 
-    if(Notification['Message'] == "") {
+    if (Notification['Message'] == "") {
         let Upper = document.createElement("div");
         Upper.classList.add("osekai__nav-dropdown-v2-notification-upper");
 
         let Image = document.createElement("img");
-        if(Notification['logo'] == "" || Notification['logo'] == null) {
+        if (Notification['logo'] == "" || Notification['logo'] == null) {
             Image.src = "/global/img/branding/vector/osekai_light.svg";
         } else {
             Image.src = `https://www.osekai.net/global/img/branding/vector/${Notification["logo"]}.svg`;
@@ -227,7 +219,7 @@ function CreateNotificationItem(List, Notification) {
         Outer.appendChild(Upper);
     } else {
         let Upper
-        if(Notification['Link'] == "" || Notification['Link'] == null) {
+        if (Notification['Link'] == "" || Notification['Link'] == null) {
             Upper = document.createElement("div");
         } else {
             Upper = document.createElement("a");
@@ -237,12 +229,12 @@ function CreateNotificationItem(List, Notification) {
         Upper.classList.add("osekai__nav-dropdown-v2-notification-upper");
 
         let Image = document.createElement("img");
-        if(Notification['logo'] == "" || Notification['logo'] == null) {
+        if (Notification['logo'] == "" || Notification['logo'] == null) {
             Image.src = "/global/img/branding/vector/osekai_light.svg";
         } else {
             Image.src = `https://www.osekai.net/global/img/branding/vector/${Notification["logo"]}.svg`;
         }
-        
+
         let Title = document.createElement("p");
         Title.innerHTML = Notification["Title"];
 
@@ -272,7 +264,7 @@ function markRead() {
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
             dropdown("osekai__nav-dropdown-hidden", "dropdown__notifs", 1);
-            if(!document.getElementById("NotificationCountIcon").classList.contains("hidden")) document.getElementById("NotificationCountIcon").classList.add("hidden");
+            if (!document.getElementById("NotificationCountIcon").classList.contains("hidden")) document.getElementById("NotificationCountIcon").classList.add("hidden");
             GetNotifications(false, true);
         }
     };
