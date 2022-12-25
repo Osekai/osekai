@@ -1,130 +1,43 @@
-let openedDropdowns = []
-let openedDropdownsHC = []
-let openedDropdownsBL = []
-
-function removeItemAll(arr, value) {
-    for (var i=arr.length-1; i>=0; i--) {
-        if (arr[i] === value) {
-            arr.splice(i, 1);
-            openedDropdownsHC.splice(i, 1);
-            openedDropdownsBL.splice(i, 1);
-            // break;       //<-- Uncomment  if only the first term has to be removed
-        }
-
-    }
-    return arr;
-  }
+var currently_open = null;
 
 function dropdown(hiddenclass, id, blur = 0) {
-    var z = document.getElementsByClassName("osekai__blur-overlay")[0];
-    var y = document.getElementsByClassName("osekai__panel-container")[0];
-    var x = document.getElementById(id);
-    if (x.classList.contains(hiddenclass)) {
-        if(window.mobile && id != "dropdown__apps_mobile" && id != "dropdown__apps"){
-            hide_dropdowns();
-        }
-
-        x.classList.remove(hiddenclass);
-        openedDropdowns.push(id);
-        openedDropdownsHC.push(hiddenclass);
-        openedDropdownsBL.push(blur);
-        if(blur == 1){
-            console.log(openedDropdowns.length);
-            if(openedDropdowns.length == 1){
-                console.log("blur time");
-                try {
-                y.classList.add("osekai__panel-container__blur")
-                }catch{
-
-                }
-                z.classList.add("osekai__blur-overlay__active");
-            }
-        }
-        if(openedDropdowns.length == 1)
-        {
-            document.getElementById("osekai__apps-dropdown-gradient").classList.remove("osekai__apps-dropdown-gradient-hidden");
-        }
-        if(openedDropdowns.includes("dropdown__user")){
-            if(id == "dropdown__notifs" || id == "dropdown__settings"){
-            dropdown(hiddenclass, "dropdown__user", blur);
-            }
-        }
-        if(openedDropdowns.includes("dropdown__notifs")){
-            if(id == "dropdown__user" || id == "dropdown__settings"){
-            dropdown(hiddenclass, "dropdown__notifs", blur);
-            }
-        }
-        if(openedDropdowns.includes("dropdown__settings")){
-            if(id == "dropdown__user" || id == "dropdown__notifs"){
-            dropdown(hiddenclass, "dropdown__settings", blur);
-            }
-        }
-    } else {
-        x.classList.add(hiddenclass);
-        openedDropdowns = removeItemAll(openedDropdowns, id);
-        //openedDropdownsHC = removeItemAll(openedDropdownsHC, hiddenclass);
-        //openedDropdownsBL = removeItemAll(openedDropdownsBL, blur);
-        if(blur == 1){
-            console.log(openedDropdowns.length);
-            if(openedDropdowns.length == 0){
-                try {
-                y.classList.remove("osekai__panel-container__blur")
-                }catch{
-
-                }
-                z.classList.remove("osekai__blur-overlay__active");
-                document.getElementById("osekai__apps-dropdown-gradient").classList.add("osekai__apps-dropdown-gradient-hidden");
-            }
-        } else {
-            if(openedDropdowns.length == 0)
-            {
-                document.getElementById("osekai__apps-dropdown-gradient").classList.add("osekai__apps-dropdown-gradient-hidden");
-            }
-        }
+    var blur_overlay = document.getElementById("blur_overlay");
+    if(!document.getElementById(id).classList.contains(hiddenclass)) {
+        hide_dropdowns();
+        return;
     }
-
-    console.log(openedDropdowns);
-    console.log(openedDropdownsHC);
-    console.log(openedDropdownsBL);
+    hide_dropdowns();
+    document.getElementById(id).classList.remove(hiddenclass);
+    currently_open = {
+        "element": document.getElementById(id),
+        "classname": hiddenclass
+    }
+    blur_overlay.classList.add("osekai__blur-overlay__active");
 }
 
-function hide_dropdowns(){
-    //openedDropdowns.forEach((num1, index) => {
-    //    console.log("removing " + num1)
-    //    dropdown(openedDropdownsHC[index], num1, openedDropdownsBL[index])
-    //    if(openedDropdownsBL[index] == 1){
-    //        var z = document.getElementsByClassName("osekai__blur-overlay")[0];
-    //        var y = document.getElementsByClassName("osekai__panel-container")[0];
-//
-    //        y.classList.remove("osekai__panel-container__blur")
-    //        z.classList.remove("osekai__blur-overlay__active");
-    //    }
-    //});
-    // i am going to punch someone
-    console.log("frijfiifgj");
+function apps_dropdown(hide = false) {
+    var blur_overlay = document.getElementById("blur_overlay");
+    var chevron = document.getElementById("nav_chevron");
 
-    for (index = 0; index < openedDropdowns.length; ++index) {
-        var z = document.getElementsByClassName("osekai__blur-overlay")[0];
-        var y = document.getElementsByClassName("osekai__panel-container")[0];
-        var x = document.getElementById(openedDropdowns[index]);
-
-        x.classList.add(openedDropdownsHC[index]);
-        try {
-        y.classList.remove("osekai__panel-container__blur")
-        }catch{
-            
-        }
-        z.classList.remove("osekai__blur-overlay__active");
+    if(!document.getElementById("dropdown__apps").classList.contains("osekai__apps-dropdown-hidden") || hide == true) {
+        // hide;
+        document.getElementById("dropdown__apps").classList.add("osekai__apps-dropdown-hidden");
+        document.getElementById("dropdown__apps_mobile").classList.add("osekai__apps-dropdown-mobile-hidden");
+        chevron.classList.remove("nav_chevron_flipped");
+        blur_overlay.classList.remove("osekai__blur-overlay__active");
+        return;
     }
+    hide_dropdowns(false);
+    blur_overlay.classList.add("osekai__blur-overlay__active");
+    document.getElementById("dropdown__apps").classList.remove("osekai__apps-dropdown-hidden");
+    document.getElementById("dropdown__apps_mobile").classList.remove("osekai__apps-dropdown-mobile-hidden");
+    chevron.classList.add("nav_chevron_flipped");
+}
 
-    openedDropdowns = [];
-    openedDropdownsBL = [];
-    openedDropdownsHC = [];
-
-    var x = document.getElementById("nav_chevron");
-    if(x.classList.contains("nav_chevron_flipped")){
-        x.classList.remove("nav_chevron_flipped");
-    }
-    document.getElementById("osekai__apps-dropdown-gradient").classList.add("osekai__apps-dropdown-gradient-hidden");
-    hideOtherApps();
+function hide_dropdowns(hideapps = true) {
+    if(currently_open == null) return;
+    var blur_overlay = document.getElementById("blur_overlay");
+    blur_overlay.classList.remove("osekai__blur-overlay__active");
+    currently_open.element.classList.add(currently_open.classname);
+    if(hideapps) apps_dropdown(true);
 }

@@ -38,7 +38,7 @@ function setCardDetails(appSimpleName) {
         --appColour: ` + app['color_dark'] + `;
         --appColourLight: ` + app['color'] + `;
     }
-    .osekai__apps-dropdown-gradient {
+    .osekai__apps-dropdown {
         --appColour: ` + app['color_dark'] + `;
         --appColourLight: ` + app['color'] + `;
     }

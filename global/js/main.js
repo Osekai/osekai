@@ -346,20 +346,6 @@ window.addEventListener("popstate", function () {
     localStorage.setItem("url", location.href);
 });
 
-
-function navflip() {
-    // flips the little arrow under the logo
-    // TODO: it's fucked when clicking off oops
-
-    var x = document.getElementById("nav_chevron");
-    x.classList.toggle("nav_chevron_flipped");
-}
-
-
-
-// ported from comment_system
-
-
 var navheight = 0;
 // next part is because i got bored
 function positionNav() {
