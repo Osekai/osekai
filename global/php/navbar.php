@@ -58,7 +58,7 @@ addOtherApp("fas fa-layer-group", "/misc/groups", GetStringRaw("navbar", "otherA
         <div class="osekai__navbar-bottom">
             <div class="osekai__navbar-left">
 
-                <div onclick='hideOtherApps(); navflip(); open_apps_dropdown()' class="osekai__navbar__app-container">
+                <div onclick='apps_dropdown()' class="osekai__navbar__app-container">
 
                     <div class="osekai__navbar__app-logo">
                         <img rel="preload" alt="<?= $apps[$app]['name']; ?>" src="/global/img/branding/vector/<?= $apps[$app]['logo']; ?>.svg">
@@ -103,10 +103,6 @@ addOtherApp("fas fa-layer-group", "/misc/groups", GetStringRaw("navbar", "otherA
 </style>
 
 <style id="extra_style"></style>
-
-<div class="osekai__apps-dropdown-gradient osekai__apps-dropdown-gradient-hidden" id="osekai__apps-dropdown-gradient" onclick='navflip(); hide_dropdowns()'>
-
-</div>
 
 <?php
 $showable_apps = [];
