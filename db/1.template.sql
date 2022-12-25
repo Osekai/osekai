@@ -1777,6 +1777,7 @@ CREATE TABLE `Ranking` (
   `followers` int(20) NOT NULL,
   `replays_watched` int(12) NOT NULL,
   `avatar_url` text COLLATE latin1_german1_ci NOT NULL,
+  `restricted` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 

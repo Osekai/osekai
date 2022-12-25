@@ -11,10 +11,10 @@ $data = json_decode($_POST['data'], true);
 $columns = ["id", "name", "total_pp", "stdev_pp", "standard_pp", "taiko_pp", "ctb_pp", "mania_pp",
 "medal_count", "rarest_medal", "country_code", "standard_global", "taiko_global", "ctb_global", "mania_global",
 "badge_count", "ranked_maps", "loved_maps", "subscribers", "followers", "replays_watched", "avatar_url",
-"rarest_medal_achieved"];
+"rarest_medal_achieved", "restricted"];
 
 $sql = sqlbuilder("Ranking", $columns);
-$types = "isiiiiiiiisiiiiiiiiiiss";
+$types = "isiiiiiiiisiiiiiiiiiissi";
 
 $current_champion = Database::execSimpleSelect("SELECT * FROM RankingMedalChampionHistory ORDER BY Date LIMIT 1")[0];
 
