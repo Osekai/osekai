@@ -88,7 +88,7 @@ dropdown_system();
                                 <p><?php echo GetStringRaw("donate", "costs.covered", ["€" . $donationTotal, "€" . $costs]) ?></p>
                             </div>
                             <div class="donate__progress-bar">
-                                <div class="donate__progress-bar-inner" <?php if($percentage < 100) {echo "style='width: {$percentage}%;'";} ?>></div>
+                                <div class="donate__progress-bar-inner" <?php if($percentage < 100) {echo "style=\"width: {$percentage}%;\"";} ?>></div>
                             </div>
                         </div>
                         <div class="donate__list">
