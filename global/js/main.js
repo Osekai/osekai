@@ -20,27 +20,6 @@ setTimeout(function () {
         }
     }
 }, 600);
-// this is to force the load animation to play again
-
-//function enableLightMode() {
-//    document.getElementById("css_cont").innerHTML += '<link id="light" rel="stylesheet" type="text/css" href="/global/css/light.css">';
-//    document.getElementById("css_cont").innerHTML += '<link id="relative_light" rel="stylesheet" type="text/css" href="css/light.css">';
-//}
-//
-//function disableLightMode() {
-//    if (document.getElementById("light")) {
-//        console.log("removing stuff");
-//        document.getElementById("css_cont").innerHTML = "";
-//    }
-//}
-//
-//function switchLightMode() {
-//    if (light) {
-//        disableLightMode();
-//    } else {
-//        enableLightMode();
-//    }
-//
 
 var colours = {
     RGBToHSL: function (r, g, b) {
@@ -88,14 +67,9 @@ var colours = {
     }
 }
 
-function OpenSettingsDropdown(id) {
-    var dropdown = document.getElementById(id);
-    dropdown.classList.toggle("osekai__dropdown-hidden");
-}
-var themes;
 var theme;
 
-themes = {
+const themes = {
     "light": {
         "internal": "light",
         "name": "loading...",
@@ -145,36 +119,6 @@ themes = {
 }
 
 async function loadThemes() {
-    //themes = {
-    //    "light": {
-    //        "internal": "light",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.light"),
-    //        "css": "/global/css/light.css",
-    //        "rel": "css/light.css"
-    //    },
-    //    "dark": {
-    //        "internal": "dark",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.dark"),
-    //        "css": "none",
-    //    },
-    //    "ultradark": {
-    //        "internal": "ultradark",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.ultraDark"),
-    //        "css": "/global/css/ultradark.css",
-    //        "rel": "css/ultradark.css"
-    //    },
-    //    "colddark": {
-    //        "internal": "colddark",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.coldDark"),
-    //        "css": "/global/css/colddark.css",
-    //        "rel": "css/colddark.css"
-    //    },
-    //    "system": {
-    //        "internal": "system",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.system"),
-    //        "css": "none",
-    //    }
-    //}
     themes["light"].name = await GetStringRaw("navbar", "settings.global.theme.light");
     themes["dark"].name = await GetStringRaw("navbar", "settings.global.theme.dark");
     themes["ultradark"].name = await GetStringRaw("navbar", "settings.global.theme.ultraDark");
@@ -183,51 +127,10 @@ async function loadThemes() {
     themes["custom"].name = await GetStringRaw("navbar", "settings.global.theme.custom");
     themes["custom-light"].name = await GetStringRaw("navbar", "settings.global.theme.custom.lightMode");
     themes["lightweight"].name = await GetStringRaw("navbar", "settings.global.theme.lightweight");
-    loadThemesDropdown();
 }
 
 theme = themes["system"];
-
-
-loadThemesDropdown();
 loadThemes();
-
-
-//console.log(themes);
-//console.log(theme);
-
-function loadThemesDropdown() {
-    var dropdown = document.getElementById("dropdown__themes");
-    dropdown.innerHTML = "";
-    for (var i in themes) {
-        if (themes[i].experimental == true && experimental == 0) continue;
-        var div = document.createElement("div");
-        div.classList.add("osekai__dropdown-item");
-        div.innerHTML = themes[i].name;
-        div.setAttribute("onclick", "setTheme('" + themes[i].internal + "')");
-        dropdown.appendChild(div);
-    }
-    updateThemesDropdown();
-}
-
-
-function updateThemesDropdown() {
-    document.getElementById("dropdown__themes-text").innerHTML = theme.name;
-    var dropdown = document.getElementById("dropdown__themes");
-    // give the right element osekai__dropdown-item-active
-    for (var i in dropdown.children) {
-        try {
-            if (dropdown.children[i].innerHTML == theme.name) {
-                dropdown.children[i].classList.add("osekai__dropdown-item-active");
-            } else {
-                dropdown.children[i].classList.remove("osekai__dropdown-item-active");
-            }
-        } catch (e) {
-            // it's fine, ignore
-        }
-    }
-}
-
 
 function setTheme(stheme) {
     if (typeof stheme == "string") {
@@ -243,7 +146,6 @@ function setTheme(stheme) {
 
     updateTheme();
     saveSettings();
-    updateThemesDropdown();
 }
 
 var customTheme = {
@@ -263,6 +165,9 @@ var accent_picker = document.getElementById("custom_colpicker_accent");
 
 var cp_accentdark = null;
 var cp_accent = null;
+
+const settingsLoadEvent = new Event('settings-load');
+
 
 function updateTheme() {
     //console.log("switching to: " + theme);
@@ -291,7 +196,7 @@ function updateTheme() {
         var accentDark_split = String(customTheme.accent_dark).split(",");
         var accent_split = String(customTheme.accent).split(",");
         var accentDark_hsl = colours.RGBToHSL(accentDark_split[0], accentDark_split[1], accentDark_split[2]);
-        var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[2], accent_split[1]);
+        var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[1], accent_split[2]);
 
         document.getElementById("custom_theme_container").innerHTML = `html{
             --accentdark: ${customTheme.accent_dark} !important;
@@ -315,21 +220,24 @@ function updateTheme() {
         // the user the brightness of the colour they've selected. fine, it works, but bit annoying
         window.localStorage.setItem("accent_dark", customTheme.accent_dark);
         window.localStorage.setItem("accent", customTheme.accent);
-        document.getElementById("customThemePicker").classList.remove("hidden");
+        window.addEventListener('settings-load', function () {
+        document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
         if (cp_accent == null) {
-            cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
-                customTheme.accent_dark = col;
-                updateTheme();
-            }, customTheme.accent_dark);
+                cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
+                    customTheme.accent_dark = col;
+                    updateTheme();
+                }, customTheme.accent_dark);
 
-            cp_accent = new newColourPicker("custom_colpicker_accent", function (col) {
-                customTheme.accent = col;
-                updateTheme();
-            }, customTheme.accent);
+                cp_accent = new newColourPicker("custom_colpicker_accent", function (col) {
+                    customTheme.accent = col;
+                    updateTheme();
+                }, customTheme.accent);
         }
-
+    });
     } else {
-        document.getElementById("customThemePicker").classList.add("hidden");
+        window.addEventListener('settings-load', function () {
+            document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
+        });
     }
 }
 
@@ -345,20 +253,6 @@ window.addEventListener("hashchange", function () {
 window.addEventListener("popstate", function () {
     localStorage.setItem("url", location.href);
 });
-
-
-function navflip() {
-    // flips the little arrow under the logo
-    // TODO: it's fucked when clicking off oops
-
-    var x = document.getElementById("nav_chevron");
-    x.classList.toggle("nav_chevron_flipped");
-}
-
-
-
-// ported from comment_system
-
 
 var navheight = 0;
 // next part is because i got bored
@@ -482,32 +376,6 @@ function closeWelcomePanel() {
     document.getElementById("welcome_panel").classList.add("osekai__eclipse-welcome-hidden");
 }
 
-function AddSettingCheckbox(id, internalName, defaultValue, optionExperimental = false, callback = null) {
-    if (optionExperimental == true && experimental != 1) return;
-    if (window.localStorage.getItem(internalName) == null) {
-        // sets to default value
-        document.getElementById(id).checked = defaultValue;
-        window.localStorage.setItem(internalName, defaultValue);
-    } else {
-        document.getElementById(id).checked = window.localStorage.getItem(internalName) == "true";
-    }
-
-    document.getElementById(id).addEventListener('change', (event) => {
-        if (event.currentTarget.checked) {
-            if (callback != null) callback(true);
-        } else {
-            if (callback != null) callback(false);
-        }
-        window.localStorage.setItem(internalName, event.currentTarget.checked);
-    })
-}
-
-AddSettingCheckbox("settings_profiles__showmedalsfromallmodes", "profiles__showmedalsfromallmodes", true)
-AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals__hidemedalswhenunobtainedfilteron", false, false, (enabled) => {
-    if (typeof filterAchieved != 'undefined')
-        filterAchieved(enabled, true);
-});
-
 
 function snowflakes(enabled) {
     console.log("SNOWFLAKES: " + enabled);
@@ -523,14 +391,12 @@ function snowflakes(enabled) {
 // so that if you have never turned them on, during christmas they'll auto-turn on
 var snowflakesDefault = false;
 var snowflakesOption = "settings_global__snowflakes-nochristmas";
-if(christmas) {
+if (christmas) {
     var snowflakesDefault = true;
     var snowflakesOption = "settings_global__snowflakes";
 }
 
-AddSettingCheckbox("settings_global__snowflakes", snowflakesOption, snowflakesDefault, false, function (enabled) {
-    snowflakes(enabled);
-})
+
 
 snowflakes(window.localStorage.getItem(snowflakesOption))
 //document.getElementById("settings_profiles__showmedalsfromallmodes").checked = true;

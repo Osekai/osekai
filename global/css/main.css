@@ -649,10 +649,13 @@ a {
     right: 0px;
     bottom: 0px;
     backdrop-filter: blur(4px);
-    z-index: 50;
+    z-index: 14;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+    --appColour: var(--accentdark);
+    --appColourLight: var(--accent);
+    background: linear-gradient(rgba(var(--appColour), 0.8), rgba(var(--appColour), 0.5)) #000a
 }
 
 .osekai__blur-overlay__active {
@@ -2970,30 +2973,18 @@ option {
 
 
 .osekai__apps-dropdown-image {
-    background-image: url("/home/img/medals.png");
     background-size: cover;
     background-position: center;
     width: 100%;
     height: 100%;
     transform: scale(1.5);
-    filter: blur(10px);
+    filter: blur(110px);
     opacity: 0;
     transition: all 0.4s ease;
     position: absolute;
     z-index: 65;
-}
-
-.osekai__apps-dropdown-gradient {
-    transition: all 0.4s ease;
-    background:
-        linear-gradient(294.89deg, rgba(var(--appColour), 0.75) 0%, rgba(var(--appColour), 0) 30.19%),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%),
-        linear-gradient(90deg, rgba(var(--appColour), 255) 0%, rgba(var(--appColour), 0) 100%),
-        linear-gradient(252.57deg, rgba(var(--appColour), 0.25) 0%, rgba(var(--appColour), 0) 88.15%);
-    position: absolute;
-    z-index: 66;
-    width: 100%;
-    height: 100%;
+    mix-blend-mode: color;
+    opacity: 0.5 !important;
 }
 
 .osekai__apps-dropdown-applist {
@@ -3765,12 +3756,21 @@ figcaption {
     border-radius: 90px;
     background-color: rgba(var(--col), 0.5);
     transition: all 0.2s ease;
+    margin-right: 7px;
 }
 
 .osekai__nav-dropdown-v2-lowerpanel-button p {
-    padding-left: 7px;
     transition: all 0.2s ease;
     font-size: 14px;
+}
+
+.osekai__nav-dropdown-v2-lowerpanel-button i {
+    font-size: 18px;
+    padding-right: 7px;
+}
+
+.osekai__nav-dropdown-v2-lowerpanel-button .fas {
+    margin-top: -2px;
 }
 
 .osekai__nav-dropdown-v2-lowerpanel-button p light {
@@ -4923,8 +4923,6 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__nav-dropdown-v2-split-colour-picker-half .osekai__colour-picker {
     width: 100%;
-    margin-bottom: 4px;
-    margin-top: 6px;
     z-index: auto;
 }
 
@@ -5236,4 +5234,311 @@ input[type=range]:focus::-ms-fill-upper {
     filter: blur(60px);
     mix-blend-mode: color;
     transform: scale(1.1);
+}
+
+.osekai__dropdown-settings {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 50px;
+    display: flex;
+    z-index: 20;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.osekai__dropdown-settings-pages {
+    pointer-events: all;
+    width: 30%;
+    z-index: 20;
+    position: relative;
+    max-width: 289px;
+    height: calc(90% + 20px);
+    max-height: 546px;
+    padding: 6px;
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(36% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)))
+    );
+    box-shadow: 8px 8px 64px rgba(0, 0, 0, 0.25);
+border-radius: 8px;
+transition: all 0.5s ease;
+}
+.osekai__dropdown-settings-content {
+    pointer-events: all;
+    width: 70%;
+    z-index: 19;
+    position: relative;
+    max-width: 633px;
+    max-height: 526px;
+    height: 90%;
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(28% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(24% * var(--accentdark_valueoffset)))
+    );
+    border-radius: 0px 8px 8px 0px;
+    overflow: hidden;
+}
+
+.osekai__dropdown-settings-pages-header {
+    padding: 11px;
+    font-weight: 900;
+    font-size: 18px;
+}
+
+
+.osekai__dropdown-settings-page {
+    padding: 8px 11px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    border: 1px solid #fff0;
+    border-radius: 8px;
+
+}
+
+.osekai__dropdown-settings-page-active {
+    background-color: #fff;
+    color: rgb(var(--accentdark));
+}
+
+.osekai__dropdown-settings-page i {
+    margin-right: 8px;
+    font-size: 22px;
+}
+
+@keyframes pageOpen {
+    0% {
+        transform: scale(1.03) translateY(-20px);
+    } 
+    100% {
+        transform: scale(1);
+    }
+}
+
+.osekai__dropdown-settings-page-inner {
+    position: absolute;
+    overflow-y: scroll;
+    padding: 26px;
+    max-height: 100%;
+    width: 100%;
+    animation-duration: 0.2s;
+    animation-name: pageOpen;
+    box-sizing: border-box;
+}
+
+.osekai__dropdown-settings-page-inner-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    transform: scale(0.95) translateY(20px);
+    animation-name: none;
+}
+
+.osekai__dropdown-settings-page-header {
+    font-size: 19px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.osekai__dropdown-settings-page-header i {
+    margin-right: 14px;
+    font-size: 34px;
+}
+
+.osekai__dropdown-settings-radio-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.osekai__dropdown-settings-radio-item, .osekai__dropdown-settings-choicegrid-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+border-radius: 8px;
+margin-top: 6px;
+cursor: pointer;
+}
+
+.osekai__dropdown-settings-radio-item span {
+    background-color: #fff2;
+    outline: 3px solid #fff2;
+    margin: 3px;
+    margin-right: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+
+}
+
+.osekai__dropdown-settings-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.osekai__dropdown-settings-checkbox span {
+    min-width: 28px;
+    height: 28px;
+    width: 28px;
+    margin: 4px 0px;
+    margin-right: 8px;
+    background-color: #fff2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    color: rgb(var(--accentdark));
+    border-radius: 8px;
+}
+
+.osekai__dropdown-settings-checkbox span i {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.osekai__dropdown-settings-checkbox-active span {
+    background-color: #fff;
+}
+.osekai__dropdown-settings-checkbox-active span i {
+    opacity: 1;
+}
+
+.osekai__dropdown-settings-radio-item-checked span {
+    background-color: white;
+}
+
+.greyed {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.osekai__dropdown-settings-section {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #fff4;
+}
+
+.osekai__dropdown-settings-choicegrid-item {
+    margin-top: 0px;
+}
+.osekai__dropdown-settings-choicegrid-item-checked {
+    background-color: #fff;
+    color: rgb(var(--accentdark));
+}
+.osekai__dropdown-settings-choicegrid {
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: auto auto;
+}
+.osekai__dropdown-settings-choicegrid img {
+    height: 20px;
+    margin-right: 10px;
+}
+.osekai__dropdown-settings-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+.osekai__dropdown-settings-hidden  .osekai__dropdown-settings-content {
+    margin-left: -100px;
+    pointer-events: none;
+}
+.osekai__dropdown-settings-hidden  .osekai__dropdown-settings-pages {
+    margin-right: -100px;
+    pointer-events: none;
+}
+.osekai__dropdown-settings {
+    transition: all 0.4s ease;
+}
+
+.osekai__dropdown-settings-content {
+    transition: all 0.5s ease;
+}
+
+@media (max-width: 900px) {
+    .osekai__dropdown-settings {
+        padding: 0px;
+        padding-top: var(--navheight);
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .osekai__dropdown-settings-pages {
+        border-radius: 0px;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .osekai__dropdown-settings-content {
+        border-radius: 0px;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .osekai__dropdown-settings-sidebar-collapsed .osekai__dropdown-settings-pages {
+        margin-left: -100%;
+    }
+    .osekai__dropdown-settings-content  .fas.fa-chevron-left.mobile {
+        font-size: 20px;
+        margin-left: 0px;
+    }
+    .osekai__dropdown-settings-page-header i {
+        margin-left: auto;
+    }
+
+    .osekai__dropdown-settings-page-inner {
+        padding-bottom: 80px;
+    }
+}
+
+.osekai__dropdown-settings-loader {
+    background-color: rgba(var(--accentdark), 0.7);
+    backdrop-filter: blur(40px);
+    position: fixed;
+    z-index: 68;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+@media (max-width: 450px) {
+    .osekai__dropdown-settings-choicegrid {
+        grid-template-columns: auto;
+    }
+}
+
+.osekai__dropdown-settings-pages-header {
+    display: flex;
+    align-items: center;
+}
+.osekai__dropdown-settings-pages-header span {
+    margin-left: auto;
+}
+
+
+
+.noscroll {
+    overflow: hidden !important;
 }
