@@ -411,7 +411,7 @@ foreach ($apps as $a) {
                     <?= GetStringRaw("navbar", "profile.viewOnOsu"); ?>
                 </p>
             </a>
-            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 240, 240, 255" onclick='dropdown("osekai__dropdown-settings-new-hidden", "dropdown-settings-new", 1)'>
+            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 240, 240, 255" onclick='dropdown("osekai__dropdown-settings-hidden", "dropdown-settings-new", 1)'>
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
                 <i class="fas fa-cog"></i>
                 <p>
@@ -434,96 +434,18 @@ foreach ($apps as $a) {
     <?php } ?>
 </div>
 
-<div id="dropdown__settings" class="osekai__nav-dropdown-v2 osekai__nav-dropdown-v2-generic osekai__nav-dropdown-v2-settings osekai__nav-dropdown-hidden">
-    <div class="osekai__nav-dropdown-v2-mainpanel">
-        <img src="/global/img/branding/vector/osekai_light.svg" class="osekai__nav-dropdown-v2-mainpanel-logo">
-        <div class="osekai__nav-dropdown-v2-mainpanel-texts">
-            <h2><?= GetStringRaw("navbar", "settings.title"); ?></h2>
-            <p><?= GetStringRaw("navbar", "settings.subtitle"); ?></p>
-        </div>
-    </div>
-    <div class="osekai__nav-dropdown-v2-lowerpanel">
-
-        <h1 class="osekai__dropdown-button-head"><?= GetStringRaw("navbar", "settings.global.title"); ?></h1>
-        <h2 class="osekai__dropdown-button-subhead"><?= GetStringRaw("navbar", "settings.global.theme"); ?></h2>
-        <div class="osekai__nav-dropdown-v2-dropdowncontainer">
-            <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="OpenSettingsDropdown('dropdown__themes');">
-                <p id="dropdown__themes-text">system theme</p>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="osekai__dropdown osekai__dropdown-hidden" id="dropdown__themes">
-                <div class="osekai__dropdown-item osekai__dropdown-item-active">Username</div>
-                <div class="osekai__dropdown-item">User ID</div>
-                <div class="osekai__dropdown-item">Country</div>
-                <div class="osekai__dropdown-item">Rarest Medal</div>
-            </div>
-        </div>
-
-        <?php if (1 == 1) { ?>
-            <h2 class="osekai__dropdown-button-subhead"><?= GetStringRaw("navbar", "settings.global.language"); ?></h2>
-            <div class="osekai__nav-dropdown-v2-dropdowncontainer">
-                <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="OpenSettingsDropdown('dropdown__languages');">
-                    <p id="dropdown__languages-text"><?= $currentLocale['name']; ?></p>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="osekai__dropdown osekai__dropdown-hidden" id="dropdown__languages">
-                    <?php
-                    //print_r($locales);
-                    // Ignore experimental languages if the user isn't experimental
-                    foreach ($locales as $language) {
-                        if (isset($language['experimental']) && $language['experimental'] == true && !isExperimental()) {
-                            continue;
-                        }
-                    ?>
-                        <div class="osekai__dropdown-item tooltip-v2" tooltip-content="<?= nameToEnglish($language['code']) ?>" onclick="setLanguage('<?= $language['code']; ?>');">
-                            <img src="<?= $language["flag"]; ?>" class="osekai__dropdown-item-flag">
-
-                            <?php
-
-                            if (isset($language['experimental']) && $language['experimental'] == 1) {
-                                echo "<span class='osekai__dropdown-item-exp'>EXP</span>";
-                            } else if (isset($language['wip']) && $language['wip'] == 1) {
-                                echo "<span class='osekai__dropdown-item-wip'>WIP</span>";
-                            }
-                            echo "<p>" . $language["name"] . "</p>"; ?>
-
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-        <?php } ?>
-        <div class="osekai__flex_row osekai__fr_centered osekai_100">
-            <p class="osekai__checkbox-label"><i class="fas fa-snowflake" style="margin-right: 4px;"> </i> <?= GetStringRaw("navbar", "settings.global.snowflakes"); ?></p>
-            <input class="osekai__checkbox" id="settings_global__snowflakes" type="checkbox" value="value1" onchange="saveSettings();">
-            <label for="settings_global__snowflakes"></label>
-        </div>
-        <h1 class="osekai__dropdown-button-head"><?= GetStringRaw("navbar", "settings.profiles.title"); ?></h1>
-        <div class="osekai__flex_row osekai__fr_centered osekai_100">
-            <p class="osekai__checkbox-label"><?= GetStringRaw("navbar", "settings.profiles.showMedalsFromAllModes"); ?></p>
-            <input class="osekai__checkbox" id="settings_profiles__showmedalsfromallmodes" type="checkbox" value="value1" onchange="saveSettings();">
-            <label for="settings_profiles__showmedalsfromallmodes"></label>
-        </div>
-        <h1 class="osekai__dropdown-button-head"><?= GetStringRaw("navbar", "settings.medals.title"); ?></h1>
-        <div class="osekai__flex_row osekai__fr_centered osekai_100">
-            <p class="osekai__checkbox-label"><?= GetStringRaw("navbar", "settings.medals.hideMedalsWhenFilterEnabled"); ?></p>
-            <input class="osekai__checkbox" id="settings_medals__hidemedalswhenunobtainedfilteron" type="checkbox" value="value1" onchange="saveSettings();">
-            <label for="settings_medals__hidemedalswhenunobtainedfilteron"></label>
-        </div>
-    </div>
-</div>
-
-<div class="osekai__dropdown-settings-new osekai__dropdown-settings-new-hidden" id="dropdown-settings-new">
-    <div class="osekai__dropdown-settings-new-loader">
+<div class="osekai__dropdown-settings osekai__dropdown-settings-hidden" id="dropdown-settings-new">
+    <div class="osekai__dropdown-settings-loader">
     <svg viewBox='0 0 50 50' class='spinner'><circle class='ring' cx='25' cy='25' r='22.5' /><circle class='line' cx='25' cy='25' r='22.5' /></svg>
     <p>Loading...</p>
     </div>
-    <div class="osekai__dropdown-settings-new-pages">
-        <h1 class="osekai__dropdown-settings-new-pages-header">Settings</h1>
-        <div class="osekai__dropdown-settings-new-pages-list" id="settings-page-list">
+    <div class="osekai__dropdown-settings-pages">
+        <h1 class="osekai__dropdown-settings-pages-header">Settings <span onclick="hide_dropdowns()"><i class="fas fa-times-circle"></i> Close</span></h1>
+        <div class="osekai__dropdown-settings-pages-list" id="settings-page-list">
             
         </div>
     </div>
-    <div class="osekai__dropdown-settings-new-content" id="settings-content">
+    <div class="osekai__dropdown-settings-content" id="settings-content">
 
     </div>
 </div>

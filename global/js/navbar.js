@@ -275,7 +275,7 @@ function markRead() {
 var settingUtils = {
     "genericSection": function (classname = null) {
         var outerDiv = document.createElement("div");
-        outerDiv.classList.add("osekai__dropdown-settings-new-section");
+        outerDiv.classList.add("osekai__dropdown-settings-section");
         if (classname != null) outerDiv.classList.add(classname);
         return outerDiv;
     },
@@ -301,26 +301,26 @@ var settingUtils = {
         parent.appendChild(section);
     },
     "buttonList": function (items, selectedItem, itemNameKey, parent, clickCallback) {
-        this.genericList(items, selectedItem, itemNameKey, parent, clickCallback, "osekai__dropdown-settings-new-radio-list", "osekai__dropdown-settings-new-radio-item", "osekai__dropdown-settings-new-radio-item-checked", "<span></span><p>$1</p>")
+        this.genericList(items, selectedItem, itemNameKey, parent, clickCallback, "osekai__dropdown-settings-radio-list", "osekai__dropdown-settings-radio-item", "osekai__dropdown-settings-radio-item-checked", "<span></span><p>$1</p>")
     },
     "choiceGrid": function (items, selectedItem, itemNameKey, parent, clickCallback) {
-        this.genericList(items, selectedItem, itemNameKey, parent, clickCallback, "osekai__dropdown-settings-new-choicegrid", "osekai__dropdown-settings-new-choicegrid-item", "osekai__dropdown-settings-new-choicegrid-item-checked", "$1")
+        this.genericList(items, selectedItem, itemNameKey, parent, clickCallback, "osekai__dropdown-settings-choicegrid", "osekai__dropdown-settings-choicegrid-item", "osekai__dropdown-settings-choicegrid-item-checked", "$1")
     },
     "baseCheckbox": function (name, checked, callback) {
         let innerDiv = document.createElement('div');
-        innerDiv.classList.add("osekai__dropdown-settings-new-checkbox");
+        innerDiv.classList.add("osekai__dropdown-settings-checkbox");
         if(checked == true || checked == "true") {
-            innerDiv.classList.add("osekai__dropdown-settings-new-checkbox-active");
+            innerDiv.classList.add("osekai__dropdown-settings-checkbox-active");
         }
         innerDiv.innerHTML = "<span><i class=\"fas fa-check\"></i></span><p>" + name + "</p>";
 
         innerDiv.addEventListener("click", function (e) {
-            if(innerDiv.classList.contains("osekai__dropdown-settings-new-checkbox-active")) {
+            if(innerDiv.classList.contains("osekai__dropdown-settings-checkbox-active")) {
                 callback(false);
-                innerDiv.classList.remove("osekai__dropdown-settings-new-checkbox-active");
+                innerDiv.classList.remove("osekai__dropdown-settings-checkbox-active");
             } else {
                 callback(true);
-                innerDiv.classList.add("osekai__dropdown-settings-new-checkbox-active");
+                innerDiv.classList.add("osekai__dropdown-settings-checkbox-active");
             }
         })
 
@@ -367,7 +367,7 @@ var settingsPages = [
             });;
 
             let themeDiv = document.createElement('div');
-            themeDiv.className = 'osekai__dropdown-settings-new-section';
+            themeDiv.className = 'osekai__dropdown-settings-section';
             themeDiv.id = "dropdown-settings-custom-theme"
             themeDiv.innerHTML += `<div id="customThemePicker" class="osekai__nav-dropdown-v2-split-colour-picker">
             <div class="osekai__nav-dropdown-v2-split-colour-picker-half">
@@ -453,19 +453,19 @@ async function loadSettings() {
     for (var x = 0; x < settingsPages.length; x++) {
         let page = settingsPages[x];
         document.getElementById("settings-page-list").innerHTML +=
-            `<div class="osekai__dropdown-settings-new-page" onclick="openSettingsPage('${page.name}', this)">
+            `<div class="osekai__dropdown-settings-page" onclick="openSettingsPage('${page.name}', this)">
             <i class="${page.icon}"></i>
             <p>${page.name}</p>
         </div>`;
 
         var innerDiv = document.createElement('div');
-        innerDiv.className = 'osekai__dropdown-settings-new-page-inner';
-        innerDiv.classList.add("osekai__dropdown-settings-new-page-inner-hidden");
-        innerDiv.innerHTML = `<p class="osekai__dropdown-settings-new-page-header"><i onclick="showSettingsSidebarMobile()" class="fas fa-chevron-left mobile"></i> <i class="${page.icon}"></i> ${page.name}</h1>`;
+        innerDiv.className = 'osekai__dropdown-settings-page-inner';
+        innerDiv.classList.add("osekai__dropdown-settings-page-inner-hidden");
+        innerDiv.innerHTML = `<p class="osekai__dropdown-settings-page-header"><i onclick="showSettingsSidebarMobile()" class="fas fa-chevron-left mobile"></i> <i class="${page.icon}"></i> ${page.name}</h1>`;
         innerDiv.setAttribute("settings-page", page.name);
 
         var innerContent = document.createElement('div');
-        innerContent.className = 'osekai__dropdown-settings-new-page-content';
+        innerContent.className = 'osekai__dropdown-settings-page-content';
         await page.generate(innerContent);
         innerDiv.appendChild(innerContent);
         contentContainer.appendChild(innerDiv);
@@ -479,26 +479,26 @@ async function loadSettings() {
 function openSettingsPage(name, sidebar) {
     var all = document.querySelectorAll("*[settings-page]");
     for (var x = 0; x < all.length; x++) {
-        all[x].classList.add("osekai__dropdown-settings-new-page-inner-hidden");
+        all[x].classList.add("osekai__dropdown-settings-page-inner-hidden");
     }
-    document.querySelector("[settings-page='" + name + "']").classList.remove("osekai__dropdown-settings-new-page-inner-hidden");
+    document.querySelector("[settings-page='" + name + "']").classList.remove("osekai__dropdown-settings-page-inner-hidden");
 
 
-    var sidebarButtons = document.getElementsByClassName("osekai__dropdown-settings-new-page")
+    var sidebarButtons = document.getElementsByClassName("osekai__dropdown-settings-page")
     for (var x = 0; x < sidebarButtons.length; x++) {
-        sidebarButtons[x].classList.remove("osekai__dropdown-settings-new-page-active");
+        sidebarButtons[x].classList.remove("osekai__dropdown-settings-page-active");
     }
-    sidebar.classList.add("osekai__dropdown-settings-new-page-active");
-    document.getElementById("dropdown-settings-new").classList.add("osekai__dropdown-settings-new-sidebar-collapsed");
+    sidebar.classList.add("osekai__dropdown-settings-page-active");
+    document.getElementById("dropdown-settings-new").classList.add("osekai__dropdown-settings-sidebar-collapsed");
 }
 function showSettingsSidebarMobile() {
-    document.getElementById("dropdown-settings-new").classList.remove("osekai__dropdown-settings-new-sidebar-collapsed");
+    document.getElementById("dropdown-settings-new").classList.remove("osekai__dropdown-settings-sidebar-collapsed");
 }
 
 
 
 window.addEventListener('load', async function () {
-    document.getElementsByClassName("osekai__dropdown-settings-new-loader")[0].remove();
+    document.getElementsByClassName("osekai__dropdown-settings-loader")[0].remove();
     await loadSettings();
 });
 // #endregion

@@ -8,6 +8,7 @@ function dropdown(hiddenclass, id, blur = 0) {
         return;
     }
     hide_dropdowns();
+    document.body.classList.add("noscroll");
     document.getElementById(id).classList.remove(hiddenclass);
     currently_open = {
         "element": document.getElementById(id),
@@ -30,6 +31,7 @@ function apps_dropdown(hide = false) {
         return;
     }
     hide_dropdowns(false);
+    document.body.classList.add("noscroll");
     blur_overlay.classList.add("osekai__blur-overlay__active");
     document.getElementById("dropdown__apps").classList.remove("osekai__apps-dropdown-hidden");
     document.getElementById("dropdown__apps_mobile").classList.remove("osekai__apps-dropdown-mobile-hidden");
@@ -39,6 +41,7 @@ function apps_dropdown(hide = false) {
 function hide_dropdowns(hideapps = true) {
     actively_open = false;
     if(hideapps) apps_dropdown(true);
+    document.body.classList.remove("noscroll");
     if(currently_open == null) return;
     var blur_overlay = document.getElementById("blur_overlay");
     blur_overlay.classList.remove("osekai__blur-overlay__active");
