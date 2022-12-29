@@ -988,7 +988,7 @@ function LoadTimelineEntries(Data) {
     colEntries = [];
 
     Data.timeline.forEach(oEntry => {
-        let strGroup = new Date(oEntry.Date).getFullYear() + "." + new Date(oEntry.Date).getMonth();
+        let strGroup = new Date(oEntry.Date).getUTCFullYear() + "." + new Date(oEntry.Date).getUTCMonth();
         if (document.querySelector("[date='" + strGroup + "']") !== null) {
             colGroups.forEach(oGroup => {
                 if (oGroup.date == strGroup) oGroup.values.push(oEntry);
@@ -1016,11 +1016,12 @@ function LoadTimelineEntries(Data) {
 
                 let oHeader = document.createElement("div");
                 oHeader.classList.add("profiles__info-panel-header");
-                oHeader.innerHTML = new Date(oEntry.Date).toLocaleDateString('en-US', { month: 'long' }) + " " + new Date(oEntry.Date).getFullYear();
+                let lang = getCookie("locale").replace('_', '-');
+                oHeader.innerHTML = new Date(oEntry.Date).toLocaleDateString(lang, { month: 'long', timeZone: 'UTC' }) + " " + new Date(oEntry.Date).getUTCFullYear();
 
                 oInfo.appendChild(oHeader);
 
-                let strInnerGroup = new Date(oEntry.Date).getFullYear() + "." + new Date(oEntry.Date).getMonth();
+                let strInnerGroup = new Date(oEntry.Date).getUTCFullYear() + "." + new Date(oEntry.Date).getUTCMonth();
                 let oGroup = colGroups.filter(obj => { return obj.date == strInnerGroup });
 
                 oGroup[0].values.sort((a, b) => {
@@ -1034,10 +1035,9 @@ function LoadTimelineEntries(Data) {
                     oRow.classList.add("profiles__info-panel-row");
 
                     let oSpanDate = document.createElement("span");
-                    oSpanDate.innerHTML = getOrdinalNum(new Date(oGroupEntry.Date).getDate());
+                    oSpanDate.innerHTML = getOrdinalNum(new Date(oGroupEntry.Date).getUTCDate());
                     let oParagraphDate = document.createElement("p");
-                    //oParagraphDate.innerHTML = new Date(oGroupEntry.Date).toDateString('en-US', { month: 'short' }) + " ";
-                    oParagraphDate.innerHTML = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(oGroupEntry.Date)) + " ";
+                    oParagraphDate.innerHTML = new Intl.DateTimeFormat(lang, { month: 'short', timeZone: 'UTC' }).format(new Date(oGroupEntry.Date)) + " ";
                     oParagraphDate.appendChild(oSpanDate);
 
                     let oNoteTitle = document.createElement("h3");
