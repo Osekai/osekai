@@ -1,4 +1,5 @@
 var currently_open = null;
+var actively_open = false;
 
 function dropdown(hiddenclass, id, blur = 0) {
     var blur_overlay = document.getElementById("blur_overlay");
@@ -13,6 +14,7 @@ function dropdown(hiddenclass, id, blur = 0) {
         "classname": hiddenclass
     }
     blur_overlay.classList.add("osekai__blur-overlay__active");
+    actively_open = true;
 }
 
 function apps_dropdown(hide = false) {
@@ -35,9 +37,10 @@ function apps_dropdown(hide = false) {
 }
 
 function hide_dropdowns(hideapps = true) {
+    actively_open = false;
+    if(hideapps) apps_dropdown(true);
     if(currently_open == null) return;
     var blur_overlay = document.getElementById("blur_overlay");
     blur_overlay.classList.remove("osekai__blur-overlay__active");
     currently_open.element.classList.add(currently_open.classname);
-    if(hideapps) apps_dropdown(true);
 }

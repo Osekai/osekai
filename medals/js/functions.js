@@ -109,7 +109,7 @@ async function filterAchieved(on, request) {
                 document.getElementById('medal_' + medalid).classList.add('medals__medal-filtered');
             }
         }
-        if (document.getElementById('settings_medals__hidemedalswhenunobtainedfilteron').checked) {
+        if (localStorage.getItem("settings_medals__hidemedalswhenunobtainedfilteron") == "true") {
             var filtered = document.getElementsByClassName("medals__medal-filtered");
             for (var x = 0; x < filtered.length; x++) {
                 var parent = filtered[x].parentElement;
@@ -174,7 +174,7 @@ async function requestMedals(init, strValue) {
     Object.keys(filteredMedalsArrayByGroup).forEach(async (group) => {
         let grids = [];
         filteredMedalsArrayByGroup[group].forEach((medal) => {
-            if (document.getElementById('settings_medals__hidemedalswhenunobtainedfilteron').checked && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
+            if (localStorage.getItem("settings_medals__hidemedalswhenunobtainedfilteron") == "true" && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
                 return;
             }
 

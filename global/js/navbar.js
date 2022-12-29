@@ -152,7 +152,7 @@ function ExperimentalOff() {
     });
 }
 
-// >Start> Notification System
+// <Start> Notification System
 setTimeout(function () { GetNotifications(false, false) }, 1000); //Loads the Amount of Notifications on the bell icon before opening the dropdown
 var NotificationBell = document.getElementById("notif__bell__button");
 NotificationBell && NotificationBell.addEventListener("click", () => {
@@ -270,3 +270,235 @@ function markRead() {
     };
 }
 // <End> Notification System
+
+// #region Settings Screen
+var settingUtils = {
+    "genericSection": function (classname = null) {
+        var outerDiv = document.createElement("div");
+        outerDiv.classList.add("osekai__dropdown-settings-new-section");
+        if (classname != null) outerDiv.classList.add(classname);
+        return outerDiv;
+    },
+    "genericList": function (items, selectedItem, itemNameKey, parent, clickCallback, mainClassName, itemClassName, activeClassName, itemInner) {
+        var section = this.genericSection(mainClassName);
+
+        for (p in items) {
+            let innerDiv = document.createElement('div');
+            innerDiv.className = itemClassName;
+            if (selectedItem == items[p] || selectedItem == p) innerDiv.classList.add(activeClassName);
+            innerDiv.innerHTML = itemInner.replace("$1", items[p][itemNameKey]);
+
+            let key = p;
+            innerDiv.addEventListener("click", function (e) {
+                parent.getElementsByClassName(activeClassName)[0].classList.remove(activeClassName);
+                innerDiv.classList.add(activeClassName)
+                clickCallback(key);
+            });
+
+            section.appendChild(innerDiv);
+        }
+
+        parent.appendChild(section);
+    },
+    "buttonList": function (items, selectedItem, itemNameKey, parent, clickCallback) {
+        this.genericList(items, selectedItem, itemNameKey, parent, clickCallback, "osekai__dropdown-settings-new-radio-list", "osekai__dropdown-settings-new-radio-item", "osekai__dropdown-settings-new-radio-item-checked", "<span></span><p>$1</p>")
+    },
+    "choiceGrid": function (items, selectedItem, itemNameKey, parent, clickCallback) {
+        this.genericList(items, selectedItem, itemNameKey, parent, clickCallback, "osekai__dropdown-settings-new-choicegrid", "osekai__dropdown-settings-new-choicegrid-item", "osekai__dropdown-settings-new-choicegrid-item-checked", "$1")
+    },
+    "baseCheckbox": function (name, checked, callback) {
+        let innerDiv = document.createElement('div');
+        innerDiv.classList.add("osekai__dropdown-settings-new-checkbox");
+        if(checked == true || checked == "true") {
+            innerDiv.classList.add("osekai__dropdown-settings-new-checkbox-active");
+        }
+        innerDiv.innerHTML = "<span><i class=\"fas fa-check\"></i></span><p>" + name + "</p>";
+
+        innerDiv.addEventListener("click", function (e) {
+            if(innerDiv.classList.contains("osekai__dropdown-settings-new-checkbox-active")) {
+                callback(false);
+                innerDiv.classList.remove("osekai__dropdown-settings-new-checkbox-active");
+            } else {
+                callback(true);
+                innerDiv.classList.add("osekai__dropdown-settings-new-checkbox-active");
+            }
+        })
+
+        return innerDiv;
+    },
+    "linkedCheckbox": function (name, internalName, section, defaultValue = false, callback = null) {
+        var checked = false;
+        if (window.localStorage.getItem(internalName) == null) {
+            // sets to default value
+            checked = defaultValue;
+            window.localStorage.setItem(internalName, defaultValue);
+        } else {
+            checked = window.localStorage.getItem(internalName) == "true";
+        }
+
+        var baseCheckbox = this.baseCheckbox(name, checked, function (checked) {
+            window.localStorage.setItem(internalName, checked);
+
+            if (checked) {
+                if (callback != null) callback(true);
+            } else {
+                if (callback != null) callback(false);
+            }
+        });
+
+        section.appendChild(baseCheckbox)
+    },
+}
+
+var settingsPages = [
+    {
+        name: "theme",
+        icon: "fas fa-brush ",
+        generate: async function (htmlInner) {
+            settingUtils.buttonList(themes, theme, "name", htmlInner, function (key) {
+                setTheme(themes[key]);
+                if (key != "custom" && key != "custom-light") {
+                    document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
+                } else {
+                    document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
+                }
+                window.dispatchEvent(settingsLoadEvent);
+                // dont mind this
+            });;
+
+            let themeDiv = document.createElement('div');
+            themeDiv.className = 'osekai__dropdown-settings-new-section';
+            themeDiv.id = "dropdown-settings-custom-theme"
+            themeDiv.innerHTML += `<div id="customThemePicker" class="osekai__nav-dropdown-v2-split-colour-picker">
+            <div class="osekai__nav-dropdown-v2-split-colour-picker-half">
+                <div class="osekai__colour-picker" id="custom_colpicker_accent-dark" style="background: rgb(53, 61, 85);">
+                    <input type="text" class="color-picker__source">
+                </div>
+                <p>Accent Dark</p>
+            </div>
+            <div class="osekai__nav-dropdown-v2-split-colour-picker-half">
+                <div class="osekai__colour-picker" id="custom_colpicker_accent" style="background: rgb(153, 161, 185);">
+                    <input type="text" class="color-picker__source">
+                </div>
+                <p>Accent</p>
+            </div>
+        </div>`;
+            htmlInner.appendChild(themeDiv);
+
+            var section = settingUtils.genericSection();
+            var snowflakesDefault = false;
+            var snowflakesOption = "settings_global__snowflakes-nochristmas";
+            if (christmas) {
+                var snowflakesDefault = true;
+                var snowflakesOption = "settings_global__snowflakes";
+            }
+            settingUtils.linkedCheckbox("snowflakes :D", snowflakesOption, section, snowflakesDefault, snowflakes);
+            htmlInner.appendChild(section);
+        }
+    },
+    {
+        name: "language",
+        icon: "fas fa-globe",
+        generate: async function (htmlInner) {
+            let languages = {};
+            for (x in locales) {
+                var include = false;
+                var prefix = "";
+                if (locales[x]['experimental'] == true) prefix = `<p class="osekai__dropdown-item-exp">EXP</p>`;
+                if (locales[x]['wip'] == true) prefix = `<p class="osekai__dropdown-item-wip">WIP</p>`;
+
+                if (experimental == 1) include = true;
+                else {
+                    if (locales[x]['experimental'] == false) include = true;
+                }
+
+                if (include == true) {
+                    languages[locales[x]['code']] = {
+                        "name": `<img src="${locales[x]['flag']}"></img> ${prefix} <p>${locales[x]['name']}</p>`
+                    };
+                }
+            }
+
+            settingUtils.choiceGrid(languages, currentLocale['code'], "name", htmlInner, function (key) {
+                setLanguage(key);
+            });
+        }
+    },
+    {
+        name: "medals",
+        icon: "oif-app-medals",
+        generate: async function (htmlInner) {
+            var section = settingUtils.genericSection();
+            settingUtils.linkedCheckbox("compiletely hide medals when unobtained filter enabled", "settings_medals__hidemedalswhenunobtainedfilteron", section, false, function (enabled) {
+                if (typeof filterAchieved != 'undefined') filterAchieved(true, true);
+            });
+            htmlInner.appendChild(section);
+        }
+    },
+    {
+        name: "profiles",
+        icon: "oif-app-profiles",
+        generate: async function (htmlInner) {
+            var section = settingUtils.genericSection();
+            settingUtils.linkedCheckbox("show medals from all modes", "settings_profiles__showmedalsfromallmodes", section, true);
+            htmlInner.appendChild(section);
+        }
+    },
+]
+
+async function loadSettings() {
+    await loadSource("navbar"); // need this
+    document.getElementById("settings-page-list").innerHTML = "";
+    var contentContainer = document.getElementById("settings-content");
+    for (var x = 0; x < settingsPages.length; x++) {
+        let page = settingsPages[x];
+        document.getElementById("settings-page-list").innerHTML +=
+            `<div class="osekai__dropdown-settings-new-page" onclick="openSettingsPage('${page.name}', this)">
+            <i class="${page.icon}"></i>
+            <p>${page.name}</p>
+        </div>`;
+
+        var innerDiv = document.createElement('div');
+        innerDiv.className = 'osekai__dropdown-settings-new-page-inner';
+        innerDiv.classList.add("osekai__dropdown-settings-new-page-inner-hidden");
+        innerDiv.innerHTML = `<p class="osekai__dropdown-settings-new-page-header"><i onclick="showSettingsSidebarMobile()" class="fas fa-chevron-left mobile"></i> <i class="${page.icon}"></i> ${page.name}</h1>`;
+        innerDiv.setAttribute("settings-page", page.name);
+
+        var innerContent = document.createElement('div');
+        innerContent.className = 'osekai__dropdown-settings-new-page-content';
+        await page.generate(innerContent);
+        innerDiv.appendChild(innerContent);
+        contentContainer.appendChild(innerDiv);
+    }
+    window.dispatchEvent(settingsLoadEvent);
+    if (!mobile) {
+        // TODO: open a default page. need to rewrite the way Active works beforehand or find a way to find the item
+    }
+}
+
+function openSettingsPage(name, sidebar) {
+    var all = document.querySelectorAll("*[settings-page]");
+    for (var x = 0; x < all.length; x++) {
+        all[x].classList.add("osekai__dropdown-settings-new-page-inner-hidden");
+    }
+    document.querySelector("[settings-page='" + name + "']").classList.remove("osekai__dropdown-settings-new-page-inner-hidden");
+
+
+    var sidebarButtons = document.getElementsByClassName("osekai__dropdown-settings-new-page")
+    for (var x = 0; x < sidebarButtons.length; x++) {
+        sidebarButtons[x].classList.remove("osekai__dropdown-settings-new-page-active");
+    }
+    sidebar.classList.add("osekai__dropdown-settings-new-page-active");
+    document.getElementById("dropdown-settings-new").classList.add("osekai__dropdown-settings-new-sidebar-collapsed");
+}
+function showSettingsSidebarMobile() {
+    document.getElementById("dropdown-settings-new").classList.remove("osekai__dropdown-settings-new-sidebar-collapsed");
+}
+
+
+
+window.addEventListener('load', async function () {
+    document.getElementsByClassName("osekai__dropdown-settings-new-loader")[0].remove();
+    await loadSettings();
+});
+// #endregion

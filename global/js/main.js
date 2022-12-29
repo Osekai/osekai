@@ -92,10 +92,10 @@ function OpenSettingsDropdown(id) {
     var dropdown = document.getElementById(id);
     dropdown.classList.toggle("osekai__dropdown-hidden");
 }
-var themes;
+
 var theme;
 
-themes = {
+const themes = {
     "light": {
         "internal": "light",
         "name": "loading...",
@@ -264,6 +264,9 @@ var accent_picker = document.getElementById("custom_colpicker_accent");
 var cp_accentdark = null;
 var cp_accent = null;
 
+const settingsLoadEvent = new Event('settings-load');
+
+
 function updateTheme() {
     //console.log("switching to: " + theme);
     document.getElementById("custom_theme_container").innerHTML = "";
@@ -291,7 +294,7 @@ function updateTheme() {
         var accentDark_split = String(customTheme.accent_dark).split(",");
         var accent_split = String(customTheme.accent).split(",");
         var accentDark_hsl = colours.RGBToHSL(accentDark_split[0], accentDark_split[1], accentDark_split[2]);
-        var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[2], accent_split[1]);
+        var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[1], accent_split[2]);
 
         document.getElementById("custom_theme_container").innerHTML = `html{
             --accentdark: ${customTheme.accent_dark} !important;
@@ -315,21 +318,24 @@ function updateTheme() {
         // the user the brightness of the colour they've selected. fine, it works, but bit annoying
         window.localStorage.setItem("accent_dark", customTheme.accent_dark);
         window.localStorage.setItem("accent", customTheme.accent);
-        document.getElementById("customThemePicker").classList.remove("hidden");
+        window.addEventListener('settings-load', function () {
+        document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
         if (cp_accent == null) {
-            cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
-                customTheme.accent_dark = col;
-                updateTheme();
-            }, customTheme.accent_dark);
+                cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
+                    customTheme.accent_dark = col;
+                    updateTheme();
+                }, customTheme.accent_dark);
 
-            cp_accent = new newColourPicker("custom_colpicker_accent", function (col) {
-                customTheme.accent = col;
-                updateTheme();
-            }, customTheme.accent);
+                cp_accent = new newColourPicker("custom_colpicker_accent", function (col) {
+                    customTheme.accent = col;
+                    updateTheme();
+                }, customTheme.accent);
         }
-
+    });
     } else {
-        document.getElementById("customThemePicker").classList.add("hidden");
+        window.addEventListener('settings-load', function () {
+            document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
+        });
     }
 }
 
@@ -509,7 +515,7 @@ function snowflakes(enabled) {
 // so that if you have never turned them on, during christmas they'll auto-turn on
 var snowflakesDefault = false;
 var snowflakesOption = "settings_global__snowflakes-nochristmas";
-if(christmas) {
+if (christmas) {
     var snowflakesDefault = true;
     var snowflakesOption = "settings_global__snowflakes";
 }

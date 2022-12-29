@@ -725,3 +725,29 @@ input[type=range]:focus::-ms-fill-upper {
 .osekai__navbar-alert-clickable {
     box-shadow: 0px 0px 20px #0002;
 }
+
+.osekai__dropdown-settings-new-pages {
+	background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(75% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(65% * var(--accent_valueoffset))) );
+}
+
+.osekai__dropdown-settings-new-content {
+	background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(90% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(80% * var(--accent_valueoffset))) );
+}
+
+.osekai__dropdown-settings-new-radio-item span {
+	background-color: #0001;
+	outline: 3px solid #0001;
+}
+
+.osekai__dropdown-settings-new-radio-item-checked span {
+	background-color: rgb(var(--accent));
+}
+
+.osekai__dropdown-settings-new-page-active {
+    color: white;
+    background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(55% * var(--accent_valueoffset))) );
+}
+
+.osekai__blur-overlay {
+    filter: brightness(2) saturate(0.4);
+}
