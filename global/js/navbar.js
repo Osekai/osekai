@@ -350,7 +350,7 @@ var settingUtils = {
     },
 }
 
-var settingsPages = [
+const settingsPages = [
     {
         name: "theme",
         icon: "fas fa-brush ",
