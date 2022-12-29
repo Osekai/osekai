@@ -309,13 +309,13 @@ var settingUtils = {
     "baseCheckbox": function (name, checked, callback) {
         let innerDiv = document.createElement('div');
         innerDiv.classList.add("osekai__dropdown-settings-checkbox");
-        if(checked == true || checked == "true") {
+        if (checked == true || checked == "true") {
             innerDiv.classList.add("osekai__dropdown-settings-checkbox-active");
         }
         innerDiv.innerHTML = "<span><i class=\"fas fa-check\"></i></span><p>" + name + "</p>";
 
         innerDiv.addEventListener("click", function (e) {
-            if(innerDiv.classList.contains("osekai__dropdown-settings-checkbox-active")) {
+            if (innerDiv.classList.contains("osekai__dropdown-settings-checkbox-active")) {
                 callback(false);
                 innerDiv.classList.remove("osekai__dropdown-settings-checkbox-active");
             } else {
@@ -429,7 +429,7 @@ var settingsPages = [
         icon: "oif-app-medals",
         generate: async function (htmlInner) {
             var section = settingUtils.genericSection();
-            settingUtils.linkedCheckbox("compiletely hide medals when unobtained filter enabled", "settings_medals__hidemedalswhenunobtainedfilteron", section, false, function (enabled) {
+            settingUtils.linkedCheckbox("completely hide medals when unobtained filter enabled", "settings_medals__hidemedalswhenunobtainedfilteron", section, false, function (enabled) {
                 if (typeof filterAchieved != 'undefined') filterAchieved(true, true);
             });
             htmlInner.appendChild(section);
