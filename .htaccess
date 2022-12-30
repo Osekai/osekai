@@ -79,3 +79,7 @@ RedirectMatch 404 ^/tools/src/(.*)/index.php$
     #RewriteCond %{REQUEST_FILENAME} !-f
     #RewriteRule ^(.*)$ /offline-work.html [L]
 </If>
+
+<FilesMatch ".(eot|otf|ttf|woff|woff2)">
+    Header always set Access-Control-Allow-Origin "*"
+</FilesMatch>
