@@ -228,7 +228,8 @@ function updateTheme() {
     }
 
     if (theme.internal == "custom" || theme.internal == "custom-light") {
-        document.getElementById("custom_theme_container").innerHTML = `body {` + generateCustomThemeVars(customTheme.accent, customTheme.accent_dark) + `}`
+        document.getElementById("custom_theme_container").innerHTML = `body {${generateCustomThemeVars(customTheme.accent, customTheme.accent_dark)}}`
+
         // NOTE: i can't test the accent_valueoffset yet since the light mode doesn't support the new HSL colours just yet.
         // this probably will look weird when that's finished since the values are tailored for dark mode instead.
 
