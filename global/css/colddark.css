@@ -3,8 +3,6 @@
 }
 html {
     background: #090b0b;
-    --accentdark: 0, 5, 10;
-    --accent: 155, 213, 235;
 }
 
 .osekai__navbar__app-container {

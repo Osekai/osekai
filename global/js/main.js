@@ -84,11 +84,23 @@ const themes = {
         "internal": "ultradark",
         "name": "loading...",
         "css": ["ultradark.css"],
+        "customAccent": {
+            "dark": "10, 8, 0",
+            "light": "255,255,255",
+            "lightOffset": 0,
+            "darkOffset": -0.15,
+        }
     },
     "colddark": {
         "internal": "colddark",
         "name": "loading...",
         "css": ["colddark.css"],
+        "customAccent": {
+            "dark": "0, 5, 10",
+            "light": "155, 213, 235",
+            "lightOffset": 0,
+            "darkOffset": 0,
+        }
     },
     "flatwhite": {
         "internal": "softwhite",
@@ -168,6 +180,25 @@ var cp_accent = null;
 
 const settingsLoadEvent = new Event('settings-load');
 
+function generateCustomThemeVars(accent, accentDark, valueOffsetOffset = 0, valueOffsetOffsetDark = 0) {
+    var accentDark_split = String(accentDark).split(",");
+    var accent_split = String(accent).split(",");
+    var accentDark_hsl = colours.RGBToHSL(accentDark_split[0], accentDark_split[1], accentDark_split[2]);
+    var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[1], accent_split[2]);
+    console.log("$(*(*" + accentDark);
+    return `--accentdark: ${accentDark} !important;
+            --accent: ${accent} !important;
+            
+            --accentdark_hue: ${accentDark_hsl[0]}deg;
+            --accent_hue: ${accent_hsl[0]}deg;
+            --accentdark_saturation: ${accentDark_hsl[1]}%;
+            --accent_saturation: ${accent_hsl[1]}%;
+            --accentdark_value: ${accentDark_hsl[2]}%;
+            --accent_value: ${accent_hsl[2]}%;
+
+            --accentdark_valueoffset: ${(accentDark_hsl[2]) / 45 + 0.2 + valueOffsetOffsetDark};
+            --accent_valueoffset: ${(accentDark_hsl[2] / 50) + 0.2 + valueOffsetOffset};`;
+}
 
 function updateTheme() {
     //console.log("switching to: " + theme);
@@ -190,28 +221,15 @@ function updateTheme() {
                 document.getElementById("css_cont").innerHTML += "<link id='" + theme + "_relative' rel='stylesheet' type='text/css' href='css/" + theme["css"][i] + "?v=" + version + "'>";
             }
         }
+        if (typeof theme["customAccent"] != 'undefined') {
+
+            document.getElementById("custom_theme_container").innerHTML = `body {` + generateCustomThemeVars(theme["customAccent"].light, theme["customAccent"].dark, theme["customAccent"].lightOffset, theme["customAccent"].darkOffset) + `}`
+        }
     }
 
     if (theme.internal == "custom" || theme.internal == "custom-light") {
-        var accentDark_split = String(customTheme.accent_dark).split(",");
-        var accent_split = String(customTheme.accent).split(",");
-        var accentDark_hsl = colours.RGBToHSL(accentDark_split[0], accentDark_split[1], accentDark_split[2]);
-        var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[1], accent_split[2]);
+        document.getElementById("custom_theme_container").innerHTML = `body {${generateCustomThemeVars(customTheme.accent, customTheme.accent_dark)}}`
 
-        document.getElementById("custom_theme_container").innerHTML = `html{
-            --accentdark: ${customTheme.accent_dark} !important;
-            --accent: ${customTheme.accent} !important;
-            
-            --accentdark_hue: ${accentDark_hsl[0]}deg;
-            --accent_hue: ${accent_hsl[0]}deg;
-            --accentdark_saturation: ${accentDark_hsl[1]}%;
-            --accent_saturation: ${accent_hsl[1]}%;
-            --accentdark_value: ${accentDark_hsl[2]}%;
-            --accent_value: ${accent_hsl[2]}%;
-
-            --accentdark_valueoffset: ${accentDark_hsl[2] / 45 + 0.2};
-            --accent_valueoffset: ${accentDark_hsl[2] / 50 + 0.2};
-        }`;
         // NOTE: i can't test the accent_valueoffset yet since the light mode doesn't support the new HSL colours just yet.
         // this probably will look weird when that's finished since the values are tailored for dark mode instead.
 
@@ -221,8 +239,8 @@ function updateTheme() {
         window.localStorage.setItem("accent_dark", customTheme.accent_dark);
         window.localStorage.setItem("accent", customTheme.accent);
         window.addEventListener('settings-load', function () {
-        document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
-        if (cp_accent == null) {
+            document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
+            if (cp_accent == null) {
                 cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
                     customTheme.accent_dark = col;
                     updateTheme();
@@ -232,8 +250,8 @@ function updateTheme() {
                     customTheme.accent = col;
                     updateTheme();
                 }, customTheme.accent);
-        }
-    });
+            }
+        });
     } else {
         window.addEventListener('settings-load', function () {
             document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
