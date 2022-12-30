@@ -3,7 +3,7 @@
 	url = https://github.com/osekai/osekai-admin
 	branch = main
 [submodule "tools/src/medal_comparer"]
-	path = tools/src/medal_comparer
+	path = tools/src/comparer
 	url = https://github.com/Osekai/tools-medal_comparer.git
 [submodule "tools/src/medal_name_quiz"]
 	path = tools/src/medal_name_quiz
