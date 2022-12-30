@@ -2,9 +2,9 @@
 	path = admin
 	url = https://github.com/osekai/osekai-admin
 	branch = main
-[submodule "tools/src/medal_comparer"]
+[submodule "tools/src/comparer"]
 	path = tools/src/comparer
-	url = https://github.com/Osekai/tools-medal_comparer.git
+	url = https://github.com/Osekai/tools-comparer.git
 [submodule "tools/src/medal_name_quiz"]
 	path = tools/src/medal_name_quiz
 	url = https://github.com/Osekai/tools-medal_name_quiz
