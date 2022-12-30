@@ -1,6 +1,6 @@
 ![](https://raw.githubusercontent.com/Osekai/osekai/main/global/img/cover/medals.jpg)
 # *Osekai*
-Hey there, welcome to the official Osekai repository! We're an open-source website specializing in apps and tools for the rhythm game "osu!"
+Hey there, welcome to the official Osekai repository! We're an open-source website specializing in apps and tools for the rhythm game "[osu!](https://osu.ppy.sh/)"
 
 If you're interested in helping out with development, read on! Else, if you just want to use the website, [check it out here](https://osekai.net)!
 
