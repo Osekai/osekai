@@ -20,7 +20,9 @@ Run `php -S localhost:8080` in the folder, then access at http://localhost:8080
 
 An Apache/httpd setup is required to run Osekai completely. Without it, certain apps such as Teams, Tools, and more will not function, and pages such as the 404 page will not show up. If you are planning to work on osekai alot, using apache is recommended.
 
-Start by setting up apache like you usually would, you can follow a plethora of online tutorials for this. After you're done, just make sure it's using php8.1 and is pointing to the Osekai folder.
+**The easiest way to do this is to install XAMPP, and then change the directory in the httpd/apache config to point to your Osekai clone.**
+
+If you feel like installing it manually, though, start by setting up apache like you usually would, you can follow a plethora of online tutorials for this. After you're done, just make sure it's using php8.1 and is pointing to the Osekai folder.
 
 You can use [this script](https://pastebin.com/3XGT5HwE) I've made to quickly switch between folders, keep in mind this'll only work on Arch Linux, so you'll need to edit the script for other distros. - `sudo switch /home/tanza/Documents/orgs/osekai/osekai` 
 
@@ -29,7 +31,7 @@ Create a new user, call it whatever, whatever password, just remember it.
 
 Make a new database called `osekai`, you can name it whatever, but osekai is recommended. It's recommended to make it using **ufg8mb4_unicode_c1**
 
-Run the `template.sql` file on this table, you can do this by just copying the content into a query tab and running it.
+Run all the files in `db/` on this table, you can do this by just copying the content into a query tab and running it.
 
 At that point you just need to fill in each field in config.php, and it should work.
 
