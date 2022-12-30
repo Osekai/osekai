@@ -221,7 +221,8 @@ function updateTheme() {
                 document.getElementById("css_cont").innerHTML += "<link id='" + theme + "_relative' rel='stylesheet' type='text/css' href='css/" + theme["css"][i] + "?v=" + version + "'>";
             }
         }
-        if (theme["customAccent"] != undefined) {
+        if (typeof theme["customAccent"] != 'undefined') {
+
             document.getElementById("custom_theme_container").innerHTML = `body {` + generateCustomThemeVars(theme["customAccent"].light, theme["customAccent"].dark, theme["customAccent"].lightOffset, theme["customAccent"].darkOffset) + `}`
         }
     }
