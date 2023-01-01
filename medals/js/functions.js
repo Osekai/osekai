@@ -574,7 +574,7 @@ function loadBeatmap(oBeatmap) {
         `</div>` +
         `<div class="medals__bmp3-top-right">` +
         `<p class="medals__bmp3-tr-difficulty">` + escapeHtml(oBeatmap.DifficultyName) + `</p>` +
-        `<p class="medals__bmp3-tr-mapper translatable">??medals.beatmap.mappedBy?? <span class="medals__bmp3-bold user_hover_v2" userid="` + oBeatmap.MapperID + `">` + escapeHtml(oBeatmap.Mapper) + `</span></p>` +
+        `<p class="medals__bmp3-tr-mapper translatable">??medals.beatmap.mappedBy?? <span class="medals__bmp3-bold">` + escapeHtml(oBeatmap.Mapper) + `</span></p>` +
         `</div>` + `</a>
             <div class="medals__bmp3-bottom">
                 <p class="medals__bmp2-submitter translatable">

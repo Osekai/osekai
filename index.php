@@ -39,9 +39,9 @@ dropdown_system();
 init3col();
 mobileManager();
 
-user_hover_system();
-medal_hover_system();
-tooltip_system();
+
+
+
 report_system();
 notification_system();
 fontawesome();
@@ -190,11 +190,7 @@ medal_popup_v2();
                             <p>A few hover panels</p>
                         </div>
                         <div class="osekai__panel-inner">
-                            <div class="osekai__generic-warning">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <p>This is horrible, and needs to be recoded! :3</p>
-                            </div>
-                            <a class="user_hover_v2" userid="2">oh look its ppy</a>
+                            gone, need to rewrite them :)
                         </div>
                     </section>
                     <section class="osekai__panel">

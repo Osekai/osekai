@@ -61,7 +61,7 @@ $meta .= '
     mobileManager();
     notification_system();
     tippy();
-    tooltip_system();
+    
     ?>
     <link rel="stylesheet" href="<?= $toolInfo['urlpath'] ?>/css/main.css">
 </head>

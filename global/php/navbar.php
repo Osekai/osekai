@@ -3,7 +3,7 @@ mobileManager();
 fontawesome();
 xhr_requests();
 tippy();
-tooltip_system(); // to replace old ones
+ // to replace old ones
 colour_picker();
 
 $otherApps = [];

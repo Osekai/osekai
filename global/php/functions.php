@@ -384,59 +384,6 @@ function lottie()
     echo '<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>';
 }
 
-$hoversystemloaded = false;
-
-function user_hover_system()
-{
-    global $hoversystemloaded;
-
-    // loads hover system
-
-    $id = 0;
-    $avatar = "";
-    $name = "Loading..."; // none of these need to be here
-
-    // best way to load html into a page
-
-    // 02/11/2021 hubz: no its fucking not lmao
-    // should be importing a php or html file at the very least
-    // TODO: fix this mess
-
-    echo '<a id="beatmap_hover_panel" href="https://osu.ppy.sh/users/' . $id . '" class="osekai__hoverpanel beatmap_hover_panel_hidden osekai__userpanel">
-    <img id="bhp_avi" src="' . $avatar . '" class="osekai__userpanel-pfp">
-    <img id="bhp_ctc" src="https://osu.ppy.sh/images/flags/XX.png" class="osekai__userpanel-countryflag">
-    <p id="bhp_usn" class="osekai__userpanel-username">' . $name . '</p>
-    </a>';
-
-    echo '<a id="userhoverpanel_v2" href="https://osu.ppy.sh/users/1309242" class="osekai__userpanel-v2 osekai__userpanel-hoverpanel osekai__userpanel-hoverpanel-hidden">
-    <img id="userhoverpanel_v2_blur" src="" class="osekai__userpanel-v2-blur">
-    <div class="osekai__userpanel-v2-inner">
-        <img id="userhoverpanel_v2_pfp" src="" class="osekai__userpanel-v2-pfp">
-        <div class="osekai__userpanel-v2-texts">
-            <div class="osekai__userpanel-v2-top">
-                <p id="userhoverpanel_v2_username" class="osekai__userpanel-v2-username">mulraf</p>
-                <img id="userhoverpanel_v2_gamemode" src="/global/img/gamemodes/standard.svg" class="osekai__userpanel-v2-gamemode">
-                <p class="osekai__userpanel-v2-rank" id="userhoverpanel_v2_rank">#48,376 <span class="osekai__transparent-text">global</span></p>
-            </div>
-            <div class="osekai__userpanel-v2-bottom">
-                <div class="osekai__userpanel-v2-area">
-                    <div class="osekai__userpanel-v2-icon">
-                        <p>pp</p>
-                    </div>
-                    <p class="osekai__userpanel-v2-value" id="userhoverpanel_v2_pp">5000</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</a>';
-
-    // should be an include lmao
-
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
-    $hoversystemloaded = true;
-    // nothing ever checks this lmao
-}
-
 $reportsystemloaded = false;
 
 function report_system()
@@ -469,46 +416,6 @@ function osu_api()
 function xhr_requests()
 {
     echo '<script rel="preload" type="text/javascript" src="/global/js/xhr.js?v='.OSEKAI_VERSION.'"></script>';
-}
-
-function medal_hover_system()
-{
-    global $hoversystemloaded;
-
-    // loads medal hover system
-
-    echo '<a href="osekai.net" class="medal_hover_panel medal_hover_panel_hidden" id="medal_hover_panel" style="--mouse-x: 0;">
-        <img class="mhp__medal-icon-blur" id="mhp_blur" src="https://assets.ppy.sh/medals/">
-        <div class="medal_hover_panel-inner">    
-            <div class="mhp__top">
-                <img class="mhp__medal-icon" id="mhp_mic" src="https://assets.ppy.sh/medals/">
-                <div class="mhp__left-area">
-                    <p class="mhp__medal-name" id="mhp_nam">Loading...</p>
-                    <p class="mhp__medal-desc" id="mhp_dsc">Loading...</p>
-                </div>
-            </div>
-            <p class="mhp_solution" id="mhp_sol">you figure it out lmao</p>
-        </div>
-    </a>';
-
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
-    $hoversystemloaded = true;
-}
-
-function tooltip_system()
-{
-    global $hoversystemloaded;
-
-    // loads medal hover system
-
-    echo '
-    <div id="tooltip" class="tooltip_obj tooltip_hidden">
-        <p id="tooltip_text">Tooltip!</p>
-    </div>
-    ';
-
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
-    $hoversystemloaded = true;
 }
 
 function loggedin()
@@ -626,26 +533,6 @@ function getmedal($name)
         "LEFT JOIN MedalStructure ON MedalStructure.MedalID = Medals.medalid " .
         "WHERE Medals.name = ?", "s", array($name));
     return ($medals[0]); // guess what this function does
-}
-
-function spawnuserpanel($id)
-{
-    // Spawns a user panel
-    //
-    // Usage:
-    // spawnuserpanel(2); [spawns a user panel for peppy]
-
-    $user = getuser($id);
-    //print_r($user);
-    $avatar = $user['avatar_url'];
-    $name = $user['name'];
-    $countrycode = $user['country_code'];
-
-    echo '<a href="https://osu.ppy.sh/users/' . $id . '" class="osekai__userpanel">
-    <img src="' . $avatar . '" class="osekai__userpanel-pfp">
-    <img src="https://osu.ppy.sh/images/flags/' . $countrycode . '.png" class="osekai__userpanel-countryflag">
-    <p class="osekai__userpanel-username">' . $name . '</p>
-    </a>';
 }
 
 function pushnotification($title, $message, $userid, $sysid = "", $html = "")
