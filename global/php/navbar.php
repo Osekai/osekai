@@ -618,4 +618,4 @@ include("search_overlay.php");
 <script type="text/javascript" src="<?= ROOT_URL; ?>/global/js/variables.js?v=<?= OSEKAI_VERSION; ?>"></script>
 <script rel="preload" type="text/javascript" src="<?= ROOT_URL; ?>/global/js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
 
-<script src="<?= ROOT_URL; ?>/global/js/navbar.js"></script>
+<script src="<?= ROOT_URL; ?>/global/js/navbar.js?v=<?= OSEKAI_VERSION; ?>"></script>
