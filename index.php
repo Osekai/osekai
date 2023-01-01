@@ -148,27 +148,7 @@ medal_popup_v2();
                                     <p>right?... right???</p>
                                 </div>
                             </div>
-                            <a href="https://osu.ppy.sh/users/1309242" class="osekai__userpanel-v2">
-                                <img src="https://a.ppy.sh/1309242" class="osekai__userpanel-v2-blur">
-                                <div class="osekai__userpanel-v2-inner">
-                                    <img src="https://a.ppy.sh/1309242" class="osekai__userpanel-v2-pfp">
-                                    <div class="osekai__userpanel-v2-texts">
-                                        <div class="osekai__userpanel-v2-top">
-                                            <p class="osekai__userpanel-v2-username">mulraf</p>
-                                            <img src="/global/img/gamemodes/standard.svg" class="osekai__userpanel-v2-gamemode">
-                                            <p class="osekai__userpanel-v2-rank">#48,376 <span class="osekai__transparent-text">global</span></p>
-                                        </div>
-                                        <div class="osekai__userpanel-v2-bottom">
-                                            <div class="osekai__userpanel-v2-area">
-                                                <div class="osekai__userpanel-v2-icon">
-                                                    <p>pp</p>
-                                                </div>
-                                                <p class="osekai__userpanel-v2-value">5000</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                            So long, old user panel. 🫡
                         </div>
                     </section>
                     <section class="osekai__panel">
