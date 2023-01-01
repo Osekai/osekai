@@ -208,12 +208,6 @@ body {
     background-color: #2224;
 }
 
-
-.osekai__nav-dropdown {
-    background-color: #fff;
-    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.1));
-}
-
 .osekai__userdropdown_v2-button {
     background-color: #fff;
     filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.1));

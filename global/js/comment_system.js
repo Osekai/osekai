@@ -340,7 +340,7 @@ function textAreaAdjust(o) {
 function urlify(text) {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, function (url) {
-        return '<a class="osekai__url" href="' + url + '">' + url + '</a>';
+        return '<a href="' + url + '">' + url + '</a>';
     })
 }
 

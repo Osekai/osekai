@@ -30,7 +30,5 @@
     "team.role.generic.snapshotsManager": "Snapshots Manager",
     "team.role.generic.snapshotsDeveloper": "Snapshots Developer",
     "team.role.generic.developer": "Developer",
-    "team.role.generic.communityManager": "Community Manager",
-    "harumachi.title": "Harumachi Cup Omega. The final one.",
-    "harumachi.text": "The best worst osu! tournament returns for the last time. Check it out!"
+    "team.role.generic.communityManager": "Community Manager"
 }

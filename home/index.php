@@ -85,16 +85,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </div>
             </a>
-
-
-            <!-- <a class="home__long-panel home__panel-hoverable" style="--paccent: 0, 0, 0; --paccent-bright: 255, 102, 170; background-image: url('img/harumachi-bg.png');" href="https://harumachi.chromb.uk">
-                <div class="home__vertical-glowbar"></div>
-                <img class="home__long-img" src="img/harumachi.svg" style="transform: scale(1.3);">
-                <div class="home__long-texts">
-                    <h1><?php echo GetStringRaw("home", "harumachi.title"); ?></h1>
-                    <p><?php echo GetStringRaw("home", "harumachi.text"); ?></p>
-                </div>
-            </a> -->
             <div class="home__panel-row2">
                 <a class="home__panel home__panel-hoverable home__panel_vertical" style="--paccent: 102, 34, 68; --paccent-bright: 255, 102, 170;" href="/medals">
                     <img class="home__panel-img" src="img/medals.png">
