@@ -333,29 +333,6 @@ foreach ($apps as $a) {
     </div>
 </div>
 
-
-<?php if (loggedin()) { ?>
-    <style>
-        .osekai__userdropdown-bg {
-            background-image: linear-gradient(to left, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.5)), url(<?= getcover(); ?>);
-        }
-
-        .osekai__userdropdown_v2-bg {
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.51) 23.05%, rgba(0, 0, 0, 0) 100%), center/100% url(<?= getcover(); ?>);
-        }
-
-        .osekai__nav-dropdown-v2-mainpanel {
-            background: linear-gradient(263.14deg, rgba(var(--accentdark), 0.568) -1.04%, rgba(var(--accentdark), 0.8) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url(<?= getcover(); ?>), linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), rgba(0, 0, 0, 0.5);
-            background-blend-mode: normal, luminosity, normal, normal, normal;
-            background-size: cover, cover, cover, cover, cover;
-            background-position: center, center, center, center, center;
-            background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-        }
-    </style>
-<?php } ?>
-
-
-
 <div id="dropdown__user" class="osekai__nav-dropdown-v2 osekai__nav-dropdown-hidden">
     <?php if (loggedin()) { ?>
         <div class="osekai__nav-dropdown-v2-mainpanel">
