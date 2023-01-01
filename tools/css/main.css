@@ -40,8 +40,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-
-    filter: hue-rotate(calc(var(--accentdark_hue) - 50deg))
+    filter: hue-rotate(var(--accentdark_hue))
 }
 
 .tools__tool-header-side {
@@ -103,4 +102,8 @@ border: 1px solid #fff2;
 .tools__tool-header-side-left img {
     height: 30px;
     margin-right: 10px;
+}
+.tools__tool {
+    z-index: 2;
+    position: relative;
 }
