@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 // report errors
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 
 if (isset($_POST['App'])) {
     // <hubz> cache loading

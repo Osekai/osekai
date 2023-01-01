@@ -15,7 +15,7 @@ $percentage = $_POST['percentage'];
 // print errors
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 
 Database::execOperation("INSERT INTO `AuthenticatorUsers` (`osuID`, `DiscordID`, `osuUsername`, `MedalCount`, `Percentage`, `Type`)
                         VALUES (?, ?, ?, ?, ?, 'discord');", "issis", array($osuID, $discordID, $osuUsername, $medalCount, $percentage));

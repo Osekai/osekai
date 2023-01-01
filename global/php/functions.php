@@ -14,7 +14,7 @@ $christmas = true;
 $useJS = true;
 
 // report errors. this is disabled later in the code somewhere, unsure where
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
@@ -675,7 +675,7 @@ function print_home_panel()
     // print errors
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+    error_reporting(E_ERROR);
 
     $html = '<div class="osekai__home-panel">
         <div class="osekai__home-panel-inner">

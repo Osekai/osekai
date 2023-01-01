@@ -38,7 +38,7 @@ function migrationLog($text, $title = "log", $color = "#000", $big = false)
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 // report using migrationError()
 set_error_handler("migrationError");
 function migrationError($errno, $errstr, $errfile, $errline)

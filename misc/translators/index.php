@@ -51,7 +51,7 @@ mobileManager();
                 <div class="osekai__panel-header"><?= GetStringRaw("misc/translators", "list.title") ?></div>
                 <div class="osekai__panel-inner translators__list">
                     <?php
-                    error_reporting(E_ALL);
+                    error_reporting(E_ERROR);
                     ini_set('display_errors', 0);
                     ini_set('display_startup_errors', 0);
 
