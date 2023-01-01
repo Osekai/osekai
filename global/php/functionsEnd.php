@@ -38,6 +38,8 @@ $tooltipText = "This debug panel is so that you, and our team, can make sure Ose
                 <?= $gitBranchLink != "" ? '<a href="' . $gitBranchLink . '">' . $gitBranchName . '</a>' : $gitBranchName ?></strong>)
 
         <p style="font-size: 10px"><?= $gitDate; ?> UTC</p>
+
+        <p>Version Key <?= OSEKAI_VERSION ?></p>
     </div>
 </div>
 
