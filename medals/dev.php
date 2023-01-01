@@ -112,9 +112,9 @@ if (isset($_GET['medal'])) {
 
     xhr_requests();
     notification_system();
-    user_hover_system();
-    medal_hover_system();
-    tooltip_system();
+    
+    
+    
     comments_system();
     report_system();
     mobileManager();

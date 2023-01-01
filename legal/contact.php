@@ -25,9 +25,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     css();
     dropdown_system();
     //notification_system();
-    //user_hover_system();
-    //medal_hover_system();
-    //tooltip_system();
+    //
+    //
+    //
     //comments_system();
     //report_system();
     ?>

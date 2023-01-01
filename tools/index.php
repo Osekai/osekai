@@ -41,7 +41,7 @@ $meta .= '
     mobileManager();
     notification_system();
     tippy();
-    tooltip_system();
+    
     ?>
 </head>
 

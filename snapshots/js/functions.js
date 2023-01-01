@@ -123,7 +123,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     document.getElementById("archived_by").innerHTML = await GetStringRaw("snapshots", "version.archivedBy", [`<strong class="user_hover" userid="` + thisver["archive_info"]["archiver"] + `" hoverside="right">` + thisver["archive_info"]["archiver"] + `</strong>`]); 
 
     if(thisver["archive_info"]["archiver_id"] != null && thisver["archive_info"]["archiver_id"] != ""){
-        document.getElementById("archived_by").innerHTML = await GetStringRaw("snapshots", "version.archivedBy", [`<img class="snapshots__archiver-pfp" src="` + thisver['archive_info']['pfp'] + `"> <strong class="user_hover_v2" userid="` + thisver["archive_info"]["archiver_id"] + `" hoverside="right">` + thisver["archive_info"]["archiver"] + `</strong>`]);
+        document.getElementById("archived_by").innerHTML = await GetStringRaw("snapshots", "version.archivedBy", [`<img class="snapshots__archiver-pfp" src="` + thisver['archive_info']['pfp'] + `"> <strong>` + thisver["archive_info"]["archiver"] + `</strong>`]);
     }
 
     document.getElementById("version_header").style = `background: linear-gradient(90deg, #262C7C 0%, rgba(38, 44, 124, 0.25) 100%), url(` + "versions/" + thisver["version_info"]["version"] + `/thumbnail.jpg) no-repeat top center; background-size: cover; background-position: center;`;

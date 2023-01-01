@@ -93,9 +93,9 @@ frontend();
 
     xhr_requests();
     osu_api();
-    user_hover_system();
+    
     medal_popup_v2();
-    tooltip_system();
+    
     report_system();
     notification_system();
     comments_system();

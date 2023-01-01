@@ -23,9 +23,9 @@ mobileManager();
 
 xhr_requests();
 osu_api();
-user_hover_system();
-medal_hover_system();
-tooltip_system();
+
+
+
 report_system();
 notification_system();
 //comments_system();

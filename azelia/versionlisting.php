@@ -21,13 +21,13 @@
                         </div>
                         <div class="osekai__panel-header-viewtypes osekai__panel-header-viewtypes-size">
                             <!-- "grid_large", "list_2wide", "list_1wide", "ultra_compact" -->
-                            <div tooltip="Grid" class="tooltip osekai__panel-header-viewtype osekai__panel-header-viewtype-active" onclick="changeViewtype('grid_large')" id="viewtype-grid_large">
+                            <div tooltip-content="Grid" class="tooltip-v2 osekai__panel-header-viewtype osekai__panel-header-viewtype-active" onclick="changeViewtype('grid_large')" id="viewtype-grid_large">
                                 <i class="fas fa-grip-horizontal" aria-hidden="true"></i>
                             </div>
-                            <div tooltip="Compact List" class="tooltip osekai__panel-header-viewtype desktop" onclick="changeViewtype('list_2wide')" id="viewtype-list_2wide">
+                            <div tooltip-content="Compact List" class="tooltip-v2 osekai__panel-header-viewtype desktop" onclick="changeViewtype('list_2wide')" id="viewtype-list_2wide">
                                 <i class="fas fa-th-list" aria-hidden="true"></i>
                             </div>
-                            <div tooltip="Ultra Compact" class="tooltip osekai__panel-header-viewtype" onclick="changeViewtype('ultra_compact')" id="viewtype-ultra_compact">
+                            <div tooltip-content="Ultra Compact" class="tooltip-v2 osekai__panel-header-viewtype" onclick="changeViewtype('ultra_compact')" id="viewtype-ultra_compact">
                                 <i class="fas fa-box" aria-hidden="true"></i>
                             </div>
                         </div>

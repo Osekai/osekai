@@ -71,9 +71,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     dropdown_system();
     mobileManager();
 
-    user_hover_system();
-    medal_hover_system();
-    tooltip_system();
+    
+    
+    
     report_system();
     notification_system();
     fontawesome();
