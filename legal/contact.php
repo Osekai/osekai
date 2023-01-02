@@ -52,7 +52,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             </div>
             <p style="opacity: 0.5;"><?php echo GetStringRaw("contact", "siteOwner", ["Frederik Reidinger • Wacholderweg 6, 84032 Landshut, Deutschland • frederik.reidinger@gmx.de • +49 0871 79287"]); ?></p>
             <p style="opacity: 0.5;"><?php echo GetStringRaw("contact", "snapshots"); ?></p>
-            <p style="opacity: 0.5; margin-top: 8px;">©️ Osekai 2019-2022</p>
+            <p style="opacity: 0.5; margin-top: 8px;">©️ Osekai 2019-2023</p>
         </div>
     </div>
 </body>
