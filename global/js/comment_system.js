@@ -123,7 +123,7 @@ function Comments_Sort(oParent, MedalID, VersionId = -1, ProfileID = -1) {
 
     Comments_HierarchySort(COMMENTS_col_hash, 0, [], MedalID);
     Comments_Create(oParent, MedalID);
-    twemoji.parse(oParent);
+    //twemoji.parse(oParent);
 }
 
 function Comments_Create(oParent, MedalID) {
