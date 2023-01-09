@@ -280,7 +280,7 @@ function comments_system()
     tippy();
 
     // twemoji for emojis
-    echo '<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>';
+    //echo '<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>';
 
     // emoji picker
     echo '<script src="/global/js/picmo/picmo.js?v='.OSEKAI_VERSION.'"></script>';
