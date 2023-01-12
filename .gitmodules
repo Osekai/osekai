@@ -2,18 +2,3 @@
 	path = admin
 	url = https://github.com/osekai/osekai-admin
 	branch = main
-[submodule "tools/src/comparer"]
-	path = tools/src/comparer
-	url = https://github.com/Osekai/tools-comparer.git
-[submodule "tools/src/medal_name_quiz"]
-	path = tools/src/medal_name_quiz
-	url = https://github.com/Osekai/tools-medal_name_quiz
-[submodule "tools/src/medal_percentage"]
-	path = tools/src/medal_percentage
-	url = https://github.com/Osekai/tools-medal_percentage
-[submodule "tools/src/ppcalc"]
-	path = tools/src/ppcalc
-	url = https://github.com/Osekai/tools-ppcalc
-[submodule "tools/src/stdev_pp_calc"]
-	path = tools/src/stdev_pp_calc
-	url = https://github.com/Osekai/tools-stdev_pp_calculator

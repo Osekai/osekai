@@ -1,0 +1,71 @@
+.tools__tool {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    height: 100%;
+}
+
+.tools__tool-generic-background {
+    filter: hue-rotate(var(--accentdark_hue)) brightness(1.5) contrast(0.8);
+}
+
+.osekai__input-invalid {
+    outline: 2px solid #ff2233 !important;
+}
+.osekai__input-invalid:focus {
+    outline: 2px solid #ff2233 !important;
+}
+
+.sppc__inputs {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #0003;
+}
+
+.sppc__inputs p {
+    font-size: 16px;
+    margin-bottom: 4px;
+    margin-top: 14px;
+}
+
+.sppc__inputs p:first-child {
+    margin-top: 0px;
+}
+
+.sppc__inputs p i {
+    font-size: 25px;
+}
+
+.sppc_result {
+    height: 80px;
+    min-width: 168px;
+    padding: 0px 40px;
+    font-size: 50px;
+    font-weight: 900;
+    color: rgb(var(--accentdark));
+    background-color: #FFC0ED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 900px;
+}
+
+.sppc__results {
+    margin-left: 40px;
+}
+
+.sppc__results .sppc_result-area:first-child {
+    margin-top: 0px;
+}
+
+.sppc_result-area {
+    margin-top: 50px;
+}
+
+.sppc_result-area h3 {
+    font-size: 23px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 8px;
+}

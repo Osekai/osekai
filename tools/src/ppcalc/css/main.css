@@ -1,0 +1,71 @@
+.tools__tool-container {
+    --accentdark: 32,44,40;
+}
+.tools__tool-container-inner {
+    --background-color: #192321;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ppcalc__bg-bottomleft {
+    left: 94px;
+    bottom: 94px;
+}
+.ppcalc__bg-topright {
+    top: 94px;
+    right: 94px;
+}
+
+.selected {
+    background-color: red;
+}
+
+input[type=checkbox] {
+    display:none;
+}
+
+input[type=checkbox] + label {
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    height: 66px;
+    width: 68px;
+    display: inline-block;
+    padding: 0;
+    cursor: pointer;
+    
+    -webkit-transition: background-size 0.2s, -webkit-transform 0.2s;
+    transition:         background-size 0.2s, transform 0.2s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function:         ease;
+}
+
+input[type=checkbox]:checked + label {
+    background-size: 100%;
+    -webkit-transform: rotate(5deg);
+    transform:         rotate(5deg);
+}
+
+#EZ + label {
+    background-image: url("/tools/src/ppcalc/images/EZ.png");
+}
+
+#HR + label {
+    background-image: url("/tools/src/ppcalc/images/HR.png");
+}
+
+#HT + label {
+    background-image: url("/tools/src/ppcalc/images/HT.png");
+}
+
+#DT + label {
+    background-image: url("/tools/src/ppcalc/images/DT.png");
+}
+
+#HD + label {
+    background-image: url("/tools/src/ppcalc/images/HD.png");
+}
+
+#FL + label {
+    background-image: url("/tools/src/ppcalc/images/FL.png");
+}
