@@ -23,7 +23,7 @@ if (isset($_GET['version'])) {
 
     $ver;
 
-    foreach ($test as $t) { 
+    foreach ($test as $t) {
         $temp = $t['json'];
         $temp = json_decode($temp, true);
         $temp["stats"]["views"] = $t['views'];
@@ -86,9 +86,9 @@ if ($_SESSION['role']['rights'] >= 1) {
     init3col();
 
     notification_system();
-    
-    
-    
+
+
+
     xhr_requests();
     comments_system();
     report_system();
@@ -128,6 +128,11 @@ if ($_SESSION['role']['rights'] >= 1) {
                     <p><?php echo GetStringRaw("snapshots", "submit.title"); ?></p>
                 </div>
                 <div class="osekai__panel-inner">
+                    <div class="osekai__generic-warning osekai__generic-warning-info" style="margin-bottom: 8px;">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        <p>Our team currently does not have much time to review submissions, which means we may take a few months to get to yours. We apologize for any inconvenience! Your submission is still highly appreciated, and we will get to it soon!</p>
+                    </div>
+                   
                     <div class="osekai__input-area">
                         <h1 class="osekai__h1"><?php echo GetStringRaw("snapshots", "submit.versionName.title"); ?></h1>
                         <p><?php echo GetStringRaw("snapshots", "submit.versionName.description"); ?></p>
@@ -473,7 +478,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                         <?php } else { ?>
                             <div class="osekai__panel-header-with-buttons" id="AddMapPanel">
                                 <div class="osekai__panel-hwb-left">
-                                <?php echo GetStringRaw("snapshots", "version.downloads.title"); ?>
+                                    <?php echo GetStringRaw("snapshots", "version.downloads.title"); ?>
                                 </div>
                                 <div class="osekai__panel-hwb-right" id="AddMapButton">
                                     <div onclick="addMirrorToCurrentVersion();" class="osekai__panel-header-button">
@@ -491,7 +496,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     </section>
                     <section class="osekai__panel" id="extra_info_panel">
                         <div class="osekai__panel-header">
-                        <?php echo GetStringRaw("snapshots", "version.extraInfo.title"); ?>
+                            <?php echo GetStringRaw("snapshots", "version.extraInfo.title"); ?>
                         </div>
                         <div class="osekai__panel-inner" id="extra_info">
                             loading...
@@ -515,7 +520,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     <?php } ?>
                     <section class="osekai__panel" id="video_panel">
                         <div class="osekai__panel-header">
-                        <?php echo GetStringRaw("general", "video.title"); ?>
+                            <?php echo GetStringRaw("general", "video.title"); ?>
                         </div>
                         <div class="osekai__panel-inner snapshots__youtube-embed">
                             <iframe id="video" width="100%" height="100%" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -523,7 +528,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     </section>
                     <section class="osekai__panel" id="warnings_panel">
                         <div class="osekai__panel-header">
-                        <?php echo GetStringRaw("snapshots", "version.warnings.title"); ?>
+                            <?php echo GetStringRaw("snapshots", "version.warnings.title"); ?>
                         </div>
                         <div class="osekai__panel-inner">
                             <div class="snapshots__warning-list" id="warnings_list">
@@ -535,12 +540,12 @@ if ($_SESSION['role']['rights'] >= 1) {
                         <?php if ($admin_access == false) { ?>
 
                             <div class="osekai__panel-header">
-                            <?php echo GetStringRaw("snapshots", "version.screenshots"); ?>
+                                <?php echo GetStringRaw("snapshots", "version.screenshots"); ?>
                             </div>
                         <?php } else { ?>
                             <div class="osekai__panel-header-with-buttons" id="AddMapPanel">
                                 <div class="osekai__panel-hwb-left">
-                                <?php echo GetStringRaw("snapshots", "version.screenshots"); ?> {Admin Edition}
+                                    <?php echo GetStringRaw("snapshots", "version.screenshots"); ?> {Admin Edition}
                                 </div>
                                 <div class="osekai__panel-hwb-right" id="AddMapButton">
                                     <div onclick="addScreenshotToCurrentVersion();" class="osekai__panel-header-button"><i class="fas fa-plus-circle osekai__panel-header-button-icon" aria-hidden="true"></i>
@@ -570,7 +575,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                 <div class="osekai__3col_col2">
                     <section class="osekai__panel">
                         <div class="osekai__panel-header">
-                        <?php echo GetStringRaw("snapshots", "home.welcome.title"); ?>
+                            <?php echo GetStringRaw("snapshots", "home.welcome.title"); ?>
                         </div>
                         <div class="osekai__panel-inner">
                             <h1 class="osekai__h1"><?php echo GetStringRaw("snapshots", "home.welcome"); ?></h1>
@@ -579,7 +584,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     </section>
                 </div>
                 <?php if (loggedin()) { ?>
-                    
+
                 <?php } else { ?>
                     <div class="osekai__3col_col3">
                         <section class="osekai__panel">
