@@ -51,7 +51,7 @@ mobileManager();
                 <div class="osekai__panel-header"><?= GetStringRaw("misc/translators", "list.title") ?></div>
                 <div class="osekai__panel-inner translators__list">
                     <?php
-                    error_reporting(E_ALL);
+                    error_reporting(E_ERROR);
                     ini_set('display_errors', 0);
                     ini_set('display_startup_errors', 0);
 
@@ -114,7 +114,7 @@ mobileManager();
                             if($translator['Id'] != 0) {
                                 echo '<a class="translators__language-translator translators__language-translator-hoverable nolink" href="/profiles?user='.$translator['Id'].'">';
                             } else {
-                                echo '<a class="translators__language-translator">';
+                                echo '<a class="translators__language-translator nolink">';
                             }
                             
                             echo '<img src="'.$avatar.'" class="osekai__pfp-blur-bg">';

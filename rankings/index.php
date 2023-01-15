@@ -89,10 +89,10 @@ $meta = '<meta charset="utf-8">
     mobileManager();
     notification_system();
     tippy();
-    user_hover_system();
-    //medal_hover_system();
+    
+    //
     medal_popup_v2();
-    tooltip_system();
+    
     //report_system();
     ?>
 </head>

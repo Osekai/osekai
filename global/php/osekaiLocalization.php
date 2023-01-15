@@ -44,12 +44,13 @@ $locales = [
         "short" => "sk",
         "flag" => "https://assets.ppy.sh/old-flags/SK.png",
     ],
-    /* "db_DB" => [
+    "db_DB" => [
         "name" => "Debug",
         "code" => "db_DB",
+        "experimental" => true,
         "short" => "db",
         "flag" => "https://assets.ppy.sh/old-flags/XX.png",
-    ], */
+    ],
     "hr_HR" => [
         "name" => "Hrvatski",
         "code" => "hr_HR",
@@ -202,9 +203,7 @@ $locales = [
     ],
     /* bulgarian */
     "bg_BG" => [
-        "name" => "български",
-        "wip" => true,
-        "experimental" => true,
+        "name" => "Български",
         "code" => "bg_BG",
         "short" => "bg",
         "flag" => "https://assets.ppy.sh/old-flags/BG.png"
@@ -333,7 +332,7 @@ function loadSource($source)
     global $sources;
     global $enabled;
     // if not a source
-    if (!in_array($source, $sourcesNames)) {
+    if (!in_array($source, $sourcesNames) || $currentLocale['code'] == "db_DB") {
         return;
     }
 

@@ -123,7 +123,7 @@ function Comments_Sort(oParent, MedalID, VersionId = -1, ProfileID = -1) {
 
     Comments_HierarchySort(COMMENTS_col_hash, 0, [], MedalID);
     Comments_Create(oParent, MedalID);
-    twemoji.parse(oParent);
+    //twemoji.parse(oParent);
 }
 
 function Comments_Create(oParent, MedalID) {
@@ -361,7 +361,7 @@ function OnInput() {
 function urlify(text) {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, function (url) {
-        return '<a class="osekai__url" href="' + url + '">' + url + '</a>';
+        return '<a href="' + url + '">' + url + '</a>';
     })
 }
 

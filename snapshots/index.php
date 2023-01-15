@@ -86,9 +86,9 @@ if ($_SESSION['role']['rights'] >= 1) {
     init3col();
 
     notification_system();
-    user_hover_system();
-    medal_hover_system();
-    tooltip_system();
+    
+    
+    
     xhr_requests();
     comments_system();
     report_system();
@@ -417,7 +417,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     <?php if (loggedin()) { ?>
                         <div onclick="openSubmission()" class="snapshots__version-submission osekai__button"><?php echo GetStringRaw("snapshots", "sidebar.submission"); ?></div>
                     <?php } else { ?>
-                        <div style="pointer-events: all;" class="tooltip" tooltip="Please log in to submit a version">
+                        <div style="pointer-events: all;" class="tooltip-v2" tooltip-content="Please log in to submit a version">
                             <div class="snapshots__version-submission osekai__button osekai__input-disabled"><?php echo GetStringRaw("snapshots", "sidebar.submission"); ?></div>
                         </div>
                     <?php } ?>

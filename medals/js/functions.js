@@ -18,7 +18,7 @@ for (let i = 0; i < tx.length; i++) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (localStorage.getItem("medals__unobtained-medals-filter") == null || localStorage.getItem("medals__unobtained-medals-filter") == false) {
+    if (localStorage.getItem("medals__unobtained-medals-filter") == null || localStorage.getItem("medals__unobtained-medals-filter") == false || localStorage.getItem("medals__unobtained-medals-filter") == 'false') {
         document.getElementById("styled-checkbox-1").checked = false;
     } else {
         document.getElementById("styled-checkbox-1").checked = true;
@@ -90,7 +90,7 @@ async function getMedalsFilterArray() {
     });
 }
 async function filterAchieved(on, request) {
-    if (MedalsAchievedFilterArray == null) {
+    if (MedalsAchievedFilterArray == null && on) {
         MedalsAchievedFilterArray = await getMedalsFilterArray();
     }
 
@@ -105,7 +105,7 @@ async function filterAchieved(on, request) {
                 document.getElementById('medal_' + medalid).classList.add('medals__medal-filtered');
             }
         }
-        if (document.getElementById('settings_medals__hidemedalswhenunobtainedfilteron').checked) {
+        if (localStorage.getItem("settings_medals__hidemedalswhenunobtainedfilteron") == "true") {
             var filtered = document.getElementsByClassName("medals__medal-filtered");
             for (var x = 0; x < filtered.length; x++) {
                 var parent = filtered[x].parentElement;
@@ -163,14 +163,14 @@ async function requestMedals(init, strValue) {
             filteredMedalsArrayByGroup[v.Grouping].push(v);
         }
     }
-    if (MedalsAchievedFilterArray == null) {
+    if (MedalsAchievedFilterArray == null && document.getElementById("styled-checkbox-1").checked) {
         MedalsAchievedFilterArray = await getMedalsFilterArray();
     }
     document.getElementById('oMedalSection').textContent = '';
     Object.keys(filteredMedalsArrayByGroup).forEach(async (group) => {
         let grids = [];
         filteredMedalsArrayByGroup[group].forEach((medal) => {
-            if (document.getElementById('settings_medals__hidemedalswhenunobtainedfilteron').checked && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
+            if (localStorage.getItem("settings_medals__hidemedalswhenunobtainedfilteron") == "true" && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
                 return;
             }
 
@@ -221,6 +221,7 @@ async function requestMedals(init, strValue) {
 
         let section = document.createElement('section');
         section.classList.add('osekai__panel');
+        section.classList.add('osekai__panel-collapsable');
 
         // Header
         let sectionHeader = document.createElement('div');
@@ -229,7 +230,17 @@ async function requestMedals(init, strValue) {
         let sectionHeaderP = document.createElement('p');
         sectionHeaderP.textContent = group;
 
+        let collapsableButton = document.createElement('div');
+        collapsableButton.classList.add('osekai__panel-header-right')
+
+        let collapsableButtonI = document.createElement('i');
+        collapsableButtonI.classList.add('fas');
+        collapsableButtonI.classList.add('fa-chevron-down');
+
+        collapsableButton.appendChild(collapsableButtonI);
+
         sectionHeader.appendChild(sectionHeaderP);
+        sectionHeader.appendChild(collapsableButton);
         section.appendChild(sectionHeader);
         // Header end
 
@@ -243,56 +254,48 @@ async function requestMedals(init, strValue) {
         for (let i = 0; i < grids.length; i++) {
             if (typeof grids[i] == 'undefined') continue;
 
-            if (grids.length != i) {
-                let modetxt = '';
-                switch (i) {
-                    case 0: modetxt = "All"; break;
-                    case 1: modetxt = "Standard"; break;
-                    case 2: modetxt = "Taiko"; break;
-                    case 3: modetxt = "Catch"; break;
-                    case 4: modetxt = "Mania"; break;
-                }
-
-                let headerLeftModeDiv = document.createElement('div');
-                headerLeftModeDiv.classList.add("osekai__section-header-left")
-
-                let headerLeftMode = document.createElement('h2')
-                headerLeftMode.textContent = modetxt;
-
-                headerLeftModeDiv.appendChild(headerLeftMode);
-
-                let headerRightModeDiv = document.createElement('div');
-                headerRightModeDiv.classList.add("osekai__section-header-right")
-
-                let headerRightMode = document.createElement('h3');
-
-                let medalCountSpan = document.createElement('span')
-                medalCountSpan.style.fontWeight = 900;
-                medalCountSpan.textContent = grids[i].length;
-
-                headerRightMode.appendChild(medalCountSpan)
-
-                if (grids[i].length == 1)
-                    headerRightMode.innerHTML += ` <light style="font-weight: 200;">medal</light>`;
-                else
-                    headerRightMode.innerHTML += ` <light style="font-weight: 200;">medals</light>`;
-
-                headerRightModeDiv.appendChild(headerRightMode);
-
-                let dividerDiv = document.createElement('div');
-                dividerDiv.classList.add('osekai__section-header');
-                dividerDiv.style.marginBottom = "10px";
-
-                dividerDiv.appendChild(headerLeftModeDiv);
-                dividerDiv.appendChild(headerRightModeDiv);
-
-                panelMedalsContainer.appendChild(dividerDiv);
+            let modetxt = '';
+            switch (i) {
+                case 0: modetxt = "All"; break;
+                case 1: modetxt = "Standard"; break;
+                case 2: modetxt = "Taiko"; break;
+                case 3: modetxt = "Catch"; break;
+                case 4: modetxt = "Mania"; break;
             }
+
+            let headerLeftModeDiv = document.createElement('div');
+            headerLeftModeDiv.classList.add("osekai__section-header-left")
+
+            let headerLeftMode = document.createElement('h2')
+            headerLeftMode.textContent = modetxt;
+
+            headerLeftModeDiv.appendChild(headerLeftMode);
+
+            let headerRightModeDiv = document.createElement('div');
+            headerRightModeDiv.classList.add("osekai__section-header-right")
+
+            let headerRightMode = document.createElement('h3');
+
+            if (grids[i].length == 1)
+                headerRightMode.innerHTML = GetStringRawNonAsync("medals", "medalCount.singular", [grids[i].length])
+            else
+                headerRightMode.innerHTML =  GetStringRawNonAsync("medals", "medalCount", [grids[i].length])
+
+            headerRightModeDiv.appendChild(headerRightMode);
+
+            let dividerDiv = document.createElement('div');
+            dividerDiv.classList.add('osekai__section-header');
+            dividerDiv.style.marginBottom = "10px";
+
+            dividerDiv.appendChild(headerLeftModeDiv);
+            dividerDiv.appendChild(headerRightModeDiv);
+
+            panelMedalsContainer.appendChild(dividerDiv);
+
             let medalsContainer = document.createElement('div');
             medalsContainer.classList.add('medals__grid');
             if (i !== grids.length - 1) {
                 medalsContainer.style.paddingBottom = "20px";
-
             }
 
             for (let j = 0; j < grids[i].length; j++)
@@ -567,7 +570,7 @@ function loadBeatmap(oBeatmap) {
         `</div>` +
         `<div class="medals__bmp3-top-right">` +
         `<p class="medals__bmp3-tr-difficulty">` + escapeHtml(oBeatmap.DifficultyName) + `</p>` +
-        `<p class="medals__bmp3-tr-mapper translatable">??medals.beatmap.mappedBy?? <span class="medals__bmp3-bold user_hover_v2" userid="` + oBeatmap.MapperID + `">` + escapeHtml(oBeatmap.Mapper) + `</span></p>` +
+        `<p class="medals__bmp3-tr-mapper translatable">??medals.beatmap.mappedBy?? <span class="medals__bmp3-bold">` + escapeHtml(oBeatmap.Mapper) + `</span></p>` +
         `</div>` + `</a>
             <div class="medals__bmp3-bottom">
                 <p class="medals__bmp2-submitter translatable">

@@ -25,9 +25,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     css();
     dropdown_system();
     //notification_system();
-    //user_hover_system();
-    //medal_hover_system();
-    //tooltip_system();
+    //
+    //
+    //
     //comments_system();
     //report_system();
     ?>
@@ -52,7 +52,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             </div>
             <p style="opacity: 0.5;"><?php echo GetStringRaw("contact", "siteOwner", ["Frederik Reidinger • Wacholderweg 6, 84032 Landshut, Deutschland • frederik.reidinger@gmx.de • +49 0871 79287"]); ?></p>
             <p style="opacity: 0.5;"><?php echo GetStringRaw("contact", "snapshots"); ?></p>
-            <p style="opacity: 0.5; margin-top: 8px;">©️ Osekai 2019-2022</p>
+            <p style="opacity: 0.5; margin-top: 8px;">©️ Osekai 2019-<?= date("Y") ?></p>
         </div>
     </div>
 </body>

@@ -30,9 +30,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     lottie();
 
     //notification_system();
-    //user_hover_system();
-    //medal_hover_system();
-    //tooltip_system();
+    //
+    //
+    //
     //comments_system();
     //report_system();
     ?>
@@ -85,16 +85,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </div>
             </a>
-
-
-            <!-- <a class="home__long-panel home__panel-hoverable" style="--paccent: 0, 0, 0; --paccent-bright: 255, 102, 170; background-image: url('img/harumachi-bg.png');" href="https://harumachi.chromb.uk">
-                <div class="home__vertical-glowbar"></div>
-                <img class="home__long-img" src="img/harumachi.svg" style="transform: scale(1.3);">
-                <div class="home__long-texts">
-                    <h1><?php echo GetStringRaw("home", "harumachi.title"); ?></h1>
-                    <p><?php echo GetStringRaw("home", "harumachi.text"); ?></p>
-                </div>
-            </a> -->
             <div class="home__panel-row2">
                 <a class="home__panel home__panel-hoverable home__panel_vertical" style="--paccent: 102, 34, 68; --paccent-bright: 255, 102, 170;" href="/medals">
                     <img class="home__panel-img" src="img/medals.png">
@@ -197,13 +187,13 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                         GetStringRaw("home", "team.role.megamix"),
                         "minusQuantumNeko",
                         [
-                            social("https://twitter.com/MegaMix_Craft", "Twitter"),
-                            social("https://github.com/minusQuantumNeko/", "Github"),
-                            social("https://twitch.tv/megamix_craft", "Twitch"),
                             social("https://discord.com/users/494883957117288448", "Discord"),
                             social("https://www.youtube.com/MegaMix_Craft", "Youtube"),
-                            social("https://mastodon.world/@MegaMix_Craft", "Mastodon"),
-                            social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com")
+                            social("https://twitter.com/MegaMix_Craft", "Twitter"),
+                            social("https://github.com/minusQuantumNeko/", "Github"),
+                            social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com"),
+                            social("https://twitch.tv/megamix_craft", "Twitch"),
+                            social("https://mastodon.world/@MegaMix_Craft", "Mastodon")
                         ]
                     );
                     addMember(
@@ -273,7 +263,11 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                         "Remyria",
                         GetStringRaw("home", "team.role.generic.communityManager"),
                         null,
-                        [social("https://twitch.tv/remyria", "Twitch")]
+                        [
+                            social("https://www.youtube.com/@Remyria", "Youtube"),
+                            social("https://twitch.tv/remyria", "Twitch"),
+                            social("https://www.speedrun.com/user/Remyria", "Speedrun.com")
+                        ]
                     );
                     addMember(
                         16487835,

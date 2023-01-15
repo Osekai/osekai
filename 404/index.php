@@ -27,7 +27,7 @@ css();
 dropdown_system();
 mobileManager();
 
-tooltip_system();
+
 notification_system();
 fontawesome();
 

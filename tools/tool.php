@@ -61,7 +61,7 @@ $meta .= '
     mobileManager();
     notification_system();
     tippy();
-    tooltip_system();
+    
     ?>
     <link rel="stylesheet" href="<?= $toolInfo['urlpath'] ?>/css/main.css">
 </head>
@@ -96,7 +96,6 @@ $meta .= '
         </div>
     </div>
     <script type="text/javascript" src="./js/functions.js?v=1.0.2"></script>
-    <script type="text/javascript" src="<?= $toolInfo['urlpath'] ?>/js/functions.js">
-    </script>
+    <script type="text/javascript" src="<?= $toolInfo['urlpath'] ?>/js/functions.js"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

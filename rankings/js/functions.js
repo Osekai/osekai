@@ -616,9 +616,6 @@ function elementCreator(dbhandler) {
         let oSpanAmount = this.createSpan(true, oEntry.medalCount);
         let oATag = document.createElement("a");
 
-        oSpanName.classList.add("user_hover_v2");
-        oSpanName.setAttribute("userid", oEntry.userid);
-
         oATag.appendChild(oSpanName);
         oATag.href = "/profiles/?user=" + oEntry.userid;
 
@@ -634,9 +631,6 @@ function elementCreator(dbhandler) {
         let oParagraph = document.createElement("p");
         let oATag = document.createElement("a");
         let oSpanName = this.createSpan(true, oEntry.username);
-
-        oSpanName.classList.add("user_hover_v2");
-        oSpanName.setAttribute("userid", oEntry.userid);
 
         oATag.appendChild(oSpanName);
         oATag.href = "/profiles/?user=" + oEntry.userid;

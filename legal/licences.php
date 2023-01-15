@@ -25,9 +25,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     css();
     dropdown_system();
     //notification_system();
-    //user_hover_system();
-    //medal_hover_system();
-    //tooltip_system();
+    //
+    //
+    //
     //comments_system();
     //report_system();
 
@@ -42,7 +42,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             "type" => $type
         ];
     }
-    add("Twemoji", "https://github.com/twitter/twemoji", "CC-BY-4.0");
+    //add("Twemoji", "https://github.com/twitter/twemoji", "CC-BY-4.0");
     add("BBcode Parser", "https://github.com/Frug/js-bbcode-parser", "MIT");
     add("Colour Picker", "https://github.com/taufik-nurrohman/color-picker", "MIT");
     add("Picmo", "https://github.com/joeattardi/picmo/", "MIT");
