@@ -15,7 +15,7 @@ include("tools.php");
 $toolExists = false;
 $toolInfo = null;
 foreach ($tools as $_tool) {
-    if ($tool == $_tool['key']) {
+    if ($tool == $_tool['Key']) {
         $toolExists = true;
         $toolInfo = $_tool;
     } else {
@@ -63,7 +63,7 @@ $meta .= '
     tippy();
     
     ?>
-    <link rel="stylesheet" href="<?= $toolInfo['urlpath'] ?>/css/main.css">
+    <link rel="stylesheet" href="/tools/src/<?= $toolInfo['Key'] ?>/css/main.css">
 </head>
 
 <body>
@@ -83,19 +83,19 @@ $meta .= '
             </div>
             <div class="tools__tool-header-middle">
                 <div class="tools__tool-header-name">
-                    <h1>osekai tools / <strong><?php echo $toolInfo['name']; ?></strong></h1>
-                    <p>WIP(CREDITS)</p>
+                    <h1>osekai tools / <strong><?= $toolInfo['Name']; ?></strong></h1>
+                    <p><?= $toolInfo['Creators']; ?></p>
                 </div>
             </div>
             <div class="tools__tool-header-side">
-                side
+                <a href="https://github.com/Osekai/osekai/tree/main/tools/src/<?= $toolInfo['Key']; ?>" class="osekai__button">Github</a>
             </div>
         </div>
         <div class="tools__tool-container-inner">
-            <?php include($toolInfo['path'] . "/index.php"); ?>
+            <?php include("src/". $toolInfo['Key'] . "/index.php"); ?>
         </div>
     </div>
     <script type="text/javascript" src="./js/functions.js?v=1.0.2"></script>
-    <script type="text/javascript" src="<?= $toolInfo['urlpath'] ?>/js/functions.js"></script>
+    <script type="text/javascript" src="/tools/src/<?= $toolInfo['Key'] ?>/js/functions.js"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

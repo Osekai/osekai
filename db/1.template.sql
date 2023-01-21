@@ -2269,20 +2269,25 @@ CREATE TABLE `Timeline` (
 
 DROP TABLE IF EXISTS `Tools`;
 CREATE TABLE `Tools` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` text COLLATE utf8mb4_bin NOT NULL,
-  `Creators` text COLLATE utf8mb4_bin NOT NULL,
-  `Github` text COLLATE utf8mb4_bin NOT NULL,
-  `Description` text COLLATE utf8mb4_bin NOT NULL,
-  `Featured` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`Id`)
+  `Key` varchar(50) NOT NULL DEFAULT 'AUTO_INCREMENT',
+  `Name` text DEFAULT NULL,
+  `Creators` text DEFAULT NULL,
+  `Description` text DEFAULT NULL,
+  `Featured` int(1) DEFAULT 0,
+  PRIMARY KEY (`Key`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-INSERT INTO `Tools` (`Id`, `Name`, `Creators`, `Github`, `Description`, `Featured`) VALUES
-(1,	'Medal Percentage Calculator',	'[18152711]',	'https://github.com/Osekai/tools-medal_percentage',	'Quickly calculate how many medals you need to get to a certain percentage, or how many medals a certain percentage is. Based on current medal count.',	0),
-(2,	'Standard Deviation PP Calculator',	'[0]',	'https://github.com/Osekai/tools-stdev_pp_calculator',	'Calculate how much standard deviated pp you have, either based on your profile’s statistics, or manually inputed values.',	0),
-(3,	'Play PP Calculator',	'[13581430,21203707]',	'https://github.com/Osekai/tools-ppcalc',	'Calculate your plays across all gamemodes, quick and easy, completely locally!',	1);
 
+INSERT INTO `Tools` (`Key`, `Name`, `Creators`, `Description`, `Featured`) VALUES
+	('comparer', 'Comparer', '[0]', 'temporary', 0);
+INSERT INTO `Tools` (`Key`, `Name`, `Creators`, `Description`, `Featured`) VALUES
+	('medal-name-quiz', 'Medal Name Quiz', '[0]', NULL, 0);
+INSERT INTO `Tools` (`Key`, `Name`, `Creators`, `Description`, `Featured`) VALUES
+	('medal-percentage-calc', 'Medal Percentage Calculator', '[18152711]', 'Quickly calculate how many medals you need to get to a certain percentage, or how many medals a certain percentage is. Based on current medal count.', 0);
+INSERT INTO `Tools` (`Key`, `Name`, `Creators`, `Description`, `Featured`) VALUES
+	('pp-calc', 'Play PP Calculator', '[13581430,21203707]', 'Calculate your plays across all gamemodes, quick and easy, completely locally!', 1);
+INSERT INTO `Tools` (`Key`, `Name`, `Creators`, `Description`, `Featured`) VALUES
+	('stdev-pp-calc', 'Standard Deviation PP Calculator', '[0]', 'Calculate how much standard deviated pp you have, either based on your profile’s statistics, or manually inputed values.', 0);
 
 DROP TABLE IF EXISTS `TPPListing`;
 CREATE TABLE `TPPListing` (`name` text, `totalpp` varchar(47), `ProfileID` int(11), `standardpp` varchar(47), `maniapp` varchar(47), `ctbpp` varchar(47), `taikopp` varchar(47), `name_long` varchar(30), `flag` varchar(70));
