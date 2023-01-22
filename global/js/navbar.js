@@ -409,7 +409,8 @@ const settingsPages = [
 
                 if (experimental == 1) include = true;
                 else {
-                    if (locales[x]['experimental'] == false) include = true;
+                    // if experimental is false, or isn't set
+                    if (locales[x]['experimental'] == false || locales[x]['experimental'] == undefined) include = true;
                 }
 
                 if (include == true) {
