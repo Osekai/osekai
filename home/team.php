@@ -57,12 +57,13 @@ function printTeam()
         $socialHtml = '';
         $badgeHtml = '';
         $groups = orderBadgeArray($groups);
-        foreach($groups as $group) {
+        foreach ($groups as $group) {
             $badgeHtml .= badgeHtmlFromGroup($group, "small");
         }
-        foreach($member['socials'] as $social) {
-            $socialHtml .= '<a class="home__team-member-social tooltip-v2" href="'.$social['link'].'" tooltip-content="'.$social['name'].'" '.$extraHtml[$social['name']].'>
-            <i class="'.$social['icon'].'" aria-hidden="true"></i>
+        foreach ($member['socials'] as $social) {
+            $extra = isset($extraHtml[$social['name']]) ? $extraHtml[$social['name']] : "";
+            $socialHtml .= '<a class="home__team-member-social tooltip-v2" href="' . $social['link'] . '" tooltip-content="' . $social['name'] . '" ' . $extra . '>
+            <i class="' . $social['icon'] . '" aria-hidden="true"></i>
         </a>';
         }
         // TODO: somehow use user cover for the background instead of pfp. didn't wanna setup api stuff
@@ -74,13 +75,13 @@ function printTeam()
                 <div class="home__team-member-info-texts">
                     <div class="home__team-member-info-texts-name">
                         <p>' . $member['name'] . '</p>
-                        <div class="home__team-member-info-texts-badges">'.$badgeHtml.'</div>
+                        <div class="home__team-member-info-texts-badges">' . $badgeHtml . '</div>
                     </div>';
 
-        if($member['name_alt'] != null) {
-            echo '<small>also known as <strong>'.$member['name_alt'].'</strong></small>';
+        if ($member['name_alt'] != null) {
+            echo '<small>also known as <strong>' . $member['name_alt'] . '</strong></small>';
         }
-        
+
         echo '<p>' . $member['role'] . '</p>
                 </div>
             </div>
