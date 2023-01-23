@@ -133,70 +133,41 @@ $meta = '<meta charset="utf-8">
                         </div>
                     </div>
                 </div>
-                <?php if (isExperimental()) { ?>
-                    <div class="osekai__panel">
-                        <div class="osekai__panel-header">
-                            <p>Tasks</p>
+                <div class="osekai__panel">
+                    <div class="osekai__panel-header">
+                        <p>Tasks</p>
+                    </div>
+                    <div class="osekai__panel-inner">
+                        <p class="rankings__tasks-header" id="currenttask-text">Current Task</p>
+                        <div class="rankings__task rankings__task-working rankings__task-current" id="currenttask">
+                            <div class="rankings__task-accent">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="rankings__task-content">
+                                <div class="rankings__task-content-inner">
+                                    <div class="rankings__task-text">
+                                        <div class="rankings__task-text-left">
+                                            <h3>Task: <strong id="currenttask_name">Full</strong></h3>
+                                            <h2 id="currenttask_statustext">Running Update</h2>
+                                        </div>
+                                        <div class="rankings__task-text-right">
+                                            <h3 id="currenttask_status"><strong>50%</strong> - 9000/15000</h3>
+                                            <h2 id="currenttask_eta">1:29:00 <light>ETA</light>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="osekai__progress-bar">
+                                        <div id="currenttask_progress" class="osekai__progress-bar-inner" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="osekai__panel-inner">
-                            <p class="rankings__tasks-header" id="currenttask-text">Current Task</p>
-                            <div class="rankings__task rankings__task-working rankings__task-current" id="currenttask">
-                                <div class="rankings__task-accent">
-                                    <i class="fas fa-sync-alt"></i>
-                                </div>
-                                <div class="rankings__task-content">
-                                    <div class="rankings__task-content-inner">
-                                        <div class="rankings__task-text">
-                                            <div class="rankings__task-text-left">
-                                                <h3>Task: <strong id="currenttask_name">Full</strong></h3>
-                                                <h2 id="currenttask_statustext">Running Update</h2>
-                                            </div>
-                                            <div class="rankings__task-text-right">
-                                                <h3 id="currenttask_status"><strong>50%</strong> - 9000/15000</h3>
-                                                <h2 id="currenttask_eta">1:29:00 <light>ETA</light>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                        <div class="osekai__progress-bar">
-                                            <div id="currenttask_progress" class="osekai__progress-bar-inner" style="width: 50%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="rankings__tasks-header">Completed Tasks</p>
-                            <div id="completedtasks_list" style="width: 100%;">
-                                <!-- <div class="rankings__task rankings__task-finished">
-                                <div class="rankings__task-accent">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="rankings__task-content-small">
-                                    <div class="rankings__task-text-left">
-                                        <h2>Full</h2>
-                                        <h3>20,000 users processed</h3>
-                                    </div>
-                                    <div class="rankings__task-text-right">
-                                        <h2>2 days ago</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rankings__task rankings__task-error">
-                                <div class="rankings__task-accent">
-                                <i class="fas fa-times"></i>
-                                </div>
-                                <div class="rankings__task-content-small">
-                                    <div class="rankings__task-text-left">
-                                        <h2>Full</h2>
-                                        <h3>20,000 users processed</h3>
-                                    </div>
-                                    <div class="rankings__task-text-right">
-                                        <h2>2 days ago</h2>
-                                    </div>
-                                </div>
-                            </div> -->
-                            </div>
+                        <p class="rankings__tasks-header">Completed Tasks</p>
+                        <div id="completedtasks_list" style="width: 100%;">
+
                         </div>
                     </div>
-                <?php } ?>
+                </div>
             </div>
             <div class="osekai__home-2col-col2">
                 <div class="rankings__home-v2-header medals-v2">
