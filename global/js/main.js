@@ -670,6 +670,7 @@ document.addEventListener("DOMContentLoaded", function () {
     getAlerts();
 });
 
+loadSource("groups");
 
 var groupDropdownCounter = 0; // global, dumb shit
 var groupUtils = {
@@ -683,7 +684,7 @@ var groupUtils = {
     badgeHtmlFromGroupId: function (id, size = "small") {
         var group = this.getGroupFromId(id);
         // this is technically illegal according to html spec but i don't care
-        return `<object><a href="/misc/groups/?group=${id}" class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</a></object>`;
+        return `<object class="tooltip-v2" tooltip-content="${LocalizeTextNonAsync(group.Name)}"><a href="/misc/groups/?group=${id}" class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</a></object>`;
     },
     orderBadgeArray: function (array) {
         return array.sort((a, b) => a.Order - b.Order)
