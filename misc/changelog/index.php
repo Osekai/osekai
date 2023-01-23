@@ -72,6 +72,6 @@ notification_system();
         </div>
     </div>
 </body>
-<script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

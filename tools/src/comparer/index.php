@@ -3,7 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 ?>
 
 <html>
-<script type="module" type="text/javascript" src="/tools/src/cheese/js/functions.js"></script>
+<script type="module" type="text/javascript" src="/tools/src/cheese/js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 
 <body>
     <input id="uid1"></input>

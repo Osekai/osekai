@@ -22,9 +22,9 @@ require_once('gitInfo.php');
 define("OSEKAI_VERSION", str_replace("\n", "", $gitHash)); // cache invalidation
 
 $server = $_SERVER['SERVER_SOFTWARE'];
-if(str_contains($server, "Apache")) {
+if (str_contains($server, "Apache")) {
     define("ENVIRONMENT", "apache2");
-} else if(str_contains($server, "Development Server") && str_contains($server, "PHP")) {
+} else if (str_contains($server, "Development Server") && str_contains($server, "PHP")) {
     define("ENVIRONMENT", "php_development_server");
 } else {
     define("ENVIRONMENT", "unknown");
@@ -110,9 +110,9 @@ function frontend()
         $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
 ?>
         <script type="text/javascript">
-            const christmas = "<?php echo $christmas; ?>";
-            const nAppId = "<?php echo $apps[$app]['id']; ?>";
-            const version = "<?php echo OSEKAI_VERSION; ?>";
+            const christmas = "<?= $christmas; ?>";
+            const nAppId = "<?= $apps[$app]['id']; ?>";
+            const version = "<?= OSEKAI_VERSION ?>";
             //const medalAmount = 261; // this should be pulled from the database in the future
             const nUserID = <?php if (isset($_SESSION['osu']) && $_SESSION['osu'] != "") {
                                 echo $_SESSION['osu']['id'];
@@ -135,16 +135,16 @@ function frontend()
                             } else {
                                 echo "''";
                             } ?>;
-            const medalAmount = <?php echo count($medals); ?>;
+            const medalAmount = <?= count($medals); ?>;
             const experimental = <?php
                                     if (isExperimental()) {
                                         echo $_SESSION['options']['experimental'];
                                     } else {
                                         echo "0";
                                     } ?>;
-            const roles = <?php echo json_encode($roles); ?>;
-            const userGroups = <?php echo json_encode($userGroups); ?>;
-            const medals = <?php echo json_encode($medals); ?>;
+            const roles = <?= json_encode($roles); ?>;
+            const userGroups = <?= json_encode($userGroups); ?>;
+            const medals = <?= json_encode($medals); ?>;
             const restrictedState = <?php if (isRestricted()) echo "1";
                                     else echo "0"; ?>;
         </script>
@@ -157,7 +157,7 @@ function frontend()
         }
         ?>
         <script>
-            loadSource("<?php echo $app; ?>");
+            loadSource("<?= $app; ?>");
             loadSource("general");
         </script>
 <?php
@@ -283,15 +283,15 @@ function comments_system()
     //echo '<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>';
 
     // emoji picker
-    echo '<script src="/global/js/picmo/picmo.js?v='.OSEKAI_VERSION.'"></script>';
-    echo '<script src="/global/js/picmo/picmo-popup.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script src="/global/js/picmo/picmo.js?v=' . OSEKAI_VERSION . '"></script>';
+    echo '<script src="/global/js/picmo/picmo-popup.js?v=' . OSEKAI_VERSION . '"></script>';
 
     // imports main css
-    echo '<link rel="stylesheet" href="/global/css/comments.css">';
+    echo '<link rel="stylesheet" href="/global/css/comments.css?v=' . OSEKAI_VERSION . '>';
 
     // bbcode
-    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-config.js?v='.OSEKAI_VERSION.'"></script>';
-    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-parser.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-config.js?v=' . OSEKAI_VERSION . '"></script>';
+    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-parser.js?v=' . OSEKAI_VERSION . '"></script>';
 
     /* imports comment system
     please import xhr before using this */
@@ -315,7 +315,7 @@ function mobileManager()
 
     // imports main css
     if ($mmLoaded == false) {
-        echo '<script type="text/javascript" src="/global/js/mobileManager.js?v='.OSEKAI_VERSION.'"></script>';
+        echo '<script type="text/javascript" src="/global/js/mobileManager.js?v=' . OSEKAI_VERSION . '"></script>';
         $mmLoaded = true;
     }
 }
@@ -349,14 +349,14 @@ function navbar()
 
     $_SESSION['redirect_url'] = true;
 
-        include($server_root . "global/php/navbar.php");
+    include($server_root . "global/php/navbar.php");
 }
 
 function dropdown_system()
 {
     // loads dropdown system
 
-    echo '<script type="text/javascript" src="/global/js/dropdown_system.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script type="text/javascript" src="/global/js/dropdown_system.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function init3col()
@@ -368,7 +368,7 @@ function init3col()
     global $coltype;
     $coltype = "3"; // tells the arrow thing on the left to exist
 
-    echo '<script type="text/javascript" src="/global/js/3col.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script type="text/javascript" src="/global/js/3col.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function fontawesome()
@@ -393,7 +393,7 @@ function report_system()
     global $reportsystemloaded;
 
     if ($reportsystemloaded == false) {
-        echo '<script type="module" type="text/javascript" src="/global/js/report_system.js?v='.OSEKAI_VERSION.'"></script>';
+        echo '<script type="module" type="text/javascript" src="/global/js/report_system.js?v=' . OSEKAI_VERSION . '"></script>';
         $reportsystemloaded = true;
     }
 }
@@ -410,12 +410,12 @@ function notification_system()
 
 function osu_api()
 {
-    echo '<script type="module" type="text/javascript" src="/global/js/osu_api.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script type="module" type="text/javascript" src="/global/js/osu_api.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function xhr_requests()
 {
-    echo '<script rel="preload" type="text/javascript" src="/global/js/xhr.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script rel="preload" type="text/javascript" src="/global/js/xhr.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function loggedin()
@@ -763,4 +763,3 @@ function osekai_http_request()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osekaiHttpRequest.php");
 }
-
