@@ -49,7 +49,7 @@ function setCardDetails(appSimpleName) {
         opacity: 1;
     }`;
 
-    //https://www.osekai.net/global/img/branding/vector/<?php echo $a['logo']; ?>.svg
+    //https://www.osekai.net/global/img/branding/vector/<?= $a['logo']; ?>.svg
     card_icon.src = "https://www.osekai.net/global/img/branding/vector/" + app['logo'] + ".svg";
     card_title.innerHTML = "osekai <strong>" + app['simplename'] + "</strong>";
     card_content.innerHTML = app['slogan'];

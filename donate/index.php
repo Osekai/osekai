@@ -28,7 +28,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/donate/php/functions.php");
         --genericaccent: var(--accentdark);
     }
 </style>
-<?php echo $head; ?>
+<?= $head; ?>
 
 </head>
 
@@ -49,13 +49,13 @@ dropdown_system();
             <div class="osekai__1col">
                 <section class="osekai__panel osekai__header-panel">
                     <div class="osekai__panel-header">
-                        <p><?php echo GetStringRaw("donate", "title") ?></p>
+                        <p><?= GetStringRaw("donate", "title") ?></p>
                     </div>
                     <div class="osekai__panel-inner">
                         <p>
-                        <?php echo GetStringRaw("donate", "body.p1") ?><br>
-                            <br><?php echo GetStringRaw("donate", "body.p2") ?><br>
-                            <br><?php echo GetStringRaw("donate", "body.p3") ?>
+                        <?= GetStringRaw("donate", "body.p1") ?><br>
+                            <br><?= GetStringRaw("donate", "body.p2") ?><br>
+                            <br><?= GetStringRaw("donate", "body.p3") ?>
                         </p>
                     </div>
                 </section>
@@ -65,27 +65,27 @@ dropdown_system();
             <div class="osekai__2col_col1">
                 <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                        <p><?php echo GetStringRaw("donate", "donate.title") ?></p>
+                        <p><?= GetStringRaw("donate", "donate.title") ?></p>
                     </div>
                     <div class="osekai__panel-inner">
-                        <h2 class="osekai__h2"><?php echo GetStringRaw("donate", "donate.header") ?></h2>
-                        <p><?php echo GetStringRaw("donate", "donate.body") ?></p>
+                        <h2 class="osekai__h2"><?= GetStringRaw("donate", "donate.header") ?></h2>
+                        <p><?= GetStringRaw("donate", "donate.body") ?></p>
                         <div class="osekai__divider"></div>
                         <div class="osekai__button-row">
-                            <a class="osekai__button" id="btnPaypal"><?php echo GetStringRaw("donate", "donate.paypal") ?></a>
-                            <a class="osekai__button" id="btnPaysafecard"><?php echo GetStringRaw("donate", "donate.paysafecard") ?></a>
+                            <a class="osekai__button" id="btnPaypal"><?= GetStringRaw("donate", "donate.paypal") ?></a>
+                            <a class="osekai__button" id="btnPaysafecard"><?= GetStringRaw("donate", "donate.paysafecard") ?></a>
                         </div>
                     </div>
                 </section>
                 <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                        <p><?php echo GetStringRaw("donate", "costs.title") ?></p>
+                        <p><?= GetStringRaw("donate", "costs.title") ?></p>
                     </div>
                     <div class="osekai__panel-inner">
                         <div class="donate__costs-progress">
                             <div class="donate__progress-texts">
-                                <h1 class="osekai__h1"><?php echo $percentage . "%"; ?></h1>
-                                <p><?php echo GetStringRaw("donate", "costs.covered", ["€" . $donationTotal, "€" . $costs]) ?></p>
+                                <h1 class="osekai__h1"><?= $percentage . "%"; ?></h1>
+                                <p><?= GetStringRaw("donate", "costs.covered", ["€" . $donationTotal, "€" . $costs]) ?></p>
                             </div>
                             <div class="donate__progress-bar">
                                 <div class="donate__progress-bar-inner" <?php if($percentage < 100) {echo "style=\"width: {$percentage}%;\"";} ?>></div>
@@ -97,14 +97,14 @@ dropdown_system();
                             ?>
                             <div class="donate__panel">
                                 <div class="donate__panel-header">
-                                    <p class="donate__ph-text"><?php echo "€" . $payments[$k]['Amount']; ?></p>
+                                    <p class="donate__ph-text"><?= "€" . $payments[$k]['Amount']; ?></p>
                                     <p class="donate__ph-text donate__dh-text-right"><?php 
                                         $payDate = new DateTime($payments[$k]['PayDate']);
                                         echo $payDate->format('l\, jS F Y'); 
                                     ?></p>
                                 </div>
                                 <div class="donate__panel-body">
-                                    <p class="donate__pb-text"><?php echo $payments[$k]['Reason']; ?></p>
+                                    <p class="donate__pb-text"><?= $payments[$k]['Reason']; ?></p>
                                 </div>
                             </div>
                             <?php } ?>
@@ -115,7 +115,7 @@ dropdown_system();
             <div class="osekai__2col_col2">
             <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                        <p><?php echo GetStringRaw("donate", "top.title") ?></p>
+                        <p><?= GetStringRaw("donate", "top.title") ?></p>
                     </div>
                     <div class="osekai__panel-inner">
                         <div class="donate__list">
@@ -124,10 +124,10 @@ dropdown_system();
                             ?>
                             <div class="donate__panel">
                                 <div class="donate__panel-header">
-                                    <p class="donate__ph-text"><?php echo $topdonators[$k]['Username']; ?></p>
+                                    <p class="donate__ph-text"><?= $topdonators[$k]['Username']; ?></p>
                                 </div>
                                 <div class="donate__panel-body">
-                                    <p class="donate__pb-money"><?php echo "€" . $topdonators[$k]['TotalDonation']; ?></p>
+                                    <p class="donate__pb-money"><?= "€" . $topdonators[$k]['TotalDonation']; ?></p>
                                 </div>
                             </div>
                             <?php } ?>
@@ -136,7 +136,7 @@ dropdown_system();
                 </section>
                 <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                        <p><?php echo GetStringRaw("donate", "recent.title") ?></p>
+                        <p><?= GetStringRaw("donate", "recent.title") ?></p>
                     </div>
                     <div class="osekai__panel-inner">
                         <div class="donate__list">
@@ -145,16 +145,16 @@ dropdown_system();
                             ?>
                             <div class="donate__panel">
                                 <div class="donate__panel-header">
-                                    <p class="donate__ph-text"><?php echo $donations[$k]['Username']; ?></p>
+                                    <p class="donate__ph-text"><?= $donations[$k]['Username']; ?></p>
                                     <p class="donate__ph-text donate__dh-text-right"><?php 
                                         $donoDate = new DateTime($donations[$k]['DonoDate']);
                                         echo $donoDate->format('l\, jS F Y'); 
                                     ?></p>
                                 </div>
                                 <div class="donate__panel-body">
-                                    <p class="donate__pb-money"><?php echo "€" . $donations[$k]['DonoAmount']; ?></p>
+                                    <p class="donate__pb-money"><?= "€" . $donations[$k]['DonoAmount']; ?></p>
                                     <div class="donate__right">
-                                        <p class="donate__right-header"><?php echo GetStringRaw("donate", "recent.message") ?></p>
+                                        <p class="donate__right-header"><?= GetStringRaw("donate", "recent.message") ?></p>
                                         <p class="donate__right-text"><?php if(!IsNullOrEmptyString($donations[$k]['Message'])) { 
                                                 echo $donations[$k]['Message'];
                                             } else {

@@ -4,7 +4,7 @@
     <div class="search__closeonclick" onclick="openSearch(document.getElementById('navbar_searchbut'))"></div>
     <div id="searchBar" class="search__bar">
         <i class="fa fa-search search__bar-icon"></i>
-        <input id="searchInput" type="text" class="search__bar-input" placeholder="<?php echo GetStringRaw("navbar", "search.placeholder"); ?>" />
+        <input id="searchInput" type="text" class="search__bar-input" placeholder="<?= GetStringRaw("navbar", "search.placeholder"); ?>" />
         <!-- <div class="search__bar-go"><i class="fa fa-chevron-right"></i></div> -->
     </div>
     <div class="search__results">

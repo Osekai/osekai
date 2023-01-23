@@ -77,7 +77,7 @@ if ($_SESSION['role']['rights'] >= 1) {
 <html lang="en">
 
 <head>
-    <?php echo $head; ?>
+    <?= $head; ?>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <?php
     font();
@@ -104,8 +104,8 @@ if ($_SESSION['role']['rights'] >= 1) {
     <div style="--accentdark: 255, 50, 60" id="submitWarning" class="snapshots__submission-verification snapshots__submission-verification-closed">
         <img class="snapshots__submit-warning-icon" src="img/upload_warning.svg">
         <div class="snapshots__submit-warning-texts">
-            <h1 class="osekai__h1"><?php echo GetStringRaw("snapshots", "submit.warning.header"); ?></h1>
-            <h3 class="osekai__h3"><?php echo GetStringRaw("snapshots", "submit.warning.body"); ?></h3>
+            <h1 class="osekai__h1"><?= GetStringRaw("snapshots", "submit.warning.header"); ?></h1>
+            <h3 class="osekai__h3"><?= GetStringRaw("snapshots", "submit.warning.body"); ?></h3>
         </div>
         <div class="snapshots__file-row">
             <div class="snapshots__submit-warning-file">
@@ -117,15 +117,15 @@ if ($_SESSION['role']['rights'] >= 1) {
                 <span class="snapshots__submit-warning-file-name">osu!.username.cfg</span>
             </div>
         </div>
-        <a onclick="submitSubmission();" class="osekai__button" style="margin-bottom: 6px;"><?php echo GetStringRaw("snapshots", "submit.warning.confirm"); ?></a>
-        <a onclick="cancelWarning();" class="osekai__button osekai__button_solid"><?php echo GetStringRaw("snapshots", "submit.warning.cancel"); ?></a>
-        <p class="snapshots__submit-warning-bottomtext"><?php echo GetStringRaw("snapshots", "submit.warning.footer"); ?></p>
+        <a onclick="submitSubmission();" class="osekai__button" style="margin-bottom: 6px;"><?= GetStringRaw("snapshots", "submit.warning.confirm"); ?></a>
+        <a onclick="cancelWarning();" class="osekai__button osekai__button_solid"><?= GetStringRaw("snapshots", "submit.warning.cancel"); ?></a>
+        <p class="snapshots__submit-warning-bottomtext"><?= GetStringRaw("snapshots", "submit.warning.footer"); ?></p>
     </div>
     <div id="osekai__popup_overlay">
         <div id="submission_overlay" class="osekai__overlay osekai__overlay-hidden">
             <section class="osekai__panel osekai__overlay__panel">
                 <div class="osekai__panel-header">
-                    <p><?php echo GetStringRaw("snapshots", "submit.title"); ?></p>
+                    <p><?= GetStringRaw("snapshots", "submit.title"); ?></p>
                 </div>
                 <div class="osekai__panel-inner">
                     <div class="osekai__generic-warning osekai__generic-warning-info" style="margin-bottom: 8px;">
@@ -134,25 +134,25 @@ if ($_SESSION['role']['rights'] >= 1) {
                     </div>
                    
                     <div class="osekai__input-area">
-                        <h1 class="osekai__h1"><?php echo GetStringRaw("snapshots", "submit.versionName.title"); ?></h1>
-                        <p><?php echo GetStringRaw("snapshots", "submit.versionName.description"); ?></p>
-                        <input id="submission_versionName" class="osekai__vertical-padding osekai__input osekai__fullwidth" type="text" placeholder="<?php echo GetStringRaw("snapshots", "submit.versionName.placeholder"); ?>">
+                        <h1 class="osekai__h1"><?= GetStringRaw("snapshots", "submit.versionName.title"); ?></h1>
+                        <p><?= GetStringRaw("snapshots", "submit.versionName.description"); ?></p>
+                        <input id="submission_versionName" class="osekai__vertical-padding osekai__input osekai__fullwidth" type="text" placeholder="<?= GetStringRaw("snapshots", "submit.versionName.placeholder"); ?>">
                     </div>
                     <div class="osekai__input-area">
-                        <h1 class="osekai__h1"><?php echo GetStringRaw("snapshots", "submit.versionFile.title"); ?></h1>
-                        <p><?php echo GetStringRaw("snapshots", "submit.versionFile.description"); ?></p>
+                        <h1 class="osekai__h1"><?= GetStringRaw("snapshots", "submit.versionFile.title"); ?></h1>
+                        <p><?= GetStringRaw("snapshots", "submit.versionFile.description"); ?></p>
                         <input id="submission_versionFile" class="osekai__vertical-padding osekai__input osekai__fullwidth" type="text" placeholder="https://drive.google.com/file/d/1WuAOKu98FfUH7KbgKgUAMilsuuXZKeYt/">
                     </div>
                     <div class="osekai__input-area">
-                        <h1 class="osekai__h1"><?php echo GetStringRaw("snapshots", "submit.versionInfo.title"); ?></h1>
-                        <p><?php echo GetStringRaw("snapshots", "submit.versionInfo.description"); ?></p>
-                        <input id="submission_versionInfo" class="osekai__vertical-padding osekai__input osekai__fullwidth" type="text" placeholder="<?php echo GetStringRaw("snapshots", "submit.versionInfo.placeholder"); ?>">
+                        <h1 class="osekai__h1"><?= GetStringRaw("snapshots", "submit.versionInfo.title"); ?></h1>
+                        <p><?= GetStringRaw("snapshots", "submit.versionInfo.description"); ?></p>
+                        <input id="submission_versionInfo" class="osekai__vertical-padding osekai__input osekai__fullwidth" type="text" placeholder="<?= GetStringRaw("snapshots", "submit.versionInfo.placeholder"); ?>">
                     </div>
                     <div class="osekai__flex_row">
-                        <a class="osekai__button" onclick="closeSubmission();"><?php echo GetStringRaw("general", "cancel"); ?></a>
+                        <a class="osekai__button" onclick="closeSubmission();"><?= GetStringRaw("general", "cancel"); ?></a>
                         <div class="osekai__left osekai__center-flex-row">
                             <p id="error_message" style="margin-right: 10px; text-align: right; color: red;"></p>
-                            <a class="osekai__button" onclick="openWarning();"><?php echo GetStringRaw("snapshots", "submit.submit"); ?></a>
+                            <a class="osekai__button" onclick="openWarning();"><?= GetStringRaw("snapshots", "submit.submit"); ?></a>
                         </div>
                     </div>
                 </div>
@@ -415,15 +415,15 @@ if ($_SESSION['role']['rights'] >= 1) {
                         <div class="snapshots__search__bar">
                             <div class="snapshots__search">
                                 <i class="fas fa-search"></i>
-                                <input oninput="doSearch(this.value)" type="text" id="txtMedalSearch" class="snapshots__search-input" placeholder="<?php echo GetStringRaw("snapshots", "sidebar.search.placeholder"); ?>">
+                                <input oninput="doSearch(this.value)" type="text" id="txtMedalSearch" class="snapshots__search-input" placeholder="<?= GetStringRaw("snapshots", "sidebar.search.placeholder"); ?>">
                             </div>
                         </div>
                     </div>
                     <?php if (loggedin()) { ?>
-                        <div onclick="openSubmission()" class="snapshots__version-submission osekai__button"><?php echo GetStringRaw("snapshots", "sidebar.submission"); ?></div>
+                        <div onclick="openSubmission()" class="snapshots__version-submission osekai__button"><?= GetStringRaw("snapshots", "sidebar.submission"); ?></div>
                     <?php } else { ?>
                         <div style="pointer-events: all;" class="tooltip-v2" tooltip-content="Please log in to submit a version">
-                            <div class="snapshots__version-submission osekai__button osekai__input-disabled"><?php echo GetStringRaw("snapshots", "sidebar.submission"); ?></div>
+                            <div class="snapshots__version-submission osekai__button osekai__input-disabled"><?= GetStringRaw("snapshots", "sidebar.submission"); ?></div>
                         </div>
                     <?php } ?>
 
@@ -465,7 +465,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                         </div>
                         <div class="osekai__panel-inner snapshots__version-header-desc" id="descriptionInner">
                             <div>
-                                <p class="snapshots__version-header-description-header"><?php echo GetStringRaw("snapshots", "version.description.title"); ?></p>
+                                <p class="snapshots__version-header-description-header"><?= GetStringRaw("snapshots", "version.description.title"); ?></p>
                                 <p id="description" class="snapshots__version-header-description">loading...</p>
                             </div>
                         </div>
@@ -473,12 +473,12 @@ if ($_SESSION['role']['rights'] >= 1) {
                     <section class="osekai__panel">
                         <?php if ($admin_access == false) { ?>
                             <div class="osekai__panel-header">
-                                <?php echo GetStringRaw("snapshots", "version.downloads.title"); ?>
+                                <?= GetStringRaw("snapshots", "version.downloads.title"); ?>
                             </div>
                         <?php } else { ?>
                             <div class="osekai__panel-header-with-buttons" id="AddMapPanel">
                                 <div class="osekai__panel-hwb-left">
-                                    <?php echo GetStringRaw("snapshots", "version.downloads.title"); ?>
+                                    <?= GetStringRaw("snapshots", "version.downloads.title"); ?>
                                 </div>
                                 <div class="osekai__panel-hwb-right" id="AddMapButton">
                                     <div onclick="addMirrorToCurrentVersion();" class="osekai__panel-header-button">
@@ -496,7 +496,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     </section>
                     <section class="osekai__panel" id="extra_info_panel">
                         <div class="osekai__panel-header">
-                            <?php echo GetStringRaw("snapshots", "version.extraInfo.title"); ?>
+                            <?= GetStringRaw("snapshots", "version.extraInfo.title"); ?>
                         </div>
                         <div class="osekai__panel-inner" id="extra_info">
                             loading...
@@ -520,7 +520,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     <?php } ?>
                     <section class="osekai__panel" id="video_panel">
                         <div class="osekai__panel-header">
-                            <?php echo GetStringRaw("general", "video.title"); ?>
+                            <?= GetStringRaw("general", "video.title"); ?>
                         </div>
                         <div class="osekai__panel-inner snapshots__youtube-embed">
                             <iframe id="video" width="100%" height="100%" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -528,7 +528,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     </section>
                     <section class="osekai__panel" id="warnings_panel">
                         <div class="osekai__panel-header">
-                            <?php echo GetStringRaw("snapshots", "version.warnings.title"); ?>
+                            <?= GetStringRaw("snapshots", "version.warnings.title"); ?>
                         </div>
                         <div class="osekai__panel-inner">
                             <div class="snapshots__warning-list" id="warnings_list">
@@ -540,12 +540,12 @@ if ($_SESSION['role']['rights'] >= 1) {
                         <?php if ($admin_access == false) { ?>
 
                             <div class="osekai__panel-header">
-                                <?php echo GetStringRaw("snapshots", "version.screenshots"); ?>
+                                <?= GetStringRaw("snapshots", "version.screenshots"); ?>
                             </div>
                         <?php } else { ?>
                             <div class="osekai__panel-header-with-buttons" id="AddMapPanel">
                                 <div class="osekai__panel-hwb-left">
-                                    <?php echo GetStringRaw("snapshots", "version.screenshots"); ?> {Admin Edition}
+                                    <?= GetStringRaw("snapshots", "version.screenshots"); ?> {Admin Edition}
                                 </div>
                                 <div class="osekai__panel-hwb-right" id="AddMapButton">
                                     <div onclick="addScreenshotToCurrentVersion();" class="osekai__panel-header-button"><i class="fas fa-plus-circle osekai__panel-header-button-icon" aria-hidden="true"></i>
@@ -567,7 +567,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                     <img class="app__home-logo" src="../global/img/branding/vector/white/snapshots.svg">
                     <div class="app__home-texts">
                         <p class="app__home-header">osekai <strong>snapshots</strong></p>
-                        <p class="app__home-slogan" id="home_slogan"><?php echo GetStringRaw("snapshots", "home.slogan.unloaded"); ?></p>
+                        <p class="app__home-slogan" id="home_slogan"><?= GetStringRaw("snapshots", "home.slogan.unloaded"); ?></p>
                         <p class="app__home-splash" id="splash">loading splash...</p>
                     </div>
                 </div>
@@ -575,11 +575,11 @@ if ($_SESSION['role']['rights'] >= 1) {
                 <div class="osekai__3col_col2">
                     <section class="osekai__panel">
                         <div class="osekai__panel-header">
-                            <?php echo GetStringRaw("snapshots", "home.welcome.title"); ?>
+                            <?= GetStringRaw("snapshots", "home.welcome.title"); ?>
                         </div>
                         <div class="osekai__panel-inner">
-                            <h1 class="osekai__h1"><?php echo GetStringRaw("snapshots", "home.welcome"); ?></h1>
-                            <?php echo GetStringRaw("snapshots", "home.welcome.description"); ?>
+                            <h1 class="osekai__h1"><?= GetStringRaw("snapshots", "home.welcome"); ?></h1>
+                            <?= GetStringRaw("snapshots", "home.welcome.description"); ?>
                         </div>
                     </section>
                 </div>
