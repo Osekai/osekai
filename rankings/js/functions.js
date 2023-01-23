@@ -1231,7 +1231,7 @@ function UpdateTaskTimer() {
     setTimeout(() => {
         temporarySeconds = temporarySeconds - 1;
         if(!document.getElementById("home").classList.contains("hidden")) {
-            document.getElementById("currenttask_eta").innerHTML = new Date(temporarySeconds * 1000).toISOString().substring(11, 19)
+            document.getElementById("currenttask_eta").innerHTML = new Date(temporarySeconds * 1000).toISOString().substring(11, 19) + " <light>ETA</light>"
         }
         UpdateTaskTimer();
     }, 1000);
