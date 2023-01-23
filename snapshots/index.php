@@ -665,6 +665,6 @@ if ($_SESSION['role']['rights'] >= 1) {
             ?>
         </div>
     </div>
-    <script type="text/javascript" src="./js/functions.js?v=1.0.3"></script>
+    <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

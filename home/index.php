@@ -296,7 +296,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     </div>
     <div id="home__faq-list"></div>
 </body>
-<script src="js/main.js?v=1.2"></script>
+<script src="js/main.js?v=<?= OSEKAI_VERSION; ?>"></script>
 <img src="img/background.png" onload="positionNav();" style="display: none;">
 <script>
     //document.getElementById("home").classList.remove('home__loader-wait')

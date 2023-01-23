@@ -259,6 +259,6 @@ if (isset($_GET['medal'])) {
         </div>
     </div>
     <?php tippy(); ?>
-    <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION; ?>"></script>
+    <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

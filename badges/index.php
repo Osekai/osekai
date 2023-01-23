@@ -186,4 +186,4 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     }
 </script>
 
-<script type="text/javascript" src="./js/functions.js?v=1.0.2"></script>
+<script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
