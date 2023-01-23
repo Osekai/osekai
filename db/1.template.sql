@@ -1785,9 +1785,9 @@ CREATE TABLE `Ranking` (
 DROP TABLE IF EXISTS `RankingLoopHistory`;
 CREATE TABLE `RankingLoopHistory` (
   `Id` int(11) NOT NULL,
-  `Date` int(11) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `LoopType` text COLLATE utf8mb4_bin NOT NULL
+  `LoopType` text COLLATE utf8mb4_bin NOT NULL,
+  `Amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
