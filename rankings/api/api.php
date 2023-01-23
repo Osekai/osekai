@@ -178,11 +178,11 @@ if (isset($_POST['Member']) && !isRestricted() && loggedin()) {
 }
 
 if (isset($_POST['State'])) {
-    echo Database::execSimpleSelect("SELECT * FROM RankingLoopInfo")[0]["State"];
+    echo json_encode(Database::execSimpleSelect("SELECT * FROM RankingLoopInfo")[0]);
 }
 
 if (isset($_POST['StateHistory'])) {
-    echo json_encode(Database::execSimpleSelect("SELECT * FROM RankingLoopHistory LIMIT 10 ORDER BY Time"));
+    echo json_encode(Database::execSimpleSelect("SELECT * FROM RankingLoopHistory ORDER BY Time DESC LIMIT 10"));
 }
 
 

@@ -50,9 +50,8 @@ if (!isset($_GET['ranking'])) {
     } else {
         header("HTTP/1.1 301 Moved Permanently");
         header("Location: /rankings/");
-        exit();        
+        exit();
     }
-
 }
 
 $app = "rankings";
@@ -89,10 +88,10 @@ $meta = '<meta charset="utf-8">
     mobileManager();
     notification_system();
     tippy();
-    
+
     //
     medal_popup_v2();
-    
+
     //report_system();
     ?>
 </head>
@@ -140,8 +139,8 @@ $meta = '<meta charset="utf-8">
                             <p>Tasks</p>
                         </div>
                         <div class="osekai__panel-inner">
-                            <p class="rankings__tasks-header">Current Task</p>
-                            <div class="rankings__task rankings__task-working rankings__task-current">
+                            <p class="rankings__tasks-header" id="currenttask-text">Current Task</p>
+                            <div class="rankings__task rankings__task-working rankings__task-current" id="currenttask">
                                 <div class="rankings__task-accent">
                                     <i class="fas fa-sync-alt"></i>
                                 </div>
@@ -149,23 +148,24 @@ $meta = '<meta charset="utf-8">
                                     <div class="rankings__task-content-inner">
                                         <div class="rankings__task-text">
                                             <div class="rankings__task-text-left">
-                                                <h3>Task: <strong>Full</strong></h3>
-                                                <h2>Running Update</h2>
+                                                <h3>Task: <strong id="currenttask_name">Full</strong></h3>
+                                                <h2 id="currenttask_statustext">Running Update</h2>
                                             </div>
                                             <div class="rankings__task-text-right">
-                                                <h3><strong>50%</strong> - 9000/15000</h3>
-                                                <h2>1:29:00 <light>ETA</light>
+                                                <h3 id="currenttask_status"><strong>50%</strong> - 9000/15000</h3>
+                                                <h2 id="currenttask_eta">1:29:00 <light>ETA</light>
                                                 </h2>
                                             </div>
                                         </div>
                                         <div class="osekai__progress-bar">
-                                            <div class="osekai__progress-bar-inner" style="width: 50%"></div>
+                                            <div id="currenttask_progress" class="osekai__progress-bar-inner" style="width: 50%"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <p class="rankings__tasks-header">Completed Tasks</p>
-                            <div class="rankings__task rankings__task-finished">
+                            <div id="completedtasks_list" style="width: 100%;">
+                                <!-- <div class="rankings__task rankings__task-finished">
                                 <div class="rankings__task-accent">
                                     <i class="fas fa-check"></i>
                                 </div>
@@ -192,6 +192,7 @@ $meta = '<meta charset="utf-8">
                                         <h2>2 days ago</h2>
                                     </div>
                                 </div>
+                            </div> -->
                             </div>
                         </div>
                     </div>

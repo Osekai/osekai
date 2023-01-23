@@ -572,8 +572,11 @@ var TimeAgo = (function () {
     self.inWords = function (timeAgo) {
         var d = new Date();
         var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-        var nd = new Date(utc + (3600000 * 2));
-
+        var nd = new Date(utc + (3600000 * 1));
+        // NOTE: 36000000 * 1 is required to offset from germany timezone
+        // which is what it's stored in on prod right now
+        // hopefully this will change with Octon
+        // sometimes it's *2 for like daylight saving stuffs so change that when summer comes LOL
 
         var seconds = Math.floor((nd - parseInt(timeAgo)) / 1000),
             separator = this.locales.separator || ' ',

@@ -1177,6 +1177,94 @@ function InitializeHome() {
             };
         };
     });
+
+   
+    LoadCurrentState();
+    LoadStateHistory();
+    UpdateTaskTimer();
+}
+
+var temporarySeconds = 0;
+var lastSeconds = 0;
+var justRunning = false;
+
+function LoadCurrentState() {
+    // note: updates every minute
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", API_URL, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    xhr.send("State=");
+    xhr.onload = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var oResponse = JSON.parse(xhr.responseText);
+            console.log(oResponse);
+            document.getElementById("currenttask_name").innerHTML = oResponse['CurrentLoop'];   
+            var percentage = Math.round((oResponse['CurrentCount'] / oResponse['TotalCount'] * 100)*100) / 100;
+            if(lastSeconds != oResponse['EtaSeconds']) {
+                temporarySeconds = oResponse['EtaSeconds'];
+            }
+            document.getElementById("currenttask_status").innerHTML = `<strong>${percentage}%</strong> - ${oResponse['CurrentCount']}/${oResponse['TotalCount']}`;;   
+            document.getElementById("currenttask_progress").style.width = percentage + "%";
+
+            if(oResponse['CurrentLoop'] == "Complete") {
+                document.getElementById("currenttask").classList.add("hidden")
+                document.getElementById("currenttask-text").innerHTML = "No running tasks.";
+                if(justRunning == true) {
+                    LoadStateHistory();
+                }
+                justRunning = false;
+            } else {
+                justRunning = true;
+                document.getElementById("currenttask").classList.remove("hidden")
+                document.getElementById("currenttask-text").innerHTML = "Current Tasks";
+            }
+        }
+    };
+    setTimeout(() => {
+        if(!document.getElementById("home").classList.contains("hidden")) {
+            // homepage is visible, update
+            LoadCurrentState();
+        }
+    }, 30000);
+}
+function UpdateTaskTimer() {
+    setTimeout(() => {
+        temporarySeconds = temporarySeconds - 1;
+        if(!document.getElementById("home").classList.contains("hidden")) {
+            document.getElementById("currenttask_eta").innerHTML = new Date(temporarySeconds * 1000).toISOString().substring(11, 19)
+        }
+        UpdateTaskTimer();
+    }, 1000);
+}
+function LoadStateHistory() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", API_URL, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    xhr.send("StateHistory=");
+    xhr.onload = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var oResponse = JSON.parse(xhr.responseText);
+            console.log(oResponse);
+            var html = ``;
+            for(var x = 0; x < oResponse.length; x++) {
+                html += `<div class="rankings__task rankings__task-finished">
+                <div class="rankings__task-accent">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="rankings__task-content-small">
+                    <div class="rankings__task-text-left">
+                        <h2>${oResponse[x]['LoopType']}</h2>
+                        <h3>${oResponse[x]['Amount']} users processed</h3>
+                    </div>
+                    <div class="rankings__task-text-right">
+                        <h2>${TimeAgo.inWords(new Date(oResponse[x]['Time']).getTime())}</h2>
+                    </div>
+                </div>
+            </div>`;
+            }
+            document.getElementById("completedtasks_list").innerHTML = html;
+        }
+    }
 }
 
 function RemoveHome() {
