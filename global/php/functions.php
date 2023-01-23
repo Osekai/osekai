@@ -287,7 +287,7 @@ function comments_system()
     echo '<script src="/global/js/picmo/picmo-popup.js?v=' . OSEKAI_VERSION . '"></script>';
 
     // imports main css
-    echo '<link rel="stylesheet" href="/global/css/comments.css?v=' . OSEKAI_VERSION . '>';
+    echo '<link rel="stylesheet" href="/global/css/comments.css?v=' . OSEKAI_VERSION . '">';
 
     // bbcode
     echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-config.js?v=' . OSEKAI_VERSION . '"></script>';
