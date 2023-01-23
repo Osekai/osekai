@@ -639,7 +639,88 @@ INSERT INTO `GroupAssignments` (`UserId`, `GroupId`) VALUES
 (17416390,	6),
 (6291386,	6),
 (11539225,	7),
-(13641450,	6);
+(13641450,	6),
+(10238680,	1),
+(9350342,	2),
+(1309242,	12),
+(10379965,	12),
+(26544843,	13),
+(18152711,	5),
+(18152711,	4),
+(18152711,	13),
+(10238680,	13),
+(9350342,	5),
+(1699875,	5),
+(1309242,	5),
+(9507660,	5),
+(17279598,	5),
+(6291386,	5),
+(10249166,	5),
+(19471527,	5),
+(10504284,	5),
+(29534443,	5),
+(14398471,	5),
+(14522883,	5),
+(13771539,	5),
+(12985528,	5),
+(13903087,	5),
+(4687701,	5),
+(14694998,	5),
+(11578193,	5),
+(654296,	5),
+(8036887,	5),
+(14269506,	5),
+(14706035,	5),
+(16738509,	5),
+(12433422,	5),
+(22136262,	5),
+(8923804,	5),
+(9079969,	5),
+(9920144,	5),
+(9843286,	5),
+(6403393,	5),
+(16598079,	5),
+(11592579,	5),
+(12091015,	5),
+(17268434,	5),
+(18065598,	5),
+(12716143,	5),
+(12716143,	5),
+(6567341,	5),
+(7563700,	5),
+(27098548,	5),
+(11521543,	5),
+(7227109,	5),
+(18068988,	5),
+(18847055,	5),
+(12305683,	5),
+(16139008,	5),
+(7150814,	5),
+(17416390,	5),
+(12445773,	5),
+(21893727,	5),
+(10491903,	5),
+(4394183,	5),
+(19637339,	5),
+(19516462,	5),
+(12514014,	5),
+(17189658,	5),
+(14010215,	5),
+(3031177,	5),
+(18467846,	5),
+(16818802,	5),
+(9767342,	5),
+(17517577,	5),
+(7197172,	2),
+(18152711,	6),
+(14889628,	6),
+(18152711,	14),
+(10379965,	13),
+(15716075,	6),
+(6403393,	6),
+(1699875,	4),
+(9350342,	4),
+(17058819,	4);
 
 DROP TABLE IF EXISTS `Groups`;
 CREATE TABLE `Groups` (
@@ -654,33 +735,22 @@ CREATE TABLE `Groups` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(1, 'Osekai Community Management Team', 'CMT', '', '255,124,89', 1, 0);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(2, 'Osekai Developers', 'DEV', '', '99,128,255', 0, 0);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(3, 'Osekai App Developers', 'APP DEV', '', '87,200,180', 2, 0);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(4, 'Tools Contributor', 'TOOLS', '', '30,90,144', 3, 0);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(5, 'Translator', 'TRANSLATOR', '', '144,30,126', 8, 0);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(6, 'Supporter - Rank 1', '<i class="fa fa-heart" aria-hidden="true"></i>', '', '255,114,241', 5, 1);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(7, 'Supporter - Rank 2', '<i class="fa fa-heart" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i>', '', '255,114,241', 5, 1);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(8, 'Supporter - Rank 3', '<i class="fa fa-heart" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i>', '', '255,114,241', 5, 1);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(9, 'chromb', 'chromb', 'chromb', '100,100,100', 6, 1);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(10, 'Snapshots Moderator', '<i class="oif-app-snapshots"></i> MOD', '', '28,25,171', 7, 0);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(11, 'Moderator', 'MOD', '', '29,74,29', 4, 0);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(12, 'Lead', 'LEAD', '', '99,199,255', -1, 0);
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`) VALUES
-	(13, 'Social Team', 'SOCIAL', NULL, '157,32,255', 3, 0);
-  
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`, `ForceVisible`) VALUES
+(1,	'??groups.communityManager.name??',	'CMT',	'??groups.communityManager.description??',	'255,124,89',	4,	0,	0),
+(2,	'??groups.developers.name??',	'DEV',	'??groups.developers.description??',	'99,128,255',	6,	0,	0),
+(3,	'??groups.appDeveloper.name??',	'APP DEV',	'??groups.appDeveloper.description??',	'87,200,180',	10,	0,	0),
+(4,	'??groups.toolsContributor.name??',	'TOOLS',	'??groups.toolsContributor.description??',	'30,90,144',	16,	0,	0),
+(5,	'??groups.translator.name??',	'TRANSLATOR',	'??groups.translator.description??',	'144,30,126',	18,	0,	0),
+(6,	'Supporter - Rank 1',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	24,	1,	1),
+(7,	'Supporter - Rank 2',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	22,	1,	1),
+(8,	'Supporter - Rank 3',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	20,	1,	1),
+(9,	'chromb',	'chromb',	'chromb',	'100,100,100',	1,	1,	0),
+(10,	'??groups.snapshotsModerator.name??',	'<i class=\"oif-app-snapshots\"></i> MOD',	'??groups.snapshotsModerator.description??',	'28,25,171',	14,	0,	0),
+(11,	'??groups.moderator.name??\r\n',	'MOD',	'??groups.moderator.description??\r\n',	'29,74,29',	12,	0,	0),
+(12,	'??groups.lead.name??\r\n',	'LEAD',	'??groups.lead.description??\r\n',	'99,199,255',	0,	0,	0),
+(13,	'??groups.social.name??',	'SOCIAL',	'??groups.social.description??',	'157,32,255',	8,	0,	0),
+(14,	'??groups.teamLead.name??',	'TEAM LEAD',	'??groups.teamLead.description??',	'150,20,20',	2,	0,	0);
+
 DROP VIEW IF EXISTS `MedalListing`;
 CREATE TABLE `MedalListing` (`MedalID` int(5), `Name` varchar(50), `Description` varchar(500), `PossessionRate` varchar(50), `link` varchar(70), `restriction` varchar(8), `grouping` varchar(30));
 
