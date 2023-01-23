@@ -654,9 +654,7 @@ function badgeHtmlFromGroup($group, $size)
 
 function orderBadgeArray($array)
 {
-    usort($array, function ($a, $b) {
-        return strcmp($a['Order'], $b['Order']);
-    });
+    usort($array, function($a, $b) { return $a['Order'] < $b['Order'] ? -1 : 1; });
     return $array;
 }
 
