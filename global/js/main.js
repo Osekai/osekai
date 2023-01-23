@@ -544,8 +544,20 @@ function mutation() {
                 });
             }
         }
+
+        var tooltipv2s = document.getElementsByClassName("tooltip-v2");
+        for (var i = 0; i < tooltipv2s.length; i++) {
+            var content = tooltipv2s[i].getAttribute("tooltip-content");
+            var temp = tippy(tooltipv2s[i], {
+                appendTo: tooltipv2s[i].closest(".osekai__panel-container, body"),
+                arrow: true,
+                content: content,
+            });
+            tooltipv2s[i].classList.remove("tooltip-v2");
+        }
     }, 100);
 }
+
 
 // replace with tippy every time DOM updates using mutation observer
 var mutationObserver = new MutationObserver(function (mutations) {
