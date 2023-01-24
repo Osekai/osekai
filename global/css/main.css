@@ -4645,6 +4645,7 @@ input[type='range']:focus::-ms-fill-upper {
 .osekai__group-dropdown {
     position: absolute;
     right: 0;
+    z-index: 1;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #fff4;
