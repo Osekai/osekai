@@ -22,7 +22,7 @@ class GithubLabelProxyController extends ApiController
             return new UnknownErrorResult("The GitHub API returned an non Ok status.");
         }
 
-        Caching::saveCache("github_label_proxy_cache", 86400, $result->getResult()); // It expires after one day
+        Caching::saveCache("github_label_proxy_cache", 604800, $result->getResult()); // It expires after one week
         return new OkApiResult($result->getResult(), doNotEncode: true);
     }
 }
