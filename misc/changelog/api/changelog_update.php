@@ -31,7 +31,7 @@ class ChangelogUpdateApiController extends ApiController
                 throw new InvalidParameterException("Invalid entry 'tags' array");
 
             foreach ($entry['tags'] as $tag) {
-                if (!is_string($tag))
+                if (!is_int($tag))
                     throw new InvalidParameterException("Invalid tag in entry 'tags' field");
             }
         }
