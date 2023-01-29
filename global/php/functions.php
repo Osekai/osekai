@@ -160,6 +160,9 @@ function frontend()
             loadSource("<?= $app; ?>");
             loadSource("general");
         </script>
+
+        <script type="text/javascript" src="/global/js/variables.js?v=<?= OSEKAI_VERSION ?>"></script>
+        <script rel="preload" type="text/javascript" src="/global/js/main.js?v=<?= OSEKAI_VERSION ?>"></script>
 <?php
     }
 }
@@ -345,7 +348,12 @@ function init3col()
 
     global $coltype;
     $coltype = "3"; // tells the arrow thing on the left to exist
-
+    
+    echo '<div class="osekai__ct3-sidebar">
+    <div id="3col_arrow" class="osekai__ct3-arrow_area ct3open" onclick="switch3col();">
+        <i class="fas fa-chevron-right"></i>
+    </div>
+</div>';
     echo '<script type="text/javascript" src="/global/js/3col.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
@@ -620,7 +628,9 @@ function badgeHtmlFromGroup($group, $size)
 
 function orderBadgeArray($array)
 {
-    usort($array, function($a, $b) { return $a['Order'] < $b['Order'] ? -1 : 1; });
+    usort($array, function ($a, $b) {
+        return $a['Order'] < $b['Order'] ? -1 : 1;
+    });
     return $array;
 }
 

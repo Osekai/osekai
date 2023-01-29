@@ -96,7 +96,7 @@ if (isset($_GET['medal'])) {
 <body>
     <div id="oBeatmapInput"></div>
 
-    <?php navbar(); ?>
+    <?php //navbar(); ?>
     <div class="osekai__panel-container">
         <div class="osekai__3col-panels">
             <div id="osekai__col1" class="osekai__3col_col1 medals__nomedal">
