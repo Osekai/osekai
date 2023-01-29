@@ -6,17 +6,17 @@ window.mobile = mobile;
 window.addEventListener('resize', checkMobile);
 checkMobile();
 
-function checkMobile(){
-    if(window.innerWidth >= 900){
-        if(window.mobile == true){
+function checkMobile() {
+    if (window.innerWidth >= 900) {
+        if (window.mobile == true) {
             // we do this check to not spam the console when the user is not on a mobile device
             console.log("moved to desktop");
         }
         mobile = false;
     }
-    
-    if(window.innerWidth < 900){
-        if(mobile == false){
+
+    if (window.innerWidth < 900) {
+        if (mobile == false) {
             // we do this check to not spam the console when the user is not on a desktop device
             console.log("moved to mobile");
         }
@@ -224,7 +224,6 @@ function generateCustomThemeVars(accent, accentDark, valueOffsetOffset = 0, valu
 }
 
 function updateTheme() {
-    //console.log("switching to: " + theme);
     document.getElementById("custom_theme_container").innerHTML = "";
 
     if (theme.internal == "system") {
@@ -428,8 +427,6 @@ if (christmas) {
 }
 
 
-
-snowflakes(window.localStorage.getItem(snowflakesOption))
 //document.getElementById("settings_profiles__showmedalsfromallmodes").checked = true;
 
 function defaultSettings() {
@@ -448,7 +445,9 @@ function loadSettings() {
 }
 
 defaultSettings();
-loadSettings();
+document.addEventListener('DOMContentLoaded', (event) => {
+    loadSettings();
+});
 
 function setLanguage(code) {
     // /api/setLanguage?language=en
@@ -576,10 +575,11 @@ function mutation() {
 var mutationObserver = new MutationObserver(function (mutations) {
     mutation();
 });
-
-mutationObserver.observe(document.body, {
-    childList: true,
-    subtree: true
+document.addEventListener('DOMContentLoaded', (event) => {
+    mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 });
 
 mutation();

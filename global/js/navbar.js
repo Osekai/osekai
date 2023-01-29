@@ -1,3 +1,5 @@
+snowflakes(window.localStorage.getItem(snowflakesOption))
+
 var currently_open = null;
 var actively_open = false;
 
