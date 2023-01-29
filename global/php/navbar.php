@@ -579,4 +579,7 @@ include("search_overlay.php");
     ?>
 </div>
 
+<script type="text/javascript" src="/global/js/variables.js?v=<?= OSEKAI_VERSION ?>"></script>
+<script rel="preload" type="text/javascript" src="/global/js/main.js?v=<?= OSEKAI_VERSION ?>"></script>
+
 <script src="/global/js/navbar.js?v=<?= OSEKAI_VERSION ?>"></script>

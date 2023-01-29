@@ -168,6 +168,7 @@ theme = themes["system"];
 loadThemes();
 
 function setTheme(stheme) {
+    console.log("setting theme to " + stheme);
     if (typeof stheme == "string") {
         for (var i in themes) {
             if (themes[i].internal == stheme) {
@@ -431,6 +432,7 @@ if (christmas) {
 
 function defaultSettings() {
     if (window.localStorage.getItem('theme') == null) {
+        console.log("defaulting theme");
         setTheme("system");
         window.localStorage.setItem('theme', "system");
     }
@@ -444,10 +446,10 @@ function loadSettings() {
     setTheme(window.localStorage.getItem('theme'));
 }
 
+
 defaultSettings();
-document.addEventListener('DOMContentLoaded', (event) => {
-    loadSettings();
-});
+loadSettings();
+
 
 function setLanguage(code) {
     // /api/setLanguage?language=en
@@ -575,12 +577,12 @@ function mutation() {
 var mutationObserver = new MutationObserver(function (mutations) {
     mutation();
 });
-document.addEventListener('DOMContentLoaded', (event) => {
-    mutationObserver.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+
+mutationObserver.observe(document.body, {
+    childList: true,
+    subtree: true
 });
+
 
 mutation();
 
