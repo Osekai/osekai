@@ -1,5 +1,4 @@
 <?php
-mobileManager();
 fontawesome();
 xhr_requests();
 tippy();
@@ -448,17 +447,6 @@ foreach ($apps as $a) {
         </div>
     </div>
 </div>
-<?php
-if ($coltype == "3") {
-?>
-    <div class="osekai__ct3-sidebar">
-        <div id="3col_arrow" class="osekai__ct3-arrow_area ct3open" onclick="switch3col();">
-            <i class="fas fa-chevron-right"></i>
-        </div>
-    </div>
-<?php
-}
-?>
 
 <div id="loading_overlay">
 </div>
@@ -590,7 +578,6 @@ include("search_overlay.php");
     echo "</style>";
     ?>
 </div>
-
 
 <script type="text/javascript" src="/global/js/variables.js?v=<?= OSEKAI_VERSION ?>"></script>
 <script rel="preload" type="text/javascript" src="/global/js/main.js?v=<?= OSEKAI_VERSION ?>"></script>

@@ -31,8 +31,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osu_api_functions.php");
 <?php
 font();
 css();
-dropdown_system();
-mobileManager();
 xhr_requests();
 notification_system();
 ?>

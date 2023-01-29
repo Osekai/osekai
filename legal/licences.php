@@ -23,14 +23,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <?php
     font();
     css();
-    dropdown_system();
-    //notification_system();
-    //
-    //
-    //
-    //comments_system();
-    //report_system();
-
+    
     $licences = [];
     function add($name = null, $link = null, $licence = null, $type = "licence")
     {

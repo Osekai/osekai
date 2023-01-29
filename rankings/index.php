@@ -82,17 +82,12 @@ $meta = '<meta charset="utf-8">
     echo $head;
     font();
     css();
-    dropdown_system();
-    fontawesome();
+        fontawesome();
 
-    mobileManager();
-    notification_system();
+        notification_system();
     tippy();
 
-    //
     medal_popup_v2();
-
-    //report_system();
     ?>
 </head>
 

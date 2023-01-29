@@ -17,8 +17,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osu_api_functions.php");
 <?php
 font();
 css();
-dropdown_system();
-mobileManager();
 ?>
 
 <head>

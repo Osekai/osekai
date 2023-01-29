@@ -90,16 +90,7 @@ if (loggedin()) {
     echo $head;
     font();
     css();
-    dropdown_system();
-    mobileManager();
-
-    //notification_system();
-    //
-    //
-    //
-    //comments_system();
-    //report_system();
-    ?>
+            ?>
 </head>
 
 <body>

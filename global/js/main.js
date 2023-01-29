@@ -1,6 +1,29 @@
 var bLoggedIn = (typeof nUserID !== 'undefined' && nUserID.toString() !== "-1");
 
-// after 0.6 seconds
+var mobile = false;
+window.mobile = mobile;
+
+window.addEventListener('resize', checkMobile);
+checkMobile();
+
+function checkMobile() {
+    if (window.innerWidth >= 900) {
+        if (window.mobile == true) {
+            // we do this check to not spam the console when the user is not on a mobile device
+            console.log("moved to desktop");
+        }
+        mobile = false;
+    }
+
+    if (window.innerWidth < 900) {
+        if (mobile == false) {
+            // we do this check to not spam the console when the user is not on a desktop device
+            console.log("moved to mobile");
+        }
+        mobile = true;
+    }
+}
+
 setTimeout(function () {
     var panels = document.getElementsByClassName("osekai__panel-container");
     for (var i = 0; i < panels.length; i++) {
@@ -145,6 +168,7 @@ theme = themes["system"];
 loadThemes();
 
 function setTheme(stheme) {
+    console.log("setting theme to " + stheme);
     if (typeof stheme == "string") {
         for (var i in themes) {
             if (themes[i].internal == stheme) {
@@ -201,7 +225,6 @@ function generateCustomThemeVars(accent, accentDark, valueOffsetOffset = 0, valu
 }
 
 function updateTheme() {
-    //console.log("switching to: " + theme);
     document.getElementById("custom_theme_container").innerHTML = "";
 
     if (theme.internal == "system") {
@@ -272,17 +295,7 @@ window.addEventListener("popstate", function () {
     localStorage.setItem("url", location.href);
 });
 
-var navheight = 0;
-// next part is because i got bored
-function positionNav() {
-    navheight = document.getElementsByClassName("osekai__navbar-container")[0].clientHeight.toString();
-    var extraheight = navheight - 59;
-    var body = document.body;
-    body.setAttribute("style", "--navheight: " + navheight + "px; --extraheight: " + extraheight + "px;");
-}
-positionNav();
-window.onresize = positionNav;
-window.onload = positionNav();
+
 //changeOptions
 var cbNotifsNB = document.getElementById("styled-checkbox-notifs");
 cbNotifsNB && cbNotifsNB.addEventListener("change", () => {
@@ -415,12 +428,11 @@ if (christmas) {
 }
 
 
-
-snowflakes(window.localStorage.getItem(snowflakesOption))
 //document.getElementById("settings_profiles__showmedalsfromallmodes").checked = true;
 
 function defaultSettings() {
     if (window.localStorage.getItem('theme') == null) {
+        console.log("defaulting theme");
         setTheme("system");
         window.localStorage.setItem('theme', "system");
     }
@@ -434,8 +446,10 @@ function loadSettings() {
     setTheme(window.localStorage.getItem('theme'));
 }
 
+
 defaultSettings();
 loadSettings();
+
 
 function setLanguage(code) {
     // /api/setLanguage?language=en
@@ -568,6 +582,7 @@ mutationObserver.observe(document.body, {
     childList: true,
     subtree: true
 });
+
 
 mutation();
 
