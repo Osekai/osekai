@@ -83,18 +83,13 @@ if (isset($_GET['medal'])) {
     <?php
     css();
     font();
-    dropdown_system();
-    init3col();
+        init3col();
 
     xhr_requests();
     notification_system();
-    
-    
-    
+
     comments_system();
-    report_system();
-    mobileManager();
-    new_report_system();
+        new_report_system();
     ?>
 </head>
 

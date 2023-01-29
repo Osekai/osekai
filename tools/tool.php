@@ -55,11 +55,9 @@ $meta .= '
     echo $meta;
     font();
     css();
-    dropdown_system();
-    fontawesome();
+        fontawesome();
 
-    mobileManager();
-    notification_system();
+        notification_system();
     tippy();
     
     ?>

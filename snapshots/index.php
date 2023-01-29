@@ -82,18 +82,13 @@ if ($_SESSION['role']['rights'] >= 1) {
     <?php
     font();
     css();
-    dropdown_system();
-    init3col();
+        init3col();
 
     notification_system();
 
-
-
     xhr_requests();
     comments_system();
-    report_system();
-    mobileManager();
-
+    
     echo $meta;
     ?>
 </head>

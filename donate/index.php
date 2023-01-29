@@ -37,7 +37,6 @@ xhr_requests();
 notification_system();
 font();
 css();
-dropdown_system();
 ?>
 
 <body>

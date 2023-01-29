@@ -35,14 +35,8 @@ if (!isset($_SESSION['role']['rights']) || $_SESSION['role']['rights'] < 1) {
 
 font();
 css();
-dropdown_system();
 init3col();
-mobileManager();
 
-
-
-
-report_system();
 notification_system();
 fontawesome();
 colour_picker();

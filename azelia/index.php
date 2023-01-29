@@ -18,15 +18,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <?php
 font();
 css();
-dropdown_system();
-mobileManager();
 
 xhr_requests();
 osu_api();
 
-
-
-report_system();
 notification_system();
 //comments_system();
 fontawesome();

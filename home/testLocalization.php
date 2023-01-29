@@ -6,8 +6,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <?php
 font();
 css();
-dropdown_system();
-mobileManager();
 echo "test";
 
 ini_set('display_errors', 1);

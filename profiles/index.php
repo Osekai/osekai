@@ -88,15 +88,12 @@ frontend();
 
     font();
     css();
-    dropdown_system();
-    mobileManager();
-
+        
     xhr_requests();
     osu_api();
     
     medal_popup_v2();
-    
-    report_system();
+
     notification_system();
     comments_system();
     fontawesome();

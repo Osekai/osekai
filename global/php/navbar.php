@@ -1,5 +1,4 @@
 <?php
-mobileManager();
 fontawesome();
 xhr_requests();
 tippy();

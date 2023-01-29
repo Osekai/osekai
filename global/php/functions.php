@@ -305,21 +305,6 @@ function chart_js()
     echo '<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>';
 }
 
-$mmLoaded = false;
-
-function mobileManager()
-{
-    // imports css
-
-    global $mmLoaded;
-
-    // imports main css
-    if ($mmLoaded == false) {
-        echo '<script type="text/javascript" src="/global/js/mobileManager.js?v=' . OSEKAI_VERSION . '"></script>';
-        $mmLoaded = true;
-    }
-}
-
 function font()
 {
     // imports font
@@ -352,13 +337,6 @@ function navbar()
     include($server_root . "global/php/navbar.php");
 }
 
-function dropdown_system()
-{
-    // loads dropdown system
-
-    echo '<script type="text/javascript" src="/global/js/dropdown_system.js?v=' . OSEKAI_VERSION . '"></script>';
-}
-
 function init3col()
 {
     // loads 3col system
@@ -385,18 +363,6 @@ function lottie()
 }
 
 $reportsystemloaded = false;
-
-function report_system()
-{
-    notification_system();
-
-    global $reportsystemloaded;
-
-    if ($reportsystemloaded == false) {
-        echo '<script type="module" type="text/javascript" src="/global/js/report_system.js?v=' . OSEKAI_VERSION . '"></script>';
-        $reportsystemloaded = true;
-    }
-}
 
 function new_report_system()
 {
