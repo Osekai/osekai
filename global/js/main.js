@@ -295,17 +295,7 @@ window.addEventListener("popstate", function () {
     localStorage.setItem("url", location.href);
 });
 
-var navheight = 0;
-// next part is because i got bored
-function positionNav() {
-    navheight = document.getElementsByClassName("osekai__navbar-container")[0].clientHeight.toString();
-    var extraheight = navheight - 59;
-    var body = document.body;
-    body.setAttribute("style", "--navheight: " + navheight + "px; --extraheight: " + extraheight + "px;");
-}
-positionNav();
-window.onresize = positionNav;
-window.onload = positionNav();
+
 //changeOptions
 var cbNotifsNB = document.getElementById("styled-checkbox-notifs");
 cbNotifsNB && cbNotifsNB.addEventListener("change", () => {
