@@ -365,7 +365,7 @@ function elementCreator(dbhandler) {
             return oMobileWrapper;
         } else {
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainUser = this.CreateMainMedalUsersContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "370px", oMainUser, oRankCascade);
@@ -392,7 +392,7 @@ function elementCreator(dbhandler) {
             return oMobileWrapper;
         } else {
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainMedal = this.CreateMedalContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "295px", oMainMedal, oRankCascade);
@@ -424,7 +424,7 @@ function elementCreator(dbhandler) {
             let oWrapper = this.CreateDefaultWrapper();
 
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainUser = this.CreateMainUsersContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "370px", oMainUser, oRankCascade);
@@ -449,7 +449,7 @@ function elementCreator(dbhandler) {
             return oMobileWrapper;
         } else {
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainUser = this.CreateMainUsersContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "370px", oMainUser, oRankCascade);
@@ -474,7 +474,7 @@ function elementCreator(dbhandler) {
             return oMobileWrapper;
         } else {
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainUser = this.CreateMainUsersContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "40vw", oMainUser, oRankCascade);
@@ -498,7 +498,7 @@ function elementCreator(dbhandler) {
             return oMobileWrapper;
         } else {
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainUser = this.CreateMainUsersContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "40vw", oMainUser, oRankCascade);
@@ -522,7 +522,7 @@ function elementCreator(dbhandler) {
             return oMobileWrapper;
         } else {
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainUser = this.CreateMainUsersContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "40vw", oMainUser, oRankCascade);
@@ -546,7 +546,7 @@ function elementCreator(dbhandler) {
             return oMobileWrapper;
         } else {
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainUser = this.CreateMainUsersContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "40vw", oMainUser, oRankCascade);
@@ -570,7 +570,7 @@ function elementCreator(dbhandler) {
             return oMobileWrapper;
         } else {
             let oRank = this.CreateRankContent(oEntry);
-            let oRankCascade = this.CreateCascade(true, "50px", oRank);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
 
             let oMainUser = this.CreateMainUsersContent(oEntry);
             let oMainCascade = this.CreateCascade(false, "40vw", oMainUser, oRankCascade);
