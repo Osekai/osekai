@@ -407,10 +407,32 @@ function closeWelcomePanel() {
     document.getElementById("welcome_panel").classList.add("osekai__eclipse-welcome-hidden");
 }
 
-
+var snowflakesCreated = false;
 function snowflakes(enabled) {
     console.log("SNOWFLAKES: " + enabled);
     if (enabled == true || enabled == "true") {
+        if(snowflakesCreated == false) {
+            document.getElementById("snowflakes").innerHTML =  "";
+
+            snowflakesCreated = true;
+            var styleContainer = document.createElement("style");
+            for(var x = 0; x < 40; x++) {
+                var delay1 = Math.random() * 10;
+                var delay2 = Math.random() * 10;
+                var position = Math.random() * 100;
+            
+                styleContainer.innerHTML += `.snowflake:nth-of-type(${x}) {
+                    left: ${position}%;
+                    -webkit-animation-delay: ${delay1}s, ${delay2}s;
+                    animation-delay: ${delay1}s, ${delay2}s
+                }`;
+                document.getElementById("snowflakes").innerHTML += `<div class="snowflake">
+                <i class="fas fa-snowflake"></i>
+            </div>`;
+            }
+            
+                document.getElementById("snowflakes").appendChild(styleContainer);
+        }
         document.getElementById("snowflakes").classList.remove("hidden");
     } else {
         document.getElementById("snowflakes").classList.add("hidden");
