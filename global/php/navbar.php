@@ -298,7 +298,7 @@ foreach ($apps as $a) {
                 <i class="fab fa-twitter"></i>
             </div>
         </a>
-        <a rel="me" href="https://mastodon.world/@osekai" class="osekai__apps-dropdown-bottomleft-extra">
+        <a rel="me" href="https://social.untone.uk/@osekai" class="osekai__apps-dropdown-bottomleft-extra">
             <p><?= GetStringRaw("navbar", "apps.mastodon"); ?></p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fab fa-mastodon"></i>
