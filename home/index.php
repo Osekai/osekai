@@ -169,7 +169,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                             social("https://twitter.com/Tanza3D", "Twitter"),
                             social("https://twitch.tv/tanza_live", "Twitch"),
                             social("https://www.hubza.co.uk/", "Website"),
-                            social("https://mastodon.online/@tanza", "Mastodon")
+                            social("https://social.untone.uk/@tanza", "Mastodon")
                         ]
                     );
                     addMember(
@@ -184,7 +184,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                             social("https://github.com/minusQuantumNeko/", "Github"),
                             social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com"),
                             social("https://twitch.tv/megamix_craft", "Twitch"),
-                            social("https://mastodon.world/@MegaMix_Craft", "Mastodon")
+                            social("https://social.untone.uk/@MegaMix_Craft", "Mastodon")
                         ]
                     );
                     addMember(
