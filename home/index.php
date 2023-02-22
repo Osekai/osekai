@@ -24,7 +24,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <?php
     font();
     css();
-            echo $head;
+    echo $head;
     lottie();
     ?>
 </head>
@@ -149,138 +149,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             </div>
             <div class="home__panel home__team">
                 <h1><?= GetStringRaw("home", "team.title"); ?></h1>
-                <div class="home__team-grid">
-                    <?php
-                    include("team.php");
-
-                    addMember(
-                        1309242,
-                        "mulraf",
-                        GetStringRaw("home", "team.role.mulraf"),
-                        null,
-                        [social("https://youtube.com/mulraf", "Youtube")]
-                    );
-                    addMember(
-                        10379965,
-                        "Tanza3D",
-                        GetStringRaw("home", "team.role.tanza"),
-                        "Hubz",
-                        [
-                            social("https://twitter.com/Tanza3D", "Twitter"),
-                            social("https://twitch.tv/tanza_live", "Twitch"),
-                            social("https://www.hubza.co.uk/", "Website"),
-                            social("https://social.untone.uk/@tanza", "Mastodon")
-                        ]
-                    );
-                    addMember(
-                        18152711,
-                        "MegaMix_Craft",
-                        GetStringRaw("home", "team.role.megamix"),
-                        "minusQuantumNeko",
-                        [
-                            social("https://discord.com/users/494883957117288448", "Discord"),
-                            social("https://www.youtube.com/MegaMix_Craft", "Youtube"),
-                            social("https://twitter.com/MegaMix_Craft", "Twitter"),
-                            social("https://github.com/minusQuantumNeko/", "Github"),
-                            social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com"),
-                            social("https://twitch.tv/megamix_craft", "Twitch"),
-                            social("https://social.untone.uk/@MegaMix_Craft", "Mastodon")
-                        ]
-                    );
-                    addMember(
-                        9350342,
-                        "EXtremeExploit",
-                        GetStringRaw("home", "team.role.generic.developer"),
-                        "Pedrito",
-                        [
-                            social("https://github.com/EXtremeExploit/", "Github"),
-                            social("https://www.twitch.tv/extremeexploit_", "Twitch"),
-                            social("https://pedro.moe/", "Website")
-                        ]
-                    );
-                    addMember(
-                        7197172,
-                        "jiniux",
-                        GetStringRaw("home", "team.role.generic.developer"),
-                        "AlexS4v",
-                        [
-                            social("https://github.com/jiniux/", "Github")
-                        ]
-                    );
-                    addMember(
-                        7279762,
-                        "Coppertine",
-                        GetStringRaw("home", "team.role.coppertine"),
-                        null,
-                        [
-                            social("https://twitter.com/shuffler2001", "Twitter"),
-                            social("https://www.twitch.tv/coppertine", "Twitch"),
-                            social("https://www.artstation.com/coppertine", "Website")
-                        ]
-                    );
-                    addMember(
-                        14125695,
-                        "TheEggo",
-                        GetStringRaw("home", "team.role.generic.snapshotsDeveloper"),
-                        null,
-                        []
-                    );
-                    addMember(
-                        2211396,
-                        "Badewanne3",
-                        GetStringRaw("home", "team.role.generic.rankingsDataEngineer"),
-                        null,
-                        [social("https://github.com/MaxOhn", "Github")]
-                    );
-                    addMember(
-                        3357640,
-                        "Electroyan",
-                        GetStringRaw("home", "team.role.generic.rankingsDataEngineer"),
-                        null,
-                        []
-                    );
-                    addMember(
-                        10238680,
-                        "chromb",
-                        GetStringRaw("home", "team.role.generic.communityManager"),
-                        null,
-                        [
-                            social("https://www.youtube.com/channel/UCq37paEnfI4pmwE5j3rO5eg", "Youtube"),
-                            social("https://twitch.tv/chr0mb", "Twitch")
-                        ]
-                    );
-                    addMember(
-                        1699875,
-                        "Remyria",
-                        GetStringRaw("home", "team.role.generic.communityManager"),
-                        null,
-                        [
-                            social("https://www.youtube.com/@Remyria", "Youtube"),
-                            social("https://twitch.tv/remyria", "Twitch"),
-                            social("https://www.speedrun.com/user/Remyria", "Speedrun.com")
-                        ]
-                    );
-                    addMember(
-                        16487835,
-                        "ILuvSkins",
-                        GetStringRaw("home", "team.role.generic.snapshotsManager"),
-                        null,
-                        []
-                    );
-                    addMember(
-                        26544843,
-                        "Mono x Mellow",
-                        GetStringRaw("home", "team.role.monoxmellow"),
-                        null,
-                        [
-                            social("https://twitter.com/Mono_x_Mellow", "Twitter"),
-                            social("https://www.youtube.com/channel/UC7ZW8exqZ1c6eOhyajMnyZg", "Youtube"),
-                            social("https://www.twitch.tv/monoxmellow", "Twitch"),
-                            social("https://discord.com/users/194863870559387648", "Discord")
-                        ]
-                    );
-                    printTeam();
-                    ?>
+                <div class="home__team-grid" id="team_grid">
                 </div>
             </div>
         </div>

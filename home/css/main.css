@@ -677,6 +677,10 @@ code {
     flex-wrap: wrap;
 }
 
+.home__team-member-info-texts-badges object {
+    margin-bottom: 5px;
+}
+
 .home__team-member-socials-inner {
     padding: 12px 15px;
     display: flex;
