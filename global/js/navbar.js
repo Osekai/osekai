@@ -30,6 +30,7 @@ function apps_dropdown(hide = false) {
         document.getElementById("dropdown__apps_mobile").classList.add("osekai__apps-dropdown-mobile-hidden");
         chevron.classList.remove("nav_chevron_flipped");
         blur_overlay.classList.remove("osekai__blur-overlay__active");
+        document.body.classList.remove("noscroll");
         return;
     }
     hide_dropdowns(false);
