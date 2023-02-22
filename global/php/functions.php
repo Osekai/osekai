@@ -309,7 +309,8 @@ function font()
 {
     // imports font
 
-    echo '<link rel="preload" rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com">';
+    echo '<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
     echo '<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">';
 }
 
@@ -345,7 +346,7 @@ function init3col()
 
     global $coltype;
     $coltype = "3"; // tells the arrow thing on the left to exist
-    
+
     echo '<div class="osekai__ct3-sidebar">
     <div id="3col_arrow" class="osekai__ct3-arrow_area ct3open" onclick="switch3col();">
         <i class="fas fa-chevron-right"></i>
