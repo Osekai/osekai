@@ -283,7 +283,9 @@ function setLocaleCookie($text)
 
 function getLocaleCookie()
 {
-    return $_COOKIE['locale'];
+    if (isset($_COOKIE['locale']))
+        return $_COOKIE['locale'];
+    return null;
 }
 
 function setCurrentLocale($localeName, $save = true)
@@ -293,7 +295,7 @@ function setCurrentLocale($localeName, $save = true)
     if (array_key_exists($localeName, $locales)) {
         $currentLocale = $locales[$localeName];
         //$_SESSION['locale'] = $localeName;
-        if($save) {
+        if ($save) {
             setLocaleCookie($localeName);
         }
     } else {
