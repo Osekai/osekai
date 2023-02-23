@@ -456,11 +456,6 @@ foreach ($apps as $a) {
 
 <div id="css_cont"></div>
 
-
-<script>
-    if (<?= (int)isExperimental(); ?> == 1) toggleExperimental();
-</script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <?php
