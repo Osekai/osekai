@@ -23,7 +23,7 @@ $extraHtml = [
 ];
 
 
-function social($link, $name, $icon = null)
+function social($link, $name)
 {
     return [
         "name" => $name,
