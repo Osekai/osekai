@@ -88,7 +88,7 @@ function LoadTeam() {
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/home/api/team.php', true);
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = async function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var TeamMembers = JSON.parse(xhr.responseText);
 
@@ -125,7 +125,7 @@ function LoadTeam() {
                 }
 
                 memberInfoTexts.appendChild(memberInfoTexts_Role = document.createElement("p"))
-                memberInfoTexts_Role.innerHTML = LocalizeTextNonAsync(member.role);
+                memberInfoTexts_Role.innerHTML = await LocalizeText(member.role);
 
                 var memberSocials = document.createElement("div");
                 memberSocials.classList.add("home__team-member-socials");
