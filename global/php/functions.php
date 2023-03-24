@@ -9,7 +9,7 @@ if (isset($app)) {
 
 $time_start = microtime(true);
 $request_time = $_SERVER['REQUEST_TIME_FLOAT'];
-$christmas = true;
+$christmas = false;
 
 $useJS = true;
 
