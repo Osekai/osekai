@@ -405,7 +405,13 @@ foreach ($apps as $a) {
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
                 <p><?= GetStringRaw("navbar", "profile.logIn"); ?></p>
             </a>
-
+            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 240, 240, 255" onclick='dropdown("osekai__dropdown-settings-hidden", "dropdown-settings-new", 1)'>
+                <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
+                <i class="fas fa-cog"></i>
+                <p>
+                    <?= GetStringRaw("navbar", "tooltip.settings"); ?>
+                </p>
+            </a>
         </div>
     <?php } ?>
 </div>
