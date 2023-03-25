@@ -1,9 +1,9 @@
-let BADGES = [];
+let badges = [];
 
 function getBadgeFromID(id) {
-    for (let i = 0; i < BADGES.length; i++) {
-        if (BADGES[i].id == id) {
-            return BADGES[i];
+    for (let i = 0; i < badges.length; i++) {
+        if (badges[i].id == id) {
+            return badges[i];
         }
     }
     return null;
@@ -24,7 +24,7 @@ function loadData() {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     xhr.onload = function () {
         if (xhr.status == 200) {
-            BADGES = JSON.parse(xhr.responseText);
+            badges = JSON.parse(xhr.responseText);
 
             // geturl query
             var url = new URL(window.location.href);
@@ -64,25 +64,25 @@ function fillData() {
     switch (currentSorting) {
         case "awarded_at_asc":
             // data is already sorted by awarded_at, just need to reverse it
-            ndata = BADGES.slice().reverse();
+            ndata = badges.slice().reverse();
             break;
         case "awarded_at_desc":
             // Not need to sort, its already sorted from API
-            ndata = BADGES;
+            ndata = badges;
             break;
         case "name_asc":
-            ndata = BADGES.sort((a, b) => {
+            ndata = badges.sort((a, b) => {
                 return a.name.localeCompare(b.name);
             });
             break;
         case "name_desc":
-            ndata = BADGES.sort((a, b) => {
+            ndata = badges.sort((a, b) => {
                 return b.name.localeCompare(a.name);
             });
             break;
 
         case "players_asc":
-            ndata = BADGES.sort((a, b) => {
+            ndata = badges.sort((a, b) => {
                 let count = a.users.length;
                 let count2 = b.users.length;
                 return count - count2;
@@ -90,7 +90,7 @@ function fillData() {
             break;
 
         case "players_desc":
-            ndata = BADGES.sort((a, b) => {
+            ndata = badges.sort((a, b) => {
                 let count = a.users.length;
                 let count2 = b.users.length;
                 return count2 - count;
@@ -351,9 +351,9 @@ function hideOverlay() {
 function runSearch() {
     const searchQuery = document.getElementById("search").value.toLowerCase();
 
-    document.getElementById("title").innerHTML = "Badges (" + BADGES.length + ")";
+    document.getElementById("title").innerHTML = "Badges (" + badges.length + ")";
     if (searchQuery == "") {
-        BADGES.forEach(async (v, i) => {
+        badges.forEach(async (v, i) => {
             document.getElementById("badge-" + v.id).classList.remove("hidden");
         });
         return;
@@ -361,8 +361,8 @@ function runSearch() {
 
     let count = 0;
 
-    for (let i = 0; i < BADGES.length; i++) {
-        const badge = BADGES[i];
+    for (let i = 0; i < badges.length; i++) {
+        const badge = badges[i];
         const name = badge.name.toLowerCase();
         if (name.includes(searchQuery) || badge.description.toLowerCase().includes(searchQuery)) {
             document.getElementById("badge-" + badge.id).classList.remove("hidden");
