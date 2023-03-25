@@ -230,7 +230,7 @@ function changeViewtype(type) {
     // Put it in a timeout to not block the js execution
     setTimeout(() => {
         const badgesElements = Object.values(content.children);
-        // content.replaceChildren(); // Emtpy content and deatach badges to DOM so editing it is faster
+        content.replaceChildren(); // Emtpy content and deatach badges to DOM so editing it is faster
         if (oldType != "")
             content.classList.replace(oldType, viewType);
         else
