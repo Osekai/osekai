@@ -6,6 +6,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ERROR);
 
+Database::execSimpleOperation("DELETE FROM AdminNotes");
+
 $data = json_decode($_POST['data'], true);
 
 $columns = ["id", "name", "image_url", "description", "awarded_at", "users"];
