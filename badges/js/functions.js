@@ -74,13 +74,10 @@ var changeSorting = function (type) {
     sortingTypes.forEach((sortingType) => {
         var item = document.getElementById("sort_" + sortingType);
         console.log(item);
-        if (sortingType == type) {
-            console.log('yes');
+        if (sortingType == type)
             item.classList.add("osekai__dropdown-item-active");
-        } else {
-            console.log('no');
+        else
             item.classList.remove("osekai__dropdown-item-active");
-        }
     });
 
     document.getElementById("sort_activeItem").innerHTML = sortingTypes_Names[sortingTypes.indexOf(type)];
