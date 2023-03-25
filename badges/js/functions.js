@@ -53,8 +53,6 @@ loadSource("badges").then(function () {
 
     document.getElementById("sort_activeItem").textContent = sortingTypes_Names[sortingTypes.indexOf(currentSorting)];
     loadData();
-    document.getElementById("title").innerHTML = GetStringRawNonAsync("badges", "badges.title", [BADGES.length]);
-
 });
 
 function openSortDropdown() {
