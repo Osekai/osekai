@@ -4,6 +4,7 @@ var badgesLazyLoadInstance = new LazyLoad({
     callback_error: (img, instance) => {
         if (img.getAttribute("data-src").includes('@2x.png')) {
             img.src = img.getAttribute("data-src").replace('@2x.png', '.png');
+            img.setAttribute("data-src", img.src); // stops the if from falling through
         } else {
             img.src = '/badges/img/badge_default.png';
             img.onerror = null;
