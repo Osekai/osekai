@@ -1,13 +1,20 @@
-var data;
+let badges = [];
 
 function getBadgeFromID(id) {
-    for (var i = 0; i < data.length; i++) {
-        if (data[i].id == id) {
-            return data[i];
+    for (let i = 0; i < badges.length; i++) {
+        if (badges[i].id == id) {
+            return badges[i];
         }
     }
     return null;
 }
+
+const viewTypes = ["grid_large", "list_2wide", "list_1wide", "ultra_compact"];
+let viewType = "grid_large";
+
+const sortingTypes = ["awarded_at_asc", "awarded_at_desc", "name_asc", "name_desc", "players_asc", "players_desc"]
+let sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), GetStringRawNonAsync("badges", "sort.awardedAt.desc"), GetStringRawNonAsync("badges", "sort.name.asc"), GetStringRawNonAsync("badges", "sort.name.desc"), GetStringRawNonAsync("badges", "sort.playerCount.asc"), GetStringRawNonAsync("badges", "sort.playerCount.desc")];
+let currentSorting = "awarded_at_desc";
 
 function loadData() {
     // /badges/api/getBadges.php
@@ -15,19 +22,9 @@ function loadData() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", strUrl, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.send();
     xhr.onload = function () {
         if (xhr.status == 200) {
-            data = JSON.parse(xhr.responseText);
-
-            document.getElementById("title").innerHTML = GetStringRawNonAsync("badges", "badges.title", [data.length]);
-            if (localStorage.getItem("imageSize") != null) {
-                setImageSize(localStorage.getItem("imageSize"), false);
-            }
-
-            if (localStorage.getItem("viewType") != null) {
-                changeViewtype(localStorage.getItem("viewType"), false);
-            }
+            badges = JSON.parse(xhr.responseText);
 
             // geturl query
             var url = new URL(window.location.href);
@@ -39,85 +36,53 @@ function loadData() {
             fillData();
         }
     }
+    xhr.send();
 }
-
-var viewTypes = ["grid_large", "list_2wide", "list_1wide", "ultra_compact"];
-var viewType = "grid_large";
-
-var sortingTypes = ["awarded_at_asc", "awarded_at_desc", "name_asc", "name_desc", "players_asc", "players_desc"]
-var sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), GetStringRawNonAsync("badges", "sort.awardedAt.desc"), GetStringRawNonAsync("badges", "sort.name.asc"), GetStringRawNonAsync("badges", "sort.name.desc"), GetStringRawNonAsync("badges", "sort.playerCount.asc"), GetStringRawNonAsync("badges", "sort.playerCount.desc")];
-var currentSorting = "awarded_at_desc";
-
 
 loadSource("badges").then(function () {
     sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), GetStringRawNonAsync("badges", "sort.awardedAt.desc"), GetStringRawNonAsync("badges", "sort.name.asc"), GetStringRawNonAsync("badges", "sort.name.desc"), GetStringRawNonAsync("badges", "sort.playerCount.asc"), GetStringRawNonAsync("badges", "sort.playerCount.desc")];
     // grab these again in case the like fuckin' 10% chance they didnt load the last time hits
     // i dont know why this is an issue
     // help
-    var items = document.getElementById("sort_items");
-    var items_html = "";
-    for (var i = 0; i < sortingTypes.length; i++) {
+    const items = document.getElementById("sort_items");
+    let items_html = "";
+    for (let i = 0; i < sortingTypes.length; i++) {
         items_html += `<div class="osekai__dropdown-item" onclick="changeSorting('` + sortingTypes[i] + `')" id="sort_` + sortingTypes[i] + `">` + sortingTypes_Names[i] + `</div>`;
     }
     items.innerHTML = items_html;
 
-    document.getElementById("sort_activeItem").innerHTML = sortingTypes_Names[sortingTypes.indexOf(currentSorting)];
+    document.getElementById("sort_activeItem").textContent = sortingTypes_Names[sortingTypes.indexOf(currentSorting)];
+    loadData();
 });
-
-var changeSorting = function (type) {
-    currentSorting = type;
-    // wait 1 second
-
-    var content = document.getElementById("content");
-    content.innerHTML = "<div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'><circle class='ring' cx='25' cy='25' r='22.5' /><circle class='line' cx='25' cy='25' r='22.5' /></svg></div>";
-
-    sortingTypes.forEach((sortingType) => {
-        var item = document.getElementById("sort_" + sortingType);
-        console.log(item);
-        if (sortingType == type)
-            item.classList.add("osekai__dropdown-item-active");
-        else
-            item.classList.remove("osekai__dropdown-item-active");
-    });
-
-    document.getElementById("sort_activeItem").innerHTML = sortingTypes_Names[sortingTypes.indexOf(type)];
-
-    setTimeout(function () {
-        fillData();
-    }, 1);
-
-}
 
 function openSortDropdown() {
     document.getElementById("sort_items").classList.toggle("osekai__dropdown-hidden");
 }
 
-
 function fillData() {
-    // resort badges
     let ndata;
     switch (currentSorting) {
         case "awarded_at_asc":
             // data is already sorted by awarded_at, just need to reverse it
-            ndata = data.slice().reverse();
+            ndata = badges.slice().reverse();
             break;
         case "awarded_at_desc":
             // Not need to sort, its already sorted from API
-            ndata = data;
+            ndata = badges;
             break;
         case "name_asc":
-            ndata = data.sort((a, b) => {
+            ndata = badges.sort((a, b) => {
                 return a.name.localeCompare(b.name);
             });
             break;
         case "name_desc":
-            ndata = data.sort((a, b) => {
+            ndata = badges.sort((a, b) => {
                 return b.name.localeCompare(a.name);
             });
             break;
 
         case "players_asc":
-            ndata = data.sort((a, b) => {
+            ndata = badges.sort((a, b) => {
                 let count = a.users.length;
                 let count2 = b.users.length;
                 return count - count2;
@@ -125,7 +90,7 @@ function fillData() {
             break;
 
         case "players_desc":
-            ndata = data.sort((a, b) => {
+            ndata = badges.sort((a, b) => {
                 let count = a.users.length;
                 let count2 = b.users.length;
                 return count2 - count;
@@ -136,15 +101,6 @@ function fillData() {
             console.log('what');
             break;
     }
-
-    let content = document.getElementById("content");
-    // remove viewtypes from content
-    for (let i = 0; i < viewTypes.length; i++) {
-        content.classList.remove(viewTypes[i]);
-    }
-    content.classList.add(viewType);
-
-    console.time('badges proc');
 
     let badgeList = [];
     ndata.forEach(async (badge) => {
@@ -199,7 +155,7 @@ function fillData() {
         badgeInfo.classList.add('badge_info');
         badgeInfo.innerHTML = GetStringRawNonAsync("badges", "badge.firstAchieved", [awarded_at]);
 
-        badgeInfo.innerHTML += ' • ';
+        badgeInfo.textContent += ' • ';
 
         let users = JSON.parse(badge.users);
         if (users.length != 1)
@@ -211,37 +167,37 @@ function fillData() {
         badgeElement.appendChild(badgeTexts);
         badgeList.push(badgeElement);
     });
-    console.timeEnd('badges proc');
-
-    console.time('badges append');
-    content.textContent = '';
-    badgeList.forEach(element => {
-        content.appendChild(element);
-    });
-    console.timeEnd('badges append');
+    let content = document.getElementById("content");
+    content.replaceChildren(...badgeList);
 
     runSearch();
 }
-loadData();
 
-function changeViewtype(type, fill = true) {
-    viewType = type;
 
-    for (var i = 0; i < viewTypes.length; i++) {
-        document.getElementById("viewtype-" + viewTypes[i]).classList.remove("badges__panel-header-viewtype-active");
-    }
-    document.getElementById("viewtype-" + type).classList.add("badges__panel-header-viewtype-active");
+function changeSorting(type) {
+    currentSorting = type;
+    // wait 1 second
 
-    localStorage.setItem("viewType", type);
+    let content = document.getElementById("content");
+    content.innerHTML = "<div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'><circle class='ring' cx='25' cy='25' r='22.5' /><circle class='line' cx='25' cy='25' r='22.5' /></svg></div>";
 
-    if (fill == true) {
-        setTimeout(fillData, 1);
-    }
+    sortingTypes.forEach((sortingType) => {
+        let item = document.getElementById("sort_" + sortingType);
+        if (sortingType == type)
+            item.classList.add("osekai__dropdown-item-active");
+        else
+            item.classList.remove("osekai__dropdown-item-active");
+    });
+
+    document.getElementById("sort_activeItem").textContent = sortingTypes_Names[sortingTypes.indexOf(type)];
+
+    setTimeout(function () {
+        fillData();
+    }, 1);
 }
 
-var imageSize = "1x";
-
-function setImageSize(size, fill = true) {
+let imageSize = "1x";
+function setImageSize(size) {
     document.getElementById("1x").classList.remove("badges__panel-header-viewtype-active");
     document.getElementById("2x").classList.remove("badges__panel-header-viewtype-active");
 
@@ -267,28 +223,61 @@ function setImageSize(size, fill = true) {
     localStorage.setItem("imageSize", size);
 }
 
+function changeViewtype(type) {
+    viewType = type;
+
+    for (let i = 0; i < viewTypes.length; i++) {
+        document.getElementById("viewtype-" + viewTypes[i]).classList.remove("badges__panel-header-viewtype-active");
+    }
+    document.getElementById("viewtype-" + type).classList.add("badges__panel-header-viewtype-active");
+
+    localStorage.setItem("viewType", type);
+
+    let content = document.getElementById('content');
+
+    oldType = '';
+    viewTypes.forEach(type => {
+        if (content.classList.contains(type)) {
+            oldType = type;
+        }
+    });
+
+    // Most of the lag here comes from the browser working on the layout
+    // Put it in a timeout to not block the js execution
+    setTimeout(() => {
+        const badgesElements = Object.values(content.children);
+        content.replaceChildren(); // Emtpy content and deatach badges to DOM so editing it is faster
+        if (oldType != "")
+            content.classList.replace(oldType, viewType);
+        else
+            content.classList.add(viewType);
+        badgesElements.forEach(async (b) => b.classList.replace(oldType, viewType));
+        content.replaceChildren(...badgesElements);
+    }, 1);
+}
+
 function openBadge(index) {
-    var obj_name = document.getElementById("bop_name");
-    var obj_desc = document.getElementById("bop_desc");
-    var obj_img = document.getElementById("bop_img");
-    var obj_img2 = document.getElementById("bop_img2");
-    var obj_img_1x = document.getElementById("bop_img_1x");
-    var obj_achieved = document.getElementById("bop_achieved");
-    var obj_amount = document.getElementById("bop_amount");
-    var container_users = document.getElementById("bop_users");
+    let obj_name = document.getElementById("bop_name");
+    let obj_desc = document.getElementById("bop_desc");
+    let obj_img = document.getElementById("bop_img");
+    let obj_img2 = document.getElementById("bop_img2");
+    let obj_img_1x = document.getElementById("bop_img_1x");
+    let obj_achieved = document.getElementById("bop_achieved");
+    let obj_amount = document.getElementById("bop_amount");
+    let container_users = document.getElementById("bop_users");
 
-    var badge = getBadgeFromID(index);
+    let badge = getBadgeFromID(index);
 
-    obj_name.innerHTML = badge.name;
-    obj_desc.innerHTML = badge.description;
+    obj_name.textContent = badge.name;
+    obj_desc.textContent = badge.description;
     obj_img.src = badge.image_url.replace(".png", "@2x.png");
     obj_img2.src = badge.image_url.replace(".png", "@2x.png");
 
     document.getElementById("1x_var").classList.remove("hidden");
 
     obj_img.onerror = function () {
-        var obj_img = document.getElementById("bop_img");
-        var obj_img2 = document.getElementById("bop_img2");
+        let obj_img = document.getElementById("bop_img");
+        let obj_img2 = document.getElementById("bop_img2");
 
         obj_img.src = badge.image_url;
         obj_img2.src = badge.image_url;
@@ -297,32 +286,29 @@ function openBadge(index) {
 
     obj_img_1x.src = badge.image_url;
 
-    var awarded_at = badge.awarded_at;
+    let awarded_at = badge.awarded_at;
     if (awarded_at == "2013-08-07") {
         awarded_at = "long ago";
     }
 
     obj_achieved.innerHTML = GetStringRawNonAsync("badges", "badge.firstAchieved", [awarded_at]);
-    var users = badge.users;
-    // this is a string but it's json
-    var users = JSON.parse(users);
+    let users = JSON.parse(badge.users);
     obj_amount.innerHTML = GetStringRawNonAsync("badges", "badge.ownedBy", [users.length]);
 
-    // api/getUsers.php?badge_id=1
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/badges/api/getUsers.php?badge_id=" + badge.id, true);
-    xhr.send();
     // set container to loading
     container_users.innerHTML = "<div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'><circle class='ring' cx='25' cy='25' r='22.5' /><circle class='line' cx='25' cy='25' r='22.5' /></svg></div>";
 
-    var obj_main = document.getElementById("bop_overlay");
+    let obj_main = document.getElementById("bop_overlay");
     obj_main.classList.remove("badges__badge-overlay_hidden");
-    var obj_panel = document.getElementById("bop_panel");
+    let obj_panel = document.getElementById("bop_panel");
     obj_panel.classList.remove("badges__badge-panel_hidden");
 
+    // api/getUsers.php?badge_id=1
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "/badges/api/getUsers.php?badge_id=" + badge.id, true);
     xhr.onload = function () {
         if (xhr.status == 200) {
-            var users = JSON.parse(xhr.responseText);
+            const users = JSON.parse(xhr.responseText);
             container_users.textContent = '';
 
             Object.values(users).forEach((user) => {
@@ -343,6 +329,7 @@ function openBadge(index) {
             });
         }
     }
+    xhr.send();
     // set url query to badge id
     window.history.replaceState("", "", "?badge=" + badge.id);
 }
@@ -350,34 +337,33 @@ function openBadge(index) {
 function hideOverlay() {
     // remove queyr
     URLSearchParams = window.URLSearchParams || window.location.search;
-    var urlParams = new URLSearchParams(window.location.search);
+    let urlParams = new URLSearchParams(window.location.search);
     urlParams.delete("badge");
     window.history.replaceState("", "", "?" + urlParams.toString());
 
 
-    var obj_main = document.getElementById("bop_overlay");
+    let obj_main = document.getElementById("bop_overlay");
     obj_main.classList.add("badges__badge-overlay_hidden");
-    var obj_panel = document.getElementById("bop_panel");
+    let obj_panel = document.getElementById("bop_panel");
     obj_panel.classList.add("badges__badge-panel_hidden");
 }
 
 function runSearch() {
-    var searchQuery = document.getElementById("search").value;
-    var searchQuery = searchQuery.toLowerCase();
+    const searchQuery = document.getElementById("search").value.toLowerCase();
 
-    document.getElementById("title").innerHTML = "Badges (" + data.length + ")";
+    document.getElementById("title").innerHTML = "Badges (" + badges.length + ")";
     if (searchQuery == "") {
-        data.forEach(async (v, i) => {
+        badges.forEach(async (v, i) => {
             document.getElementById("badge-" + v.id).classList.remove("hidden");
         });
         return;
     }
 
-    var count = 0;
+    let count = 0;
 
-    for (var i = 0; i < data.length; i++) {
-        var badge = data[i];
-        var name = badge.name.toLowerCase();
+    for (let i = 0; i < badges.length; i++) {
+        const badge = badges[i];
+        const name = badge.name.toLowerCase();
         if (name.includes(searchQuery) || badge.description.toLowerCase().includes(searchQuery)) {
             document.getElementById("badge-" + badge.id).classList.remove("hidden");
             count++;
@@ -387,6 +373,14 @@ function runSearch() {
     }
 
     document.getElementById("title").innerHTML = "Badges (" + count + ")";
+}
+
+if (localStorage.getItem("imageSize") != null) {
+    setImageSize(localStorage.getItem("imageSize"));
+}
+
+if (localStorage.getItem("viewType") != null) {
+    changeViewtype(localStorage.getItem("viewType"));
 }
 
 document.getElementById("search").addEventListener("keyup", runSearch);

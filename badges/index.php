@@ -18,19 +18,19 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <?php
     // print errors
 
-        if (isset($_GET['badge'])) {
+    if (isset($_GET['badge'])) {
 
-            $colBadges = (array)Database::execSelect("SELECT * FROM Badges where id = ?", "i", array($_GET['badge']));
+        $colBadges = (array)Database::execSelect("SELECT * FROM Badges where id = ?", "i", array($_GET['badge']));
 
-            if (count($colBadges) == 1) {
-                $badge = $colBadges[0];
+        if (count($colBadges) == 1) {
+            $badge = $colBadges[0];
 
-                $title = "Badge: " . $badge['description'];
-                $desc = $badge['name'] . " - owned by " . count((array)$badge['users']) . " users - first achieved on " . $badge['awarded_at'];
-                $keyword = $badge['name'] . "," . $badge['description'];
-                $keyword2 = $badge['name'] . "," . $badge['description'];
+            $title = "Badge: " . $badge['description'];
+            $desc = $badge['name'] . " - owned by " . count((array)$badge['users']) . " users - first achieved on " . $badge['awarded_at'];
+            $keyword = $badge['name'] . "," . $badge['description'];
+            $keyword2 = $badge['name'] . "," . $badge['description'];
 
-                $meta = '<meta charset="utf-8" />
+            $meta = '<meta charset="utf-8" />
                 <meta name="msapplication-TileColor" content="#533b65">
                 <meta name="theme-color" content="#533b65">
                 <meta property="og:image" content="' . $badge['image_url'] . '">
@@ -41,14 +41,14 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                 <meta name="twitter:description" content="' . htmlspecialchars($desc) . '" />
                 <title name="title">' . htmlspecialchars($title) . '</title>
                 <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,' . $keyword . ',' . $keyword2 . ',badge,badges">';
-            } else {
-                http_response_code(404);
-                frontend();
-                include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
-                exit;      
-            }
         } else {
-            $meta = '<meta charset="utf-8" />
+            http_response_code(404);
+            frontend();
+            include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
+            exit;
+        }
+    } else {
+        $meta = '<meta charset="utf-8" />
             <meta name="description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
             <meta name="msapplication-TileColor" content="#533b65">
             <meta name="theme-color" content="#533b65">
@@ -59,8 +59,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             <title name="title">Osekai Badges • All of osu!\'s Badges!</title>
             <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,badge,badges">
             <meta property="og:url" content="/badges" />';
-        }
-        frontend();
+    }
+    frontend();
     echo $meta;
 
     ?>
@@ -68,7 +68,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
     font();
     css();
-            notification_system();
+    notification_system();
     fontawesome();
     ?>
 </head>
@@ -116,7 +116,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                         </div>
                         <div class="osekai__panel-hwb-right">
                             <div class="osekai__panel-header-button osekai__dropdown-opener" id="sort" onclick="openSortDropdown()">
-                                <p class="osekai__panel-header-dropdown-text" id="sort_activeItem">Username</p>
+                                <p class="osekai__panel-header-dropdown-text" id="sort_activeItem"><?= GetStringRaw("badges", "sort.awardedAt.desc") ?></p>
                                 <i class="fas fa-chevron-down osekai__panel-header-dropdown-icon" aria-hidden="true"></i>
                                 <div class="osekai__dropdown osekai__dropdown-hidden" id="sort_items">
 
@@ -166,15 +166,4 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>
-
-<script>
-    function testDialog() {
-        openDialog("Test Title", "Test Header", "Test Message", "Button 1", function() {
-            document.getElementById("testdialog_text").innerHTML = "you clicked button 1!";
-        }, "Button 2", function() {
-            document.getElementById("testdialog_text").innerHTML = "you clicked button 2!";
-        });
-    }
-</script>
-
 <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
