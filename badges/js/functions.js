@@ -16,14 +16,11 @@ function loadData() {
     xhr.open("GET", strUrl, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     xhr.send();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+    xhr.onload = function () {
+        if (xhr.status == 200) {
             data = JSON.parse(xhr.responseText);
 
             document.getElementById("title").innerHTML = GetStringRawNonAsync("badges", "badges.title", [data.length]);
-
-
-
             if (localStorage.getItem("imageSize") != null) {
                 setImageSize(localStorage.getItem("imageSize"), false);
             }
@@ -74,19 +71,24 @@ var changeSorting = function (type) {
     var content = document.getElementById("content");
     content.innerHTML = "<div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'><circle class='ring' cx='25' cy='25' r='22.5' /><circle class='line' cx='25' cy='25' r='22.5' /></svg></div>";
 
-    setTimeout(function () {
-        fillData();
-    }, 100);
-
-    for (var i = 0; i < sortingTypes.length; i++) {
-        var item = document.getElementById("sort_" + sortingTypes[i]);
-        if (sortingTypes[i] == type) {
+    sortingTypes.forEach((sortingType) => {
+        var item = document.getElementById("sort_" + sortingType);
+        console.log(item);
+        if (sortingType == type) {
+            console.log('yes');
             item.classList.add("osekai__dropdown-item-active");
         } else {
+            console.log('no');
             item.classList.remove("osekai__dropdown-item-active");
         }
-    }
+    });
+
     document.getElementById("sort_activeItem").innerHTML = sortingTypes_Names[sortingTypes.indexOf(type)];
+
+    setTimeout(function () {
+        fillData();
+    }, 1);
+
 }
 
 function openSortDropdown() {
@@ -96,78 +98,131 @@ function openSortDropdown() {
 
 function fillData() {
     // resort badges
-    var ndata = data.sort(function (a, b) {
-        if (currentSorting == "awarded_at_asc") {
-            var date = new Date(a.awarded_at);
-            var date2 = new Date(b.awarded_at);
-            return date - date2;
-        } else if (currentSorting == "awarded_at_desc") {
-            var date = new Date(a.awarded_at);
-            var date2 = new Date(b.awarded_at);
-            return date2 - date;
-        } else if (currentSorting == "name_asc") {
-            return a.name.localeCompare(b.name);
-        } else if (currentSorting == "name_desc") {
-            return b.name.localeCompare(a.name);
-        } else if (currentSorting == "players_asc") {
-            var count = a.users.length;
-            var count2 = b.users.length;
-            return count - count2;
-        } else if (currentSorting == "players_desc") {
-            var count = a.users.length;
-            var count2 = b.users.length;
-            return count2 - count;
-        }
-    });
+    let ndata;
+    switch (currentSorting) {
+        case "awarded_at_asc":
+            // data is already sorted by awarded_at, just need to reverse it
+            ndata = data.slice().reverse();
+            break;
+        case "awarded_at_desc":
+            // Not need to sort, its already sorted from API
+            ndata = data;
+            break;
+        case "name_asc":
+            ndata = data.sort((a, b) => {
+                return a.name.localeCompare(b.name);
+            });
+            break;
+        case "name_desc":
+            ndata = data.sort((a, b) => {
+                return b.name.localeCompare(a.name);
+            });
+            break;
 
+        case "players_asc":
+            ndata = data.sort((a, b) => {
+                let count = a.users.length;
+                let count2 = b.users.length;
+                return count - count2;
+            });
+            break;
 
+        case "players_desc":
+            ndata = data.sort((a, b) => {
+                let count = a.users.length;
+                let count2 = b.users.length;
+                return count2 - count;
+            });
+            break;
 
+        default:
+            console.log('what');
+            break;
+    }
 
-    var search = document.getElementById("search").value;
-    var content = document.getElementById("content");
-    content.innerHTML = loader;
+    let content = document.getElementById("content");
     // remove viewtypes from content
-    for (var i = 0; i < viewTypes.length; i++) {
+    for (let i = 0; i < viewTypes.length; i++) {
         content.classList.remove(viewTypes[i]);
     }
     content.classList.add(viewType);
 
-    var html = "";
+    console.time('badges proc');
 
-    for (var i = 0; i < data.length; i++) {
-        var badge = ndata[i];
-        html += "<div class='badge " + viewType + "' onclick='openBadge(" + badge.id + ")' id='badge-" + badge.id + "'>";
-        var image = badge.image_url;
-        if (imageSize == "2x") {
+    let badgeList = [];
+    ndata.forEach(async (badge) => {
+        let badgeElement = document.createElement('div');
+        badgeElement.classList.add('badge');
+        badgeElement.classList.add(viewType);
+        badgeElement.id = `badge-${badge.id}`;
+        badgeElement.onclick = () => {
+            openBadge(badge.id);
+        };
+
+        let image = badge.image_url;
+        if (imageSize == "2x")
             image = image.replace(".png", "@2x.png");
-        }
-        html += "<div class='badge_img'><img src='" + image + "' onerror='this.src=\"/badges/img/badge_default.png\";' /></div>";
-        html += "<div class='badge_texts'><div class='badge_name'>" + badge.name + "</div>";
-        html += "<div class='badge_desc'>" + badge.description + "</div>";
-        var users = badge.users;
-        // this is a string but it's json
-        var users = JSON.parse(users);
 
-        var awarded_at = badge.awarded_at;
-        if (awarded_at == "2013-08-07") {
+        let badgeImageDiv = document.createElement('div');
+        badgeImageDiv.classList.add('badge_img');
+
+        let badgeImage = document.createElement('img');
+        badgeImage.src = image;
+        badgeImage.onerror = () => {
+            // If the img is @2x, revert to @1x in case the badge has no @2x version
+            // if it still fails then fallback to badge_default.png
+            if (badgeImage.src.includes('@2x.png')) {
+                badgeImage.src = badgeImage.src.replace('@2x.png', '.png');
+            } else {
+                badgeImage.src = '/badges/img/badge_default.png';
+                badgeImage.onerror = null;
+            }
+        }
+        badgeImageDiv.appendChild(badgeImage);
+        badgeElement.appendChild(badgeImageDiv);
+
+        let badgeTexts = document.createElement('div');
+        badgeTexts.classList.add('badge_texts');
+
+        let badgeName = document.createElement('div');
+        badgeTexts.classList.add('badge_name');
+        badgeName.textContent = badge.name;
+        badgeTexts.appendChild(badgeName);
+
+        let badgeDesc = document.createElement('div');
+        badgeDesc.classList.add('badge_desc');
+        badgeDesc.textContent = badge.description;
+        badgeTexts.appendChild(badgeDesc);
+
+        let awarded_at = badge.awarded_at;
+        if (awarded_at == "2013-08-07")
             awarded_at = "long ago";
-        }
 
-        html += "<div class='badge_info'>";
-        html += GetStringRawNonAsync("badges", "badge.firstAchieved", [awarded_at]);
-        html += " • ";
-        if (users.length != 1) {
-            html += GetStringRawNonAsync("badges", "badge.ownedBy", [users.length]);
-        } else {
-            html += GetStringRawNonAsync("badges", "badge.ownedBySingular", [users.length]);
-        }
-        html += "</div>";
-        html += "</div>";
-        html += "</div>";
+        let badgeInfo = document.createElement('div');
+        badgeInfo.classList.add('badge_info');
+        badgeInfo.innerHTML = GetStringRawNonAsync("badges", "badge.firstAchieved", [awarded_at]);
 
-    }
+        badgeInfo.innerHTML += ' • ';
 
-    content.innerHTML = html;
+        let users = JSON.parse(badge.users);
+        if (users.length != 1)
+            badgeInfo.innerHTML += GetStringRawNonAsync("badges", "badge.ownedBy", [users.length]);
+        else
+            badgeInfo.innerHTML += GetStringRawNonAsync("badges", "badge.ownedBySingular", [users.length]);
+
+        badgeTexts.appendChild(badgeInfo);
+        badgeElement.appendChild(badgeTexts);
+        badgeList.push(badgeElement);
+    });
+    console.timeEnd('badges proc');
+
+    console.time('badges append');
+    content.textContent = '';
+    badgeList.forEach(element => {
+        content.appendChild(element);
+    });
+    console.timeEnd('badges append');
+
     runSearch();
 }
 loadData();
@@ -183,10 +238,8 @@ function changeViewtype(type, fill = true) {
     localStorage.setItem("viewType", type);
 
     if (fill == true) {
-        fillData();
+        setTimeout(fillData, 1);
     }
-
-
 }
 
 var imageSize = "1x";
@@ -199,8 +252,18 @@ function setImageSize(size, fill = true) {
 
     imageSize = size;
 
-    if (fill == true) {
-        fillData();
+    if (size == "1x") {
+        let imgs = document.getElementsByClassName('badge_img');
+        Object.values(imgs).forEach((element) => {
+            let imgElement = element.children[0];
+            imgElement.src = imgElement.src.replace('@2x.png', '.png');
+        });
+    } else {
+        let imgs = document.getElementsByClassName('badge_img');
+        Object.values(imgs).forEach((element) => {
+            let imgElement = element.children[0];
+            imgElement.src = imgElement.src.replace('.png', '@2x.png');
+        });
     }
 
     // remember options using localStorage
@@ -260,17 +323,27 @@ function openBadge(index) {
     var obj_panel = document.getElementById("bop_panel");
     obj_panel.classList.remove("badges__badge-panel_hidden");
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+    xhr.onload = function () {
+        if (xhr.status == 200) {
             var users = JSON.parse(xhr.responseText);
-            var html = "";
-            for (var i = 0; i < users.length; i++) {
-                var user = users[i];
-                html += "<a class='badge_user' href='https://osu.ppy.sh/users/" + user.id + "'>";
-                html += "<img src='https://a.ppy.sh/" + user.id + "'><div class='badge_user_name'>" + user.name + "</div>";
-                html += "</a>";
-            }
-            container_users.innerHTML = html;
+            container_users.textContent = '';
+
+            Object.values(users).forEach((user) => {
+                let badgeUser = document.createElement('a');
+                badgeUser.classList.add('badge_user');
+                badgeUser.href = `https://osu.ppy.sh/users/${user.id}`;
+
+                let badgeUserImg = document.createElement('img');
+                badgeUserImg.src = `https://a.ppy.sh/${user.id}`;
+                badgeUser.appendChild(badgeUserImg);
+
+                let badgeUserUsername = document.createElement('div');
+                badgeUserUsername.classList.add('badge_user_name');
+                badgeUserUsername.textContent = user.name;
+                badgeUser.appendChild(badgeUserUsername);
+
+                container_users.appendChild(badgeUser);
+            });
         }
     }
     // set url query to badge id
@@ -291,22 +364,16 @@ function hideOverlay() {
     obj_panel.classList.add("badges__badge-panel_hidden");
 }
 
-
-
-
 function runSearch() {
-    console.log("runSearch");
-
     var searchQuery = document.getElementById("search").value;
     var searchQuery = searchQuery.toLowerCase();
 
-
+    document.getElementById("title").innerHTML = "Badges (" + data.length + ")";
     if (searchQuery == "") {
-        for (var i = 0; i < data.length; i++) {
-            document.getElementById("badge-" + data[i].id).classList.remove("hidden");
-            document.getElementById("title").innerHTML = "Badges (" + data.length + ")";
-        }
-        return
+        data.forEach(async (v, i) => {
+            document.getElementById("badge-" + v.id).classList.remove("hidden");
+        });
+        return;
     }
 
     var count = 0;
@@ -323,8 +390,6 @@ function runSearch() {
     }
 
     document.getElementById("title").innerHTML = "Badges (" + count + ")";
-
-
 }
 
 document.getElementById("search").addEventListener("keyup", runSearch);
