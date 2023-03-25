@@ -74,15 +74,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 </head>
 
 <body>
-
-    <script>
-        const BADGES =
-            <?php
-            $badges = Database::execSimpleSelect("SELECT * FROM Badges ORDER BY awarded_at DESC");
-            echo (json_encode($badges));
-            ?>
-    </script>
-
     <div class="badges__badge-overlay badges__badge-overlay_hidden" id="bop_overlay" onclick="hideOverlay()">
 
     </div>

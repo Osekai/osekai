@@ -1,3 +1,5 @@
+let BADGES = [];
+
 function getBadgeFromID(id) {
     for (let i = 0; i < BADGES.length; i++) {
         if (BADGES[i].id == id) {
@@ -14,6 +16,29 @@ const sortingTypes = ["awarded_at_asc", "awarded_at_desc", "name_asc", "name_des
 let sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), GetStringRawNonAsync("badges", "sort.awardedAt.desc"), GetStringRawNonAsync("badges", "sort.name.asc"), GetStringRawNonAsync("badges", "sort.name.desc"), GetStringRawNonAsync("badges", "sort.playerCount.asc"), GetStringRawNonAsync("badges", "sort.playerCount.desc")];
 let currentSorting = "awarded_at_desc";
 
+function loadData() {
+    // /badges/api/getBadges.php
+    strUrl = "/badges/api/getBadges.php";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", strUrl, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            BADGES = JSON.parse(xhr.responseText);
+
+            // geturl query
+            var url = new URL(window.location.href);
+            var badgeId = url.searchParams.get("badge");
+            if (badgeId != null) {
+                openBadge(badgeId);
+            }
+
+            fillData();
+        }
+    }
+    xhr.send();
+}
+
 loadSource("badges").then(function () {
     sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), GetStringRawNonAsync("badges", "sort.awardedAt.desc"), GetStringRawNonAsync("badges", "sort.name.asc"), GetStringRawNonAsync("badges", "sort.name.desc"), GetStringRawNonAsync("badges", "sort.playerCount.asc"), GetStringRawNonAsync("badges", "sort.playerCount.desc")];
     // grab these again in case the like fuckin' 10% chance they didnt load the last time hits
@@ -28,15 +53,8 @@ loadSource("badges").then(function () {
 
     document.getElementById("title").innerHTML = GetStringRawNonAsync("badges", "badges.title", [BADGES.length]);
     document.getElementById("sort_activeItem").textContent = sortingTypes_Names[sortingTypes.indexOf(currentSorting)];
-    fillData();
 
-
-    // geturl query
-    const url = new URL(window.location.href);
-    const badgeId = url.searchParams.get("badge");
-    if (badgeId != null) {
-        openBadge(badgeId);
-    }
+    loadData();
 });
 
 function openSortDropdown() {
