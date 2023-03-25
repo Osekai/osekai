@@ -6,14 +6,11 @@
     /* grid, each item 114x53 */
     /* we can't resize any of the items, so we need to use a grid */
     /* minxmax wont works because it'll resize the items */
-
-
     grid-template-columns: repeat(auto-fill, minmax(114px, 1fr));
     grid-auto-rows: 1fr;
     width: 100%;
     grid-gap: 6px 14px;
     box-sizing: border-box;
-
     display: grid;
 }
 
@@ -35,10 +32,17 @@
     height: 100%;
 }
 
-
+.badge_img .badge-lazy {
+    aspect-ratio: 86/40;
+    border: 0px solid #fff0;
+    border-radius: 8px;
+    background: linear-gradient(to right, #fff2 0%, #fff5 50%, #fff2 100%);
+    background-size: 400% 400%;
+    animation: placeHolderShimmer 1.4s infinite;
+    border-radius: 6px;
+}
 
 .osekai__badge-list.grid_large {
-    /* in html, this is just a list of elements. we need to make them into grid */
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -46,10 +50,6 @@
     box-sizing: border-box;
     align-items: center;
     justify-items: stretch;
-    /* force height of children to be the max of their row */
-    /* https://css-tricks.com/snippets/css/force-content-vertical-align/ */
-
-
 }
 
 .badge {
@@ -94,11 +94,8 @@
     flex-direction: column;
 }
 
-
-
 .badge.grid_large .badge_img img {
     height: 64px;
-
 }
 
 .badge_name {
@@ -159,7 +156,8 @@
     box-sizing: border-box;
 }
 
-.badge.list_2wide, .badge.list_1wide {
+.badge.list_2wide,
+.badge.list_1wide {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -167,11 +165,13 @@
     box-sizing: border-box;
 }
 
-.badge.list_2wide .badge_img, .badge.list_1wide .badge_img {
+.badge.list_2wide .badge_img,
+.badge.list_1wide .badge_img {
     margin-right: 10px;
 }
 
-.badge.list_2wide .badge_img img, .badge.list_1wide .badge_img img {
+.badge.list_2wide .badge_img img,
+.badge.list_1wide .badge_img img {
     height: 50px;
 }
 
@@ -189,8 +189,6 @@
     transition: all 0.2s ease-in-out;
 }
 
-
-
 .badges__badge-overlay-panel {
     background: linear-gradient(0deg, rgba(89, 62, 111, 0.4), rgba(89, 62, 111, 0.4)), rgba(0, 0, 0, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -199,12 +197,9 @@
     filter: drop-shadow(0px 7px 17px rgba(0, 0, 0, 0.25));
     padding: 20px;
     display: flex;
-    
     width: 40vw;
-
     z-index: 101;
     pointer-events: all;
-
     /* absolutely center */
     position: fixed;
     top: 50%;
@@ -213,7 +208,6 @@
     transition: all 0.3s ease-in-out;
     max-height: calc(100vh - 200px);
     overflow-y: auto;
-
 }
 
 .badges__badge-panel_hidden {
@@ -234,14 +228,11 @@
     }
 }
 
-
-
 .badges__badge-overlay_hidden {
     opacity: 0;
     pointer-events: none;
     padding-bottom: 100px;
 }
-
 
 .badges__bop-left {
     padding-right: 20px;
@@ -255,7 +246,6 @@
 .badges__bopl-img {
     width: 172px;
 }
-
 
 .badges__bopl-img-1x-cont {
     width: 172px;
@@ -287,7 +277,6 @@
     color: #fff;
     font-size: 14px;
     font-weight: 900;
-
 }
 
 .badges__bopl-img-glow {
@@ -335,8 +324,6 @@
     width: 100%;
 }
 
-
-
 .badge_user {
     display: flex;
     flex-direction: row;
@@ -379,13 +366,13 @@
     .osekai__panel-header-with-buttons {
         flex-direction: column;
     }
-
     .osekai__panel-hwb-right {
         /* flex-direction: column; */
         width: 100%;
     }
-
-    .osekai__panel-header-input, .badges__panel-header-viewtypes, .osekai__panel-header-button {
+    .osekai__panel-header-input,
+    .badges__panel-header-viewtypes,
+    .osekai__panel-header-button {
         border-left: 0px solid #fff0;
         height: 58px;
         border-top: 1px solid #fff2;
@@ -407,9 +394,7 @@
     .badges__panel-header-viewtypes-scale {
         justify-content: flex-end;
         padding-right: 18px;
-
     }
-
     .osekai__panel-hwb-left {
         justify-content: center;
         align-items: center;
@@ -421,7 +406,6 @@
         width: 90vw;
         flex-direction: column;
     }
-
     .badges__bop-left {
         margin-right: 0px;
         margin-bottom: 10px;
@@ -433,8 +417,8 @@
     font-size: 16px;
     color: #fff;
     background: linear-gradient(180deg, rgba(251, 149, 54, 0.44) 0%, rgba(251, 125, 54, 0.14) 100%);
-border: 1px solid #FFC077;
-box-shadow: 0px 4px 10px rgba(255, 192, 119, 0.25), 0px 4px 108px rgba(255, 46, 0, 0.1), 0px 4px 39px rgba(255, 214, 167, 0.25);
-border-radius: 12px;
-margin-bottom: 15px;
+    border: 1px solid #FFC077;
+    box-shadow: 0px 4px 10px rgba(255, 192, 119, 0.25), 0px 4px 108px rgba(255, 46, 0, 0.1), 0px 4px 39px rgba(255, 214, 167, 0.25);
+    border-radius: 12px;
+    margin-bottom: 15px;
 }
