@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ERROR);
 
-Database::execSimpleOperation("DELETE FROM AdminNotes");
+Database::execSimpleOperation("DELETE FROM Badges");
 
 $data = json_decode($_POST['data'], true);
 
