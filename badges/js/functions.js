@@ -182,7 +182,7 @@ function fillData() {
         badgeTexts.classList.add('badge_texts');
 
         let badgeName = document.createElement('div');
-        badgeTexts.classList.add('badge_name');
+        badgeName.classList.add('badge_name');
         badgeName.textContent = badge.name;
         badgeTexts.appendChild(badgeName);
 
