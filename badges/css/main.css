@@ -32,7 +32,7 @@
     height: 100%;
 }
 
-.badge_img .badge-lazy {
+.badge_img .badge-lazy:not(.loaded) {
     aspect-ratio: 86/40;
     border: 0px solid #fff0;
     border-radius: 8px;
