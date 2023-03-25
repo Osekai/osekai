@@ -368,6 +368,25 @@ function lottie()
     echo '<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>';
 }
 
+function lazyloader() {
+
+    echo '<script>
+    window.lazyLoadOptions = {
+      // Your custom settings go here
+    };
+    window.addEventListener(
+      "LazyLoad::Initialized",
+      function (event) {
+        window.lazyLoadInstance = event.detail.instance;
+      },
+      false
+    );
+  </script>';
+
+  echo '<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>';
+
+}
+
 $reportsystemloaded = false;
 
 function new_report_system()

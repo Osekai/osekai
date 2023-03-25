@@ -1,4 +1,17 @@
 let badges = [];
+var badgesLazyLoadInstance = new LazyLoad({
+    elements_selector: ".badge-lazy",
+    callback_error: (img, instance) => {
+        if (img.getAttribute("data-src").includes('@2x.png')) {
+            img.src = img.getAttribute("data-src").replace('@2x.png', '.png');
+            img.setAttribute("data-src", img.src); // stops the if from falling through
+        } else {
+            img.src = '/badges/img/badge_default.png';
+            img.onerror = null;
+        }
+    }
+});
+
 
 function getBadgeFromID(id) {
     for (let i = 0; i < badges.length; i++) {
@@ -22,7 +35,7 @@ function loadData() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", strUrl, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.onload = function () {
+    xhr.onload = function() {
         if (xhr.status == 200) {
             badges = JSON.parse(xhr.responseText);
 
@@ -39,7 +52,7 @@ function loadData() {
     xhr.send();
 }
 
-loadSource("badges").then(function () {
+loadSource("badges").then(function() {
     sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), GetStringRawNonAsync("badges", "sort.awardedAt.desc"), GetStringRawNonAsync("badges", "sort.name.asc"), GetStringRawNonAsync("badges", "sort.name.desc"), GetStringRawNonAsync("badges", "sort.playerCount.asc"), GetStringRawNonAsync("badges", "sort.playerCount.desc")];
     // grab these again in case the like fuckin' 10% chance they didnt load the last time hits
     // i dont know why this is an issue
@@ -103,7 +116,7 @@ function fillData() {
     }
 
     let badgeList = [];
-    ndata.forEach(async (badge) => {
+    ndata.forEach(async(badge) => {
         let badgeElement = document.createElement('div');
         badgeElement.classList.add('badge');
         badgeElement.classList.add(viewType);
@@ -120,17 +133,10 @@ function fillData() {
         badgeImageDiv.classList.add('badge_img');
 
         let badgeImage = document.createElement('img');
-        badgeImage.src = image;
-        badgeImage.onerror = () => {
-            // If the img is @2x, revert to @1x in case the badge has no @2x version
-            // if it still fails then fallback to badge_default.png
-            if (badgeImage.src.includes('@2x.png')) {
-                badgeImage.src = badgeImage.src.replace('@2x.png', '.png');
-            } else {
-                badgeImage.src = '/badges/img/badge_default.png';
-                badgeImage.onerror = null;
-            }
-        }
+        badgeImage.setAttribute("data-src", image);
+        badgeImage.src = tp1x1
+        badgeImage.classList.add("badge-lazy");
+        badgeImage.removeAttribute("data-ll-status");
         badgeImageDiv.appendChild(badgeImage);
         badgeElement.appendChild(badgeImageDiv);
 
@@ -171,6 +177,9 @@ function fillData() {
     content.replaceChildren(...badgeList);
 
     runSearch();
+
+
+    badgesLazyLoadInstance.update();
 }
 
 
@@ -191,12 +200,13 @@ function changeSorting(type) {
 
     document.getElementById("sort_activeItem").textContent = sortingTypes_Names[sortingTypes.indexOf(type)];
 
-    setTimeout(function () {
+    setTimeout(function() {
         fillData();
     }, 1);
 }
 
 let imageSize = "1x";
+
 function setImageSize(size) {
     document.getElementById("1x").classList.remove("badges__panel-header-viewtype-active");
     document.getElementById("2x").classList.remove("badges__panel-header-viewtype-active");
@@ -209,18 +219,27 @@ function setImageSize(size) {
         let imgs = document.getElementsByClassName('badge_img');
         Object.values(imgs).forEach((element) => {
             let imgElement = element.children[0];
-            imgElement.src = imgElement.src.replace('@2x.png', '.png');
+            imgElement.setAttribute("data-src", imgElement.getAttribute("data-src").replace('@2x.png', '.png'));
+            imgElement.src = tp1x1;
+            imgElement.classList.add("badge-lazy");
+            imgElement.removeAttribute("data-ll-status");
         });
+        badgesLazyLoadInstance.update();
     } else {
         let imgs = document.getElementsByClassName('badge_img');
         Object.values(imgs).forEach((element) => {
             let imgElement = element.children[0];
-            imgElement.src = imgElement.src.replace('.png', '@2x.png');
+            imgElement.setAttribute("data-src", imgElement.getAttribute("data-src").replace('.png', '@2x.png'));
+            imgElement.src = tp1x1;
+            imgElement.classList.add("badge-lazy");
+            imgElement.removeAttribute("data-ll-status");
         });
+        badgesLazyLoadInstance.update();
     }
 
     // remember options using localStorage
     localStorage.setItem("imageSize", size);
+
 }
 
 function changeViewtype(type) {
@@ -251,9 +270,12 @@ function changeViewtype(type) {
             content.classList.replace(oldType, viewType);
         else
             content.classList.add(viewType);
-        badgesElements.forEach(async (b) => b.classList.replace(oldType, viewType));
+        badgesElements.forEach(async(b) => b.classList.replace(oldType, viewType));
         content.replaceChildren(...badgesElements);
+        badgesLazyLoadInstance.update();
     }, 1);
+
+    badgesLazyLoadInstance.update();
 }
 
 function openBadge(index) {
@@ -275,7 +297,7 @@ function openBadge(index) {
 
     document.getElementById("1x_var").classList.remove("hidden");
 
-    obj_img.onerror = function () {
+    obj_img.onerror = function() {
         let obj_img = document.getElementById("bop_img");
         let obj_img2 = document.getElementById("bop_img2");
 
@@ -306,7 +328,7 @@ function openBadge(index) {
     // api/getUsers.php?badge_id=1
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "/badges/api/getUsers.php?badge_id=" + badge.id, true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         if (xhr.status == 200) {
             const users = JSON.parse(xhr.responseText);
             container_users.textContent = '';
@@ -353,7 +375,7 @@ function runSearch() {
 
     document.getElementById("title").innerHTML = "Badges (" + badges.length + ")";
     if (searchQuery == "") {
-        badges.forEach(async (v, i) => {
+        badges.forEach(async(v, i) => {
             document.getElementById("badge-" + v.id).classList.remove("hidden");
         });
         return;

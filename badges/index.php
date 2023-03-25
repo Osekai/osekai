@@ -70,7 +70,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     css();
     notification_system();
     fontawesome();
-    ?>
+    lazyloader();
+?>
 </head>
 
 <body>
