@@ -145,8 +145,7 @@ function frontend()
             const roles = <?= json_encode($roles); ?>;
             const userGroups = <?= json_encode($userGroups); ?>;
             const medals = <?= json_encode($medals); ?>;
-            const restrictedState = <?php if (isRestricted()) echo "1";
-                                    else echo "0"; ?>;
+            const restrictedState = <?= isRestricted() ? "1" : "0"; ?>;
         </script>
         <?php
         include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
@@ -368,7 +367,8 @@ function lottie()
     echo '<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>';
 }
 
-function lazyloader() {
+function lazyloader()
+{
 
     echo '<script>
     window.lazyLoadOptions = {
@@ -383,8 +383,7 @@ function lazyloader() {
     );
   </script>';
 
-  echo '<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>';
-
+    echo '<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>';
 }
 
 $reportsystemloaded = false;
