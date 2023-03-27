@@ -283,7 +283,7 @@ async function requestMedals(init, strValue) {
             if (grids[i].length == 1)
                 headerRightMode.innerHTML = GetStringRawNonAsync("medals", "medalCount.singular", [grids[i].length])
             else
-                headerRightMode.innerHTML =  GetStringRawNonAsync("medals", "medalCount", [grids[i].length])
+                headerRightMode.innerHTML = GetStringRawNonAsync("medals", "medalCount", [grids[i].length])
 
             headerRightModeDiv.appendChild(headerRightMode);
 
@@ -522,6 +522,9 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     checkLock(allowAddMap);
     checkLock(changeLockIcon);
     Comments_Require(colMedals[strMedalName].MedalID, document.getElementById("comments__box"), true);
+    window.scrollTo({
+        top: 0,
+    })
 }
 
 function requestBeatmaps(strKey, strValue, strUrl) {
