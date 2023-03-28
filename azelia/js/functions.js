@@ -153,15 +153,15 @@ var module_versionlisting = {
         </div>`;
         return html;
     },
-    goToYear: function(group, year) {
+    goToYear: function (group, year) {
         var elements = document.getElementsByClassName("azelia__versions-listing-group-year");
-        for(var x = 0; x < elements.length; x++) {
-            if(elements[x].getAttribute("data-year") == year && elements[x].getAttribute("data-group") == group) {
+        for (var x = 0; x < elements.length; x++) {
+            if (elements[x].getAttribute("data-year") == year && elements[x].getAttribute("data-group") == group) {
                 osekaiScrollTo(elements[x]);
             }
         }
     },
-    goToGroup: function(group) {
+    goToGroup: function (group) {
         osekaiScrollTo(document.getElementById(`groupheader_${group}`));
     },
     addGroupToSidebar: function (group, years) {
@@ -229,9 +229,17 @@ var module_versionlisting = {
             console.log(years);
             this.addGroupToSidebar(group, years);
             for (year in years) {
-                var versioncount = years[year].versions.length;
-                var archivercount = 0;
-                html += this.generateYearGroup(years[year].year, versioncount, archivercount, module_versionlisting.config.style, group);
+                var versionCount = years[year].versions.length;
+
+                let versions = years[year].versions
+                let archivers = [];
+                versions.forEach(ver => {6
+                    if (archivers.indexOf(ver.ArchiverID) == -1)
+                        archivers.push(ver.ArchiverID);
+                });
+                let archiversCount = archivers.length;
+
+                html += this.generateYearGroup(years[year].year, versionCount, archiversCount, module_versionlisting.config.style, group);
                 var yearhtml = ``;
                 // sort versions by ReleaseDate
                 years[year].versions.sort(function (a, b) {
