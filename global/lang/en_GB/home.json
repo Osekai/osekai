@@ -32,5 +32,6 @@
     "team.role.generic.snapshotsManager": "Snapshots Manager",
     "team.role.generic.snapshotsDeveloper": "Snapshots Developer",
     "team.role.generic.developer": "Developer",
-    "team.role.generic.communityManager": "Community Manager"
+    "team.role.generic.communityManager": "Community Manager",
+    "team.alsoKnownAs": "also known as <strong>$1</strong>"
 }
