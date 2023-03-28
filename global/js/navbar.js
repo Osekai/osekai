@@ -5,7 +5,7 @@ var actively_open = false;
 
 function dropdown(hiddenclass, id, blur = 0) {
     var blur_overlay = document.getElementById("blur_overlay");
-    if(!document.getElementById(id).classList.contains(hiddenclass)) {
+    if (!document.getElementById(id).classList.contains(hiddenclass)) {
         hide_dropdowns();
         return;
     }
@@ -24,7 +24,7 @@ function apps_dropdown(hide = false) {
     var blur_overlay = document.getElementById("blur_overlay");
     var chevron = document.getElementById("nav_chevron");
 
-    if(!document.getElementById("dropdown__apps").classList.contains("osekai__apps-dropdown-hidden") || hide == true) {
+    if (!document.getElementById("dropdown__apps").classList.contains("osekai__apps-dropdown-hidden") || hide == true) {
         // hide;
         document.getElementById("dropdown__apps").classList.add("osekai__apps-dropdown-hidden");
         document.getElementById("dropdown__apps_mobile").classList.add("osekai__apps-dropdown-mobile-hidden");
@@ -43,9 +43,9 @@ function apps_dropdown(hide = false) {
 
 function hide_dropdowns(hideapps = true) {
     actively_open = false;
-    if(hideapps) apps_dropdown(true);
+    if (hideapps) apps_dropdown(true);
     document.body.classList.remove("noscroll");
-    if(currently_open == null) return;
+    if (currently_open == null) return;
     var blur_overlay = document.getElementById("blur_overlay");
     blur_overlay.classList.remove("osekai__blur-overlay__active");
     currently_open.element.classList.add(currently_open.classname);
@@ -110,7 +110,7 @@ document.getElementById("applist").onmouseout = (e) => {
     extra_style.innerHTML += `.osekai__apps-dropdown-image {
         opacity: 0 !important;
     }`
-    // after 0.4 seconds
+        // after 0.4 seconds
 }
 
 var userInfo;
@@ -121,7 +121,7 @@ function loadUserDropdown() {
         // /api/profiles/get_user.php?id=4598966
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "/api/profiles/get_user.php?id=" + userid, true);
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             if (this.readyState != 4) return;
             if (this.status != 200) return; // or whatever error handling you want
 
@@ -156,8 +156,7 @@ function loadUserDropdown() {
             userInfo = resp;
         }
         xhr.send();
-    }
-    else {
+    } else {
         // user is not logged in
         return;
     }
@@ -191,15 +190,15 @@ function close_dropdown(classname, id) {
 
 
 function ExperimentalOff() {
-    openDialog("Disable Experimental Mode", "Are you sure?", "Unless you have the expon.php link, you can't turn it back on!", "Cancel", function () {
+    openDialog("Disable Experimental Mode", "Are you sure?", "Unless you have the expon.php link, you can't turn it back on!", "Cancel", function() {
         return;
-    }, "Disable", function () {
+    }, "Disable", function() {
         window.location.href = "/global/api/expoff.php";
     });
 }
 
 // <Start> Notification System
-setTimeout(function () { GetNotifications(false, false) }, 1000); //Loads the Amount of Notifications on the bell icon before opening the dropdown
+setTimeout(function() { GetNotifications(false, false) }, 1000); //Loads the Amount of Notifications on the bell icon before opening the dropdown
 var NotificationBell = document.getElementById("notif__bell__button");
 NotificationBell && NotificationBell.addEventListener("click", () => {
     dropdown("osekai__nav-dropdown-hidden", "dropdown__notifs", 1);
@@ -213,11 +212,12 @@ ClearAll.addEventListener("click", () => {
 })
 
 const NOTIFICATION_SYSTEM_API_URL = "/global/api/notification_system.php"
+
 function GetNotifications(ShowCleared, UI) {
     if (UI) document.getElementById("notification__list__v2").innerHTML = ""; //in case the xhrequest fails still get rid of the panel
     let xhr = createXHR(NOTIFICATION_SYSTEM_API_URL);
     xhr.send(`ShowCleared=${ShowCleared}`);
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         var Response = getResponse(xhr);
         if (handleUndefined(Response)) return;
         CreateNotifications(Response, UI);
@@ -232,7 +232,7 @@ function CreateNotifications(Notifications, UI) {
     }
 
     let nCount = 0;
-    Object.keys(Notifications).forEach(function (obj) {
+    Object.keys(Notifications).forEach(function(obj) {
         if (UI) CreateNotificationItem(NotificationList, Notifications[obj]);
         nCount += 1;
     });
@@ -305,7 +305,7 @@ function CreateNotificationItem(List, Notification) {
 function markRead() {
     let xhr = createXHR("/global/api/notification_system.php");
     xhr.send("markRead=1");
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -319,13 +319,13 @@ function markRead() {
 
 // #region Settings Screen
 var settingUtils = {
-    "genericSection": function (classname = null) {
+    "genericSection": function(classname = null) {
         var outerDiv = document.createElement("div");
         outerDiv.classList.add("osekai__dropdown-settings-section");
         if (classname != null) outerDiv.classList.add(classname);
         return outerDiv;
     },
-    "genericList": function (items, selectedItem, itemNameKey, parent, clickCallback, mainClassName, itemClassName, activeClassName, itemInner) {
+    "genericList": function(items, selectedItem, itemNameKey, parent, clickCallback, mainClassName, itemClassName, activeClassName, itemInner) {
         var section = this.genericSection(mainClassName);
 
         for (p in items) {
@@ -335,7 +335,7 @@ var settingUtils = {
             innerDiv.innerHTML = itemInner.replace("$1", items[p][itemNameKey]);
 
             let key = p;
-            innerDiv.addEventListener("click", function (e) {
+            innerDiv.addEventListener("click", function(e) {
                 parent.getElementsByClassName(activeClassName)[0].classList.remove(activeClassName);
                 innerDiv.classList.add(activeClassName)
                 clickCallback(key);
@@ -346,13 +346,13 @@ var settingUtils = {
 
         parent.appendChild(section);
     },
-    "buttonList": function (items, selectedItem, itemNameKey, parent, clickCallback) {
+    "buttonList": function(items, selectedItem, itemNameKey, parent, clickCallback) {
         this.genericList(items, selectedItem, itemNameKey, parent, clickCallback, "osekai__dropdown-settings-radio-list", "osekai__dropdown-settings-radio-item", "osekai__dropdown-settings-radio-item-checked", "<span></span><p>$1</p>")
     },
-    "choiceGrid": function (items, selectedItem, itemNameKey, parent, clickCallback) {
+    "choiceGrid": function(items, selectedItem, itemNameKey, parent, clickCallback) {
         this.genericList(items, selectedItem, itemNameKey, parent, clickCallback, "osekai__dropdown-settings-choicegrid", "osekai__dropdown-settings-choicegrid-item", "osekai__dropdown-settings-choicegrid-item-checked", "$1")
     },
-    "baseCheckbox": function (name, checked, callback) {
+    "baseCheckbox": function(name, checked, callback) {
         let innerDiv = document.createElement('div');
         innerDiv.classList.add("osekai__dropdown-settings-checkbox");
         if (checked == true || checked == "true") {
@@ -360,7 +360,7 @@ var settingUtils = {
         }
         innerDiv.innerHTML = "<span><i class=\"fas fa-check\"></i></span><p>" + name + "</p>";
 
-        innerDiv.addEventListener("click", function (e) {
+        innerDiv.addEventListener("click", function(e) {
             if (innerDiv.classList.contains("osekai__dropdown-settings-checkbox-active")) {
                 callback(false);
                 innerDiv.classList.remove("osekai__dropdown-settings-checkbox-active");
@@ -372,7 +372,7 @@ var settingUtils = {
 
         return innerDiv;
     },
-    "linkedCheckbox": function (name, internalName, section, defaultValue = false, callback = null) {
+    "linkedCheckbox": function(name, internalName, section, defaultValue = false, callback = null) {
         var checked = false;
         if (window.localStorage.getItem(internalName) == null) {
             // sets to default value
@@ -382,7 +382,7 @@ var settingUtils = {
             checked = window.localStorage.getItem(internalName) == "true";
         }
 
-        var baseCheckbox = this.baseCheckbox(name, checked, function (checked) {
+        var baseCheckbox = this.baseCheckbox(name, checked, function(checked) {
             window.localStorage.setItem(internalName, checked);
 
             if (checked) {
@@ -396,26 +396,28 @@ var settingUtils = {
     },
 }
 
-const settingsPages = [
-    {
-        name: "theme",
-        icon: "fas fa-brush ",
-        generate: async function (htmlInner) {
-            settingUtils.buttonList(themes, theme, "name", htmlInner, function (key) {
-                setTheme(themes[key]);
-                if (key != "custom" && key != "custom-light") {
-                    document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
-                } else {
-                    document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
-                }
-                window.dispatchEvent(settingsLoadEvent);
-                // dont mind this
-            });;
+var settingsPages = [];
+async function initSettingsPages() {
+    settingsPages = [{
+            name: "theme",
+            visualName: GetStringRawNonAsync("navbar", "settings.theme.title"),
+            icon: "fas fa-brush ",
+            generate: async function(htmlInner) {
+                settingUtils.buttonList(themes, theme, "name", htmlInner, function(key) {
+                    setTheme(themes[key]);
+                    if (key != "custom" && key != "custom-light") {
+                        document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
+                    } else {
+                        document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
+                    }
+                    window.dispatchEvent(settingsLoadEvent);
+                    // dont mind this
+                });;
 
-            let themeDiv = document.createElement('div');
-            themeDiv.className = 'osekai__dropdown-settings-section';
-            themeDiv.id = "dropdown-settings-custom-theme"
-            themeDiv.innerHTML += `<div id="customThemePicker" class="osekai__nav-dropdown-v2-split-colour-picker">
+                let themeDiv = document.createElement('div');
+                themeDiv.className = 'osekai__dropdown-settings-section';
+                themeDiv.id = "dropdown-settings-custom-theme"
+                themeDiv.innerHTML += `<div id="customThemePicker" class="osekai__nav-dropdown-v2-split-colour-picker">
             <div class="osekai__nav-dropdown-v2-split-colour-picker-half">
                 <div class="osekai__colour-picker" id="custom_colpicker_accent-dark" style="background: rgb(53, 61, 85);">
                     <input type="text" class="color-picker__source">
@@ -429,69 +431,73 @@ const settingsPages = [
                 <p>Accent</p>
             </div>
         </div>`;
-            htmlInner.appendChild(themeDiv);
+                htmlInner.appendChild(themeDiv);
 
-            var section = settingUtils.genericSection();
-            var snowflakesDefault = false;
-            var snowflakesOption = "settings_global__snowflakes-nochristmas";
-            if (christmas) {
-                var snowflakesDefault = true;
-                var snowflakesOption = "settings_global__snowflakes";
+                var section = settingUtils.genericSection();
+                var snowflakesDefault = false;
+                var snowflakesOption = "settings_global__snowflakes-nochristmas";
+                if (christmas) {
+                    var snowflakesDefault = true;
+                    var snowflakesOption = "settings_global__snowflakes";
+                }
+                settingUtils.linkedCheckbox(GetStringRawNonAsync("navbar", "settings.snowflakes"), snowflakesOption, section, snowflakesDefault, snowflakes);
+                htmlInner.appendChild(section);
             }
-            settingUtils.linkedCheckbox("snowflakes :D", snowflakesOption, section, snowflakesDefault, snowflakes);
-            htmlInner.appendChild(section);
-        }
-    },
-    {
-        name: "language",
-        icon: "fas fa-globe",
-        generate: async function (htmlInner) {
-            let languages = {};
-            for (x in locales) {
-                var include = false;
-                var prefix = "";
-                if (locales[x]['experimental'] == true) prefix = `<p class="osekai__dropdown-item-exp">EXP</p>`;
-                if (locales[x]['wip'] == true) prefix = `<p class="osekai__dropdown-item-wip">WIP</p>`;
+        },
+        {
+            name: "language",
+            visualName: GetStringRawNonAsync("navbar", "settings.language.title"),
+            icon: "fas fa-globe",
+            generate: async function(htmlInner) {
+                let languages = {};
+                for (x in locales) {
+                    var include = false;
+                    var prefix = "";
+                    if (locales[x]['experimental'] == true) prefix = `<p class="osekai__dropdown-item-exp">EXP</p>`;
+                    if (locales[x]['wip'] == true) prefix = `<p class="osekai__dropdown-item-wip">WIP</p>`;
 
-                if (experimental == 1) include = true;
-                else {
-                    // if experimental is false, or isn't set
-                    if (locales[x]['experimental'] == false || locales[x]['experimental'] == undefined) include = true;
+                    if (experimental == 1) include = true;
+                    else {
+                        // if experimental is false, or isn't set
+                        if (locales[x]['experimental'] == false || locales[x]['experimental'] == undefined) include = true;
+                    }
+
+                    if (include == true) {
+                        languages[locales[x]['code']] = {
+                            "name": `<img src="${locales[x]['flag']}"></img> ${prefix} <p>${locales[x]['name']}</p>`
+                        };
+                    }
                 }
 
-                if (include == true) {
-                    languages[locales[x]['code']] = {
-                        "name": `<img src="${locales[x]['flag']}"></img> ${prefix} <p>${locales[x]['name']}</p>`
-                    };
-                }
+                settingUtils.choiceGrid(languages, currentLocale['code'], "name", htmlInner, function(key) {
+                    setLanguage(key);
+                });
             }
-
-            settingUtils.choiceGrid(languages, currentLocale['code'], "name", htmlInner, function (key) {
-                setLanguage(key);
-            });
-        }
-    },
-    {
-        name: "medals",
-        icon: "oif-app-medals",
-        generate: async function (htmlInner) {
-            var section = settingUtils.genericSection();
-            settingUtils.linkedCheckbox("completely hide medals when unobtained filter enabled", "settings_medals__hidemedalswhenunobtainedfilteron", section, false, function (enabled) {
-                if (typeof filterAchieved != 'undefined') filterAchieved(true, true);
-            });
-            htmlInner.appendChild(section);
-        }
-    },
-    {
-        name: "profiles",
-        icon: "oif-app-profiles",
-        generate: async function (htmlInner) {
-            var section = settingUtils.genericSection();
-            settingUtils.linkedCheckbox("show medals from all modes", "settings_profiles__showmedalsfromallmodes", section, true);
-            htmlInner.appendChild(section);
-        }
-    },
-]
+        },
+        {
+            name: "medals",
+            visualName: "medals",
+            icon: "oif-app-medals",
+            generate: async function(htmlInner) {
+                var section = settingUtils.genericSection();
+                settingUtils.linkedCheckbox(GetStringRawNonAsync("navbar", "settings.medals.hideMedalsWhenFilterEnabled"), "settings_medals__hidemedalswhenunobtainedfilteron", section, false, function(enabled) {
+                    if (typeof filterAchieved != 'undefined') filterAchieved(true, true);
+                });
+                htmlInner.appendChild(section);
+            }
+        },
+        {
+            name: "profiles",
+            visualName: "profiles",
+            icon: "oif-app-profiles",
+            generate: async function(htmlInner) {
+                var section = settingUtils.genericSection();
+                settingUtils.linkedCheckbox(GetStringRawNonAsync("navbar", "settings.profiles.showMedalsFromAllModes"), "settings_profiles__showmedalsfromallmodes", section, true);
+                htmlInner.appendChild(section);
+            }
+        },
+    ]
+}
 
 async function loadSettings() {
     await loadSource("navbar"); // need this
@@ -502,13 +508,13 @@ async function loadSettings() {
         document.getElementById("settings-page-list").innerHTML +=
             `<div class="osekai__dropdown-settings-page" onclick="openSettingsPage('${page.name}', this)">
             <i class="${page.icon}"></i>
-            <p>${page.name}</p>
+            <p>${page.visualName}</p>
         </div>`;
 
         var innerDiv = document.createElement('div');
         innerDiv.className = 'osekai__dropdown-settings-page-inner';
         innerDiv.classList.add("osekai__dropdown-settings-page-inner-hidden");
-        innerDiv.innerHTML = `<p class="osekai__dropdown-settings-page-header"><i onclick="showSettingsSidebarMobile()" class="fas fa-chevron-left mobile"></i> <i class="${page.icon}"></i> ${page.name}</h1>`;
+        innerDiv.innerHTML = `<p class="osekai__dropdown-settings-page-header"><i onclick="showSettingsSidebarMobile()" class="fas fa-chevron-left mobile"></i> <i class="${page.icon}"></i> ${page.visualName}</h1>`;
         innerDiv.setAttribute("settings-page", page.name);
 
         var innerContent = document.createElement('div');
@@ -538,15 +544,18 @@ function openSettingsPage(name, sidebar) {
     sidebar.classList.add("osekai__dropdown-settings-page-active");
     document.getElementById("dropdown-settings-new").classList.add("osekai__dropdown-settings-sidebar-collapsed");
 }
+
 function showSettingsSidebarMobile() {
     document.getElementById("dropdown-settings-new").classList.remove("osekai__dropdown-settings-sidebar-collapsed");
 }
 
 
 
-window.addEventListener('load', async function () {
-    document.getElementsByClassName("osekai__dropdown-settings-loader")[0].remove();
+window.addEventListener('load', async function() {
+    await loadSource("navbar")
+    await initSettingsPages();
     await loadSettings();
+    document.getElementsByClassName("osekai__dropdown-settings-loader")[0].remove();
 });
 // #endregion
 

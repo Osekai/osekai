@@ -1,6 +1,7 @@
 // pull faq from /home/api/faq.php
 var CleanedFAQ = [];
 var CurrentActiveButton = null;
+
 function GenerateHeader(app) {
     var header = document.createElement('h1');
     header.innerHTML = app.name;
@@ -41,7 +42,7 @@ function PopulateFAQ(data) {
 }
 
 function ShowQuestion(app_simplename, index) {
-    var app = CleanedFAQ.find(function (app) {
+    var app = CleanedFAQ.find(function(app) {
         return app.simplename == app_simplename;
     });
     var question = app.questions[index];
@@ -61,7 +62,7 @@ function ShowQuestion(app_simplename, index) {
 function LoadFAQ() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/home/api/faq.php', true);
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var data = JSON.parse(xhr.responseText);
             PopulateFAQ(data);
@@ -88,7 +89,7 @@ function LoadTeam() {
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/home/api/team.php', true);
-    xhr.onreadystatechange = async function () {
+    xhr.onreadystatechange = async function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var TeamMembers = JSON.parse(xhr.responseText);
 
@@ -121,7 +122,7 @@ function LoadTeam() {
 
                 if (member.name_alt != null) {
                     memberInfoTexts.appendChild(memberInfoTexts_NameAlt = document.createElement("small"))
-                    memberInfoTexts_NameAlt.innerHTML = `also known as <strong>${member.name_alt}</strong>`
+                    memberInfoTexts_NameAlt.innerHTML = await GetStringRaw("home", "team.alsoKnownAs", [member.name_alt]);
                 }
 
                 memberInfoTexts.appendChild(memberInfoTexts_Role = document.createElement("p"))
@@ -131,7 +132,7 @@ function LoadTeam() {
                 memberSocials.classList.add("home__team-member-socials");
                 memberSocials.appendChild(memberSocialsInner = document.createElement("div"));
                 memberSocialsInner.classList.add("home__team-member-socials-inner");
-                
+
                 function addSocial(social) {
                     var socialEl = document.createElement("a");
                     socialEl.classList.add("home__team-member-social");
@@ -142,7 +143,7 @@ function LoadTeam() {
                     var icon = document.createElement("i");
                     icon.className = SocialIcons[social.name];
                     socialEl.appendChild(icon);
-                    
+
                     memberSocialsInner.appendChild(socialEl);
                 }
 
@@ -155,7 +156,7 @@ function LoadTeam() {
                     "link": "/profiles?user=" + member.id,
                 });
 
-                for(social of member.socials) {
+                for (social of member.socials) {
                     addSocial(social);
                 }
 
@@ -183,7 +184,7 @@ function ScrollDown() {
 
 positionNav();
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     // remove lottie translate3d element
     let elements = document.getElementsByTagName('lottie-player');
 
