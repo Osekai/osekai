@@ -312,7 +312,25 @@ async function FillData(uid, mode, completeReload = true) {
     }
 
     //stats section
-    if (oData.statistics.pp != null) document.getElementById("pp__count").innerHTML = FormatNumber(oData.statistics.pp);
+    if (oData.statistics.pp != null) {
+        let ppCountEl = document.getElementById("pp__count");
+        if (mode == 'all') {
+
+            let stdDevPP = oData.statistics.std_dev_pp;
+
+            ppCountEl.textContent = FormatNumber(stdDevPP);
+
+            ppCountEl.parentElement.innerHTML = ppCountEl.parentElement.innerHTML.replace(' pp ', ' spp ');
+            tippy(document.getElementById("pp__count"), {
+                content: `${FormatNumber(oData.statistics.pp)} total`,
+            });
+        } else {
+            ppCountEl.textContent = FormatNumber(oData.statistics.pp);
+            // When changing the innerHTML of the parent, it recreates all its children, so the reference we had before no longer exists and tippy dissapears, which is exactly what i want - Pedrito
+            ppCountEl.parentElement.innerHTML = ppCountEl.parentElement.innerHTML.replace(' spp ', ' pp ');
+        }
+    }
+
     if (oData.statistics.global_rank > 0) {
         if (oData.statistics.global_rank != null) {
             document.getElementById("current__global__rank").innerHTML = "#" + FormatNumber(oData.statistics.global_rank);
