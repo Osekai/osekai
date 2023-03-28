@@ -65,15 +65,23 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                 <div class="home__panel-inner">
                     <div class="home__vertical-glowbar"></div>
                     <div class="home__panel-inner-texts">
-                        <div class="home__new">
+                        <!-- <div class="home__new">
                             <div class="home__new-badge"><?= GetStringRaw("home", "new"); ?></div>
                             <p><?= GetStringRaw("home", "new.text"); ?></p>
                         </div>
-                        <h3><?= GetStringRaw("home", "new.introducing"); ?></h3>
+                        <h3><?= GetStringRaw("home", "new.introducing"); ?></h3> -->
                         <h1>Osekai <strong>Profiles</strong></h1>
                         <div class="home__horizontal-glowbar"></div>
                         <p class="home__app-text"><?= GetStringRaw("home", "profiles.main"); ?></p>
                     </div>
+                </div>
+            </a>
+            <a class="home__long-panel home__panel-hoverable" style="--paccent: 0, 0, 0; --paccent-bright: 255, 255, 255; background-image: url('img/oss-bg.jpg');" href="https://github.com/osekai/osekai">
+                <div class="home__vertical-glowbar"></div>
+                <img class="home__long-img" src="img/oss-icon.svg">
+                <div class="home__long-texts">
+                    <h1><?= GetStringRaw("home", "oss"); ?></h1>
+                    <p><?= GetStringRaw("home", "oss.main"); ?></p>
                 </div>
             </a>
             <div class="home__panel-row2">
