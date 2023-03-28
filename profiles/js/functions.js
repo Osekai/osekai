@@ -145,6 +145,7 @@ function loadUser(uid) {
     let url = new URL(window.location);
     url.searchParams.set('user', uid);
     window.history.pushState({}, '', url);
+    document.querySelectorAll("[selector='pfp']").forEach((oPfp) => { oPfp.src = `https://a.ppy.sh/${uid}` });
     document.getElementById('profile').classList.remove('hidden');
     document.getElementById('home').classList.add('hidden');
     loadMode(null);
