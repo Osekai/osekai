@@ -21,7 +21,7 @@ function OnInput() {
     this.style.height = (this.scrollHeight) + "px";
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.getItem("medals__unobtained-medals-filter") == null || localStorage.getItem("medals__unobtained-medals-filter") == false || localStorage.getItem("medals__unobtained-medals-filter") == 'false') {
         document.getElementById("styled-checkbox-1").checked = false;
     } else {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     requestMedals(true, "");
 });
 
-window.addEventListener('popstate', function(event) {
+window.addEventListener('popstate', function (event) {
     let params = new URLSearchParams(window.location.search);
     if (params.get("medal") != null) {
         leaveLandingPage();
@@ -42,7 +42,7 @@ window.addEventListener('popstate', function(event) {
     localStorage.setItem("url", location.href);
 });
 
-document.getElementById("txtMedalSearch").addEventListener("input", function() {
+document.getElementById("txtMedalSearch").addEventListener("input", function () {
     requestMedals(false, document.getElementById("txtMedalSearch").value);
 }, false);
 
@@ -60,18 +60,18 @@ document.getElementById("comments__send").addEventListener("click", () => {
     commentsSendClick()
 });
 
-document.getElementById("filter__button").addEventListener("click", function() {
+document.getElementById("filter__button").addEventListener("click", function () {
     document.getElementById("filter__list").classList.toggle("osekai__dropdown-hidden");
 });
 
-document.getElementById("filter__date").addEventListener("click", function() {
+document.getElementById("filter__date").addEventListener("click", function () {
     document.getElementById("filter__selected").innerHTML = GetStringRawNonAsync("comments", "sorting.newest");
     document.getElementById("filter__list").classList.remove("osekai__dropdown-hidden");
     COMMENTS_mode = 2;
     Comments_Sort(document.getElementById("comments__box"), nCurrentMedalID, -1, -1);
 });
 
-document.getElementById("filter__votes").addEventListener("click", function() {
+document.getElementById("filter__votes").addEventListener("click", function () {
     document.getElementById("filter__selected").innerHTML = GetStringRawNonAsync("comments", "sorting.votes");
     document.getElementById("filter__list").classList.remove("osekai__dropdown-hidden");
     COMMENTS_mode = 1;
@@ -136,12 +136,12 @@ async function initColMedals() {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/medals/api/medals.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             var oResponse = getResponse(xhr);
             if (handleUndefined(oResponse)) return;
-            Object.keys(oResponse).forEach(function(obj) {
+            Object.keys(oResponse).forEach(function (obj) {
                 if (handleUndefined(obj)) return;
-                oResponse[obj].forEach(function(innerObj) {
+                oResponse[obj].forEach(function (innerObj) {
                     colMedals[innerObj.Name] = innerObj;
                 });
             });
@@ -152,16 +152,16 @@ async function initColMedals() {
 }
 
 async function requestMedals(init, strValue) {
-    if (init || Object.values(colMedals).length == 0) // Init the colMedals object
+    if (init || Object.values(colMedals).length == 0)  // Init the colMedals object
         await initColMedals();
 
     let filteredMedalsArrayByGroup = [];
     for (let v of Object.values(colMedals)) {
         // Match Name, Solution, Description, Instructions and medal id
         if (v.Name.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Solution ? .toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Description ? .toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Instructions ? .toLowerCase().includes(strValue.toLowerCase()) ||
+            v.Solution?.toLowerCase().includes(strValue.toLowerCase()) ||
+            v.Description?.toLowerCase().includes(strValue.toLowerCase()) ||
+            v.Instructions?.toLowerCase().includes(strValue.toLowerCase()) ||
             v.MedalID == parseInt(strValue)) {
             if (filteredMedalsArrayByGroup[v.Grouping] == null) filteredMedalsArrayByGroup[v.Grouping] = [];
             filteredMedalsArrayByGroup[v.Grouping].push(v);
@@ -171,7 +171,7 @@ async function requestMedals(init, strValue) {
         MedalsAchievedFilterArray = await getMedalsFilterArray();
     }
     document.getElementById('oMedalSection').textContent = '';
-    Object.keys(filteredMedalsArrayByGroup).forEach(async(group) => {
+    Object.keys(filteredMedalsArrayByGroup).forEach(async (group) => {
         let grids = [];
         filteredMedalsArrayByGroup[group].forEach((medal) => {
             if (localStorage.getItem("settings_medals__hidemedalswhenunobtainedfilteron") == "true" && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
@@ -180,21 +180,11 @@ async function requestMedals(init, strValue) {
 
             let medal_grid_i = 0;
             switch (medal.Restriction) {
-                case 'NULL':
-                    medal_grid_i = 0;
-                    break;
-                case 'osu':
-                    medal_grid_i = 1;
-                    break;
-                case 'taiko':
-                    medal_grid_i = 2;
-                    break;
-                case 'fruits':
-                    medal_grid_i = 3;
-                    break;
-                case 'mania':
-                    medal_grid_i = 4;
-                    break;
+                case 'NULL': medal_grid_i = 0; break;
+                case 'osu': medal_grid_i = 1; break;
+                case 'taiko': medal_grid_i = 2; break;
+                case 'fruits': medal_grid_i = 3; break;
+                case 'mania': medal_grid_i = 4; break;
             }
 
             let medalDiv = document.createElement('div');
@@ -270,21 +260,11 @@ async function requestMedals(init, strValue) {
 
             let modetxt = '';
             switch (i) {
-                case 0:
-                    modetxt = "All";
-                    break;
-                case 1:
-                    modetxt = "Standard";
-                    break;
-                case 2:
-                    modetxt = "Taiko";
-                    break;
-                case 3:
-                    modetxt = "Catch";
-                    break;
-                case 4:
-                    modetxt = "Mania";
-                    break;
+                case 0: modetxt = "All"; break;
+                case 1: modetxt = "Standard"; break;
+                case 2: modetxt = "Taiko"; break;
+                case 3: modetxt = "Catch"; break;
+                case 4: modetxt = "Mania"; break;
             }
 
             let headerLeftModeDiv = document.createElement('div');
@@ -343,7 +323,6 @@ async function requestMedals(init, strValue) {
 
     if (init && new URLSearchParams(window.location.search).get('medal') !== null) loadMedal(new URLSearchParams(window.location.search).get('medal'));
 }
-
 function landingPage() {
     document.getElementById("osekai__col1").classList.add("medals__nomedal");
     document.getElementById("3col_arrow").classList.add("medals__arrow-nomedal");
@@ -408,7 +387,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     //console.log(rarity);
     document.getElementById("strMedalRarity").innerHTML = "<light>rarity</light> " + Math.round(rarity * 100) / 100 + "%";
     document.getElementById("strMedalRarity").innerHTML = await GetStringRaw("medals", "solution.rarity", [Math.round(rarity * 100) / 100 + "%"])
-        //console.log(colMedals[strMedalName]);
+    //console.log(colMedals[strMedalName]);
     document.getElementById("strMedalGroup").innerHTML = colMedals[strMedalName].Grouping;
     if (updateAdminPanel) {
         if (document.getElementById("solution__editor")) document.getElementById("solution__editor").value = colMedals[strMedalName].Solution;
@@ -451,8 +430,8 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     // </mulraf> / End of getting Gamemode Icon
 
     // <Hubz> / Meta Generation
-    var _desc = "Oseaki Medals • " + colMedals[strMedalName].Description;
-    var _title = "Oseaki Medals • The solution to the osu! medal " + strMedalName + "!";
+    var _desc = "Osekai Medals • " + colMedals[strMedalName].Description;
+    var _title = "Osekai Medals • The solution to the osu! medal " + strMedalName + "!";
 
     document.querySelector('meta[name="description"]').setAttribute("content", _desc);
     document.querySelector('meta[name="twitter:description"]').setAttribute("content", _desc);
@@ -489,7 +468,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
         let xhr = new XMLHttpRequest();
         //console.log("/medals/api/get_beatmap_pack_count.php?id=" + colMedals[strMedalName].PackID);
         xhr.open('GET', "/medals/api/get_beatmap_pack_count.php?id=" + colMedals[strMedalName].PackID)
-        xhr.onload = function() {
+        xhr.onload = function () {
 
             resp = xhr.response;
             //console.log(xhr.response);
@@ -518,7 +497,8 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
         }
         xhr.send();
 
-    } else {
+    }
+    else {
         document.getElementById("oBeatmapContainer").classList.remove("hidden");
         document.getElementById("oBeatmapContainer_GetFromOsu").classList.add("hidden");
         requestBeatmaps("strSearch", colMedals[strMedalName].Name, "/medals/api/beatmaps.php");
@@ -555,13 +535,13 @@ function requestBeatmaps(strKey, strValue, strUrl) {
         document.getElementById("beatmap_count").innerHTML = bmcount;
     }
     document.getElementById("oBeatmapContainer").innerHTML = loader
-        /* document.getElementById("oBeatmapContainer").classList.add("hidden"); */
+    /* document.getElementById("oBeatmapContainer").classList.add("hidden"); */
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         document.getElementById("oBeatmapContainer").innerHTML = ""
-        Object.keys(oResponse).forEach(function(obj) {
+        Object.keys(oResponse).forEach(function (obj) {
             loadBeatmap(oResponse[obj]);
             bmcount += 1;
         });
@@ -579,7 +559,6 @@ function reportBeatmap(beatmapId, beatmapName) {
 }
 
 var colNotes = {};
-
 function loadBeatmap(oBeatmap) {
     let CoverID = "https://assets.ppy.sh/beatmaps/" + oBeatmap.MapsetID + "/covers/cover.jpg";
     let MapUrl = "https://osu.ppy.sh/beatmapsets/" + oBeatmap.MapsetID + "#" + oBeatmap.Gamemode + "/" + oBeatmap.BeatmapID;
@@ -606,7 +585,8 @@ function loadBeatmap(oBeatmap) {
         `</p>
                 <div class="medals__bmp3-right" id="subcontainer_` + oBeatmap.BeatmapID + `">` +
         (((oBeatmap.Note !== null && oBeatmap.Note.toString().replace(" ", "") !== "") || bCanDelete) ?
-            `<div class="medals__bmp3-r-note" onclick="notePanel(` + oBeatmap.BeatmapID + `, ` + bCanDelete + `);"> ` + (oBeatmap.Note == null || oBeatmap.Note.toString().replace(" ", "") == "" ? GetStringRawNonAsync("medals", "beatmaps.note.add") : GetStringRawNonAsync("medals", "beatmaps.note.view")) + `<i class="fas fa-sticky-note medals__bmp3-r-note-icon"></i></div>` :
+            `<div class="medals__bmp3-r-note" onclick="notePanel(` + oBeatmap.BeatmapID + `, ` + bCanDelete + `);"> ` + (oBeatmap.Note == null || oBeatmap.Note.toString().replace(" ", "") == "" ? GetStringRawNonAsync("medals", "beatmaps.note.add") : GetStringRawNonAsync("medals", "beatmaps.note.view")) + `<i class="fas fa-sticky-note medals__bmp3-r-note-icon"></i></div>`
+            :
             ``) +
         `<div id="` + oBeatmap.ObjectID + `"` + (bLoggedIn ? ` onclick="vote(` + oBeatmap.ObjectID + `, this);"` : ``) + ` class="medals__bmp3-r-vote` + (oBeatmap.HasVoted ? ` medals__bmp3-r-vote-voted` : ` `) + `">+` + oBeatmap.VoteSum + `</div>
                 </div>
@@ -623,8 +603,8 @@ function loadBeatmap(oBeatmap) {
         (bCanDelete ?
             `<div class="medals__bmp3-hover-button translatable" onclick="deleteMap(` + oBeatmap.BeatmapID + `);">` +
             `??medals.beatmap.delete??` +
-            `</div>` :
-            ``) +
+            `</div>`
+            : ``) +
         `</div>
     </div>`
 
@@ -661,8 +641,8 @@ function notePanel(strBeatmapID, bCanChange) {
         '</div> ' +
         '<div class="osekai__panel-inner"> ' +
         (bCanChange ?
-            '<input id="txtNote" class="medals__bmid osekai__input osekai__fullwidth" type="text" value="' + (colNotes[strBeatmapID] ? ? "") + '">' :
-            '<p id="txtNote" class="medals__bmid osekai__fullwidth">' + (strip(colNotes[strBeatmapID]) ? ? "") + '</p>') +
+            '<input id="txtNote" class="medals__bmid osekai__input osekai__fullwidth" type="text" value="' + (colNotes[strBeatmapID] ?? "") + '">'
+            : '<p id="txtNote" class="medals__bmid osekai__fullwidth">' + (strip(colNotes[strBeatmapID]) ?? "") + '</p>') +
         '<div class="osekai__flex_row"> ' +
         '<a class="osekai__button" onclick="closeBeatmapPanel();">Cancel</a> ' +
         (bCanChange ?
@@ -676,7 +656,7 @@ function notePanel(strBeatmapID, bCanChange) {
 function changeNote(strBeatmapID) {
     var xhr = createXHR("/medals/api/beatmaps.php");
     xhr.send("strNoteChange=" + document.getElementById("txtNote").value + "&strMapID=" + strBeatmapID + "&strMedalName=" + strCurrentMedalName);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -692,7 +672,7 @@ function deleteMap(strID) {
 
     var xhr = createXHR("/medals/api/beatmaps.php");
     xhr.send("strDeletion=" + strID + "&strMedalName=" + strCurrentMedalName);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -713,10 +693,10 @@ function vote(nBeatmapID, element) {
     var xhr = createXHR("/medals/api/beatmaps.php");
     xhr.send("nObject=" + nBeatmapID);
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
-        Object.keys(oResponse).forEach(function(obj) {
+        Object.keys(oResponse).forEach(function (obj) {
             if (oResponse[obj].HasVoted == 1) {
                 element.innerHTML = "+" + (parseInt(element.innerHTML) - 1);
                 element.classList.remove("medals__bmp3-r-vote-voted");
@@ -761,7 +741,7 @@ function closeBeatmapPanel() {
 function addBeatmap() {
     var xhr = createXHR("/medals/api/beatmaps.php");
     xhr.send("strBeatmap=" + document.getElementById("txtBeatmap").value + "&strMedalName=" + strCurrentMedalName + "&strMedalMode=" + strCurrentMedalMode + "&strNote=" + document.getElementById("txtNote").value);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -800,7 +780,7 @@ function changeLockIcon(bIsLocked) {
 function changeLockState(bCurrentlyLocked) {
     var xhr = createXHR("/medals/api/beatmaps.php");
     xhr.send("bCurrentlyLocked=" + bCurrentlyLocked + "&nMedalID=" + nCurrentMedalID);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "true") checkLock(changeLockIcon);
@@ -810,7 +790,7 @@ function changeLockState(bCurrentlyLocked) {
 function checkLock(callback) {
     var xhr = createXHR("/medals/api/beatmaps.php");
     xhr.send("bCheckLock=true&nMedalID=" + nCurrentMedalID);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse == 1)
@@ -849,7 +829,7 @@ function updateSolution() {
     let strAchievedId = document.getElementById("solution__achievedid").value;
     var xhr = createXHR("/medals/api/medals.php");
     xhr.send("strNewSolution=" + strText + "&nSolutionMedal=" + nCurrentMedalID + "&strSolutionMods=" + strMods + "&strSolutionPackID=" + strPackID + "&strSolutionVideo=" + strVideo + "&strSolutionDate=" + strDate + "&strFirstAchievedDate=" + strAchievedDate + "&strFirstAchievedId=" + strAchievedId);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -869,7 +849,7 @@ function escapeHtml(text) {
         "'": '&#039;'
     };
 
-    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    return text.replace(/[&<>"']/g, function (m) { return map[m]; });
 }
 
 function generateExtraInfoBar(icon, text, data, image, link) {
@@ -904,7 +884,7 @@ function loadExtraInfo(medalid) {
     container.innerHTML = loader;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', "/medals/api/extrainfo.php?id=" + medalid)
-    xhr.onload = function() {
+    xhr.onload = function () {
         var resp = JSON.parse(xhr.response);
         container.innerHTML = "";
         console.log(resp);
