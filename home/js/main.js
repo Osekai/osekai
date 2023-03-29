@@ -122,7 +122,7 @@ function LoadTeam() {
 
                 if (member.name_alt != null) {
                     memberInfoTexts.appendChild(memberInfoTexts_NameAlt = document.createElement("small"))
-                    memberInfoTexts_NameAlt.innerHTML = `also known as <strong>${member.name_alt}</strong>`
+                    memberInfoTexts_NameAlt.innerHTML = await GetStringRaw("home", "team.alsoKnownAs", [member.name_alt]);
                 }
 
                 memberInfoTexts.appendChild(memberInfoTexts_Role = document.createElement("p"))

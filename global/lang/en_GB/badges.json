@@ -12,6 +12,7 @@
     "badge.ownedBySingular": "owned by <strong>$1</strong> player",
     "badge.popup.playersWhoHave": "<strong>players</strong> who have this badge",
     "badge.popup.1xVariant": "<strong>@1x</strong><br>variant",
+    "badge.longAgo": "long ago",
     "paused": "Processing for Osekai Badges is currently paused. Only badges before $1 will be shown.",
     "viewtype.grid": "Grid",
     "viewtype.compactList": "Compact List",

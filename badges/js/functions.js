@@ -35,7 +35,7 @@ function loadData() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", strUrl, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    xhr.onload = function () {
+    xhr.onload = function() {
         if (xhr.status == 200) {
             badges = JSON.parse(xhr.responseText);
 
@@ -52,7 +52,7 @@ function loadData() {
     xhr.send();
 }
 
-loadSource("badges").then(function () {
+loadSource("badges").then(function() {
     sortingTypes_Names = [GetStringRawNonAsync("badges", "sort.awardedAt.asc"), GetStringRawNonAsync("badges", "sort.awardedAt.desc"), GetStringRawNonAsync("badges", "sort.name.asc"), GetStringRawNonAsync("badges", "sort.name.desc"), GetStringRawNonAsync("badges", "sort.playerCount.asc"), GetStringRawNonAsync("badges", "sort.playerCount.desc")];
     // grab these again in case the like fuckin' 10% chance they didnt load the last time hits
     // i dont know why this is an issue
@@ -116,7 +116,7 @@ function fillData() {
     }
 
     let badgeList = [];
-    ndata.forEach(async (badge) => {
+    ndata.forEach(async(badge) => {
         let badgeElement = document.createElement('div');
         badgeElement.classList.add('badge');
         badgeElement.classList.add(viewType);
@@ -155,7 +155,7 @@ function fillData() {
 
         let awarded_at = badge.awarded_at;
         if (awarded_at == "2013-08-07")
-            awarded_at = "long ago";
+            awarded_at = GetStringRawNonAsync("badges", "badge.longAgo");
 
         let badgeInfo = document.createElement('div');
         badgeInfo.classList.add('badge_info');
@@ -200,7 +200,7 @@ function changeSorting(type) {
 
     document.getElementById("sort_activeItem").textContent = sortingTypes_Names[sortingTypes.indexOf(type)];
 
-    setTimeout(function () {
+    setTimeout(function() {
         fillData();
     }, 1);
 }
@@ -270,7 +270,7 @@ function changeViewtype(type) {
             content.classList.replace(oldType, viewType);
         else
             content.classList.add(viewType);
-        badgesElements.forEach(async (b) => b.classList.replace(oldType, viewType));
+        badgesElements.forEach(async(b) => b.classList.replace(oldType, viewType));
         content.replaceChildren(...badgesElements);
         badgesLazyLoadInstance.update();
     }, 1);
@@ -297,7 +297,7 @@ function openBadge(index) {
 
     document.getElementById("1x_var").classList.remove("hidden");
 
-    obj_img.onerror = function () {
+    obj_img.onerror = function() {
         let obj_img = document.getElementById("bop_img");
         let obj_img2 = document.getElementById("bop_img2");
 
@@ -310,7 +310,7 @@ function openBadge(index) {
 
     let awarded_at = badge.awarded_at;
     if (awarded_at == "2013-08-07") {
-        awarded_at = "long ago";
+        awarded_at = GetStringRawNonAsync("badges", "badge.longAgo");
     }
 
     obj_achieved.innerHTML = GetStringRawNonAsync("badges", "badge.firstAchieved", [awarded_at]);
@@ -328,7 +328,7 @@ function openBadge(index) {
     // api/getUsers.php?badge_id=1
     let xhr = new XMLHttpRequest();
     xhr.open("GET", "/badges/api/getUsers.php?badge_id=" + badge.id, true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         if (xhr.status == 200) {
             const users = JSON.parse(xhr.responseText);
             container_users.textContent = '';
@@ -373,9 +373,9 @@ function hideOverlay() {
 function runSearch() {
     const searchQuery = document.getElementById("search").value.toLowerCase();
 
-    document.getElementById("title").innerHTML = "Badges (" + badges.length + ")";
+    document.getElementById("title").innerHTML = GetStringRawNonAsync("badges", "title", [badges.length]);
     if (searchQuery == "") {
-        badges.forEach(async (v, i) => {
+        badges.forEach(async(v, i) => {
             document.getElementById("badge-" + v.id).classList.remove("hidden");
         });
         return;

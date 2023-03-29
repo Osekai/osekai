@@ -24,7 +24,7 @@ function checkMobile() {
     }
 }
 
-setTimeout(function () {
+setTimeout(function() {
     var panels = document.getElementsByClassName("osekai__panel-container");
     for (var i = 0; i < panels.length; i++) {
         if (!panels[i].classList.contains("hidden")) {
@@ -34,7 +34,7 @@ setTimeout(function () {
     }
 }, 10);
 
-setTimeout(function () {
+setTimeout(function() {
     var panels = document.getElementsByClassName("osekai__panel-container");
     for (var i = 0; i < panels.length; i++) {
         if (panels[i].classList.contains("wait-forload")) {
@@ -45,7 +45,7 @@ setTimeout(function () {
 }, 600);
 
 var colours = {
-    RGBToHSL: function (r, g, b) {
+    RGBToHSL: function(r, g, b) {
         var oldR = r;
         var oldG = g;
         var oldB = b;
@@ -154,14 +154,14 @@ const themes = {
 }
 
 async function loadThemes() {
-    themes["light"].name = await GetStringRaw("navbar", "settings.global.theme.light");
-    themes["dark"].name = await GetStringRaw("navbar", "settings.global.theme.dark");
-    themes["ultradark"].name = await GetStringRaw("navbar", "settings.global.theme.ultraDark");
-    themes["colddark"].name = await GetStringRaw("navbar", "settings.global.theme.coldDark");
-    themes["system"].name = await GetStringRaw("navbar", "settings.global.theme.system");
-    themes["custom"].name = await GetStringRaw("navbar", "settings.global.theme.custom");
-    themes["custom-light"].name = await GetStringRaw("navbar", "settings.global.theme.custom.lightMode");
-    themes["lightweight"].name = await GetStringRaw("navbar", "settings.global.theme.lightweight");
+    themes["light"].name = await GetStringRaw("navbar", "settings.theme.light");
+    themes["dark"].name = await GetStringRaw("navbar", "settings.theme.dark");
+    themes["ultradark"].name = await GetStringRaw("navbar", "settings.theme.ultraDark");
+    themes["colddark"].name = await GetStringRaw("navbar", "settings.theme.coldDark");
+    themes["system"].name = await GetStringRaw("navbar", "settings.theme.system");
+    themes["custom"].name = await GetStringRaw("navbar", "settings.theme.custom");
+    themes["custom-light"].name = await GetStringRaw("navbar", "settings.theme.custom.lightMode");
+    themes["lightweight"].name = await GetStringRaw("navbar", "settings.theme.lightweight");
 }
 
 theme = themes["system"];
@@ -235,8 +235,7 @@ function updateTheme() {
             document.getElementById("css_cont").innerHTML = "<link id='" + theme + "' rel='stylesheet' type='text/css' href='/global/css/" + themes["light"].css[0] + "'>";
             document.getElementById("css_cont").innerHTML += "<link id='" + theme + "' rel='stylesheet' type='text/css' href='css/" + themes["light"].css[0] + "'>";
         }
-    }
-    else {
+    } else {
         document.getElementById("css_cont").innerHTML = "";
         if (theme["css"] != "none") {
             for (var i in theme['css']) {
@@ -261,22 +260,22 @@ function updateTheme() {
         // the user the brightness of the colour they've selected. fine, it works, but bit annoying
         window.localStorage.setItem("accent_dark", customTheme.accent_dark);
         window.localStorage.setItem("accent", customTheme.accent);
-        window.addEventListener('settings-load', function () {
+        window.addEventListener('settings-load', function() {
             document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
             if (cp_accent == null) {
-                cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
+                cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function(col) {
                     customTheme.accent_dark = col;
                     updateTheme();
                 }, customTheme.accent_dark);
 
-                cp_accent = new newColourPicker("custom_colpicker_accent", function (col) {
+                cp_accent = new newColourPicker("custom_colpicker_accent", function(col) {
                     customTheme.accent = col;
                     updateTheme();
                 }, customTheme.accent);
             }
         });
     } else {
-        window.addEventListener('settings-load', function () {
+        window.addEventListener('settings-load', function() {
             document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
         });
     }
@@ -288,10 +287,10 @@ function updateTheme() {
 
 
 localStorage.setItem("url", location.href);
-window.addEventListener("hashchange", function () {
+window.addEventListener("hashchange", function() {
     localStorage.setItem("url", location.href);
 });
-window.addEventListener("popstate", function () {
+window.addEventListener("popstate", function() {
     localStorage.setItem("url", location.href);
 });
 
@@ -326,7 +325,7 @@ function closeLoader() {
     }
 }
 
-window.openDialog = function (title, header, message, button1, b1Callback, button2 = "", b2Callback = function () { }) {
+window.openDialog = function(title, header, message, button1, b1Callback, button2 = "", b2Callback = function() {}) {
     html = `<div class="osekai__overlay"><section class="osekai__panel osekai__overlay__panel">
     <div class="osekai__panel-header">
         <p>` + title + `</p>
@@ -350,17 +349,17 @@ window.openDialog = function (title, header, message, button1, b1Callback, butto
 
     document.getElementById("other_overlays").innerHTML += html;
 
-    document.getElementById("glb_tmp_button1").onmousedown = function () {
+    document.getElementById("glb_tmp_button1").onmousedown = function() {
         document.getElementById("other_overlays").innerHTML = "";
         b1Callback();
     }
     if (button2 != "") {
-        document.getElementById("glb_tmp_button2").onmousedown = function () {
+        document.getElementById("glb_tmp_button2").onmousedown = function() {
             document.getElementById("other_overlays").innerHTML = "";
             b2Callback();
         }
     }
-    document.getElementById("glb_tmp_cancel").onmousedown = function () {
+    document.getElementById("glb_tmp_cancel").onmousedown = function() {
         document.getElementById("other_overlays").innerHTML = "";
     }
 }
@@ -374,7 +373,7 @@ function gracefullyExit() {
     var root = document.getElementsByTagName('html')[0]; // '0' to assign the first (and only `HTML` tag)
     root.classList.add("osekai__loadnewpage");
 
-    setTimeout(function () {
+    setTimeout(function() {
         root.innerHTML += `<div class="osekai__loadnewpage_text"><p>Loading Page...</p></div>`;
         root.classList.add("osekai__loadnewpage_over2s");
         root.classList.remove("osekai__loadnewpage");
@@ -397,7 +396,7 @@ function getCookie(cname) {
 }
 
 if (getCookie("fromLegacy") == 1) {
-    setTimeout(function () {
+    setTimeout(function() {
         document.getElementById("welcome_panel").classList.remove("osekai__eclipse-welcome-hidden");
     }, 1200);
     document.cookie = "fromLegacy=0; expires=Thu, 18 Dec 2021 12:00:00 UTC; path=/";
@@ -408,19 +407,20 @@ function closeWelcomePanel() {
 }
 
 var snowflakesCreated = false;
+
 function snowflakes(enabled) {
     console.log("SNOWFLAKES: " + enabled);
     if (enabled == true || enabled == "true") {
-        if(snowflakesCreated == false) {
-            document.getElementById("snowflakes").innerHTML =  "";
+        if (snowflakesCreated == false) {
+            document.getElementById("snowflakes").innerHTML = "";
 
             snowflakesCreated = true;
             var styleContainer = document.createElement("style");
-            for(var x = 0; x < 40; x++) {
+            for (var x = 0; x < 40; x++) {
                 var delay1 = Math.random() * 10;
                 var delay2 = Math.random() * 10;
                 var position = Math.random() * 100;
-            
+
                 styleContainer.innerHTML += `.snowflake:nth-of-type(${x}) {
                     left: ${position}%;
                     -webkit-animation-delay: ${delay1}s, ${delay2}s;
@@ -430,8 +430,8 @@ function snowflakes(enabled) {
                 <i class="fas fa-snowflake"></i>
             </div>`;
             }
-            
-                document.getElementById("snowflakes").appendChild(styleContainer);
+
+            document.getElementById("snowflakes").appendChild(styleContainer);
         }
         document.getElementById("snowflakes").classList.remove("hidden");
     } else {
@@ -477,14 +477,14 @@ function setLanguage(code) {
     // /api/setLanguage?language=en
     var xhttp = new XMLHttpRequest();
 
-    GetStringRaw("medals", "searchbar.placeholder").then(function (text) {
+    GetStringRaw("medals", "searchbar.placeholder").then(function(text) {
         //console.log(text);
     });
 
-    GetStringRaw("general", "language.switch").then(function (text) {
+    GetStringRaw("general", "language.switch").then(function(text) {
         openLoader(text);
         hide_dropdowns();
-        xhttp.onreadystatechange = function () {
+        xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 /// reload
                 location.reload();
@@ -523,7 +523,7 @@ function cantContactOsu() {
 let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
 let active = false;
 
-window.addEventListener('click', function (e) {
+window.addEventListener('click', function(e) {
     if (!e.target.classList.contains("osekai__dropdown") && !e.target.classList.contains("osekai__dropdown-item") && !e.target.classList.contains("osekai__dropdown-opener") && (e.target.closest(".osekai__dropdown-opener") == null)) {
         document.querySelectorAll(".osekai__dropdown").forEach((colItems) => {
             colItems.classList.add("osekai__dropdown-hidden");
@@ -569,13 +569,13 @@ function linkify(inputText) {
 
 function mutation() {
     // wait 0.1 seconds
-    setTimeout(function () {
+    setTimeout(function() {
         var collapsablePanels = document.getElementsByClassName("osekai__panel-collapsable");
         for (var x = 0; x < collapsablePanels.length; x++) {
             if (!collapsablePanels[x].classList.contains("osekai__panel-collapsable-initialized")) {
                 collapsablePanels[x].classList.add("osekai__panel-collapsable-initialized");
                 let el = collapsablePanels[x];
-                collapsablePanels[x].querySelector(".fa-chevron-down").addEventListener("click", function () {
+                collapsablePanels[x].querySelector(".fa-chevron-down").addEventListener("click", function() {
                     el.classList.toggle("osekai__panel-collapsable-collapsed")
                 });
             }
@@ -596,7 +596,7 @@ function mutation() {
 
 
 // replace with tippy every time DOM updates using mutation observer
-var mutationObserver = new MutationObserver(function (mutations) {
+var mutationObserver = new MutationObserver(function(mutations) {
     mutation();
 });
 
@@ -670,7 +670,7 @@ function getAlerts() {
 
     let xhr = createXHR("/api/alerts.php?app=" + nAppId);
     xhr.send();
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(xhr.responseText);
         var oResponse = JSON.parse(xhr.responseText);
         for (var x = 0; x < oResponse.length; x++) {
@@ -703,7 +703,7 @@ function getAlerts() {
     };
 
 }
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     getAlerts();
 });
 
@@ -711,22 +711,22 @@ loadSource("groups");
 
 var groupDropdownCounter = 0; // global, dumb shit
 var groupUtils = {
-    getGroupFromId: function (id) {
+    getGroupFromId: function(id) {
         for (var x = 0; x < userGroups.length; x++) {
             if (userGroups[x]['Id'] == id) {
                 return userGroups[x];
             }
         }
     },
-    badgeHtmlFromGroupId: function (id, size = "small") {
+    badgeHtmlFromGroupId: function(id, size = "small") {
         var group = this.getGroupFromId(id);
         // this is technically illegal according to html spec but i don't care
         return `<object class="tooltip-v2" tooltip-content="${LocalizeTextNonAsync(group.Name)}"><a href="/misc/groups/?group=${id}" class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</a></object>`;
     },
-    orderBadgeArray: function (array) {
+    orderBadgeArray: function(array) {
         return array.sort((a, b) => a.Order - b.Order)
     },
-    badgeHtmlFromArray: function (array, size = "small", limit = "none") {
+    badgeHtmlFromArray: function(array, size = "small", limit = "none") {
         console.log(array);
         var orderedList = [];
         for (var x = 0; x < array.length; x++) {
@@ -754,7 +754,7 @@ var groupUtils = {
         }
         return finalHtml;
     },
-    badgeHtmlFromCommaSeperatedList: function (list, size = "small", limit = "none") {
+    badgeHtmlFromCommaSeperatedList: function(list, size = "small", limit = "none") {
         if (list == null) return "";
         var array = [];
         var split = list.split(",");
@@ -763,7 +763,7 @@ var groupUtils = {
         }
         return this.badgeHtmlFromArray(array, size, limit);
     },
-    openDropdown: function (arrow, list) {
+    openDropdown: function(arrow, list) {
         if (arrow.querySelector("div")) {
             if (arrow.querySelector("div").classList.contains("osekai__group-dropdown-hidden")) {
                 var dropdowns = document.getElementsByClassName("osekai__group-dropdown");
