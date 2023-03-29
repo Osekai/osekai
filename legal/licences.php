@@ -11,11 +11,11 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <meta name="msapplication-TileColor" content="#353d55">
     <meta name="theme-color" content="#353d55">
     <meta name="description" content="need to get in contact with us? this is the place for you." />
-    <meta property="og:title" content="Osekai Contact" />
+    <meta property="og:title" content="Oseaki Contact" />
     <meta property="og:description" content="need to get in contact with us? this is the place for you." />
-    <meta name="twitter:title" content="Osekai Contact" />
+    <meta name="twitter:title" content="Oseaki Contact" />
     <meta name="twitter:description" content="need to get in contact with us? this is the place for you." />
-    <title name="title">Osekai Contact</title>
+    <title name="title">Oseaki Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:url" content="<?= ROOT_URL ?>/legal/licences" />
@@ -76,7 +76,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                     <div class="osekai__panel-inner">
                         <h3>Osekai's code is licenced under the MIT licence. For more info read the <a href="">LICENCE</a> file.</h3>
-                        <p>Keep in mind that graphic assets such as the Osekai Logo and Wordmark are under the <strong>CC BY</strong> licence.</p>
+                        <p>Keep in mind that graphic assets such as the Oseaki Logo and Wordmark are under the <strong>CC BY</strong> licence.</p>
                     </div>
                 </section>
                 <section class="osekai__panel">

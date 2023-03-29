@@ -68,7 +68,7 @@ $meta = '<meta charset="utf-8">
 <meta name="twitter:title" content="' . $name . '" />
 <meta name="twitter:description" content="' . $description . '" />
 <title name="title">' . $name . '</title>
-<meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more,' . $tags . '">'
+<meta name="keywords" content="Oseaki,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more,' . $tags . '">'
 ?>
 
 

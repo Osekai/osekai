@@ -383,6 +383,8 @@ function GetStringRaw($source, $key, $variables = [])
         $text = str_replace("$" . $i, $variable, $text);
         $i++;
     }
+    $text = str_replace("osekai", "oseaki", $text);
+    $text = str_replace("Osekai", "Oseaki", $text);
     return $text;
 }
 

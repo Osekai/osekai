@@ -32,10 +32,10 @@ if (isset($_GET['user'])) {
         $user_id = $user['id'];
         $user_name = $user['username'];
 
-        $title = "Osekai Profiles • " . $user_name;
-        $desc = "Check out the Osekai Profiles page for " . $user_name . "! Including stats, medals, goals, timeline, and more!";
+        $title = "Oseaki Profiles • " . $user_name;
+        $desc = "Check out the Oseaki Profiles page for " . $user_name . "! Including stats, medals, goals, timeline, and more!";
         $keyword = $user_name;
-        $keyword2 = "osekai profiles";
+        $keyword2 = "oseaki profiles";
 
         $meta = '<meta charset="utf-8" />
         <meta name="msapplication-TileColor" content="#303f5e">
@@ -55,9 +55,9 @@ if (isset($_GET['user'])) {
         exit;
     }
 } else {
-    $title = "Osekai Profiles • Home";
+    $title = "Oseaki Profiles • Home";
     // ! temporary description
-    $desc = "Check out Osekai Profiles! Featuring stats, medals, goals, timeline, and more, for every single osu! user!";
+    $desc = "Check out Oseaki Profiles! Featuring stats, medals, goals, timeline, and more, for every single osu! user!";
 
     $meta = '<meta charset="utf-8" />
         <meta name="description" content="' . htmlspecialchars($desc) . '" />

@@ -26,7 +26,7 @@ $meta .= '
 <meta name="twitter:title" content="' . $name . '" />
 <meta name="twitter:description" content="' . $description . '" />
 <title name="title">' . $name . '</title>
-<meta name="keywords" content="osekai,pp,calc,tools' . $tags . '">
+<meta name="keywords" content="Oseaki,pp,calc,tools' . $tags . '">
 '
 ?>
 
