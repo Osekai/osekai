@@ -84,7 +84,7 @@ function LoadTeam() {
         "Website": "fas fa-globe",
         "Speedrun.com": "fas fa-trophy",
         "osu! Profile": "oif-osu-logo",
-        "Osekai Profiles": "oif-app-profiles",
+        "Oseaki Profiles": "oif-app-profiles",
     };
 
     var xhr = new XMLHttpRequest();

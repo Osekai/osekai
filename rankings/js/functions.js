@@ -1,5 +1,5 @@
 // constants
-const APP_MAIN = "Osekai Rankings / ";
+const APP_MAIN = "Oseaki Rankings / ";
 const APP_SHORT = "rankings";
 const ENTRIES_PER_PAGE = 50;
 const MAX_PAGES = 7;
