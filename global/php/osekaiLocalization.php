@@ -324,7 +324,7 @@ if ($useJS == true) {
     echo 'var currentLocale = ' . json_encode($currentLocale) . ';';
     echo '</script>';
 
-    echo '<script src="/global/js/localization.js?v=1.3"></script>';
+    echo '<script src="/global/js/localization.js?v='.OSEKAI_VERSION.'"></script>';
 }
 
 function loadSource($source)
