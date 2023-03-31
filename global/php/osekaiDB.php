@@ -157,10 +157,20 @@ class Database
             $mysql->next_result();
         }
         if (isset($hits)) {
+            for($x = 0; $x < count($hits); $x++) {
+                $hits[$x] = array_map(
+                    function($str) {
+                        $str2 = str_replace('Osekai ', 'Oseaki ', $str);
+                        return str_replace('osekai ', 'oseaki ', $str2);
+                    },
+                    $hits[$x]
+                );            
+            }
             return $hits;
         } else {
             return [];
         }
+        
         return (array)$hits;
     }
 
@@ -183,6 +193,16 @@ class Database
         $hits = array();
         while ($val = $oQuery->fetch_assoc()) {
             $hits[] = $val;
+        }
+
+        for($x = 0; $x < count($hits); $x++) {
+            $hits[$x] = array_map(
+                function($str) {
+                    $str2 = str_replace('Osekai ', 'Oseaki ', $str);
+                    return str_replace('osekai ', 'oseaki ', $str2);
+                },
+                $hits[$x]
+            );            
         }
         return $hits;
     }

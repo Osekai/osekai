@@ -128,8 +128,8 @@ function GetStringRawNonAsync(source, key, variables = []) {
         text = text.replaceAll("$" + i, variables[variable]);
         i++;
     }
-    text.replace("osekai", "oseaki");
-    text.replace("Osekai", "Oseaki");
+    text = text.replace("osekai", "oseaki");
+    text = text.replace("Osekai", "Oseaki");
     return text;
 }
 
@@ -184,6 +184,9 @@ async function LocalizeText(string, variables = []) {
             string = string.replace("??" + cleanedString + "??", localizedString);
         }
     }
+
+    string = string.replace("osekai", "oseaki");
+    string = string.replace("Osekai", "Oseaki");
     return string;
 }
 
