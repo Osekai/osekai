@@ -152,7 +152,7 @@ function LoadTeam() {
                     "link": "https://osu.ppy.sh/users/" + member.id,
                 });
                 addSocial({
-                    "name": "Osekai Profiles",
+                    "name": "Oseaki Profiles",
                     "link": "/profiles?user=" + member.id,
                 });
 

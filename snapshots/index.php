@@ -50,16 +50,16 @@ if (isset($_GET['version'])) {
         <meta name="twitter:title" content="' . htmlspecialchars($title) . '" />
         <meta name="twitter:description" content="' . htmlspecialchars($desc) . '" />
         <title name="title">' . htmlspecialchars($title) . '</title>
-        <meta name="keywords" content="osekai,snapshots,version,' . $ver['version_info']['version'] . ',from,' . $ver['version_info']['name'] . '">
+        <meta name="keywords" content="Oseaki,snapshots,version,' . $ver['version_info']['version'] . ',from,' . $ver['version_info']['name'] . '">
         <meta property="og:url" content="' . ROOT_URL . '/snapshots?version=' . htmlspecialchars($_GET['version']) . '" />';
     }
 } else {
     $meta .= '<meta name="description" content="we\'ve got everything, from triangles and benchmarks to coins and holiday themes! pop on down and experience some nostalgia!" />
-    <meta property="og:title" content="Osekai Snapshots • Archiving osu! versions from 2007 to now!" />
+    <meta property="og:title" content="Oseaki Snapshots • Archiving osu! versions from 2007 to now!" />
     <meta property="og:description" content="we\'ve got everything, from triangles and benchmarks to coins and holiday themes! pop on down and experience some nostalgia!" />
-    <meta name="twitter:title" content="Osekai Snapshots • Archiving osu! versions from 2007 to now!" />
+    <meta name="twitter:title" content="Oseaki Snapshots • Archiving osu! versions from 2007 to now!" />
     <meta name="twitter:description" content="we\'ve got everything, from triangles and benchmarks to coins and holiday themes! pop on down and experience some nostalgia!" />
-    <title name="title">Osekai Snapshots • Archiving osu! versions from 2007 to now!</title>
+    <title name="title">Oseaki Snapshots • Archiving osu! versions from 2007 to now!</title>
     <meta name="keywords" content="snapshots">
     <meta property="og:url" content="' . ROOT_URL . '/snapshots" />';
 }

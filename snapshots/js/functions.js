@@ -1,5 +1,3 @@
-
-
 const tx = document.getElementsByTagName("textarea");
 for (let i = 0; i < tx.length; i++) {
     var fe = tx[i].scrollHeight + 16;
@@ -45,23 +43,23 @@ var wantedVer = 0;
 
 var currentindex;
 
-function listClick(element, id){
+function listClick(element, id) {
     // remove snapshots__list-version-active from all items which have it
     var active = document.getElementsByClassName("snapshots__list-version-active");
     for (var i = 0; i < active.length; i++) {
         active[i].classList.remove("snapshots__list-version-active");
     }
-    
+
     element.classList.add("snapshots__list-version-active");
     loadVersion(id, true, true);
 }
 
 async function loadVersion(vername, pushstate = true, fromButton = false) {
-    if(window.mobile == true && document.getElementsByClassName("osekai__3col_col1")[0].classList.contains("osekai__3col_col1_hide") == false){
+    if (window.mobile == true && document.getElementsByClassName("osekai__3col_col1")[0].classList.contains("osekai__3col_col1_hide") == false) {
         switch3col();
     }
 
-    if(fromButton == false){
+    if (fromButton == false) {
         // remove snapshots__list-version-active from all items which have it
         var active = document.getElementsByClassName("snapshots__list-version-active");
         for (var i = 0; i < active.length; i++) {
@@ -74,19 +72,20 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
         var truever = null;
         // go through all versions and see if their id is the same
         var versionButtons = document.getElementsByClassName("snapshots__list-version");
-        for (var i = 0; i < versionButtons.length; i++){
-            if(versionButtons[i].classList.contains("ver_id_" + vername))
-            {
+        for (var i = 0; i < versionButtons.length; i++) {
+            if (versionButtons[i].classList.contains("ver_id_" + vername)) {
                 versionButtons[i].classList.add("snapshots__list-version-active");
                 console.log("found it");
                 truever = versionButtons[i];
             }
         }
 
-        setTimeout(function(){
-            truever.scrollIntoView({behavior: "smooth",
-            block: 'center',
-            inline: 'center'});
+        setTimeout(function() {
+            truever.scrollIntoView({
+                behavior: "smooth",
+                block: 'center',
+                inline: 'center'
+            });
         }, 450);
     }
 
@@ -95,7 +94,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     var thisver;
 
     console.log(data);
-    data.forEach(function (version, index) {
+    data.forEach(function(version, index) {
         if (version["version_info"]["id"] == vername) {
             thisver = version;
             currentindex = index;
@@ -117,12 +116,12 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
 
     var reldate = new Date(thisver["version_info"]["release"] * 1000).toLocaleDateString("en-AU", { month: "long", day: "numeric", year: "numeric" });
     document.getElementById("release_date").innerHTML = await GetStringRaw("snapshots", "version.released", [reldate]);
-    
 
 
-    document.getElementById("archived_by").innerHTML = await GetStringRaw("snapshots", "version.archivedBy", [`<strong class="user_hover" userid="` + thisver["archive_info"]["archiver"] + `" hoverside="right">` + thisver["archive_info"]["archiver"] + `</strong>`]); 
 
-    if(thisver["archive_info"]["archiver_id"] != null && thisver["archive_info"]["archiver_id"] != ""){
+    document.getElementById("archived_by").innerHTML = await GetStringRaw("snapshots", "version.archivedBy", [`<strong class="user_hover" userid="` + thisver["archive_info"]["archiver"] + `" hoverside="right">` + thisver["archive_info"]["archiver"] + `</strong>`]);
+
+    if (thisver["archive_info"]["archiver_id"] != null && thisver["archive_info"]["archiver_id"] != "") {
         document.getElementById("archived_by").innerHTML = await GetStringRaw("snapshots", "version.archivedBy", [`<img class="snapshots__archiver-pfp" src="` + thisver['archive_info']['pfp'] + `"> <strong>` + thisver["archive_info"]["archiver"] + `</strong>`]);
     }
 
@@ -132,9 +131,9 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     document.getElementById("downloads").innerHTML = thisver["stats"]["downloads"];
 
     document.getElementById("description").innerHTML = thisver["archive_info"]["description"];
-    if(thisver["archive_info"]["description"] == null || thisver["archive_info"]["description"] == ""){
+    if (thisver["archive_info"]["description"] == null || thisver["archive_info"]["description"] == "") {
         document.getElementById("descriptionInner").classList.add("hidden");
-    }else{
+    } else {
         console.log(thisver["archive_info"]["description"]);
         document.getElementById("descriptionInner").classList.remove("hidden");
     }
@@ -146,10 +145,10 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
 
 
 
-    for(var key in downloads){
+    for (var key in downloads) {
         var downloadlink;
         console.log(downloads[key]["name"]);
-        if (downloads[key]["name"] == "Osekai Servers") {
+        if (downloads[key]["name"] == "Oseaki Servers") {
             downloadlink = "versions/" + thisver["version_info"]["version"] + "/" + downloads[key]["link"]
 
             document.getElementById("downloads_list").innerHTML += `<div class="snapshots__download-outer"><a onclick="downloadVer(` + thisver['version_info']['id'] + `, '` + downloadlink + `')" class="snapshots__download-panel">
@@ -160,7 +159,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
         </svg>
         <div class="snapshots__download-text">
             <p class="snapshots__download-header">` + await GetStringRaw("snapshots", "version.download.title") + ` <span class="recommended">` + await GetStringRaw("snapshots", "version.download.recommended") + `</span></p>` + `
-            <p class="snapshots__download-source">` + await GetStringRaw("snapshots", "version.download.from", [downloads[key]["name"]])  + `<p>
+            <p class="snapshots__download-source">` + await GetStringRaw("snapshots", "version.download.from", [downloads[key]["name"]]) + `<p>
         </div>
     </a>
     </div>`;
@@ -168,10 +167,10 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     }
 
 
-    Object.keys(downloads).forEach(function (key, index) {
+    Object.keys(downloads).forEach(function(key, index) {
         var downloadlink;
         console.log(downloads[key]["name"]);
-        if (downloads[key]["name"] != "Osekai Servers") {
+        if (downloads[key]["name"] != "Oseaki Servers") {
             downloadlink = downloads[key]["link"];
 
             if (nRights > 0) {
@@ -199,7 +198,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     </a>` + admin + `</div>`;
         }
     });
-    
+
     if (thisver["archive_info"]["extra_info"] == null || thisver["archive_info"]["extra_info"] == "") {
         document.getElementById("extra_info_panel").classList.add("hidden");
     } else {
@@ -251,11 +250,11 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     var screenshot_grid = document.getElementById("screenshot_grid");
     screenshot_grid.innerHTML = "";
 
-    Object.keys(thisver["screenshots"]).forEach(function (key, index) {
+    Object.keys(thisver["screenshots"]).forEach(function(key, index) {
         if (nRights < 1) {
             screenshot_grid.innerHTML += `<img onclick="showScreenshotOverlay(this.src)" class="snapshots__image" src="` +
-                "versions/" + thisver["version_info"]["version"] + "/" + thisver['screenshots'][key]
-                + `">`;
+                "versions/" + thisver["version_info"]["version"] + "/" + thisver['screenshots'][key] +
+                `">`;
         } else {
             screenshot_grid.innerHTML += `<div id="screenshot_` + index + `" class="snapshots__admin-image"><div class="snapshots__admin-image-overlay">
             <p onclick="adminDeleteScreenshot(` + thisver['version_info']['id'] + `,` + index + `,this)" class="snapshots__admin-image-overlay-button">
@@ -265,8 +264,8 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
             <i class="fas fa-pencil-alt"></i>
             </p>
         </div><img onclick="showScreenshotOverlay(this.src)" src="` +
-                "versions/" + thisver["version_info"]["version"] + "/" + thisver['screenshots'][key]
-                + `">
+                "versions/" + thisver["version_info"]["version"] + "/" + thisver['screenshots'][key] +
+                `">
             
             </div>`;
         }
@@ -281,7 +280,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     form.append('type', "view");
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/update_counter', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(this.responseText);
     };
     xhr.send(form);
@@ -299,7 +298,7 @@ function deleteDownloadMirror(from, name) {
     form.append('downloadName', name);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/admin_deletemirror', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(this.responseText);
     };
     xhr.send(form);
@@ -315,7 +314,7 @@ function addDownloadMirror(name, link) {
     form.append('downloadLink', link);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/admin_addmirror', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(this.responseText);
     };
     xhr.send(form);
@@ -341,7 +340,7 @@ function adminDeleteScreenshot(id, index, obje) {
     form.append('screenshotIndex', index);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/admin_deletescreenshot', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(this.responseText);
     };
     xhr.send(form);
@@ -365,13 +364,13 @@ function downloadVer(id, downloadlink) {
     form.append('type', "download");
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/update_counter', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(this.responseText);
     };
     xhr.send(form);
 }
 
-window.addEventListener('popstate', function (event) {
+window.addEventListener('popstate', function(event) {
     let params = new URLSearchParams(window.location.search);
     if (params.get("version") != null) {
         loadVersion(params.get("version"), false);
@@ -394,7 +393,7 @@ async function addToScroller(oResponse) {
     //document.getElementById("home_slogan").innerHTML = "serving " + oResponse.length + " osu! versions from 2007 to now!";
     document.getElementById("home_slogan").innerHTML = await GetStringRaw("snapshots", "home.slogan", [oResponse.length]);
 
-    groups.forEach(function (element) {
+    groups.forEach(function(element) {
         scroller.innerHTML +=
             `<section class="osekai__panel">
             <div class="osekai__panel-header" id="group_header_` + element[0] + `">
@@ -404,8 +403,8 @@ async function addToScroller(oResponse) {
             </div>
         </section>`;
         versioncount = 0;
-        oResponse.forEach(function (version, index) {
-            
+        oResponse.forEach(function(version, index) {
+
             if (version["archive_info"]["group"] == element[0]) {
                 versioncount++;
                 var group_div = document.getElementById("group_" + element[0]);
@@ -417,7 +416,7 @@ async function addToScroller(oResponse) {
                     image01 = thumbnail;
                 }
                 var newText = "";
-                if(version["archive_info"]['new'] == true){
+                if (version["archive_info"]['new'] == true) {
                     newText = ` <div class="snapshots__list-version-new">New!</div>`;
                 }
                 group_div.innerHTML +=
@@ -461,7 +460,7 @@ async function addToScroller(oResponse) {
 
 function doSearch(search) {
     if (loaded == true) {
-        data.forEach(function (version, index) {
+        data.forEach(function(version, index) {
             if (version["version_info"]["name"].includes(search) ||
                 version["version_info"]["version"].includes(search)) {
                 document.getElementById("ver_" + index).classList.remove("hidden");
@@ -475,7 +474,7 @@ function doSearch(search) {
 function loadData() {
     var xhr = createXHR(API_URL);
     xhr.send();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         addToScroller(oResponse);
@@ -519,7 +518,7 @@ function submitSubmission() {
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/user_submit', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         // do something to response
         if (this.responseText == "SUCCESS") {
             cancelWarning();
@@ -533,12 +532,12 @@ function submitSubmission() {
     xhr.send(data);
 }
 
-function openWarning(){
+function openWarning() {
     document.getElementById("submitWarning").classList.remove("snapshots__submission-verification-closed");
     document.getElementById("submission_overlay").classList.add("osekai__overlay-hidden");
 }
 
-function cancelWarning(){
+function cancelWarning() {
     document.getElementById("submitWarning").classList.add("snapshots__submission-verification-closed");
     document.getElementById("submission_overlay").classList.remove("osekai__overlay-hidden");
 }
@@ -617,14 +616,14 @@ var submissionIndexChangingId;
 function refreshSubmissions() {
     var xhr = createXHR("/snapshots/api/get_submissions");
     xhr.send();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         var sublist = document.getElementById("submission_list");
         sublist.innerHTML = "";
         var oResponse = getResponse(xhr);
         console.log(oResponse);
         if (handleUndefined(oResponse)) return;
         submissions = oResponse;
-        oResponse.forEach(function (item, index) {
+        oResponse.forEach(function(item, index) {
             wip = false;
             if (item['processing'] == 1) {
                 wip = true;
@@ -660,25 +659,22 @@ function submissionAccept(index) {
 function switchWIP(index) {
     submissionIndexChangingId = index;
     dot = document.getElementById("wip_" + index);
-    if(dot.classList.contains("green"))
-    {
+    if (dot.classList.contains("green")) {
         dot.classList.remove("green");
         // need to contact the apis
         var xhr = createXHR("/snapshots/api/set_processing");
         xhr.send("id=" + submissions[index]['id'] + "&processing=0");
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             var oResponse = getResponse(xhr);
             console.log(oResponse);
             if (handleUndefined(oResponse)) return;
         };
-    }
-    else
-    {
+    } else {
         dot.classList.add("green");
         // need to contact the apis
         var xhr = createXHR("/snapshots/api/set_processing");
         xhr.send("id=" + submissions[index]['id'] + "&processing=1");
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             var oResponse = getResponse(xhr);
             console.log(oResponse);
             if (handleUndefined(oResponse)) return;
@@ -704,7 +700,7 @@ function changeSubmissionStatus(id, userid) {
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/change_submission_status', true);
-    xhr.onload = function () {
+    xhr.onload = function() {
         // do something to response
         if (this.responseText == "SUCCESS") {
             closeSubmission();
@@ -722,14 +718,14 @@ function admin_deleteVer() {
     var id = version['version_info']['id'];
     var name = version['version_info']['version'];
 
-    openDialog("You are deleting a version", "Are you sure you want to delete " + version['version_info']['version'] + "?", "THIS CAN NOT BE UNDONE.", "Delete Version", function () {
-        openDialog("You are deleting a version", "Are you ABSOLUTELY SURE you want to delete " + version['version_info']['version'] + "?", "<p style='color: red;'>THIS CAN <strong>NOT</strong> BE UNDONE.</p>", "Delete Version", function () {
+    openDialog("You are deleting a version", "Are you sure you want to delete " + version['version_info']['version'] + "?", "THIS CAN NOT BE UNDONE.", "Delete Version", function() {
+        openDialog("You are deleting a version", "Are you ABSOLUTELY SURE you want to delete " + version['version_info']['version'] + "?", "<p style='color: red;'>THIS CAN <strong>NOT</strong> BE UNDONE.</p>", "Delete Version", function() {
             var data = new FormData();
             data.append('id', id);
             data.append('version', name);
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/snapshots/api/admin_delete', true);
-            xhr.onload = function () {
+            xhr.onload = function() {
                 // do something to response
                 if (this.responseText == "SUCCESS") {
                     closeSubmission();
@@ -785,18 +781,18 @@ function loadSplash() {
     if (!document.getElementById("home").classList.contains("hidden")) {
         var xhr = createXHR("/snapshots/api/splash");
         xhr.send();
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
             document.getElementById("splash").innerHTML = this.responseText;
         }
     }
 }
 
-setInterval(function () { loadSplash() }, 15000);
+setInterval(function() { loadSplash() }, 15000);
 
 loadSplash();
 
 
-setTimeout(function () {
+setTimeout(function() {
     loadData();
 }, 600);
 
@@ -806,18 +802,18 @@ document.getElementById("comments__send").addEventListener("click", () => {
     commentsSendClick(parseInt(data[currentindex]['version_info']['id']))
 });
 
-document.getElementById("filter__button").addEventListener("click", function () {
+document.getElementById("filter__button").addEventListener("click", function() {
     document.getElementById("filter__list").classList.toggle("osekai__dropdown-hidden");
 });
 
-document.getElementById("filter__date").addEventListener("click", function () {
+document.getElementById("filter__date").addEventListener("click", function() {
     document.getElementById("filter__selected").innerHTML = GetStringRawNonAsync("comments", "sorting.newest");
     document.getElementById("filter__list").classList.remove("osekai__dropdown-hidden");
     COMMENTS_mode = 2;
     Comments_Sort(document.getElementById("comments__box"), "", parseInt(data[currentindex]['version_info']['id']));
 });
 
-document.getElementById("filter__votes").addEventListener("click", function () {
+document.getElementById("filter__votes").addEventListener("click", function() {
     document.getElementById("filter__selected").innerHTML = GetStringRawNonAsync("comments", "sorting.votes");
     document.getElementById("filter__list").classList.remove("osekai__dropdown-hidden");
     COMMENTS_mode = 1;
@@ -825,7 +821,7 @@ document.getElementById("filter__votes").addEventListener("click", function () {
 });
 // </mulraf>
 
-if(window.mobile == true){
+if (window.mobile == true) {
     switch3col();
 }
 

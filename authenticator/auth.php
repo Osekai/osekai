@@ -77,11 +77,11 @@ if (loggedin()) {
     <meta name="msapplication-TileColor" content="#353d55">
     <meta name="theme-color" content="#353d55">
     <meta name="description" content="authenticate your osu! account with the osu! medal hunters server!" />
-    <meta property="og:title" content="Osekai Authenticator" />
+    <meta property="og:title" content="Oseaki Authenticator" />
     <meta property="og:description" content="authenticate your osu! account with the osu! medal hunters server!" />
-    <meta name="twitter:title" content="Osekai Authenticator" />
+    <meta name="twitter:title" content="Oseaki Authenticator" />
     <meta name="twitter:description" content="authenticate your osu! account with the osu! medal hunters server!" />
-    <title name="title">Osekai Authenticator</title>
+    <title name="title">Oseaki Authenticator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:url" content="<?= ROOT_URL ?>/legal/contact" />

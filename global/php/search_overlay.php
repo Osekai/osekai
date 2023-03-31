@@ -19,7 +19,7 @@
                 <div class="search__result-app">
                     <div class="search__result-title">
                         <img src="/global/img/branding/vector/white/profiles.svg" alt="app icon" />
-                        <p>Osekai <strong>Profiles</strong></p>
+                        <p>Oseaki <strong>Profiles</strong></p>
                     </div>
                     <div class="search__result-list" id="profilesResult">
 
@@ -30,7 +30,7 @@
                 <div class="search__result-app">
                     <div class="search__result-title">
                         <img src="/global/img/branding/vector/white/medals.svg" alt="app icon" />
-                        <p>Osekai <strong>Medals</strong></p>
+                        <p>Oseaki <strong>Medals</strong></p>
                     </div>
                     <div class="search__result-list" id="medalsResult">
 
@@ -39,7 +39,7 @@
                 <div class="search__result-app">
                     <div class="search__result-title">
                         <img src="/global/img/branding/vector/white/snapshots.svg" alt="app icon" />
-                        <p>Osekai <strong>Snapshots</strong></p>
+                        <p>Oseaki <strong>Snapshots</strong></p>
                     </div>
                     <div class="search__result-list" id="snapshotsResult">
 

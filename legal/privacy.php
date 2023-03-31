@@ -9,11 +9,11 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <meta name="msapplication-TileColor" content="#353d55">
 <meta name="theme-color" content="#353d55">
 <meta name="description" content="our privacy policy" />
-<meta property="og:title" content="Osekai - Privacy Policy" />
+<meta property="og:title" content="Oseaki - Privacy Policy" />
 <meta property="og:description" content="our privacy policy" />
-<meta name="twitter:title" content="Osekai - Privacy Policy" />
+<meta name="twitter:title" content="Oseaki - Privacy Policy" />
 <meta name="twitter:description" content="our privacy policy" />
-<title name="title">Osekai - Privacy Policy</title>
+<title name="title">Oseaki - Privacy Policy</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:url" content="<?= ROOT_URL ?>/legal/privacy" />

@@ -15,7 +15,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <meta name="twitter:title" content="Uh oh!" />
 <meta name="twitter:description" content="We couldn't find this page." />
 <title name="title">Uh oh!</title>
-<meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
+<meta name="keywords" content="Oseaki,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:url" content="<?= ROOT_URL ?>" />
