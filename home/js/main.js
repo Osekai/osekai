@@ -84,7 +84,7 @@ function LoadTeam() {
         "Website": "fas fa-globe",
         "Speedrun.com": "fas fa-trophy",
         "osu! Profile": "oif-osu-logo",
-        "Oseaki Profiles": "oif-app-profiles",
+        "Osekai Profiles": "oif-app-profiles",
     };
 
     var xhr = new XMLHttpRequest();
@@ -152,7 +152,7 @@ function LoadTeam() {
                     "link": "https://osu.ppy.sh/users/" + member.id,
                 });
                 addSocial({
-                    "name": "Oseaki Profiles",
+                    "name": "Osekai Profiles",
                     "link": "/profiles?user=" + member.id,
                 });
 

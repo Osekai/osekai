@@ -558,7 +558,7 @@ function print_home_panel()
         <div class="osekai__home-panel-inner">
             <img src="https://www.osekai.net/global/img/branding/vector/' . $apps[$app]['logo'] . '.svg" class="osekai__home-panel-logo">
             <div class="osekai__home-panel-texts">
-                <h1><strong>oseaki</strong> ' . $apps[$app]['simplename'] . '</h1>
+                <h1><strong>osekai</strong> ' . $apps[$app]['simplename'] . '</h1>
                 <p>' . GetStringRaw("apps", $app . ".slogan") . '</p>
             </div>
             </div>

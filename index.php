@@ -14,13 +14,13 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <meta charset="utf-8" />
 <meta name="msapplication-TileColor" content="#353d55">
 <meta name="theme-color" content="#353d55">
-<meta name="description" content="Oseaki • the home of alternative rankings, medal solutions, and more" />
-<meta property="og:title" content="Oseaki • the home of alternative rankings, medal solutions, and more" />
+<meta name="description" content="Osekai • the home of alternative rankings, medal solutions, and more" />
+<meta property="og:title" content="Osekai • the home of alternative rankings, medal solutions, and more" />
 <meta property="og:description" content="we're a website which provides osu! players with medal solutions, an alternative leaderboard, and much more! check our site out" />
-<meta name="twitter:title" content="Oseaki • the home of alternative rankings, medal solutions, and more" />
+<meta name="twitter:title" content="Osekai • the home of alternative rankings, medal solutions, and more" />
 <meta name="twitter:description" content="we're a website which provides osu! players with medal solutions, an alternative leaderboard, and much more! check our site out" />
-<title name="title">Oseaki • the home of alternative rankings, medal solutions, and more</title>
-<meta name="keywords" content="Oseaki,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
+<title name="title">Osekai • the home of alternative rankings, medal solutions, and more</title>
+<meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:url" content="<?= ROOT_URL ?>" />

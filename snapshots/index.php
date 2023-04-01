@@ -31,7 +31,7 @@ if (isset($_GET['version'])) {
         $temp["version_info"]["id"] = $t['id'];
         $ver = $temp;
 
-        $title =  "Oseaki Snapshots • " . $ver['version_info']['name'] . " (" . $ver['version_info']['version'] . ")";
+        $title =  "Osekai Snapshots • " . $ver['version_info']['name'] . " (" . $ver['version_info']['version'] . ")";
 
         $desc = $ver['archive_info']['description'];
 
@@ -50,16 +50,16 @@ if (isset($_GET['version'])) {
         <meta name="twitter:title" content="' . htmlspecialchars($title) . '" />
         <meta name="twitter:description" content="' . htmlspecialchars($desc) . '" />
         <title name="title">' . htmlspecialchars($title) . '</title>
-        <meta name="keywords" content="Oseaki,snapshots,version,' . $ver['version_info']['version'] . ',from,' . $ver['version_info']['name'] . '">
+        <meta name="keywords" content="osekai,snapshots,version,' . $ver['version_info']['version'] . ',from,' . $ver['version_info']['name'] . '">
         <meta property="og:url" content="' . ROOT_URL . '/snapshots?version=' . htmlspecialchars($_GET['version']) . '" />';
     }
 } else {
     $meta .= '<meta name="description" content="we\'ve got everything, from triangles and benchmarks to coins and holiday themes! pop on down and experience some nostalgia!" />
-    <meta property="og:title" content="Oseaki Snapshots • Archiving osu! versions from 2007 to now!" />
+    <meta property="og:title" content="Osekai Snapshots • Archiving osu! versions from 2007 to now!" />
     <meta property="og:description" content="we\'ve got everything, from triangles and benchmarks to coins and holiday themes! pop on down and experience some nostalgia!" />
-    <meta name="twitter:title" content="Oseaki Snapshots • Archiving osu! versions from 2007 to now!" />
+    <meta name="twitter:title" content="Osekai Snapshots • Archiving osu! versions from 2007 to now!" />
     <meta name="twitter:description" content="we\'ve got everything, from triangles and benchmarks to coins and holiday themes! pop on down and experience some nostalgia!" />
-    <title name="title">Oseaki Snapshots • Archiving osu! versions from 2007 to now!</title>
+    <title name="title">Osekai Snapshots • Archiving osu! versions from 2007 to now!</title>
     <meta name="keywords" content="snapshots">
     <meta property="og:url" content="' . ROOT_URL . '/snapshots" />';
 }
@@ -248,7 +248,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                                 </div>
                                 <div class="snapshots__add-group-container" id="upload_download_group">
                                     <div class="snapshots__group">
-                                        <h1>Oseaki Server</h1>
+                                        <h1>Osekai Server</h1>
                                         <input name="downloadFile" type="file" id="downloadFile">
                                     </div>
                                 </div>
@@ -561,7 +561,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                 <div class="app__home-panel">
                     <img class="app__home-logo" src="../global/img/branding/vector/white/snapshots.svg">
                     <div class="app__home-texts">
-                        <p class="app__home-header">oseaki <strong>snapshots</strong></p>
+                        <p class="app__home-header">osekai <strong>snapshots</strong></p>
                         <p class="app__home-slogan" id="home_slogan"><?= GetStringRaw("snapshots", "home.slogan.unloaded"); ?></p>
                         <p class="app__home-splash" id="splash">loading splash...</p>
                     </div>
@@ -588,7 +588,7 @@ if ($_SESSION['role']['rights'] >= 1) {
                             </div>
                             <div class="osekai__panel-inner osekai__flex-vertical-container">
                                 <p class="osekai__h1">When you log into Osekai, you can have a better experience across our apps!</p>
-                                <p>You can post comments, report, upvote, get notifications, submit versions, and also get yourself onto Oseaki Rankings! And don’t worry, it’s all done securely through osu!’s own servers. All we get is your osu! profile info!</p>
+                                <p>You can post comments, report, upvote, get notifications, submit versions, and also get yourself onto Osekai Rankings! And don’t worry, it’s all done securely through osu!’s own servers. All we get is your osu! profile info!</p>
                                 <a class="osekai__button" href="https://osu.ppy.sh/oauth/authorize?response_type=code&amp;client_id=5878&amp;redirect_uri=https%3A%2F%2Fosekai.net%2Fglobal%2Fphp%2Flogin.php" onclick="openLoader('Logging you in...'); hide_dropdowns();">Log In with osu!</a>
                             </div>
                         </section>

@@ -14,7 +14,7 @@ if (!isbot() && !isset($a404) && isset($app)) {
     include_once("osekaiAnalytics.php");
 }
 
-$tooltipText = "This debug panel is so that you, and our team, can make sure Oseaki is running smoothly!\n";
+$tooltipText = "This debug panel is so that you, and our team, can make sure Osekai is running smoothly!\n";
 //$tooltipText .= "\n  |  Load time: Seconds taken to generate the page";
 //$tooltipText .= "\n  |  Aborted Session Saves: Amount of times a session has attempted to be saved, but no data has changed.";
 

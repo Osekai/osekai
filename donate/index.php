@@ -12,12 +12,12 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/donate/php/functions.php");
     <meta name="msapplication-TileColor" content="#553552">
     <meta name="theme-color" content="#553552">
     <meta name="description" content="we're just a small team, and by donating you help us keep the servers running and development going!" />
-    <meta property="og:title" content="Oseaki Donate" />
+    <meta property="og:title" content="Osekai Donate" />
     <meta property="og:description" content="we're just a small team, and by donating you help us keep the servers running and development going!" />
-    <meta name="twitter:title" content="Oseaki Donate" />
+    <meta name="twitter:title" content="Osekai Donate" />
     <meta name="twitter:description" content="we're just a small team, and by donating you help us keep the servers running and development going!" />
-    <title name="title">Oseaki Donate</title>
-    <meta name="keywords" content="Oseaki,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
+    <title name="title">Osekai Donate</title>
+    <meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:url" content="<?= ROOT_URL ?>/medals" />

@@ -324,7 +324,7 @@ if ($useJS == true) {
     echo 'var currentLocale = ' . json_encode($currentLocale) . ';';
     echo '</script>';
 
-    echo '<script src="/global/js/localization.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script src="/global/js/localization.js?v=1.3"></script>';
 }
 
 function loadSource($source)
@@ -383,8 +383,6 @@ function GetStringRaw($source, $key, $variables = [])
         $text = str_replace("$" . $i, $variable, $text);
         $i++;
     }
-    $text = str_replace("osekai", "oseaki", $text);
-    $text = str_replace("Osekai", "Oseaki", $text);
     return $text;
 }
 

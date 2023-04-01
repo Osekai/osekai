@@ -1,50 +1,50 @@
 <?php
 
-$name = "Oseaki Rankings • Unknown page";
+$name = "Osekai Rankings • Unknown page";
 $description = "uh oh";
 $tags = "";
 
 if (!isset($_GET['ranking'])) {
-    $name = "Oseaki Rankings • The best alternative ranking for osu!";
+    $name = "Osekai Rankings • The best alternative ranking for osu!";
     $description = "The only place to find alternative osu! rankings for medals, ranked maps, and more. [temp]";
     $tags = "homepage";
 } else {
     $type = $_GET['type'];
 
     if ($_GET['ranking'] == "Medals" && $type == "Users") {
-        $name = "Oseaki Rankings • who has the most medals?";
+        $name = "Osekai Rankings • who has the most medals?";
         $description = "maybe it's you...? find out who has the most medals on osekai rankings!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "Medals" && $type == "Rarity") {
-        $name = "Oseaki Rankings • what medal is the rarest?";
+        $name = "Osekai Rankings • what medal is the rarest?";
         $description = "what medal do people own the least? find out here!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "All Mode" && $type == "Standard Deviation") {
-        $name = "Oseaki Rankings • top players sorted by Standard Deviation!";
+        $name = "Osekai Rankings • top players sorted by Standard Deviation!";
         $description = "leaderboard using standard deviation across all modes! find out who's the best all mode player!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "All Mode" && $type == "Total pp") {
-        $name = "Oseaki Rankings • top players sorted by total pp across all modes!";
+        $name = "Osekai Rankings • top players sorted by total pp across all modes!";
         $description = "adding all the modes together, this leaderboard is pretty interesting. check it out!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "All Mode" && $type == "Replays") {
-        $name = "Oseaki Rankings • who has the most watched replays?";
+        $name = "Osekai Rankings • who has the most watched replays?";
         $description = "how many times has this player been watched through osu!? find out here.";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "Mappers" && $type == "Ranked Mapsets") {
-        $name = "Oseaki Rankings • the top ranked mappers!";
+        $name = "Osekai Rankings • the top ranked mappers!";
         $description = "who has the most ranked maps? it's an interesting question, and we have the answer!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "Mappers" && $type == "Loved Mapsets") {
-        $name = "Oseaki Rankings • the top loved mappers!";
+        $name = "Osekai Rankings • the top loved mappers!";
         $description = "what mapper has the most loved maps? it's a cool question, and we have the answer!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "Mappers" && $type == "Subscribers") {
-        $name = "Oseaki Rankings • the top subscribed people!";
+        $name = "Osekai Rankings • the top subscribed people!";
         $description = "Who has the most subscribers? it's a cool question, and we have the answer!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "Badges" && $type == "Badges") {
-        $name = "Oseaki Rankings / Badges / Badges • badges";
+        $name = "Osekai Rankings / Badges / Badges • badges";
         $description = "badges";
         $tags = "homepage";
     } else {
@@ -68,7 +68,7 @@ $meta = '<meta charset="utf-8">
 <meta name="twitter:title" content="' . $name . '" />
 <meta name="twitter:description" content="' . $description . '" />
 <title name="title">' . $name . '</title>
-<meta name="keywords" content="Oseaki,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more,' . $tags . '">'
+<meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more,' . $tags . '">'
 ?>
 
 

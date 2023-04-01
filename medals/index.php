@@ -23,7 +23,7 @@ if (isset($_GET['medal'])) {
 
 
     foreach ($colMedals as $medal) {
-        $title = $medal['name'] . " osu! Medal solution! • Oseaki Medals";
+        $title = $medal['name'] . " osu! Medal solution! • Osekai Medals";
         $desc = $medal['description'];
         $keyword = $medal['name'];
         $keyword2 = $medal['grouping'];
@@ -50,11 +50,11 @@ if (isset($_GET['medal'])) {
     <meta name="description" content="How to get a certain medal? How difficult is that medal? Any ideas that can move medal hunting further? This is the place you\'re looking for!" />
     <meta name="msapplication-TileColor" content="#ff66aa">
     <meta name="theme-color" content="#ff66aa">
-    <meta property="og:title" content="Oseaki Medals • Need a medal solution? We have it!" />
+    <meta property="og:title" content="Osekai Medals • Need a medal solution? We have it!" />
     <meta property="og:description" content="How to get a certain medal? How difficult is that medal? Any ideas that can move medal hunting further? This is the place you\'re looking for!" />
-    <meta name="twitter:title" content="Oseaki Medals • Need a medal solution? We have it!" />
+    <meta name="twitter:title" content="Osekai Medals • Need a medal solution? We have it!" />
     <meta name="twitter:description" content="How to get a certain medal? How difficult is that medal? Any ideas that can move medal hunting further? This is the place you\'re looking for!" />
-    <title name="title">Oseaki Medals • Need a medal solution? We have it!</title>
+    <title name="title">Osekai Medals • Need a medal solution? We have it!</title>
     <meta name="keywords" content="achievements,osekai,solutions,tips,osu,medals,solution,osu!,osugame,game">
     <meta property="og:url" content="/medals" />';
 }
@@ -69,11 +69,11 @@ if (isset($_GET['medal'])) {
     <meta name="msapplication-TileColor" content="#ff66aa">
     <meta name="theme-color" content="#ff66aa">
     <meta name="description" content="How to get a certain medal? How difficult is that medal? Any ideas that can move medal hunting further? This is the place you're looking for!" />
-    <meta property="og:title" content="Oseaki Medals • Need a medal solution? We have it!" />
+    <meta property="og:title" content="Osekai Medals • Need a medal solution? We have it!" />
     <meta property="og:description" content="How to get a certain medal? How difficult is that medal? Any ideas that can move medal hunting further? This is the place you're looking for!" />
-    <meta name="twitter:title" content="Oseaki Medals • The solution to almost all of the osu! medals, right at your fingertips!" />
+    <meta name="twitter:title" content="Osekai Medals • The solution to almost all of the osu! medals, right at your fingertips!" />
     <meta name="twitter:description" content="How to get a certain medal? How difficult is that medal? Any ideas that can move medal hunting further? This is the place you're looking for!" />
-    <title name="title">Oseaki Medals • Need a medal solution? We have it!</title>
+    <title name="title">Osekai Medals • Need a medal solution? We have it!</title>
     <meta name="keywords" content="achivements,osekai,solutions,tricks,tips,osu,medal,medals,solution,solutions,osu!,osu!game,osugame,game,video game,award,achievement ">
     <meta charset="utf-8">
     <meta property="og:url" content="/medals" />-->

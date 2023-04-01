@@ -40,7 +40,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                 <meta name="twitter:title" content="' . htmlspecialchars($title) . '" />
                 <meta name="twitter:description" content="' . htmlspecialchars($desc) . '" />
                 <title name="title">' . htmlspecialchars($title) . '</title>
-                <meta name="keywords" content="Oseaki,osu,osu!,osu!game,osugame,game,video game,award,' . $keyword . ',' . $keyword2 . ',badge,badges">';
+                <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,' . $keyword . ',' . $keyword2 . ',badge,badges">';
         } else {
             http_response_code(404);
             frontend();
@@ -52,12 +52,12 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             <meta name="description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
             <meta name="msapplication-TileColor" content="#533b65">
             <meta name="theme-color" content="#533b65">
-            <meta property="og:title" content="Oseaki Badges • All of osu!\'s Badges!" />
+            <meta property="og:title" content="Osekai Badges • All of osu!\'s Badges!" />
             <meta property="og:description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
-            <meta name="twitter:title" content="Oseaki Badges • All of osu!\'s Badges!" />
+            <meta name="twitter:title" content="Osekai Badges • All of osu!\'s Badges!" />
             <meta name="twitter:description" content="Want to find almost every badge which osu! has to offer? This is the place to find them!" />
-            <title name="title">Oseaki Badges • All of osu!\'s Badges!</title>
-            <meta name="keywords" content="Oseaki,osu,osu!,osu!game,osugame,game,video game,award,badge,badges">
+            <title name="title">Osekai Badges • All of osu!\'s Badges!</title>
+            <meta name="keywords" content="osekai,osu,osu!,osu!game,osugame,game,video game,award,badge,badges">
             <meta property="og:url" content="/badges" />';
     }
     frontend();

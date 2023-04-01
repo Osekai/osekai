@@ -146,7 +146,7 @@ foreach ($apps as $a) {
                 <a class="osekai__apps-dropdown-mobile-button osekai__apps-dropdown-mobile-app" href="/<?= $a['app']['simplename']; ?>">
                     <img alt="Logo for <?= $a['app']['simplename']; ?>" src="/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
                     <div class="osekai__apps-dropdown-mobile-app-texts">
-                        <h2>oseaki <strong><?= $a['app']['simplename']; ?></strong></h2>
+                        <h2>osekai <strong><?= $a['app']['simplename']; ?></strong></h2>
                         <h3><?= $a['app']['slogan']; ?></h3>
                     </div>
                 </a>
@@ -191,7 +191,7 @@ foreach ($apps as $a) {
         </div>
 
         <div class="osekai__apps-dropdown-mobile-copyright">
-            © oseaki 2019-<?= date("Y"); ?>
+            © Osekai 2019-<?= date("Y"); ?>
         </div>
         <div class="extra-space"></div>
     </div>
@@ -258,7 +258,7 @@ foreach ($apps as $a) {
                         <div class="osekai__apps-dropdown-applist-app-icon">
                             <img alt="Logo for <?= $a['app']['simplename']; ?>" src="/global/img/branding/vector/<?= $a['app']['logo']; ?>.svg">
                         </div>
-                        <p>oseaki <strong><?= $a['app']['simplename']; ?></strong></p>
+                        <p>osekai <strong><?= $a['app']['simplename']; ?></strong></p>
                     </a>
                 <?php
 
@@ -276,7 +276,7 @@ foreach ($apps as $a) {
                 <div class="osekai__apps-dropdown-applist-right-card-inner">
                     <img id="dropdown_card_icon" alt="Logo" src="/global/img/branding/vector/<?= $apps[$app]['logo']; ?>.svg">
                     <div class="osekai__apps-dropdown-applist-right-card-texts">
-                        <h3 id="dropdown_card_title">oseaki <strong><?= $apps[$app]['simplename']; ?></strong></h3>
+                        <h3 id="dropdown_card_title">osekai <strong><?= $apps[$app]['simplename']; ?></strong></h3>
                         <p id="dropdown_card_content"><?= $apps[$app]['slogan']; ?> </p>
                     </div>
                 </div>
@@ -327,7 +327,7 @@ foreach ($apps as $a) {
             <a href="<?= ROOT_URL; ?>/legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
         </div>
         <div class="osekai__apps-dropdown-bottomright-copyright">
-            © oseaki 2019-<?= date("Y"); ?>
+            © Osekai 2019-<?= date("Y"); ?>
         </div>
     </div>
 </div>

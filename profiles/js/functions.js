@@ -6,11 +6,11 @@ var bTimelineHover = false;
 var dJoined;
 var oTimeout;
 
-window.addEventListener('popstate', function(event) {
+window.addEventListener('popstate', function (event) {
     Initialize();
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     Initialize();
 });
 
@@ -26,7 +26,7 @@ function Initialize() {
 
 function addEvents() {
     document.getElementById("mode__list").childNodes.forEach(oNode => {
-        oNode.addEventListener("click", function() {
+        oNode.addEventListener("click", function () {
             let url = new URL(window.location);
             url.searchParams.set('mode', this.getAttribute("mode"));
             window.history.pushState({}, '', url);
@@ -35,7 +35,7 @@ function addEvents() {
     });
 
     document.getElementById("mode__list__home").childNodes.forEach(oNode => {
-        oNode.addEventListener("click", function() {
+        oNode.addEventListener("click", function () {
             let url = new URL(window.location);
             url.searchParams.set('mode', this.getAttribute("mode"));
             window.history.pushState({}, '', url);
@@ -55,12 +55,12 @@ function addEvents() {
         document.getElementById("goals__dropdown").classList.toggle("osekai__dropdown-hidden");
     });
 
-    window.addEventListener('click', function(e) {
+    window.addEventListener('click', function (e) {
         if (!document.getElementById("goals__dropdown__button").contains(e.target)) document.getElementById("goals__dropdown").classList.add("osekai__dropdown-hidden");
     });
 
     document.querySelectorAll("[id^='btn-goals']").forEach(oButton => {
-        oButton.addEventListener("click", function() {
+        oButton.addEventListener("click", function () {
             let oRegExp = new RegExp(/(?<=")(\\.|[^"\\]*)(?=")/g);
             let strImgPath = this.innerHTML.split(oRegExp);
             strGoalType = this.id.replace("btn-goals__", "")
@@ -74,7 +74,7 @@ function addEvents() {
         let nValue = document.getElementById("goal__input").value;
         var xhr = createXHR("/profiles/api/goals.php");
         xhr.send("Value=" + nValue + "&Gamemode=" + new URLSearchParams(window.location.search).get("mode") + "&Type=" + strGoalType);
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             var oResponse = getResponse(xhr);
             if (handleUndefined(oResponse)) return;
             if (oResponse.toString() == "Success!") {
@@ -115,13 +115,13 @@ function loadHomeData() {
 
     var xhr = createXHR("/profiles/api/rankings.php");
     xhr.send("mode=" + new URLSearchParams(window.location.search).get("mode"));
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         document.getElementById("profiles__ranking").innerHTML = "";
         let counter = 0;
         let pp = 0;
-        Object.keys(oResponse).forEach(function(index) {
+        Object.keys(oResponse).forEach(function (index) {
             counter += 1;
             if (new URLSearchParams(window.location.search).get("mode") == "all") pp = oResponse[index].stdev_pp;
             if (new URLSearchParams(window.location.search).get("mode") == "osu") pp = oResponse[index].standard_pp;
@@ -163,7 +163,7 @@ function loadCurrentUser() {
 function updateVisitedList(id) {
     // api/record_visit.php?userId
     var xhr = createXHR("/profiles/api/record_visit.php?userId=" + id);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
 
     };
     xhr.send();
@@ -223,7 +223,7 @@ async function FillData(uid, mode, completeReload = true) {
     updateVisitedList(uid);
 
     //console.log(JSON.stringify(oData)); //uncomment to see all Data
-    if (oData == null) alert("No Data Available. Please contact Oseaki support.");
+    if (oData == null) alert("No Data Available. Please contact Osekai support.");
 
     //upper main panel
     if (completeReload) {
@@ -386,7 +386,7 @@ async function FillData(uid, mode, completeReload = true) {
         colRankMedals = [];
 
         for (nIndex = 0; nIndex < Object.keys(oData.user_achievements).length; nIndex++) {
-            if (typeof(oData.user_achievements[nIndex]) === 'undefined') continue;
+            if (typeof (oData.user_achievements[nIndex]) === 'undefined') continue;
             colRankMedals[nIndex] = oData.user_achievements[nIndex].achieved_at;
         }
 
@@ -445,7 +445,7 @@ async function FillData(uid, mode, completeReload = true) {
         oData.user_achievements.forEach(oAchievement => {
             let oYear = new Date(oAchievement.achieved_at).getUTCFullYear();
             let oHistory = document.getElementById("medals__history");
-            if (typeof(document.getElementById("medals__" + oYear) == undefined) && document.getElementById("medals__" + oYear) == null) {
+            if (typeof (document.getElementById("medals__" + oYear) == undefined) && document.getElementById("medals__" + oYear) == null) {
                 let oSection = document.createElement("div");
                 oSection.id = "medals__" + oYear;
                 oSection.classList.add("profiles__mh-section");
@@ -906,7 +906,7 @@ function GetGoal(Data, Goal) {
 function DeleteGoal(GoalID) {
     var xhr = createXHR("/profiles/api/goals.php");
     xhr.send("GoalID=" + GoalID);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -918,7 +918,7 @@ function DeleteGoal(GoalID) {
 function ClaimGoal(GoalID) {
     var xhr = createXHR("/profiles/api/goals.php");
     xhr.send("ClaimID=" + GoalID);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -1025,7 +1025,7 @@ function LoadTimelineEntries(Data) {
             oDot.classList.add("profiles__timeline-dot");
             oDot.style.setProperty("--pos", CalculateRelativeTime(Data, oEntry.Date) + "%");
 
-            oDot.addEventListener("mouseover", function(e) {
+            oDot.addEventListener("mouseover", function (e) {
                 e.target.mouseIsOver = true;
                 bTimelineHover = true;
                 if (!this.classList.contains("profiles__timeline-dot-active")) this.classList.add("profiles__timeline-dot-active");
@@ -1106,7 +1106,7 @@ function LoadTimelineEntries(Data) {
                 })
             })
 
-            oDot.addEventListener("mouseout", function(e) {
+            oDot.addEventListener("mouseout", function (e) {
                 e.target.mouseIsOver = false;
                 oTimeout = setTimeout(HideTimelineInfo, 100);
                 bTimelineHover = false;
@@ -1122,7 +1122,7 @@ function TimelineEditPoint(id) {
     if (!Exists(document.getElementById("new__text").value) || document.getElementById("new__text").value == "") return;
     var xhr = createXHR("/profiles/api/timeline.php");
     xhr.send("NewDate=" + document.getElementById("new__date").value + "&NewNote=" + document.getElementById("new__text").value + "&ItemId=" + id);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -1136,7 +1136,7 @@ function RemoveTimelinePoint(id) {
     if (!confirm("Do you really want to remove the entry from your timeline?")) return;
     var xhr = createXHR("/profiles/api/timeline.php");
     xhr.send("Remove=" + id);
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -1207,7 +1207,7 @@ function addTimelineEntry() {
     if (!Exists(document.getElementById("txtNote").value) || document.getElementById("txtNote").value == "") return;
     var xhr = createXHR("/profiles/api/timeline.php");
     xhr.send("Date=" + document.getElementById("txtDate").value + "&Note=" + document.getElementById("txtNote").value + "&Mode=" + new URLSearchParams(window.location.search).get("mode"));
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
         if (oResponse.toString() == "Success!") {
@@ -1235,7 +1235,8 @@ function FillChartMedals() {
                 label: "Medals",
                 borderColor: "#fff",
                 fill: false
-            }]
+            }
+            ]
         },
         options: {
             // custom tooltip text
@@ -1289,7 +1290,8 @@ function FillChartMedals() {
                         display: false
                     }
                 },
-                y: {
+                y:
+                {
                     grid: {
                         display: false
                     },
@@ -1317,7 +1319,8 @@ function FillChartStats() {
                 label: "Global Rank",
                 borderColor: "#fff",
                 fill: false
-            }]
+            }
+            ]
         },
         options: {
             // custom tooltip text
@@ -1368,7 +1371,8 @@ function FillChartStats() {
                         display: false
                     }
                 },
-                y: {
+                y:
+                {
                     reverse: true,
                     grid: {
                         display: false
@@ -1395,18 +1399,18 @@ document.getElementById("comments__send").addEventListener("click", () => {
     commentsSendClick(-1, new URLSearchParams(window.location.search).get("user"))
 });
 
-document.getElementById("filter__button").addEventListener("click", function() {
+document.getElementById("filter__button").addEventListener("click", function () {
     document.getElementById("filter__list").classList.toggle("osekai__dropdown-hidden");
 });
 
-document.getElementById("filter__date").addEventListener("click", function() {
+document.getElementById("filter__date").addEventListener("click", function () {
     document.getElementById("filter__selected").innerHTML = GetStringRawNonAsync("comments", "sorting.newest");
     document.getElementById("filter__list").classList.remove("osekai__dropdown-hidden");
     COMMENTS_mode = 2;
     Comments_Sort(document.getElementById("comments__box"), "", -1, new URLSearchParams(window.location.search).get("user"));
 });
 
-document.getElementById("filter__votes").addEventListener("click", function() {
+document.getElementById("filter__votes").addEventListener("click", function () {
     document.getElementById("filter__selected").innerHTML = GetStringRawNonAsync("comments", "sorting.votes");
     document.getElementById("filter__list").classList.remove("osekai__dropdown-hidden");
     COMMENTS_mode = 1;
@@ -1430,11 +1434,12 @@ function LoadRecentlyViewed() {
 
     if (mostPopular) {
         xhr.open("GET", mostPopularURL, true);
-    } else {
+    }
+    else {
         xhr.open("GET", recentlyViewedURL, true);
     }
 
-    xhr.onload = function() {
+    xhr.onload = function () {
         if (this.status == 200) {
             let json = JSON.parse(this.responseText);
             let html = "";
@@ -1461,63 +1466,63 @@ function LoadRecentlyViewed() {
 
 // <snapshots integration (by hubz)>
 var Snapshots = {
-        Loaded: false,
-        LoadedID: 0,
-        GetSnapshots: function(user) {
-            if (Snapshots.Loaded == true && user == Snapshots.LoadedID) return;
+    Loaded: false,
+    LoadedID: 0,
+    GetSnapshots: function (user) {
+        if (Snapshots.Loaded == true && user == Snapshots.LoadedID) return;
 
-            // we can send a request to api/snapshots_integration.php?userId=<userId>
-            // and get back a json array of snapshots
-            // don't need to put this data anywhere for now
-            var snapshots = [];
+        // we can send a request to api/snapshots_integration.php?userId=<userId>
+        // and get back a json array of snapshots
+        // don't need to put this data anywhere for now
+        var snapshots = [];
 
-            // load the data
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "api/snapshots_integration.php?userId=" + user, true);
-            xhr.onload = function() {
-                if (xhr.status == 200) {
-                    // parse the json
-                    if (xhr.responseText != "No results found") {
-                        document.getElementById("snapshots--panel").classList.remove("hidden");
-                        snapshots = JSON.parse(xhr.responseText);
-                        Snapshots.Loaded = true;
-                        //console.log("got " + snapshots.length + " versions from oseaki snapshots");
-                        var container = document.getElementById("snapshots--container");
-                        var html = "";
-                        for (var i = 0; i < snapshots.length; i++) {
-                            var thumbnail = `/snapshots/versions/` + snapshots[i].version_info.version + `/thumbnail.jpg`;
-                            html += `<a class="profiles__snapshots-version" style="background-image: url('${thumbnail}')" href="/snapshots?version=${snapshots[i].version_info.id}">
+        // load the data
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "api/snapshots_integration.php?userId=" + user, true);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                // parse the json
+                if (xhr.responseText != "No results found") {
+                    document.getElementById("snapshots--panel").classList.remove("hidden");
+                    snapshots = JSON.parse(xhr.responseText);
+                    Snapshots.Loaded = true;
+                    //console.log("got " + snapshots.length + " versions from osekai snapshots");
+                    var container = document.getElementById("snapshots--container");
+                    var html = "";
+                    for (var i = 0; i < snapshots.length; i++) {
+                        var thumbnail = `/snapshots/versions/` + snapshots[i].version_info.version + `/thumbnail.jpg`;
+                        html += `<a class="profiles__snapshots-version" style="background-image: url('${thumbnail}')" href="/snapshots?version=${snapshots[i].version_info.id}">
               <h3><strong>${snapshots[i].version_info.name}</strong> ${snapshots[i].version_info.version}</h3>`
 
-                            if (snapshots[i].version_info.upload_date != null) {
-                                html += `<p>` + GetStringRawNonAsync("profiles", "profile.snapshots.uploadDate", [TimeAgo.inWords(Date.parse(snapshots[i].version_info.upload_date))]) + `</p>`;
-                            } else {
-                                html += `<p>` + GetStringRawNonAsync("profiles", "profile.snapshots.uploadDateUnknown") + `</p>`
-                            }
-
-                            html += `</a>`;
+                        if (snapshots[i].version_info.upload_date != null) {
+                            html += `<p>` + GetStringRawNonAsync("profiles", "profile.snapshots.uploadDate", [TimeAgo.inWords(Date.parse(snapshots[i].version_info.upload_date))]) + `</p>`;
+                        } else {
+                            html += `<p>` + GetStringRawNonAsync("profiles", "profile.snapshots.uploadDateUnknown") + `</p>`
                         }
-                        container.innerHTML = html;
-                    } else {
-                        Snapshots.Loaded = true;
-                        //console.log("No snapshots found for user " + user);
-                        document.getElementById("snapshots--panel").classList.add("hidden");
+
+                        html += `</a>`;
                     }
+                    container.innerHTML = html;
+                } else {
+                    Snapshots.Loaded = true;
+                    //console.log("No snapshots found for user " + user);
+                    document.getElementById("snapshots--panel").classList.add("hidden");
                 }
             }
-            xhr.send();
         }
+        xhr.send();
     }
-    // </snapshots integration>
+}
+// </snapshots integration>
 
 // <user banner (hubz)>
 
 var UserBanner = {
-    CopyUrl: function() {
+    CopyUrl: function () {
         copy(document.getElementById("banner-copy-placeholder").innerHTML);
         generatenotification("normal", "Copied Image URL!");
     },
-    SwitchUrl: function(type) {
+    SwitchUrl: function (type) {
         let host = window.location.origin;
         document.getElementById("banner-toggle-type_bbcode").classList.remove("profiles__userbanner-top-toggle-item-active");
         document.getElementById("banner-toggle-type_raw").classList.remove("profiles__userbanner-top-toggle-item-active");
@@ -1540,7 +1545,7 @@ var UserBanner = {
         Colour2: [0, 0, 0],
         Angle: 180
     },
-    GetRotation: function(angle) {
+    GetRotation: function (angle) {
         var pi = angle * Math.PI / 180;
         var coords = {
             x1: Math.round(50 + Math.sin(pi) * 50),
@@ -1551,7 +1556,7 @@ var UserBanner = {
         return coords;
     },
     svgString: "",
-    PopulateDropdown: function(dropdown, variable, function_ = "null", prefix = "null_") {
+    PopulateDropdown: function (dropdown, variable, function_ = "null", prefix = "null_") {
         var html = "";
         for (var prop in variable) {
             html += '<div id="' + prefix + prop + '" class="osekai__dropdown-item" onclick="' + function_ + '(\'' + prop + '\', this)">' + variable[prop]["name"] + '</div>';
@@ -1559,7 +1564,7 @@ var UserBanner = {
         dropdown.innerHTML = html;
     },
     OpenDropdowns: [],
-    OpenDropdown: function(dropdown) {
+    OpenDropdown: function (dropdown) {
         var dropdown = document.getElementById(dropdown);
         for (index = 0; index < UserBanner.OpenDropdowns.length; ++index) {
             if (UserBanner.OpenDropdowns[index] != dropdown) {
@@ -1569,15 +1574,15 @@ var UserBanner = {
         UserBanner.OpenDropdowns = [dropdown];
         dropdown.classList.toggle("osekai__dropdown-hidden");
     },
-    CloseAllDropdowns: function() {
+    CloseAllDropdowns: function () {
         for (index = 0; index < UserBanner.OpenDropdowns.length; ++index) {
             UserBanner.OpenDropdowns[index].classList.add("osekai__dropdown-hidden");
         }
     },
-    SetActiveItemInDropdown: function(id, dropdown) {
+    SetActiveItemInDropdown: function (id, dropdown) {
         // TODO
     },
-    UpdateBackground: function() {
+    UpdateBackground: function () {
         var img = document.getElementById("banner-image");
         var tmp = UserBanner.svgString;
         var temp_angle = 180;
@@ -1611,10 +1616,10 @@ var UserBanner = {
         var b64 = btoa(tmp);
         img.src = "data:image/svg+xml;base64," + b64;
     },
-    CancelCustomBackgroundChanges: function() {
+    CancelCustomBackgroundChanges: function () {
         UserBanner.InitUserBanner();
     },
-    SaveSettings: async function(popup = false) {
+    SaveSettings: async function (popup = false) {
         var data = new FormData();
         data.append('background', UserBanner.BackgroundStyle);
         data.append('foreground', UserBanner.ForegroundStyle);
@@ -1633,7 +1638,7 @@ var UserBanner = {
 
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/profiles/api/banner/save.php', true);
-        xhr.onload = function() {
+        xhr.onload = function () {
             // do something to response
             if (popup) {
                 generatenotification("normal", "Saved custom banner settings!")
@@ -1641,7 +1646,7 @@ var UserBanner = {
         };
         xhr.send(data);
     },
-    FetchNewBanner: function() {
+    FetchNewBanner: function () {
         document.getElementById("banner-loader").classList.remove("hidden");
         if (UserBanner.BackgroundStyle == "custom") {
             var url = "/profiles/img/banner.svg?id=" + nUserID + "&no-angle&norounding";
@@ -1649,26 +1654,27 @@ var UserBanner = {
             var url = "/profiles/img/banner.svg?id=" + nUserID + "&norounding";
         }
         var xhr = createXHR(url);
-        xhr.onload = function() {
+        xhr.onload = function () {
             if (xhr.status == 200) {
                 var svg = xhr.responseText;
                 UserBanner.svgString = svg;
                 UserBanner.UpdateBackground();
                 document.getElementById("banner-loader").classList.add("hidden");
-            } else {
+            }
+            else {
                 console.log("error");
             }
         }
         xhr.send();
     },
 
-    CommaSeperatedRGBToArray: function(rcol) {
+    CommaSeperatedRGBToArray: function (rcol) {
         var col = rcol.replace(" ", "");
         col = col.split(",");
         var col_t = [parseInt(col[0]), parseInt(col[1]), parseInt(col[2])];
         return col_t;
     },
-    SetDropdownText: function(type, name) {
+    SetDropdownText: function (type, name) {
         var dropdown = null;
         var text = "";
         if (type == 'backdrop') {
@@ -1690,7 +1696,7 @@ var UserBanner = {
     },
     cb: null,
     cp: null,
-    SetBackgroundStyle: function(prop, el = null, reload = true) {
+    SetBackgroundStyle: function (prop, el = null, reload = true) {
         UserBanner.BackgroundStyle = prop
         UserBanner.CloseAllDropdowns()
         if (reload == true) {
@@ -1712,7 +1718,7 @@ var UserBanner = {
             }
         }
     },
-    SetForegroundStyle: function(prop, el = null, reload = true) {
+    SetForegroundStyle: function (prop, el = null, reload = true) {
         UserBanner.ForegroundStyle = prop
         UserBanner.CloseAllDropdowns()
         if (reload == true) {
@@ -1722,7 +1728,7 @@ var UserBanner = {
         }
         UserBanner.SetDropdownText('foreground', prop)
     },
-    SetCustomBackgroundStyle: function(prop, el = null, reload = true, fromloader = false) {
+    SetCustomBackgroundStyle: function (prop, el = null, reload = true, fromloader = false) {
         UserBanner.CustomBackground.Type = prop
         UserBanner.CloseAllDropdowns()
         UserBanner.SetDropdownText('customstyle', prop);
@@ -1751,7 +1757,7 @@ var UserBanner = {
 
         UserBanner.UpdateBackground();
     },
-    UpdateAngle: function(from) {
+    UpdateAngle: function (from) {
         var value = 0;
         var slider = document.getElementById("angle-slider");
         var input = document.getElementById("angle-input");
@@ -1766,11 +1772,11 @@ var UserBanner = {
         UserBanner.CustomBackground.Angle = value;
         UserBanner.UpdateBackground();
     },
-    UpdateAngleSlider: function() {
+    UpdateAngleSlider: function () {
         document.getElementById("angle-input").value = UserBanner.CustomBackground.Angle;
         document.getElementById("angle-slider").value = UserBanner.CustomBackground.Angle;
     },
-    InitUserBanner: function() {
+    InitUserBanner: function () {
         UserBanner.AvailableBackgroundStyles = {
             "custom": {
                 "name": GetStringRawNonAsync("profiles", "profile.banner.backdropStyle.custom")
@@ -1800,18 +1806,18 @@ var UserBanner = {
         var url = "/profiles/api/banner/get.php";
         var xhr = createXHR(url)
 
-        cb = new newColourBar("colourbar", function(col1, col2) {
+        cb = new newColourBar("colourbar", function (col1, col2) {
             UserBanner.CustomBackground.Colour1 = col1;
             UserBanner.CustomBackground.Colour2 = col2;
             UserBanner.UpdateBackground();
         }, UserBanner.CustomBackground.Colour1, UserBanner.CustomBackground.Colour2);
 
-        cp = new newColourPicker("colour-solid-picker", function(col) {
+        cp = new newColourPicker("colour-solid-picker", function (col) {
             UserBanner.CustomBackground.Colour1 = col;
             UserBanner.UpdateBackground();
         }, UserBanner.CustomBackground.Colour2);
 
-        xhr.onload = function() {
+        xhr.onload = function () {
             if (xhr.status == 200) {
                 var json = JSON.parse(xhr.responseText);
                 UserBanner.SetBackgroundStyle(json["Background"], null, false);

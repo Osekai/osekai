@@ -35,8 +35,8 @@ async function loadSource(source, locale = currentLocale) {
     var location = "/global/lang/" + currentLocale["code"] + "/" + source + ".json?v=" + version;
 
     var xhr = new XMLHttpRequest();
-    var promise = new Promise(function(resolve, reject) {
-        xhr.onreadystatechange = function() {
+    var promise = new Promise(function (resolve, reject) {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
                     sources[source] = JSON.parse(xhr.responseText);
@@ -68,7 +68,8 @@ function sourceLoaded(source) {
     // if source loaded
     if (sources[source]) {
         return true;
-    } else {
+    }
+    else {
         return false;
     }
 }
@@ -86,8 +87,9 @@ async function loadIfSourceNotLoaded(source) {
     if (!sourceLoaded(source)) {
         console.log("Loading " + source + "...");
         await loadSource(source);
-    } else {
-        return new Promise(function(resolve, reject) {
+    }
+    else {
+        return new Promise(function (resolve, reject) {
             resolve();
         });
     }
@@ -128,8 +130,6 @@ function GetStringRawNonAsync(source, key, variables = []) {
         text = text.replaceAll("$" + i, variables[variable]);
         i++;
     }
-    text = text.replace("osekai", "oseaki");
-    text = text.replace("Osekai", "Oseaki");
     return text;
 }
 
@@ -151,7 +151,7 @@ async function GetString(string, variables = []) {
     return text;
 }
 
-function GetStringNonAsync(string, variables = []) {
+function GetStringNonAsync(string, variables = []) { 
     var string = string.split(".");
     var source = string[0];
     var key = string.slice(1).join(".");
@@ -184,9 +184,6 @@ async function LocalizeText(string, variables = []) {
             string = string.replace("??" + cleanedString + "??", localizedString);
         }
     }
-
-    string = string.replace("osekai", "oseaki");
-    string = string.replace("Osekai", "Oseaki");
     return string;
 }
 
@@ -205,7 +202,7 @@ function LocalizeTextNonAsync(string, variables = []) {
 }
 
 function LocalizeInnerHTML(element) {
-    LocalizeText(element.innerHTML).then(function(text) {
+    LocalizeText(element.innerHTML).then(function (text) {
         // remove $1, $2, etc.
         text = text.replace(/\$\d/g, "");
         element.innerHTML = text;
@@ -214,7 +211,7 @@ function LocalizeInnerHTML(element) {
 
 function LocalizeInnerHTMLText(element) {
     element.innerHTML = "";
-    LocalizeText(string).then(function(text) {
+    LocalizeText(string).then(function (text) {
         // remove all $1, $2, etc.
         text = text.replace(/\$\d/g, "");
         element.innerHTML = text;
@@ -234,9 +231,9 @@ function LocalizeInnerHTMLText(element) {
 //});
 
 // on document load
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
-    var localeMutationObserver = new MutationObserver(function(mutations) {
+    var localeMutationObserver = new MutationObserver(function (mutations) {
         var elements = document.getElementsByClassName("translatable");
         for (var i = 0; i < elements.length; i++) {
             LocalizeInnerHTML(elements[i]);

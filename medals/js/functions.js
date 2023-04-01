@@ -395,7 +395,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
         if (document.getElementById("solution__packid")) document.getElementById("solution__packid").value = colMedals[strMedalName].PackID;
         if (document.getElementById("solution__video")) document.getElementById("solution__video").value = colMedals[strMedalName].Video;
 
-        if (colMedals[strMedalName].FirstAchievedDate != "0000-00-00" && colMedals[strMedalName].FirstAchievedDate != null && colMedals[strMedalName].FirstAchievedDate != "") {
+        if (colMedals[strMedalName].FirstAchievedDate != "0000-00-00" && colMedals[strMedalName].FirstAchievedDate != null) {
             if (document.getElementById("solution__dateachieved")) document.getElementById("solution__dateachieved").value = new Date(colMedals[strMedalName].FirstAchievedDate).toISOString().substr(0, 10);
         } else {
             if (document.getElementById("solution__dateachieved")) document.getElementById("solution__dateachieved").value = null;
@@ -430,8 +430,8 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     // </mulraf> / End of getting Gamemode Icon
 
     // <Hubz> / Meta Generation
-    var _desc = "Oseaki Medals • " + colMedals[strMedalName].Description;
-    var _title = "Oseaki Medals • The solution to the osu! medal " + strMedalName + "!";
+    var _desc = "Osekai Medals • " + colMedals[strMedalName].Description;
+    var _title = "Osekai Medals • The solution to the osu! medal " + strMedalName + "!";
 
     document.querySelector('meta[name="description"]').setAttribute("content", _desc);
     document.querySelector('meta[name="twitter:description"]').setAttribute("content", _desc);

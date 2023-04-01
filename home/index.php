@@ -10,13 +10,13 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <meta charset="utf-8" />
     <meta name="msapplication-TileColor" content="#353d55">
     <meta name="theme-color" content="#353d55">
-    <meta name="description" content="Oseaki • the home of alternative rankings, medal solutions, and more" />
-    <meta property="og:title" content="Oseaki • the home of alternative rankings, medal solutions, and more" />
+    <meta name="description" content="Osekai • the home of alternative rankings, medal solutions, and more" />
+    <meta property="og:title" content="Osekai • the home of alternative rankings, medal solutions, and more" />
     <meta property="og:description" content="we're a website which provides osu! players with medal solutions, an alternative leaderboard, and much more! check our site out" />
-    <meta name="twitter:title" content="Oseaki • the home of alternative rankings, medal solutions, and more" />
+    <meta name="twitter:title" content="Osekai • the home of alternative rankings, medal solutions, and more" />
     <meta name="twitter:description" content="we're a website which provides osu! players with medal solutions, an alternative leaderboard, and much more! check our site out" />
-    <title name="title">Oseaki • the home of alternative rankings, medal solutions, and more</title>
-    <meta name="keywords" content="Oseaki,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
+    <title name="title">Osekai • the home of alternative rankings, medal solutions, and more</title>
+    <meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:url" content="<?= ROOT_URL ?>/home" />
@@ -35,7 +35,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
     <div class="osekai__panel-container nopadding home__loader-wait" id="home">
         <!-- <div class="home__warning-bar">
-            This is an experimental new style for the Oseaki Homepage. What you're seeing is <del>very early in development.</del> almost done!
+            This is an experimental new style for the Osekai Homepage. What you're seeing is <del>very early in development.</del> almost done!
         </div> -->
 
         <div class="home__cover" onload="positionNav();">
@@ -44,8 +44,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             </div>
             <div class="home__cover-middle">
                 <div class="home__cover-middle-logo">
-                    <img src="img/osekai.svg" class="home__logo">
-                    <!-- <lottie-player class="home__logo-lottie" id="player" src="img/osekai-logo.json" background="transparent" speed="1" style="height: 300px; margin: -90px 0px;"></lottie-player> -->
+                    <!-- <img src="img/osekai.svg" class="home__logo"> -->
+                    <lottie-player class="home__logo-lottie" id="player" src="img/osekai-logo.json" background="transparent" speed="1" style="height: 300px; margin: -90px 0px;"></lottie-player>
                 </div>
                 <p><?= GetStringRaw("home", "cover.subtitle"); ?></p>
             </div>
@@ -70,7 +70,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                             <p><?= GetStringRaw("home", "new.text"); ?></p>
                         </div>
                         <h3><?= GetStringRaw("home", "new.introducing"); ?></h3> -->
-                        <h1>Oseaki <strong>Profiles</strong></h1>
+                        <h1>Osekai <strong>Profiles</strong></h1>
                         <div class="home__horizontal-glowbar"></div>
                         <p class="home__app-text"><?= GetStringRaw("home", "profiles.main"); ?></p>
                     </div>
@@ -90,7 +90,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     <div class="home__panel-inner">
                         <div class="home__vertical-glowbar"></div>
                         <div class="home__panel-inner-texts">
-                            <h1>Oseaki <strong>Medals</strong></h1>
+                            <h1>Osekai <strong>Medals</strong></h1>
                             <p class="home__app-text"><?= GetStringRaw("home", "medals.main"); ?></p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     <div class="home__panel-inner">
                         <div class="home__vertical-glowbar"></div>
                         <div class="home__panel-inner-texts">
-                            <h1>Oseaki <strong>Snapshots</strong></h1>
+                            <h1>Osekai <strong>Snapshots</strong></h1>
                             <p class="home__app-text"><?= GetStringRaw("home", "snapshots.main"); ?></p>
                         </div>
                     </div>
@@ -120,7 +120,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     <div class="home__panel-inner">
                         <div class="home__vertical-glowbar"></div>
                         <div class="home__panel-inner-texts">
-                            <h1>Oseaki <strong>Rankings</strong></h1>
+                            <h1>Osekai <strong>Rankings</strong></h1>
                             <p class="home__app-text"><?= GetStringRaw("home", "rankings.main"); ?></p>
                         </div>
                     </div>
@@ -130,7 +130,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     <div class="home__panel-inner">
                         <div class="home__vertical-glowbar"></div>
                         <div class="home__panel-inner-texts">
-                            <h1>Oseaki <strong>Badges</strong></h1>
+                            <h1>Osekai <strong>Badges</strong></h1>
                             <p class="home__app-text"><?= GetStringRaw("home", "badges.main"); ?></p>
                         </div>
                     </div>

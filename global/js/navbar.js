@@ -97,7 +97,7 @@ function setCardDetails(appSimpleName) {
 
     //https://www.osekai.net/global/img/branding/vector/<?= $a['logo']; ?>.svg
     card_icon.src = "https://www.osekai.net/global/img/branding/vector/" + app['logo'] + ".svg";
-    card_title.innerHTML = "oseaki <strong>" + app['simplename'] + "</strong>";
+    card_title.innerHTML = "osekai <strong>" + app['simplename'] + "</strong>";
     card_content.innerHTML = app['slogan'];
 }
 
@@ -395,7 +395,6 @@ var settingUtils = {
         section.appendChild(baseCheckbox)
     },
 }
-
 
 var settingsPages = [];
 async function initSettingsPages() {
