@@ -727,17 +727,19 @@ var groupUtils = {
         return array.sort((a, b) => a.Order - b.Order)
     },
     badgeHtmlFromArray: function(array, size = "small", limit = "none") {
-        console.log(array);
         var orderedList = [];
         for (var x = 0; x < array.length; x++) {
             orderedList.push(this.getGroupFromId(array[x]));
         }
         orderedList = this.orderBadgeArray(orderedList);
-        console.log(orderedList);
         var finalHtml = "";
         let hiddenGroups = []
         let createExtraDropdown = false;
         for (var x = 0; x < orderedList.length; x++) {
+            if(orderedList[x] == undefined) {
+                // for some reason alot of comment groups have invalid group IDs? no clue what's causing this, this fixes it for now
+                continue;
+            }
             if (limit == "none" || x < limit) {
                 finalHtml += this.badgeHtmlFromGroupId(orderedList[x]['Id'], size);
             } else {
