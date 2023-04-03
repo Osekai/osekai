@@ -267,6 +267,11 @@ CREATE TABLE `Badges2` (
   `url` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `BeatmapLengths`;
+CREATE TABLE `BeatmapLengths` (
+  `Id` int(11) NOT NULL,
+  `Length` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `Beatmaps`;
 CREATE TABLE `Beatmaps` (
@@ -1365,8 +1370,9 @@ INSERT INTO `Medals` (`medalid`, `name`, `link`, `description`, `restriction`, `
 
 DROP TABLE IF EXISTS `MedalsBeatmapPacks`;
 CREATE TABLE `MedalsBeatmapPacks` (
-  `Id` int(11) NOT NULL,
-  `Count` int(11) NOT NULL
+  `Id` text NOT NULL,
+  `Count` int(11) NOT NULL,
+  `Ids` longtext NOT NULL CHECK (json_valid(`Ids`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 INSERT INTO `MedalsBeatmapPacks` (`Id`, `Count`) VALUES
