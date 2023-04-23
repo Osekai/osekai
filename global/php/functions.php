@@ -147,6 +147,7 @@ function frontend()
             const medals = <?= json_encode($medals); ?>;
             const restrictedState = <?= isRestricted() ? "1" : "0"; ?>;
         </script>
+        <meta name="darkreader-lock">
         <?php
         include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
 
