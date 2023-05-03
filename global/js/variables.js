@@ -551,7 +551,7 @@ const colRealNames = ["Sudden Death", "Doubletime", "Easy", "Flashlight", "Halft
 
 const loader = "<div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'><circle class='ring' cx='25' cy='25' r='22.5' /><circle class='line' cx='25' cy='25' r='22.5' /></svg></div>";
 
-var TimeAgo = (function() {
+var TimeAgo = (function () {
     var self = {};
 
     // Public Methods
@@ -572,7 +572,7 @@ var TimeAgo = (function() {
         years: '%d years'
     };
 
-    self.inWords = function(timeAgo) {
+    self.inWords = function (timeAgo) {
         var d = new Date();
         var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
         var nd = new Date(utc + (3600000 * 1));
@@ -615,3 +615,22 @@ var TimeAgo = (function() {
 
     return self;
 }());
+
+function fancyTimeFormat(duration) {
+    // Hours, minutes and seconds
+    const hrs = ~~(duration / 3600);
+    const mins = ~~((duration % 3600) / 60);
+    const secs = ~~duration % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    let ret = "";
+
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+
+    return ret;
+}
