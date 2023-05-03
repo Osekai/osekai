@@ -947,16 +947,49 @@
 
 }
 
-
+.medals__viewpack-best {
+    outline: 3px solid rgb(var(--maincol));
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), rgba(var(--maincol), 1) !important;
+}
 
 .medals__viewpack {
     /* background: rgba(var(--maincol), 1); */
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), rgba(var(--maincol), 1);
-    border-radius: 12px 22px 22px 12px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), rgba(var(--maincol), 1);
+    border-radius: 8px;
     width: 100%;
     display: flex;
     align-items: center;
     transition: all 0.2s ease;
+    text-decoration: none !important;
+    color: white !important;
+    padding: 15px 11px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.medals__viewpack-textarea-left {
+    margin-left: 11px;
+}
+.medals__viewpack-textarea-right {
+    margin-right: 11px;
+}
+
+.medals__viewpack-top {
+    font-weight: 100;
+    font-size: 16px;   
+}
+.medals__viewpack-bottom {
+    font-size: 13px;
+    color: #fffa !important;
+}
+
+.medals__viewpack-best .medals__viewpack-bottom {
+    font-weight: 900;
+    color: #FAD306 !important;
+}
+
+.medals__viewpack i{
+    font-size: 32px;
 }
 
 .medals__viewpack:hover {
@@ -991,9 +1024,17 @@
     background-color: #fff2;
 }
 
-.medals__viewpack-right {
+.medals__viewpack-textarea-right {
     margin-left: auto;
     text-align: right;
+}
+
+.medals__viewpack-textarea-right, .medals__viewpack-textarea-left {
+    display: flex;
+    flex-direction: column;
+}
+.medals__viewpack-textarea-right {
+    margin-left: auto;
 }
 
 .medals__viewpack-left, .medals__viewpack-right {
@@ -1042,7 +1083,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-
     background-color: #0005;
     transition: all 0.2s ease;
 }
@@ -1051,9 +1091,7 @@
     z-index: 2;
 }
 
-.medals__viewpack-best {
-    background: white;
-}
+
 
 .medals__viewpack-best svg path {
     fill: rgb(var(--maincol));

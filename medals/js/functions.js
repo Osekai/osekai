@@ -454,6 +454,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     // </mulraf> / End of removal
 
     getMods(colMedals[strMedalName].Mods);
+
     if (colMedals[strMedalName].PackID != null && colMedals[strMedalName].PackID != 0) {
         document.getElementById("oBeatmapContainer").classList.add("hidden");
         //document.getElementById("oBeatmapContainer_GetFromOsu_Button").href = "https://osu.ppy.sh/beatmaps/packs/" + colMedals[strMedalName].PackID;
@@ -473,24 +474,81 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
             resp = xhr.response;
             //console.log(xhr.response);
             resp = JSON.parse(resp);
+            console.log(resp);
             for (var i = 0; i < individual.length; i++) {
                 if (individual[i] == 0) continue;
                 best = true;
-                for (var j = 0; j < individual.length; j++) {
-                    if (resp[j] < resp[i]) {
-                        best = false;
+                var calcInvalid = false;
+
+                var length = 0;
+                for (var beatmap of resp[i]) {
+                    length += beatmap.Length;
+                }
+
+                if (length != 0) {
+                    for (var j = 0; j < individual.length; j++) {
+                        // note: packs with no pack for specific gamemode will still
+                        // return that gamemode array, just it'll be empty, so we have
+                        // to check, Just In Case (it fixes this entire routine on
+                        // every beatmap with 1 or more missing gamemodes)
+                        if (resp[j].length != 0) {
+                            let test_length = 0;
+                            for (var beatmap of resp[j]) {
+                                test_length += beatmap.Length;
+                            }
+                            console.log(test_length + "TIME");
+                            if (test_length != 0) {
+                                if (test_length < length) {
+                                    best = false;
+                                }
+                            } else {
+                                console.log("CALC INVALID");
+                                calcInvalid = true;
+                            }
+                        }
+                    }
+                } else {
+                    calcInvalid = true;
+                }
+
+                if (calcInvalid == true) {
+                    console.log("doing count check instead of length...");
+                    best = true;
+                    for (var j = 0; j < individual.length; j++) {
+                        if (resp[j].length != 0) {
+                            if (resp[j].length < resp[i].length) {
+                                best = false;
+                            }
+                        }
                     }
                 }
+
                 var gamemode = gamemodes[i];
                 var extraClasses = "";
+
                 if (best) { extraClasses += "medals__viewpack-best" };
+
                 html += `<a class="medals__viewpack ` + extraClasses + `" href="https://osu.ppy.sh/beatmaps/packs/${individual[i]}" style="--maincol: var(--${gamemode})" target="_blank">
-                ${icons[gamemode]}
-                <div class="medals__viewpack-textarea">
-                <div class="medals__viewpack-textarea-extrabg"></div>
-                    <div class="medals__viewpack-left">` + GetStringRawNonAsync("medals", "beatmap.viewOnOsu") + `</div>
-                    <div class="medals__viewpack-right"><strong>${resp[i]}</strong> maps</div>
+                <i class="oif-gamemode-${gamemode}"></i>
+                <div class="medals__viewpack-textarea-left">
+                    <div class="medals__viewpack-top">` + GetStringRawNonAsync("medals", "beatmap.viewOnOsu") + `</div>
+                    <div class="medals__viewpack-bottom"><strong>${resp[i].length}</strong> maps</div>
                 </div>
+                `;
+
+                if (length != 0) {
+                    html += `<div class="medals__viewpack-textarea-right">
+                    <div class="medals__viewpack-top">${fancyTimeFormat(length)}</div>
+                    <div class="medals__viewpack-bottom"><strong>${fancyTimeFormat(length / 1.5)}</strong> with DT</div>
+                </div>`;
+                } else {
+                    html += `<div class="medals__viewpack-textarea-right">
+                    <div class="medals__viewpack-bottom">Pack length not<br>yet calculated.</div>
+                </div>`
+                }
+
+                html += `
+                <i class="fas fa-clock"></i>
             </a>`;
             }
             document.getElementById("oBeatmapContainer_GetFromOsu").innerHTML = html;
