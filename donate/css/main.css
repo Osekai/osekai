@@ -1,3 +1,32 @@
+.donate__header {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0px 5vw;
+    box-sizing: border-box;
+    background: linear-gradient(#0005, #0001), url("/home/img/support.png");
+    box-sizing: border-box;
+
+}
+
+.donate__header h1 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 35px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.donate__header p {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .donate__list {
     display: flex;
     flex-direction: column;
@@ -6,15 +35,56 @@
 }
 
 .donate__panel {
-    background-color: rgba(var(--accentdark), 0.2);
-    border: 1px solid #553552;
+    display: flex;
     box-sizing: border-box;
     border-radius: 8px;
-    overflow: hidden;
-    width: 100%;
+    background: linear-gradient(hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(45% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(35% * var(--accentdark_valueoffset))));
 }
 
-.donate__panel-header{
+
+.donate__panel-inner {
+    box-sizing: border-box;
+    padding: 9px 14px;
+    margin-left: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    background: linear-gradient(hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))));
+}
+.donate__recent-panel-inner {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: linear-gradient(hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(40% * var(--accentdark_valueoffset))));
+    padding: 9px 14px;
+    position: relative;
+    z-index: 2;
+}
+
+.donate__recent-panel-message {
+    margin: 0px 8px;
+    padding: 12px;
+    padding-top: calc(12px + 8px);
+    border-radius: 8px;
+    margin-top: -8px;
+    z-index: 1;
+    background: linear-gradient(hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset))));
+}
+
+.donate__panel-texts {
+    margin-left: 8px;
+}
+.donate__panel-texts-right {
+    margin-left: auto;
+}
+.donate__panel-inner img, .donate__recent-panel-inner img {
+    height: 64px;
+    border-radius: 12px;;
+}
+
+.donate__panel-header {
     padding: 15px;
     background-color: rgba(var(--accentdark), 0.2);
     display: flex;
@@ -22,68 +92,68 @@
     box-sizing: border-box;
 }
 
-.donate__dh-text-right{
+.donate__dh-text-right {
     margin-left: auto;
 }
 
-.donate__panel-body{
+.donate__panel-body {
     display: flex;
     padding: 15px;
     align-items: center;
 }
 
-.donate__right{
+.donate__right {
     margin-left: auto;
     text-align: right !important;
 }
 
-.donate__right-header{
+.donate__right-header {
     font-size: 16px;
 }
 
-.donate__right-text{
+.donate__right-text {
     font-size: 14px;
 }
 
-.donate__pb-money{
+.donate__pb-money {
     font-size: 24px;
 }
 
-.donate__costs-progress{
+.donate__costs-progress {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-bottom: 22px;
 }
 
-.donate__progress-bar{
+.donate__progress-bar {
     background: rgba(85, 53, 82, 0.2);
-/* OsekaiDonate */
+    /* OsekaiDonate */
 
-border: 1px solid #553552;
-box-sizing: border-box;
-border-radius: 6px;
-width: 100%;
-height: 12px;
+    border: 1px solid #553552;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 100%;
+    height: 12px;
 }
 
-.donate__progress-bar-inner{
+.donate__progress-bar-inner {
     background-color: white;
     height: 12px;
     border-radius: 6px;
 
 }
 
-.donate__progress-texts{
+.donate__progress-texts {
     display: flex;
     gap: 5px;
     align-items: flex-end;
 }
 
-.donate__progress-texts h1{
+.donate__progress-texts h1 {
     font-weight: 300;
 }
 
-.donate__progress-texts p{
+.donate__progress-texts p {
     margin-bottom: 2px;
 }
