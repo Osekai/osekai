@@ -2446,6 +2446,8 @@ CREATE TABLE `Reports` (
   `Id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `ReporterId` int NOT NULL,
   `Type` int NOT NULL,
+  `Status` int NOT NULL,
   `Text` text NOT NULL,
+  `Link` text NOT NULL,
   `ReferenceId` int NOT NULL
 );
