@@ -2443,11 +2443,13 @@ INSERT INTO `Changelogs` (`Id`, `Name`, `Date`) VALUES
 
 DROP TABLE IF EXISTS `Reports`;
 CREATE TABLE `Reports` (
-  `Id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `ReporterId` int NOT NULL,
-  `Type` int NOT NULL,
-  `Status` int NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ReporterId` int(11) NOT NULL,
+  `Type` int(11) NOT NULL,
+  `Status` int(11) NOT NULL,
   `Text` text NOT NULL,
   `Link` text NOT NULL,
-  `ReferenceId` int NOT NULL
-);
+  `ReferenceId` int(11) NOT NULL,
+  `Date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  PRIMARY KEY (`Id`)
+)
