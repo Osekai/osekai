@@ -2440,3 +2440,16 @@ TRUNCATE `Changelogs`;
 INSERT INTO `Changelogs` (`Id`, `Name`, `Date`) VALUES
 (1,	20221209,	'2022-12-09'),
 (2,	20221210,	'2022-12-10');
+
+DROP TABLE IF EXISTS `Reports`;
+CREATE TABLE `Reports` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `ReporterId` int(11) NOT NULL,
+  `Type` int(11) NOT NULL,
+  `Status` int(11) NOT NULL,
+  `Text` text NOT NULL,
+  `Link` text NOT NULL,
+  `ReferenceId` int(11) NOT NULL,
+  `Date` datetime NOT NULL,
+  PRIMARY KEY (`Id`)
+)
