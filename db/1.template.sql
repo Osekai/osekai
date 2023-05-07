@@ -2450,6 +2450,6 @@ CREATE TABLE `Reports` (
   `Text` text NOT NULL,
   `Link` text NOT NULL,
   `ReferenceId` int(11) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `Date` datetime NOT NULL,
   PRIMARY KEY (`Id`)
 )
