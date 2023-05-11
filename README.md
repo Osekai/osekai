@@ -29,7 +29,7 @@ You can use [this script](https://pastebin.com/3XGT5HwE) I've made to quickly sw
 ## **Database Setup**
 Create a new user, call it whatever, whatever password, just remember it.
 
-Make a new database called `osekai`, you can name it whatever, but osekai is recommended. It's recommended to make it using **utf8mb4_unicode_ci**
+Make a new database called `osekai`, you can name it whatever, but osekai is recommended. It's recommended to make it using **utf8mb4_bin**
 
 Run all the files in `db/` on this table, you can do this by just copying the content into a query tab and running it.
 
