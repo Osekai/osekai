@@ -1857,6 +1857,7 @@ CREATE TABLE `Ranking` (
   `taiko_level` int(11) DEFAULT NULL,
   `ctb_level` int(11) DEFAULT NULL,
   `mania_level` int(11) DEFAULT NULL,
+  `kudosu` int(11) DEFAULT NULL,
   `restricted` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;

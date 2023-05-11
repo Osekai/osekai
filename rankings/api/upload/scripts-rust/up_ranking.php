@@ -13,10 +13,10 @@ $columns = ["id", "name", "stdev_pp", "standard_pp", "taiko_pp", "ctb_pp", "mani
 "badge_count", "ranked_maps", "loved_maps", "subscribers", "followers", "replays_watched", "avatar_url",
 "rarest_medal_achieved", "restricted",
 "stdev_acc","standard_acc","taiko_acc","ctb_acc","mania_acc",
-"stdev_level","standard_level","taiko_level","ctb_level","mania_level"];
+"stdev_level","standard_level","taiko_level","ctb_level","mania_level", "kudosu"];
 
 $sql = sqlbuilder("Ranking", $columns);
-$types = "isiiiiiiisiiiiiiiiiissidddddiiiii";
+$types = "isiiiiiiisiiiiiiiiiissidddddiiiiii";
 
 exit;
 // THIS DOESN'T WORK
