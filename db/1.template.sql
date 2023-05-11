@@ -1825,7 +1825,7 @@ CREATE TABLE `ProfilesVisited` (
 DROP TABLE IF EXISTS `Ranking`;
 CREATE TABLE `Ranking` (
   `id` int(11) NOT NULL,
-  `name` text COLLATE latin1_german1_ci NOT NULL,
+  `name` varchar(30) COLLATE latin1_german1_ci NOT NULL,
   `total_pp` int(11) NOT NULL,
   `stdev_pp` int(11) NOT NULL,
   `standard_pp` int(11) NOT NULL,
@@ -1835,7 +1835,7 @@ CREATE TABLE `Ranking` (
   `medal_count` int(11) NOT NULL,
   `rarest_medal` int(11) NOT NULL,
   `rarest_medal_achieved` datetime DEFAULT NULL,
-  `country_code` text COLLATE latin1_german1_ci NOT NULL,
+  `country_code` varchar(3) COLLATE latin1_german1_ci NOT NULL,
   `standard_global` int(20) DEFAULT NULL,
   `taiko_global` int(20) DEFAULT NULL,
   `ctb_global` int(20) DEFAULT NULL,
@@ -1846,7 +1846,17 @@ CREATE TABLE `Ranking` (
   `subscribers` int(20) NOT NULL DEFAULT '0',
   `followers` int(20) NOT NULL,
   `replays_watched` int(12) NOT NULL,
-  `avatar_url` text COLLATE latin1_german1_ci NOT NULL,
+  `avatar_url` int(11) NOT NULL,
+  `stdev_acc` double DEFAULT NULL,
+  `standard_acc` double DEFAULT NULL,
+  `taiko_acc` double DEFAULT NULL,
+  `ctb_acc` double DEFAULT NULL,
+  `mania_acc` double DEFAULT NULL,
+  `stdev_level` int(11) DEFAULT NULL,
+  `standard_level` int(11) DEFAULT NULL,
+  `taiko_level` int(11) DEFAULT NULL,
+  `ctb_level` int(11) DEFAULT NULL,
+  `mania_level` int(11) DEFAULT NULL,
   `restricted` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
