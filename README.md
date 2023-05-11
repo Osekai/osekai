@@ -42,10 +42,6 @@ For Snapshots and Admin Panel to work, you must install the PHP `gd` Extension:
 
 On any issues - please contact me! (Hubz/Tanza)
 
-## **Osekai Tools**
-
-Run `git submodule update --init --recursive` to pull all the tool source code, as they're in separate repositories.
-
 ## **Windows**
 
 On Windows, SSL will not function with cURL, and Login will not work. To fix, please download [cacert.pem](https://curl.se/docs/caextract.html) and place it in a folder. Then in your `php.ini` under `[curl]` add `curl.cainfo = "C:\php\cacert.pem"` and under `[openssl]` add `openssl.cafile = "C:\php\cacert.pem"`. Should look like so:
