@@ -33,7 +33,7 @@ class FavouriteMedalApiController extends ApiController
 
         $medalId = $requestJson['medal_id'];
 
-        if (Database::execSelectFirstOrNull("SELECT EXISTS (SELECT * FROM Medals WHERE medalid = ?) as medal_exists", 'i', [$medalId])['medal_exists'])
+        if (!Database::execSelectFirstOrNull("SELECT EXISTS (SELECT * FROM Medals WHERE medalid = ?) as medal_exists", 'i', [$medalId])['medal_exists'])
             return new BadArgumentsApiResult(["message" => "Medal not found"]);
 
         Database::execOperation("REPLACE INTO FavouriteMedals VALUES (?, ?)", 'ii', [$_SESSION['osu']['id'], $medalId]);
@@ -55,7 +55,7 @@ class FavouriteMedalApiController extends ApiController
 
         $medalId = $requestJson['medal_id'];
 
-        if (Database::execSelectFirstOrNull("SELECT EXISTS (SELECT * FROM Medals WHERE medalid = ?) as medal_exists", 'i', [$medalId])['medal_exists'])
+        if (!Database::execSelectFirstOrNull("SELECT EXISTS (SELECT * FROM Medals WHERE medalid = ?) as medal_exists", 'i', [$medalId])['medal_exists'])
             return new BadArgumentsApiResult(["message" => "Medal not found"]);
 
         Database::execOperation("DELETE FROM FavouriteMedals WHERE user_id = ? AND medal_id = ?", 'ii', [$_SESSION['osu']['id'], $medalId]);
