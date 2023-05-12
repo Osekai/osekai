@@ -2,10 +2,10 @@ version: '3'
 
 services:
   database:
-    image: mariadb
+    image: mysql:5.7.42
     environment:
-      - MARIADB_ROOT_PASSWORD=admin # Change it to a more secure one if needed
-      - MARIADB_DATABASE=osekai
+      - MYSQL_ROOT_PASSWORD=admin # Change it to a more secure one if needed
+      - MYSQL_DATABASE=osekai
     volumes:
       - ./db:/docker-entrypoint-initdb.d:ro
   website:
