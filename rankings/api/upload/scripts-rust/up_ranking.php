@@ -18,13 +18,9 @@ $columns = ["id", "name", "stdev_pp", "standard_pp", "taiko_pp", "ctb_pp", "mani
 $sql = sqlbuilder("Ranking", $columns);
 $types = "isiiiiiiisiiiiiiiiiissidddddiiiiii";
 
-exit;
-// THIS DOESN'T WORK
-$current_champion = Database::execSimpleSelect("SELECT * FROM RankingMedalChampionHistory ORDER BY Date LIMIT 1")[0];
-
 foreach($data as $user)
 {
-    error_log(print_r($user));
+    //error_log(print_r($user));
     $data = [];
     foreach($columns as $column)
     {
@@ -32,6 +28,10 @@ foreach($data as $user)
     }
     Database::execOperation($sql, $types, $data);
 }
+
+exit;
+// THIS DOESN'T WORK
+$current_champion = Database::execSimpleSelect("SELECT * FROM RankingMedalChampionHistory ORDER BY Date LIMIT 1")[0];
 
 $new_champion = Database::execSimpleSelect("SELECT * FROM Ranking ORDER BY medal_count DESC LIMIT 1")[0];
 
