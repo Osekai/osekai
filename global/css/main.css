@@ -4704,3 +4704,14 @@ input[type='range']:focus::-ms-fill-upper {
     animation-iteration-count: infinite, infinite;
     animation-play-state: running, running
 }
+.osekai__otab-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+}
+
+.osekai__3col_col1{
+    overflow: scroll;
+}
