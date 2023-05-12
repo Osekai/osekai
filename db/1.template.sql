@@ -4,6 +4,7 @@ SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+SET collation_connection = 'latin1_german1_ci';
 
 DELIMITER ;;
 
@@ -271,24 +272,24 @@ CREATE TABLE `Badges2` (
 DROP TABLE IF EXISTS `Beatmaps`;
 CREATE TABLE `Beatmaps` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `MedalName` varchar(50) COLLATE latin1_german1_ci NOT NULL,
+  `MedalName` varchar(50) COLLATE ascii_general_ci NOT NULL,
   `BeatmapID` int(20) NOT NULL,
   `MapsetID` int(20) NOT NULL,
-  `Gamemode` varchar(10) COLLATE latin1_german1_ci NOT NULL,
-  `SongTitle` varchar(80) COLLATE latin1_german1_ci NOT NULL,
-  `Artist` varchar(80) COLLATE latin1_german1_ci NOT NULL,
+  `Gamemode` varchar(10) COLLATE ascii_general_ci NOT NULL,
+  `SongTitle` varchar(80) COLLATE ascii_general_ci NOT NULL,
+  `Artist` varchar(80) COLLATE ascii_general_ci NOT NULL,
   `MapperID` int(10) NOT NULL,
-  `Mapper` varchar(40) COLLATE latin1_german1_ci NOT NULL,
-  `Source` varchar(200) COLLATE latin1_german1_ci NOT NULL,
+  `Mapper` varchar(40) COLLATE ascii_general_ci NOT NULL,
+  `Source` varchar(200) COLLATE ascii_general_ci NOT NULL,
   `bpm` double NOT NULL,
   `Difficulty` double NOT NULL,
-  `DifficultyName` varchar(80) COLLATE latin1_german1_ci NOT NULL,
+  `DifficultyName` varchar(80) COLLATE ascii_general_ci NOT NULL,
   `DownloadUnavailable` tinyint(1) NOT NULL,
   `SubmittedBy` int(20) NOT NULL,
   `SubmissionDate` datetime NOT NULL,
-  `Note` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Note` varchar(500) COLLATE ascii_general_ci DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 
 DELIMITER ;;
@@ -334,11 +335,11 @@ DELIMITER ;
 
 DROP TABLE IF EXISTS `Countries`;
 CREATE TABLE `Countries` (
-  `name_short` varchar(3) COLLATE latin1_german1_ci NOT NULL,
-  `name_long` varchar(30) COLLATE latin1_german1_ci NOT NULL,
-  `link` varchar(70) COLLATE latin1_german1_ci NOT NULL,
+  `name_short` varchar(3) COLLATE ascii_general_ci NOT NULL,
+  `name_long` varchar(30) COLLATE ascii_general_ci NOT NULL,
+  `link` varchar(70) COLLATE ascii_general_ci NOT NULL,
   PRIMARY KEY (`name_short`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 INSERT INTO `Countries` (`name_short`, `name_long`, `link`) VALUES
 ('AD',	'Andorra',	'https://osu.ppy.sh/images/flags/AD.png'),
@@ -518,38 +519,38 @@ CREATE TABLE `DeletedComments` (
 DROP TABLE IF EXISTS `DeletedMaps`;
 CREATE TABLE `DeletedMaps` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `MedalName` varchar(50) COLLATE latin1_german1_ci NOT NULL,
+  `MedalName` varchar(50) COLLATE ascii_general_ci NOT NULL,
   `BeatmapID` int(20) NOT NULL,
   `MapsetID` int(20) NOT NULL,
-  `Gamemode` varchar(10) COLLATE latin1_german1_ci NOT NULL,
-  `SongTitle` varchar(80) COLLATE latin1_german1_ci NOT NULL,
-  `Artist` varchar(80) COLLATE latin1_german1_ci NOT NULL,
-  `Mapper` varchar(40) COLLATE latin1_german1_ci NOT NULL,
-  `Source` varchar(200) COLLATE latin1_german1_ci NOT NULL,
+  `Gamemode` varchar(10) COLLATE ascii_general_ci NOT NULL,
+  `SongTitle` varchar(80) COLLATE ascii_general_ci NOT NULL,
+  `Artist` varchar(80) COLLATE ascii_general_ci NOT NULL,
+  `Mapper` varchar(40) COLLATE ascii_general_ci NOT NULL,
+  `Source` varchar(200) COLLATE ascii_general_ci NOT NULL,
   `bpm` double NOT NULL,
   `Difficulty` double NOT NULL,
-  `DifficultyName` varchar(80) COLLATE latin1_german1_ci NOT NULL,
+  `DifficultyName` varchar(80) COLLATE ascii_general_ci NOT NULL,
   `DownloadUnavailable` tinyint(1) NOT NULL,
   `Votes` int(20) NOT NULL,
-  `SubmittedBy` varchar(30) COLLATE latin1_german1_ci NOT NULL,
+  `SubmittedBy` varchar(30) COLLATE ascii_general_ci NOT NULL,
   `DeletionDate` date NOT NULL,
-  `Note` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Note` varchar(500) COLLATE ascii_general_ci DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 
 DROP TABLE IF EXISTS `Donations`;
 CREATE TABLE `Donations` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `osuID` int(10) DEFAULT NULL,
-  `Username` varchar(50) COLLATE latin1_german1_ci DEFAULT NULL,
-  `Message` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Username` varchar(50) COLLATE ascii_general_ci DEFAULT NULL,
+  `Message` varchar(500) COLLATE ascii_general_ci DEFAULT NULL,
   `DonoDate` datetime NOT NULL,
-  `Code` varchar(20) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Code` varchar(20) COLLATE ascii_general_ci DEFAULT NULL,
   `DonoAmount` decimal(10,2) DEFAULT NULL,
   `Checked` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 
 DROP TABLE IF EXISTS `FAQ`;
@@ -597,14 +598,14 @@ DROP TABLE IF EXISTS `Goals`;
 CREATE TABLE `Goals` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `UserID` int(20) NOT NULL,
-  `Value` varchar(200) COLLATE latin1_german1_ci NOT NULL,
-  `Type` varchar(50) COLLATE latin1_german1_ci NOT NULL,
-  `Gamemode` varchar(20) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Value` varchar(200) COLLATE ascii_general_ci NOT NULL,
+  `Type` varchar(50) COLLATE ascii_general_ci NOT NULL,
+  `Gamemode` varchar(20) COLLATE ascii_general_ci DEFAULT NULL,
   `CreationDate` datetime NOT NULL,
   `Claimed` datetime(1) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `UserID` (`UserID`,`Value`,`Type`,`Gamemode`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 
 DROP TABLE IF EXISTS `GroupAssignments`;
@@ -691,7 +692,7 @@ CREATE TABLE `MedalRarity` (
   `frequency` float NOT NULL,
   `count` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 INSERT INTO `MedalRarity` (`id`, `frequency`, `count`) VALUES
 (1,	59.1559,	74214),
@@ -987,20 +988,20 @@ INSERT INTO `MedalRarity` (`id`, `frequency`, `count`) VALUES
 DROP TABLE IF EXISTS `Medals`;
 CREATE TABLE `Medals` (
   `medalid` int(5) NOT NULL,
-  `name` varchar(50) COLLATE latin1_german1_ci DEFAULT NULL,
-  `link` varchar(70) COLLATE latin1_german1_ci DEFAULT NULL,
-  `description` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
-  `restriction` varchar(8) COLLATE latin1_german1_ci DEFAULT NULL,
-  `grouping` varchar(30) COLLATE latin1_german1_ci DEFAULT NULL,
-  `instructions` varchar(500) COLLATE latin1_german1_ci DEFAULT NULL,
+  `name` varchar(50) COLLATE ascii_general_ci DEFAULT NULL,
+  `link` varchar(70) COLLATE ascii_general_ci DEFAULT NULL,
+  `description` varchar(500) COLLATE ascii_general_ci DEFAULT NULL,
+  `restriction` varchar(8) COLLATE ascii_general_ci DEFAULT NULL,
+  `grouping` varchar(30) COLLATE ascii_general_ci DEFAULT NULL,
+  `instructions` varchar(500) COLLATE ascii_general_ci DEFAULT NULL,
   `ordering` int(11) NOT NULL,
-  `packid` text COLLATE latin1_german1_ci,
-  `video` text COLLATE latin1_german1_ci,
+  `packid` text COLLATE ascii_general_ci,
+  `video` text COLLATE ascii_general_ci,
   `date` date DEFAULT NULL,
   `firstachieveddate` date DEFAULT NULL,
   `firstachievedby` int(10) DEFAULT NULL,
   PRIMARY KEY (`medalid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 INSERT INTO `Medals` (`medalid`, `name`, `link`, `description`, `restriction`, `grouping`, `instructions`, `ordering`, `packid`, `video`, `date`, `firstachieveddate`, `firstachievedby`) VALUES
 (1,	'500 Combo',	'https://assets.ppy.sh/medals/web/osu-combo-500.png',	'500 big ones! You\'re moving up in the world!',	'osu',	'Skill',	'aiming for a combo of 500 or higher on any beatmap',	0,	NULL,	NULL,	'2008-08-02',	NULL,	NULL),
@@ -1466,7 +1467,7 @@ CREATE TABLE `MedalStructure` (
   `Locked` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `MedalID` (`MedalID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 INSERT INTO `MedalStructure` (`ID`, `MedalID`, `Locked`) VALUES
 (2,	51,	1),
@@ -1662,7 +1663,7 @@ CREATE TABLE `Members` (
   `id` int(15) NOT NULL,
   `OPT_Experimental` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 
 DROP TABLE IF EXISTS `MembersRestrictions`;
@@ -1706,11 +1707,11 @@ CREATE TABLE `OsekaiSessions` (
 DROP TABLE IF EXISTS `Payments`;
 CREATE TABLE `Payments` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Reason` varchar(200) COLLATE latin1_german1_ci NOT NULL,
+  `Reason` varchar(200) COLLATE ascii_general_ci NOT NULL,
   `Amount` decimal(5,2) NOT NULL,
   `PayDate` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 
 DROP TABLE IF EXISTS `ProfilesBanners`;
@@ -1754,7 +1755,7 @@ CREATE TABLE `ProfilesVisited` (
 DROP TABLE IF EXISTS `Ranking`;
 CREATE TABLE `Ranking` (
   `id` int(11) NOT NULL,
-  `name` text COLLATE latin1_german1_ci NOT NULL,
+  `name` text COLLATE ascii_general_ci NOT NULL,
   `total_pp` int(11) NOT NULL,
   `stdev_pp` int(11) NOT NULL,
   `standard_pp` int(11) NOT NULL,
@@ -1764,7 +1765,7 @@ CREATE TABLE `Ranking` (
   `medal_count` int(11) NOT NULL,
   `rarest_medal` int(11) NOT NULL,
   `rarest_medal_achieved` datetime DEFAULT NULL,
-  `country_code` text COLLATE latin1_german1_ci NOT NULL,
+  `country_code` text COLLATE ascii_general_ci NOT NULL,
   `standard_global` int(20) DEFAULT NULL,
   `taiko_global` int(20) DEFAULT NULL,
   `ctb_global` int(20) DEFAULT NULL,
@@ -1775,9 +1776,9 @@ CREATE TABLE `Ranking` (
   `subscribers` int(20) NOT NULL DEFAULT '0',
   `followers` int(20) NOT NULL,
   `replays_watched` int(12) NOT NULL,
-  `avatar_url` text COLLATE latin1_german1_ci NOT NULL,
+  `avatar_url` text COLLATE ascii_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 
 DROP TABLE IF EXISTS `RankingLoopHistory`;
@@ -1811,13 +1812,13 @@ CREATE TABLE `RankingMedalChampionHistory` (
 DROP TABLE IF EXISTS `Roles`;
 CREATE TABLE `Roles` (
   `RoleID` int(10) NOT NULL AUTO_INCREMENT,
-  `User` varchar(50) COLLATE latin1_german1_ci NOT NULL,
+  `User` varchar(50) COLLATE ascii_general_ci NOT NULL,
   `UserID` int(20) NOT NULL,
-  `RoleName` varchar(50) COLLATE latin1_german1_ci NOT NULL,
+  `RoleName` varchar(50) COLLATE ascii_general_ci NOT NULL,
   `Role` int(11) NOT NULL,
-  `Rights` varchar(20) COLLATE latin1_german1_ci DEFAULT NULL,
+  `Rights` varchar(20) COLLATE ascii_general_ci DEFAULT NULL,
   PRIMARY KEY (`RoleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 INSERT INTO `Roles` (`RoleID`, `User`, `UserID`, `RoleName`, `Role`, `Rights`) VALUES
 (1,	'mulraf',	1309242,	'DEV',	1,	'2'),
@@ -1939,12 +1940,12 @@ DROP TABLE IF EXISTS `Solutions`;
 CREATE TABLE `Solutions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `medalid` int(10) NOT NULL,
-  `solution` varchar(500) COLLATE latin1_german1_ci NOT NULL,
-  `submittedby` varchar(50) COLLATE latin1_german1_ci NOT NULL,
-  `mods` varchar(50) COLLATE latin1_german1_ci DEFAULT NULL,
+  `solution` varchar(500) COLLATE ascii_general_ci NOT NULL,
+  `submittedby` varchar(50) COLLATE ascii_general_ci NOT NULL,
+  `mods` varchar(50) COLLATE ascii_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `medalid` (`medalid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 INSERT INTO `Solutions` (`id`, `medalid`, `solution`, `submittedby`, `mods`) VALUES
 (1,	119,	'Pass any map with the following mod. Can\'t use any other mods.',	'mulraf',	'SD'),
@@ -2307,9 +2308,9 @@ CREATE TABLE `Votes` (
   `ObjectID` int(20) NOT NULL,
   `Vote` tinyint(1) NOT NULL,
   `Type` int(11) NOT NULL DEFAULT '0',
-  `PollID` varchar(50) COLLATE latin1_german1_ci DEFAULT NULL,
+  `PollID` varchar(50) COLLATE ascii_general_ci DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=ascii COLLATE=ascii_general_ci;
 
 
 DROP TABLE IF EXISTS `BadgeListing`;
