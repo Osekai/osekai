@@ -78,3 +78,30 @@ class StatisticsUtils
         return 0;
     }
 }
+
+
+class ArrayUtils {
+    public static function createArrayWithMissingDays(
+        array $array, 
+        string $dayKey, 
+        int $sinceTime, int $toTime, 
+        callable $emptyValueFactory) 
+    {
+        $newResults = [];
+
+        $date1 = $sinceTime;
+        $date2 = $toTime;
+        
+        $i = count($array) - 1;
+        for ($d1 = $date1; $d1<=$date2; $d1 = strtotime("+1 day", $d1)) {
+            if ($i >= 0 && strtotime($array[$i][$dayKey]) <= $d1) {
+                $newResults[] = $array[$i];
+                $i--;
+            } else {
+                $newResults[] = $emptyValueFactory($d1); 
+            }
+        }
+
+        return $newResults;
+    }
+}

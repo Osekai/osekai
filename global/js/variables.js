@@ -1,3 +1,6 @@
+const tp1x1 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
+// this is a 1x1 transparent pixel
+
 const CountryShortCodeToCountryName = {
     'AF': 'Afghanistan',
     'AX': 'Aland Islands',
@@ -548,7 +551,7 @@ const colRealNames = ["Sudden Death", "Doubletime", "Easy", "Flashlight", "Halft
 
 const loader = "<div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'><circle class='ring' cx='25' cy='25' r='22.5' /><circle class='line' cx='25' cy='25' r='22.5' /></svg></div>";
 
-var TimeAgo = (function () {
+var TimeAgo = (function() {
     var self = {};
 
     // Public Methods
@@ -569,11 +572,14 @@ var TimeAgo = (function () {
         years: '%d years'
     };
 
-    self.inWords = function (timeAgo) {
+    self.inWords = function(timeAgo) {
         var d = new Date();
         var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-        var nd = new Date(utc + (3600000 * 2));
-
+        var nd = new Date(utc + (3600000 * 1));
+        // NOTE: 36000000 * 1 is required to offset from germany timezone
+        // which is what it's stored in on prod right now
+        // hopefully this will change with Octon
+        // sometimes it's *2 for like daylight saving stuffs so change that when summer comes LOL
 
         var seconds = Math.floor((nd - parseInt(timeAgo)) / 1000),
             separator = this.locales.separator || ' ',

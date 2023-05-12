@@ -26,6 +26,7 @@
     "extraInfo.dateReleased": "Date Released",
     "extraInfo.dateAchieved": "Date Achieved",
     "extraInfo.achievedBy": "Achieved By",
-    "extraInfo.none": "We don't have any extra info for this medal."
-    
+    "extraInfo.none": "We don't have any extra info for this medal.",
+    "medalCount": "<strong>$1</strong> <light>medals</light>",
+    "medalCount.singular": "<strong>$1</strong> <light>medal</light>"
 }

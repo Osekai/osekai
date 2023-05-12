@@ -18,15 +18,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <?php
 font();
 css();
-dropdown_system();
-mobileManager();
 
 xhr_requests();
 osu_api();
-user_hover_system();
-medal_hover_system();
-tooltip_system();
-report_system();
+
 notification_system();
 //comments_system();
 fontawesome();
@@ -44,6 +39,6 @@ fontawesome();
     include("versionlisting.php");
     include("versioninfo.php");
     ?>
-    <script type="text/javascript" src="./js/functions.js?0.1"></script>
+    <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

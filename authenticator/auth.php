@@ -90,16 +90,7 @@ if (loggedin()) {
     echo $head;
     font();
     css();
-    dropdown_system();
-    mobileManager();
-
-    //notification_system();
-    //user_hover_system();
-    //medal_hover_system();
-    //tooltip_system();
-    //comments_system();
-    //report_system();
-    ?>
+            ?>
 </head>
 
 <body>
@@ -123,7 +114,7 @@ if (loggedin()) {
                 </svg>
                 <h1>oh, something went wrong!</h1>
                 <p>please contact me on discord at Hubz#6283 and we'll try to sort this out ASAP!</p>
-                <p>error: <?php echo $error; ?></p>
+                <p>error: <?= $error; ?></p>
             <?php } ?>
         </div>
 
@@ -134,7 +125,7 @@ if (loggedin()) {
             <img src="../global/img/branding/vector/other/authenticator.svg">
             <h1>to authenticate your account, you'll to log in with osu!</h1>
             <p>don't worry though, if you're already logged into the osu! site on this browser, it'll be a breeze!</p>
-            <a href="<?php echo $loginurl; ?>" onclick="openLoader('Logging you in...'); hide_dropdowns();" class="osekai__button">log in with osu!</a>
+            <a href="<?= $loginurl; ?>" onclick="openLoader('Logging you in...'); hide_dropdowns();" class="osekai__button">log in with osu!</a>
         </div>
 
     <?php } ?>

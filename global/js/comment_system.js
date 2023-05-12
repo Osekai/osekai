@@ -156,7 +156,7 @@ function Comments_Create(oParent, MedalID) {
             '<div class="comments__comment-div">' +
             '<div class="comments__comment-top">' +
             '<div class="comments__comment-top-username_area">' +
-            '<a href="/profiles?user=' + oComment.UserID + '"><p class="comments__comment-top-username">' + oComment.Username + '</p></a>' +
+            '<a href="/profiles?user=' + oComment.UserID + '"><p class="comments__comment-top-username nolink">' + oComment.Username + '</p></a>' +
             rolehtml +
             '</div>' +
             // this is cursed, so many steps of parsing and s
@@ -340,7 +340,7 @@ function textAreaAdjust(o) {
 function urlify(text) {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, function (url) {
-        return '<a class="osekai__url" href="' + url + '">' + url + '</a>';
+        return '<a href="' + url + '">' + url + '</a>';
     })
 }
 

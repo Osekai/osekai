@@ -1,7 +1,30 @@
 var bLoggedIn = (typeof nUserID !== 'undefined' && nUserID.toString() !== "-1");
 
-// after 0.6 seconds
-setTimeout(function () {
+var mobile = false;
+window.mobile = mobile;
+
+window.addEventListener('resize', checkMobile);
+checkMobile();
+
+function checkMobile() {
+    if (window.innerWidth >= 900) {
+        if (window.mobile == true) {
+            // we do this check to not spam the console when the user is not on a mobile device
+            console.log("moved to desktop");
+        }
+        mobile = false;
+    }
+
+    if (window.innerWidth < 900) {
+        if (mobile == false) {
+            // we do this check to not spam the console when the user is not on a desktop device
+            console.log("moved to mobile");
+        }
+        mobile = true;
+    }
+}
+
+setTimeout(function() {
     var panels = document.getElementsByClassName("osekai__panel-container");
     for (var i = 0; i < panels.length; i++) {
         if (!panels[i].classList.contains("hidden")) {
@@ -11,7 +34,7 @@ setTimeout(function () {
     }
 }, 10);
 
-setTimeout(function () {
+setTimeout(function() {
     var panels = document.getElementsByClassName("osekai__panel-container");
     for (var i = 0; i < panels.length; i++) {
         if (panels[i].classList.contains("wait-forload")) {
@@ -20,30 +43,9 @@ setTimeout(function () {
         }
     }
 }, 600);
-// this is to force the load animation to play again
-
-//function enableLightMode() {
-//    document.getElementById("css_cont").innerHTML += '<link id="light" rel="stylesheet" type="text/css" href="/global/css/light.css">';
-//    document.getElementById("css_cont").innerHTML += '<link id="relative_light" rel="stylesheet" type="text/css" href="css/light.css">';
-//}
-//
-//function disableLightMode() {
-//    if (document.getElementById("light")) {
-//        console.log("removing stuff");
-//        document.getElementById("css_cont").innerHTML = "";
-//    }
-//}
-//
-//function switchLightMode() {
-//    if (light) {
-//        disableLightMode();
-//    } else {
-//        enableLightMode();
-//    }
-//
 
 var colours = {
-    RGBToHSL: function (r, g, b) {
+    RGBToHSL: function(r, g, b) {
         var oldR = r;
         var oldG = g;
         var oldB = b;
@@ -88,14 +90,9 @@ var colours = {
     }
 }
 
-function OpenSettingsDropdown(id) {
-    var dropdown = document.getElementById(id);
-    dropdown.classList.toggle("osekai__dropdown-hidden");
-}
-var themes;
 var theme;
 
-themes = {
+const themes = {
     "light": {
         "internal": "light",
         "name": "loading...",
@@ -110,17 +107,34 @@ themes = {
         "internal": "ultradark",
         "name": "loading...",
         "css": ["ultradark.css"],
+        "customAccent": {
+            "dark": "10, 8, 0",
+            "light": "255,255,255",
+            "lightOffset": 0,
+            "darkOffset": -0.15,
+        }
     },
     "colddark": {
         "internal": "colddark",
         "name": "loading...",
         "css": ["colddark.css"],
+        "customAccent": {
+            "dark": "0, 5, 10",
+            "light": "155, 213, 235",
+            "lightOffset": 0,
+            "darkOffset": 0,
+        }
     },
     "flatwhite": {
         "internal": "softwhite",
         "name": "[experimental] Soft White",
         "css": ["light.css", "softwhite.css"],
         "experimental": true
+    },
+    "lightweight": {
+        "internal": "lightweight",
+        "name": "lightweight theme",
+        "css": ['lightweight.css']
     },
     "system": {
         "internal": "system",
@@ -129,100 +143,32 @@ themes = {
     },
     "custom": {
         "internal": "custom",
-        "name": "custom colours",
+        "name": "loading...",
         "css": "none"
     },
     "custom-light": {
         "internal": "custom-light",
-        "name": "custom colours (Light Mode)",
+        "name": "loading...",
         "css": ["light.css"]
     }
 }
 
 async function loadThemes() {
-    //themes = {
-    //    "light": {
-    //        "internal": "light",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.light"),
-    //        "css": "/global/css/light.css",
-    //        "rel": "css/light.css"
-    //    },
-    //    "dark": {
-    //        "internal": "dark",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.dark"),
-    //        "css": "none",
-    //    },
-    //    "ultradark": {
-    //        "internal": "ultradark",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.ultraDark"),
-    //        "css": "/global/css/ultradark.css",
-    //        "rel": "css/ultradark.css"
-    //    },
-    //    "colddark": {
-    //        "internal": "colddark",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.coldDark"),
-    //        "css": "/global/css/colddark.css",
-    //        "rel": "css/colddark.css"
-    //    },
-    //    "system": {
-    //        "internal": "system",
-    //        "name": await GetStringRaw("navbar", "settings.global.theme.system"),
-    //        "css": "none",
-    //    }
-    //}
-    themes["light"].name = await GetStringRaw("navbar", "settings.global.theme.light");
-    themes["dark"].name = await GetStringRaw("navbar", "settings.global.theme.dark");
-    themes["ultradark"].name = await GetStringRaw("navbar", "settings.global.theme.ultraDark");
-    themes["colddark"].name = await GetStringRaw("navbar", "settings.global.theme.coldDark");
-    themes["system"].name = await GetStringRaw("navbar", "settings.global.theme.system");
-
-    loadThemesDropdown();
+    themes["light"].name = await GetStringRaw("navbar", "settings.theme.light");
+    themes["dark"].name = await GetStringRaw("navbar", "settings.theme.dark");
+    themes["ultradark"].name = await GetStringRaw("navbar", "settings.theme.ultraDark");
+    themes["colddark"].name = await GetStringRaw("navbar", "settings.theme.coldDark");
+    themes["system"].name = await GetStringRaw("navbar", "settings.theme.system");
+    themes["custom"].name = await GetStringRaw("navbar", "settings.theme.custom");
+    themes["custom-light"].name = await GetStringRaw("navbar", "settings.theme.custom.lightMode");
+    themes["lightweight"].name = await GetStringRaw("navbar", "settings.theme.lightweight");
 }
 
 theme = themes["system"];
-
-
-loadThemesDropdown();
 loadThemes();
 
-
-//console.log(themes);
-//console.log(theme);
-
-function loadThemesDropdown() {
-    var dropdown = document.getElementById("dropdown__themes");
-    dropdown.innerHTML = "";
-    for (var i in themes) {
-        if (themes[i].experimental == true && experimental == 0) continue;
-        var div = document.createElement("div");
-        div.classList.add("osekai__dropdown-item");
-        div.innerHTML = themes[i].name;
-        div.setAttribute("onclick", "setTheme('" + themes[i].internal + "')");
-        dropdown.appendChild(div);
-    }
-    updateThemesDropdown();
-}
-
-
-function updateThemesDropdown() {
-    document.getElementById("dropdown__themes-text").innerHTML = theme.name;
-    var dropdown = document.getElementById("dropdown__themes");
-    // give the right element osekai__dropdown-item-active
-    for (var i in dropdown.children) {
-        try {
-            if (dropdown.children[i].innerHTML == theme.name) {
-                dropdown.children[i].classList.add("osekai__dropdown-item-active");
-            } else {
-                dropdown.children[i].classList.remove("osekai__dropdown-item-active");
-            }
-        } catch (e) {
-            // it's fine, ignore
-        }
-    }
-}
-
-
 function setTheme(stheme) {
+    console.log("setting theme to " + stheme);
     if (typeof stheme == "string") {
         for (var i in themes) {
             if (themes[i].internal == stheme) {
@@ -236,7 +182,6 @@ function setTheme(stheme) {
 
     updateTheme();
     saveSettings();
-    updateThemesDropdown();
 }
 
 var customTheme = {
@@ -257,8 +202,29 @@ var accent_picker = document.getElementById("custom_colpicker_accent");
 var cp_accentdark = null;
 var cp_accent = null;
 
+const settingsLoadEvent = new Event('settings-load');
+
+function generateCustomThemeVars(accent, accentDark, valueOffsetOffset = 0, valueOffsetOffsetDark = 0) {
+    var accentDark_split = String(accentDark).split(",");
+    var accent_split = String(accent).split(",");
+    var accentDark_hsl = colours.RGBToHSL(accentDark_split[0], accentDark_split[1], accentDark_split[2]);
+    var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[1], accent_split[2]);
+    console.log("$(*(*" + accentDark);
+    return `--accentdark: ${accentDark} !important;
+            --accent: ${accent} !important;
+            
+            --accentdark_hue: ${accentDark_hsl[0]}deg;
+            --accent_hue: ${accent_hsl[0]}deg;
+            --accentdark_saturation: ${accentDark_hsl[1]}%;
+            --accent_saturation: ${accent_hsl[1]}%;
+            --accentdark_value: ${accentDark_hsl[2]}%;
+            --accent_value: ${accent_hsl[2]}%;
+
+            --accentdark_valueoffset: ${(accentDark_hsl[2]) / 45 + 0.2 + valueOffsetOffsetDark};
+            --accent_valueoffset: ${(accentDark_hsl[2] / 50) + 0.2 + valueOffsetOffset};`;
+}
+
 function updateTheme() {
-    //console.log("switching to: " + theme);
     document.getElementById("custom_theme_container").innerHTML = "";
 
     if (theme.internal == "system") {
@@ -269,8 +235,7 @@ function updateTheme() {
             document.getElementById("css_cont").innerHTML = "<link id='" + theme + "' rel='stylesheet' type='text/css' href='/global/css/" + themes["light"].css[0] + "'>";
             document.getElementById("css_cont").innerHTML += "<link id='" + theme + "' rel='stylesheet' type='text/css' href='css/" + themes["light"].css[0] + "'>";
         }
-    }
-    else {
+    } else {
         document.getElementById("css_cont").innerHTML = "";
         if (theme["css"] != "none") {
             for (var i in theme['css']) {
@@ -278,28 +243,15 @@ function updateTheme() {
                 document.getElementById("css_cont").innerHTML += "<link id='" + theme + "_relative' rel='stylesheet' type='text/css' href='css/" + theme["css"][i] + "?v=" + version + "'>";
             }
         }
+        if (typeof theme["customAccent"] != 'undefined') {
+
+            document.getElementById("custom_theme_container").innerHTML = `body {` + generateCustomThemeVars(theme["customAccent"].light, theme["customAccent"].dark, theme["customAccent"].lightOffset, theme["customAccent"].darkOffset) + `}`
+        }
     }
 
     if (theme.internal == "custom" || theme.internal == "custom-light") {
-        var accentDark_split = String(customTheme.accent_dark).split(",");
-        var accent_split = String(customTheme.accent).split(",");
-        var accentDark_hsl = colours.RGBToHSL(accentDark_split[0], accentDark_split[1], accentDark_split[2]);
-        var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[2], accent_split[1]);
+        document.getElementById("custom_theme_container").innerHTML = `body {${generateCustomThemeVars(customTheme.accent, customTheme.accent_dark)}}`
 
-        document.getElementById("custom_theme_container").innerHTML = `html{
-            --accentdark: ${customTheme.accent_dark} !important;
-            --accent: ${customTheme.accent} !important;
-            
-            --accentdark_hue: ${accentDark_hsl[0]}deg;
-            --accent_hue: ${accent_hsl[0]}deg;
-            --accentdark_saturation: ${accentDark_hsl[1]}%;
-            --accent_saturation: ${accent_hsl[1]}%;
-            --accentdark_value: ${accentDark_hsl[2]}%;
-            --accent_value: ${accent_hsl[2]}%;
-
-            --accentdark_valueoffset: ${accentDark_hsl[2] / 45 + 0.2};
-            --accent_valueoffset: ${accentDark_hsl[2] / 50 + 0.2};
-        }`;
         // NOTE: i can't test the accent_valueoffset yet since the light mode doesn't support the new HSL colours just yet.
         // this probably will look weird when that's finished since the values are tailored for dark mode instead.
 
@@ -308,21 +260,24 @@ function updateTheme() {
         // the user the brightness of the colour they've selected. fine, it works, but bit annoying
         window.localStorage.setItem("accent_dark", customTheme.accent_dark);
         window.localStorage.setItem("accent", customTheme.accent);
-        document.getElementById("customThemePicker").classList.remove("hidden");
-        if (cp_accent == null) {
-            cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
-                customTheme.accent_dark = col;
-                updateTheme();
-            }, customTheme.accent_dark);
+        window.addEventListener('settings-load', function() {
+            document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
+            if (cp_accent == null) {
+                cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function(col) {
+                    customTheme.accent_dark = col;
+                    updateTheme();
+                }, customTheme.accent_dark);
 
-            cp_accent = new newColourPicker("custom_colpicker_accent", function (col) {
-                customTheme.accent = col;
-                updateTheme();
-            }, customTheme.accent);
-        }
-
+                cp_accent = new newColourPicker("custom_colpicker_accent", function(col) {
+                    customTheme.accent = col;
+                    updateTheme();
+                }, customTheme.accent);
+            }
+        });
     } else {
-        document.getElementById("customThemePicker").classList.add("hidden");
+        window.addEventListener('settings-load', function() {
+            document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
+        });
     }
 }
 
@@ -332,38 +287,14 @@ function updateTheme() {
 
 
 localStorage.setItem("url", location.href);
-window.addEventListener("hashchange", function () {
+window.addEventListener("hashchange", function() {
     localStorage.setItem("url", location.href);
 });
-window.addEventListener("popstate", function () {
+window.addEventListener("popstate", function() {
     localStorage.setItem("url", location.href);
 });
 
 
-function navflip() {
-    // flips the little arrow under the logo
-    // TODO: it's fucked when clicking off oops
-
-    var x = document.getElementById("nav_chevron");
-    x.classList.toggle("nav_chevron_flipped");
-}
-
-
-
-// ported from comment_system
-
-
-var navheight = 0;
-// next part is because i got bored
-function positionNav() {
-    navheight = document.getElementsByClassName("osekai__navbar-container")[0].clientHeight.toString();
-    var extraheight = navheight - 59;
-    var body = document.body;
-    body.setAttribute("style", "--navheight: " + navheight + "px; --extraheight: " + extraheight + "px;");
-}
-positionNav();
-window.onresize = positionNav;
-window.onload = positionNav();
 //changeOptions
 var cbNotifsNB = document.getElementById("styled-checkbox-notifs");
 cbNotifsNB && cbNotifsNB.addEventListener("change", () => {
@@ -394,7 +325,7 @@ function closeLoader() {
     }
 }
 
-window.openDialog = function (title, header, message, button1, b1Callback, button2 = "", b2Callback = function () { }) {
+window.openDialog = function(title, header, message, button1, b1Callback, button2 = "", b2Callback = function() {}) {
     html = `<div class="osekai__overlay"><section class="osekai__panel osekai__overlay__panel">
     <div class="osekai__panel-header">
         <p>` + title + `</p>
@@ -418,17 +349,17 @@ window.openDialog = function (title, header, message, button1, b1Callback, butto
 
     document.getElementById("other_overlays").innerHTML += html;
 
-    document.getElementById("glb_tmp_button1").onmousedown = function () {
+    document.getElementById("glb_tmp_button1").onmousedown = function() {
         document.getElementById("other_overlays").innerHTML = "";
         b1Callback();
     }
     if (button2 != "") {
-        document.getElementById("glb_tmp_button2").onmousedown = function () {
+        document.getElementById("glb_tmp_button2").onmousedown = function() {
             document.getElementById("other_overlays").innerHTML = "";
             b2Callback();
         }
     }
-    document.getElementById("glb_tmp_cancel").onmousedown = function () {
+    document.getElementById("glb_tmp_cancel").onmousedown = function() {
         document.getElementById("other_overlays").innerHTML = "";
     }
 }
@@ -442,7 +373,7 @@ function gracefullyExit() {
     var root = document.getElementsByTagName('html')[0]; // '0' to assign the first (and only `HTML` tag)
     root.classList.add("osekai__loadnewpage");
 
-    setTimeout(function () {
+    setTimeout(function() {
         root.innerHTML += `<div class="osekai__loadnewpage_text"><p>Loading Page...</p></div>`;
         root.classList.add("osekai__loadnewpage_over2s");
         root.classList.remove("osekai__loadnewpage");
@@ -465,7 +396,7 @@ function getCookie(cname) {
 }
 
 if (getCookie("fromLegacy") == 1) {
-    setTimeout(function () {
+    setTimeout(function() {
         document.getElementById("welcome_panel").classList.remove("osekai__eclipse-welcome-hidden");
     }, 1200);
     document.cookie = "fromLegacy=0; expires=Thu, 18 Dec 2021 12:00:00 UTC; path=/";
@@ -475,59 +406,55 @@ function closeWelcomePanel() {
     document.getElementById("welcome_panel").classList.add("osekai__eclipse-welcome-hidden");
 }
 
-function AddSettingCheckbox(id, internalName, defaultValue, optionExperimental = false, callback = null) {
-    if (optionExperimental == true && experimental != 1) return;
-    if (window.localStorage.getItem(internalName) == null) {
-        // sets to default value
-        document.getElementById(id).checked = defaultValue;
-        window.localStorage.setItem(internalName, defaultValue);
+var snowflakesCreated = false;
+
+function snowflakes(enabled) {
+    console.log("SNOWFLAKES: " + enabled);
+    if (enabled == true || enabled == "true") {
+        if (snowflakesCreated == false) {
+            document.getElementById("snowflakes").innerHTML = "";
+
+            snowflakesCreated = true;
+            var styleContainer = document.createElement("style");
+            for (var x = 0; x < 40; x++) {
+                var delay1 = Math.random() * 10;
+                var delay2 = Math.random() * 10;
+                var position = Math.random() * 100;
+
+                styleContainer.innerHTML += `.snowflake:nth-of-type(${x}) {
+                    left: ${position}%;
+                    -webkit-animation-delay: ${delay1}s, ${delay2}s;
+                    animation-delay: ${delay1}s, ${delay2}s
+                }`;
+                document.getElementById("snowflakes").innerHTML += `<div class="snowflake">
+                <i class="fas fa-snowflake"></i>
+            </div>`;
+            }
+
+            document.getElementById("snowflakes").appendChild(styleContainer);
+        }
+        document.getElementById("snowflakes").classList.remove("hidden");
     } else {
-        document.getElementById(id).checked = window.localStorage.getItem(internalName) == "true";
+        document.getElementById("snowflakes").classList.add("hidden");
     }
-
-    document.getElementById(id).addEventListener('change', (event) => {
-        if (event.currentTarget.checked) {
-            if (callback != null) callback(true);
-        } else {
-            if (callback != null) callback(false);
-        }
-        window.localStorage.setItem(internalName, event.currentTarget.checked);
-    })
 }
 
-AddSettingCheckbox("settings_profiles__showmedalsfromallmodes", "profiles__showmedalsfromallmodes", true)
-AddSettingCheckbox("settings_medals__hidemedalswhenunobtainedfilteron", "medals__hidemedalswhenunobtainedfilteron", false, false, function (enabled) {
-    var filtered = document.getElementsByClassName("medals__medal-filtered");
-    for (var x = 0; x < filtered.length; x++) {
-        var parent = filtered[x].parentElement;
-        if (enabled) {
-            parent.classList.add("hidden");
-        } else {
-            parent.classList.remove("hidden");
-        }
-    }
-});
 
+// the reason for this, is so that during christmas the option can be stored in a different place
+// so that if you have never turned them on, during christmas they'll auto-turn on
+var snowflakesDefault = false;
+var snowflakesOption = "settings_global__snowflakes-nochristmas";
 if (christmas) {
-    function snowflakes(enabled) {
-        console.log("SNOWFLAKES: " + enabled);
-        if (enabled == true || enabled == "true") {
-            document.getElementById("snowflakes").classList.remove("hidden");
-        } else {
-            document.getElementById("snowflakes").classList.add("hidden");
-        }
-    }
-
-    AddSettingCheckbox("settings_global__snowflakes", "settings_global__snowflakes", true, false, function (enabled) {
-        snowflakes(enabled);
-    })
-
-    snowflakes(window.localStorage.getItem('settings_global__snowflakes'))
+    var snowflakesDefault = true;
+    var snowflakesOption = "settings_global__snowflakes";
 }
+
+
 //document.getElementById("settings_profiles__showmedalsfromallmodes").checked = true;
 
 function defaultSettings() {
     if (window.localStorage.getItem('theme') == null) {
+        console.log("defaulting theme");
         setTheme("system");
         window.localStorage.setItem('theme', "system");
     }
@@ -541,21 +468,23 @@ function loadSettings() {
     setTheme(window.localStorage.getItem('theme'));
 }
 
+
 defaultSettings();
 loadSettings();
+
 
 function setLanguage(code) {
     // /api/setLanguage?language=en
     var xhttp = new XMLHttpRequest();
 
-    GetStringRaw("medals", "searchbar.placeholder").then(function (text) {
+    GetStringRaw("medals", "searchbar.placeholder").then(function(text) {
         //console.log(text);
     });
 
-    GetStringRaw("general", "language.switch").then(function (text) {
+    GetStringRaw("general", "language.switch").then(function(text) {
         openLoader(text);
         hide_dropdowns();
-        xhttp.onreadystatechange = function () {
+        xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 /// reload
                 location.reload();
@@ -594,9 +523,7 @@ function cantContactOsu() {
 let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
 let active = false;
 
-
-
-window.addEventListener('click', function (e) {
+window.addEventListener('click', function(e) {
     if (!e.target.classList.contains("osekai__dropdown") && !e.target.classList.contains("osekai__dropdown-item") && !e.target.classList.contains("osekai__dropdown-opener") && (e.target.closest(".osekai__dropdown-opener") == null)) {
         document.querySelectorAll(".osekai__dropdown").forEach((colItems) => {
             colItems.classList.add("osekai__dropdown-hidden");
@@ -642,22 +569,34 @@ function linkify(inputText) {
 
 function mutation() {
     // wait 0.1 seconds
-    setTimeout(function () {
+    setTimeout(function() {
         var collapsablePanels = document.getElementsByClassName("osekai__panel-collapsable");
         for (var x = 0; x < collapsablePanels.length; x++) {
             if (!collapsablePanels[x].classList.contains("osekai__panel-collapsable-initialized")) {
                 collapsablePanels[x].classList.add("osekai__panel-collapsable-initialized");
                 let el = collapsablePanels[x];
-                collapsablePanels[x].querySelector(".fa-chevron-down").addEventListener("click", function () {
+                collapsablePanels[x].querySelector(".fa-chevron-down").addEventListener("click", function() {
                     el.classList.toggle("osekai__panel-collapsable-collapsed")
                 });
             }
         }
+
+        var tooltipv2s = document.getElementsByClassName("tooltip-v2");
+        for (var i = 0; i < tooltipv2s.length; i++) {
+            var content = tooltipv2s[i].getAttribute("tooltip-content");
+            var temp = tippy(tooltipv2s[i], {
+                appendTo: tooltipv2s[i].closest(".osekai__panel-container, body"),
+                arrow: true,
+                content: content,
+            });
+            tooltipv2s[i].classList.remove("tooltip-v2");
+        }
     }, 100);
 }
 
+
 // replace with tippy every time DOM updates using mutation observer
-var mutationObserver = new MutationObserver(function (mutations) {
+var mutationObserver = new MutationObserver(function(mutations) {
     mutation();
 });
 
@@ -665,6 +604,7 @@ mutationObserver.observe(document.body, {
     childList: true,
     subtree: true
 });
+
 
 mutation();
 
@@ -730,7 +670,7 @@ function getAlerts() {
 
     let xhr = createXHR("/api/alerts.php?app=" + nAppId);
     xhr.send();
-    xhr.onload = function () {
+    xhr.onload = function() {
         console.log(xhr.responseText);
         var oResponse = JSON.parse(xhr.responseText);
         for (var x = 0; x < oResponse.length; x++) {
@@ -763,28 +703,30 @@ function getAlerts() {
     };
 
 }
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     getAlerts();
 });
 
+loadSource("groups");
 
 var groupDropdownCounter = 0; // global, dumb shit
 var groupUtils = {
-    getGroupFromId: function (id) {
+    getGroupFromId: function(id) {
         for (var x = 0; x < userGroups.length; x++) {
             if (userGroups[x]['Id'] == id) {
                 return userGroups[x];
             }
         }
     },
-    badgeHtmlFromGroupId: function (id, size = "small") {
+    badgeHtmlFromGroupId: function(id, size = "small") {
         var group = this.getGroupFromId(id);
-        return `<div class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</div>`;
+        // this is technically illegal according to html spec but i don't care
+        return `<object class="tooltip-v2" tooltip-content="${LocalizeTextNonAsync(group.Name)}"><a href="/misc/groups/?group=${id}" class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</a></object>`;
     },
-    orderBadgeArray: function (array) {
+    orderBadgeArray: function(array) {
         return array.sort((a, b) => a.Order - b.Order)
     },
-    badgeHtmlFromArray: function (array, size = "small", limit = "none") {
+    badgeHtmlFromArray: function(array, size = "small", limit = "none") {
         console.log(array);
         var orderedList = [];
         for (var x = 0; x < array.length; x++) {
@@ -812,7 +754,7 @@ var groupUtils = {
         }
         return finalHtml;
     },
-    badgeHtmlFromCommaSeperatedList: function (list, size = "small", limit = "none") {
+    badgeHtmlFromCommaSeperatedList: function(list, size = "small", limit = "none") {
         if (list == null) return "";
         var array = [];
         var split = list.split(",");
@@ -821,7 +763,7 @@ var groupUtils = {
         }
         return this.badgeHtmlFromArray(array, size, limit);
     },
-    openDropdown: function (arrow, list) {
+    openDropdown: function(arrow, list) {
         if (arrow.querySelector("div")) {
             if (arrow.querySelector("div").classList.contains("osekai__group-dropdown-hidden")) {
                 var dropdowns = document.getElementsByClassName("osekai__group-dropdown");
@@ -837,7 +779,7 @@ var groupUtils = {
         for (var x = 0; x < dropdowns.length; x++) {
             dropdowns[x].classList.add("osekai__group-dropdown-hidden");
         }
-        
+
         var dropdown = document.createElement('div');
         dropdown.classList.add("osekai__group-dropdown");
         dropdown.innerHTML = this.badgeHtmlFromCommaSeperatedList(list);

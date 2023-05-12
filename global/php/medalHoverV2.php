@@ -32,5 +32,5 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="/global/css/components/medalPopupV2.css?v=<?php echo OSEKAI_VERSION; ?>">
-<script src="/global/js/components/medalPopupV2.js?v=<?php echo OSEKAI_VERSION; ?>"></script>
+<link rel="stylesheet" href="/global/css/components/medalPopupV2.css?v=<?= OSEKAI_VERSION ?>">
+<script src="/global/js/components/medalPopupV2.js?v=<?= OSEKAI_VERSION ?>"></script>

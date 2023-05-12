@@ -83,18 +83,13 @@ if (isset($_GET['medal'])) {
     <?php
     css();
     font();
-    dropdown_system();
-    init3col();
+        init3col();
 
     xhr_requests();
     notification_system();
-    user_hover_system();
-    medal_hover_system();
-    tooltip_system();
+
     comments_system();
-    report_system();
-    mobileManager();
-    new_report_system();
+        new_report_system();
     ?>
 </head>
 
@@ -259,6 +254,6 @@ if (isset($_GET['medal'])) {
         </div>
     </div>
     <?php tippy(); ?>
-    <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION; ?>"></script>
+    <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

@@ -311,6 +311,25 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $colOsu['osu'] = $colOsu;
 
         $OsuPP = $colOsu['statistics']['pp'];
+        $TaikoPP = $colTaiko['statistics']['pp'];
+        $CatchPP = $colCatch['statistics']['pp'];
+        $ManiaPP = $colMania['statistics']['pp'];
+
+        // I dont like this here, but its the only place in code where its used
+        // so its better to have it here than on the global scope
+        function spp($arr)
+        {
+            $arr_size = count($arr);
+            $mu = array_sum($arr) / $arr_size;
+            $ans = 0;
+            foreach ($arr as $elem) {
+                $ans += pow(($elem - $mu), 2);
+            }
+            return array_sum($arr) - (sqrt($ans / ($arr_size - 1))) * 2;
+        }
+
+        $colOsu['statistics']['std_dev_pp'] = spp([$OsuPP, $TaikoPP, $CatchPP, $ManiaPP]);
+
         $colOsu['goals'] = $oUserGoals;
         $colOsu['timeline'] = $oUserTimeline;
         $colOsu['usergroups'] = $oUserGroups;
@@ -318,7 +337,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $colOsu['statistics']['global_rank'] = $oUserSPP[0]['rank'] ?: 0;
         unset($colOsu['rank_history']['data']);
         $colOsu['statistics']['country_rank'] = $oUserSPPCountry[0]['rank'] ?: 0;
-        $colOsu['statistics']['pp'] = $OsuPP + $colCatch['statistics']['pp'] + $colMania['statistics']['pp'] + $colTaiko['statistics']['pp'];
+        $colOsu['statistics']['pp'] = $OsuPP + $TaikoPP + $CatchPP + $ManiaPP;
         $colOsu['statistics']['play_time'] = $colOsu['statistics']['play_time'] + $colCatch['statistics']['play_time'] + $colMania['statistics']['play_time'] + $colTaiko['statistics']['play_time'];
         $colOsu['statistics']['play_count'] = $colOsu['statistics']['play_count'] + $colCatch['statistics']['play_count'] + $colMania['statistics']['play_count'] + $colTaiko['statistics']['play_count'];
         $colOsu['statistics']['grade_counts']['ssh'] = $colOsu['statistics']['grade_counts']['ssh'] + $colCatch['statistics']['grade_counts']['ssh'] + $colMania['statistics']['grade_counts']['ssh'] + $colTaiko['statistics']['grade_counts']['ssh'];

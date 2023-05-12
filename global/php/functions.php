@@ -9,17 +9,26 @@ if (isset($app)) {
 
 $time_start = microtime(true);
 $request_time = $_SERVER['REQUEST_TIME_FLOAT'];
-$christmas = true;
+$christmas = false;
 
 $useJS = true;
 
 // report errors. this is disabled later in the code somewhere, unsure where
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 require_once('gitInfo.php');
 define("OSEKAI_VERSION", str_replace("\n", "", $gitHash)); // cache invalidation
+
+$server = $_SERVER['SERVER_SOFTWARE'];
+if (str_contains($server, "Apache")) {
+    define("ENVIRONMENT", "apache2");
+} else if (str_contains($server, "Development Server") && str_contains($server, "PHP")) {
+    define("ENVIRONMENT", "php_development_server");
+} else {
+    define("ENVIRONMENT", "unknown");
+}
 
 require_once('osekaiDB.php');
 require_once('osekaiSessionManager.php');
@@ -74,7 +83,7 @@ function frontend()
 
     if (isset($app)) {
 
-        if (MODE != "production") {
+        if (MODE != "production" && ENVIRONMENT == "php_development_server") {
             // production site uses htaccess file to avoid issue
             // dev and local doesn't work
 
@@ -97,13 +106,13 @@ function frontend()
             }
         }
         $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
-        $medals = Database::execSelect("CALL FUNC_GetMedals(?, ?)", "ss", ['', '']);
+        $medals = Database::execSelect("CALL FUNC_GetMedals(?, '')", "s", ['']);
         $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
 ?>
         <script type="text/javascript">
-            const christmas = "<?php echo $christmas; ?>";
-            const nAppId = "<?php echo $apps[$app]['id']; ?>";
-            const version = "<?php echo OSEKAI_VERSION; ?>";
+            const christmas = "<?= $christmas; ?>";
+            const nAppId = "<?= $apps[$app]['id']; ?>";
+            const version = "<?= OSEKAI_VERSION ?>";
             //const medalAmount = 261; // this should be pulled from the database in the future
             const nUserID = <?php if (isset($_SESSION['osu']) && $_SESSION['osu'] != "") {
                                 echo $_SESSION['osu']['id'];
@@ -126,19 +135,19 @@ function frontend()
                             } else {
                                 echo "''";
                             } ?>;
-            const medalAmount = <?php echo count($medals); ?>;
+            const medalAmount = <?= count($medals); ?>;
             const experimental = <?php
                                     if (isExperimental()) {
                                         echo $_SESSION['options']['experimental'];
                                     } else {
                                         echo "0";
                                     } ?>;
-            const roles = <?php echo json_encode($roles); ?>;
-            const userGroups = <?php echo json_encode($userGroups); ?>;
-            const medals = <?php echo json_encode($medals); ?>;
-            const restrictedState = <?php if (isRestricted()) echo "1";
-                                    else echo "0"; ?>;
+            const roles = <?= json_encode($roles); ?>;
+            const userGroups = <?= json_encode($userGroups); ?>;
+            const medals = <?= json_encode($medals); ?>;
+            const restrictedState = <?= isRestricted() ? "1" : "0"; ?>;
         </script>
+        <meta name="darkreader-lock">
         <?php
         include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
 
@@ -148,7 +157,7 @@ function frontend()
         }
         ?>
         <script>
-            loadSource("<?php echo $app; ?>");
+            loadSource("<?= $app; ?>");
             loadSource("general");
         </script>
 <?php
@@ -271,22 +280,22 @@ function comments_system()
     tippy();
 
     // twemoji for emojis
-    echo '<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>';
+    echo '<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>';
 
     // emoji picker
-    echo '<script src="/global/js/picmo/picmo.js?v='.OSEKAI_VERSION.'"></script>';
-    echo '<script src="/global/js/picmo/picmo-popup.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script src="/global/js/picmo/picmo.js?v=' . OSEKAI_VERSION . '"></script>';
+    echo '<script src="/global/js/picmo/picmo-popup.js?v=' . OSEKAI_VERSION . '"></script>';
 
     // imports main css
-    echo '<link rel="stylesheet" href="/global/css/comments.css">';
+    echo '<link rel="stylesheet" href="/global/css/comments.css?v=' . OSEKAI_VERSION . '">';
 
     // bbcode
-    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-config.js?v='.OSEKAI_VERSION.'"></script>';
-    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-parser.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-config.js?v=' . OSEKAI_VERSION . '"></script>';
+    echo '<script type="text/javascript" src="/global/js/bbcode/bbcode-parser.js?v=' . OSEKAI_VERSION . '"></script>';
 
     /* imports comment system
     please import xhr before using this */
-    echo '<script type="text/javascript" src="/global/js/comment_system.js?v=' . OSEKAI_VERSION . '"></script>';
+    echo '<script rel="preload" type="text/javascript" src="/global/js/comment_system.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function chart_js()
@@ -296,26 +305,13 @@ function chart_js()
     echo '<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>';
 }
 
-$mmLoaded = false;
-
-function mobileManager()
-{
-    // imports css
-
-    global $mmLoaded;
-
-    // imports main css
-    if ($mmLoaded == false) {
-        echo '<script type="text/javascript" src="/global/js/mobileManager.js?v='.OSEKAI_VERSION.'"></script>';
-        $mmLoaded = true;
-    }
-}
-
 function font()
 {
     // imports font
 
-    echo '<link rel="preload" rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
+    echo '<link rel="preconnect" href="https://fonts.gstatic.com">';
+    echo '<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">';
+    echo '<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">';
 }
 
 function navbar()
@@ -342,13 +338,6 @@ function navbar()
     include($server_root . "global/php/navbar.php");
 }
 
-function dropdown_system()
-{
-    // loads dropdown system
-
-    echo '<script type="text/javascript" src="/global/js/dropdown_system.js?v='.OSEKAI_VERSION.'"></script>';
-}
-
 function init3col()
 {
     // loads 3col system
@@ -358,7 +347,12 @@ function init3col()
     global $coltype;
     $coltype = "3"; // tells the arrow thing on the left to exist
 
-    echo '<script type="text/javascript" src="/global/js/3col.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<div class="osekai__ct3-sidebar">
+    <div id="3col_arrow" class="osekai__ct3-arrow_area ct3open" onclick="switch3col();">
+        <i class="fas fa-chevron-right"></i>
+    </div>
+</div>';
+    echo '<script type="text/javascript" src="/global/js/3col.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function fontawesome()
@@ -374,72 +368,26 @@ function lottie()
     echo '<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>';
 }
 
-$hoversystemloaded = false;
-
-function user_hover_system()
+function lazyloader()
 {
-    global $hoversystemloaded;
 
-    // loads hover system
+    echo '<script>
+    window.lazyLoadOptions = {
+      // Your custom settings go here
+    };
+    window.addEventListener(
+      "LazyLoad::Initialized",
+      function (event) {
+        window.lazyLoadInstance = event.detail.instance;
+      },
+      false
+    );
+  </script>';
 
-    $id = 0;
-    $avatar = "";
-    $name = "Loading..."; // none of these need to be here
-
-    // best way to load html into a page
-
-    // 02/11/2021 hubz: no its fucking not lmao
-    // should be importing a php or html file at the very least
-    // TODO: fix this mess
-
-    echo '<a id="beatmap_hover_panel" href="https://osu.ppy.sh/users/' . $id . '" class="osekai__hoverpanel beatmap_hover_panel_hidden osekai__userpanel">
-    <img id="bhp_avi" src="' . $avatar . '" class="osekai__userpanel-pfp">
-    <img id="bhp_ctc" src="https://osu.ppy.sh/images/flags/XX.png" class="osekai__userpanel-countryflag">
-    <p id="bhp_usn" class="osekai__userpanel-username">' . $name . '</p>
-    </a>';
-
-    echo '<a id="userhoverpanel_v2" href="https://osu.ppy.sh/users/1309242" class="osekai__userpanel-v2 osekai__userpanel-hoverpanel osekai__userpanel-hoverpanel-hidden">
-    <img id="userhoverpanel_v2_blur" src="" class="osekai__userpanel-v2-blur">
-    <div class="osekai__userpanel-v2-inner">
-        <img id="userhoverpanel_v2_pfp" src="" class="osekai__userpanel-v2-pfp">
-        <div class="osekai__userpanel-v2-texts">
-            <div class="osekai__userpanel-v2-top">
-                <p id="userhoverpanel_v2_username" class="osekai__userpanel-v2-username">mulraf</p>
-                <img id="userhoverpanel_v2_gamemode" src="/global/img/gamemodes/standard.svg" class="osekai__userpanel-v2-gamemode">
-                <p class="osekai__userpanel-v2-rank" id="userhoverpanel_v2_rank">#48,376 <span class="osekai__transparent-text">global</span></p>
-            </div>
-            <div class="osekai__userpanel-v2-bottom">
-                <div class="osekai__userpanel-v2-area">
-                    <div class="osekai__userpanel-v2-icon">
-                        <p>pp</p>
-                    </div>
-                    <p class="osekai__userpanel-v2-value" id="userhoverpanel_v2_pp">5000</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</a>';
-
-    // should be an include lmao
-
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
-    $hoversystemloaded = true;
-    // nothing ever checks this lmao
+    echo '<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>';
 }
 
 $reportsystemloaded = false;
-
-function report_system()
-{
-    notification_system();
-
-    global $reportsystemloaded;
-
-    if ($reportsystemloaded == false) {
-        echo '<script type="module" type="text/javascript" src="/global/js/report_system.js?v='.OSEKAI_VERSION.'"></script>';
-        $reportsystemloaded = true;
-    }
-}
 
 function new_report_system()
 {
@@ -453,52 +401,12 @@ function notification_system()
 
 function osu_api()
 {
-    echo '<script type="module" type="text/javascript" src="/global/js/osu_api.js?v='.OSEKAI_VERSION.'"></script>';
+    echo '<script type="module" type="text/javascript" src="/global/js/osu_api.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function xhr_requests()
 {
-    echo '<script type="module" type="text/javascript" src="/global/js/xhr.js?v='.OSEKAI_VERSION.'"></script>';
-}
-
-function medal_hover_system()
-{
-    global $hoversystemloaded;
-
-    // loads medal hover system
-
-    echo '<a href="osekai.net" class="medal_hover_panel medal_hover_panel_hidden" id="medal_hover_panel" style="--mouse-x: 0;">
-        <img class="mhp__medal-icon-blur" id="mhp_blur" src="https://assets.ppy.sh/medals/">
-        <div class="medal_hover_panel-inner">    
-            <div class="mhp__top">
-                <img class="mhp__medal-icon" id="mhp_mic" src="https://assets.ppy.sh/medals/">
-                <div class="mhp__left-area">
-                    <p class="mhp__medal-name" id="mhp_nam">Loading...</p>
-                    <p class="mhp__medal-desc" id="mhp_dsc">Loading...</p>
-                </div>
-            </div>
-            <p class="mhp_solution" id="mhp_sol">you figure it out lmao</p>
-        </div>
-    </a>';
-
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
-    $hoversystemloaded = true;
-}
-
-function tooltip_system()
-{
-    global $hoversystemloaded;
-
-    // loads medal hover system
-
-    echo '
-    <div id="tooltip" class="tooltip_obj tooltip_hidden">
-        <p id="tooltip_text">Tooltip!</p>
-    </div>
-    ';
-
-    echo '<script type="module" type="text/javascript" src="/global/js/hover_system.js?v='.OSEKAI_VERSION.'"></script>';
-    $hoversystemloaded = true;
+    echo '<script rel="preload" type="text/javascript" src="/global/js/xhr.js?v=' . OSEKAI_VERSION . '"></script>';
 }
 
 function loggedin()
@@ -618,26 +526,6 @@ function getmedal($name)
     return ($medals[0]); // guess what this function does
 }
 
-function spawnuserpanel($id)
-{
-    // Spawns a user panel
-    //
-    // Usage:
-    // spawnuserpanel(2); [spawns a user panel for peppy]
-
-    $user = getuser($id);
-    //print_r($user);
-    $avatar = $user['avatar_url'];
-    $name = $user['name'];
-    $countrycode = $user['country_code'];
-
-    echo '<a href="https://osu.ppy.sh/users/' . $id . '" class="osekai__userpanel">
-    <img src="' . $avatar . '" class="osekai__userpanel-pfp">
-    <img src="https://osu.ppy.sh/images/flags/' . $countrycode . '.png" class="osekai__userpanel-countryflag">
-    <p class="osekai__userpanel-username">' . $name . '</p>
-    </a>';
-}
-
 function pushnotification($title, $message, $userid, $sysid = "", $html = "")
 {
     Database::execOperation("INSERT INTO Notifications (SystemID, UserID, Message, Title, HTML, Date) VALUES (?, ?, ?, ?, ?, now()) ON DUPLICATE KEY UPDATE UserID = UserID, Message = Message", "sisss", array((($sysid !== "") ? $sysid : NULL), $userid, $message, $title, $html));
@@ -665,7 +553,7 @@ function print_home_panel()
     // print errors
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+    error_reporting(E_ERROR);
 
     $html = '<div class="osekai__home-panel">
         <div class="osekai__home-panel-inner">
@@ -752,13 +640,13 @@ function getGroupFromId($id)
 
 function badgeHtmlFromGroup($group, $size)
 {
-    return "<div class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</div>";
+    return "<div href=\"/misc/groups/?group={$group['Id']}\" class=\"osekai__group-badge osekai__group-badge-{$size}\" style=\"--colour: {$group['Colour']}\">{$group['ShortName']}</div>";
 }
 
 function orderBadgeArray($array)
 {
     usort($array, function ($a, $b) {
-        return strcmp($a['Order'], $b['Order']);
+        return $a['Order'] < $b['Order'] ? -1 : 1;
     });
     return $array;
 }
@@ -820,12 +708,49 @@ function goals_repository()
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/goals_repository.php");
 }
 
+function profiles_visited_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/profiles_visited_repository.php");
+}
+
+function changelog_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/changelog_repository.php");
+}
+
+function changelog_entry_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/changelog_entry_repository.php");
+}
+
+function stats_page_views_repository()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/repositories/stats_page_views_repository.php");
+}
+
+function stats_page_views_service()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/stats_page_views_service.php");
+}
+
+
+
 function goals_service()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/goals_service.php");
 }
 
+function changelog_service()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/changelog_service.php");
+}
+
 function utils_classes()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/utils.php");
+}
+
+function osekai_http_request()
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/osekaiHttpRequest.php");
 }

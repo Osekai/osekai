@@ -191,6 +191,8 @@
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 16px;
     display: flex;
+    text-decoration: none;
+    color: inherit;
 }
 
 @media (min-width: 900px) {
@@ -409,6 +411,8 @@
     box-sizing: border-box;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    color: inherit;
 }
 
 .home__long-img {
@@ -670,6 +674,11 @@ code {
     margin-left: 6px;
     display: flex;
     gap: 6px;
+    flex-wrap: wrap;
+}
+
+.home__team-member-info-texts-badges object {
+    margin-bottom: 5px;
 }
 
 .home__team-member-socials-inner {
@@ -680,6 +689,8 @@ code {
 .home__team-member-social {
     margin-right: 18px;
     font-size: 20px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .home__team-member-social:hover {

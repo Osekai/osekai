@@ -35,13 +35,11 @@ $meta .= '
     echo $meta;
     font();
     css();
-    dropdown_system();
-    fontawesome();
+        fontawesome();
 
-    mobileManager();
-    notification_system();
+        notification_system();
     tippy();
-    tooltip_system();
+    
     ?>
 </head>
 
@@ -60,6 +58,6 @@ $meta .= '
             </div>
         </section>
     </div>
-    <script type="text/javascript" src="./js/functions.js?v=1.0.2"></script>
+    <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

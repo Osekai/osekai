@@ -26,13 +26,13 @@ var sources = [];
 
 async function loadSource(source, locale = currentLocale) {
     // javascirpt
-    if (!sourcesNames.includes(source)) {
+    if (!sourcesNames.includes(source) || source == "db_DB") {
         return;
     }
 
     sources[source] = {};
 
-    var location = "/global/lang/" + currentLocale["code"] + "/" + source + ".json?v=3";
+    var location = "/global/lang/" + currentLocale["code"] + "/" + source + ".json?v=" + version;
 
     var xhr = new XMLHttpRequest();
     var promise = new Promise(function (resolve, reject) {
@@ -43,7 +43,7 @@ async function loadSource(source, locale = currentLocale) {
                     resolve(xhr.responseText);
                 } else {
                     sources[source] = {};
-                    reject(xhr.status);
+                    resolve(xhr.status);
                 }
             }
         }
@@ -150,6 +150,14 @@ async function GetString(string, variables = []) {
     var text = await GetStringRaw(source, key, variables);
     return text;
 }
+
+function GetStringNonAsync(string, variables = []) { 
+    var string = string.split(".");
+    var source = string[0];
+    var key = string.slice(1).join(".");
+    var text = GetStringRawNonAsync(source, key, variables);
+    return text;
+}
 //function LocalizeText($string, $variables = [])
 //{
 //    // this text can include multiple strings, like this:
@@ -172,6 +180,20 @@ async function LocalizeText(string, variables = []) {
         for (var i = 0; i < strings.length; i++) {
             var cleanedString = strings[i].replace(/\?\?|\?\?/g, "");
             var localizedString = await GetString(cleanedString, variables);
+
+            string = string.replace("??" + cleanedString + "??", localizedString);
+        }
+    }
+    return string;
+}
+
+function LocalizeTextNonAsync(string, variables = []) {
+    var strings = string.match(/\?\?([^\?]+)\?\?/g);
+
+    if (strings) {
+        for (var i = 0; i < strings.length; i++) {
+            var cleanedString = strings[i].replace(/\?\?|\?\?/g, "");
+            var localizedString = GetStringNonAsync(cleanedString, variables);
 
             string = string.replace("??" + cleanedString + "??", localizedString);
         }

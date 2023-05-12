@@ -117,6 +117,7 @@ function openSearch(requestedElement) {
         }, 500);
     } else {
         requestedElement.classList.add("osekai__navbar-button-active");
+        document.getElementById("searchInput").focus();
     }
 }
 

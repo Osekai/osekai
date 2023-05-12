@@ -2,7 +2,7 @@
 $loadApps = false;
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 ini_set('display_errors', 0);
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 
 $apps = (array)Database::execSimpleSelect("SELECT * FROM Apps");
 

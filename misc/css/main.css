@@ -61,17 +61,19 @@ html {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    font-family: var(--body-font);
 }
 
 .misc__explainer p {
-    font-weight: 200;
-    font-size: 17px;
+    font-weight: 300;
+    font-size: 18px;
+    opacity: 0.8
 }
 
 .misc__explainer h3 {
     color: rgb(var(--accent));
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 900;
+    font-size: 15px;
 }
 
 .misc__explainer mark {

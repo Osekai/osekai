@@ -1,0 +1,60 @@
+* {
+    transition: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.osekai__pfp-blur-bg {
+    display: none !important;
+}
+
+.osekai__group-badge {
+    background: rgb(var(--colour));
+    border: 0px solid white !important;
+}
+.osekai__group-badge-monochrome {
+    background: white;
+}
+
+.osekai__navbar {
+    background:  hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)));
+}
+
+.osekai__navbar__app-container {
+    background:  hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(35% * var(--accentdark_valueoffset)));
+}
+
+.osekai__panel {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(12% * var(--accentdark_valueoffset)));
+}
+
+.osekai__button:before {
+    background: hsl(var(--accentdark_hue), 20%, calc(30% * var(--accentdark_valueoffset)));
+    filter: none !important;
+    border: 0px solid white !important;
+}
+
+.osekai__panel-header-with-buttons, .osekai__panel-header {
+    background:  hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(35% * var(--accentdark_valueoffset)));
+}
+
+.comments__comment-div {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(18% * var(--accentdark_valueoffset)));
+}
+
+.comments__comment-bottom {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(24% * var(--accentdark_valueoffset)));
+}
+
+.comments__comment-vote, .comments__comment-reply {
+    background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(34% * var(--accentdark_valueoffset)));
+}
+
+.comments__comment-delete, .comments__comment-report {
+    background: #aa1133;
+}
+
+.comments__comment-vote-voted {
+    background: #fff;
+}

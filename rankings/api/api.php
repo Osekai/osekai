@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 // report errors
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 
 if (isset($_POST['App'])) {
     // <hubz> cache loading
@@ -43,7 +43,7 @@ if (isset($_POST['App'])) {
             "INNER JOIN MedalRarity ON MedalRarity.id = Medals.medalid " .
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.medal_count DESC, MedalRarity.frequency, Ranking.rarest_medal_achieved " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Rarity") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Medals.link, " .
@@ -55,7 +55,7 @@ if (isset($_POST['App'])) {
             "FROM Medals " .
             "INNER JOIN MedalRarity ON MedalRarity.id = Medals.medalid " .
             "ORDER BY MedalRarity.frequency, Medals.ordering " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Standard Deviation") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
@@ -71,7 +71,7 @@ if (isset($_POST['App'])) {
             "FROM Ranking " .
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.stdev_pp DESC, Ranking.total_pp DESC " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Total pp") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
@@ -86,7 +86,7 @@ if (isset($_POST['App'])) {
             "FROM Ranking " .
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.total_pp DESC, Ranking.stdev_pp DESC " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Replays") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
@@ -97,7 +97,7 @@ if (isset($_POST['App'])) {
             "FROM Ranking " .
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.replays_watched DESC, Ranking.stdev_pp DESC " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Ranked Mapsets") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
@@ -108,7 +108,7 @@ if (isset($_POST['App'])) {
             "FROM Ranking " .
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.ranked_maps DESC, Ranking.id DESC " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Loved Mapsets") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
@@ -120,7 +120,7 @@ if (isset($_POST['App'])) {
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "WHERE Ranking.loved_maps > 0 " .
             "ORDER BY Ranking.loved_maps DESC, Ranking.id DESC " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Badges") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
@@ -131,7 +131,7 @@ if (isset($_POST['App'])) {
             "FROM Ranking " .
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.badge_count DESC, Ranking.id DESC " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Subscribers") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
@@ -142,7 +142,7 @@ if (isset($_POST['App'])) {
             "FROM Ranking " .
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.subscribers DESC, Ranking.ranked_maps DESC, Ranking.loved_maps DESC, Ranking.id DESC " .
-            ") t1, (SELECT @r:=0) t2 LIMIT 1000");
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     }
     echo json_encode($Rankings);
 
@@ -178,11 +178,11 @@ if (isset($_POST['Member']) && !isRestricted() && loggedin()) {
 }
 
 if (isset($_POST['State'])) {
-    echo Database::execSimpleSelect("SELECT * FROM RankingLoopInfo")[0]["State"];
+    echo json_encode(Database::execSimpleSelect("SELECT * FROM RankingLoopInfo")[0]);
 }
 
 if (isset($_POST['StateHistory'])) {
-    echo json_encode(Database::execSimpleSelect("SELECT * FROM RankingLoopHistory LIMIT 10 ORDER BY Time"));
+    echo json_encode(Database::execSimpleSelect("SELECT * FROM RankingLoopHistory ORDER BY Time DESC LIMIT 10"));
 }
 
 

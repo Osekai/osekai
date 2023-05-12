@@ -27,18 +27,20 @@ $tooltipText = "This debug panel is so that you, and our team, can make sure Ose
     <div class="debug__inner">
         <div class="debug__header">
             <h1>Debug</h1>
-            <div class="debug__moreinfo tooltip-v2" tooltip-content="<?php echo $tooltipText; ?>">
+            <div class="debug__moreinfo tooltip-v2" tooltip-content="<?= $tooltipText; ?>">
                 ?
             </div>
         </div>
-        <p><?php echo GetStringRaw("general", "page.generatedIn", ["<strong>" . $time . "</strong>"]); ?></p>
-        <p>Aborted Session Saves: <strong><?php echo $abortedSaves; ?></strong></p>
+        <p><?= GetStringRaw("general", "page.generatedIn", ["<strong>" . $time . "</strong>"]); ?></p>
+        <p>Aborted Session Saves: <strong><?= $abortedSaves; ?></strong></p>
         <p style="font-size: 10px">Commit <strong><a href="https://github.com/Osekai/osekai/commit/<?= $gitHash ?>"><?= $gitHash ?></a></strong>
-            (branch <strong><a href="https://github.com/Osekai/osekai/tree/<?= $gitBranchName ?>"><?= $gitBranchName ?></a></strong>)</p>
+            (branch <strong>
+                <?= $gitBranchLink != "" ? '<a href="' . $gitBranchLink . '">' . $gitBranchName . '</a>' : $gitBranchName ?></strong>)
+
         <p style="font-size: 10px"><?= $gitDate; ?> UTC</p>
     </div>
 </div>
 
 <script>
-    console.log("generated in: " + <?php echo $time; ?> + " seconds");
+    console.log("generated in: " + <?= $time; ?> + " seconds");
 </script>

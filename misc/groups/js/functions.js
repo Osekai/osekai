@@ -33,17 +33,18 @@ async function loadData() {
     document.getElementById("group").classList.add("hidden");
     document.getElementById("grouplist").classList.add("hidden");
     await loadSource("misc/groups")
+    await loadSource("groups")
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "api/api.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     xhr.send();
-    xhr.onload = function () {
+    xhr.onload = async function () {
         data = JSON.parse(xhr.responseText);
         var html = "";
         for (var x = 0; x < data.length; x++) {
             html += `<div onclick="loadGroup(${data[x]['Id']}, true)" class="groups__group-list-item" style="--colour: ${data[x]['Colour']}">
             <div class="groups__group-list-item-inner">
-                <h3>${data[x]['Name']}</h3>
+                <h3>${await LocalizeText(data[x]['Name'])}</h3>
                 <div class="groups__group-list-item-bottom">
                     <div class="osekai__group-badge osekai__group-badge-large">${data[x]['ShortName']}</div>
                     <small>${GetStringRawNonAsync("misc\/groups", "users", [data[x]['Users'].length])}</small>
@@ -76,13 +77,12 @@ window.addEventListener('popstate', function (event) {
 
 async function loadGroup(id, push = false) {
     console.log("Loading group: " + id);
-    document.getElementById("group").classList.remove("hidden");
-    document.getElementById("grouplist").classList.add("hidden");
+
     var found = false;
 
     var html = "";
     await loadSource("misc/groups")
-
+    await loadSource("groups")
     for (var x = 0; x < data.length; x++) {
         if (data[x]['Id'] == id) {
             found = true;
@@ -90,10 +90,10 @@ async function loadGroup(id, push = false) {
 
             group = data[x];
             document.getElementById("group").style = "--colour: " + group['Colour'];
-            document.getElementById("title").innerHTML = group['Name'];
+            document.getElementById("title").innerHTML = await LocalizeText(group['Name']);
             document.getElementById("badge").innerHTML = group['ShortName'];
             document.getElementById("users").innerHTML = GetStringRawNonAsync("misc\/groups", "users", [group['Users'].length]);
-            document.getElementById("description").innerHTML = group['Description'];
+            document.getElementById("description").innerHTML = await LocalizeText(group['Description']);
 
             for (var y = 0; y < data[x]['Users'].length; y++) {
                 user = data[x]['Users'][y];
@@ -110,7 +110,7 @@ async function loadGroup(id, push = false) {
                 user['Groups'] = groupUtils.orderBadgeArray(user['Groups']);
                 console.log(user);
                 html += `
-                <a class="groups__userpanel" style="--colour: ${user['Groups'][0]['Colour']}" href="https://osekai.net/profiles/?user=${user['UserId']}">
+                <a class="groups__userpanel nolink" style="--colour: ${user['Groups'][0]['Colour']}" href="https://osekai.net/profiles/?user=${user['UserId']}">
                     <img src="https://a.ppy.sh/${user['UserId']}" class="osekai__pfp-blur-bg">
                     <div class="groups__userpanel-inner">
                         <img src="https://a.ppy.sh/${user['UserId']}">
@@ -125,6 +125,10 @@ async function loadGroup(id, push = false) {
             }
         }
     }
+
+    // doing this down here instead stops the flash of the placeholder content when clicking
+    document.getElementById("group").classList.remove("hidden");
+    document.getElementById("grouplist").classList.add("hidden");
 
     if (found == false) {
         document.getElementById("group").classList.add("hidden");

@@ -38,7 +38,7 @@ function migrationLog($text, $title = "log", $color = "#000", $big = false)
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ERROR);
 // report using migrationError()
 set_error_handler("migrationError");
 function migrationError($errno, $errstr, $errfile, $errline)
@@ -49,13 +49,13 @@ function migrationError($errno, $errstr, $errfile, $errline)
 
 // print current root
 migrationLog("Current root: " . $_SERVER['DOCUMENT_ROOT'], "info", "#aaa");
-$legacyroot = $_SERVER['DOCUMENT_ROOT'] . "snapshots/";
-$azeliaroot = $_SERVER['DOCUMENT_ROOT'] . "azelia/";
+$legacyroot = $_SERVER['DOCUMENT_ROOT'] . "/snapshots/";
+$azeliaroot = $_SERVER['DOCUMENT_ROOT'] . "/azelia/";
 migrationLog("Legacy root: " . $legacyroot, "info", "#ccc");
 migrationLog("Azelia root: " . $azeliaroot, "info", "#ccc");
 
 $legacyVersions = array();
-$legacyVersionsRaw = file_get_contents("/snapshots/api/api");
+$legacyVersionsRaw = file_get_contents(ROOT_URL . "/snapshots/api/api");
 $legacyVersions = json_decode($legacyVersionsRaw, true);
 // log, but only first 10 characters
 migrationLog("Legacy versions: " . count($legacyVersions) . ". Check CONSOLE for more", "data_legacy", "#294", true);
@@ -196,7 +196,7 @@ for($i = 0; $i < count($legacyVersions); $i++)
 
 migrationLog("Done! Cleaned up " . count($legacyVersions) . " versions", "info", "#42c", true);
 
-$newVersions = file_get_contents("/azelia/api/get_versions.php");
+$newVersions = file_get_contents(ROOT_URL . "/azelia/api/get_versions.php");
 $newVersions = json_decode($newVersions, true);
 
 migrationLog("New versions: " . count($newVersions) . ". Check CONSOLE for more", "data_new", "#294", true);

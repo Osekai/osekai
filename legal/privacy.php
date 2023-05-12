@@ -24,14 +24,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <?php
     font();
     css();
-    dropdown_system();
-    echo $head;
-    //notification_system();
-    //user_hover_system();
-    //medal_hover_system();
-    //tooltip_system();
-    //comments_system();
-    //report_system();
+        echo $head;
     ?>
 </head>
 

@@ -145,6 +145,7 @@ function loadUser(uid) {
     let url = new URL(window.location);
     url.searchParams.set('user', uid);
     window.history.pushState({}, '', url);
+    document.querySelectorAll("[selector='pfp']").forEach((oPfp) => { oPfp.src = `https://a.ppy.sh/${uid}` });
     document.getElementById('profile').classList.remove('hidden');
     document.getElementById('home').classList.add('hidden');
     loadMode(null);
@@ -312,7 +313,25 @@ async function FillData(uid, mode, completeReload = true) {
     }
 
     //stats section
-    if (oData.statistics.pp != null) document.getElementById("pp__count").innerHTML = FormatNumber(oData.statistics.pp);
+    if (oData.statistics.pp != null) {
+        let ppCountEl = document.getElementById("pp__count");
+        if (mode == 'all') {
+
+            let stdDevPP = oData.statistics.std_dev_pp;
+
+            ppCountEl.textContent = FormatNumber(stdDevPP);
+
+            ppCountEl.parentElement.innerHTML = ppCountEl.parentElement.innerHTML.replace(' pp ', ' spp ');
+            tippy(document.getElementById("pp__count"), {
+                content: `${FormatNumber(oData.statistics.pp)} total`,
+            });
+        } else {
+            ppCountEl.textContent = FormatNumber(oData.statistics.pp);
+            // When changing the innerHTML of the parent, it recreates all its children, so the reference we had before no longer exists and tippy dissapears, which is exactly what i want - Pedrito
+            ppCountEl.parentElement.innerHTML = ppCountEl.parentElement.innerHTML.replace(' spp ', ' pp ');
+        }
+    }
+
     if (oData.statistics.global_rank > 0) {
         if (oData.statistics.global_rank != null) {
             document.getElementById("current__global__rank").innerHTML = "#" + FormatNumber(oData.statistics.global_rank);
@@ -575,7 +594,7 @@ async function FillData(uid, mode, completeReload = true) {
                         oIWarning.classList.add("fa-info-circle");
 
                         let oTextWarning = document.createElement("p");
-                        oTextWarning.innerHTML = "Progress will only be tracked for the currently selected gamemode!";
+                        oTextWarning.innerHTML = GetStringRawNonAsync("profiles", "profile.unachiededMedals.trackingWarning");
 
                         oDivWarning.appendChild(oIWarning);
                         oDivWarning.appendChild(oTextWarning);
@@ -988,7 +1007,7 @@ function LoadTimelineEntries(Data) {
     colEntries = [];
 
     Data.timeline.forEach(oEntry => {
-        let strGroup = new Date(oEntry.Date).getFullYear() + "." + new Date(oEntry.Date).getMonth();
+        let strGroup = new Date(oEntry.Date).getUTCFullYear() + "." + new Date(oEntry.Date).getUTCMonth();
         if (document.querySelector("[date='" + strGroup + "']") !== null) {
             colGroups.forEach(oGroup => {
                 if (oGroup.date == strGroup) oGroup.values.push(oEntry);
@@ -1016,11 +1035,12 @@ function LoadTimelineEntries(Data) {
 
                 let oHeader = document.createElement("div");
                 oHeader.classList.add("profiles__info-panel-header");
-                oHeader.innerHTML = new Date(oEntry.Date).toLocaleDateString('en-US', { month: 'long' }) + " " + new Date(oEntry.Date).getFullYear();
+                let lang = getCookie("locale").replace('_', '-');
+                oHeader.innerHTML = new Date(oEntry.Date).toLocaleDateString(lang, { month: 'long', timeZone: 'UTC' }) + " " + new Date(oEntry.Date).getUTCFullYear();
 
                 oInfo.appendChild(oHeader);
 
-                let strInnerGroup = new Date(oEntry.Date).getFullYear() + "." + new Date(oEntry.Date).getMonth();
+                let strInnerGroup = new Date(oEntry.Date).getUTCFullYear() + "." + new Date(oEntry.Date).getUTCMonth();
                 let oGroup = colGroups.filter(obj => { return obj.date == strInnerGroup });
 
                 oGroup[0].values.sort((a, b) => {
@@ -1034,10 +1054,9 @@ function LoadTimelineEntries(Data) {
                     oRow.classList.add("profiles__info-panel-row");
 
                     let oSpanDate = document.createElement("span");
-                    oSpanDate.innerHTML = getOrdinalNum(new Date(oGroupEntry.Date).getDate());
+                    oSpanDate.innerHTML = getOrdinalNum(new Date(oGroupEntry.Date).getUTCDate());
                     let oParagraphDate = document.createElement("p");
-                    //oParagraphDate.innerHTML = new Date(oGroupEntry.Date).toDateString('en-US', { month: 'short' }) + " ";
-                    oParagraphDate.innerHTML = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(oGroupEntry.Date)) + " ";
+                    oParagraphDate.innerHTML = new Intl.DateTimeFormat(lang, { month: 'short', timeZone: 'UTC' }).format(new Date(oGroupEntry.Date)) + " ";
                     oParagraphDate.appendChild(oSpanDate);
 
                     let oNoteTitle = document.createElement("h3");
@@ -1426,10 +1445,9 @@ function LoadRecentlyViewed() {
             let html = "";
 
             for (let i = 0; i < json.length; i++) {
-                if (json[i].userdata == null) continue;
-                html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].visited_id});"><img src="https://a.ppy.sh/${json[i].visited_id}" class="profiles__ranking-pfp">
+                html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].UserID});"><img src="https://a.ppy.sh/${json[i].UserID}" class="profiles__ranking-pfp">
           <div class="profiles__ranking-texts">
-            <p class="profiles__ranking-username">${json[i].userdata.Username}</p>
+            <p class="profiles__ranking-username">${json[i].Username}</p>
           </div>
         </div>`;
             }
@@ -1505,16 +1523,17 @@ var UserBanner = {
         generatenotification("normal", "Copied Image URL!");
     },
     SwitchUrl: function (type) {
+        let host = window.location.origin;
         document.getElementById("banner-toggle-type_bbcode").classList.remove("profiles__userbanner-top-toggle-item-active");
         document.getElementById("banner-toggle-type_raw").classList.remove("profiles__userbanner-top-toggle-item-active");
 
         if (type == "raw") {
             document.getElementById("banner-toggle-type_raw").classList.add("profiles__userbanner-top-toggle-item-active");
-            document.getElementById("banner-copy-placeholder").innerHTML = "/profiles/img/banner.svg?id=" + nUserID;
+            document.getElementById("banner-copy-placeholder").innerHTML = `${host}/profiles/img/banner.svg?id=${nUserID}`;
         }
         if (type == "bbcode") {
             document.getElementById("banner-toggle-type_bbcode").classList.add("profiles__userbanner-top-toggle-item-active");
-            document.getElementById("banner-copy-placeholder").innerHTML = "[url=/profiles?user=" + nUserID + "][img]/profiles/img/banner.svg?id=" + nUserID + "[/img][/url]"
+            document.getElementById("banner-copy-placeholder").innerHTML = `[url=${host}/profiles?user=${nUserID}][img]${host}/profiles/img/banner.svg?id=${nUserID}[/img][/url]`
         }
     },
 

@@ -15,7 +15,7 @@
     "profile.timeline.addEntry.placeholder": "something interesting happened...",
     "profile.goals.title": "Goals",
     "profile.goals.welcome.title": "Welcome to <strong>Goals</strong>",
-    "profile.goals.welcome.body": "Goals is a way to keep track of your osu! goals, from medal counts, to pp goals, to even badges and rank! You can add a goal below. On the left is the goal type, and then to add the goal you can hit the plus button on the right!",
+    "profile.goals.welcome.body": "Goals is a way to keep track of your osu! goals, from medal counts and pp goals, to even badges and rank! You can add a goal below. On the left is the goal type, and then you can hit the plus button on the right to add the goal!",
     "profile.goals.welcome.close": "This panel will close automatically when<br>you have added your first goal.",
     "profile.goals.input.placeholder": "Amount",
     "profile.goals.pp": "pp",
@@ -65,5 +65,6 @@
     "profile.banner.customBackground.colour": "Colour",
     "profile.banner.customBackground.angle": "Gradient",
     "profile.unachievedMedals.title": "Unachieved Medals",
+    "profile.unachiededMedals.trackingWarning": "Progress will only be tracked for the currently selected gamemode!",
     "loading": "Loading profile"
 }

@@ -11,7 +11,7 @@ if (isset($_POST['strSearch'])) {
         $medals = array();
         foreach ($groups as $key => $value) {
             foreach ($groups[intval($key)] as $k => $v) {
-                $medals[$v] = Database::execSelect("CALL FUNC_GetMedals(?,?)", "ss", array($v, $_POST['strSearch']));
+                $medals[$v] = Database::execSelect("CALL FUNC_GetMedals(?,'')", "s", [$v]);
             }
         }
 

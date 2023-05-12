@@ -14,3 +14,8 @@ $options = array(
 );
 $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
+
+$data = json_decode($_POST['data'], true);
+
+Database::execOperation("INSERT INTO `RankingLoopHistory` (`Time`, `LoopType`, `Amount`) VALUES (CURRENT_TIMESTAMP, ?, ?);", "si", [$data['task'], $data['requested_users']]);
+Database::execOperation("UPDATE `RankingLoopInfo` SET `CurrentLoop` = ? LIMIT 1;", "s", ["Complete"]);

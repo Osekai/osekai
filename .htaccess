@@ -20,11 +20,7 @@ RewriteRule ^(.*)$ https://osekai.net/$1 [R=301,L]
 
 # rewrite to HTTPS
 RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} !=localhost
-RewriteCond %{HTTP_HOST} !=127.0.0.1
-RewriteCond %{REMOTE_ADDR} !=127.0.0.1
-RewriteCond %{REMOTE_ADDR} !=::1
-RewriteCond %{HTTP_HOST} !^192\.(.*)\.(.*)\.(.*)(?::\d+)?$
+RewriteCond %{HTTP_HOST} =osekai.net
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 #Header always set Content-Security-Policy "upgrade-insecure-requests;"
 # ^ need to make sure that these updates dont break prod
@@ -79,3 +75,7 @@ RedirectMatch 404 ^/tools/src/(.*)/index.php$
     #RewriteCond %{REQUEST_FILENAME} !-f
     #RewriteRule ^(.*)$ /offline-work.html [L]
 </If>
+
+<FilesMatch ".(eot|otf|ttf|woff|woff2)">
+    Header always set Access-Control-Allow-Origin "*"
+</FilesMatch>

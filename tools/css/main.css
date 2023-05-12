@@ -21,11 +21,27 @@
 .tools__tool-container-inner {
     width: calc(100vw - var(--padding));
     height: calc(100% - var(--padding)/2);
-    background-color: #222;
     border-radius: 0px 0px 25px 25px;
     overflow: hidden;
+
+    position: relative;
 }
 
+
+.tools__tool-generic-background {
+    background-color: #000;
+    background: url("/tools/img/bg.jpg");
+    background-blend-mode: hue, normal;
+    background-size: cover;
+    image-rendering: smooth;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: hue-rotate(var(--accentdark_hue))
+}
 
 .tools__tool-header-side {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.316) 98.44%);
@@ -86,4 +102,8 @@ border: 1px solid #fff2;
 .tools__tool-header-side-left img {
     height: 30px;
     margin-right: 10px;
+}
+.tools__tool {
+    z-index: 2;
+    position: relative;
 }

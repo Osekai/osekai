@@ -44,12 +44,13 @@ $locales = [
         "short" => "sk",
         "flag" => "https://assets.ppy.sh/old-flags/SK.png",
     ],
-    /* "db_DB" => [
+    "db_DB" => [
         "name" => "Debug",
         "code" => "db_DB",
+        "experimental" => true,
         "short" => "db",
         "flag" => "https://assets.ppy.sh/old-flags/XX.png",
-    ], */
+    ],
     "hr_HR" => [
         "name" => "Hrvatski",
         "code" => "hr_HR",
@@ -88,7 +89,7 @@ $locales = [
         "flag" => "https://assets.ppy.sh/old-flags/KR.png",
         "extra_html" => '<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">',
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">',
         "extra_css" => 'body { font-family: "Comfortaa", "Noto Sans KR", sans-serif !important; }',
     ],
     "ja_JP" => [
@@ -99,7 +100,7 @@ $locales = [
         "flag" => "https://assets.ppy.sh/old-flags/JP.png",
         "extra_html" => '<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet"> ',
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet"> ',
         "extra_css" => 'body { font-family: "Comfortaa", "M PLUS Rounded 1c", sans-serif !important; }',
     ],
     /* chinese simplified */
@@ -119,7 +120,7 @@ $locales = [
         "flag" => "https://assets.ppy.sh/old-flags/TW.png",
         "extra_html" => '<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap" rel="stylesheet"> ',
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"> ',
         "extra_css" => 'body { font-family: "Comfortaa", "Noto Sans TC", sans-serif !important; }',
     ],
     /* hebrew */
@@ -134,7 +135,7 @@ $locales = [
         "rtl" => true,
         "extra_html" => '<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet"> ',
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet"> ',
         "extra_css" => 'body { font-family: "Comfortaa", "M PLUS Rounded 1c", sans-serif !important; }',
     ],
     /* italian */
@@ -202,9 +203,7 @@ $locales = [
     ],
     /* bulgarian */
     "bg_BG" => [
-        "name" => "български",
-        "wip" => true,
-        "experimental" => true,
+        "name" => "Български",
         "code" => "bg_BG",
         "short" => "bg",
         "flag" => "https://assets.ppy.sh/old-flags/BG.png"
@@ -231,14 +230,13 @@ function nameToEnglish($code)
 {
     $name = Locale::getDisplayLanguage($code, 'en_GB');
     if ($code == "zh_TW") {
-        $name = "Simplified " . $name;
+        $name = "Traditional " . $name;
     }
     if ($code == "zh_CN") {
         $name = "Simplified " . $name;
     }
     return $name;
 }
-
 
 // sort locales by name without removing keys
 $locales = array_values($locales);
@@ -260,10 +258,7 @@ foreach ($locales as $locale) {
 }
 $locales = $temp;
 
-
-
-
-$sourcesNames = ["report", "apps", "badges", "comments", "faq", "general", "home", "medals", "navbar", "profiles", "rankings", "snapshots", "donate", "contact", "misc/translators", "misc/groups", "misc/global"];
+$sourcesNames = ["groups", "report", "apps", "badges", "comments", "faq", "general", "home", "medals", "navbar", "profiles", "rankings", "snapshots", "donate", "contact", "misc/translators", "misc/groups", "misc/global"];
 $sources = array();
 
 $currentLocale = null;
@@ -288,7 +283,9 @@ function setLocaleCookie($text)
 
 function getLocaleCookie()
 {
-    return $_COOKIE['locale'];
+    if (isset($_COOKIE['locale']))
+        return $_COOKIE['locale'];
+    return null;
 }
 
 function setCurrentLocale($localeName, $save = true)
@@ -298,7 +295,7 @@ function setCurrentLocale($localeName, $save = true)
     if (array_key_exists($localeName, $locales)) {
         $currentLocale = $locales[$localeName];
         //$_SESSION['locale'] = $localeName;
-        if($save) {
+        if ($save) {
             setLocaleCookie($localeName);
         }
     } else {
@@ -337,7 +334,7 @@ function loadSource($source)
     global $sources;
     global $enabled;
     // if not a source
-    if (!in_array($source, $sourcesNames)) {
+    if (!in_array($source, $sourcesNames) || $currentLocale['code'] == "db_DB") {
         return;
     }
 
@@ -352,7 +349,6 @@ function loadSource($source)
     $json = json_decode($json, true);
     $sources[$source] = $json;
 }
-
 
 function sourceLoaded($source)
 {

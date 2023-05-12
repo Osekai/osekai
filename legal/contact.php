@@ -23,14 +23,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <?php
     font();
     css();
-    dropdown_system();
-    //notification_system();
-    //user_hover_system();
-    //medal_hover_system();
-    //tooltip_system();
-    //comments_system();
-    //report_system();
-    ?>
+        ?>
 </head>
 
 <body>
@@ -41,18 +34,18 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             <div class="osekai__1col">
                 <section class="osekai__panel">
                     <div class="osekai__panel-header">
-                        <p><?php echo GetStringRaw("contact", "title"); ?></p>
+                        <p><?= GetStringRaw("contact", "title"); ?></p>
                     </div>
                     <div class="osekai__panel-inner">
-                        <p class="osekai__h2"><?php echo GetStringRaw("contact", "header"); ?></p>
-                        <p style="margin: 20px 0px;" class="osekai__p"><?php echo GetStringRaw("contact", "body.p1"); ?></p>
-                        <p class="osekai__p"><?php echo GetStringRaw("contact", "body.p2"); ?></p>
+                        <p class="osekai__h2"><?= GetStringRaw("contact", "header"); ?></p>
+                        <p style="margin: 20px 0px;" class="osekai__p"><?= GetStringRaw("contact", "body.p1"); ?></p>
+                        <p class="osekai__p"><?= GetStringRaw("contact", "body.p2"); ?></p>
                     </div>
                 </section>
             </div>
-            <p style="opacity: 0.5;"><?php echo GetStringRaw("contact", "siteOwner", ["Frederik Reidinger • Wacholderweg 6, 84032 Landshut, Deutschland • frederik.reidinger@gmx.de • +49 0871 79287"]); ?></p>
-            <p style="opacity: 0.5;"><?php echo GetStringRaw("contact", "snapshots"); ?></p>
-            <p style="opacity: 0.5; margin-top: 8px;">©️ Osekai 2019-2021</p>
+            <p style="opacity: 0.5;"><?= GetStringRaw("contact", "siteOwner", ["Frederik Reidinger • Wacholderweg 6, 84032 Landshut, Deutschland • frederik.reidinger@gmx.de • +49 0871 79287"]); ?></p>
+            <p style="opacity: 0.5;"><?= GetStringRaw("contact", "snapshots"); ?></p>
+            <p style="opacity: 0.5; margin-top: 8px;">©️ Osekai 2019-<?= date("Y") ?></p>
         </div>
     </div>
 </body>

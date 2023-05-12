@@ -24,8 +24,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <?php
     font();
     css();
-    dropdown_system();
-    
+        
 
     $retromedals = [
         "Video Game Pack vol.1",

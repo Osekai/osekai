@@ -23,6 +23,12 @@ if (isset($_GET['user'])) {
     if (isset($user)) {
         $user = json_decode($user, true);
 
+        if($_GET['user'] != $user['id']) {
+            // redirects from username, so you can go to https://osekai.net/profiles?user=Tanza3D and it'll auto-redirect
+            redirect("/profiles?user=" . $user['id']);
+            exit;
+        }
+
         $user_id = $user['id'];
         $user_name = $user['username'];
 
@@ -82,15 +88,12 @@ frontend();
 
     font();
     css();
-    dropdown_system();
-    mobileManager();
-
+        
     xhr_requests();
     osu_api();
-    user_hover_system();
+    
     medal_popup_v2();
-    tooltip_system();
-    report_system();
+
     notification_system();
     comments_system();
     fontawesome();
@@ -632,7 +635,7 @@ frontend();
                                 </div>
                             </div>
                         </div>
-                        <a id="rarest__medal__panel" class="profiles__medalinfo-section">
+                        <div id="rarest__medal__panel" class="profiles__medalinfo-section">
                             <div class="profiles__medals-section-top">
                                 <p><?= GetStringRaw("profiles", "profile.medals.rarest"); ?></p>
                                 <!-- <p class="profiles__medals-section-top-right">only <strong id="rarest__medal__frequency">?% of players</strong> have this medal</p> -->
@@ -650,7 +653,7 @@ frontend();
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                </div>
                         <div id="rarest__medal__panel__error" class="profiles__medalinfo-error hidden">
                             <?= GetStringRaw("profiles", "profile.medals.rarest.fail") ?>
                         </div>
@@ -718,7 +721,7 @@ frontend();
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="./js/functions.js?vx=<?= OSEKAI_VERSION; ?>"></script>
+    <script type="text/javascript" src="./js/functions.js?vx=<?= OSEKAI_VERSION ?>"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>
 <!-- woo -->

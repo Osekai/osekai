@@ -45,7 +45,7 @@ body {
     padding-bottom: 7px;
     font-weight: 900;
     font-size: 16px;
-    color: #222;
+    color: #222 !important;
     border-radius: 5px;
     background-color: transparent;
     font-family: "Comfortaa" !important;
@@ -74,7 +74,7 @@ body {
 
 .osekai__button:hover {
 
-    color: #fff;
+    color: #fff !important;
 }
 
 .osekai__button:hover:before {
@@ -206,12 +206,6 @@ body {
 
 .osekai__divider {
     background-color: #2224;
-}
-
-
-.osekai__nav-dropdown {
-    background-color: #fff;
-    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.1));
 }
 
 .osekai__userdropdown_v2-button {
@@ -724,4 +718,30 @@ input[type=range]:focus::-ms-fill-upper {
 
 .osekai__navbar-alert-clickable {
     box-shadow: 0px 0px 20px #0002;
+}
+
+.osekai__dropdown-settings-pages {
+	background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(75% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(65% * var(--accent_valueoffset))) );
+}
+
+.osekai__dropdown-settings-content {
+	background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(90% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(80% * var(--accent_valueoffset))) );
+}
+
+.osekai__dropdown-settings-radio-item span {
+	background-color: #0001;
+	outline: 3px solid #0001;
+}
+
+.osekai__dropdown-settings-radio-item-checked span {
+	background-color: rgb(var(--accent));
+}
+
+.osekai__dropdown-settings-page-active {
+    color: white;
+    background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(55% * var(--accent_valueoffset))) );
+}
+
+.osekai__blur-overlay {
+    filter: brightness(2) saturate(0.4);
 }

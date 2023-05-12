@@ -50,9 +50,8 @@ if (!isset($_GET['ranking'])) {
     } else {
         header("HTTP/1.1 301 Moved Permanently");
         header("Location: /rankings/");
-        exit();        
+        exit();
     }
-
 }
 
 $app = "rankings";
@@ -83,17 +82,12 @@ $meta = '<meta charset="utf-8">
     echo $head;
     font();
     css();
-    dropdown_system();
-    fontawesome();
+        fontawesome();
 
-    mobileManager();
-    notification_system();
+        notification_system();
     tippy();
-    user_hover_system();
-    //medal_hover_system();
+
     medal_popup_v2();
-    tooltip_system();
-    //report_system();
     ?>
 </head>
 
@@ -111,147 +105,120 @@ $meta = '<meta charset="utf-8">
 
                 <div class="osekai__panel">
                     <div class="osekai__panel-header">
-                        <p><?php echo GetStringRaw("rankings", "home.addUser.title"); ?></p>
+                        <p><?= GetStringRaw("rankings", "home.addUser.title"); ?></p>
                     </div>
                     <div class="osekai__panel-inner">
                         <?php if (loggedin()) { ?>
-                            <p><?php echo GetStringRaw("rankings", "home.addUser.loggedIn"); ?></p>
+                            <p><?= GetStringRaw("rankings", "home.addUser.loggedIn"); ?></p>
                         <?php } else { ?>
-                            <p><?php echo GetStringRaw("rankings", "home.addUser.loggedOut"); ?></p>
+                            <p><?= GetStringRaw("rankings", "home.addUser.loggedOut"); ?></p>
                         <?php } ?>
 
                         <div class="rankings__add">
-                            <p><?php echo GetStringRaw("rankings", "home.addUser.addAnotherUser.title"); ?></p>
+                            <p><?= GetStringRaw("rankings", "home.addUser.addAnotherUser.title"); ?></p>
 
                             <?php if (loggedin()) { ?>
                                 <div class="rankings__add-row">
-                                    <input class="osekai__input" type="text" placeholder="<?php echo GetStringRaw("rankings", "home.addUser.addAnotherUser.placeholder"); ?>" id="osekai__input-id">
-                                    <div class="osekai__button" id="osekai__button-add"><?php echo GetStringRaw("rankings", "home.addUser.addAnotherUser.button"); ?></div>
+                                    <input class="osekai__input" type="text" placeholder="<?= GetStringRaw("rankings", "home.addUser.addAnotherUser.placeholder"); ?>" id="osekai__input-id">
+                                    <div class="osekai__button" id="osekai__button-add"><?= GetStringRaw("rankings", "home.addUser.addAnotherUser.button"); ?></div>
                                 </div>
                             <?php } else { ?>
-                                <p><?php echo GetStringRaw("rankings", "home.addUser.addAnotherUser.loggedOut"); ?></p>
+                                <p><?= GetStringRaw("rankings", "home.addUser.addAnotherUser.loggedOut"); ?></p>
                             <?php } ?>
                         </div>
                     </div>
                 </div>
-                <?php if (isExperimental()) { ?>
-                    <div class="osekai__panel">
-                        <div class="osekai__panel-header">
-                            <p>Tasks</p>
+                <div class="osekai__panel">
+                    <div class="osekai__panel-header">
+                        <p>Tasks</p>
+                    </div>
+                    <div class="osekai__panel-inner">
+                        <p class="rankings__tasks-header" id="currenttask-text">Current Task</p>
+                        <div class="rankings__task rankings__task-working rankings__task-current" id="currenttask">
+                            <div class="rankings__task-accent">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="rankings__task-content">
+                                <div class="rankings__task-content-inner">
+                                    <div class="rankings__task-text">
+                                        <div class="rankings__task-text-left">
+                                            <h3>Task: <strong id="currenttask_name">Full</strong></h3>
+                                            <h2 id="currenttask_statustext">Running Update</h2>
+                                        </div>
+                                        <div class="rankings__task-text-right">
+                                            <h3 id="currenttask_status"><strong>50%</strong> - 9000/15000</h3>
+                                            <h2 id="currenttask_eta">1:29:00 <light>ETA</light>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <div class="osekai__progress-bar">
+                                        <div id="currenttask_progress" class="osekai__progress-bar-inner" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="osekai__panel-inner">
-                            <p class="rankings__tasks-header">Current Task</p>
-                            <div class="rankings__task rankings__task-working rankings__task-current">
-                                <div class="rankings__task-accent">
-                                    <i class="fas fa-sync-alt"></i>
-                                </div>
-                                <div class="rankings__task-content">
-                                    <div class="rankings__task-content-inner">
-                                        <div class="rankings__task-text">
-                                            <div class="rankings__task-text-left">
-                                                <h3>Task: <strong>Full</strong></h3>
-                                                <h2>Running Update</h2>
-                                            </div>
-                                            <div class="rankings__task-text-right">
-                                                <h3><strong>50%</strong> - 9000/15000</h3>
-                                                <h2>1:29:00 <light>ETA</light>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                        <div class="osekai__progress-bar">
-                                            <div class="osekai__progress-bar-inner" style="width: 50%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="rankings__tasks-header">Completed Tasks</p>
-                            <div class="rankings__task rankings__task-finished">
-                                <div class="rankings__task-accent">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="rankings__task-content-small">
-                                    <div class="rankings__task-text-left">
-                                        <h2>Full</h2>
-                                        <h3>20,000 users processed</h3>
-                                    </div>
-                                    <div class="rankings__task-text-right">
-                                        <h2>2 days ago</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rankings__task rankings__task-error">
-                                <div class="rankings__task-accent">
-                                <i class="fas fa-times"></i>
-                                </div>
-                                <div class="rankings__task-content-small">
-                                    <div class="rankings__task-text-left">
-                                        <h2>Full</h2>
-                                        <h3>20,000 users processed</h3>
-                                    </div>
-                                    <div class="rankings__task-text-right">
-                                        <h2>2 days ago</h2>
-                                    </div>
-                                </div>
-                            </div>
+                        <p class="rankings__tasks-header">Completed Tasks</p>
+                        <div id="completedtasks_list" style="width: 100%;">
+
                         </div>
                     </div>
-                <?php } ?>
+                </div>
             </div>
             <div class="osekai__home-2col-col2">
                 <div class="rankings__home-v2-header medals-v2">
-                    <h1><?php echo GetStringRaw("rankings", "general.medals.title"); ?></h1>
+                    <h1><?= GetStringRaw("rankings", "general.medals.title"); ?></h1>
                 </div>
                 <div class="rankings__home-v2-button-container">
                     <div class="rankings__home-v2-button" selector="home__button" app="appUsers">
-                        <h1><?php echo GetStringRaw("rankings", "general.medals.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.medals.users"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.medals.users.subheader"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.medals.title"); ?> / <strong><?= GetStringRaw("rankings", "general.medals.users"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.medals.users.subheader"); ?></p>
                     </div>
                     <div class="rankings__home-v2-button" selector="home__button" app="appRarity">
-                        <h1><?php echo GetStringRaw("rankings", "general.medals.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.medals.rarity"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.medals.rarity.subheader"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.medals.title"); ?> / <strong><?= GetStringRaw("rankings", "general.medals.rarity"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.medals.rarity.subheader"); ?></p>
                     </div>
                 </div>
                 <div class="rankings__home-v2-header allmode-v2">
-                    <h1><?php echo GetStringRaw("rankings", "general.allmode.title"); ?></h1>
+                    <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?></h1>
                 </div>
                 <div class="rankings__home-v2-button-container">
                     <div class="rankings__home-v2-button" selector="home__button" app="appReplays">
-                        <h1><?php echo GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.allmode.replays"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.allmode.replays.subheader"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.replays"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.replays.subheader"); ?></p>
                     </div>
                     <div class="rankings__home-v2-button" selector="home__button" app="appStdev">
-                        <h1><?php echo GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.allmode.standardDeviation"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.allmode.standardDeviation.subheader"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.standardDeviation"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.standardDeviation.subheader"); ?></p>
                     </div>
                     <div class="rankings__home-v2-button" selector="home__button" app="appTPP">
-                        <h1><?php echo GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.allmode.total"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.allmode.total.subheader"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.total"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.total.subheader"); ?></p>
                     </div>
                 </div>
                 <div class="rankings__home-v2-header mappers-v2">
-                    <h1><?php echo GetStringRaw("rankings", "general.mappers.title"); ?></h1>
+                    <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?></h1>
                 </div>
                 <div class="rankings__home-v2-button-container">
                     <div class="rankings__home-v2-button" selector="home__button" app="appRanked">
-                        <h1><?php echo GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.mappers.ranked"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.mappers.ranked.subheader"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?= GetStringRaw("rankings", "general.mappers.ranked"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.mappers.ranked.subheader"); ?></p>
                     </div>
                     <div class="rankings__home-v2-button" selector="home__button" app="appLoved">
-                        <h1><?php echo GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.mappers.loved"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.mappers.loved.subheader"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?= GetStringRaw("rankings", "general.mappers.loved"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.mappers.loved.subheader"); ?></p>
                     </div>
                     <div class="rankings__home-v2-button" selector="home__button" app="appSubscribers">
-                        <h1><?php echo GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.mappers.subscribers"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.mappers.subscribers.subheader"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?= GetStringRaw("rankings", "general.mappers.subscribers"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.mappers.subscribers.subheader"); ?></p>
                     </div>
                 </div>
                 <div class="rankings__home-v2-header badges-v2">
-                    <h1><?php echo GetStringRaw("rankings", "general.badges.title"); ?></h1>
+                    <h1><?= GetStringRaw("rankings", "general.badges.title"); ?></h1>
                 </div>
                 <div class="rankings__home-v2-button-container">
                     <div class="rankings__home-v2-button" selector="home__button" app="appBadges">
-                        <h1><?php echo GetStringRaw("rankings", "general.badges.title"); ?> / <strong><?php echo GetStringRaw("rankings", "general.badges.title"); ?></strong></h1>
-                        <p><?php echo GetStringRaw("rankings", "general.badges.title"); ?></p>
+                        <h1><?= GetStringRaw("rankings", "general.badges.title"); ?> / <strong><?= GetStringRaw("rankings", "general.badges.title"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.badges.title"); ?></p>
                     </div>
                 </div>
             </div>
@@ -283,10 +250,10 @@ $meta = '<meta charset="utf-8">
                     <div class="osekai__pagination-prevnextbuttons">
                         <div class="osekai__pagination-nb-button" selector="button__prev__page">
                             <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                            <p><?php echo GetStringRaw("rankings", "pagination.previous"); ?></p>
+                            <p><?= GetStringRaw("rankings", "pagination.previous"); ?></p>
                         </div>
                         <div class="osekai__pagination-nb-button osekai__pagination-nb-next-button" selector="button__next__page">
-                            <p><?php echo GetStringRaw("rankings", "pagination.next"); ?></p>
+                            <p><?= GetStringRaw("rankings", "pagination.next"); ?></p>
                             <i class="fas fa-chevron-right" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -302,7 +269,7 @@ $meta = '<meta charset="utf-8">
                         </div>
                         <div class="osekai__mobile-dss-search">
                             <i class="fas fa-search osekai__mobile-dss-icon" aria-hidden="true"></i>
-                            <input selector="search__input" type="text" placeholder="<?php echo GetStringRaw("rankings", "search.placeholder"); ?>" maxlength="40">
+                            <input selector="search__input" type="text" placeholder="<?= GetStringRaw("rankings", "search.placeholder"); ?>" maxlength="40">
                         </div>
                     </div>
 
@@ -360,10 +327,10 @@ $meta = '<meta charset="utf-8">
                         <div class="osekai__pagination">
                             <div class="osekai__pagination-nb-button" id="button__prev__page" selector="button__prev__page">
                                 <i class="fas fa-chevron-left"></i>
-                                <p><?php echo GetStringRaw("rankings", "pagination.previous"); ?></p>
+                                <p><?= GetStringRaw("rankings", "pagination.previous"); ?></p>
                             </div>
                             <div class="osekai__pagination-nb-button" id="button__next__page" selector="button__next__page">
-                                <p><?php echo GetStringRaw("rankings", "pagination.next"); ?></p>
+                                <p><?= GetStringRaw("rankings", "pagination.next"); ?></p>
                                 <i class="fas fa-chevron-right"></i>
                             </div>
                         </div>
@@ -379,7 +346,7 @@ $meta = '<meta charset="utf-8">
                             <i class="fas fa-search osekai__panel-header-button-icon" aria-hidden="true"></i>
                             <p class="osekai__panel-header-button-text">
                                 <label class="osekai__panel-header-input__sizer">
-                                    <input selector="search__input" type="text" size="12" placeholder="<?php echo GetStringRaw("rankings", "search.placeholder"); ?>" maxlength="40">
+                                    <input selector="search__input" type="text" size="12" placeholder="<?= GetStringRaw("rankings", "search.placeholder"); ?>" maxlength="40">
                                 </label>
                             </p>
                         </div>
@@ -390,6 +357,6 @@ $meta = '<meta charset="utf-8">
             </section>
         </div>
     </div>
-    <script type="text/javascript" src="./js/functions.js?v=1.0.2"></script>
+    <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>

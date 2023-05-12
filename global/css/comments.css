@@ -116,8 +116,12 @@
     display: flex;
 }
 .comments__comment-top-text {
-    
+    font-family: var(--body-font);
+    opacity: 0.8;
+    font-weight: 400;
     overflow: hidden;
+    font-size: 16px;
+    white-space: pre-line;
 }
 
 .comments__comment-vote, .comments__comment-reply, .comments__comment-delete, .comments__comment-report {
@@ -179,6 +183,8 @@
     font-size: 18px;
     font-weight: 900;
     padding-bottom: 3px;
+    color: hsl(var(--accentdark_hue), 100%, 80%);
+    text-decoration: none !important;
 }
 
 .comments__comment-top-role {
@@ -209,18 +215,6 @@
 }
 .comments__comment-top-username_area a {
     margin-bottom: -2px;
-}
-
-.comments__comment-top-text {
-    font-size: 14px;
-    font-weight: 300;
-    white-space: pre-line;
-}
-
-.comments__comment-top-text a {
-    color: rgb(var(--accent));
-    filter: brightness(2);
-    text-decoration: underline;
 }
 
 .comments__comment-top {
@@ -398,6 +392,7 @@
     transform: translateY(20px);
     opacity: 0;
     pointer-events: none;
+    display: none;
 }
 
 .comments__input-box {

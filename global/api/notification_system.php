@@ -1,5 +1,14 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
+api_controller_base_classes();
+
+if(!loggedin()){
+    $result = new UnauthorizedResult();
+
+    http_response_code($result->getStatusCode());
+    echo "Unauthorized";
+    exit;
+}
 
 if(isset($_POST['getNotifs'])) {
     $arrNotifs = Database::execSelect("SELECT * FROM Notifications WHERE UserID = ? AND Cleared = 0", "i", array($_SESSION['osu']['id']));
