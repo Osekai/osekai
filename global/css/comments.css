@@ -392,6 +392,7 @@
     transform: translateY(20px);
     opacity: 0;
     pointer-events: none;
+    display: none;
 }
 
 .comments__input-box {
