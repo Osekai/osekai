@@ -2465,3 +2465,10 @@ CREATE TABLE `Reports` (
   `Date` datetime NOT NULL,
   PRIMARY KEY (`Id`)
 )
+
+DROP TABLE IF EXISTS `FavouriteMedals`;
+CREATE TABLE `FavouriteMedals` (
+  `user_id` int(11) NOT NULL,
+  `medal_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`medal_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;

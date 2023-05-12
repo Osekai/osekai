@@ -89,6 +89,24 @@ class ApiController {
     public function post(): ApiResult { 
         return new NotImplementedApiResult; 
     }
+
+    public function put(): ApiResult { 
+        return new NotImplementedApiResult; 
+    }
+
+    public function delete(): ApiResult { 
+        return new NotImplementedApiResult; 
+    }
+}
+
+class JsonBodyReader {
+    public static function read() {
+        $result = json_decode(file_get_contents('php://input'), true);
+        if (json_last_error() !== JSON_ERROR_NONE)
+            throw new Exception("could not decode json, code: " . json_last_error());
+
+        return $result;
+    }
 }
 
 interface ApiResultSerializer {
@@ -119,6 +137,12 @@ class ApiControllerExecutor {
                     break;
                 case 'GET':
                     $result = $controller->get();
+                    break;
+                case 'PUT':
+                    $result = $controller->put();
+                    break;
+                case 'DELETE':
+                    $result = $controller->delete();
                     break;
                 default:
                     $result = new NotImplementedApiResult;
