@@ -95,6 +95,7 @@ if(isset($_POST['bGetComments'])) {
             ", Coalesce(Comments.ParentComment, 0) AS Parent " .
             ", Comments.Username " .
             ", Comments.AvatarURL " .
+            ", Comments.Pinned " .
             ", Comments.".$colname." AS MedalID " .
             ", GROUP_CONCAT(DISTINCT GroupAssignments.GroupId SEPARATOR ',') as Groups" .
             ", (SELECT Votes.Vote FROM Votes WHERE Votes.UserID = ? AND Votes.ObjectID = Comments.ID AND Votes.Type = ?) AS HasVoted " .
@@ -192,8 +193,14 @@ if(isset($_POST['nObject'])) {
 if(isset($_POST['nCommentDeletion'])) {
     if(isRestricted()) return;
     if(isset($_SESSION['osu']['id'])) {
-        if($_SESSION['role']['rights'] > 0) {
-            $comment_data = Database::execSelect("SELECT * FROM Comments WHERE ID = ?", "i", array($_POST['nCommentDeletion']))[0];
+        $comment_data = Database::execSelect("SELECT * FROM Comments WHERE ID = ?", "i", array($_POST['nCommentDeletion']))[0];
+        
+        if (!isset($comment_data))
+            error_early_return("Comment does not exist");
+
+        $is_own_profile_comment = isset($comment_data['ProfileID']) && intval($_SESSION['osu']['id']) === intval($comment_data['ProfileID']);
+
+        if($_SESSION['role']['rights'] > 0 || $is_own_profile_comment) {
             $on = "unknown";
             if($comment_data['MedalID'] != null) {
                 $on = "Medal " . Database::execSelect("SELECT name FROM Medals WHERE medalid = ?", "i", [$comment_data['MedalID']])[0]['name'];
@@ -208,15 +215,41 @@ if(isset($_POST['nCommentDeletion'])) {
             // END LOGGING
             Database::execOperation("DELETE FROM Comments WHERE ID = ?", "i", array($_POST['nCommentDeletion']));
         } else {
-            $comment = get_comment($_POST['nCommentDeletion']);
-
-            if (!isset($comment))
-                error_early_return("Comment does not exist");
-
-            if ($comment['UserID'] != $_SESSION['osu']['id'])
+            if ($comment_data['UserID'] != $_SESSION['osu']['id'])
                 error_early_return("The requesting user is not the original poster");
 
             Database::execOperation("DELETE FROM Comments WHERE (ID = ? AND UserID = ?)", "ii", array($_POST['nCommentDeletion'], $_SESSION['osu']['id']));
+        }
+        echo json_encode("Success!");
+        exit;
+    }
+}
+
+if(isset($_POST['nCommentPin'])) {
+    if(isRestricted()) return;
+    if(isset($_SESSION['osu']['id'])) {
+        $comment_data = Database::execSelect("SELECT * FROM Comments WHERE ID = ?", "i", array($_POST['nCommentPin']))[0];
+        
+        if (!isset($comment_data))
+            error_early_return("Comment does not exist");
+
+        $is_own_profile_comment = isset($comment_data['ProfileID']) && intval($_SESSION['osu']['id']) === intval($comment_data['ProfileID']);
+
+        if($_SESSION['role']['rights'] > 0 || $is_own_profile_comment) {
+            $on = "unknown";
+            if($comment_data['MedalID'] != null) {
+                $on = "Medal " . Database::execSelect("SELECT name FROM Medals WHERE medalid = ?", "i", [$comment_data['MedalID']])[0]['name'];
+            }
+            if($comment_data['ProfileID'] != null) {
+                $on = "User " . $comment_data['UserID'];
+            }
+            if($comment_data['VersionID'] != null) {
+                $on = "Version " . Database::execSelect("SELECT Name FROM SnapshotsAzeliaVersions WHERE Id = ?", "i", [$comment_data['VersionID']])[0]['Name'];
+            }
+            Logging::PutLog("<h1>Pinned comment <strong>#{$_POST['nCommentPin']}</strong> by <strong>{$_SESSION['osu']['id']}</strong> on {$on}</h1>");
+            Database::execOperation("UPDATE Comments SET Pinned = 1 WHERE ID = ?", "i", array($_POST['nCommentPin']));
+        } else {
+            error_early_return("User is not admin or profile's owner");
         }
         echo json_encode("Success!");
         exit;
