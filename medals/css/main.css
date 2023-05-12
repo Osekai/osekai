@@ -5,7 +5,6 @@
     scrollbar-color: rgba(var(--accentdark), 0.2) #0000;
     /* scroll thumb and track */
     border-radius: 8px;
-    padding-right: 10px;
     overflow: auto;
 }
 
@@ -436,6 +435,15 @@
     transition: all 0.3s ease;
 }
 
+.osekai__3col_col1{
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.medals__scroller {
+    position: relative;
+}
+
 .medals__search__area {
     position: sticky !important;
     top: 0px;
@@ -563,11 +571,27 @@
     border-radius: 8px;
 }
 
+.medals__nomedal .medals__scroller {
+    width: calc(100% - 20px);
+}
+.medals__nomedal .medals__tab-selector {
+    margin-right: 20px;
+}
+
+.medals__scroller {
+    transition: all 0.4s ease;
+    width: 100%;
+}
+.medals__scroller.osekai__otab-hidden {
+    width: 100%;
+    transform: translateY(50px);
+}
+
 .osekai__navbar__app-chevron {
     transform: translateY(4px);
 }
 
-.medals__nomedal .osekai__panel {
+.medals__nomedal #oMedalSection .osekai__panel {
     width: calc(33.33333% - 22px);
 }
 
@@ -582,13 +606,13 @@
 }
 
 @media only screen and (max-width: 1500px) {
-    .medals__nomedal .osekai__panel {
+    .medals__nomedal #oMedalSection .osekai__panel {
         width: calc(50% - 16px);
     }
 }
 
 @media (max-width: 900px) {
-    .medals__nomedal .osekai__panel {
+    .medals__nomedal #oMedalSection .osekai__panel {
         width: 100%;
     }
 
@@ -1115,6 +1139,10 @@
     margin-left: auto;
 }
 
+.medals__otab-container{
+    position: relative;
+}
+
 .medals__info-bar-text-right light {
     color: #fffa;
     font-weight: 100;
@@ -1187,4 +1215,31 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+}
+
+
+.medals__nomedal .medals__tab-selector {
+    flex-direction: row;
+}
+
+.medals__tab-selector {
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset)), 0.8));
+    flex-direction: column;
+    display: flex;
+    align-items: stretch;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.medals__tab-selector div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.medals__tab-selector div.osekai__otab-button-active {
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(40% * var(--accentdark_valueoffset)), 0.8));
 }
