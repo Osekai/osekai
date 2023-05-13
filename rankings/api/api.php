@@ -87,7 +87,7 @@ if (isset($_POST['App'])) {
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.total_pp DESC, Ranking.stdev_pp DESC " .
             ") t1, (SELECT @r:=0) t2 LIMIT 2500");
-    } elseif ($_POST['App'] == "Standard Deviated Level") {
+    } elseif ($_POST['App'] == "Stdev Level") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
             "Countries.name_long AS country, " .
@@ -118,7 +118,7 @@ if (isset($_POST['App'])) {
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY tlevel DESC, Ranking.stdev_pp DESC " .
             ") t1, (SELECT @r:=0) t2 LIMIT 2500");
-    } elseif ($_POST['App'] == "Standard Deviated Accuracy") {
+    } elseif ($_POST['App'] == "Stdev Accuracy") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
             "Countries.name_long AS country, " .
