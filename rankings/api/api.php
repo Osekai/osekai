@@ -20,12 +20,10 @@ if (isset($_POST['App'])) {
     //    }
     //}
     //Caching::cleanCache();
-    if (1 == 0) {
-        $cache = Caching::getCache("rankings_" . $_POST['App']);
-        if ($cache != null) {
-            echo $cache;
-            exit;
-        }
+    $cache = Caching::getCache("rankings_" . $_POST['App']);
+    if ($cache != null) {
+        echo $cache;
+        exit;
     }
     // </hubz>
 
