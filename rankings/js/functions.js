@@ -275,10 +275,15 @@ function dbhandler(app) {
                         break;
                     case "Standard Deviation": oRanking.appendChild(this.creator.CreateStandardDeviation(oRelevantResults[i], oRanking)); break;
                     case "Total pp": oRanking.appendChild(this.creator.CreateTPP(oRelevantResults[i], oRanking)); break;
+                    case "Total Level": oRanking.appendChild(this.creator.CreateTotalLevel(oRelevantResults[i], oRanking)); break;
+                    case "Standard Deviated Level": oRanking.appendChild(this.creator.CreateStdevLevel(oRelevantResults[i], oRanking)); break;
+                    case "Total Accuracy": oRanking.appendChild(this.creator.CreateTotalAcc(oRelevantResults[i], oRanking)); break;
+                    case "Standard Deviated Accuracy": oRanking.appendChild(this.creator.CreateStdevAcc(oRelevantResults[i], oRanking)); break;
                     case "Replays": oRanking.appendChild(this.creator.CreateReplays(oRelevantResults[i], oRanking)); break;
                     case "Ranked Mapsets": oRanking.appendChild(this.creator.CreateRankedMaps(oRelevantResults[i], oRanking)); break;
                     case "Loved Mapsets": oRanking.appendChild(this.creator.CreateLovedMaps(oRelevantResults[i], oRanking)); break;
                     case "Subscribers": oRanking.appendChild(this.creator.CreateSubscribers(oRelevantResults[i], oRanking)); break;
+                    case "Kudosu": oRanking.appendChild(this.creator.CreateKudosu(oRelevantResults[i], oRanking)); break;
                     case "Badges": oRanking.appendChild(this.creator.CreateBadges(oRelevantResults[i], oRanking)); break;
                 }
                 this.creator.addTopBarEventListeners();
@@ -438,6 +443,113 @@ function elementCreator(dbhandler) {
         }
     }
 
+    this.CreateStdevLevel = function (oEntry, oRanking) {
+        if (!oEntry.hasOwnProperty("slevel")) this.dbhandler.Fail();
+        let oWrapper = this.CreateDefaultWrapper(oRanking.parentNode.parentNode.parentNode.id == "mobile");
+
+        if (oRanking.parentNode.parentNode.parentNode.id == "mobile") {
+            let oTopBar = this.createMobileTopBar(oEntry, this.createMobileCount(oEntry.slevel, "slevel"), true);
+            oWrapper = this.appendChildren(oWrapper, [oTopBar, this.createSplitBar(oEntry, true, "level")]);
+            let oMobileWrapper = this.createMobileWrapper(oWrapper);
+            return oMobileWrapper;
+        } else {
+            let oWrapper = this.CreateDefaultWrapper();
+
+            let oRank = this.CreateRankContent(oEntry);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
+
+            let oMainUser = this.CreateMainUsersContent(oEntry);
+            let oMainCascade = this.CreateCascade(false, "370px", oMainUser, oRankCascade);
+
+            let oAmount = this.createAmount(oEntry.slevel, GetStringRawNonAsync(APP_SHORT, "bar.allmode.standardDeviatedLevel.standardDeviatedLevel"));
+            let oAmountCascade = this.CreateCascade(false, "250px", oAmount, oMainCascade);
+
+            oWrapper = this.appendChildren(oWrapper, [oAmountCascade, this.createSplitBar(oEntry, false, "level")]);
+            
+            return oWrapper;
+        }
+    }
+    this.CreateTotalLevel = function (oEntry, oRanking) {
+        if (!oEntry.hasOwnProperty("tlevel")) this.dbhandler.Fail();
+        let oWrapper = this.CreateDefaultWrapper(oRanking.parentNode.parentNode.parentNode.id == "mobile");
+
+        if (oRanking.parentNode.parentNode.parentNode.id == "mobile") {
+            let oTopBar = this.createMobileTopBar(oEntry, this.createMobileCount(oEntry.tlevel, "tlevel"), true);
+            oWrapper = this.appendChildren(oWrapper, [oTopBar, this.createSplitBar(oEntry, true, "level")]);
+            let oMobileWrapper = this.createMobileWrapper(oWrapper);
+            return oMobileWrapper;
+        } else {
+            let oWrapper = this.CreateDefaultWrapper();
+
+            let oRank = this.CreateRankContent(oEntry);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
+
+            let oMainUser = this.CreateMainUsersContent(oEntry);
+            let oMainCascade = this.CreateCascade(false, "370px", oMainUser, oRankCascade);
+
+            let oAmount = this.createAmount(oEntry.tlevel, GetStringRawNonAsync(APP_SHORT, "bar.allmode.totalLevel.totalLevel"));
+            let oAmountCascade = this.CreateCascade(false, "250px", oAmount, oMainCascade);
+
+            oWrapper = this.appendChildren(oWrapper, [oAmountCascade, this.createSplitBar(oEntry, false, "level")]);
+            
+            return oWrapper;
+        }
+    }
+
+    this.CreateStdevAcc = function (oEntry, oRanking) {
+        if (!oEntry.hasOwnProperty("sacc")) this.dbhandler.Fail();
+        let oWrapper = this.CreateDefaultWrapper(oRanking.parentNode.parentNode.parentNode.id == "mobile");
+
+        if (oRanking.parentNode.parentNode.parentNode.id == "mobile") {
+            let oTopBar = this.createMobileTopBar(oEntry, this.createMobileCount(oEntry.sacc, "sacc"), true);
+            oWrapper = this.appendChildren(oWrapper, [oTopBar, this.createSplitBar(oEntry, true, "acc")]);
+            let oMobileWrapper = this.createMobileWrapper(oWrapper);
+            return oMobileWrapper;
+        } else {
+            let oWrapper = this.CreateDefaultWrapper();
+
+            let oRank = this.CreateRankContent(oEntry);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
+
+            let oMainUser = this.CreateMainUsersContent(oEntry);
+            let oMainCascade = this.CreateCascade(false, "370px", oMainUser, oRankCascade);
+
+            let oAmount = this.createAmount(oEntry.sacc, GetStringRawNonAsync(APP_SHORT, "bar.allmode.standardDeviatedAccuracy.standardDeviatedAccuracy"));
+            let oAmountCascade = this.CreateCascade(false, "250px", oAmount, oMainCascade);
+
+            oWrapper = this.appendChildren(oWrapper, [oAmountCascade, this.createSplitBar(oEntry, false, "acc")]);
+            
+            return oWrapper;
+        }
+    }
+    this.CreateTotalAcc = function (oEntry, oRanking) {
+        if (!oEntry.hasOwnProperty("tacc")) this.dbhandler.Fail();
+        console.log(oEntry);
+        let oWrapper = this.CreateDefaultWrapper(oRanking.parentNode.parentNode.parentNode.id == "mobile");
+
+        if (oRanking.parentNode.parentNode.parentNode.id == "mobile") {
+            let oTopBar = this.createMobileTopBar(oEntry, this.createMobileCount(oEntry.tacc, "tacc"), true);
+            oWrapper = this.appendChildren(oWrapper, [oTopBar, this.createSplitBar(oEntry, true, "acc")]);
+            let oMobileWrapper = this.createMobileWrapper(oWrapper);
+            return oMobileWrapper;
+        } else {
+            let oWrapper = this.CreateDefaultWrapper();
+
+            let oRank = this.CreateRankContent(oEntry);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
+
+            let oMainUser = this.CreateMainUsersContent(oEntry);
+            let oMainCascade = this.CreateCascade(false, "370px", oMainUser, oRankCascade);
+
+            let oAmount = this.createAmount(oEntry.tacc, GetStringRawNonAsync(APP_SHORT, "bar.allmode.totalAccuracy.totalAccuracy"));
+            let oAmountCascade = this.CreateCascade(false, "250px", oAmount, oMainCascade);
+
+            oWrapper = this.appendChildren(oWrapper, [oAmountCascade, this.createSplitBar(oEntry, false, "acc")]);
+            
+            return oWrapper;
+        }
+    }
+
     this.CreateTPP = function (oEntry, oRanking) {
         if (!oEntry.hasOwnProperty("tpp")) this.dbhandler.Fail();
         let oWrapper = this.CreateDefaultWrapper(oRanking.parentNode.parentNode.parentNode.id == "mobile");
@@ -552,6 +664,31 @@ function elementCreator(dbhandler) {
             let oMainCascade = this.CreateCascade(false, "40vw", oMainUser, oRankCascade);
 
             let oAmount = this.createAmount(oEntry.subscribers, GetStringRawNonAsync(APP_SHORT, "bar.mappers.subscribers.subscribers"));
+            let oAmountCascade = this.CreateCascade(false, "auto", oAmount, oMainCascade, true);
+
+            oWrapper.appendChild(oAmountCascade);
+            return oWrapper;
+        }
+    }
+
+    this.CreateKudosu = function (oEntry, oRanking) {
+        if (!oEntry.hasOwnProperty("kudosu")) this.dbhandler.Fail();
+        let oWrapper = this.CreateDefaultWrapper(oRanking.parentNode.parentNode.parentNode.id == "mobile");
+        console.log(oEntry);
+
+        if (oRanking.parentNode.parentNode.parentNode.id == "mobile") {
+            let oTopBar = this.createMobileTopBar(oEntry, this.createMobileCount(oEntry.kudosu, GetStringRawNonAsync(APP_SHORT, "bar.mappers.kudosu.kudosu")), false);
+            oWrapper.appendChild(oTopBar);
+            let oMobileWrapper = this.createMobileWrapper(oWrapper);
+            return oMobileWrapper;
+        } else {
+            let oRank = this.CreateRankContent(oEntry);
+            let oRankCascade = this.CreateCascade(true, "60px", oRank);
+
+            let oMainUser = this.CreateMainUsersContent(oEntry);
+            let oMainCascade = this.CreateCascade(false, "40vw", oMainUser, oRankCascade);
+
+            let oAmount = this.createAmount(oEntry.kudosu, GetStringRawNonAsync(APP_SHORT, "bar.mappers.kudosu.kudosu"));
             let oAmountCascade = this.CreateCascade(false, "auto", oAmount, oMainCascade, true);
 
             oWrapper.appendChild(oAmountCascade);
@@ -774,7 +911,7 @@ function elementCreator(dbhandler) {
         return oParagraph;
     }
 
-    this.createSplitBar = function (oEntry, bMobile = false) {
+    this.createSplitBar = function (oEntry, bMobile = false, prefix = "pp") {
         let oDivBar = document.createElement("div");
         oDivBar.classList.add("rankings__progress-bar");
         
@@ -785,30 +922,29 @@ function elementCreator(dbhandler) {
 
         let oSegmentedBar = document.createElement("div");
         oSegmentedBar.classList.add("osekai__gamemode-pp-progress-bar");
-        
+
         let oSegmentOsu = this.createSegment("standard");
-        oSegmentOsu.style.setProperty("--width", (parseInt(oEntry.osupp) / parseInt(oEntry.tpp) * 100) + "%");
-        oSegmentOsu.setAttribute("tooltip-content", oEntry.osupp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " standard PP");
+        oSegmentOsu.style.setProperty("--width", (parseInt(oEntry["osu" + prefix]) / parseInt(oEntry["t" + prefix]) * 100) + "%");
+        oSegmentOsu.setAttribute("tooltip-content", oEntry["osu" + prefix].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " standard " + prefix);
 
         let oSegmentTaiko = this.createSegment("taiko");
-        oSegmentTaiko.style.setProperty("--width", (parseInt(oEntry.taikopp) / parseInt(oEntry.tpp) * 100) + "%");
-        oSegmentTaiko.setAttribute("tooltip-content", oEntry.taikopp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " taiko PP");
+        oSegmentTaiko.style.setProperty("--width", (parseInt(oEntry["taiko" + prefix]) / parseInt(oEntry["t" + prefix]) * 100) + "%");
+        oSegmentTaiko.setAttribute("tooltip-content", oEntry["taiko" + prefix].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " taiko " + prefix);
 
         let oSegmentCatch = this.createSegment("catch");
-        oSegmentCatch.style.setProperty("--width",  (parseInt(oEntry.catchpp) / parseInt(oEntry.tpp) * 100) + "%");
-        oSegmentCatch.setAttribute("tooltip-content", oEntry.catchpp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " catch PP");
+        oSegmentCatch.style.setProperty("--width",  (parseInt(oEntry["catch" + prefix]) / parseInt(oEntry["t" + prefix]) * 100) + "%");
+        oSegmentCatch.setAttribute("tooltip-content", oEntry["catch" + prefix].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " catch " + prefix);
 
         let oSegmentMania = this.createSegment("mania");
-        oSegmentMania.style.setProperty("--width",  (parseInt(oEntry.maniapp) / parseInt(oEntry.tpp) * 100) + "%");
-        oSegmentMania.setAttribute("tooltip-content", oEntry.maniapp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " mania PP");
+        oSegmentMania.style.setProperty("--width",  (parseInt(oEntry["mania" + prefix]) / parseInt(oEntry["t" + prefix]) * 100) + "%");
+        oSegmentMania.setAttribute("tooltip-content", oEntry["mania" + prefix].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " mania " + prefix);
 
-        if(parseInt(oEntry.osupp) > 0) oSegmentedBar.appendChild(oSegmentOsu);
-        if(parseInt(oEntry.taikopp) > 0) oSegmentedBar.appendChild(oSegmentTaiko);
-        if(parseInt(oEntry.catchpp) > 0) oSegmentedBar.appendChild(oSegmentCatch);
-        if(parseInt(oEntry.maniapp) > 0) oSegmentedBar.appendChild(oSegmentMania);
+        if(parseInt(oEntry["osu" + prefix]) > 0) oSegmentedBar.appendChild(oSegmentOsu);
+        if(parseInt(oEntry["taiko" + prefix]) > 0) oSegmentedBar.appendChild(oSegmentTaiko);
+        if(parseInt(oEntry["catch" + prefix]) > 0) oSegmentedBar.appendChild(oSegmentCatch);
+        if(parseInt(oEntry["mania" + prefix]) > 0) oSegmentedBar.appendChild(oSegmentMania);
 
         oDivBar.appendChild(oSegmentedBar);
-
         return oDivBar;
     }
 
@@ -1103,10 +1239,17 @@ var appUsers = medalApps.AddChild("Users", ["Username", "User ID", "Country", "R
 var appRarity = medalApps.AddChild("Rarity", ["Medal Name", "Medal ID", "Description", "Mode", "Group"], "general.medals.rarity");
 var appStdev = modeApps.AddChild("Standard Deviation", ["Username", "User ID", "Country"], "general.allmode.standardDeviation");
 var appTPP = modeApps.AddChild("Total pp", ["Username", "User ID", "Country"], "general.allmode.total");
+
+var appTotalLevel = modeApps.AddChild("Total Level", ["Username", "User ID", "Country"], "general.allmode.totalLevel");
+var apStdevLevel = modeApps.AddChild("Standard Deviated Level", ["Username", "User ID", "Country"], "general.allmode.standardDeviatedLevel");
+var appTotalAcc = modeApps.AddChild("Total Accuracy", ["Username", "User ID", "Country"], "general.allmode.totalAccuracy");
+var appStdevAcc = modeApps.AddChild("Standard Deviated Accuracy", ["Username", "User ID", "Country"], "general.allmode.standardDeviatedAccuracy");
+
 var appReplays = modeApps.AddChild("Replays", ["Username", "User ID", "Country"], "general.allmode.replays");
 var appRanked = mapperApps.AddChild("Ranked Mapsets", ["Username", "User ID", "Country"], "general.mappers.ranked");
 var appLoved = mapperApps.AddChild("Loved Mapsets", ["Username", "User ID", "Country"], "general.mappers.loved");
 var appSubscribers = mapperApps.AddChild("Subscribers", ["Username", "User ID", "Country"], "general.mappers.subscribers");
+var appKudosu = mapperApps.AddChild("Kudosu", ["Username", "User ID", "Country"], "general.mappers.kudosu");
 var appBadges = badgeApps.AddChild("Badges", ["Username", "User ID", "Country"], "general.badges.badges");
 
 
