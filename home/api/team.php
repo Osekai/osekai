@@ -159,7 +159,7 @@ addMember(
 addMember(
     13175102,
     "bentokage",
-    "??home.team.role.generic.modderator??",
+    "??home.team.role.generic.moderator??",
     null,
     [
         social("https://www.twitter.com/bentokage", "Twitter"),
