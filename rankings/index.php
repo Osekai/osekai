@@ -31,6 +31,22 @@ if (!isset($_GET['ranking'])) {
         $name = "Osekai Rankings • who has the most watched replays?";
         $description = "how many times has this player been watched through osu!? find out here.";
         $tags = "homepage";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Stdev Level") {
+        $name = "Osekai Rankings • all osu! players sorted by their standard deviated level!?";
+        $description = "who has the highest level in osu!? find out here!";
+        $tags = "homepage";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Stdev Accuracy") {
+        $name = "Osekai Rankings • players sorted by their standard deviated accuracy!";
+        $description = "which player has the best accuracy? find out here!";
+        $tags = "homepage";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Total Level") {
+        $name = "Osekai Rankings • who has the highest level?";
+        $description = "who has the highest level in osu!? we have the answer.";
+        $tags = "homepage";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Total Accuracy") {
+        $name = "Osekai Rankings • who has the most accuracy?";
+        $description = "who has the most accuracy across all gamemodes in osu!? find out here.";
+        $tags = "homepage";
     } else if ($_GET['ranking'] == "Mappers" && $type == "Ranked Mapsets") {
         $name = "Osekai Rankings • the top ranked mappers!";
         $description = "who has the most ranked maps? it's an interesting question, and we have the answer!";
@@ -42,6 +58,10 @@ if (!isset($_GET['ranking'])) {
     } else if ($_GET['ranking'] == "Mappers" && $type == "Subscribers") {
         $name = "Osekai Rankings • the top subscribed people!";
         $description = "Who has the most subscribers? it's a cool question, and we have the answer!";
+        $tags = "homepage";
+    } else if ($_GET['ranking'] == "Mappers" && $type == "Kudosu") {
+        $name = "Osekai Rankings • the people with the most kudosu!";
+        $description = "Who has the most kudosu? Osekai Rankings has the answer!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "Badges" && $type == "Badges") {
         $name = "Osekai Rankings / Badges / Badges • badges";

@@ -276,9 +276,9 @@ function dbhandler(app) {
                     case "Standard Deviation": oRanking.appendChild(this.creator.CreateStandardDeviation(oRelevantResults[i], oRanking)); break;
                     case "Total pp": oRanking.appendChild(this.creator.CreateTPP(oRelevantResults[i], oRanking)); break;
                     case "Total Level": oRanking.appendChild(this.creator.CreateTotalLevel(oRelevantResults[i], oRanking)); break;
-                    case "Standard Deviated Level": oRanking.appendChild(this.creator.CreateStdevLevel(oRelevantResults[i], oRanking)); break;
+                    case "Stdev Level": oRanking.appendChild(this.creator.CreateStdevLevel(oRelevantResults[i], oRanking)); break;
                     case "Total Accuracy": oRanking.appendChild(this.creator.CreateTotalAcc(oRelevantResults[i], oRanking)); break;
-                    case "Standard Deviated Accuracy": oRanking.appendChild(this.creator.CreateStdevAcc(oRelevantResults[i], oRanking)); break;
+                    case "Stdev Accuracy": oRanking.appendChild(this.creator.CreateStdevAcc(oRelevantResults[i], oRanking)); break;
                     case "Replays": oRanking.appendChild(this.creator.CreateReplays(oRelevantResults[i], oRanking)); break;
                     case "Ranked Mapsets": oRanking.appendChild(this.creator.CreateRankedMaps(oRelevantResults[i], oRanking)); break;
                     case "Loved Mapsets": oRanking.appendChild(this.creator.CreateLovedMaps(oRelevantResults[i], oRanking)); break;
@@ -1237,13 +1237,13 @@ var badgeApps = new parentApp("Badges", "general.badges.title");
 // apps
 var appUsers = medalApps.AddChild("Users", ["Username", "User ID", "Country", "Rarest Medal"], "general.medals.users");
 var appRarity = medalApps.AddChild("Rarity", ["Medal Name", "Medal ID", "Description", "Mode", "Group"], "general.medals.rarity");
-var appStdev = modeApps.AddChild("Standard Deviation", ["Username", "User ID", "Country"], "general.allmode.standardDeviation");
+var appStdev = modeApps.AddChild("Standard Deviation", ["Username", "User ID", "Country"], "general.allmode.standardDeviation.short");
 var appTPP = modeApps.AddChild("Total pp", ["Username", "User ID", "Country"], "general.allmode.total");
 
 var appTotalLevel = modeApps.AddChild("Total Level", ["Username", "User ID", "Country"], "general.allmode.totalLevel");
-var apStdevLevel = modeApps.AddChild("Standard Deviated Level", ["Username", "User ID", "Country"], "general.allmode.standardDeviatedLevel");
+var apStdevLevel = modeApps.AddChild("Stdev Level", ["Username", "User ID", "Country"], "general.allmode.standardDeviatedLevel.short");
 var appTotalAcc = modeApps.AddChild("Total Accuracy", ["Username", "User ID", "Country"], "general.allmode.totalAccuracy");
-var appStdevAcc = modeApps.AddChild("Standard Deviated Accuracy", ["Username", "User ID", "Country"], "general.allmode.standardDeviatedAccuracy");
+var appStdevAcc = modeApps.AddChild("Stdev Accuracy", ["Username", "User ID", "Country"], "general.allmode.standardDeviatedAccuracy.short");
 
 var appReplays = modeApps.AddChild("Replays", ["Username", "User ID", "Country"], "general.allmode.replays");
 var appRanked = mapperApps.AddChild("Ranked Mapsets", ["Username", "User ID", "Country"], "general.mappers.ranked");
