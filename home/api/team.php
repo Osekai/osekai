@@ -157,6 +157,16 @@ addMember(
     ]
 );
 addMember(
+    13175102,
+    "bentokage",
+    "??home.team.role.generic.modderator??",
+    null,
+    [
+        social("https://www.twitter.com/bentokage", "Twitter"),
+        social("https://www.twitch.tv/bentokage", "Twitch"),
+    ]
+);
+addMember(
     16487835,
     "ILuvSkins",
     "??home.team.role.generic.snapshotsManager??",
