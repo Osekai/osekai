@@ -65,5 +65,13 @@
     "search.rarestMedal": "Rarest Medal",
     "search.mode": "Mode",
     "search.group": "Group",
-    "search.placeholder": "search here!"
+    "search.placeholder": "search here!",
+    "tasks.current": "Current Task",
+    "tasks.completed": "Completed Tasks",
+    "tasks.task.eta": "$1 <light>ETA</light>",
+    "tasks.task.task": "Task: <strong id=\"currenttask_name\">Full</strong>",
+    "tasks.task.updating": "Running Update",
+    "tasks.type.default": "Default",
+    "tasks.type.full": "Full",
+    "tasks.task.usersProcessed": "$1 users processed"
 }

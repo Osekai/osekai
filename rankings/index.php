@@ -154,7 +154,7 @@ $meta = '<meta charset="utf-8">
                         <p>Tasks</p>
                     </div>
                     <div class="osekai__panel-inner">
-                        <p class="rankings__tasks-header" id="currenttask-text">Current Task</p>
+                        <p class="rankings__tasks-header" id="currenttask-text"><?= GetStringRaw("rankings", "tasks.current"); ?></p>
                         <div class="rankings__task rankings__task-working rankings__task-current" id="currenttask">
                             <div class="rankings__task-accent">
                                 <i class="fas fa-sync-alt"></i>
@@ -163,13 +163,12 @@ $meta = '<meta charset="utf-8">
                                 <div class="rankings__task-content-inner">
                                     <div class="rankings__task-text">
                                         <div class="rankings__task-text-left">
-                                            <h3>Task: <strong id="currenttask_name">Full</strong></h3>
-                                            <h2 id="currenttask_statustext">Running Update</h2>
+                                            <h3><?= GetStringRaw("rankings", "tasks.task.task"); ?></h3>
+                                            <h2 id="currenttask_statustext"><?= GetStringRaw("rankings", "tasks.task.updating"); ?></h2>
                                         </div>
                                         <div class="rankings__task-text-right">
                                             <h3 id="currenttask_status"><strong>50%</strong> - 9000/15000</h3>
-                                            <h2 id="currenttask_eta">1:29:00 <light>ETA</light>
-                                            </h2>
+                                            <h2 id="currenttask_eta">1:29:00 <light>ETA</light></h2>
                                         </div>
                                     </div>
                                     <div class="osekai__progress-bar">
@@ -178,7 +177,7 @@ $meta = '<meta charset="utf-8">
                                 </div>
                             </div>
                         </div>
-                        <p class="rankings__tasks-header">Completed Tasks</p>
+                        <p class="rankings__tasks-header"><?= GetStringRaw("rankings", "tasks.completed"); ?></p>
                         <div id="completedtasks_list" style="width: 100%;">
 
                         </div>
