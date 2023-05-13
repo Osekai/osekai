@@ -81,6 +81,35 @@ function GetPack($id)
     return $return;
 }
 
+$pr_packs = null;
+$pr_beatmaps = null;
+function GetPackPreload($id) {
+    global $pr_packs;
+    global $pr_beatmaps;
+    if($pr_packs == null) {
+        $pr_packs = Database::execSimpleSelect("SELECT * FROM MedalsBeatmapPacks");
+        $pr_beatmaps = Database::execSimpleSelect("SELECT * FROM BeatmapLengths");
+    }
+
+    $pack = null;
+    foreach($pr_packs as $pPack) {
+        if($pPack['Id'] == $id) {
+            $pack = $pPack;
+            break;
+        }
+    }
+
+    $beatmaps = json_decode($pack['Ids']);
+    $return = [];
+    foreach ($pr_beatmaps as $beatmap) {
+        if(in_array($beatmap['Id'], $beatmaps)) {
+            $return[] = $beatmap;
+        }
+    }
+
+    return $return;
+}
+
 if (isset($_GET['id'])) {
     $req = $_GET['id'];
     $requests = explode(",", $req);

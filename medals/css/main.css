@@ -331,7 +331,10 @@
     margin-left: auto;
 }
 
-.medals__bmp2-tl-bmname, .medals__bmp2-tl-artist, .medals__bmp2-tr-difficulty, .medals__bmp2-tr-mapper {
+.medals__bmp2-tl-bmname,
+.medals__bmp2-tl-artist,
+.medals__bmp2-tr-difficulty,
+.medals__bmp2-tr-mapper {
     text-overflow: ellipsis !important;
     white-space: nowrap;
     max-width: 100%;
@@ -343,11 +346,13 @@
     text-decoration: none !important;
 }
 
-.medals__bmp2-tr-difficulty, .medals__bmp2-tr-mapper {
+.medals__bmp2-tr-difficulty,
+.medals__bmp2-tr-mapper {
     text-align: right;
 }
 
-.medals__bmp2-top-left, .medals__bmp2-top-right {
+.medals__bmp2-top-left,
+.medals__bmp2-top-right {
     text-overflow: ellipsis;
 
 }
@@ -367,7 +372,10 @@
 
 }
 
-.medals__bmp2-submitter, .medals__bmp2-delete, .medals__bmp2-r-note, .medals__bmp2-r-vote {
+.medals__bmp2-submitter,
+.medals__bmp2-delete,
+.medals__bmp2-r-note,
+.medals__bmp2-r-vote {
     padding: 13px 15px;
 }
 
@@ -392,7 +400,9 @@
     background: rgba(255, 0, 0, 0.3);
 }
 
-.medals__bmp2-submitter, .medals__bmp2-tr-mapper, .medals__bmp2-tl-artist {
+.medals__bmp2-submitter,
+.medals__bmp2-tr-mapper,
+.medals__bmp2-tl-artist {
     font-weight: 300;
     cursor: normal !important;
 }
@@ -401,11 +411,13 @@
     font-weight: 800;
 }
 
-.medals__bmp2-tr-mapper, .medals__bmp2-tl-artist {
+.medals__bmp2-tr-mapper,
+.medals__bmp2-tl-artist {
     font-size: 12px;
 }
 
-.medals__bmp2-tl-bmname, .medals__bmp2-tr-difficulty {
+.medals__bmp2-tl-bmname,
+.medals__bmp2-tr-difficulty {
     font-size: 20px;
 }
 
@@ -413,11 +425,14 @@
     margin-left: 5px;
 }
 
-.medals__bmp2-r-vote:hover, .medals__bmp2-r-note:hover {
+.medals__bmp2-r-vote:hover,
+.medals__bmp2-r-note:hover {
     background: #fff4
 }
 
-.medals__bmp2-top:hover, .medals__bmp2-r-vote:hover, .medals__bmp2-r-note:hover {
+.medals__bmp2-top:hover,
+.medals__bmp2-r-vote:hover,
+.medals__bmp2-r-note:hover {
     cursor: pointer;
 }
 
@@ -435,7 +450,7 @@
     transition: all 0.3s ease;
 }
 
-.osekai__3col_col1{
+.osekai__3col_col1 {
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -533,7 +548,8 @@
         padding: 20px 0px !important;
     }
 
-    .medals__info p, .medals__info {
+    .medals__info p,
+    .medals__info {
         text-align: center;
         padding: 0px;
         margin: 0px;
@@ -550,7 +566,9 @@
         gap: 5px;
     }
 
-    .medals__info-background-medal, .osekai__mi-icon-glow, .medals__info-background {
+    .medals__info-background-medal,
+    .osekai__mi-icon-glow,
+    .medals__info-background {
         display: none;
     }
 
@@ -574,6 +592,7 @@
 .medals__nomedal .medals__scroller {
     width: calc(100% - 20px);
 }
+
 .medals__nomedal .medals__tab-selector {
     margin-right: 20px;
 }
@@ -582,6 +601,7 @@
     transition: all 0.4s ease;
     width: 100%;
 }
+
 .medals__scroller.osekai__otab-hidden {
     width: 100%;
     transform: translateY(50px);
@@ -734,7 +754,10 @@
     margin-left: auto;
 }
 
-.medals__bmp3-tl-bmname, .medals__bmp3-tl-artist, .medals__bmp3-tr-difficulty, .medals__bmp3-tr-mapper {
+.medals__bmp3-tl-bmname,
+.medals__bmp3-tl-artist,
+.medals__bmp3-tr-difficulty,
+.medals__bmp3-tr-mapper {
     text-overflow: ellipsis !important;
     white-space: nowrap;
     max-width: 100%;
@@ -746,11 +769,13 @@
     text-decoration: none !important;
 }
 
-.medals__bmp3-tr-difficulty, .medals__bmp3-tr-mapper {
+.medals__bmp3-tr-difficulty,
+.medals__bmp3-tr-mapper {
     text-align: right;
 }
 
-.medals__bmp3-top-left, .medals__bmp3-top-right {
+.medals__bmp3-top-left,
+.medals__bmp3-top-right {
     text-overflow: ellipsis;
 
 }
@@ -772,7 +797,10 @@
 
 }
 
-.medals__bmp3-submitter, .medals__bmp3-delete, .medals__bmp3-r-note, .medals__bmp3-r-vote {
+.medals__bmp3-submitter,
+.medals__bmp3-delete,
+.medals__bmp3-r-note,
+.medals__bmp3-r-vote {
     padding: 13px 15px;
 }
 
@@ -785,7 +813,9 @@
     background: rgba(255, 255, 255, 0.1);
 }
 
-.medals__bmp3-submitter, .medals__bmp3-tr-mapper, .medals__bmp3-tl-artist {
+.medals__bmp3-submitter,
+.medals__bmp3-tr-mapper,
+.medals__bmp3-tl-artist {
     font-weight: 300;
     cursor: normal !important;
 }
@@ -794,11 +824,13 @@
     font-weight: 800;
 }
 
-.medals__bmp3-tr-mapper, .medals__bmp3-tl-artist {
+.medals__bmp3-tr-mapper,
+.medals__bmp3-tl-artist {
     font-size: 12px;
 }
 
-.medals__bmp3-tl-bmname, .medals__bmp3-tr-difficulty {
+.medals__bmp3-tl-bmname,
+.medals__bmp3-tr-difficulty {
     font-size: 20px;
 }
 
@@ -806,11 +838,14 @@
     margin-left: 5px;
 }
 
-.medals__bmp3-r-vote:hover, .medals__bmp3-r-note:hover {
+.medals__bmp3-r-vote:hover,
+.medals__bmp3-r-note:hover {
     background: #fff4
 }
 
-.medals__bmp3-top:hover, .medals__bmp3-r-vote:hover, .medals__bmp3-r-note:hover {
+.medals__bmp3-top:hover,
+.medals__bmp3-r-vote:hover,
+.medals__bmp3-r-note:hover {
     cursor: pointer;
 }
 
@@ -867,7 +902,8 @@
     border-radius: 0px 0px 0px 8px;
 }
 
-.medals__bmp3_mobile-vote:hover, .medals__bmp3_mobile-report:hover {
+.medals__bmp3_mobile-vote:hover,
+.medals__bmp3_mobile-report:hover {
     filter: brightness(1.2);
 }
 
@@ -931,7 +967,8 @@
     align-items: center;
 }
 
-.medals__bmp3-tl-bmname, .medals__bmp3-tr-difficulty {
+.medals__bmp3-tl-bmname,
+.medals__bmp3-tr-difficulty {
     overflow: hidden;
 }
 
@@ -994,14 +1031,16 @@
 .medals__viewpack-textarea-left {
     margin-left: 11px;
 }
+
 .medals__viewpack-textarea-right {
     margin-right: 11px;
 }
 
 .medals__viewpack-top {
     font-weight: 100;
-    font-size: 16px;   
+    font-size: 16px;
 }
+
 .medals__viewpack-bottom {
     font-size: 13px;
     color: #fffa !important;
@@ -1012,7 +1051,7 @@
     color: #FAD306 !important;
 }
 
-.medals__viewpack i{
+.medals__viewpack i {
     font-size: 32px;
 }
 
@@ -1053,21 +1092,25 @@
     text-align: right;
 }
 
-.medals__viewpack-textarea-right, .medals__viewpack-textarea-left {
+.medals__viewpack-textarea-right,
+.medals__viewpack-textarea-left {
     display: flex;
     flex-direction: column;
 }
+
 .medals__viewpack-textarea-right {
     margin-left: auto;
 }
 
-.medals__viewpack-left, .medals__viewpack-right {
+.medals__viewpack-left,
+.medals__viewpack-right {
     font-weight: 100;
     font-size: 16px;
     text-transform: lowercase;
 }
 
-.medals__viewpack-left strong, .medals__viewpack-right strong {
+.medals__viewpack-left strong,
+.medals__viewpack-right strong {
     font-weight: 900;
 }
 
@@ -1111,7 +1154,8 @@
     transition: all 0.2s ease;
 }
 
-.medals__viewpack-left, .medals__viewpack-right {
+.medals__viewpack-left,
+.medals__viewpack-right {
     z-index: 2;
 }
 
@@ -1139,7 +1183,7 @@
     margin-left: auto;
 }
 
-.medals__otab-container{
+.medals__otab-container {
     position: relative;
 }
 
@@ -1242,4 +1286,53 @@
 
 .medals__tab-selector div.osekai__otab-button-active {
     background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(40% * var(--accentdark_valueoffset)), 0.8));
+}
+
+.medals__beatmapPack {
+    display: flex;
+    box-sizing: border-box;
+    padding: 8px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(23% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.8));
+}
+.medals__beatmapPack-left {
+    display: flex;
+    align-items: center;
+}
+
+.medals__beatmapPack-left img {
+    height: 44px;
+    margin-right: 6px;
+}
+.medals__beatmapPack-left p {
+    font-size: 14px;
+    padding-right: 20px;
+    font-weight: 200;
+}
+
+.medals__beatmapPack-right {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    white-space: nowrap;
+}
+
+.medals__beatmapPack-right p {
+    font-weight: 900;
+    font-size: 15px;
+}
+
+.medals__beatmapPack-right small {
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.medals__beatmapPack-active {
+    outline: 2px solid white;
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(40% * var(--accentdark_valueoffset)), 0.8));
+
 }
