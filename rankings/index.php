@@ -19,8 +19,8 @@ if (!isset($_GET['ranking'])) {
         $name = "Osekai Rankings • what medal is the rarest?";
         $description = "what medal do people own the least? find out here!";
         $tags = "homepage";
-    } else if ($_GET['ranking'] == "All Mode" && $type == "Standard Deviation") {
-        $name = "Osekai Rankings • top players sorted by Standard Deviation!";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Standard Deviated pp") {
+        $name = "Osekai Rankings • top players sorted by Standard Deviated pp!";
         $description = "leaderboard using standard deviation across all modes! find out who's the best all mode player!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "All Mode" && $type == "Total pp") {
@@ -48,9 +48,10 @@ if (!isset($_GET['ranking'])) {
         $description = "badges";
         $tags = "homepage";
     } else {
-        header("HTTP/1.1 301 Moved Permanently");
-        header("Location: /rankings/");
-        exit();
+        // we don't really need this
+        //header("HTTP/1.1 301 Moved Permanently");
+        //header("Location: /rankings/");
+        //exit();
     }
 }
 
@@ -182,17 +183,35 @@ $meta = '<meta charset="utf-8">
                     <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?></h1>
                 </div>
                 <div class="rankings__home-v2-button-container">
-                    <div class="rankings__home-v2-button" selector="home__button" app="appReplays">
-                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.replays"); ?></strong></h1>
-                        <p><?= GetStringRaw("rankings", "general.allmode.replays.subheader"); ?></p>
+                <div class="rankings__home-v2-button" selector="home__button" app="appTPP">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.total"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.total.subheader"); ?></p>
                     </div>
+
                     <div class="rankings__home-v2-button" selector="home__button" app="appStdev">
                         <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.standardDeviation"); ?></strong></h1>
                         <p><?= GetStringRaw("rankings", "general.allmode.standardDeviation.subheader"); ?></p>
                     </div>
-                    <div class="rankings__home-v2-button" selector="home__button" app="appTPP">
-                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.total"); ?></strong></h1>
-                        <p><?= GetStringRaw("rankings", "general.allmode.total.subheader"); ?></p>
+                    <div class="rankings__home-v2-button" selector="home__button" app="appTotalLevel">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.totalLevel"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.totalLevel.subheader"); ?></p>
+                    </div>
+                    <div class="rankings__home-v2-button" selector="home__button" app="apStdevLevel">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.standardDeviatedLevel"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.standardDeviatedLevel.subheader"); ?></p>
+                    </div>
+                    <div class="rankings__home-v2-button" selector="home__button" app="appTotalAcc">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.totalAccuracy"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.totalAccuracy.subheader"); ?></p>
+                    </div>
+                    <div class="rankings__home-v2-button" selector="home__button" app="appStdevAcc">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.standardDeviatedAccuracy"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.standardDeviatedAccuracy.subheader"); ?></p>
+                    </div>
+
+                    <div class="rankings__home-v2-button" selector="home__button" app="appReplays">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.replays"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.replays.subheader"); ?></p>
                     </div>
                 </div>
                 <div class="rankings__home-v2-header mappers-v2">
@@ -210,6 +229,11 @@ $meta = '<meta charset="utf-8">
                     <div class="rankings__home-v2-button" selector="home__button" app="appSubscribers">
                         <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?= GetStringRaw("rankings", "general.mappers.subscribers"); ?></strong></h1>
                         <p><?= GetStringRaw("rankings", "general.mappers.subscribers.subheader"); ?></p>
+                    </div>
+
+                    <div class="rankings__home-v2-button" selector="home__button" app="appKudosu">
+                        <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?= GetStringRaw("rankings", "general.mappers.kudosu"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.mappers.kudosu.subheader"); ?></p>
                     </div>
                 </div>
                 <div class="rankings__home-v2-header badges-v2">
