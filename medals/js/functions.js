@@ -324,6 +324,7 @@ async function requestMedals(init, strValue) {
     if (init && new URLSearchParams(window.location.search).get('medal') !== null) loadMedal(new URLSearchParams(window.location.search).get('medal'));
 }
 function landingPage() {
+    set_breadcrums("{app}");
     document.getElementById("osekai__col1").classList.add("medals__nomedal");
     document.getElementById("3col_arrow").classList.add("medals__arrow-nomedal");
     document.getElementById("osekai__col__right").classList.add("hidden");
@@ -583,6 +584,8 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     window.scrollTo({
         top: 0,
     })
+
+    set_breadcrums("{app}/" + strMedalName);
 }
 
 function requestBeatmaps(strKey, strValue, strUrl) {
