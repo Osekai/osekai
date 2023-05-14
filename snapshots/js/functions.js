@@ -3,7 +3,7 @@
 const tx = document.getElementsByTagName("textarea");
 for (let i = 0; i < tx.length; i++) {
     var fe = tx[i].scrollHeight + 16;
-    tx[i].setAttribute("style", "height:" + (fe) + "px;overflow-y:hidden;");
+   /*  tx[i].setAttribute("style", "height:" + (fe) + "px;overflow-y:hidden;"); */
     tx[i].addEventListener("input", OnInput, false);
 }
 
