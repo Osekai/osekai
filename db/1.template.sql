@@ -2471,7 +2471,7 @@ CREATE TABLE `Reports` (
   `ReferenceId` int(11) NOT NULL,
   `Date` datetime NOT NULL,
   PRIMARY KEY (`Id`)
-)
+);
 
 DROP TABLE IF EXISTS `FavouriteMedals`;
 CREATE TABLE `FavouriteMedals` (
