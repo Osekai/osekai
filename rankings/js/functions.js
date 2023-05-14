@@ -290,7 +290,9 @@ function dbhandler(app) {
             }
             document.querySelectorAll(".osekai__replace__loader").forEach(oLoader => oLoader.remove());
         });
+        console.log(this.app);
         this.creator.addCountryImgEventListeners();
+        set_breadcrums("{app}/" + this.app.parent.name + "/" + this.app.name);
     }
 
     this.AskDB = function () {
@@ -1290,6 +1292,7 @@ window.addEventListener('click', function (e) {
 
 // functions
 function InitializeHome() {
+    set_breadcrums("{app}");
     document.getElementById("home").classList.remove("hidden");
     document.getElementById("mobile").classList.add("hidden");
     document.getElementById("desktop").classList.add("hidden");
@@ -1325,6 +1328,8 @@ function InitializeHome() {
     LoadCurrentState();
     LoadStateHistory();
     UpdateTaskTimer();
+
+    set_breadcrums("{app}");
 }
 
 var temporarySeconds = 0;

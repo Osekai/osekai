@@ -112,6 +112,7 @@ function frontend()
         <script type="text/javascript">
             const christmas = "<?= $christmas; ?>";
             const nAppId = "<?= $apps[$app]['id']; ?>";
+            const dCurrentApp = <?= json_encode($apps[$app]); ?>;
             const version = "<?= OSEKAI_VERSION ?>";
             //const medalAmount = 261; // this should be pulled from the database in the future
             const nUserID = <?php if (isset($_SESSION['osu']) && $_SESSION['osu'] != "") {

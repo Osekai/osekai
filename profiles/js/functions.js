@@ -139,6 +139,7 @@ function loadHomeData() {
                 `</div>`;
         });
     };
+    set_breadcrums("{app}");
 }
 
 function loadUser(uid) {
@@ -224,7 +225,7 @@ async function FillData(uid, mode, completeReload = true) {
 
     //console.log(JSON.stringify(oData)); //uncomment to see all Data
     if (oData == null) alert("No Data Available. Please contact Osekai support.");
-
+    set_breadcrums("{app}/" + oData.username);
     //upper main panel
     if (completeReload) {
         if (oData.avatar_url != null) document.querySelectorAll("[selector='pfp']").forEach((oPfp) => { oPfp.setAttribute("src", oData.avatar_url) });
