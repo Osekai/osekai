@@ -616,7 +616,7 @@ function requestBeatmaps(strKey, strValue, strUrl) {
 
 function reportBeatmap(beatmapId, beatmapName) {
 
-    doReport("beatmap", beatmapId, { "beatmapName": beatmapName });
+    doReport("beatmap", beatmapId);
 }
 
 var colNotes = {};
