@@ -166,7 +166,7 @@ function generateComment(commentdata) {
 
 
     var comment_right_content_username_roles = groupUtils.badgeHtmlFromCommaSeperatedList(commentdata['Groups'], "small", 2);
-    var comment_right_content_username_username = Object.assign(document.createElement("p"), { className: "comments__username", innerText: commentdata.Username });
+    var comment_right_content_username_username = Object.assign(document.createElement("a"), { className: "comments__username", innerText: commentdata.Username, href:"https://osekai.net/profiles?user=" + commentdata.UserID });
     comment_right_content_username.appendChild(comment_right_content_username_username);
     comment_right_content_username.innerHTML += comment_right_content_username_roles;
 
