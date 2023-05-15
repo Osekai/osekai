@@ -229,7 +229,7 @@ function generateComment(commentdata) {
     }
     eldropdown.appendChild(dropdownItem("Report", function () {
         eldropdown.classList.toggle("osekai__dropdown-hidden");
-        doReport('comment', commentdata.ID, { 'commentText': encodeURIComponent(commentdata.PostText).replace(/'/g, "%27") });
+        doReport('comment', commentdata.ID );
     }))
     if (nRights > 0 || (nUserId == commentdata.MedalID && nAppId == "3")) {
         eldropdown.appendChild(dropdownItem("Delete", function () {
