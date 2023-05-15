@@ -231,7 +231,7 @@ function generateComment(commentdata) {
         eldropdown.classList.toggle("osekai__dropdown-hidden");
         doReport('comment', commentdata.ID );
     }))
-    if (nRights > 0 || (nUserId == commentdata.MedalID && nAppId == "3")) {
+    if (nRights > 0 || (nUserID == commentdata.MedalID && nAppId == "3")) {
         eldropdown.appendChild(dropdownItem("Delete", function () {
             deleteComment(commentdata.ID);
             eldropdown.classList.toggle("osekai__dropdown-hidden");
