@@ -33,7 +33,7 @@ $json_data = json_encode([
         "fields" => [],
         "author" => [
           "name" => "Report - " . $typeMapping[$type],
-          "url" => "https://osekai.net/admin/reports?id=" . $id,
+          "url" => "https://osekai.net/admin/panel/reports?id=" . $id,
           "icon_url" => "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Exclamation_Circle_Red.svg/1024px-Exclamation_Circle_Red.svg.png"
         ],
         "title" => "On page " . $link,
