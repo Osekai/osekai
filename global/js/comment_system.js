@@ -164,7 +164,7 @@ function Comments_Create(oParent, MedalID) {
             '</div>' +
             '<div class="comments__comment-bottom">' +
             (oComment.UserID != nUserID || nRights > 1 ?
-                `<div class="comments__comment-report" onclick="doReport('comment', ` + oComment.ID + `, {'commentText': '` + encodeURIComponent(oComment.PostText).replace(/'/g, "%27") + `'})">` +
+                `<div class="comments__comment-report" onclick="doReport('comment', ` + oComment.ID + `)">` +
                 '<i aria-hidden="true" class="fas fa-exclamation-triangle"></i></div>'
                 : '') +
             (oComment.UserID == nUserID || nRights > 0 ?

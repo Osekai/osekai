@@ -29,6 +29,7 @@ define("BANNER_WEBHOOK", "webhook_url");
 define("SCRIPTS_WEBHOOK", "webhook_url");
 define("SCRIPTS_RUST_KEY", "key");
 
+define("MODERATION_WEBHOOK", "webhook_url");
 define("LANG_UPDATE_KEY", "key");
 define("CROWDIN_API_KEY", "key");
 
