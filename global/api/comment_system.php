@@ -247,7 +247,7 @@ if(isset($_POST['nCommentPin'])) {
                 $on = "Version " . Database::execSelect("SELECT Name FROM SnapshotsAzeliaVersions WHERE Id = ?", "i", [$comment_data['VersionID']])[0]['Name'];
             }
             Logging::PutLog("<h1>Pinned comment <strong>#{$_POST['nCommentPin']}</strong> by <strong>{$_SESSION['osu']['id']}</strong> on {$on}</h1>");
-            Database::execOperation("UPDATE Comments SET Pinned = 1 WHERE ID = ?", "i", array($_POST['nCommentPin']));
+            Database::execOperation("UPDATE Comments SET Pinned = NOT Pinned WHERE ID = ?", "i", array($_POST['nCommentPin']));
         } else {
             error_early_return("User is not admin or profile's owner");
         }
