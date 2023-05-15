@@ -197,11 +197,22 @@ medal_popup_v2();
 
 <script>
     function testDialog() {
-        openDialog("Test Title", "Test Header", "Test Message", "Button 1", function() {
-            document.getElementById("testdialog_text").innerHTML = "you clicked button 1!";
-        }, "Button 2", function() {
-            document.getElementById("testdialog_text").innerHTML = "you clicked button 2!";
-        });
+        openDialog("Test Title", "Test Header", "Test Message", [
+            {
+                "text": "button 1",
+                "callback": function() {
+                    document.getElementById("testdialog_text").innerHTML = "you clicked button 1!";
+                },
+                "highlighted": true,
+            },
+            {
+                "text": "button 2",
+                "callback": function() {
+                    document.getElementById("testdialog_text").innerHTML = "you clicked button 2!";
+                },
+                "highlighted": false,
+            }
+        ]);
     }
     var cb = new newColourBar("colourbar", function(col1, col2) {
         document.getElementById("hex").innerHTML = "#" + rgbToHex(col1[0], col1[1], col1[2]) + " > #" + rgbToHex(col2[0], col2[1], col2[2]);
