@@ -113,8 +113,14 @@
 .comments__comment-content-username {
     display: flex;
     align-items: center;
+    margin-bottom: 2px;
 }
 
+
+.comments__comment-content-username object {
+    margin-bottom: 4px;
+    margin-left: 6px;
+}
 .comments__username {
     font-size: 19px;
     font-weight: 900;
@@ -254,4 +260,34 @@ white-space: pre-line;
 
 .comments__comment-content-text p {
     max-width: 100%;
+}
+
+.comments__comment-pinned .comments__comment-content {
+    box-shadow: inset 0px 0px 14px 2px rgba(var(--accent), 0.4);
+    border: 1px solid rgba(var(--accent), 0.8);
+}
+
+.comments__comment-content-pinned {
+    display: flex;
+    align-items: center;
+    background-color: rgba(var(--accent), 0.2);
+    border-radius: 900px;
+}
+.comments__comment-content-pinned p {
+    padding-left: 9px;
+    padding-right: 5px;
+    font-size: 13px;
+}
+
+.comments__comment-content-pinned-icon {
+    height: 20px;
+    width: 20px;
+    background: linear-gradient(-45deg, hsl(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(70% * var(--accent_valueoffset))) );
+    border-radius: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    padding-left: 2px;
+    padding-bottom: 2px;
 }

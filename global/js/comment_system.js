@@ -91,6 +91,8 @@ async function Comments_Require(MedalID, oParent, bReload = false, VersionId = -
 function Comments_HierarchySort(hashArr, key, result, MedalID) {
     if (hashArr[key] == undefined) return;
     var arr = hashArr[key].sort((a, b) => {
+        if (a.Pinned == 1) return -1;
+        if (b.Pinned == 1) return 1;
         if (COMMENTS_mode == 1) {
             if (parseInt(a.VoteSum ?? 0) > parseInt(b.VoteSum ?? 0)) return -1;
             if (parseInt(a.VoteSum ?? 0) < parseInt(b.VoteSum ?? 0)) return 1;
@@ -129,6 +131,9 @@ function Comments_Sort(oParent, MedalID, VersionId = -1, ProfileID = -1) {
 function generateComment(commentdata) {
     console.log(commentdata);
     var comment = Object.assign(document.createElement("div"), { className: "comments__comment" });
+    if (commentdata.Pinned) {
+        comment.classList.add("comments__comment-pinned");
+    }
     if (commentdata.ParentCommenter)
         comment.classList.add("comments__comment-reply");
 
@@ -140,7 +145,7 @@ function generateComment(commentdata) {
         if (commentdata.HasVoted) {
             comment_left_votes.classList.add("comments__comment-votes-voted");
         }
-        comment_left_votes.addEventListener("click", function() {
+        comment_left_votes.addEventListener("click", function () {
             console.log("clicked :D");
             voteComment(commentdata.ID, comment_left_votes);
         })
@@ -159,11 +164,25 @@ function generateComment(commentdata) {
     var comment_right_content_username = Object.assign(document.createElement("div"), { className: "comments__comment-content-username" });
     comment_right_content.appendChild(comment_right_content_username);
 
+
+    var comment_right_content_username_roles = groupUtils.badgeHtmlFromCommaSeperatedList(commentdata['Groups'], "small", 2);
     var comment_right_content_username_username = Object.assign(document.createElement("p"), { className: "comments__username", innerText: commentdata.Username });
     comment_right_content_username.appendChild(comment_right_content_username_username);
+    comment_right_content_username.innerHTML += comment_right_content_username_roles;
 
     var comment_right_content_username_right = Object.assign(document.createElement("div"), { className: "comments__comment-content-username-right" });
     comment_right_content_username.appendChild(comment_right_content_username_right);
+
+    if (commentdata.Pinned == 1) {
+        var comment_right_content_username_right_pinned = Object.assign(document.createElement("div"), { className: "comments__comment-content-pinned" });
+        var comment_right_content_username_right_pinned_text = Object.assign(document.createElement("p"), { innerText: "Pinned" });
+        var comment_right_content_username_right_pinned_icon_container = Object.assign(document.createElement("div"), { className: "comments__comment-content-pinned-icon" });
+        var comment_right_content_username_right_pinned_icon = Object.assign(document.createElement("i"), { className: "oif-pin" });
+        comment_right_content_username_right_pinned_icon_container.appendChild(comment_right_content_username_right_pinned_icon);
+        comment_right_content_username_right_pinned.appendChild(comment_right_content_username_right_pinned_text);
+        comment_right_content_username_right_pinned.appendChild(comment_right_content_username_right_pinned_icon_container);
+        comment_right_content_username_right.appendChild(comment_right_content_username_right_pinned);
+    }
 
     var comment_right_content_text = Object.assign(document.createElement("div"), { className: "comments__comment-content-text" });
 
@@ -186,7 +205,7 @@ function generateComment(commentdata) {
         return element;
     }
     function createInfobarButton(icon, size, callback) {
-        element = Object.assign(document.createElement("div"), { className: "comments__comment-infobar-button comments__comment-infobar-button-" + size });
+        element = Object.assign(document.createElement("div"), { className: "osekai__dropdown-opener comments__comment-infobar-button comments__comment-infobar-button-" + size });
         element_icon = Object.assign(document.createElement("i"), { className: icon });
         element.appendChild(element_icon);
         element.addEventListener("click", callback);
@@ -202,17 +221,57 @@ function generateComment(commentdata) {
     comment_right_infobar_right.appendChild(createInfobarButton("fas fa-reply", "big", function () {
         openReply(commentdata.ID, comment);
     }));
-    comment_right_infobar_right.appendChild(createInfobarButton("fas fa-ellipsis-h", "small", function () { }));
+    let eldropdown = Object.assign(document.createElement("div"), { "className": "osekai__dropdown osekai__dropdown-hidden" });
+    function dropdownItem(name, callback) {
+        var item = Object.assign(document.createElement("div"), { "className": "osekai__dropdown-item", "innerText": name });
+        item.addEventListener("click", callback);
+        return item;
+    }
+    eldropdown.appendChild(dropdownItem("Report", function () {
+        eldropdown.classList.toggle("osekai__dropdown-hidden");
+        doReport('comment', commentdata.ID, { 'commentText': encodeURIComponent(commentdata.PostText).replace(/'/g, "%27") });
+    }))
+    if (nRights > 0 || (nUserId == commentdata.MedalID && nAppId == "3")) {
+        eldropdown.appendChild(dropdownItem("Delete", function () {
+            deleteComment(commentdata.ID);
+            eldropdown.classList.toggle("osekai__dropdown-hidden");
+        }))
+        var name = "Pin";
+        if (commentdata.ParentCommenter) name = "Highlight";
+        var alreadyPinned = false;
+        if (commentdata.Pinned == 1) {
+            alreadyPinned = true;
+            var name = "Unpin";
+            if (commentdata.ParentCommenter) name = "Un-highlight";
+        }
+        eldropdown.appendChild(dropdownItem(name, function () {
+            pinComment(commentdata.ID, alreadyPinned);
+            eldropdown.classList.toggle("osekai__dropdown-hidden");
+        }))
+    }
+    comment_right_infobar_right.appendChild(createInfobarButton("fas fa-ellipsis-h", "small", function () {
+        console.log("opening dropdown");
+        eldropdown.classList.remove("osekai__dropdown-hidden");
+    }));
+    comment_right_infobar_right.appendChild(eldropdown);
 
     comment.appendChild(comment_left);
     comment.appendChild(comment_right);
+
     return comment;
 }
 
 function Comments_Create(oParent, MedalID) {
     let nOrder = 0;
+    var inPinned = false;
     for (let oComment of COMMENTS_col_medals[MedalID]) {
         if (oComment == null || oComment.MedalID.toString() !== MedalID.toString()) return;
+
+        if(oComment.ParentCommenter == null && inPinned) {
+            inPinned = false;
+            COMMENTS_boxes[MedalID].push(Object.assign(document.createElement("div"), { "classList": "osekai__divider" }));
+        }
+
         let oBox = generateComment(oComment);
         oBox.classList.add("comments__comment");
         oBox.setAttribute("CommentID", oComment.ID);
@@ -222,8 +281,12 @@ function Comments_Create(oParent, MedalID) {
 
         //var rolehtml = groupUtils.badgeHtmlFromCommaSeperatedList(oComment['Groups'], "small", 2);
         COMMENTS_boxes[MedalID].push(oBox);
+        if (oComment.Pinned == 1) {
+            inPinned = true;
+        }
     }
-    if (Object.keys(COMMENTS_col_medals[MedalID]).length == Object.keys(COMMENTS_boxes[MedalID]).length) Comments_Out(oParent, MedalID);
+    if (Object.keys(COMMENTS_col_medals[MedalID]).length <= Object.keys(COMMENTS_boxes[MedalID]).length) Comments_Out(oParent, MedalID);
+    else console.log("oh no");
 }
 
 function commentsSendClick(nVersionID = -1, nProfileId = -1) {
@@ -287,7 +350,7 @@ function openReply(strCommentId, element) {
         let oReferenceNode = element;
         let oReplyBox = document.createElement("div");
         oReplyBox.id = "oReplyBox";
-        
+
         oReplyBox.innerHTML = document.getElementById("comments__post_area").innerHTML.replace("comments__send", "reply__send").replace("comments__input", "reply__input").replace("comments__input-box__emoji", "hidden");
         // emojis don't work in replies :D
 
@@ -338,6 +401,24 @@ function deleteComment(nID) {
     if (!confirm("Are you sure you want to delete this comment?")) return;
     var xhr = createXHR(API_URL_COMMENTS);
     xhr.send("nCommentDeletion=" + nID);
+    xhr.onreadystatechange = function () {
+        var oResponse = getResponse(xhr);
+        if (handleUndefined(oResponse)) return;
+        if (oResponse.toString() == "Success!") {
+            RequireComments();
+        }
+    }
+}
+
+function pinComment(nID, alreadyPinned) {
+    if (alreadyPinned) {
+        // TODO: make this an actually nice popup, likewise with deletion
+        if (!confirm("Are you sure you want to pin this comment?")) return;
+    } else {
+        if (!confirm("Are you sure you want to unpin this comment?")) return;
+    }
+    var xhr = createXHR(API_URL_COMMENTS);
+    xhr.send("nCommentPin=" + nID);
     xhr.onreadystatechange = function () {
         var oResponse = getResponse(xhr);
         if (handleUndefined(oResponse)) return;
