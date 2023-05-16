@@ -65,9 +65,9 @@ RedirectMatch 404 ^/tools/src/(.*)/index.php$
 
 # ! < TEAMS REWRITING > ! #
 RewriteBase /
-RewriteCond teams\/%{REQUEST_FILENAME} !-d
-RewriteCond teams\/%{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)$ /teams/router.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ router.php [QSA,L]
 # ! </ TEAMS REWRITING > ! #
 
 
