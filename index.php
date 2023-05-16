@@ -120,15 +120,9 @@ medal_popup_v2();
                         <p>report stuffs</p>
                     </div>
                     <div class="osekai__panel-inner osekai__flex-vertical-container">
-                        <a class="osekai__button" onclick="reportSys(0, 69420)">Report an issue with this beatmap</a>
-                        <a class="osekai__button" onclick="reportSys(1, 69420)">Report an issue with this comment</a>
-                        <a class="osekai__button" onclick="reportSys(2, 69420)">Report an bug on this page</a>
-                        <a class="osekai__button" onclick="doReport('beatmap', 12345, ['test from homepage'])">(new)
-                            Report an issue with this beatmap</a>
-                        <a class="osekai__button" onclick="doReport('comment', 12345, ['test from homepage 2'])">(new)
-                            Report an issue with this comment</a>
-                        <a class="osekai__button" onclick="doReport('bug', 12345, ['test from homepage 3'])">(new)
-                            Report a bug on this page</a>
+                        <a class="osekai__button" onclick="doReport('beatmap', 12345)">(new) Report an issue with this beatmap</a>
+                        <a class="osekai__button" onclick="doReport('comment', 12345)">(new) Report an issue with this comment</a>
+                        <a class="osekai__button" onclick="doReport('bug', 12345)">(new) Report a bug on this page</a>
                     </div>
                 </section>
             </div>

@@ -22,13 +22,15 @@ function dropdown(hiddenclass, id, blur = 0) {
 
 function apps_dropdown(hide = false) {
     var blur_overlay = document.getElementById("blur_overlay");
-    var chevron = document.getElementById("nav_chevron");
+    /* var chevron = document.getElementById("nav_chevron"); */
+    var navbar = document.getElementById("navbar_container");
 
     if (!document.getElementById("dropdown__apps").classList.contains("osekai__apps-dropdown-hidden") || hide == true) {
         // hide;
         document.getElementById("dropdown__apps").classList.add("osekai__apps-dropdown-hidden");
         document.getElementById("dropdown__apps_mobile").classList.add("osekai__apps-dropdown-mobile-hidden");
-        chevron.classList.remove("nav_chevron_flipped");
+        /* chevron.classList.remove("nav_chevron_flipped"); */
+        navbar.classList.remove("osekai__navbar-active");
         blur_overlay.classList.remove("osekai__blur-overlay__active");
         document.body.classList.remove("noscroll");
         return;
@@ -36,10 +38,22 @@ function apps_dropdown(hide = false) {
     hide_dropdowns(false);
     document.body.classList.add("noscroll");
     blur_overlay.classList.add("osekai__blur-overlay__active");
+    navbar.classList.add("osekai__navbar-active");
     document.getElementById("dropdown__apps").classList.remove("osekai__apps-dropdown-hidden");
     document.getElementById("dropdown__apps_mobile").classList.remove("osekai__apps-dropdown-mobile-hidden");
-    chevron.classList.add("nav_chevron_flipped");
+    /* chevron.classList.add("nav_chevron_flipped"); */
 }
+
+function set_breadcrums(text) {
+    text = text.replace("{app}", dCurrentApp.name)
+    var breadcrumbs = text.split("/");
+    var breadcrumb_container = document.getElementById("navbarBreadcrumbs");
+    breadcrumb_container.innerHTML = "";
+    for(var breadcrumb of breadcrumbs) {
+        breadcrumb_container.appendChild(Object.assign(document.createElement("div"), {"className": "osekai__navbar-breadcrumb", "innerText": breadcrumb}));
+    }
+}
+set_breadcrums("{app}");
 
 function hide_dropdowns(hideapps = true) {
     actively_open = false;
