@@ -63,6 +63,13 @@ RewriteRule ^tools\/(.*)$ /tools/tool.php?page=$1 [NC,L,QSA]
 RedirectMatch 404 ^/tools/src/(.*)/index.php$
 # ! </ TOOLS REWRITING > ! #
 
+# ! < TEAMS REWRITING > ! #
+RewriteBase /teams/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ router.php [QSA,L]
+# ! </ TEAMS REWRITING > ! #
+
 
 
 # tempdown
