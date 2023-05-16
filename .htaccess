@@ -69,7 +69,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ router.php [QSA,L]
 # ! </ TEAMS REWRITING > ! #
-
+RewriteBase /
 
 
 # tempdown
