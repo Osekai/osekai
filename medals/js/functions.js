@@ -973,6 +973,11 @@ function loadExtraInfo(medalid) {
 }
 
 function loadBeatmapPacks() {
+    if(userInfo == null){
+        console.log("waiting for userinfo")
+        setTimeout(loadBeatmapPacks, 100);
+        return;
+    }
     console.log("loading beatmap packs...");
 
     var container = document.getElementById("beatmapPackList");
@@ -997,10 +1002,26 @@ function loadBeatmapPacks() {
             var packLengthSmall = Object.assign(document.createElement("small"), { innerText: "with DT" });
 
             medalContainerLeft.appendChild(medalImage);
+
+            for(var usermedal of userInfo['user_achievements']) {
+                if(usermedal.achievement_id == medal.medalid) {
+                    console.log("achieved");
+                    medalContainer.classList.add("medals__beatmapPack-obtained");
+                    var checkmark = Object.assign(document.createElement("i"), { className: "fas fa-check" });
+                    medalContainerLeft.appendChild(checkmark);
+                }
+            }
+
             medalContainerLeft.appendChild(medalName);
 
             medalContainerRight.appendChild(packLength);
-            medalContainerRight.appendChild(packLengthSmall);
+
+            if(medal.fastest_time == -1) {
+                packLength.innerHTML = "unknown"
+            } else {
+                medalContainerRight.appendChild(packLengthSmall);
+            }
+     
 
             medalContainer.appendChild(medalContainerLeft);
             medalContainer.appendChild(medalContainerRight);

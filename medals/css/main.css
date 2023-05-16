@@ -1334,5 +1334,19 @@
 .medals__beatmapPack-active {
     outline: 2px solid white;
     background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(40% * var(--accentdark_valueoffset)), 0.8));
+}
 
+.medals__beatmapPack-left{
+    position: relative;
+}
+
+.medals__beatmapPack-obtained {
+    opacity: 0.5;
+    filter: grayscale(0.5);
+}
+
+.medals__beatmapPack-obtained .fa-check {
+    font-size: 15px;
+    flex: 1;
+    margin-right: 8px;
 }
