@@ -166,7 +166,7 @@ function generateComment(commentdata) {
 
 
     var comment_right_content_username_roles = groupUtils.badgeHtmlFromCommaSeperatedList(commentdata['Groups'], "small", 2);
-    var comment_right_content_username_username = Object.assign(document.createElement("a"), { className: "comments__username", innerText: commentdata.Username, href:"https://osekai.net/profiles?user=" + commentdata.UserID });
+    var comment_right_content_username_username = Object.assign(document.createElement("a"), { className: "comments__username", innerText: commentdata.Username, href: "https://osekai.net/profiles?user=" + commentdata.UserID });
     comment_right_content_username.appendChild(comment_right_content_username_username);
     comment_right_content_username.innerHTML += comment_right_content_username_roles;
 
@@ -222,32 +222,34 @@ function generateComment(commentdata) {
         openReply(commentdata.ID, comment);
     }));
     let eldropdown = Object.assign(document.createElement("div"), { "className": "osekai__dropdown osekai__dropdown-hidden" });
-    function dropdownItem(name, callback) {
-        var item = Object.assign(document.createElement("div"), { "className": "osekai__dropdown-item", "innerText": name });
+    function dropdownItem(name, callback, _class = "") {
+        var item = Object.assign(document.createElement("div"), { "className": "osekai__dropdown-item " + _class, "innerHTML": name });
         item.addEventListener("click", callback);
         return item;
     }
-    eldropdown.appendChild(dropdownItem("Report", function () {
+    eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> Report`, function () {
         eldropdown.classList.toggle("osekai__dropdown-hidden");
-        doReport('comment', commentdata.ID );
-    }))
-    if (nRights > 0 || (nUserId == commentdata.MedalID && nAppId == "3")) {
-        eldropdown.appendChild(dropdownItem("Delete", function () {
-            deleteComment(commentdata.ID);
-            eldropdown.classList.toggle("osekai__dropdown-hidden");
-        }))
-        var name = "Pin";
-        if (commentdata.ParentCommenter) name = "Highlight";
-        var alreadyPinned = false;
-        if (commentdata.Pinned == 1) {
-            alreadyPinned = true;
-            var name = "Unpin";
-            if (commentdata.ParentCommenter) name = "Un-highlight";
+        doReport('comment', commentdata.ID);
+    }, "osekai__dropdown-item-red"))
+    if (bLoggedIn) {
+        if (nRights > 0 || (nUserId == commentdata.MedalID && nAppId == "3")) {
+            eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> Delete`, function () {
+                deleteComment(commentdata.ID);
+                eldropdown.classList.toggle("osekai__dropdown-hidden");
+            }, "osekai__dropdown-item-red"))
+            var name = "Pin";
+            if (commentdata.ParentCommenter) name = "Highlight";
+            var alreadyPinned = false;
+            if (commentdata.Pinned == 1) {
+                alreadyPinned = true;
+                var name = "Unpin";
+                if (commentdata.ParentCommenter) name = "Un-highlight";
+            }
+            eldropdown.appendChild(dropdownItem(name, function () {
+                pinComment(commentdata.ID, alreadyPinned);
+                eldropdown.classList.toggle("osekai__dropdown-hidden");
+            }))
         }
-        eldropdown.appendChild(dropdownItem(name, function () {
-            pinComment(commentdata.ID, alreadyPinned);
-            eldropdown.classList.toggle("osekai__dropdown-hidden");
-        }))
     }
     comment_right_infobar_right.appendChild(createInfobarButton("fas fa-ellipsis-h", "small", function () {
         console.log("opening dropdown");
@@ -267,7 +269,7 @@ function Comments_Create(oParent, MedalID) {
     for (let oComment of COMMENTS_col_medals[MedalID]) {
         if (oComment == null || oComment.MedalID.toString() !== MedalID.toString()) return;
 
-        if(oComment.ParentCommenter == null && inPinned) {
+        if (oComment.ParentCommenter == null && inPinned) {
             inPinned = false;
             COMMENTS_boxes[MedalID].push(Object.assign(document.createElement("div"), { "classList": "osekai__divider" }));
         }
