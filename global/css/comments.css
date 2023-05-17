@@ -233,6 +233,7 @@ font-size: 14px;
     padding: 0px 25px;
     height: 36px;
     display: flex;
+    gap: 5px;
     align-items: center;
     color: rgb(var(--accentdark));
     background-color: white;
