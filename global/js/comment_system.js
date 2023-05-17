@@ -281,7 +281,6 @@ function Comments_Create(oParent, MedalID) {
         nOrder += 1;
         oBox.setAttribute("CommentCreator", oComment.Username);
 
-        //var rolehtml = groupUtils.badgeHtmlFromCommaSeperatedList(oComment['Groups'], "small", 2);
         COMMENTS_boxes[MedalID].push(oBox);
         if (oComment.Pinned == 1) {
             inPinned = true;

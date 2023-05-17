@@ -290,7 +290,9 @@ function dbhandler(app) {
             }
             document.querySelectorAll(".osekai__replace__loader").forEach(oLoader => oLoader.remove());
         });
+        console.log(this.app);
         this.creator.addCountryImgEventListeners();
+        set_breadcrums("{app}/" + this.app.parent.name + "/" + this.app.name);
     }
 
     this.AskDB = function () {
@@ -1290,6 +1292,7 @@ window.addEventListener('click', function (e) {
 
 // functions
 function InitializeHome() {
+    set_breadcrums("{app}");
     document.getElementById("home").classList.remove("hidden");
     document.getElementById("mobile").classList.add("hidden");
     document.getElementById("desktop").classList.add("hidden");
@@ -1325,6 +1328,8 @@ function InitializeHome() {
     LoadCurrentState();
     LoadStateHistory();
     UpdateTaskTimer();
+
+    set_breadcrums("{app}");
 }
 
 var temporarySeconds = 0;
@@ -1374,7 +1379,9 @@ function UpdateTaskTimer() {
     setTimeout(() => {
         temporarySeconds = temporarySeconds - 1;
         if(!document.getElementById("home").classList.contains("hidden")) {
-            document.getElementById("currenttask_eta").innerHTML = new Date(temporarySeconds * 1000).toISOString().substring(11, 19) + " <light>ETA</light>"
+            document.getElementById("currenttask_eta").innerHTML =  GetStringRawNonAsync(APP_SHORT, "tasks.task.eta", [new Date(temporarySeconds * 1000).toISOString().substring(11, 19)])
+
+            
         }
         UpdateTaskTimer();
     }, 1000);
@@ -1396,8 +1403,8 @@ function LoadStateHistory() {
                 </div>
                 <div class="rankings__task-content-small">
                     <div class="rankings__task-text-left">
-                        <h2>${oResponse[x]['LoopType']}</h2>
-                        <h3>${oResponse[x]['Amount']} users processed</h3>
+                        <h2>${GetStringRawNonAsync(APP_SHORT, "tasks.type." + oResponse[x]['LoopType'].toLowerCase())}</h2>
+                        <h3>${GetStringRawNonAsync(APP_SHORT, "tasks.task.usersProcessed", [oResponse[x]['Amount']])}</h3>
                     </div>
                     <div class="rankings__task-text-right">
                         <h2>${TimeAgo.inWords(new Date(oResponse[x]['Time']).getTime())}</h2>
