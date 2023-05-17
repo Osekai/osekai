@@ -413,13 +413,13 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     let oImg = document.getElementById("gamemodeImg")
     let strImgMode = strCurrentMedalMode.replace("osu", "standard");
     if (strImgMode != "NULL") {
-        document.getElementById("gamemodeImg").classList.remove("hidden");
+        document.getElementsByClassName("medals__sol-header-gamemode-tag")[0].classList.remove("hidden");
         oImg.src = '/global/img/gamemodes/' + strImgMode + '.svg';
         oImg.classList.add("medals__sol-gamemode");
         oImg.id = "gamemodeImg";
         oImg.alt = strImgMode;
     } else {
-        document.getElementById("gamemodeImg").classList.add("hidden");
+        document.getElementsByClassName("medals__sol-header-gamemode-tag")[0].classList.add("hidden");
     }
 
     if (strImgMode != "NULL") {
