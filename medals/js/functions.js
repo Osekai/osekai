@@ -559,7 +559,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
             for (var el of document.getElementsByClassName("medals__beatmapPack")) {
                 el.classList.remove("medals__beatmapPack-active");
             }
-            document.querySelector("[m-bmp-medal-name=\""+strMedalName+"\"]").classList.add("medals__beatmapPack-active");
+            document.querySelector("[m-bmp-medal-name=\"" + strMedalName + "\"]").classList.add("medals__beatmapPack-active");
         }
     }
     else {
@@ -973,7 +973,7 @@ function loadExtraInfo(medalid) {
 }
 
 function loadBeatmapPacks() {
-    if(userInfo == null){
+    if (userInfo == null) {
         console.log("waiting for userinfo")
         setTimeout(loadBeatmapPacks, 100);
         return;
@@ -1003,12 +1003,14 @@ function loadBeatmapPacks() {
 
             medalContainerLeft.appendChild(medalImage);
 
-            for(var usermedal of userInfo['user_achievements']) {
-                if(usermedal.achievement_id == medal.medalid) {
-                    console.log("achieved");
-                    medalContainer.classList.add("medals__beatmapPack-obtained");
-                    var checkmark = Object.assign(document.createElement("i"), { className: "fas fa-check" });
-                    medalContainerLeft.appendChild(checkmark);
+            if (bLoggedIn) {
+                for (var usermedal of userInfo['user_achievements']) {
+                    if (usermedal.achievement_id == medal.medalid) {
+                        console.log("achieved");
+                        medalContainer.classList.add("medals__beatmapPack-obtained");
+                        var checkmark = Object.assign(document.createElement("i"), { className: "fas fa-check" });
+                        medalContainerLeft.appendChild(checkmark);
+                    }
                 }
             }
 
@@ -1016,12 +1018,12 @@ function loadBeatmapPacks() {
 
             medalContainerRight.appendChild(packLength);
 
-            if(medal.fastest_time == -1) {
+            if (medal.fastest_time == -1) {
                 packLength.innerHTML = "unknown"
             } else {
                 medalContainerRight.appendChild(packLengthSmall);
             }
-     
+
 
             medalContainer.appendChild(medalContainerLeft);
             medalContainer.appendChild(medalContainerRight);
