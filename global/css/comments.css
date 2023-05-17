@@ -85,6 +85,16 @@
     align-items: center;
     justify-content: center;
     margin-top: 8px;
+    transition: all 0.1s ease;
+}
+
+.comments__comment-votes:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+    outline: 3px solid rgb(var(--accent));
+}
+.comments__comment-votes:active {
+    outline: 1px solid rgb(var(--accent));
 }
 
 .comments__comment-left, .comments__post-left {
@@ -180,6 +190,11 @@ align-items: center;
 justify-content: center;
 font-size: 14px;
 cursor: pointer;
+}
+
+.comments__comment-infobar-button:hover {
+    outline: 1px solid #fff4;
+    filter: brightness(1.1);
 }
 
 .comments__comment-infobar-button-big {
