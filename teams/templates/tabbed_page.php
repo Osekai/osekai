@@ -22,7 +22,7 @@
             <i class="fas fa-circle"></i>
         </div>
     </div>
-    <div class="teams__page-content">
+    <div id="teams_page" class="teams__page-content">
         <?= $page ?>
     </div>
 </div>

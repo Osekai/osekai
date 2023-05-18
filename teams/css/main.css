@@ -36,5 +36,5 @@
     --page-width: 1625px;
     margin: 30px auto;
     width: calc(100% - 30px);
-    max-width: var(--width);
+    max-width: var(--page-width);
 }
