@@ -1428,38 +1428,38 @@ function LoadRecentlyViewed() {
         mostPopular = true;
     }
 
-    mostPopularURL = "/profiles/api/most_visited";
-    recentlyViewedURL = "/profiles/api/recent_visits";
+    mostPopularURL = "/profiles/api/most_visited.php";
+    recentlyViewedURL = "/profiles/api/recent_visits.php";
 
     let xhr = new XMLHttpRequest();
+    let xhr2 = new XMLHttpRequest();
 
-    if (mostPopular) {
-        xhr.open("GET", mostPopularURL, true);
-    }
-    else {
-        xhr.open("GET", recentlyViewedURL, true);
+    xhr.open("GET", mostPopularURL, true);
+    xhr2.open("GET", recentlyViewedURL, true);
+
+    function load(req, el) {
+        let json = JSON.parse(req.responseText);
+        let html = "";
+
+        for (let i = 0; i < json.length; i++) {
+            html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].UserID});"><img src="https://a.ppy.sh/${json[i].UserID}" class="profiles__ranking-pfp">
+      <div class="profiles__ranking-texts">
+        <p class="profiles__ranking-username">${json[i].Username}</p>
+      </div>
+    </div>`;
+        }
+        el.innerHTML = html;
     }
 
     xhr.onload = function () {
-        if (this.status == 200) {
-            let json = JSON.parse(this.responseText);
-            let html = "";
-
-            for (let i = 0; i < json.length; i++) {
-                html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].UserID});"><img src="https://a.ppy.sh/${json[i].UserID}" class="profiles__ranking-pfp">
-          <div class="profiles__ranking-texts">
-            <p class="profiles__ranking-username">${json[i].Username}</p>
-          </div>
-        </div>`;
-            }
-
-            document.getElementById("recentlyviewed").innerHTML = html;
-        } else {
-            console.log("error");
-        }
+        load(xhr, document.getElementById("mostviewed"));
+    };
+    xhr2.onload = function () {
+        load(xhr, document.getElementById("recentlyviewed"));
     };
 
     xhr.send();
+    xhr2.send();
 }
 
 // </recently viewed (by hubz)>

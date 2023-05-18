@@ -125,12 +125,30 @@ frontend();
                         </div>
                     </div>
                 <?php } ?>
+                
                 <section class="osekai__panel" style="margin-top: 25px;">
                     <div class="osekai__panel-header">
                         <i class="fas fa-eye"></i>
                         <p>
-                            <?php if (loggedin()) echo GetStringRaw("profiles", "home.recentlyViewed.title");
-                            else echo GetStringRaw("profiles", "home.mostViewed.title"); ?>
+                            <?php echo GetStringRaw("profiles", "home.mostViewed.title"); ?>
+                        </p>
+                    </div>
+                    <div class="osekai__panel-inner profiles__ranking" id="mostviewed">
+                        <!-- <div class="profiles__ranking-user" onclick="loadUser(4637369);"><img src="https://a.ppy.sh/4637369" class="profiles__ranking-pfp">
+                            <div class="profiles__ranking-texts">
+                                <p class="profiles__ranking-username">?</p>
+                            </div>
+                            <p class="profiles__ranking-rank"><span>#</span>?</p>
+                        </div> -->
+                    </div>
+                </section>
+
+                <?php if(loggedin()) { ?>
+                <section class="osekai__panel">
+                    <div class="osekai__panel-header">
+                        <i class="fas fa-eye"></i>
+                        <p>
+                            <?php  echo GetStringRaw("profiles", "home.recentlyViewed.title"); ?>
                         </p>
                     </div>
                     <div class="osekai__panel-inner profiles__ranking" id="recentlyviewed">
@@ -142,6 +160,7 @@ frontend();
                         </div> -->
                     </div>
                 </section>
+                <?php } ?>
             </div>
             <div class="osekai__2col_col2">
                 <section class="osekai__panel">
