@@ -1435,8 +1435,9 @@ function LoadRecentlyViewed() {
     let xhr2 = new XMLHttpRequest();
 
     xhr.open("GET", mostPopularURL, true);
-    xhr2.open("GET", recentlyViewedURL, true);
-
+    if (bLoggedIn) {
+        xhr2.open("GET", recentlyViewedURL, true);
+    }
     function load(req, el) {
         let json = JSON.parse(req.responseText);
         let html = "";
@@ -1459,7 +1460,7 @@ function LoadRecentlyViewed() {
     };
 
     xhr.send();
-    xhr2.send();
+    if (bLoggedIn) xhr2.send();
 }
 
 // </recently viewed (by hubz)>
