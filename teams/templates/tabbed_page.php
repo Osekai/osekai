@@ -12,6 +12,6 @@
         </div>
     </div>
     <div id="teams_page" class="teams__page-content">
-        <?= $page ?>
+        
     </div>
 </div>
