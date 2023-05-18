@@ -745,3 +745,12 @@ input[type=range]:focus::-ms-fill-upper {
 .osekai__blur-overlay {
     filter: brightness(2) saturate(0.4);
 }
+
+.osekai__modal-overlay {
+    background: linear-gradient( hsla(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset)), 0.5), hsla(var(--accent_hue), var(--accent_saturation), calc(55% * var(--accent_valueoffset)), 0.5) );
+}
+
+.osekai__modal-overlay-panel-bottom {
+    background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(90% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(55% * var(--accent_valueoffset))) );
+
+}
