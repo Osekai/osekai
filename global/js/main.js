@@ -729,7 +729,8 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let oTab of oTabs) {
             if (oTab.getAttribute("otab-default") == "") {
                 oTab.classList.remove("osekai__otab-hidden");
-                oTabContainer.querySelector("[otab-button=\"" + oTab.getAttribute("otab-name") + "\"]").classList.add("osekai__otab-button-active")
+                oTabContainer.querySelector(`[otab-button="${oTab.getAttribute("otab-name")}"]`).classList.add("osekai__otab-button-active")
+
             }
         }
 
