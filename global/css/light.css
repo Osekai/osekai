@@ -695,14 +695,14 @@ input[type=range]:focus::-ms-fill-upper {
     margin-top: -2px;
 }
 
-.osekai__navbar {
-    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(55% * var(--accent_valueoffset))),
-            hsl(var(--accent_hue), var(--accent_saturation), calc(60% * var(--accent_valueoffset))));
+.osekai__navbar-center {
+    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset))),
+    hsl(var(--accent_hue), var(--accent_saturation), calc(60% * var(--accent_valueoffset))));
 }
-
-.osekai__navbar__app-container {
-    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(45% * var(--accent_valueoffset))),
-            hsl(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset))));
+.osekai__navbar-bottom {
+    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(40% * var(--accent_valueoffset))),
+    hsl(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset))));
+    color: white;
 }
 
 .osekai__navbar-alert-inner {
