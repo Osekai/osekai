@@ -156,35 +156,6 @@ body {
     filter: invert(1);
 }
 
-.comments__input-box {
-    background-color: #fff !important;
-    filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.2));
-}
-
-.comments__input-box__send, .comments__input-box__emoji {
-    background-color: none !important;
-    background: #f1f1f1 !important;
-    color: #222;
-}
-
-.comments__comment-vote, .comments__comment-reply {
-    background: #e7e7e7 !important;
-    color: #222 !important;
-}
-
-.comments__comment-delete, .comments__comment-report {
-    background: #e7e7e7 !important;
-    color: #ee2255;
-}
-
-.comments__comment-bottom {
-    background: #f1f1f1 !important;
-}
-
-.comments__comment-div {
-    background: #fffd !important;
-    filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.2));
-}
 
 .osekai__panel-nav {
     background: linear-gradient(#f8f8f8CC, #f8f8f8CC);
@@ -232,9 +203,6 @@ body {
     background: #fff5;
 }
 
-.comments__input-box__text {
-    color: #222;
-}
 
 .osekai__dropdown {
     background: #fff;
@@ -247,11 +215,6 @@ body {
     opacity: 0.9;
 }
 
-.comments__comment-top-role {
-    background-color: rgba(var(--accent), 1);
-    filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.2));
-    color: white;
-}
 
 .osekai__panel-header, .osekai__panel-header-with-buttons {
     background: linear-gradient(rgba(var(--accent), 0), rgba(var(--accent), 0.1)), linear-gradient(#eee, #fff);
@@ -685,14 +648,44 @@ input[type=range]:focus::-ms-fill-upper {
     background: rgb(var(--accent));
 }
 
-.comments__comment-top-text a {
-    filter: none;
-    color: rgb(var(--accent));
+.osekai__panel-inner a {
+     color: rgb(var(--accent));
 }
 
+.comments__comment-infobar-button-big {
+    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(60% * var(--accent_valueoffset))),
+    hsl(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset))));
+    color: white;
+}
+.comments__comment-infobar-button {
+    color: white;
+}
+.comments__comment-votes {
+    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(88% * var(--accent_valueoffset))),
+    hsl(var(--accent_hue), var(--accent_saturation), calc(80% * var(--accent_valueoffset))));
+}
+.comments__comment-votes-voted {
+    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(60% * var(--accent_valueoffset))),
+    hsl(var(--accent_hue), calc(var(--accent_saturation) * 1.3), calc(50% * var(--accent_valueoffset))));
+    color: white;
+}
 .osekai__nav-dropdown-v2-notification {
     background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(80% * var(--accent_valueoffset))),
             hsl(var(--accent_hue), var(--accent_saturation), calc(70% * var(--accent_valueoffset))));
+}
+
+.comments__comment-content, .comments__post-right {
+    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(88% * var(--accent_valueoffset))),
+    hsl(var(--accent_hue), var(--accent_saturation), calc(94% * var(--accent_valueoffset))));
+
+}
+.comments__post-upper textarea {
+    color: #111;
+}
+
+.comments__post-upper, .comments__comment-infobar {
+    background: linear-gradient(hsl(var(--accent_hue), var(--accent_saturation), calc(84% * var(--accent_valueoffset))),
+            hsl(var(--accent_hue), var(--accent_saturation), calc(81% * var(--accent_valueoffset))));
 }
 
 .osekai__nav-dropdown-v2-notification-upper {
