@@ -553,7 +553,7 @@ function requestBeatmaps(strKey, strValue, strUrl) {
     };
 }
 
-function reportBeatmap(beatmapId, beatmapName) {
+function reportBeatmap(beatmapId) {
 
     doReport("beatmap", beatmapId);
 }
@@ -597,7 +597,7 @@ function loadBeatmap(oBeatmap) {
             ??medals.beatmap.downloadWithDirect??
             </a>` +
         (nUserID.toString() != oBeatmap.SubmittedBy ?
-            `<div class="medals__bmp3-hover-button translatable" onclick="reportBeatmap(` + oBeatmap.BeatmapID + `, ` + `'` + escapeHtml(oBeatmap.SongTitle) + `'` + `);">
+            `<div class="medals__bmp3-hover-button translatable" onclick="reportBeatmap(` + oBeatmap.BeatmapID + `);">
             ??medals.beatmap.report??
             </div>` : ``) +
         (bCanDelete ?
