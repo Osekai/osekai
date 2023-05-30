@@ -340,7 +340,7 @@ function leaveLandingPage() {
 function changeState(strName) {
     let params = new URLSearchParams(window.location.search);
     if (params.get("medal") == strName) return;
-    params.set("medal", strName);
+    params.set("medal", encodeURIComponent(strName));
     window.history.pushState({}, "", decodeURIComponent(`${window.location.pathname}?${params}`));
     loadMedal(strName);
 }
