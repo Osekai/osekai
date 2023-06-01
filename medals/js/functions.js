@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("styled-checkbox-1").checked = true;
     }
     if (new URLSearchParams(window.location.search).get("medal") == null) landingPage();
-    requestMedals(true, "");
+    requestMedals(true);
 });
 
 window.addEventListener('popstate', function (event) {
@@ -151,26 +151,63 @@ async function initColMedals() {
     });
 }
 
-async function requestMedals(init, strValue) {
+async function requestMedals(init, strValue = '') {
     if (init || Object.values(colMedals).length == 0)  // Init the colMedals object
         await initColMedals();
 
+    let query = strValue.trim();
+    while (query.includes('  ')) {
+        query = query.replace('  ', ' ');
+        query = query.trim();
+    }
+
     let filteredMedalsArrayByGroup = [];
     for (let v of Object.values(colMedals)) {
-        let doModsMatch = false;
-        for (const word of strValue.split(' ')) {
-            if (v.Mods == '' || v.Mods == null) break;
-            doModsMatch = v.Mods.replace(',', '').toUpperCase().includes(word.toUpperCase());
-            if (doModsMatch) break;
+        let medalMatches = false;
+        if (query == '') {
+            medalMatches = true;
+        } else {
+            let wordMatches = [];
+            for (const word of query.split(' ')) {
+                thisWordMatches = false;
+                if (v.Mods == null) v.Mods = '';
+                thisWordMatches = v.Mods.replace(',', '').toUpperCase().includes(word.toUpperCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+
+                thisWordMatches = v.Name.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Solution?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Description?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Instructions?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.MedalID == parseInt(word);
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                wordMatches.push(false);
+            }
+            medalMatches = !wordMatches.includes(false);
         }
 
-        // Match Name, Solution, Description, Instructions and medal id
-        if (v.Name.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Solution?.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Description?.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Instructions?.toLowerCase().includes(strValue.toLowerCase()) ||
-            doModsMatch ||
-            v.MedalID == parseInt(strValue)) {
+        if (medalMatches) {
             if (filteredMedalsArrayByGroup[v.Grouping] == null) filteredMedalsArrayByGroup[v.Grouping] = [];
             filteredMedalsArrayByGroup[v.Grouping].push(v);
         }
