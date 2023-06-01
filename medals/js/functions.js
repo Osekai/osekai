@@ -157,11 +157,19 @@ async function requestMedals(init, strValue) {
 
     let filteredMedalsArrayByGroup = [];
     for (let v of Object.values(colMedals)) {
+        let doModsMatch = false;
+        for (const word of strValue.split(' ')) {
+            if (v.Mods == '' || v.Mods == null) break;
+            doModsMatch = v.Mods.replace(',', '').toUpperCase().includes(word.toUpperCase());
+            if (doModsMatch) break;
+        }
+
         // Match Name, Solution, Description, Instructions and medal id
         if (v.Name.toLowerCase().includes(strValue.toLowerCase()) ||
             v.Solution?.toLowerCase().includes(strValue.toLowerCase()) ||
             v.Description?.toLowerCase().includes(strValue.toLowerCase()) ||
             v.Instructions?.toLowerCase().includes(strValue.toLowerCase()) ||
+            doModsMatch ||
             v.MedalID == parseInt(strValue)) {
             if (filteredMedalsArrayByGroup[v.Grouping] == null) filteredMedalsArrayByGroup[v.Grouping] = [];
             filteredMedalsArrayByGroup[v.Grouping].push(v);
