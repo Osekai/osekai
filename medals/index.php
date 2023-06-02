@@ -118,15 +118,19 @@ if (isset($_GET['medal'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="medals__scroller osekai__otab-hidden" otab-name="Beatmap Packs">
+                    <div class="medals__scroller osekai__otab-hidden" otab-name="Beatmap Packs"
+                        otab-callback="loadBeatmapPacks">
                         <div class="osekai__panel">
                             <div class="osekai__panel-header">
                                 <p>
                                     Beatmap Packs
                                 </p>
                             </div>
-                            <div class="osekai__panel-inner">
-                                uwu
+                            <div class="osekai__panel-inner" id="beatmapPackList">
+                                <div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'>
+                                        <circle class='ring' cx='25' cy='25' r='22.5' />
+                                        <circle class='line' cx='25' cy='25' r='22.5' />
+                                    </svg></div>
                             </div>
                         </div>
                     </div>

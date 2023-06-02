@@ -724,39 +724,48 @@ function getAlerts() {
     };
 
 }
+
+
 document.addEventListener("DOMContentLoaded", function () {
     getAlerts();
 
     var oTabContainers = document.querySelectorAll("[otab-container]");
     for (let oTabContainer of oTabContainers) {
-        let oTabs = oTabContainer.querySelectorAll("[otab-name]")
-        for (let oTab of oTabs) {
-            if (oTab.getAttribute("otab-default") == "") {
-                oTab.classList.remove("osekai__otab-hidden");
-                oTabContainer.querySelector(`[otab-button="${oTab.getAttribute("otab-name")}"]`).classList.add("osekai__otab-button-active")
 
+        let oTabs = oTabContainer.querySelectorAll("[otab-name]")
+        var oTabButtons = oTabContainer.querySelectorAll("[otab-button]")
+        function switchTab(tabName) {
+            for (var tab of oTabs) {
+                if (tab.getAttribute("otab-name") == tabName) {
+                    tab.classList.remove("osekai__otab-hidden");
+                    if (tab.getAttribute("otab-callback")) {
+                        console.log(tab.getAttribute("otab-callback"));
+                        window[tab.getAttribute("otab-callback")]();
+                    }
+                } else {
+                    tab.classList.add("osekai__otab-hidden");
+                }
+            }
+
+            for (let button of oTabButtons) {
+                if (button.getAttribute("otab-button") == tabName) {
+                    button.classList.add("osekai__otab-button-active");
+                } else {
+                    button.classList.remove("osekai__otab-button-active");
+                }
             }
         }
 
-        var oTabButtons = oTabContainer.querySelectorAll("[otab-button]")
+        for (let oTab of oTabs) {
+            if (oTab.getAttribute("otab-default") == "") {
+                switchTab(oTab.getAttribute("otab-name"));
+            }
+        }
+
         for (let oTabButton of oTabButtons) {
             oTabButton.innerHTML = oTabButton.getAttribute("otab-button");
             oTabButton.addEventListener("click", function () {
-                for (let oTab of oTabs) {
-                    console.log(oTab);
-                    console.log(oTabButton);
-                    if (oTab.getAttribute("otab-name") == oTabButton.getAttribute("otab-button")) {
-                        oTab.classList.remove("osekai__otab-hidden");
-                    } else {
-                        oTab.classList.add("osekai__otab-hidden");
-                    }
-                }
-
-                for (let oTabButton2 of oTabButtons) {
-                    oTabButton2.classList.remove("osekai__otab-button-active");
-                }
-
-                oTabButton.classList.add("osekai__otab-button-active");
+                switchTab(oTabButton.getAttribute("otab-button"));
             });
         }
     }

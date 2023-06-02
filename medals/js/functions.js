@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("styled-checkbox-1").checked = true;
     }
     if (new URLSearchParams(window.location.search).get("medal") == null) landingPage();
-    requestMedals(true, "");
+    requestMedals(true);
 });
 
 window.addEventListener('popstate', function (event) {
@@ -151,18 +151,63 @@ async function initColMedals() {
     });
 }
 
-async function requestMedals(init, strValue) {
+async function requestMedals(init, strValue = '') {
     if (init || Object.values(colMedals).length == 0)  // Init the colMedals object
         await initColMedals();
 
+    let query = strValue.trim();
+    while (query.includes('  ')) {
+        query = query.replace('  ', ' ');
+        query = query.trim();
+    }
+
     let filteredMedalsArrayByGroup = [];
     for (let v of Object.values(colMedals)) {
-        // Match Name, Solution, Description, Instructions and medal id
-        if (v.Name.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Solution?.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Description?.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Instructions?.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.MedalID == parseInt(strValue)) {
+        let medalMatches = false;
+        if (query == '') {
+            medalMatches = true;
+        } else {
+            let wordMatches = [];
+            for (const word of query.split(' ')) {
+                thisWordMatches = false;
+                if (v.Mods == null) v.Mods = '';
+                thisWordMatches = v.Mods.replace(',', '').toUpperCase().includes(word.toUpperCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+
+                thisWordMatches = v.Name.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Solution?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Description?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Instructions?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.MedalID == parseInt(word);
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                wordMatches.push(false);
+            }
+            medalMatches = !wordMatches.includes(false);
+        }
+
+        if (medalMatches) {
             if (filteredMedalsArrayByGroup[v.Grouping] == null) filteredMedalsArrayByGroup[v.Grouping] = [];
             filteredMedalsArrayByGroup[v.Grouping].push(v);
         }
@@ -345,7 +390,7 @@ function changeState(strName) {
     window.history.pushState({}, "", decodeURIComponent(`${window.location.pathname}?${params}`));
     loadMedal(strName);
 }
-
+var beatmapPacksLoaded = false;
 async function loadMedal(strMedalName, updateAdminPanel = true) {
     document.getElementById("video_panel").classList.add("hidden");
 
@@ -556,6 +601,12 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
         }
         xhr.send();
 
+        if (beatmapPacksLoaded == true) {
+            for (var el of document.getElementsByClassName("medals__beatmapPack")) {
+                el.classList.remove("medals__beatmapPack-active");
+            }
+            document.querySelector("[m-bmp-medal-name=\"" + strMedalName + "\"]").classList.add("medals__beatmapPack-active");
+        }
     }
     else {
         document.getElementById("oBeatmapContainer").classList.remove("hidden");
@@ -965,6 +1016,74 @@ function loadExtraInfo(medalid) {
         if (any == false) {
             container.innerHTML = GetStringRawNonAsync("medals", "extraInfo.none");
         }
+    }
+    xhr.send();
+}
+
+function loadBeatmapPacks() {
+    if (userInfo == null) {
+        console.log("waiting for userinfo")
+        setTimeout(loadBeatmapPacks, 100);
+        return;
+    }
+    console.log("loading beatmap packs...");
+
+    var container = document.getElementById("beatmapPackList");
+    container.innerHTML = loader;
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/medals/api/beatmap_packs.php")
+    xhr.onload = function () {
+        var resp = JSON.parse(xhr.response);
+        container.innerHTML = "";
+
+
+        for (let medal of resp) {
+            let medalContainer = Object.assign(document.createElement("div"), { className: "medals__beatmapPack" });
+            medalContainer.setAttribute("m-bmp-medal-name", medal.name);
+            var medalContainerLeft = Object.assign(document.createElement("div"), { className: "medals__beatmapPack-left" });
+            var medalContainerRight = Object.assign(document.createElement("div"), { className: "medals__beatmapPack-right" });
+
+            var medalImage = Object.assign(document.createElement("img"), { src: medal.link });
+            var medalName = Object.assign(document.createElement("p"), { innerText: medal.name });
+
+            var packLength = Object.assign(document.createElement("p"), { innerHTML: "<i class=\"oif-gamemode-" + medal.fastest_gamemode + "\"></i> " + fancyTimeFormat(medal.fastest_time / 1.5) });
+            var packLengthSmall = Object.assign(document.createElement("small"), { innerText: "with DT" });
+
+            medalContainerLeft.appendChild(medalImage);
+
+            if (bLoggedIn) {
+                for (var usermedal of userInfo['user_achievements']) {
+                    if (usermedal.achievement_id == medal.medalid) {
+                        console.log("achieved");
+                        medalContainer.classList.add("medals__beatmapPack-obtained");
+                        var checkmark = Object.assign(document.createElement("i"), { className: "fas fa-check" });
+                        medalContainerLeft.appendChild(checkmark);
+                    }
+                }
+            }
+
+            medalContainerLeft.appendChild(medalName);
+
+            medalContainerRight.appendChild(packLength);
+
+            if (medal.fastest_time == -1) {
+                packLength.innerHTML = "unknown"
+            } else {
+                medalContainerRight.appendChild(packLengthSmall);
+            }
+
+
+            medalContainer.appendChild(medalContainerLeft);
+            medalContainer.appendChild(medalContainerRight);
+
+            container.appendChild(medalContainer);
+
+            medalContainer.addEventListener("click", function () {
+                changeState(medal.name);
+            })
+        }
+
+        beatmapPacksLoaded = true;
     }
     xhr.send();
 }
