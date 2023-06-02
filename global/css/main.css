@@ -3391,6 +3391,15 @@ input[type='range']:focus::-ms-fill-upper {
     background: linear-gradient(0deg, rgba(34, 34, 34, 0.4), rgba(34, 34, 34, 0.4)), linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), rgba(85, 85, 85, 0.2);
 }
 
+.osekai__modal-overlay-closelayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 51;
+}
+
 .osekai__modal-overlay--hidden {
     opacity: 0;
     pointer-events: none;
@@ -3407,6 +3416,8 @@ input[type='range']:focus::-ms-fill-upper {
     max-width: 490px;
     text-align: center;
     transition: all 0.6s cubic-bezier(0, 0.5, 0, 0.98);
+    z-index: 52;
+    position: relative;
 }
 
 .osekai__modal-overlay--hidden .osekai__modal-overlay-panel {

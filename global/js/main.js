@@ -327,7 +327,9 @@ function closeLoader() {
 
 window.openDialog = function (title, header, message, buttons = [], content = null) {
     var modal_overlay = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay osekai__modal-overlay-bland osekai__modal-overlay--hidden" });
-
+    var modal_overlay_close_layer = Object.assign(document.createElement("div"), {className: "osekai__modal-overlay-closelayer"});
+    modal_overlay.appendChild(modal_overlay_close_layer);
+    
     var modal_overlay_panel = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay-panel" });
     var modal_overlay_panel_top = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay-panel-top" });
     var modal_overlay_panel_bottom = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay-panel-bottom" });
@@ -346,6 +348,8 @@ window.openDialog = function (title, header, message, buttons = [], content = nu
     function close() {
         modal_overlay.remove();
     }
+
+    modal_overlay_close_layer.addEventListener("click", function() {close()});
 
     if (content != null)
         modal_overlay_panel_bottom.appendChild(content);
