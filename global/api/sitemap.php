@@ -31,7 +31,7 @@ function createUrl($url, $priority)
 
 $string = $template_start;
 
-$root = "/";
+$root = ROOT_URL . "/";
 
 $string .= createUrl($root . "home", 1);
 
