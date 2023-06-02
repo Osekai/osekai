@@ -238,7 +238,7 @@ async function FillData(uid, mode, completeReload = true) {
         }
         if (oData.username != null) document.getElementById("name__sub").innerHTML = `
         <div class="profiles__cover-info-name">
-            <img class="profiles__cover-country" src="https://osu.ppy.sh/images/flags/${oData.country_code}.png" id="country__flag">
+            <img class="profiles__cover-country tooltip-v2" tooltip-content="${CountryShortCodeToCountryName[oData.country_code]}" src="https://osu.ppy.sh/images/flags/${oData.country_code}.png" id="country__flag">
             <h1>${oData.username}</h1> 
         </div>
         <div id="user__badges" class="profiles__user-badges"></div>`;
