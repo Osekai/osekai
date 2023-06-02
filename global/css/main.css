@@ -4737,3 +4737,11 @@ input[type='range']:focus::-ms-fill-upper {
 .osekai__3col_col1{
     overflow: scroll;
 }
+
+.osekai__dropdown-item-red {
+    color: #ff6286;
+}
+
+.osekai__dropdown-item i {
+    margin-right: 5px;
+}
