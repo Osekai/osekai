@@ -196,8 +196,16 @@
     font-family: var(--body-font);
 }
 
+.medlas__sol-solution img {
+    width: 100%;   
+}
+
 .medals__info-sol {
     padding: 25px 30px;
+}
+
+.medals__solution {
+    width: -webkit-fill-available;   
 }
 
 #oBeatmapContainer {
