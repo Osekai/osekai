@@ -530,23 +530,9 @@ async function FillData(uid, mode, completeReload = true) {
             let oLastModeSection;
             console.log(oData.unachieved);
             function getMaxMedalsGroup(group) {
-                var max_count = 0;
-                var has_count = 0;
-                medals.forEach(medal => {
-                    if (medal.Grouping == group) {
-                        max_count++;
-                    }
-                });
-
-                oData.unachieved.forEach(medal => {
-                    if (medal.grouping == group) {
-                        has_count++;
-                    }
-                });
-
-                console.log("in " + group + " user is missing " + has_count +" out of " + max_count)
-                has_count = (max_count - has_count);
-                console.log("...so they need " + has_count + " more?");
+                const max_count = medals.filter((m) => m.Grouping == group).length;
+                const unachieved_count = oData.unachieved.filter((m) => m.Grouping == group).length;
+                const has_count = (max_count - unachieved_count);
                 return { "max": max_count, "has": has_count };
             }
             var groupings = {};
