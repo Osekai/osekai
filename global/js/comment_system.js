@@ -295,10 +295,21 @@ function commentsSendClick(nVersionID = -1, nProfileId = -1) {
     let strComment = document.getElementById("comments__input").value;
 
     if (strComment.includes("https://osu.ppy.sh/beatmapsets/")) {
-        openDialog("Are you sure you want to post this comment?", "Your comment looks like it contains an osu! beatmap URL.", "If you're trying to post a beatmap, you should instead use the 'Add' button on the beatmaps panel.", "Post Anyway", function () {
-            newComment(strComment, nVersionID, nProfileId);
-            document.getElementById("comments__input").value = "";
-        });
+        openDialog("Are you sure you want to post this comment?", "Your reply looks like it contains an osu! beatmap URL.", "If you're trying to post a beatmap, you should instead use the 'Add' button on the beatmaps panel.", [
+            {
+                "text": "Send Anyway",
+                "callback": function () {
+                    newComment(strComment, nVersionID, nProfileId);
+                    document.getElementById("comments__input").value = "";
+                },
+                "highlighted": true,
+            },
+            {
+                "text": "Cancel",
+                "callback": function () { },
+                "highlighted": false,
+            }
+        ]);
     } else {
         newComment(strComment, nVersionID, nProfileId);
         document.getElementById("comments__input").value = "";
@@ -359,9 +370,20 @@ function openReply(strCommentId, element) {
 
         document.getElementById("reply__send").addEventListener("click", () => {
             if (document.getElementById("reply__input").value.includes("https://osu.ppy.sh/beatmapsets/")) {
-                openDialog("Are you sure you want to post this comment?", "Your reply looks like it contains an osu! beatmap URL.", "If you're trying to post a beatmap, you should instead use the 'Add' button on the beatmaps panel.", "Post Anyway", function () {
-                    replySend();
-                });
+                openDialog("Are you sure you want to post this comment?", "Your reply looks like it contains an osu! beatmap URL.", "If you're trying to post a beatmap, you should instead use the 'Add' button on the beatmaps panel.", [
+                    {
+                        "text": "Send Anyway",
+                        "callback": function () {
+                            replySend();
+                        },
+                        "highlighted": true,
+                    },
+                    {
+                        "text": "Cancel",
+                        "callback": function () { },
+                        "highlighted": false,
+                    }
+                ]);
             } else {
                 replySend();
             }

@@ -3376,7 +3376,7 @@ input[type='range']:focus::-ms-fill-upper {
     }
 }
 
-.osekai__report-overlay {
+.osekai__modal-overlay {
     position: fixed;
     top: var(--extraheight);
     left: 0;
@@ -3391,7 +3391,16 @@ input[type='range']:focus::-ms-fill-upper {
     background: linear-gradient(0deg, rgba(34, 34, 34, 0.4), rgba(34, 34, 34, 0.4)), linear-gradient(0deg, rgba(var(--accentdark), 0.5), rgba(var(--accentdark), 0.5)), rgba(85, 85, 85, 0.2);
 }
 
-.osekai__report-overlay--hidden {
+.osekai__modal-overlay-closelayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 51;
+}
+
+.osekai__modal-overlay--hidden {
     opacity: 0;
     pointer-events: none;
     transition: all 0s ease;
@@ -3399,7 +3408,7 @@ input[type='range']:focus::-ms-fill-upper {
     transform: translateY(50px);
 }
 
-.osekai__report-overlay-panel {
+.osekai__modal-overlay-panel {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 75.82%), #fd3440;
     box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
@@ -3407,86 +3416,95 @@ input[type='range']:focus::-ms-fill-upper {
     max-width: 490px;
     text-align: center;
     transition: all 0.6s cubic-bezier(0, 0.5, 0, 0.98);
+    z-index: 52;
+    position: relative;
 }
 
-.osekai__report-overlay--hidden .osekai__report-overlay-panel {
+.osekai__modal-overlay--hidden .osekai__modal-overlay-panel {
     opacity: 0;
     transform: scale(0.7);
 }
 
-.osekai__report-overlay-panel-bottom .osekai__input {
+.osekai__modal-overlay-panel-bottom .osekai__input {
     margin-bottom: 10px;
     height: 100px;
     width: 100%;
 }
 
-.osekai__report-overlay-panel-bottom p {
+.osekai__modal-overlay-panel-bottom p {
     padding-top: 12px;
     font-size: 16px;
     padding-bottom: 20px;
 }
 
-.osekai__report-overlay-panel-bottom h1 {
+.osekai__modal-overlay-panel-bottom h1 {
     font-size: 24px;
     font-weight: 900;
 }
 
-.osekai__report-overlay-panel-bottom {
+.osekai__modal-overlay-panel-bottom {
     background: linear-gradient(180deg, rgba(212, 51, 61, 0.2) 0%, rgba(212, 51, 61, 0) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(0deg, rgba(var(--accentdark), 0.9), rgba(var(--accentdark), 0.9)), #000000;
     border-radius: 16px;
     padding: 29px 33px;
 }
 
-.osekai__report-overlay-buttons {
+
+.osekai__modal-overlay-buttons {
     display: flex;
+    align-items: space-between;
+    justify-content: space-between;
 }
 
-.osekai__report-overlay-buttons .osekai__button {
-    width: 50%;
+.osekai__modal-overlay-buttons .osekai__button {
+    flex: 0.44;
 }
 
-.osekai__report-overlay-buttons .osekai__button-highlighted {
-    width: 50%;
-    margin-left: 50px;
-}
-
-.osekai__report-overlay-panel-top {
+.osekai__modal-overlay-panel-top {
     display: flex;
-    height: 134px;
+    padding: 30px;
     align-items: center;
     justify-content: center;
     transition: all 0.7s cubic-bezier(0, 0.5, 0, 0.98);
 }
 
-.osekai__report-overlay--hidden .osekai__report-overlay-panel-top {
+.osekai__modal-overlay--hidden .osekai__modal-overlay-panel-top {
     height: 0px;
     transform: translateY(5px);
 }
 
-.osekai__report-overlay-panel-top img {
+.osekai__modal-overlay-panel-top img {
     transition: all 0.5s cubic-bezier(0, 0.5, 0, 0.98);
 }
 
-.osekai__report-overlay--hidden .osekai__report-overlay-panel-top img {
+.osekai__modal-overlay--hidden .osekai__modal-overlay-panel-top img {
     transform: scale(0);
     opacity: 0;
 }
 
-.osekai__report-overlay-success .osekai__report-overlay-panel {
+.osekai__modal-overlay-success .osekai__modal-overlay-panel {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 75.82%), #5bdd68;
 }
 
-.osekai__report-overlay-success .osekai__report-overlay-panel-bottom {
+.osekai__modal-overlay-success .osekai__modal-overlay-panel-bottom {
     background: linear-gradient(180deg, rgba(91, 221, 104, 0.2) 0%, rgba(91, 221, 104, 0) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(0deg, rgba(var(--accentdark), 0.9), rgba(var(--accentdark), 0.9)), #000000;
 }
 
-.osekai__report-overlay-buttons-success {
+.osekai__modal-overlay-bland .osekai__modal-overlay-panel {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 75.82%), linear-gradient(180deg, rgb(var(--accent)), rgb(var(--accent)));
+
+}
+.osekai__modal-overlay-bland .osekai__modal-overlay-panel-bottom {
+    background: linear-gradient(180deg, rgba(var(--accent), 0.2) 0%, rgba(var(--accent), 0) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), linear-gradient(0deg, rgba(var(--accentdark), 0.9), rgba(var(--accentdark), 0.9)), #000000;
+
+}
+
+.osekai__modal-overlay-buttons-success {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.osekai__report-overlay-buttons-success .osekai__button {
+.osekai__modal-overlay-buttons-success .osekai__button {
     width: 40%;
 }
 
