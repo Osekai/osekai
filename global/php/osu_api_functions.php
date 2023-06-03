@@ -79,6 +79,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals) t ON 1 = 1 " .
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSkill FROM Medals WHERE grouping = 'Skill') u ON 1 = 1 " .
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHush FROM Medals WHERE grouping = 'Hush-Hush') v ON 1 = 1 " .
+        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHushExpert FROM Medals WHERE grouping = 'Hush-Hush (Expert)') l ON 1 = 1 " .
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountDedication FROM Medals WHERE grouping = 'Dedication') w ON 1 = 1 " .
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapChallengePacks FROM Medals WHERE grouping = 'Beatmap Challenge Packs') x ON 1 = 1 " .
         "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapPacks FROM Medals WHERE grouping = 'Beatmap Packs') y ON 1 = 1 " .
@@ -111,6 +112,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
                     "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals WHERE restriction = 'NULL' Or restriction = ?) t ON 1 = 1 " .
                     "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSkill FROM Medals WHERE grouping = 'Skill' AND (restriction = 'NULL' Or restriction = ?)) u ON 1 = 1 " .
                     "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHush FROM Medals WHERE grouping = 'Hush-Hush' AND (restriction = 'NULL' Or restriction = ?)) v ON 1 = 1 " .
+                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHushExpert FROM Medals WHERE grouping = 'Hush-Hush (Expert)' AND (restriction = 'NULL' Or restriction = ?)) l ON 1 = 1 " .
                     "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountDedication FROM Medals WHERE grouping = 'Dedication' AND (restriction = 'NULL' Or restriction = ?)) w ON 1 = 1 " .
                     "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapChallengePacks FROM Medals WHERE grouping = 'Beatmap Challenge Packs' AND (restriction = 'NULL' Or restriction = ?)) x ON 1 = 1 " .
                     "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapPacks FROM Medals WHERE grouping = 'Beatmap Packs' AND (restriction = 'NULL' Or restriction = ?)) y ON 1 = 1 " .
@@ -124,6 +126,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
             $colData['max_medals_group'] = [];
             $colData['max_medals_group']['skill'] = $oMedals[0]['MedalCountSkill'];
             $colData['max_medals_group']['hush-hush'] = $oMedals[0]['MedalCountHushHush'];
+            $colData['max_medals_group']['hush-hushexpert'] = $oMedals[0]['MedalCountHushHushExpert'];
             $colData['max_medals_group']['dedication'] = $oMedals[0]['MedalCountDedication'];
             $colData['max_medals_group']['beatmapchallengepacks'] = $oMedals[0]['MedalCountBeatmapChallengePacks'];
             $colData['max_medals_group']['beatmappacks'] = $oMedals[0]['MedalCountBeatmapPacks'];
@@ -244,6 +247,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $colOsu['max_medals_group'] = [];
         $colOsu['max_medals_group']['skill'] = $oMedals[0]['MedalCountSkill'];
         $colOsu['max_medals_group']['hush-hush'] = $oMedals[0]['MedalCountHushHush'];
+        $colOsu['max_medals_group']['hush-hushexpert'] = $oMedals[0]['MedalCountHushHushExpert'];
         $colOsu['max_medals_group']['dedication'] = $oMedals[0]['MedalCountDedication'];
         $colOsu['max_medals_group']['beatmapchallengepacks'] = $oMedals[0]['MedalCountBeatmapChallengePacks'];
         $colOsu['max_medals_group']['beatmappacks'] = $oMedals[0]['MedalCountBeatmapPacks'];

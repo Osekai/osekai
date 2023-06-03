@@ -528,7 +528,7 @@ async function FillData(uid, mode, completeReload = true) {
 
             let oLastMode = "";
             let oLastModeSection;
-
+            console.log(oData.unachieved);
             oData.unachieved.forEach(oAchievement => {
                 let oSectionID = `unobtained_section_${oAchievement.grouping}`;
                 let oGridID = `unobtained_grid_${oAchievement.grouping}`;
@@ -539,7 +539,7 @@ async function FillData(uid, mode, completeReload = true) {
                 if (!document.getElementById(oSectionID)) {
                     let oSection = document.createElement("div");
                     oSection.classList.add("profiles__unachievedmedals-section");
-                    oSection.classList.add(oAchievement.grouping.replace(/\s/g, "-").toLowerCase());
+                    oSection.classList.add(oAchievement.grouping.replace(/\s/g, "-").toLowerCase().replace("(", "").replace(")", ""));
                     oSection.id = oSectionID;
 
                     let oSectionHeader = document.createElement("div");
@@ -561,11 +561,12 @@ async function FillData(uid, mode, completeReload = true) {
                     oProgressString.classList.add("profiles__unachievedmedals-section-header-right");
 
                     let oProgressCurrent = document.createElement("span");
-                    oProgressCurrent.innerHTML = oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase()];
+                    console.log(oAchievement.grouping.replace(/\s/g, "").toLowerCase().replace("(", "").replace(")", ""));
+                    oProgressCurrent.innerHTML = oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase().replace("(", "").replace(")", "")];
                     oProgressCurrent.id = oProgressID;
 
                     let oProgressTotal = document.createElement("light");
-                    oProgressTotal.innerHTML = "/" + oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase()];
+                    oProgressTotal.innerHTML = "/" + oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase().replace("(", "").replace(")", "")];
 
                     oProgressString.appendChild(oProgressCurrent);
                     oProgressString.appendChild(oProgressTotal);
@@ -635,7 +636,7 @@ async function FillData(uid, mode, completeReload = true) {
                     let oBar = document.getElementById(oBarID);
 
                     oProgressCount.innerHTML = parseInt(oProgressCount.innerHTML) - 1;
-                    oBar.style.width = (parseInt(oProgressCount.innerHTML) / parseInt(oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase()]) * 100) + "%";
+                    oBar.style.width = (parseInt(oProgressCount.innerHTML) / parseInt(oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase().replace("(", "").replace(")", "")]) * 100) + "%";
 
                     let oImg = document.createElement("img");
                     oImg.src = oAchievement.link;
