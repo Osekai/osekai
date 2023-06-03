@@ -645,7 +645,9 @@ async function FillData(uid, mode, completeReload = true) {
                     let oBar = document.getElementById(oBarID);
 
                     oProgressCount.innerHTML = parseInt(oProgressCount.innerHTML) - 1;
-                    oBar.style.width = (parseInt(oProgressCount.innerHTML) / parseInt(groupings[oAchievement.grouping]["max"] * 100) + "%");
+                    console.log(groupings[oAchievement.grouping]);
+                    console.log((groupings[oAchievement.grouping]["max"] +"/"+ groupings[oAchievement.grouping]["has"]))
+                    oBar.style.width = ((groupings[oAchievement.grouping]["max"] / groupings[oAchievement.grouping]["has"])*100) + "%";
 
                     let oImg = document.createElement("img");
                     oImg.src = oAchievement.link;
@@ -726,7 +728,6 @@ async function FillData(uid, mode, completeReload = true) {
                     oGridMedal.appendChild(oImg);
                     oLastModeSection.appendChild(oGridMedal);
                 }
-                console.log(groupings);
             });
         }
     }
