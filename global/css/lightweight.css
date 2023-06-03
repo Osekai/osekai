@@ -4,6 +4,18 @@
     box-shadow: none !important;
     text-shadow: none !important;
 }
+*:before {
+    transition: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+*:after {
+    transition: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
 
 .osekai__pfp-blur-bg {
     display: none !important;
@@ -57,4 +69,8 @@
 
 .comments__comment-vote-voted {
     background: #fff;
+}
+
+.osekai__button-highlighted:before, .osekai__button-on:before {
+    background-color: #fff;
 }
