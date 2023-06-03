@@ -616,3 +616,24 @@ var TimeAgo = (function() {
 
     return self;
 }());
+
+
+var medals_grouping_ordering = [
+    "Hush-Hush",
+    "Hush-Hush (Expert)",
+    "Skill & Dedication",
+    "Mod Introduction",
+    "Beatmap Spotlights",
+    "Beatmap Challenge Packs",
+    "Beatmap Packs",
+]
+
+var medals_grouping_classnames = {
+    "Hush-Hush": "hush-hush",
+    "Hush-Hush (Expert)": "hush-hush-expert",
+    "Skill & Dedication": "skill-and-dedication",
+    "Mod Introduction": "mod-introduction",
+    "Beatmap Spotlights": "beatmap-spotlights",
+    "Beatmap Challenge Packs": "beatmap-challenge-packs",
+    "Beatmap Packs": "beatmap-packs",
+}

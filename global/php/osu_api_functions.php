@@ -76,16 +76,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
     $oUserGroups = Database::execSelect("SELECT * FROM GroupAssignments WHERE UserId = ?", "i", array($userID));
 
     $oMedals = Database::execSimpleSelect("SELECT * From Medals LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals) t ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSkill FROM Medals WHERE grouping = 'Skill') u ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHush FROM Medals WHERE grouping = 'Hush-Hush') v ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHushExpert FROM Medals WHERE grouping = 'Hush-Hush (Expert)') l ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountDedication FROM Medals WHERE grouping = 'Dedication') w ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapChallengePacks FROM Medals WHERE grouping = 'Beatmap Challenge Packs') x ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapPacks FROM Medals WHERE grouping = 'Beatmap Packs') y ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSeasonalSpotlights FROM Medals WHERE grouping = 'Seasonal Spotlights') z ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountModIntroduction FROM Medals WHERE grouping = 'Mod Introduction') b ON 1 = 1 " .
-        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapSpotlights FROM Medals WHERE grouping = 'Beatmap Spotlights') a ON 1 = 1 ");
+        "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals) t ON 1 = 1 ");
 
     if ($mode != "all") {
         $colData = curlRequestUser($strSearch);
@@ -110,29 +101,10 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
             if ($useAllMedals == false) {
                 $oMedals = Database::execSelect("SELECT * From Medals LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid " .
                     "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals WHERE restriction = 'NULL' Or restriction = ?) t ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSkill FROM Medals WHERE grouping = 'Skill' AND (restriction = 'NULL' Or restriction = ?)) u ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHush FROM Medals WHERE grouping = 'Hush-Hush' AND (restriction = 'NULL' Or restriction = ?)) v ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountHushHushExpert FROM Medals WHERE grouping = 'Hush-Hush (Expert)' AND (restriction = 'NULL' Or restriction = ?)) l ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountDedication FROM Medals WHERE grouping = 'Dedication' AND (restriction = 'NULL' Or restriction = ?)) w ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapChallengePacks FROM Medals WHERE grouping = 'Beatmap Challenge Packs' AND (restriction = 'NULL' Or restriction = ?)) x ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapPacks FROM Medals WHERE grouping = 'Beatmap Packs' AND (restriction = 'NULL' Or restriction = ?)) y ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountSeasonalSpotlights FROM Medals WHERE grouping = 'Seasonal Spotlights' AND (restriction = 'NULL' Or restriction = ?)) z ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountModIntroduction FROM Medals WHERE grouping = 'Mod Introduction' AND (restriction = 'NULL' Or restriction = ?)) b ON 1 = 1 " .
-                    "LEFT JOIN (SELECT COUNT(medalid) AS MedalCountBeatmapSpotlights FROM Medals WHERE grouping = 'Beatmap Spotlights' AND (restriction = 'NULL' Or restriction = ?)) a ON 1 = 1 " .
-                    "WHERE (restriction = 'NULL' Or restriction = ?)", "ssssssssss", array($mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode, $mode));
+                    "WHERE (restriction = 'NULL' Or restriction = ?)", "ssssssssss", array($mode, $mode));
             }
-
             $colData['max_medals'] = $oMedals[0]['MedalCount'];
-            $colData['max_medals_group'] = [];
-            $colData['max_medals_group']['skill'] = $oMedals[0]['MedalCountSkill'];
-            $colData['max_medals_group']['hush-hush'] = $oMedals[0]['MedalCountHushHush'];
-            $colData['max_medals_group']['hush-hushexpert'] = $oMedals[0]['MedalCountHushHushExpert'];
-            $colData['max_medals_group']['dedication'] = $oMedals[0]['MedalCountDedication'];
-            $colData['max_medals_group']['beatmapchallengepacks'] = $oMedals[0]['MedalCountBeatmapChallengePacks'];
-            $colData['max_medals_group']['beatmappacks'] = $oMedals[0]['MedalCountBeatmapPacks'];
-            $colData['max_medals_group']['seasonalspotlights'] = $oMedals[0]['MedalCountSeasonalSpotlights'];
-            $colData['max_medals_group']['beatmapspotlights'] = $oMedals[0]['MedalCountBeatmapSpotlights'];
-            $colData['max_medals_group']['modintroduction'] = $oMedals[0]['MedalCountModIntroduction'];
+
             foreach ($colData['user_achievements'] as $key => $osumedal) {
                 $bInMode = false;
                 foreach ($oMedals as $medalkey => $medal) {
@@ -247,7 +219,6 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $colOsu['max_medals_group'] = [];
         $colOsu['max_medals_group']['skill'] = $oMedals[0]['MedalCountSkill'];
         $colOsu['max_medals_group']['hush-hush'] = $oMedals[0]['MedalCountHushHush'];
-        $colOsu['max_medals_group']['hush-hushexpert'] = $oMedals[0]['MedalCountHushHushExpert'];
         $colOsu['max_medals_group']['dedication'] = $oMedals[0]['MedalCountDedication'];
         $colOsu['max_medals_group']['beatmapchallengepacks'] = $oMedals[0]['MedalCountBeatmapChallengePacks'];
         $colOsu['max_medals_group']['beatmappacks'] = $oMedals[0]['MedalCountBeatmapPacks'];
