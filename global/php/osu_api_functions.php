@@ -216,15 +216,6 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
         $colMania = curlRequestUser($userID . "/mania");
 
         $colOsu['max_medals'] = $oMedals[0]['MedalCount'];
-        $colOsu['max_medals_group'] = [];
-        $colOsu['max_medals_group']['skill'] = $oMedals[0]['MedalCountSkill'];
-        $colOsu['max_medals_group']['hush-hush'] = $oMedals[0]['MedalCountHushHush'];
-        $colOsu['max_medals_group']['dedication'] = $oMedals[0]['MedalCountDedication'];
-        $colOsu['max_medals_group']['beatmapchallengepacks'] = $oMedals[0]['MedalCountBeatmapChallengePacks'];
-        $colOsu['max_medals_group']['beatmappacks'] = $oMedals[0]['MedalCountBeatmapPacks'];
-        $colOsu['max_medals_group']['seasonalspotlights'] = $oMedals[0]['MedalCountSeasonalSpotlights'];
-        $colOsu['max_medals_group']['beatmapspotlights'] = $oMedals[0]['MedalCountBeatmapSpotlights'];
-        $colOsu['max_medals_group']['modintroduction'] = $oMedals[0]['MedalCountModIntroduction'];
         if ($sendMedals == true) {
             foreach ($colOsu['user_achievements'] as $key => $osumedal) {
                 foreach ($oMedals as $medalkey => $medal) {
