@@ -513,7 +513,7 @@ async function FillData(uid, mode, completeReload = true) {
             document.getElementById("unachieved_panel").innerHTML = "";
         }
         if (Exists(oData.unachieved)) {
-            oData.unachieved.sort((a, b) => {
+            oData.unachieved = oData.unachieved.sort(function(a, b) {
                 if (a.grouping == b.grouping) {
                     if (a.mode == b.mode) {
                         if (a.ordering == b.ordering) {
@@ -523,7 +523,7 @@ async function FillData(uid, mode, completeReload = true) {
                     }
                     return b.mode > a.mode ? 1 : -1;
                 }
-                return medals_grouping_ordering.indexOf(a.grouping) > medals_grouping_ordering.indexOf(b.grouping);
+                return medals_grouping_ordering.indexOf(a.grouping) > medals_grouping_ordering.indexOf(b.grouping) ? 1 : -1;
             })
 
             let oLastMode = "";
