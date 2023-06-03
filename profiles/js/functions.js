@@ -531,7 +531,7 @@ async function FillData(uid, mode, completeReload = true) {
             console.log(oData.unachieved);
             function getMaxMedalsGroup(group) {
                 const max_count = medals.filter((m) => m.Grouping == group).length;
-                const unachieved_count = oData.unachieved.filter((m) => m.Grouping == group).length;
+                const unachieved_count = oData.unachieved.filter((m) => m.grouping == group).length;
                 const has_count = (max_count - unachieved_count);
                 return { "max": max_count, "has": has_count };
             }
