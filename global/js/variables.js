@@ -618,15 +618,15 @@ var TimeAgo = (function() {
 }());
 
 
-var medals_grouping_ordering = [
+const medals_grouping_ordering = [
     "Hush-Hush",
     "Hush-Hush (Expert)",
-    "Skill & Dedication",
+    "Beatmap Packs",
     "Mod Introduction",
     "Beatmap Spotlights",
     "Beatmap Challenge Packs",
-    "Beatmap Packs",
-]
+    "Skill & Dedication",
+];
 
 var medals_grouping_classnames = {
     "Hush-Hush": "hush-hush",
