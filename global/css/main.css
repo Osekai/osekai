@@ -87,6 +87,10 @@ html {
     --col: 99, 72, 182;
 }
 
+.hush-hush-expert {
+    --col: 255, 30, 109;
+}
+
 .skill {
     --col: 222, 181, 45;
 }
