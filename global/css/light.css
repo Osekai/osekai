@@ -744,7 +744,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .osekai__modal-overlay-panel-bottom {
-    background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(90% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(55% * var(--accent_valueoffset))) );
+    background: linear-gradient( hsl(var(--accent_hue), var(--accent_saturation), calc(90% * var(--accent_valueoffset))), hsl(var(--accent_hue), var(--accent_saturation), calc(55% * var(--accent_valueoffset))) ) !important;
 
 }
 
