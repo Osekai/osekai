@@ -65,6 +65,7 @@ html {
     /* "auto" or "thin" */
     scrollbar-color: #fffe rgba(var(--genericaccent), 1);
     --body-font: 'Cabin';
+    --col: var(--accent);
 }
 
 .standard {
@@ -91,7 +92,7 @@ html {
     --col: 255, 30, 109;
 }
 
-.skill {
+.skill-and-dedication {
     --col: 222, 181, 45;
 }
 

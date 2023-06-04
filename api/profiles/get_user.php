@@ -11,7 +11,7 @@ if($cache != null) {
     exit;
 }
 
-$user = v2_getUser(htmlspecialchars($_GET['id']), null, false);
+$user = v2_getUser(htmlspecialchars($_GET['id']), null, true);
 echo $user;
 
 Caching::saveCache("profiles_" . $_GET['id'], "30", $user);
