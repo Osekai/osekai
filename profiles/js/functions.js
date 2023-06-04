@@ -645,7 +645,7 @@ async function FillData(uid, mode, completeReload = true) {
 
                     console.log(groupings[oAchievement.grouping]);
                     console.log((groupings[oAchievement.grouping]["max"] + "/" + groupings[oAchievement.grouping]["has"]))
-                    oBar.style.width = ((groupings[oAchievement.grouping]["max"] / groupings[oAchievement.grouping]["has"]) * 100) + "%";
+                    oBar.style.width = ((groupings[oAchievement.grouping]["has"] / groupings[oAchievement.grouping]["max"]) * 100) + "%";
 
                     let oImg = document.createElement("img");
                     oImg.src = oAchievement.link;
