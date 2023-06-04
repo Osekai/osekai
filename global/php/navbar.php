@@ -322,9 +322,9 @@ foreach ($apps as $a) {
         <div class="links">
             <a href="https://github.com/Osekai/osekai"><?= GetStringRaw("navbar", "apps.github"); ?></a>
             <a href="https://github.com/Osekai/api-docs/wiki"><?= GetStringRaw("navbar", "apps.apiDocumentation"); ?></a>
-            <a href="<?= ROOT_URL; ?>legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
-            <a href="<?= ROOT_URL; ?>legal/licences"><?= GetStringRaw("navbar", "apps.licences"); ?></a>
-            <a href="<?= ROOT_URL; ?>legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
+            <a href="/legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
+            <a href="/legal/licences"><?= GetStringRaw("navbar", "apps.licences"); ?></a>
+            <a href="/legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
         </div>
         <div class="osekai__apps-dropdown-bottomright-copyright">
             © Osekai 2019-<?= date("Y"); ?>
