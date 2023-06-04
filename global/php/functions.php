@@ -762,3 +762,8 @@ function json_validator()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/json_validator.php");
 }
+
+function search_service() 
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/search_service.php");
+}
