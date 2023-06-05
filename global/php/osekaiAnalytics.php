@@ -3,11 +3,27 @@ $do = true;
 
 $currentApp = $app;
 // get user's country code based on ip
+
+
+
+
+
+
 $ip = $_SERVER['REMOTE_ADDR'];
 $grab_start = microtime(true);
-$ip_data = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+
+//$ch = curl_init("http://www.geoplugin.net/json.gp?ip=" . $ip);
+//curl_setopt($ch, CURLOPT_FILE, $fp);
+//curl_setopt($ch, CURLOPT_HEADER, 0);
+//curl_setopt($ch, CURLOPT_TIMEOUT, 1);
+//
+//$ip_data = json_decode(curl_exec($ch));
+//curl_close($ch);
+//fclose($fp);
+
 $grabtime = microtime(true) - $grab_start;
-$countryCode = $ip_data->geoplugin_countryCode;
+//$countryCode = $ip_data->geoplugin_countryCode;
+$countryCode = $_SERVER["HTTP_CF_IPCOUNTRY"];
 if($countryCode == null || $countryCode == "") $countryCode = "??";
 
 $url = $_SERVER['REQUEST_URI'];
