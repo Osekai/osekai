@@ -1180,12 +1180,12 @@ function elementCreator(dbhandler) {
         return oParagraph;
     }
 
-    this.createCountrySpan = function (oEntry, bHasTooltip) {
+    this.createCountrySpan = function (oEntry, bHasTooltip = true) {
         let oSpanCountry = document.createElement("span");
         let oImg = this.createImg("https://osu.ppy.sh/images/flags/" + oEntry.countrycode + ".png");
         oImg.setAttribute("countrycode", oEntry.countrycode);
         oImg.setAttribute("selector", "img_country")
-
+        
         if (bHasTooltip) {
             oImg.classList.add("tooltip-v2");
             oImg.setAttribute("tooltip-content", oEntry.country);
