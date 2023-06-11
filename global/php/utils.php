@@ -70,7 +70,7 @@ class StatisticsUtils
             return StatisticsUtils::getProgressDefaultFormula(StatisticsUtils::getGoalStatusFromData($type, $data), $value);
         
         if ($type == "Level" && isset($data['statistics']['level']['current'])) 
-            return StatisticsUtils::getLevelProgressFormula($data['statistics']['level']['current'], $data['statistics']['total_score']);
+            return StatisticsUtils::getLevelProgressFormula($data['statistics']['total_score'], $data['statistics']['level']['current']);
         
         if ($type == "Ranked Score" && isset($data['statistics']['ranked_score']))
             return StatisticsUtils::getProgressDefaultFormula($value, StatisticsUtils::getGoalStatusFromData($type, $data));
