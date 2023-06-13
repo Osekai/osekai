@@ -18,7 +18,6 @@ $id = 0;
 foreach($test as $e){
     //print_r($e);
     //print_r($test[$id]);
-    //print_r(getuser($test[$id]['userid']));
     $test[$id]['username'] = GetUserFromDatabase($test[$id]['userid'])['name'];
     $id++;
 }

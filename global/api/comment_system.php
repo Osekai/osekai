@@ -168,10 +168,6 @@ if(isset($_POST['strComment'])) {
     }
 }
 
-if(isset($_POST['strUserID'])) {
-    echo json_encode(getuser($_POST['strUserID']));
-}
-
 if(isset($_POST['nObject'])) {
     if(isRestricted()) return;
     if(isset($_SESSION['osu']['id'])) {

@@ -454,51 +454,11 @@ function getcover()
     }
 }
 
-function getbeatmap($id)
-{
-    // gets a beatmap. i don't think it's ever used?
-    // update: it isn't used
-    // usage: getbeatmap(1);
-    // its not that hard
-
-    $eee = file_get_contents('https://osu.ppy.sh/api/get_beatmaps?k=' . OSU_API_V1_KEY . '&b=' . $id);
-    $response = json_decode($eee, true);
-    $response[0]['cover_url'] = "https://assets.ppy.sh/beatmaps/" . $response[0]['beatmapset_id'] . "/covers/cover.jpg";
-    return $response[0];
-}
-
-function spawnbeatmappanel($id)
-{
-    // unused (for now)
-    $beatmap = getbeatmap($id);
-    print_r($beatmap);
-}
-
-function getuser($id, $bypass_local = false)
-{
-    // gets a user
-    // usage:
-    // getuser(2); (gets peppy)
-    $response = json_encode(Database::execSelect("SELECT * FROM Ranking WHERE id = ? OR name = ?", "is", array($id, $id)));
-    if ($response == null || !isset($response) || $response == "null" || $bypass_local == true) {
-        $eee = file_get_contents('https://osu.ppy.sh/api/get_user?k=' . OSU_API_V1_KEY . '&u=' . $id);
-        $response = json_decode($eee, true)[0];
-        $response['avatar_url'] = "https://a.ppy.sh/" . $id;
-        $response['id'] = $response["user_id"];
-        $username = $response["username"];
-        $response['name'] = $username;
-        return $response;
-    } else {
-        return json_decode($response, true)[0];
-    }
-    // TODO: this is way too slow. i'm implementing GetUserFromDatabase() for now
-}
-
 function GetUserFromDatabase($id)
 {
     // gets a user from the database
     // usage:
-    // getuser(2); (gets peppy)
+    // GetUserFromDatabase(2); (gets peppy)
     $response = json_encode(Database::execSelect("SELECT * FROM Ranking WHERE id = ?", "i", array($id)));
     if ($response == null || !isset($response) || $response == "null") {
         return null;

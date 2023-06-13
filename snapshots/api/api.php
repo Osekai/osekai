@@ -32,7 +32,6 @@ foreach($test as $t){
     $temp['archive_info']['upload_date'] = $t['archive_date'];
     if($temp['archive_info']['archiver_id'] != null) {
         $temp['archive_info']['pfp'] = "https://a.ppy.sh/" . $temp['archive_info']['archiver_id'];
-        //$user = getuser($temp['archive_info']['archiver_id']);
         //$temp['archive_info']['fetched_username'] = $user['username'];
     }
     $final_array[$count] = $temp;

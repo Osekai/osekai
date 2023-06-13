@@ -47,10 +47,6 @@ if (isset($_POST['strSearch']) || count($_POST) == 0) {
     }
 }
 
-if (isset($_POST['strUserID'])) {
-    echo json_encode(getuser($_POST['strUserID']));
-}
-
 if (isset($_POST['strNewSolution'])) {
     Caching::wipeCacheFromPrefix("medals_");
     if (isset($_SESSION['osu']['id'])) {

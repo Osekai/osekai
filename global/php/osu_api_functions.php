@@ -347,3 +347,16 @@ function v2_recent_scores($gamemode = "osu", $user = null)
 
     echo curl_exec($oUser);
 }
+
+function v2_get_beatmap($id)
+{
+    if (IsExpired() == true) GetBearer();
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, "https://osu.ppy.sh/api/v2/beatmaps/" . $id);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, GetHeaders());
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $output = json_decode(curl_exec($curl));
+    curl_close($curl);
+
+    return $output;
+}
