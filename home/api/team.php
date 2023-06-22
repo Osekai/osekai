@@ -173,18 +173,6 @@ addMember(
     null,
     []
 );
-addMember(
-    26544843,
-    "Mono x Mellow",
-    "??home.team.role.monoxmellow??",
-    null,
-    [
-        social("https://twitter.com/Mono_x_Mellow", "Twitter"),
-        social("https://www.youtube.com/channel/UC7ZW8exqZ1c6eOhyajMnyZg", "Youtube"),
-        social("https://www.twitch.tv/monoxmellow", "Twitch"),
-        social("https://discord.com/users/194863870559387648", "Discord")
-    ]
-);
 
 cleanTeam();
 header("Content-Type: application/json");

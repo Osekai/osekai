@@ -688,40 +688,6 @@ frontend();
                         <p><?= GetStringRaw("profiles", "profile.unachievedMedals.title") ?></p>
                     </div>
                     <div id="unachieved_panel" class="osekai__panel-inner osekai__flex-vertical-container">
-                        <!-- <div class="profiles__unachievedmedals-section hush-hush">
-                                <div class="profiles__unachievedmedals-section-header">
-                                    <p class="profiles__unachievedmedals-section-header-left">Hush-Hush</p>
-                                    <div class="osekai__progress-bar">
-                                        <div style="width: 40%" class="osekai__progress-bar-inner"></div>
-                                    </div>
-                                    <p class="profiles__unachievedmedals-section-header-right"><span>24</span>/<light>50</light>
-                                    </p>
-                                </div>
-                                <div class="profiles__unachievedmedals-section-inner">
-                                    <div class="profiles__unachievedmedals-section-list">
-                                        <div class="profiles__unachievedmedals-section-progress-medal">
-                                            <img src="">
-                                            <div class="profiles__unachievedmedals-section-progress-inner">
-                                                <div class="profiles__unachievedmedals-section-progress-inner-top">
-                                                    <h3>
-                                                        <light>30,000 Drum Hits -></light><span> 300,000 Drum Hits</span>
-                                                    </h3>
-                                                    <p class="percentage">50%</p>
-                                                    <p class="progress">[150,000 / <light>300,000</light>]</p>
-                                                </div>
-                                                <div class="osekai__progress-bar">
-                                                    <div style="width: 40%" class="osekai__progress-bar-inner"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="profiles__unachievedmedals-section-grid">
-                                        <div class="profiles__unachievedmedals-section-grid-medal">
-                                            <img src="https://assets.ppy.sh/medals/web/all-secret-celestialmovement.png">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                     </div>
                 </section>
 

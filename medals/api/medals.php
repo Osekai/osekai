@@ -1,7 +1,8 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
-if (isset($_POST['strSearch'])) {
+if (isset($_POST['strSearch']) || count($_POST) == 0) {
+    if(isset($_POST['legacy'])) {
     // $cache = Caching::getCache("medals_" . $_POST['strSearch']);
     // if ($cache != null) {
     //     echo $cache;
@@ -19,6 +20,31 @@ if (isset($_POST['strSearch'])) {
         // Caching::saveCache("medals_" . $_POST['strSearch'], 720, json_encode($medals));
         // Caching::cleanCache();
     //}
+    } else {
+        echo json_encode(Database::execSimpleSelect("SELECT Medals.medalid AS MedalID
+        , Medals.name AS Name
+        , Medals.link AS Link
+        , Medals.description AS Description
+        , Medals.restriction AS Restriction
+        , Medals.grouping AS `Grouping`
+        , Medals.instructions AS Instructions
+        , Solutions.solution AS Solution
+        , Solutions.mods AS Mods
+        , MedalStructure.Locked AS Locked
+        , Medals.video AS Video
+        , Medals.date AS Date
+        , Medals.packid as PackID
+        , Medals.firstachieveddate as FirstAchievedDate
+        , Medals.firstachievedby as FirstAchievedBy
+        , (CASE WHEN restriction = 'osu' THEN 2 WHEN restriction = 'taiko' THEN 3 WHEN restriction = 'fruits' THEN 4 WHEN restriction = 'mania' THEN 5 ELSE 1 END) AS ModeOrder 
+        , Medals.ordering AS Ordering
+        , MedalRarity.frequency As Rarity
+    FROM Medals 
+    LEFT JOIN Solutions ON Medals.medalid = Solutions.medalid 
+    LEFT JOIN MedalStructure ON MedalStructure.MedalID = Medals.medalid 
+    LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid
+    ORDER BY ModeOrder, Ordering DESC, MedalID"));
+    }
 }
 
 if (isset($_POST['strUserID'])) {

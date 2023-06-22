@@ -139,12 +139,13 @@ async function initColMedals() {
         xhr.onreadystatechange = function () {
             var oResponse = getResponse(xhr);
             if (handleUndefined(oResponse)) return;
-            Object.keys(oResponse).forEach(function (obj) {
-                if (handleUndefined(obj)) return;
-                oResponse[obj].forEach(function (innerObj) {
-                    colMedals[innerObj.Name] = innerObj;
-                });
-            });
+
+            // Sort using medals_grouping_ordering
+            oResponse = oResponse.sort((a, b) => medals_grouping_ordering.indexOf(a.Grouping) - medals_grouping_ordering.indexOf(b.Grouping));
+
+            for (medal of oResponse) {
+                colMedals[medal.Name] = medal;
+            }
             resolve();
         };
         xhr.send('strSearch=');

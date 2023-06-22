@@ -514,7 +514,7 @@ async function FillData(uid, mode, completeReload = true) {
             document.getElementById("unachieved_panel").innerHTML = "";
         }
         if (Exists(oData.unachieved)) {
-            oData.unachieved.sort((a, b) => {
+            oData.unachieved = oData.unachieved.sort(function (a, b) {
                 if (a.grouping == b.grouping) {
                     if (a.mode == b.mode) {
                         if (a.ordering == b.ordering) {
@@ -524,13 +524,23 @@ async function FillData(uid, mode, completeReload = true) {
                     }
                     return b.mode > a.mode ? 1 : -1;
                 }
-                return b.grouping > a.grouping ? 1 : -1;
+                return medals_grouping_ordering.indexOf(a.grouping) > medals_grouping_ordering.indexOf(b.grouping) ? 1 : -1;
             })
 
             let oLastMode = "";
             let oLastModeSection;
-
+            console.log(oData.unachieved);
+            function getMaxMedalsGroup(group) {
+                const max_count = medals.filter((m) => typeof m.grouping == 'undefined' ? m.Grouping == group : m.grouping == group).length;
+                const unachieved_count = oData.unachieved.filter((m) => typeof m.grouping == 'undefined' ? m.Grouping == group : m.grouping == group).length;
+                const has_count = (max_count - unachieved_count);
+                return { "max": max_count, "has": has_count };
+            }
+            var groupings = {};
             oData.unachieved.forEach(oAchievement => {
+                if (typeof groupings[oAchievement.grouping] != 'object') {
+                    groupings[oAchievement.grouping] = getMaxMedalsGroup(oAchievement.grouping);
+                }
                 let oSectionID = `unobtained_section_${oAchievement.grouping}`;
                 let oGridID = `unobtained_grid_${oAchievement.grouping}`;
                 let oProgressID = `unobtained_progress_${oAchievement.grouping}`;
@@ -540,7 +550,7 @@ async function FillData(uid, mode, completeReload = true) {
                 if (!document.getElementById(oSectionID)) {
                     let oSection = document.createElement("div");
                     oSection.classList.add("profiles__unachievedmedals-section");
-                    oSection.classList.add(oAchievement.grouping.replace(/\s/g, "-").toLowerCase());
+                    oSection.classList.add(medals_grouping_classnames[oAchievement.grouping]);
                     oSection.id = oSectionID;
 
                     let oSectionHeader = document.createElement("div");
@@ -562,11 +572,11 @@ async function FillData(uid, mode, completeReload = true) {
                     oProgressString.classList.add("profiles__unachievedmedals-section-header-right");
 
                     let oProgressCurrent = document.createElement("span");
-                    oProgressCurrent.innerHTML = oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase()];
+                    oProgressCurrent.textContent = groupings[oAchievement.grouping]["has"];
                     oProgressCurrent.id = oProgressID;
 
                     let oProgressTotal = document.createElement("light");
-                    oProgressTotal.innerHTML = "/" + oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase()];
+                    oProgressTotal.textContent = "/" + groupings[oAchievement.grouping]["max"];
 
                     oProgressString.appendChild(oProgressCurrent);
                     oProgressString.appendChild(oProgressTotal);
@@ -632,11 +642,11 @@ async function FillData(uid, mode, completeReload = true) {
                 }
 
                 if (document.getElementById(oSectionID)) {
-                    let oProgressCount = document.getElementById(oProgressID);
                     let oBar = document.getElementById(oBarID);
 
-                    oProgressCount.innerHTML = parseInt(oProgressCount.innerHTML) - 1;
-                    oBar.style.width = (parseInt(oProgressCount.innerHTML) / parseInt(oData.max_medals_group[oAchievement.grouping.replace(/\s/g, "").toLowerCase()]) * 100) + "%";
+                    console.log(groupings[oAchievement.grouping]);
+                    console.log((groupings[oAchievement.grouping]["max"] + "/" + groupings[oAchievement.grouping]["has"]))
+                    oBar.style.width = ((groupings[oAchievement.grouping]["has"] / groupings[oAchievement.grouping]["max"]) * 100) + "%";
 
                     let oImg = document.createElement("img");
                     oImg.src = oAchievement.link;
@@ -670,7 +680,7 @@ async function FillData(uid, mode, completeReload = true) {
 
                         let nCurrent = GetCurrentHitCount(oData, oAchievement.mode);
                         let nPrevious = GetAmountFromString(GetPreviousAchievement(oAchievement.name));
-                        let nDifference = Math.max(nCurrent, 0);
+                        let nDifference = Math["max"](nCurrent, 0);
 
                         let nCurrentAchievement = GetAmountFromString(oAchievement.name);
                         let nDifferenceAchievements = Math.min(nCurrentAchievement, nCurrentAchievement);
