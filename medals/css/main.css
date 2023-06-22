@@ -5,7 +5,6 @@
     scrollbar-color: rgba(var(--accentdark), 0.2) #0000;
     /* scroll thumb and track */
     border-radius: 8px;
-    padding-right: 10px;
     overflow: auto;
 }
 
@@ -340,7 +339,10 @@
     margin-left: auto;
 }
 
-.medals__bmp2-tl-bmname, .medals__bmp2-tl-artist, .medals__bmp2-tr-difficulty, .medals__bmp2-tr-mapper {
+.medals__bmp2-tl-bmname,
+.medals__bmp2-tl-artist,
+.medals__bmp2-tr-difficulty,
+.medals__bmp2-tr-mapper {
     text-overflow: ellipsis !important;
     white-space: nowrap;
     max-width: 100%;
@@ -352,11 +354,13 @@
     text-decoration: none !important;
 }
 
-.medals__bmp2-tr-difficulty, .medals__bmp2-tr-mapper {
+.medals__bmp2-tr-difficulty,
+.medals__bmp2-tr-mapper {
     text-align: right;
 }
 
-.medals__bmp2-top-left, .medals__bmp2-top-right {
+.medals__bmp2-top-left,
+.medals__bmp2-top-right {
     text-overflow: ellipsis;
 
 }
@@ -376,7 +380,10 @@
 
 }
 
-.medals__bmp2-submitter, .medals__bmp2-delete, .medals__bmp2-r-note, .medals__bmp2-r-vote {
+.medals__bmp2-submitter,
+.medals__bmp2-delete,
+.medals__bmp2-r-note,
+.medals__bmp2-r-vote {
     padding: 13px 15px;
 }
 
@@ -401,7 +408,9 @@
     background: rgba(255, 0, 0, 0.3);
 }
 
-.medals__bmp2-submitter, .medals__bmp2-tr-mapper, .medals__bmp2-tl-artist {
+.medals__bmp2-submitter,
+.medals__bmp2-tr-mapper,
+.medals__bmp2-tl-artist {
     font-weight: 300;
     cursor: normal !important;
 }
@@ -410,11 +419,13 @@
     font-weight: 800;
 }
 
-.medals__bmp2-tr-mapper, .medals__bmp2-tl-artist {
+.medals__bmp2-tr-mapper,
+.medals__bmp2-tl-artist {
     font-size: 12px;
 }
 
-.medals__bmp2-tl-bmname, .medals__bmp2-tr-difficulty {
+.medals__bmp2-tl-bmname,
+.medals__bmp2-tr-difficulty {
     font-size: 20px;
 }
 
@@ -422,11 +433,14 @@
     margin-left: 5px;
 }
 
-.medals__bmp2-r-vote:hover, .medals__bmp2-r-note:hover {
+.medals__bmp2-r-vote:hover,
+.medals__bmp2-r-note:hover {
     background: #fff4
 }
 
-.medals__bmp2-top:hover, .medals__bmp2-r-vote:hover, .medals__bmp2-r-note:hover {
+.medals__bmp2-top:hover,
+.medals__bmp2-r-vote:hover,
+.medals__bmp2-r-note:hover {
     cursor: pointer;
 }
 
@@ -442,6 +456,15 @@
     display: flex;
     justify-content: stretch;
     transition: all 0.3s ease;
+}
+
+.osekai__3col_col1 {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.medals__scroller {
+    position: relative;
 }
 
 .medals__search__area {
@@ -533,7 +556,8 @@
         padding: 20px 0px !important;
     }
 
-    .medals__info p, .medals__info {
+    .medals__info p,
+    .medals__info {
         text-align: center;
         padding: 0px;
         margin: 0px;
@@ -550,7 +574,9 @@
         gap: 5px;
     }
 
-    .medals__info-background-medal, .osekai__mi-icon-glow, .medals__info-background {
+    .medals__info-background-medal,
+    .osekai__mi-icon-glow,
+    .medals__info-background {
         display: none;
     }
 
@@ -571,11 +597,29 @@
     border-radius: 8px;
 }
 
+.medals__nomedal .medals__scroller {
+    width: calc(100% - 20px);
+}
+
+.medals__nomedal .medals__tab-selector {
+    margin-right: 20px;
+}
+
+.medals__scroller {
+    transition: all 0.4s ease;
+    width: 100%;
+}
+
+.medals__scroller.osekai__otab-hidden {
+    width: 100%;
+    transform: translateY(50px);
+}
+
 .osekai__navbar__app-chevron {
     transform: translateY(4px);
 }
 
-.medals__nomedal .osekai__panel {
+.medals__nomedal #oMedalSection .osekai__panel {
     width: calc(33.33333% - 22px);
 }
 
@@ -590,13 +634,13 @@
 }
 
 @media only screen and (max-width: 1500px) {
-    .medals__nomedal .osekai__panel {
+    .medals__nomedal #oMedalSection .osekai__panel {
         width: calc(50% - 16px);
     }
 }
 
 @media (max-width: 900px) {
-    .medals__nomedal .osekai__panel {
+    .medals__nomedal #oMedalSection .osekai__panel {
         width: 100%;
     }
 
@@ -718,7 +762,10 @@
     margin-left: auto;
 }
 
-.medals__bmp3-tl-bmname, .medals__bmp3-tl-artist, .medals__bmp3-tr-difficulty, .medals__bmp3-tr-mapper {
+.medals__bmp3-tl-bmname,
+.medals__bmp3-tl-artist,
+.medals__bmp3-tr-difficulty,
+.medals__bmp3-tr-mapper {
     text-overflow: ellipsis !important;
     white-space: nowrap;
     max-width: 100%;
@@ -730,11 +777,13 @@
     text-decoration: none !important;
 }
 
-.medals__bmp3-tr-difficulty, .medals__bmp3-tr-mapper {
+.medals__bmp3-tr-difficulty,
+.medals__bmp3-tr-mapper {
     text-align: right;
 }
 
-.medals__bmp3-top-left, .medals__bmp3-top-right {
+.medals__bmp3-top-left,
+.medals__bmp3-top-right {
     text-overflow: ellipsis;
 
 }
@@ -756,7 +805,10 @@
 
 }
 
-.medals__bmp3-submitter, .medals__bmp3-delete, .medals__bmp3-r-note, .medals__bmp3-r-vote {
+.medals__bmp3-submitter,
+.medals__bmp3-delete,
+.medals__bmp3-r-note,
+.medals__bmp3-r-vote {
     padding: 13px 15px;
 }
 
@@ -769,7 +821,9 @@
     background: rgba(255, 255, 255, 0.1);
 }
 
-.medals__bmp3-submitter, .medals__bmp3-tr-mapper, .medals__bmp3-tl-artist {
+.medals__bmp3-submitter,
+.medals__bmp3-tr-mapper,
+.medals__bmp3-tl-artist {
     font-weight: 300;
     cursor: normal !important;
 }
@@ -778,11 +832,13 @@
     font-weight: 800;
 }
 
-.medals__bmp3-tr-mapper, .medals__bmp3-tl-artist {
+.medals__bmp3-tr-mapper,
+.medals__bmp3-tl-artist {
     font-size: 12px;
 }
 
-.medals__bmp3-tl-bmname, .medals__bmp3-tr-difficulty {
+.medals__bmp3-tl-bmname,
+.medals__bmp3-tr-difficulty {
     font-size: 20px;
 }
 
@@ -790,11 +846,14 @@
     margin-left: 5px;
 }
 
-.medals__bmp3-r-vote:hover, .medals__bmp3-r-note:hover {
+.medals__bmp3-r-vote:hover,
+.medals__bmp3-r-note:hover {
     background: #fff4
 }
 
-.medals__bmp3-top:hover, .medals__bmp3-r-vote:hover, .medals__bmp3-r-note:hover {
+.medals__bmp3-top:hover,
+.medals__bmp3-r-vote:hover,
+.medals__bmp3-r-note:hover {
     cursor: pointer;
 }
 
@@ -851,7 +910,8 @@
     border-radius: 0px 0px 0px 8px;
 }
 
-.medals__bmp3_mobile-vote:hover, .medals__bmp3_mobile-report:hover {
+.medals__bmp3_mobile-vote:hover,
+.medals__bmp3_mobile-report:hover {
     filter: brightness(1.2);
 }
 
@@ -915,7 +975,8 @@
     align-items: center;
 }
 
-.medals__bmp3-tl-bmname, .medals__bmp3-tr-difficulty {
+.medals__bmp3-tl-bmname,
+.medals__bmp3-tr-difficulty {
     overflow: hidden;
 }
 
@@ -955,16 +1016,51 @@
 
 }
 
-
+.medals__viewpack-best {
+    outline: 3px solid rgb(var(--maincol));
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), rgba(var(--maincol), 1) !important;
+}
 
 .medals__viewpack {
     /* background: rgba(var(--maincol), 1); */
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), rgba(var(--maincol), 1);
-    border-radius: 12px 22px 22px 12px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), rgba(var(--maincol), 1);
+    border-radius: 8px;
     width: 100%;
     display: flex;
     align-items: center;
     transition: all 0.2s ease;
+    text-decoration: none !important;
+    color: white !important;
+    padding: 15px 11px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.medals__viewpack-textarea-left {
+    margin-left: 11px;
+}
+
+.medals__viewpack-textarea-right {
+    margin-right: 11px;
+}
+
+.medals__viewpack-top {
+    font-weight: 100;
+    font-size: 16px;
+}
+
+.medals__viewpack-bottom {
+    font-size: 13px;
+    color: #fffa !important;
+}
+
+.medals__viewpack-best .medals__viewpack-bottom {
+    font-weight: 900;
+    color: #FAD306 !important;
+}
+
+.medals__viewpack i {
+    font-size: 32px;
 }
 
 .medals__viewpack:hover {
@@ -999,18 +1095,30 @@
     background-color: #fff2;
 }
 
-.medals__viewpack-right {
+.medals__viewpack-textarea-right {
     margin-left: auto;
     text-align: right;
 }
 
-.medals__viewpack-left, .medals__viewpack-right {
+.medals__viewpack-textarea-right,
+.medals__viewpack-textarea-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.medals__viewpack-textarea-right {
+    margin-left: auto;
+}
+
+.medals__viewpack-left,
+.medals__viewpack-right {
     font-weight: 100;
     font-size: 16px;
     text-transform: lowercase;
 }
 
-.medals__viewpack-left strong, .medals__viewpack-right strong {
+.medals__viewpack-left strong,
+.medals__viewpack-right strong {
     font-weight: 900;
 }
 
@@ -1050,18 +1158,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-
     background-color: #0005;
     transition: all 0.2s ease;
 }
 
-.medals__viewpack-left, .medals__viewpack-right {
+.medals__viewpack-left,
+.medals__viewpack-right {
     z-index: 2;
 }
 
-.medals__viewpack-best {
-    background: white;
-}
+
 
 .medals__viewpack-best svg path {
     fill: rgb(var(--maincol));
@@ -1083,6 +1189,10 @@
 
 .medals__info-bar-texts-right {
     margin-left: auto;
+}
+
+.medals__otab-container {
+    position: relative;
 }
 
 .medals__info-bar-text-right light {
@@ -1157,4 +1267,94 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+}
+
+
+.medals__nomedal .medals__tab-selector {
+    flex-direction: row;
+}
+
+.medals__tab-selector {
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset)), 0.8));
+    flex-direction: column;
+    display: flex;
+    align-items: stretch;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.medals__tab-selector div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.medals__tab-selector div.osekai__otab-button-active {
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(40% * var(--accentdark_valueoffset)), 0.8));
+}
+
+.medals__beatmapPack {
+    display: flex;
+    box-sizing: border-box;
+    padding: 8px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(23% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.8));
+}
+.medals__beatmapPack-left {
+    display: flex;
+    align-items: center;
+}
+
+.medals__beatmapPack-left img {
+    height: 44px;
+    margin-right: 6px;
+}
+.medals__beatmapPack-left p {
+    font-size: 14px;
+    padding-right: 20px;
+    font-weight: 200;
+}
+
+.medals__beatmapPack-right {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    white-space: nowrap;
+}
+
+.medals__beatmapPack-right p {
+    font-weight: 900;
+    font-size: 15px;
+}
+
+.medals__beatmapPack-right small {
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.medals__beatmapPack-active {
+    outline: 2px solid white;
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(40% * var(--accentdark_valueoffset)), 0.8));
+}
+
+.medals__beatmapPack-left{
+    position: relative;
+}
+
+.medals__beatmapPack-obtained {
+    opacity: 0.5;
+    filter: grayscale(0.5);
+}
+
+.medals__beatmapPack-obtained .fa-check {
+    font-size: 15px;
+    flex: 1;
+    margin-right: 8px;
 }

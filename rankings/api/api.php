@@ -87,6 +87,68 @@ if (isset($_POST['App'])) {
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.total_pp DESC, Ranking.stdev_pp DESC " .
             ") t1, (SELECT @r:=0) t2 LIMIT 2500");
+    } elseif ($_POST['App'] == "Stdev Level") {
+        $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
+            "SELECT Ranking.country_code AS countrycode, " .
+            "Countries.name_long AS country, " .
+            "Ranking.name AS username, " .
+            "ROUND(Ranking.stdev_level, 2) AS slevel, " .
+            "(Ranking.taiko_level + Ranking.ctb_level + Ranking.standard_level + Ranking.mania_level) AS tlevel, " .
+            "Ranking.standard_level AS osulevel, " .
+            "Ranking.taiko_level AS taikolevel, " .
+            "Ranking.ctb_level AS catchlevel, " .
+            "Ranking.mania_level AS manialevel, " .
+            "Ranking.id AS userid " .
+            "FROM Ranking " .
+            "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
+            "ORDER BY Ranking.stdev_level DESC " .
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
+    } elseif ($_POST['App'] == "Total Level") {
+        $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
+            "SELECT Ranking.country_code AS countrycode, " .
+            "Countries.name_long AS country, " .
+            "Ranking.name AS username, " .
+            "ROUND((Ranking.taiko_level + Ranking.ctb_level + Ranking.standard_level + Ranking.mania_level),2) AS tlevel, " .
+            "Ranking.standard_level AS osulevel, " .
+            "Ranking.taiko_level AS taikolevel, " .
+            "Ranking.ctb_level AS catchlevel, " .
+            "Ranking.mania_level AS manialevel, " .
+            "Ranking.id AS userid " .
+            "FROM Ranking " .
+            "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
+            "ORDER BY tlevel DESC, Ranking.stdev_pp DESC " .
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
+    } elseif ($_POST['App'] == "Stdev Accuracy") {
+        $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
+            "SELECT Ranking.country_code AS countrycode, " .
+            "Countries.name_long AS country, " .
+            "Ranking.name AS username, " .
+            "ROUND(Ranking.stdev_acc, 2) AS sacc, " .
+            "(Ranking.taiko_acc + Ranking.ctb_acc + Ranking.standard_acc + Ranking.mania_acc) AS tacc, " .
+            "Ranking.standard_acc AS osuacc, " .
+            "Ranking.taiko_acc AS taikoacc, " .
+            "Ranking.ctb_acc AS catchacc, " .
+            "Ranking.mania_acc AS maniaacc, " .
+            "Ranking.id AS userid " .
+            "FROM Ranking " .
+            "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
+            "ORDER BY Ranking.stdev_acc DESC " .
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
+    } elseif ($_POST['App'] == "Total Accuracy") {
+        $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
+            "SELECT Ranking.country_code AS countrycode, " .
+            "Countries.name_long AS country, " .
+            "Ranking.name AS username, " .
+            "ROUND((Ranking.taiko_acc + Ranking.ctb_acc + Ranking.standard_acc + Ranking.mania_acc), 2) AS tacc, " .
+            "Ranking.standard_acc AS osuacc, " .
+            "Ranking.taiko_acc AS taikoacc, " .
+            "Ranking.ctb_acc AS catchacc, " .
+            "Ranking.mania_acc AS maniaacc, " .
+            "Ranking.id AS userid " .
+            "FROM Ranking " .
+            "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
+            "ORDER BY tacc DESC, Ranking.stdev_pp DESC " .
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     } elseif ($_POST['App'] == "Replays") {
         $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
             "SELECT Ranking.country_code AS countrycode, " .
@@ -143,7 +205,19 @@ if (isset($_POST['App'])) {
             "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
             "ORDER BY Ranking.subscribers DESC, Ranking.ranked_maps DESC, Ranking.loved_maps DESC, Ranking.id DESC " .
             ") t1, (SELECT @r:=0) t2 LIMIT 2500");
+    } elseif ($_POST['App'] == "Kudosu") {
+        $Rankings = Database::execSimpleSelect("SELECT @r := @r+1 AS rank, t1.* FROM ( " .
+            "SELECT Ranking.country_code AS countrycode, " .
+            "Countries.name_long AS country, " .
+            "Ranking.name AS username, " .
+            "Ranking.kudosu AS kudosu, " .
+            "Ranking.id AS userid " .
+            "FROM Ranking " .
+            "INNER JOIN Countries ON Ranking.country_code = Countries.name_short " .
+            "WHERE kudosu IS NOT NULL ORDER BY kudosu DESC, Ranking.ranked_maps DESC, Ranking.loved_maps DESC, Ranking.id DESC " .
+            ") t1, (SELECT @r:=0) t2 LIMIT 2500");
     }
+
     echo json_encode($Rankings);
 
     // <hubz> cache saving
@@ -189,15 +263,15 @@ if (isset($_POST['StateHistory'])) {
 /*
 SELECT @r := @r+1 AS rank, t1.*
 FROM (
-    SELECT Ranking.country_code AS country,
-        Ranking.name AS username,
-        Ranking.medal_count AS medalCount,
-        Medals.name AS medalName,
-        Medals.link,
-        ROUND(Ranking.medal_count * 100 / (SELECT COUNT(Medals.medalid) FROM Medals), 2) AS completion
-    FROM Ranking
-    INNER JOIN Medals ON Ranking.rarest_medal = Medals.medalid
-    INNER JOIN MedalRarity ON MedalRarity.id = Medals.medalid
-    ORDER BY Ranking.medal_count DESC, MedalRarity.frequency
+SELECT Ranking.country_code AS country,
+Ranking.name AS username,
+Ranking.medal_count AS medalCount,
+Medals.name AS medalName,
+Medals.link,
+ROUND(Ranking.medal_count * 100 / (SELECT COUNT(Medals.medalid) FROM Medals), 2) AS completion
+FROM Ranking
+INNER JOIN Medals ON Ranking.rarest_medal = Medals.medalid
+INNER JOIN MedalRarity ON MedalRarity.id = Medals.medalid
+ORDER BY Ranking.medal_count DESC, MedalRarity.frequency
 ) t1, (SELECT @r:=0) t2
 */

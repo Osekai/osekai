@@ -11,7 +11,7 @@ var reportMapping = {
 async function doReport(dtype, did) {
     await loadSource("report");
 
-    document.getElementById("osekai__report-overlay").classList.remove("osekai__report-overlay--hidden");
+    document.getElementById("osekai__modal-overlay").classList.remove("osekai__modal-overlay--hidden");
     type = dtype;
     id = did;
     currentlyReporting = true;
@@ -31,10 +31,10 @@ function sendReport() {
         return;
     }
     var reason = document.getElementById("report_comment_text").value;
-    document.getElementById("osekai__report-overlay").classList.add("osekai__report-overlay--hidden");
+    document.getElementById("osekai__modal-overlay").classList.add("osekai__modal-overlay--hidden");
     currentlyReporting = false;
     document.getElementById("report_comment_text").value = "";
-    document.getElementById("osekai__report-overlay-success").classList.remove("osekai__report-overlay--hidden");
+    document.getElementById("osekai__modal-overlay-success").classList.remove("osekai__modal-overlay--hidden");
 
     document.getElementById("finished-text").innerHTML = GetStringRawNonAsync("report", "new." + type + ".finished");
     document.getElementById("finished-header").innerHTML = GetStringRawNonAsync("report", "new.finished.title");
@@ -63,11 +63,11 @@ function sendReport() {
 }
 
 function closeReportSuccess() {
-    document.getElementById("osekai__report-overlay-success").classList.add("osekai__report-overlay--hidden");
+    document.getElementById("osekai__modal-overlay-success").classList.add("osekai__modal-overlay--hidden");
 }
 
 function cancelReport() {
-    document.getElementById("osekai__report-overlay").classList.add("osekai__report-overlay--hidden");
+    document.getElementById("osekai__modal-overlay").classList.add("osekai__modal-overlay--hidden");
     currentlyReporting = false;
 
     document.getElementById("report_comment_text").value = "";

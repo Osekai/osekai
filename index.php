@@ -16,11 +16,14 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 <meta name="theme-color" content="#353d55">
 <meta name="description" content="Osekai • the home of alternative rankings, medal solutions, and more" />
 <meta property="og:title" content="Osekai • the home of alternative rankings, medal solutions, and more" />
-<meta property="og:description" content="we're a website which provides osu! players with medal solutions, an alternative leaderboard, and much more! check our site out" />
+<meta property="og:description"
+    content="we're a website which provides osu! players with medal solutions, an alternative leaderboard, and much more! check our site out" />
 <meta name="twitter:title" content="Osekai • the home of alternative rankings, medal solutions, and more" />
-<meta name="twitter:description" content="we're a website which provides osu! players with medal solutions, an alternative leaderboard, and much more! check our site out" />
+<meta name="twitter:description"
+    content="we're a website which provides osu! players with medal solutions, an alternative leaderboard, and much more! check our site out" />
 <title name="title">Osekai • the home of alternative rankings, medal solutions, and more</title>
-<meta name="keywords" content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
+<meta name="keywords"
+    content="osekai,medals,osu,achievements,rankings,alternative,medal rankings,osekai,the,home,of,more">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:url" content="<?= ROOT_URL ?>" />
@@ -41,6 +44,7 @@ notification_system();
 fontawesome();
 colour_picker();
 new_report_system();
+comments_system();
 
 medal_popup_v2();
 ?>
@@ -127,19 +131,91 @@ medal_popup_v2();
                 <div class="osekai__3col_col2">
                     <section class="osekai__panel">
                         <div class="osekai__panel-header">
-                            <p>A (very old) user panel</p>
+                            <p>Comments</p>
                         </div>
-                        <div class="osekai__panel-inner">
-                            <div class="osekai__section-header">
-                                <div class="osekai__section-header-left">
-                                    <h2>(not so sick) Sick user panel</h2>
+                        <div class="osekai__panel-inner comments__section">
+                            <div class="comments__post">
+                                <div class="comments__post-left">
+                                    <img src="https://a.ppy.sh/1" class="comments__pfp">
                                 </div>
-                                <div class="osekai__section-header-right">
-                                    <h3>gotta love it</h3>
-                                    <p>right?... right???</p>
+                                <div class="comments__post-right">
+                                    <div class="comments__post-upper">
+                                        <textarea rows="1" placeholder="Post a comment!"></textarea>
+                                    </div>
+                                    <div class="comments__post-lower">
+                                        <div class="comments__post-lower-right">
+                                            <p>osekai supports bbcode!</p>
+                                            <div class="comments__post-button"><i class="fas fa-plane"></i> Post</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            So long, old user panel. 🫡
+                            <div class="osekai__divider"></div>
+                            <div class="comments__list">
+                                <div class="comments__comment">
+                                    <div class="comments__comment-left">
+                                        <img src="https://a.ppy.sh/1" class="comments__pfp">
+                                        <div class="comments__comment-votes">
+                                            +22
+                                        </div>
+                                    </div>
+                                    <div class="comments__comment-right">
+                                        <div class="comments__comment-content">
+                                            <div class="comments__comment-content-username">
+                                                <p class="comments__username">Username</p>
+                                                <div class="comments__comment-content-username-right">
+                                                    <p>on the right</p>
+                                                </div>
+                                            </div>
+                                            <div class="comments__comment-content-text">
+                                                <p>look at me im an awesome comment</p>
+                                            </div>
+                                        </div>
+                                        <div class="comments__comment-infobar">
+                                            <div class="comments__comment-infobar-info">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <p>posted <strong>5 days ago</strong></p>
+                                            </div>
+                                            <div class="comments__comment-infobar-right">
+                                                <div
+                                                    class="comments__comment-infobar-button comments__comment-infobar-button-big">
+                                                    <i class="fas fa-reply"></i>
+                                                </div>
+                                                <div class="comments__comment-infobar-button">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="osekai__panel">
+                        <div class="osekai__panel-header">
+                            <p>Comments but its JS generated</p>
+                        </div>
+                        <div class="osekai__panel-inner comments__section">
+                            <div class="comments__post">
+                                <div class="comments__post-left">
+                                    <img src="https://a.ppy.sh/1" class="comments__pfp">
+                                </div>
+                                <div class="comments__post-right">
+                                    <div class="comments__post-upper">
+                                        <textarea rows="1" placeholder="Post a comment!"></textarea>
+                                    </div>
+                                    <div class="comments__post-lower">
+                                        <div class="comments__post-lower-right">
+                                            <p>osekai supports bbcode!</p>
+                                            <div class="comments__post-button"><i class="fas fa-plane"></i> Post</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="osekai__divider"></div>
+                            <div class="comments__list" id="commentlist">
+                                
+                            </div>
                         </div>
                     </section>
                     <section class="osekai__panel">
@@ -151,7 +227,20 @@ medal_popup_v2();
                                 <i class="fas fa-info-circle"></i>
                                 <p>This is really nice!</p>
                             </div>
-                            <a class="osekai__button" onclick="medalPopupV2.showMedalFromName('Jackpot')">Medal Popup (Jackpot)</a>
+                            <a class="osekai__button" onclick="medalPopupV2.showMedalFromName('Jackpot')">Medal Popup
+                                (Jackpot)</a>
+
+
+
+                            <div class="osekai__section-header">
+                                <div class="osekai__section-header-left">
+                                    <h2>cool header</h2>
+                                </div>
+                                <div class="osekai__section-header-right">
+                                    <h3>used in some places</h3>
+                                    <p>approximately 5 of them</p>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -194,23 +283,34 @@ medal_popup_v2();
     </div>
 </body>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/functionsEnd.php"); ?>
-
+<script src="/index.js"></script>
 <script>
     function testDialog() {
-        openDialog("Test Title", "Test Header", "Test Message", "Button 1", function() {
-            document.getElementById("testdialog_text").innerHTML = "you clicked button 1!";
-        }, "Button 2", function() {
-            document.getElementById("testdialog_text").innerHTML = "you clicked button 2!";
-        });
+        openDialog("Test Title", "Test Header", "Test Message", [
+            {
+                "text": "button 1",
+                "callback": function() {
+                    document.getElementById("testdialog_text").innerHTML = "you clicked button 1!";
+                },
+                "highlighted": true,
+            },
+            {
+                "text": "button 2",
+                "callback": function() {
+                    document.getElementById("testdialog_text").innerHTML = "you clicked button 2!";
+                },
+                "highlighted": false,
+            }
+        ]);
     }
-    var cb = new newColourBar("colourbar", function(col1, col2) {
+    var cb = new newColourBar("colourbar", function (col1, col2) {
         document.getElementById("hex").innerHTML = "#" + rgbToHex(col1[0], col1[1], col1[2]) + " > #" + rgbToHex(col2[0], col2[1], col2[2]);
     });
 
     var picker = document.getElementById("singlecolpicker");
     const picker1 = new CP(picker);
     var picker1_col;
-    picker1.on('change', function(r, g, b, a) {
+    picker1.on('change', function (r, g, b, a) {
         picker1_col = [r, g, b];
         picker.getElementsByTagName("input")[0].value = rgbToHex(r, g, b);
         console.log(rgbToHex(r, g, b));

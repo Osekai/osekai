@@ -139,6 +139,7 @@ function loadHomeData() {
                 `</div>`;
         });
     };
+    set_breadcrums("{app}");
 }
 
 function loadUser(uid) {
@@ -224,7 +225,7 @@ async function FillData(uid, mode, completeReload = true) {
 
     //console.log(JSON.stringify(oData)); //uncomment to see all Data
     if (oData == null) alert("No Data Available. Please contact Osekai support.");
-
+    set_breadcrums("{app}/" + oData.username);
     //upper main panel
     if (completeReload) {
         if (oData.avatar_url != null) document.querySelectorAll("[selector='pfp']").forEach((oPfp) => { oPfp.setAttribute("src", oData.avatar_url) });
@@ -237,7 +238,7 @@ async function FillData(uid, mode, completeReload = true) {
         }
         if (oData.username != null) document.getElementById("name__sub").innerHTML = `
         <div class="profiles__cover-info-name">
-            <img class="profiles__cover-country" src="https://osu.ppy.sh/images/flags/${oData.country_code}.png" id="country__flag">
+            <img class="profiles__cover-country tooltip-v2" tooltip-content="${CountryShortCodeToCountryName[oData.country_code]}" src="https://osu.ppy.sh/images/flags/${oData.country_code}.png" id="country__flag">
             <h1>${oData.username}</h1> 
         </div>
         <div id="user__badges" class="profiles__user-badges"></div>`;
@@ -1437,38 +1438,39 @@ function LoadRecentlyViewed() {
         mostPopular = true;
     }
 
-    mostPopularURL = "/profiles/api/most_visited";
-    recentlyViewedURL = "/profiles/api/recent_visits";
+    mostPopularURL = "/profiles/api/most_visited.php";
+    recentlyViewedURL = "/profiles/api/recent_visits.php";
 
     let xhr = new XMLHttpRequest();
+    let xhr2 = new XMLHttpRequest();
 
-    if (mostPopular) {
-        xhr.open("GET", mostPopularURL, true);
+    xhr.open("GET", mostPopularURL, true);
+    if (bLoggedIn) {
+        xhr2.open("GET", recentlyViewedURL, true);
     }
-    else {
-        xhr.open("GET", recentlyViewedURL, true);
+    function load(req, el) {
+        let json = JSON.parse(req.responseText);
+        let html = "";
+
+        for (let i = 0; i < json.length; i++) {
+            html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].UserID});"><img src="https://a.ppy.sh/${json[i].UserID}" class="profiles__ranking-pfp">
+      <div class="profiles__ranking-texts">
+        <p class="profiles__ranking-username">${json[i].Username}</p>
+      </div>
+    </div>`;
+        }
+        el.innerHTML = html;
     }
 
     xhr.onload = function () {
-        if (this.status == 200) {
-            let json = JSON.parse(this.responseText);
-            let html = "";
-
-            for (let i = 0; i < json.length; i++) {
-                html += `<div class="profiles__ranking-user" onclick="loadUser(${json[i].UserID});"><img src="https://a.ppy.sh/${json[i].UserID}" class="profiles__ranking-pfp">
-          <div class="profiles__ranking-texts">
-            <p class="profiles__ranking-username">${json[i].Username}</p>
-          </div>
-        </div>`;
-            }
-
-            document.getElementById("recentlyviewed").innerHTML = html;
-        } else {
-            console.log("error");
-        }
+        load(xhr, document.getElementById("mostviewed"));
+    };
+    xhr2.onload = function () {
+        load(xhr, document.getElementById("recentlyviewed"));
     };
 
     xhr.send();
+    if (bLoggedIn) xhr2.send();
 }
 
 // </recently viewed (by hubz)>

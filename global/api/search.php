@@ -1,69 +1,68 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
-// report errors
-error_reporting(E_ERROR);
-ini_set('display_errors', 0);
+api_controller_base_classes();
+search_service();
 
-
-// respond with json
-header('Content-Type: application/json');
-
-$query = $_GET['query'];
-
-
-$response = array();
-
-
-$response['query'] = $query;
-
-$profiles = json_decode(v2_search($query), true);
-if(isset($profiles['user']['data'])) {
-// cut profiles to 5 in length
-    $profiles = $profiles['user']['data'];
-    $profiles = array_slice($profiles, 0, 10);
-
-    $response['profiles'] = $profiles;
-} else {
-    $response['profiles'] = $profiles;
-}
-
-
-
-$response['medals'] = null; // TODO
-// we can use a database for this one :D
-$medquery = "%" . $query . "%";
-$response['medals'] = Database::execSelect("SELECT * FROM Medals WHERE `name` LIKE ? LIMIT 5", "s", array($medquery));
-
-
-
-$test = Database::execSimpleSelect("SELECT * FROM SnapshotVersions ORDER BY `downloads` DESC");
-
-
-$response['snapshots'] = array();
-
-$count = 0;
-$count2 = 0;
-
-$response['debug'] = array();
-
-foreach($test as $t) {
-    $temp = $t['json'];
-    $temp = json_decode($temp, true);
-    $temp["version_info"]["id"] = $t['id'];
-    if(strpos($temp['version_info']['version'], $query) !== false)
-    {
-        if($count < 5){
-            $response['snapshots'][$count] = $temp;
-            $count++;
-        }
+class SearchApiController extends ApiController
+{
+    private static function ConvertSearchUserResultToSearchApiResult(SearchUserResult $result): array {
+        return [
+            "url" => "/profiles/?user=" . $result->getUserId(),
+            "name" => $result->getUsername(),
+            "img" => $result->getAvatarUrl()
+        ];
     }
 
-    //$response['debug'][$count2]['name'] = $temp['version_info']['version'];
-    //$response['debug'][$count2]['query'] = $query;
-    //$response['debug'][$count2]['strpos'] = strpos($temp['version_info']['version'], $query);
-    //$count2++;
+    private static function ConvertSearchMedalResultToSearchApiResult(SearchMedalResult $result): array {
+        return [
+            "url" => "/medals/?medal=" . $result->getMedalName(),
+            "name" => $result->getMedalName(),
+            "img" => $result->getIconUrl()
+        ];
+    }
+
+    private static function ConvertSearchSnapshotVersionResultToSearchApiResult(SearchSnapshotVersionResult $result): array {
+        return [
+            "url" => "/snapshots/?version=" . $result->getSnapshotVersionId(),
+            "name" => $result->getSnapshotVersionName(),
+            "img" => null
+        ];
+    }
+
+    public function post(): ApiResult
+    {
+        $query = $_POST['query'];
+        $type = $_POST['type'];
+
+        if (!loggedin() || isRestricted())
+            return new UnauthorizedResult;
+
+        if (!isset($query) && !isset($type))
+            return new BadArgumentsApiResult;
+        
+        switch ($type) {
+            case "profiles":
+                $results = SearchService::searchUser($query);
+                $results = array_map(static function($r) { return Self::ConvertSearchUserResultToSearchApiResult($r); }, $results);
+                break;
+
+            case "medals":
+                $results = SearchService::searchMedal($query);
+                $results = array_map(static function($r) { return Self::ConvertSearchMedalResultToSearchApiResult($r); }, $results);
+                break;
+
+            case "snapshots":
+                $results = SearchService::searchSnapshotVersion($query);
+                $results = array_map(static function($r) { return Self::ConvertSearchSnapshotVersionResultToSearchApiResult($r); }, $results);
+                break;
+
+            default:
+                return new BadArgumentsApiResult;
+        }
+
+        return new OkApiResult($results);
+    }
 }
 
-
-echo json_encode($response);
+ApiControllerExecutor::execute(new SearchApiController, new JsonApiResultSerializer);
