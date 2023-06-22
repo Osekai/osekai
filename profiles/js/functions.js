@@ -285,7 +285,7 @@ async function FillData(uid, mode, completeReload = true) {
         if (oData.playstyle != null) document.getElementById("hardware").innerHTML = GetStringRawNonAsync("profiles", "profile.info.playsWith", [oData.playstyle.join(", ")]);
         if (oData.interests != null) document.getElementById("interests").innerHTML = `<i class="fas fa-heart"></i> ${unHTML(oData.interests)}`;
         if (oData.occupation != null) document.getElementById("occupation").innerHTML = `<i class="fas fa-briefcase"></i> ${unHTML(oData.occupation)}`;
-        if (oData.discord != null) document.getElementById("discord").innerHTML = `<a id="discord">${unHTML(oData.discord)}</a>`;
+        if (oData.discord != null) document.getElementById("discord").innerHTML = `<a id="discord"> ${unHTML(oData.discord)}</a>`;
         if (oData.twitter != null) ReplaceWithClickableLink(document.getElementById("twitter"), unHTML(oData.twitter), "https://twitter.com/" + oData.twitter);
         if (oData.website != null) ReplaceWithClickableLink(document.getElementById("website"), unHTML(oData.website), oData.website);
     }
