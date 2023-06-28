@@ -270,9 +270,11 @@ async function requestMedals(init, strValue = '') {
         });
 
         let section = document.createElement('section');
+
         section.classList.add('osekai__panel');
         section.classList.add('osekai__panel-collapsable');
-
+        section.classList.add("medals__medal-panel");
+        section.classList.add(medals_grouping_classnames[group]);
         // Header
         let sectionHeader = document.createElement('div');
         sectionHeader.classList.add('osekai__panel-header');
@@ -370,6 +372,7 @@ async function requestMedals(init, strValue = '') {
     if (init && new URLSearchParams(window.location.search).get('medal') !== null) loadMedal(new URLSearchParams(window.location.search).get('medal'));
 }
 function landingPage() {
+    document.getElementById("expandbutton").classList.add("hidden");
     set_breadcrums("{app}");
     document.getElementById("osekai__col1").classList.add("medals__nomedal");
     document.getElementById("3col_arrow").classList.add("medals__arrow-nomedal");
@@ -377,6 +380,8 @@ function landingPage() {
 }
 
 function leaveLandingPage() {
+    document.getElementById("expandbutton").classList.remove("hidden");
+
     if (document.getElementById("osekai__col1").classList.contains("medals__nomedal")) {
         document.getElementById("osekai__col1").classList.remove("medals__nomedal");
         document.getElementById("3col_arrow").classList.remove("medals__arrow-nomedal");
@@ -501,6 +506,11 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     // </mulraf> / End of removal
 
     getMods(colMedals[strMedalName].Mods);
+
+    for(var classname in medals_grouping_classnames) {
+        document.getElementsByClassName("medals__solution-panel-outer")[0].classList.remove(medals_grouping_classnames[classname]);
+    }
+    document.getElementsByClassName("medals__solution-panel-outer")[0].classList.add(medals_grouping_classnames[colMedals[strMedalName].Grouping])
 
     if (colMedals[strMedalName].PackID != null && colMedals[strMedalName].PackID != 0) {
         document.getElementById("oBeatmapContainer").classList.add("hidden");
