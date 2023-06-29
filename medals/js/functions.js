@@ -153,7 +153,7 @@ async function initColMedals() {
     });
 }
 
-async function requestMedals(init, strValue = '') {
+async function requestMedals(init, strValue, favsFilter = null) {
     if (init || Object.values(colMedals).length == 0)  // Init the colMedals object
         await initColMedals();
 
@@ -217,10 +217,13 @@ async function requestMedals(init, strValue = '') {
     if (MedalsAchievedFilterArray == null && document.getElementById("styled-checkbox-1").checked) {
         MedalsAchievedFilterArray = await getMedalsFilterArray();
     }
-    document.getElementById('oMedalSection').textContent = '';
+    document.getElementById(favsFilter == null ? 'oMedalSection' : 'favsSection').textContent = '';
     Object.keys(filteredMedalsArrayByGroup).forEach(async (group) => {
         let grids = [];
         filteredMedalsArrayByGroup[group].forEach((medal) => {
+            if (favsFilter != null && !favsFilter.includes(medal.MedalID))
+                return;
+
             if (localStorage.getItem("settings_medals__hidemedalswhenunobtainedfilteron") == "true" && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
                 return;
             }
@@ -359,12 +362,12 @@ async function requestMedals(init, strValue = '') {
             panelInner.appendChild(panelMedalsContainer);
             section.appendChild(panelInner);
             // Medal grid end
-            document.getElementById('oMedalSection').appendChild(section);
+            document.getElementById(favsFilter == null ? 'oMedalSection' : 'favsSection').appendChild(section);
         }
     });
     setTimeout(() => {
         tippy('[data-tippy-content]', {
-            appendTo: document.getElementById('oMedalSection'),
+            appendTo: document.getElementById(favsFilter == null ? 'oMedalSection' : 'favsSection'),
             arrow: true
         });
     }, 0);
@@ -1083,6 +1086,26 @@ function changeMedalFavState() {
         document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Favourite'; // TODO: translate
         document.getElementById('favButton').classList.remove('osekai__button-on');
     }
+}
+
+function loadFavMedals() {
+    if (userInfo == null) {
+        console.log("waiting for userinfo")
+        setTimeout(loadBeatmapPacks, 100);
+        return;
+    }
+    console.log("loading favs medals...");
+
+    var container = document.getElementById("favsSection");
+    container.innerHTML = loader;
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/medals/api/favourite.php");
+    xhr.onload = function () {
+        var resp = JSON.parse(xhr.response);
+        container.innerHTML = "";
+        requestMedals(false, document.getElementById("txtMedalSearch").value, resp);
+    }
+    xhr.send();
 }
 
 function loadBeatmapPacks() {
