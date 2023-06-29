@@ -221,7 +221,7 @@ async function requestMedals(init, strValue = '', favsFilter = null) {
     Object.keys(filteredMedalsArrayByGroup).forEach(async (group) => {
         let grids = [];
         filteredMedalsArrayByGroup[group].forEach((medal) => {
-            if (favsFilter != null && !favsFilter.includes(medal.MedalID))
+            if (favsFilter != null && !favsFilter.includes(parseInt(medal.MedalID)))
                 return;
 
             if (localStorage.getItem("settings_medals__hidemedalswhenunobtainedfilteron") == "true" && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
@@ -412,10 +412,17 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
 
     }
 
-    {
 
+    leaveLandingPage();
+    //if(window.mobile) switch3col();
+
+    strCurrentMedalName = colMedals[strMedalName].Name;
+    strCurrentMedalMode = colMedals[strMedalName].Restriction;
+    nCurrentMedalID = colMedals[strMedalName].MedalID;
+
+    {
         if (FavMedals != null && nUserID != -1)
-            if (FavMedals.includes(colMedals[strMedalName].MedalID)) {
+            if (FavMedals.includes(parseInt(nCurrentMedalID))) {
                 document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Unfavourite'; // TODO: translate
                 document.getElementById('favButton').classList.add('osekai__button-on');
             } else {
@@ -431,7 +438,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
                 let oResponse = getResponse(xhr);
                 console.log(`Fav medals: ${oResponse}`);
                 FavMedals = oResponse;
-                if (FavMedals.includes(colMedals[strMedalName].MedalID)) {
+                if (FavMedals.includes(parseInt(nCurrentMedalID))) {
                     document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Unfavourite'; // TODO: translate
                     document.getElementById('favButton').classList.add('osekai__button-on');
                 } else {
@@ -442,13 +449,6 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
             xhr.send();
         }
     }
-
-    leaveLandingPage();
-    //if(window.mobile) switch3col();
-
-    strCurrentMedalName = colMedals[strMedalName].Name;
-    strCurrentMedalMode = colMedals[strMedalName].Restriction;
-    nCurrentMedalID = colMedals[strMedalName].MedalID;
     if (document.getElementById("edit_button")) {
         document.getElementById("edit_button").href = "/admin/panel/apps/medals?id=" + nCurrentMedalID;
     }
@@ -1068,18 +1068,18 @@ function loadExtraInfo(medalid) {
 
 
 function changeMedalFavState() {
-    const shouldDelete = FavMedals.find((e) => e == nCurrentMedalID);
+    const shouldDelete = FavMedals.find((e) => e == parseInt(nCurrentMedalID));
 
     if (shouldDelete)
-        FavMedals.splice(FavMedals.indexOf(nCurrentMedalID), 1);
+        FavMedals.splice(FavMedals.indexOf(parseInt(nCurrentMedalID)), 1);
     else
-        FavMedals.push(nCurrentMedalID);
+        FavMedals.push(parseInt(nCurrentMedalID));
 
     const xhr = new XMLHttpRequest();
     xhr.open(shouldDelete ? 'DELETE' : 'PUT', '/medals/api/favourite.php', true);
-    xhr.send(JSON.stringify({ "medal_id": nCurrentMedalID }));
+    xhr.send(JSON.stringify({ medal_id: parseInt(nCurrentMedalID) }));
 
-    if (FavMedals.includes(nCurrentMedalID)) {
+    if (FavMedals.includes(parseInt(nCurrentMedalID))) {
         document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Unfavourite'; // TODO: translate
         document.getElementById('favButton').classList.add('osekai__button-on');
     } else {
