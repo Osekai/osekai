@@ -763,8 +763,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         for (let oTabButton of oTabButtons) {
-            if(!oTabContainer.hasAttribute("otab-no-replace") )
-            oTabButton.innerHTML = oTabButton.getAttribute("otab-button");
+            if(!oTabContainer.hasAttribute("otab-no-replace"))
+                oTabButton.innerHTML = oTabButton.getAttribute("otab-button");
             oTabButton.addEventListener("click", function () {
                 switchTab(oTabButton.getAttribute("otab-button"));
             });
