@@ -153,7 +153,7 @@ async function initColMedals() {
     });
 }
 
-async function requestMedals(init, strValue, favsFilter = null) {
+async function requestMedals(init, strValue = '', favsFilter = null) {
     if (init || Object.values(colMedals).length == 0)  // Init the colMedals object
         await initColMedals();
 

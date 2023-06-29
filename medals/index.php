@@ -155,7 +155,7 @@ if (isset($_GET['medal'])) {
             <div class="osekai__3col-panels">
                 <div id="osekai__col1" class="osekai__3col_col1 medals__nomedal">
                     <div class="medals__otab-container">
-                        <div class="medals__scroller osekai__otab-hidden" otab-name="Favourite Medals">
+                        <div class="medals__scroller osekai__otab-hidden" otab-name="Favourite Medals" otab-callback="loadFavMedals">
                             <div class="osekai__panel">
                                 <div class="osekai__panel-header">
                                     <p>
