@@ -85,39 +85,48 @@ html {
 }
 
 .hush-hush {
-    --col: 99, 72, 182;
+    --hue: 254.7deg;
+    --col: hsl(254.7, 43.3%, 49.8%);
 }
 
 .hush-hush-expert {
-    --col: 255, 30, 109;
+    --hue: 338.9deg;
+    --col: hsl(338.9, 100%, 55.9%);
 }
 
 .skill-and-dedication {
-    --col: 222, 181, 45;
+    --hue: 46.1deg;
+    --col: hsl(46.1, 72.8%, 52.4%);
 }
 
 .dedication {
-    --col: 31, 126, 154;
+    --hue: 193.7deg;
+    --col: hsl(193.7, 66.5%, 36.3%);
 }
 
 .beatmap-packs {
-    --col: 201, 52, 134;
+    --hue: 327deg;
+    --col: hsl(327, 58.9%, 49.6%);
 }
 
 .seasonal-spotlights {
-    --col: 55, 83, 81;
+    --hue: 175.7deg;
+    --col: hsl(175.7, 20.3%, 27.1%);
 }
 
 .beatmap-spotlights {
-    --col: 66, 83, 102;
+    --hue: 211.7deg;
+    --col: hsl(211.7, 21.4%, 32.9%);
 }
 
 .mod-introduction {
-    --col: 91, 96, 205;
+    --hue: 237.4deg;
+    --col: hsl(237.4, 53.3%, 58%);
 }
 
 .beatmap-challenge-packs {
-    --col: 212, 80, 96;
+    --hue: 362.7deg;
+    --col: hsl(352.7, 60.6%, 57.3%);
 }
 
 @media (min-width: 900px) {

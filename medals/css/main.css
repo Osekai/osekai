@@ -34,11 +34,13 @@
     opacity: 0;
     display: none;
 }
-
+.osekai__panel-container {
+    padding-top: 10px;
+}
 .osekai__3col_col1 {
     position: fixed;
     height: calc(100vh - 42px - 42px - var(--navheight) + 35px);
-    top: calc(42px + var(--navheight));
+    top: calc(42px + var(--navheight) + 50px + 10px);
     left: 42px;
     z-index: 6;
 }
@@ -114,8 +116,10 @@
 .medals__search {
     backdrop-filter: blur(120px);
     background-color: #fff1;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), linear-gradient(270deg, rgba(var(--accentdark), 0.9) 0%, rgba(var(--accentdark), 1) 100%);
-    border-radius: 8px;
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset)))
+    );    border-radius: 8px;
     padding: 13px;
     margin-bottom: 1px;
     width: 100%;
@@ -137,7 +141,7 @@
 }
 
 .osekai__3col_col1_spacer {
-    overflow-y: scroll;
+    overflow-y: hidden;
     height: 100%;
     scrollbar-width: thin;
     /* "auto" or "thin" */
@@ -186,6 +190,7 @@
 }
 
 .medals__sol-header {
+    color: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(90% * var(--accentdark_valueoffset))) !important;
     font-size: 20px;
 }
 
@@ -468,11 +473,9 @@
 }
 
 .medals__search__area {
-    position: sticky !important;
-    top: 0px;
-    z-index: 8;
     border-radius: 8px;
-    margin-bottom: 10px;
+    width: 100%;
+    position: relative;
 }
 
 .medals__search__filters-open .medals__search__filters {
@@ -490,7 +493,10 @@
     opacity: 0;
     pointer-events: none;
     margin-bottom: 0px !important;
-    background: linear-gradient(rgba(var(--accentdark), 0.4), rgba(var(--accentdark), 0.4)), #000;
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)))
+    );
 }
 
 .medals__search__filters-icon {
@@ -961,7 +967,10 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), rgba(var(--accentdark), 0.5);
+    background: linear-gradient(
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset)), 0.4),
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)), 0.1)
+    );
     background-blend-mode: luminosity, normal;
 }
 
@@ -1135,7 +1144,7 @@
 .medals__sol-header-gamemode-tag {
     padding: 4px;
     border-radius: 90px;
-    background-color: rgba(var(--accentdark), 1);
+    background: linear-gradient(hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset))));
     display: flex;
     align-items: center;
     margin-left: 6px;
@@ -1176,7 +1185,7 @@
 
 .medals__solution-panel {
     margin-bottom: 0px;
-    background: rgba(var(--accentdark), 0.3);
+    background: linear-gradient(hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset))) 60%, hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset))));
     border-radius: 8px;
 }
 
@@ -1357,4 +1366,88 @@
     font-size: 15px;
     flex: 1;
     margin-right: 8px;
+}
+
+.medals__toolbar {
+    height: 50px;
+    margin: 42px;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0px;
+    position: relative;
+}
+
+
+
+.medals__toolbar-buttons {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 8px;
+}
+.medals__toolbar-buttons div {
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset))),
+        hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(25% * var(--accentdark_valueoffset)))
+    );
+}
+.medals__toolbar-left {
+
+    z-index: 6;
+    position: relative;
+}
+.medals__toolbar-left div {
+    opacity: 0.5;
+}
+.medals__toolbar-left div.osekai__otab-button-active {
+    opacity: 1;
+}
+
+.medals__toolbar-right {
+    margin-left: auto;
+    z-index: 6;
+    position: relative;
+}
+.medals__toolbar-middle {
+    display: flex;
+    position: absolute;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    z-index: 5;
+}
+.medals__toolbar-middle-inner {
+    width: 40vw;
+    display: flex;
+    height: 50px;
+}
+
+body, html {
+    overflow-y: hidden;
+}
+
+.osekai__panel-container {
+    padding-top: 0px;
+    margin-top: 10px;
+    min-height: calc(100vh - var(--navheight) - 50px - 20px);
+    height: calc(100vh - var(--navheight) - 50px - 20px);
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+}
+
+.medals__medal-panel, .medals__solution-panel-outer {
+    --accentdark_hue: var(--hue);
+    --accent_hue: var(--hue);
+}
+
+.medals__medal-panel .osekai__section-header {
+    border-bottom: 1px solid var(--col);
 }
