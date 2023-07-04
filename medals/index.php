@@ -180,7 +180,7 @@ if (isset($_GET['medal'])) {
                             </div>
                         </div>
                         <div class="medals__scroller osekai__otab-hidden" otab-name="Medals" otab-default>
-                            <section id="oMedalSection"></section>
+                            <section id="oMedalSection" class="medals__medal-section"></section>
                         </div>
                     </div>
                 </div>
