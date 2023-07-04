@@ -82,6 +82,13 @@ addOtherApp("fas fa-layer-group", "/misc/groups", GetStringRaw("navbar", "otherA
                 </div>
 
                 <div class="osekai__navbar-center-right">
+                    <div class="osekai__navbar-search">
+                        <input id="search_input" type="text" placeholder="search for something!">
+                        <i class="fas fa-search"></i>
+                        <div id="search_overlay" class="osekai__navbar-search-overlay osekai__navbar-search-overlay-hidden">
+
+                        </div>
+                    </div>
                     <?php if (loggedin()) { ?>
                         <div class="osekai__navbar-button tooltip-v2" id="notif__bell__button"
                             tooltip-content="<?= GetStringRaw("navbar", "tooltip.notifications"); ?>">
