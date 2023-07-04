@@ -24,12 +24,14 @@ var search_apps = [
 var search_cur_app = "medals";
 var search_input = document.getElementById("search_input");
 var search_overlay = document.getElementById("search_overlay")
+var search_container = document.getElementById("search_container");
 var search_inner = null;
 
 search_input.addEventListener("focus", function () {
     loaderopened = false;
     if (search_overlay.classList.contains("osekai__navbar-search-overlay-hidden")) {
         search_overlay.classList.remove("osekai__navbar-search-overlay-hidden")
+        search_container.classList.remove("osekai__navbar-search-inactive")
         search_initOverlay();
     }
 })
@@ -58,6 +60,7 @@ document.addEventListener("click", function (e) {
     loaderopened = false;
     if (!e.target.classList.contains("osekai__navbar-search") && (e.target.closest(".osekai__navbar-search") == null)) {
         search_overlay.classList.add("osekai__navbar-search-overlay-hidden")
+        search_container.classList.add("osekai__navbar-search-inactive")
     }
 })
 
