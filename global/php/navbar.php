@@ -380,7 +380,7 @@ foreach ($apps as $a) {
                     <?= GetStringRaw("navbar", "profile.viewOnOsekaiProfiles"); ?>
                 </p>
             </a>
-            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 102, 170" href="https://osu.ppy.sh/users/<?= $_SESSION['osu']['id']; ?>">
+            <a target="_blank" class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 102, 170" href="https://osu.ppy.sh/users/<?= $_SESSION['osu']['id']; ?>">
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
                 <i class="oif-osu-logo"></i>
                 <p>
