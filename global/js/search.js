@@ -77,7 +77,7 @@ var search_startDelay = null;
 function search_searchItem(data) {
 
     var item = Object.assign(document.createElement("a"), {className: "osekai__navbar-search-item"});
-    if(typeof(data['img']) != "undefined") {
+    if(typeof(data['img']) != "undefined" && data['img'] != null) {
         var icon = document.createElement("img");
         icon.src = data['img'];
         item.appendChild(icon);
