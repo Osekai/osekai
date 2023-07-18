@@ -1239,7 +1239,7 @@ function randomMedal() {
         document.getElementById("randommedal_img").src = medal.Link;
         document.getElementById("randommedal_img_glow").src = medal.Link;
         if (count == 50) {
-            loadMedal(medal.Name);
+            changeState(medal.Name);
             document.getElementById("randommedal_img_blur").src = medal.Link;
             document.getElementById("randommedal").classList.add("medals__randommedal-finished");
             console.log("finished with count " + count + " and time " + time + "!")
