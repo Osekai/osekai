@@ -7,7 +7,7 @@ ini_set('display_startup_errors', 1);
 
 function CalculateCount($id)
 {
-    $req = Database::execSelect("SELECT * FROM MedalsBeatmapPacks WHERE Id = ?", "s", [$id]);
+    $req = Database::execSelect("SELECT * FROM MedalsBeatmapPacks WHERE Id = ? AND Count != 0", "s", [$id]);
     if (count($req) == 0) {
         $page = file_get_contents("https://osu.ppy.sh/beatmaps/packs/" . $id);
         $count = substr_count($page, '<li class="beatmap-pack-items__set">');
@@ -25,7 +25,7 @@ $queue = [];
 function LengthCalculation_Queue($id)
 {
     global $queue;
-    if (count(Database::execSelect("SELECT * FROM BeatmapLengths WHERE Id = ?", "i", [$id])) == 0) {
+    if (count(Database::execSelect("SELECT * FROM BeatmapLengths WHERE Id = ? AND Length != 0", "i", [$id])) == 0) {
         $queue[] = $id;
         Database::execOperation("INSERT INTO `BeatmapLengths` (`Id`, `Length`)
         VALUES (?, ?);", "ii", [$id, 0]);
@@ -35,7 +35,7 @@ function LengthCalculation_Queue($id)
 function LengthCalculation_QueueAll()
 {
     $packs = Database::execSimpleSelect("SELECT * FROM MedalsBeatmapPacks");
-    $already_calculated_raw = Database::execSimpleSelect("SELECT * FROM BeatmapLengths");
+    $already_calculated_raw = Database::execSimpleSelect("SELECT * FROM BeatmapLengths WHERE Length != 0");
     $already_calculated = [];
     foreach ($already_calculated_raw as $bm) {
         $already_calculated[] = $bm['Id'];
@@ -72,7 +72,8 @@ function LengthCalculation_Calculate()
 function GetPack($id)
 {
     // TODO: Caching?
-    $pack = Database::execSelect("SELECT * FROM MedalsBeatmapPacks WHERE Id = ?", "s", [$id])[0];
+    //echo "getting pack ". $id . "<br>";
+    $pack = Database::execSelect("SELECT * FROM MedalsBeatmapPacks WHERE Id = ? AND Count != 0", "s", [$id])[0];
     $beatmaps = json_decode($pack['Ids']);
     $return = [];
     foreach ($beatmaps as $beatmap) {

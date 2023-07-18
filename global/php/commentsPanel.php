@@ -41,10 +41,10 @@
                         <div onclick="Comments_OpenEmojiPopup()" id="comments__emoji"
                             class="comments__input-box__send comments__input-box__emoji">
                             <i class="fas fa-smile"></i>
-                            <div class="comments_emoji_popup_conainer comments_emoji_popup_conainer-hidden"
+                        </div>
+                        <div class="comments_emoji_popup_conainer comments_emoji_popup_conainer-hidden"
                                 id="comments__emoji_container">
                             </div>
-                        </div>
 
                         <div class="comments__post-lower-right">
                             <p><?= GetStringRaw("comments", "post.bbcodeSupport"); ?></p>
