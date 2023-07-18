@@ -699,6 +699,17 @@ function rgbToHsl($r, $g, $b)
     // don't question the multiplications, it works
 }
 
+function LoginNagBox($reason, $size = "normal") {
+    if(loggedin()) return;
+    global $loginurl;
+    return '<a class="osekai__login-nag osekai__login-nag-'.$size.'" href="'.$loginurl.'">
+    <div class="osekai__login-nag-top">
+        <i class="oif-osu-logo"></i> <h3>log into osekai with osu!</h3>
+    </div>
+    <p>'.$reason.'</p>
+</a>';
+}
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/exceptions.php");
 
 function api_controller_base_classes()

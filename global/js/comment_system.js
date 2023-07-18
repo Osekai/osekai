@@ -227,22 +227,22 @@ function generateComment(commentdata) {
         item.addEventListener("click", callback);
         return item;
     }
-    eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> Report`, function () {
+    eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> ` + GetStringRawNonAsync("comments", "report"), function () {
         eldropdown.classList.toggle("osekai__dropdown-hidden");
         doReport('comment', commentdata.ID);
     }, "osekai__dropdown-item-red"))
     if (bLoggedIn) {
         if (nRights > 0 || (nUserId == commentdata.MedalID && nAppId == "3")) {
-            eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> Delete`, function () {
+            eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> ` + GetStringRawNonAsync("comments", "delete"), function () {
                 deleteComment(commentdata.ID);
                 eldropdown.classList.toggle("osekai__dropdown-hidden");
             }, "osekai__dropdown-item-red"))
-            var name = "Pin";
+            var name = GetStringRawNonAsync("comments", "pin");
             if (commentdata.ParentCommenter) name = "Highlight";
             var alreadyPinned = false;
             if (commentdata.Pinned == 1) {
                 alreadyPinned = true;
-                var name = "Unpin";
+                var name = GetStringRawNonAsync("comments", "unpin");
                 if (commentdata.ParentCommenter) name = "Un-highlight";
             }
             eldropdown.appendChild(dropdownItem(name, function () {

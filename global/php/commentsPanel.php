@@ -47,8 +47,8 @@
                         </div>
 
                         <div class="comments__post-lower-right">
-                            <p>osekai supports bbcode!</p>
-                            <div class="comments__post-button" id="comments__send"><i class="fas fa-paper-plane"></i> Post</div>
+                            <p><?= GetStringRaw("comments", "post.bbcodeSupport"); ?></p>
+                            <div class="comments__post-button" id="comments__send"><i class="fas fa-paper-plane"></i> <?= GetStringRaw("comments", "post"); ?></div>
                         </div>
                     </div>
                 </div>

@@ -1861,7 +1861,6 @@ a {
         right: 42px;
         box-sizing: border-box;
         padding-right: 0px;
-        background: linear-gradient(rgba(var(--accentdark), 0.2), rgba(var(--accentdark), 0.2)), #000e;
         margin: -42px;
         padding-bottom: 0px;
         margin-bottom: 0px;
@@ -4843,6 +4842,43 @@ input[type='range']:focus::-ms-fill-upper {
     margin-right: 5px;
 }
 
+.osekai__login-nag {
+    border-radius: 8px;
+    padding: 26px;
+    background: url("/global/img/nagbox.jpg"), rgb(var(--accentdark));
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay, normal;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    color: white !important;
+    transition: all 0.15s ease;
+    margin-bottom: 12px;
+}
+
+.osekai__login-nag:hover {
+    transform: translateY(-4px) scale(1.01);
+    filter: brightness(1.1);
+}
+
+.osekai__login-nag-top {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    font-weight: 900px;
+    margin-bottom: 39px;
+}
+
+.osekai__login-nag-small .osekai__login-nag-top {
+    margin-bottom: 18px;
+}
+
+.osekai__login-nag-top i {
+    font-size: 44px;
+    margin-right: 14px;
+}
+
 
 .osekai__navbar-search {
     height: 45px;
@@ -5045,3 +5081,4 @@ input[type='range']:focus::-ms-fill-upper {
         display: none;
     }
 }
+

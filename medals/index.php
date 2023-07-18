@@ -96,13 +96,23 @@ if (isset($_GET['medal'])) {
 <body>
     <div id="oBeatmapInput"></div>
 
+    <div class="medals__randommedal medals__randommedal-hidden" id="randommedal">
+        <div class="medals__randommedal-overlay" id="randommedal_overlay"></div>
+        <div class="medals__randommedal-flash" id="randommedal_flash"></div>
+        <img src="" id="randommedal_img_blur" class="blur">
+        <img src="" id="randommedal_img">
+        <img src="" id="randommedal_img_glow" class="glow">
+        <canvas id="particle_canvas"></canvas>
+    </div>
+
     <?php navbar(); ?>
+    <div class="osekai__ct3-backdrop hidden"></div>
     <div otab-container otab-no-replace>
         <div class="medals__toolbar">
             <div class="medals__toolbar-buttons medals__toolbar-left">
-                <div otab-button="Medals"><i class="oif-medal"></i></div>
-                <div otab-button="Favourite Medals"><i class="fas fa-star"></i></div>
-                <div otab-button="Beatmap Packs"><i class="fas fa-layer-group"></i></div>
+                <div otab-button="Medals" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.medals"); ?>"><i class="oif-medal"></i></div>
+                <div otab-button="Favourite Medals" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.favouriteMedals"); ?>"><i class="fas fa-star"></i></div>
+                <div otab-button="Beatmap Packs" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.beatmapPacks"); ?>"><i class="fas fa-layer-group"></i></div>
             </div>
 
             <div class="medals__toolbar-middle">
@@ -147,8 +157,8 @@ if (isset($_GET['medal'])) {
                 </div>
             </div>
             <div class="medals__toolbar-buttons medals__toolbar-right">
-                <div onclick="alert(0)"><i class="oif-medal"></i></div>
-                <div onclick="landingPage()" id="expandbutton"><i class="fas fa-expand"></i></div>
+                <div onclick="randomMedal();" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.randomMedal"); ?>"><i class="fas fa-dice"></i></div>
+                <div onclick="landingPage()" id="expandbutton" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.homepage"); ?>"><i class="fas fa-expand"></i></div>
             </div>
         </div>
         <div class="osekai__panel-container">
@@ -172,14 +182,17 @@ if (isset($_GET['medal'])) {
                             <div class="osekai__panel">
                                 <div class="osekai__panel-header">
                                     <p>
-                                        Beatmap Packs
+                                    <?= GetStringRaw("medals", "toolbar.tab.betamapPacks"); ?>
                                     </p>
                                 </div>
-                                <div class="osekai__panel-inner" id="beatmapPackList">
-                                    <div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'>
-                                            <circle class='ring' cx='25' cy='25' r='22.5' />
-                                            <circle class='line' cx='25' cy='25' r='22.5' />
-                                        </svg></div>
+                                <div class="osekai__panel-inner">
+                                    <?= LoginNagBox("when logged in, you can see which beatmap packs you’ve already completed, making your life much easier!") ?>
+                                    <div id="beatmapPackList" style="width: 100%;">
+                                        <div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'>
+                                                <circle class='ring' cx='25' cy='25' r='22.5' />
+                                                <circle class='line' cx='25' cy='25' r='22.5' />
+                                            </svg></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -343,6 +356,9 @@ if (isset($_GET['medal'])) {
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/global/js/graphics/geom_conversions.js"></script>
+    <script type="text/javascript" src="/global/js/graphics/vector.js"></script>
+    <script type="text/javascript" src="/global/js/graphics/particles.js"></script>
     <?php tippy(); ?>
     <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 </body>
