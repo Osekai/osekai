@@ -161,7 +161,7 @@ if (isset($_GET['medal'])) {
                 <div onclick="landingPage()" id="expandbutton" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.homepage"); ?>"><i class="fas fa-expand"></i></div>
             </div>
         </div>
-        <div class="osekai__panel-container">
+        <div class="osekai__panel-container osekai__sidebar-panel-container">
             <div class="osekai__3col-panels">
                 <div id="osekai__col1" class="osekai__3col_col1 medals__nomedal">
                     <div class="medals__otab-container">
