@@ -182,7 +182,7 @@ if (isset($_GET['medal'])) {
                             <div class="osekai__panel">
                                 <div class="osekai__panel-header">
                                     <p>
-                                    <?= GetStringRaw("medals", "toolbar.tab.betamapPacks"); ?>
+                                    <?= GetStringRaw("medals", "toolbar.tab.beatmapPacks"); ?>
                                     </p>
                                 </div>
                                 <div class="osekai__panel-inner">
