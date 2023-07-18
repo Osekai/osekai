@@ -1073,6 +1073,7 @@ function changeMedalFavState() {
         FavMedals.splice(FavMedals.indexOf(parseInt(nCurrentMedalID)), 1);
     else
         FavMedals.push(parseInt(nCurrentMedalID));
+    requestMedals(false, document.getElementById("txtMedalSearch").value, FavMedals);
 
     const xhr = new XMLHttpRequest();
     xhr.open(shouldDelete ? 'DELETE' : 'PUT', '/medals/api/favourite.php', true);
