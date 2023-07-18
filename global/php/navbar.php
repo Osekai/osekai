@@ -82,6 +82,13 @@ addOtherApp("fas fa-layer-group", "/misc/groups", GetStringRaw("navbar", "otherA
                 </div>
 
                 <div class="osekai__navbar-center-right">
+                    <div class="osekai__navbar-search osekai__navbar-search-inactive" id="search_container">
+                        <input id="search_input" type="text" placeholder="search for something!">
+                        <i class="fas fa-search"></i>
+                        <div id="search_overlay" class="osekai__navbar-search-overlay osekai__navbar-search-overlay-hidden">
+
+                        </div>
+                    </div>
                     <?php if (loggedin()) { ?>
                         <div class="osekai__navbar-button tooltip-v2" id="notif__bell__button"
                             tooltip-content="<?= GetStringRaw("navbar", "tooltip.notifications"); ?>">
@@ -551,13 +558,6 @@ foreach ($apps as $a) {
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<?php
-
-include("search_overlay.php");
-
-?>
-
-
 
 <div class="snowflakes" aria-hidden="true" id="snowflakes">
 
@@ -566,4 +566,5 @@ include("search_overlay.php");
 <script type="text/javascript" src="/global/js/variables.js?v=<?= OSEKAI_VERSION ?>"></script>
 <script rel="preload" type="text/javascript" src="/global/js/main.js?v=<?= OSEKAI_VERSION ?>"></script>
 
+<script type="text/javascript" src="/global/js/search.js?v=<?= OSEKAI_VERSION ?>"></script>
 <script src="/global/js/navbar.js?v=<?= OSEKAI_VERSION ?>"></script>
