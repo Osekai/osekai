@@ -422,10 +422,10 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     {
         if (FavMedals != null && nUserID != -1)
             if (FavMedals.includes(parseInt(nCurrentMedalID))) {
-                document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Unfavourite'; // TODO: translate
+                document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.remove"); // TODO: translate
                 document.getElementById('favButton').classList.add('osekai__button-on');
             } else {
-                document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Favourite'; // TODO: translate
+                document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.add"); // TODO: translate
                 document.getElementById('favButton').classList.remove('osekai__button-on');
             }
 
@@ -438,10 +438,10 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
                 console.log(`Fav medals: ${oResponse}`);
                 FavMedals = oResponse;
                 if (FavMedals.includes(parseInt(nCurrentMedalID))) {
-                    document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Unfavourite'; // TODO: translate
+                    document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.remove"); // TODO: translate
                     document.getElementById('favButton').classList.add('osekai__button-on');
                 } else {
-                    document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Favourite'; // TODO: translate
+                    document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.add"); // TODO: translate
                     document.getElementById('favButton').classList.remove('osekai__button-on');
                 }
             }
