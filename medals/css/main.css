@@ -1695,3 +1695,19 @@ html {
 .medals__medal-section .osekai__panel {
     margin-bottom: 6px;
 }
+
+@media (max-width: 520px) {
+    .medals__toolbar-middle {
+        position: absolute;
+        left: 0px;
+        width: 100%;
+        top: 50px;
+        margin: 0px;
+    }
+    .medals__toolbar {
+        margin-bottom: 50px;
+    }
+    .osekai__3col_col1 {
+        top: calc(42px + var(--navheight) + 50px + 10px + 50px)
+    }
+}

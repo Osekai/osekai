@@ -60,7 +60,7 @@ addOtherApp("fas fa-layer-group", "/misc/groups", GetStringRaw("navbar", "otherA
         <div class="osekai__navbar-bottom">
             <div class="osekai__navbar-left">
                 <div onclick='apps_dropdown()' class="osekai__navbar__app-button">
-                    <i class="fas fa-layer-group"></i>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
 
             </div>
