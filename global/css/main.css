@@ -4870,6 +4870,10 @@ input[type='range']:focus::-ms-fill-upper {
     margin-bottom: 39px;
 }
 
+.osekai__login-nag-small {
+    padding: 15px;
+}
+
 .osekai__login-nag-small .osekai__login-nag-top {
     margin-bottom: 18px;
 }
@@ -4879,6 +4883,16 @@ input[type='range']:focus::-ms-fill-upper {
     margin-right: 14px;
 }
 
+.osekai__login-nag-small i {
+    font-size: 30px;
+}
+.osekai__login-nag-small h3 {
+    font-size: 18px;
+}
+
+.osekai__login-nag p {
+    font-weight: 200;
+}
 
 .osekai__navbar-search {
     height: 45px;
