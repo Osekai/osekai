@@ -645,24 +645,7 @@
     }
 }
 
-@media (max-width: 900px) {
-    .medals__nomedal #oMedalSection .osekai__panel {
-        width: 100%;
-    }
 
-    .medals__nomedal #oMedalSection {
-        gap: 0px;
-    }
-
-    .medals__nomedal {
-        width: 100%;
-    }
-
-    .osekai__3col_col1 {
-        padding: 25px;
-    }
-
-}
 
 /* beatmap v3 */
 
@@ -1450,4 +1433,239 @@ body, html {
 
 .medals__medal-panel .osekai__section-header {
     border-bottom: 1px solid var(--col);
+}
+
+@media (max-width: 900px) {
+    .medals__nomedal #oMedalSection .osekai__panel {
+        width: 100%;
+    }
+
+    .medals__nomedal #oMedalSection {
+        gap: 0px;
+    }
+
+    .medals__nomedal {
+        width: 100%;
+    }
+
+    .osekai__3col_col1 {
+        padding: 25px;
+    }
+    .medals__toolbar {
+        margin: 26px;
+        z-index: 20;
+        position: relative;
+    }
+
+    .osekai__ct3-backdrop {
+        transition: all 0.2s ease;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 5;
+        background: linear-gradient(
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset)), 0.9),
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset)), 0.9)
+    );
+    }
+    .osekai__ct3-backdrop.hidden {
+        pointer-events: none;
+        opacity: 0;
+        position: fixed;
+        display: inherit !important;
+        
+    }
+
+    .medals__search__filters-icon {
+        height: 36px;
+        margin-top: 6px;
+    }
+    #expandbutton {
+        display: none;
+    }
+
+    .medals__toolbar-middle {
+        margin: 0px 10px;
+        position: relative;
+        justify-content: flex-start;
+    }
+    .medals__toolbar-middle-inner {
+        width: 100%;
+    }
+    .medals__search {
+        padding: 11.5px;
+        margin: 0px;
+        margin-top: 4px;
+    }
+}
+
+
+
+.medals__randommedal {
+    background: linear-gradient(
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset)), 0.9),
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset)), 0.9)
+    );
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes impact {
+    0% {
+        opacity: 0;
+        transform: scale(1.4);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes impactbg {
+    0% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+@keyframes fade-beginning {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes medal-zoom {
+    0% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+#randommedal_img {
+    animation: medal-zoom 3.7s linear;
+
+}
+
+.medals__randommedal-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: scale(1.02) translateY(50px);
+}
+
+
+.medals__randommedal-hidden * {
+    animation: none;
+}
+.medals__randommedal-hidden .medals__randommedal-overlay {
+    opacity: 0 !important;
+    animation: none !important;
+}
+
+.medals__randommedal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    background: radial-gradient(#fffa, #fff);
+    mix-blend-mode: overlay;
+    animation: fade-beginning 3.4s linear;
+}
+#randommedal_img_glow {
+    filter: drop-shadow(0px 0px 5px #e38ab8) drop-shadow(0px 0px 10px #fdc3e1) drop-shadow(0px 0px 20px #e5509d) drop-shadow(0px 0px 50px #fdc3e1) drop-shadow(0px 0px 200px #fdc3e1);
+    position: absolute;
+    animation: fade-beginning 3.5s linear;
+    z-index: 50;
+    filter: blur(10px)
+
+}
+
+.medals__randommedal-finished .medals__randommedal-overlay, .medals__randommedal-finished #randommedal_img_glow {
+    opacity: 0 !important;
+    display: none !important;
+}
+
+.medals__randommedal img {
+    z-index: 51;
+    position: inherit;
+}
+
+.medals__randommedal-finished {
+    background: 
+    radial-gradient(#0000, #000),
+    linear-gradient(
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.95),
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset)), 1)
+    );
+    background-blend-mode: overlay normal;
+}
+
+.medals__randommedal-finished .medals__randommedal-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 52;
+    background: linear-gradient(
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(60% * var(--accentdark_valueoffset)), 0.9),
+        hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(80% * var(--accentdark_valueoffset)), 0.9)
+    );
+    opacity: 0;
+    animation: flash 1.8s ease;
+}
+
+.medals__randommedal-finished img {
+    animation: impact 0.8s ease !important;
+    filter: drop-shadow(0px 0px 5px #e38ab8) drop-shadow(0px 0px 10px #fdc3e1) drop-shadow(0px 0px 20px #e5509d) drop-shadow(0px 0px 50px #fdc3e1) drop-shadow(0px 0px 200px #fdc3e1);
+}
+
+
+.medals__randommedal-finished .blur {
+    animation: impact-bg 0.8s ease !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    transform: scale(1.5);
+    filter: blur(150px);
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    object-fit: cover;
+}
+
+#particle_canvas {
+    filter: drop-shadow(0px 0px 5px #fff);
 }

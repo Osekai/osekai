@@ -12,7 +12,7 @@ if (!bLoggedIn) {
 
 const tx = document.getElementsByTagName("textarea");
 for (let i = 0; i < tx.length; i++) {
-   /*  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;"); */
+    /*  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;"); */
     tx[i].addEventListener("input", OnInput, false);
 }
 
@@ -507,7 +507,7 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
 
     getMods(colMedals[strMedalName].Mods);
 
-    for(var classname in medals_grouping_classnames) {
+    for (var classname in medals_grouping_classnames) {
         document.getElementsByClassName("medals__solution-panel-outer")[0].classList.remove(medals_grouping_classnames[classname]);
     }
     document.getElementsByClassName("medals__solution-panel-outer")[0].classList.add(medals_grouping_classnames[colMedals[strMedalName].Grouping])
@@ -589,14 +589,14 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
                 <i class="oif-gamemode-${gamemode}"></i>
                 <div class="medals__viewpack-textarea-left">
                     <div class="medals__viewpack-top">` + GetStringRawNonAsync("medals", "beatmap.viewOnOsu") + `</div>
-                    <div class="medals__viewpack-bottom"><strong>${resp[i].length}</strong> maps</div>
+                    <div class="medals__viewpack-bottom">${GetStringRawNonAsync("medals", "beatmapPacks.mapCount", [resp[i].length])}</div>
                 </div>
                 `;
 
                 if (length != 0) {
                     html += `<div class="medals__viewpack-textarea-right">
                     <div class="medals__viewpack-top">${fancyTimeFormat(length)}</div>
-                    <div class="medals__viewpack-bottom"><strong>${fancyTimeFormat(length / 1.5)}</strong> with DT</div>
+                    <div class="medals__viewpack-bottom">${GetStringRawNonAsync("medals", "beatmapPacks.withDT.inline", [fancyTimeFormat(length / 1.5)])}</div>
                 </div>`;
                 } else {
                     html += `<div class="medals__viewpack-textarea-right">
@@ -1032,7 +1032,7 @@ function loadExtraInfo(medalid) {
 }
 
 function loadBeatmapPacks() {
-    if (userInfo == null) {
+    if (userInfo == null && bLoggedIn) {
         console.log("waiting for userinfo")
         setTimeout(loadBeatmapPacks, 100);
         return;
@@ -1058,7 +1058,7 @@ function loadBeatmapPacks() {
             var medalName = Object.assign(document.createElement("p"), { innerText: medal.name });
 
             var packLength = Object.assign(document.createElement("p"), { innerHTML: "<i class=\"oif-gamemode-" + medal.fastest_gamemode + "\"></i> " + fancyTimeFormat(medal.fastest_time / 1.5) });
-            var packLengthSmall = Object.assign(document.createElement("small"), { innerText: "with DT" });
+            var packLengthSmall = Object.assign(document.createElement("small"), { innerText: GetStringRawNonAsync("medals", "beatmapPacks.withDT") });
 
             medalContainerLeft.appendChild(medalImage);
 
@@ -1098,3 +1098,88 @@ function loadBeatmapPacks() {
     }
     xhr.send();
 }
+
+
+var particles = [];
+function runParticleAnim() {
+    particles = [];
+    var count = 0;
+    function addParticles() {
+        if (count > 200) {
+            return;
+        }
+        count++;
+        particles.push(particle.create(width / 2, height / 2, (Math.random() * 10) + 1, Math.random() * 10 * Math.PI * 20))
+        setTimeout(() => {
+
+            addParticles();
+        }, 0.2);
+    }
+    addParticles();
+    canvasupdate();
+}
+function resetParticleAnim() {
+    particles = [];
+}
+
+canvas = document.getElementById("particle_canvas");
+context = canvas.getContext("2d");
+width = canvas.width = window.innerWidth;
+height = canvas.height = window.innerHeight;
+
+function canvasupdate() {
+    if (particles == []) return;
+    context.clearRect(0, 0, width, height);
+    context.fillStyle = "#ffffff";
+    for (var i = 0; i < particles.length; i++) {
+        particles[i].update();
+        context.beginPath();
+        context.arc(particles[i].position.getX(), particles[i].position.getY(), 3, 0, 2 * Math.PI, false);
+        context.fill();
+    }
+
+    requestAnimationFrame(canvasupdate);
+}
+
+var original = "";
+function randomMedal() {
+    document.getElementById("randommedal").classList.remove("medals__randommedal-finished");
+    document.getElementById("randommedal").offsetHeight;
+    document.getElementById("randommedal_img_blur").offsetHeight;
+    document.getElementById("randommedal_img").offsetHeight;
+    document.getElementById("randommedal_img_glow").offsetHeight;
+    document.getElementById("randommedal_img_blur").src = "";
+
+    document.getElementById("randommedal").classList.remove("medals__randommedal-hidden");
+    function selectRandom() {
+        var keys = Object.keys(colMedals);
+        return colMedals[keys[keys.length * Math.random() << 0]];
+    }
+
+    function run(time, count) {
+        console.log(selectRandom());
+        var medal = selectRandom();
+        document.getElementById("randommedal_img").src = medal.Link;
+        document.getElementById("randommedal_img_glow").src = medal.Link;
+        if (count == 50) {
+            loadMedal(medal.Name);
+            document.getElementById("randommedal_img_blur").src = medal.Link;
+            document.getElementById("randommedal").classList.add("medals__randommedal-finished");
+            console.log("finished with count " + count + " and time " + time + "!")
+            runParticleAnim();
+            setTimeout(() => {
+                document.getElementById("randommedal").classList.add("medals__randommedal-hidden");
+            }, 3000);
+            setTimeout(() => {
+                resetParticleAnim();
+            }, 4000);
+            return;
+        }
+        console.log("continuing with time " + time + " and count " + count);
+        setTimeout(() => {
+            run(time + 6 * (count / 45), count + 1);
+        }, time);
+    }
+    run(4, 0);
+}
+
