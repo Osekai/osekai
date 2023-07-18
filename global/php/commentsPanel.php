@@ -35,7 +35,8 @@
                 </div>
                 <div class="comments__post-right">
                     <div class="comments__post-upper">
-                        <textarea rows="1" placeholder="Post a comment!"  onKeyPress="Comments_CloseEmojiPopup()" id="comments__input"></textarea>
+                        <?= LoginNagBox("you can post comments when logged in!", "small") ?>
+                        <textarea rows="1" placeholder="<?= GetStringRaw("comments", "post.placeholder"); ?>"  onKeyPress="Comments_CloseEmojiPopup()" id="comments__input"></textarea>
                     </div>
                     <div class="comments__post-lower">
                         <div onclick="Comments_OpenEmojiPopup()" id="comments__emoji"

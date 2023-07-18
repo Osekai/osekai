@@ -134,6 +134,7 @@ medal_popup_v2();
                             <p>Comments</p>
                         </div>
                         <div class="osekai__panel-inner comments__section">
+                            <?= LoginNagBox("you can post comments when logged in!", "small") ?>
                             <div class="comments__post">
                                 <div class="comments__post-left">
                                     <img src="https://a.ppy.sh/1" class="comments__pfp">

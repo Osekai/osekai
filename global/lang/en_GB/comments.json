@@ -10,5 +10,6 @@
     "pin": "Pin",
     "unpin": "Unpin",
     "post.bbcodeSupport": "osekai supports bbcode!",
-    "post": "Post"
+    "post": "Post",
+    "post.placeholder": "Post a comment!"
 }
