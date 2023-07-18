@@ -8,7 +8,7 @@
     overflow: auto;
 }
 
-#oMedalSection {
+.medals__medal-section {
     padding-bottom: 20px;
 }
 
@@ -625,7 +625,7 @@
     transform: translateY(4px);
 }
 
-.medals__nomedal #oMedalSection .osekai__panel {
+.medals__nomedal .medals__medal-section .osekai__panel {
     width: calc(33.33333% - 22px);
 }
 
@@ -633,24 +633,24 @@
     width: 100% !important;
 }
 
-.medals__nomedal #oMedalSection {
+.medals__nomedal .medals__medal-section {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
 }
 
 @media only screen and (max-width: 1500px) {
-    .medals__nomedal #oMedalSection .osekai__panel {
+    .medals__nomedal .medals__medal-section .osekai__panel {
         width: calc(50% - 16px);
     }
 }
 
 @media (max-width: 900px) {
-    .medals__nomedal #oMedalSection .osekai__panel {
+    .medals__nomedal .medals__medal-section .osekai__panel {
         width: 100%;
     }
 
-    .medals__nomedal #oMedalSection {
+    .medals__nomedal .medals__medal-section {
         gap: 0px;
     }
 
