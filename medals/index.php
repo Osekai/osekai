@@ -165,16 +165,16 @@ if (isset($_GET['medal'])) {
             <div class="osekai__3col-panels">
                 <div id="osekai__col1" class="osekai__3col_col1 medals__nomedal">
                     <div class="medals__otab-container">
-                        <div class="medals__scroller osekai__otab-hidden" otab-name="Favourite Medals">
-                            <div class="osekai__panel">
-                                <div class="osekai__panel-header">
-                                    <p>
-                                    <?= GetStringRaw("medals", "toolbar.tab.favouriteMedals"); ?>
-                                    </p>
-                                </div>
-                                <div class="osekai__panel-inner">
-                                    uwu
-                                </div>
+                        <div class="medals__scroller osekai__otab-hidden" otab-name="Favourite Medals"
+                            otab-callback="loadFavMedals">
+                            <p style="padding: 10px;">
+                                Favourite Medals
+                            </p>
+                            <div id="favsSection" class="medals__medal-section">
+                                <div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'>
+                                        <circle class='ring' cx='25' cy='25' r='22.5' />
+                                        <circle class='line' cx='25' cy='25' r='22.5' />
+                                    </svg></div>
                             </div>
                         </div>
                         <div class="medals__scroller osekai__otab-hidden" otab-name="Beatmap Packs"
@@ -197,7 +197,7 @@ if (isset($_GET['medal'])) {
                             </div>
                         </div>
                         <div class="medals__scroller osekai__otab-hidden" otab-name="Medals" otab-default>
-                            <section id="oMedalSection"></section>
+                            <section id="oMedalSection" class="medals__medal-section"></section>
                         </div>
                     </div>
                 </div>
@@ -248,6 +248,11 @@ if (isset($_GET['medal'])) {
                                             Medal</a>
                                     <?php }
                                 } ?>
+                                <?php
+                                if (loggedin()) {
+                                    echo '<a onclick="changeMedalFavState();" style="margin-right: 8px;" id="favButton" class="osekai__button"><i class="fas fa-star"></i>Favourite</a>';
+                                }
+                                ?>
                                 <p id="strMedalGroup" class="medals__info-bar-text-left"></p>
                                 <div class="medals__info-bar-texts-right">
                                     <p id="strMedalRarity" class="medals__info-bar-text-right">
