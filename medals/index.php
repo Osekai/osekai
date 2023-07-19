@@ -179,7 +179,7 @@ if (isset($_GET['medal'])) {
                                         <circle class='line' cx='25' cy='25' r='22.5' />
                                     </svg></div>
 
-                                    <?php { ?>
+                                    <?php } ?>
                             </div>
                         </div>
                         <div class="medals__scroller osekai__otab-hidden" otab-name="Beatmap Packs"
