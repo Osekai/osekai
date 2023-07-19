@@ -170,8 +170,8 @@ if (isset($_GET['medal'])) {
                             <p style="padding: 10px;">
                                 Favourite Medals
                             </p>
+                          
                             <div id="favsSection" class="medals__medal-section">
-                            <?= LoginNagBox("when logged in, you can favourite medals, saving them for later!") ?>
                                 <?php
                                 if(loggedin()) { ?>
                                 <div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'>
@@ -179,7 +179,11 @@ if (isset($_GET['medal'])) {
                                         <circle class='line' cx='25' cy='25' r='22.5' />
                                     </svg></div>
 
-                                    <?php } ?>
+                                    <?php
+                                    } else {
+                                        echo "Please log in.";
+                                    } 
+                                    ?>
                             </div>
                         </div>
                         <div class="medals__scroller osekai__otab-hidden" otab-name="Beatmap Packs"
