@@ -19,8 +19,8 @@ if (!isset($_GET['ranking'])) {
         $name = "Osekai Rankings • what medal is the rarest?";
         $description = "what medal do people own the least? find out here!";
         $tags = "homepage";
-    } else if ($_GET['ranking'] == "All Mode" && $type == "Standard Deviation") {
-        $name = "Osekai Rankings • top players sorted by Standard Deviation!";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Standard Deviated pp") {
+        $name = "Osekai Rankings • top players sorted by Standard Deviated pp!";
         $description = "leaderboard using standard deviation across all modes! find out who's the best all mode player!";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "All Mode" && $type == "Total pp") {
@@ -30,6 +30,22 @@ if (!isset($_GET['ranking'])) {
     } else if ($_GET['ranking'] == "All Mode" && $type == "Replays") {
         $name = "Osekai Rankings • who has the most watched replays?";
         $description = "how many times has this player been watched through osu!? find out here.";
+        $tags = "homepage";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Stdev Level") {
+        $name = "Osekai Rankings • all osu! players sorted by their standard deviated level!?";
+        $description = "who has the highest level in osu!? find out here!";
+        $tags = "homepage";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Stdev Accuracy") {
+        $name = "Osekai Rankings • players sorted by their standard deviated accuracy!";
+        $description = "which player has the best accuracy? find out here!";
+        $tags = "homepage";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Total Level") {
+        $name = "Osekai Rankings • who has the highest level?";
+        $description = "who has the highest level in osu!? we have the answer.";
+        $tags = "homepage";
+    } else if ($_GET['ranking'] == "All Mode" && $type == "Total Accuracy") {
+        $name = "Osekai Rankings • who has the most accuracy?";
+        $description = "who has the most accuracy across all gamemodes in osu!? find out here.";
         $tags = "homepage";
     } else if ($_GET['ranking'] == "Mappers" && $type == "Ranked Mapsets") {
         $name = "Osekai Rankings • the top ranked mappers!";
@@ -43,14 +59,19 @@ if (!isset($_GET['ranking'])) {
         $name = "Osekai Rankings • the top subscribed people!";
         $description = "Who has the most subscribers? it's a cool question, and we have the answer!";
         $tags = "homepage";
+    } else if ($_GET['ranking'] == "Mappers" && $type == "Kudosu") {
+        $name = "Osekai Rankings • the people with the most kudosu!";
+        $description = "Who has the most kudosu? Osekai Rankings has the answer!";
+        $tags = "homepage";
     } else if ($_GET['ranking'] == "Badges" && $type == "Badges") {
         $name = "Osekai Rankings / Badges / Badges • badges";
         $description = "badges";
         $tags = "homepage";
     } else {
-        header("HTTP/1.1 301 Moved Permanently");
-        header("Location: /rankings/");
-        exit();
+        // we don't really need this
+        //header("HTTP/1.1 301 Moved Permanently");
+        //header("Location: /rankings/");
+        //exit();
     }
 }
 
@@ -133,7 +154,7 @@ $meta = '<meta charset="utf-8">
                         <p>Tasks</p>
                     </div>
                     <div class="osekai__panel-inner">
-                        <p class="rankings__tasks-header" id="currenttask-text">Current Task</p>
+                        <p class="rankings__tasks-header" id="currenttask-text"><?= GetStringRaw("rankings", "tasks.current"); ?></p>
                         <div class="rankings__task rankings__task-working rankings__task-current" id="currenttask">
                             <div class="rankings__task-accent">
                                 <i class="fas fa-sync-alt"></i>
@@ -142,13 +163,12 @@ $meta = '<meta charset="utf-8">
                                 <div class="rankings__task-content-inner">
                                     <div class="rankings__task-text">
                                         <div class="rankings__task-text-left">
-                                            <h3>Task: <strong id="currenttask_name">Full</strong></h3>
-                                            <h2 id="currenttask_statustext">Running Update</h2>
+                                            <h3><?= GetStringRaw("rankings", "tasks.task.task"); ?></h3>
+                                            <h2 id="currenttask_statustext"><?= GetStringRaw("rankings", "tasks.task.updating"); ?></h2>
                                         </div>
                                         <div class="rankings__task-text-right">
                                             <h3 id="currenttask_status"><strong>50%</strong> - 9000/15000</h3>
-                                            <h2 id="currenttask_eta">1:29:00 <light>ETA</light>
-                                            </h2>
+                                            <h2 id="currenttask_eta">1:29:00 <light>ETA</light></h2>
                                         </div>
                                     </div>
                                     <div class="osekai__progress-bar">
@@ -157,7 +177,7 @@ $meta = '<meta charset="utf-8">
                                 </div>
                             </div>
                         </div>
-                        <p class="rankings__tasks-header">Completed Tasks</p>
+                        <p class="rankings__tasks-header"><?= GetStringRaw("rankings", "tasks.completed"); ?></p>
                         <div id="completedtasks_list" style="width: 100%;">
 
                         </div>
@@ -182,17 +202,35 @@ $meta = '<meta charset="utf-8">
                     <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?></h1>
                 </div>
                 <div class="rankings__home-v2-button-container">
-                    <div class="rankings__home-v2-button" selector="home__button" app="appReplays">
-                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.replays"); ?></strong></h1>
-                        <p><?= GetStringRaw("rankings", "general.allmode.replays.subheader"); ?></p>
+                <div class="rankings__home-v2-button" selector="home__button" app="appTPP">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.total"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.total.subheader"); ?></p>
                     </div>
+
                     <div class="rankings__home-v2-button" selector="home__button" app="appStdev">
                         <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.standardDeviation"); ?></strong></h1>
                         <p><?= GetStringRaw("rankings", "general.allmode.standardDeviation.subheader"); ?></p>
                     </div>
-                    <div class="rankings__home-v2-button" selector="home__button" app="appTPP">
-                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.total"); ?></strong></h1>
-                        <p><?= GetStringRaw("rankings", "general.allmode.total.subheader"); ?></p>
+                    <div class="rankings__home-v2-button" selector="home__button" app="appTotalLevel">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.totalLevel"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.totalLevel.subheader"); ?></p>
+                    </div>
+                    <div class="rankings__home-v2-button" selector="home__button" app="apStdevLevel">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.standardDeviatedLevel"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.standardDeviatedLevel.subheader"); ?></p>
+                    </div>
+                    <div class="rankings__home-v2-button" selector="home__button" app="appTotalAcc">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.totalAccuracy"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.totalAccuracy.subheader"); ?></p>
+                    </div>
+                    <div class="rankings__home-v2-button" selector="home__button" app="appStdevAcc">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.standardDeviatedAccuracy"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.standardDeviatedAccuracy.subheader"); ?></p>
+                    </div>
+
+                    <div class="rankings__home-v2-button" selector="home__button" app="appReplays">
+                        <h1><?= GetStringRaw("rankings", "general.allmode.title"); ?> / <strong><?= GetStringRaw("rankings", "general.allmode.replays"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.allmode.replays.subheader"); ?></p>
                     </div>
                 </div>
                 <div class="rankings__home-v2-header mappers-v2">
@@ -210,6 +248,11 @@ $meta = '<meta charset="utf-8">
                     <div class="rankings__home-v2-button" selector="home__button" app="appSubscribers">
                         <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?= GetStringRaw("rankings", "general.mappers.subscribers"); ?></strong></h1>
                         <p><?= GetStringRaw("rankings", "general.mappers.subscribers.subheader"); ?></p>
+                    </div>
+
+                    <div class="rankings__home-v2-button" selector="home__button" app="appKudosu">
+                        <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?> / <strong><?= GetStringRaw("rankings", "general.mappers.kudosu"); ?></strong></h1>
+                        <p><?= GetStringRaw("rankings", "general.mappers.kudosu.subheader"); ?></p>
                     </div>
                 </div>
                 <div class="rankings__home-v2-header badges-v2">

@@ -352,6 +352,7 @@ function openBadge(index) {
         }
     }
     xhr.send();
+    set_breadcrums("{app}/" + badge.name);
     // set url query to badge id
     window.history.replaceState("", "", "?badge=" + badge.id);
 }
@@ -368,6 +369,8 @@ function hideOverlay() {
     obj_main.classList.add("badges__badge-overlay_hidden");
     let obj_panel = document.getElementById("bop_panel");
     obj_panel.classList.add("badges__badge-panel_hidden");
+
+    set_breadcrums("{app}");
 }
 
 function runSearch() {

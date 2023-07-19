@@ -41,7 +41,7 @@ async function Comments_Require(MedalID, oParent, bReload = false, VersionId = -
     COMMENTS_col_medals[MedalID] = [];
     COMMENTS_col_hash = [];
     COMMENTS_boxes[MedalID] = [];
-    oParent.innerHTML = "<div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'><circle class='ring' cx='25' cy='25' r='22.5' /><circle class='line' cx='25' cy='25' r='22.5' /></svg></div>"
+    oParent.innerHTML = loader;
 
     console.log("[Locale] loading comments locale");
     await loadSource("comments");
@@ -91,6 +91,8 @@ async function Comments_Require(MedalID, oParent, bReload = false, VersionId = -
 function Comments_HierarchySort(hashArr, key, result, MedalID) {
     if (hashArr[key] == undefined) return;
     var arr = hashArr[key].sort((a, b) => {
+        if (a.Pinned == 1) return -1;
+        if (b.Pinned == 1) return 1;
         if (COMMENTS_mode == 1) {
             if (parseInt(a.VoteSum ?? 0) > parseInt(b.VoteSum ?? 0)) return -1;
             if (parseInt(a.VoteSum ?? 0) < parseInt(b.VoteSum ?? 0)) return 1;
@@ -126,81 +128,166 @@ function Comments_Sort(oParent, MedalID, VersionId = -1, ProfileID = -1) {
     twemoji.parse(oParent);
 }
 
+function generateComment(commentdata) {
+    console.log(commentdata);
+    var comment = Object.assign(document.createElement("div"), { className: "comments__comment" });
+    if (commentdata.Pinned) {
+        comment.classList.add("comments__comment-pinned");
+    }
+    if (commentdata.ParentCommenter)
+        comment.classList.add("comments__comment-reply");
+
+    var comment_left = Object.assign(document.createElement("div"), { className: "comments__comment-left" });
+
+    var comment_left_pfp = Object.assign(document.createElement("img"), { className: "comments__pfp", src: commentdata.AvatarURL });
+    var comment_left_votes = Object.assign(document.createElement("div"), { className: "comments__comment-votes", innerText: "+" + (commentdata.VoteSum != null ? commentdata.VoteSum : "0") });
+    if (bLoggedIn) {
+        if (commentdata.HasVoted) {
+            comment_left_votes.classList.add("comments__comment-votes-voted");
+        }
+        comment_left_votes.addEventListener("click", function () {
+            console.log("clicked :D");
+            voteComment(commentdata.ID, comment_left_votes);
+        })
+    }
+    comment_left.appendChild(comment_left_pfp);
+    comment_left.appendChild(comment_left_votes);
+
+    var comment_right = Object.assign(document.createElement("div"), { className: "comments__comment-right" });
+    var comment_right_content = Object.assign(document.createElement("div"), { className: "comments__comment-content" });
+    var comment_right_infobar = Object.assign(document.createElement("div"), { className: "comments__comment-infobar" });
+
+
+    comment_right.appendChild(comment_right_content);
+    comment_right.appendChild(comment_right_infobar);
+
+    var comment_right_content_username = Object.assign(document.createElement("div"), { className: "comments__comment-content-username" });
+    comment_right_content.appendChild(comment_right_content_username);
+
+
+    var comment_right_content_username_roles = groupUtils.badgeHtmlFromCommaSeperatedList(commentdata['Groups'], "small", 2);
+    var comment_right_content_username_username = Object.assign(document.createElement("a"), { className: "comments__username", innerText: commentdata.Username, href: "https://osekai.net/profiles?user=" + commentdata.UserID });
+    comment_right_content_username.appendChild(comment_right_content_username_username);
+    comment_right_content_username.innerHTML += comment_right_content_username_roles;
+
+    var comment_right_content_username_right = Object.assign(document.createElement("div"), { className: "comments__comment-content-username-right" });
+    comment_right_content_username.appendChild(comment_right_content_username_right);
+
+    if (commentdata.Pinned == 1) {
+        var comment_right_content_username_right_pinned = Object.assign(document.createElement("div"), { className: "comments__comment-content-pinned" });
+        var comment_right_content_username_right_pinned_text = Object.assign(document.createElement("p"), { innerText: "Pinned" });
+        var comment_right_content_username_right_pinned_icon_container = Object.assign(document.createElement("div"), { className: "comments__comment-content-pinned-icon" });
+        var comment_right_content_username_right_pinned_icon = Object.assign(document.createElement("i"), { className: "oif-pin" });
+        comment_right_content_username_right_pinned_icon_container.appendChild(comment_right_content_username_right_pinned_icon);
+        comment_right_content_username_right_pinned.appendChild(comment_right_content_username_right_pinned_text);
+        comment_right_content_username_right_pinned.appendChild(comment_right_content_username_right_pinned_icon_container);
+        comment_right_content_username_right.appendChild(comment_right_content_username_right_pinned);
+    }
+
+    var comment_right_content_text = Object.assign(document.createElement("div"), { className: "comments__comment-content-text" });
+
+    var userText = BBCodeParser.process(parser.parseFromString(commentdata.PostText, "text/html").body.textContent).replaceAll(new RegExp(/(?<!=")(\b[\w]+:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/, 'g'), "<a href='$1' target='_blank'>$1</a>");
+    var comment_right_content_text_p = Object.assign(document.createElement("p"), { innerHTML: userText });
+    comment_right_content_text.appendChild(comment_right_content_text_p);
+    comment_right_content.appendChild(comment_right_content_text);
+
+    // infobar
+    function createInfobarElement(icon, html, tooltip = "") {
+        element = Object.assign(document.createElement("div"), { className: "comments__comment-infobar-info" });
+        element_icon = Object.assign(document.createElement("i"), { className: icon });
+        element_text = Object.assign(document.createElement("p"), { innerHTML: html });
+        if (tooltip != "") {
+            element.classList.add("tooltip-v2");
+            element.setAttribute("tooltip-content", tooltip);
+        }
+        element.appendChild(element_icon);
+        element.appendChild(element_text);
+        return element;
+    }
+    function createInfobarButton(icon, size, callback) {
+        element = Object.assign(document.createElement("div"), { className: "osekai__dropdown-opener comments__comment-infobar-button comments__comment-infobar-button-" + size });
+        element_icon = Object.assign(document.createElement("i"), { className: icon });
+        element.appendChild(element_icon);
+        element.addEventListener("click", callback);
+        return element;
+    }
+    var date = GetStringRawNonAsync("comments", "posted", [TimeAgo.inWords(new Date(commentdata.PostDate).getTime())]);
+    comment_right_infobar.appendChild(createInfobarElement("fas fa-calendar-alt", date, new Date(commentdata.PostDate).toUTCString()));
+    if (commentdata.ParentCommenter)
+        comment_right_infobar.appendChild(createInfobarElement("fas fa-reply", GetStringRawNonAsync("comments", "replyingTo", [commentdata.ParentCommenter])));
+
+    var comment_right_infobar_right = Object.assign(document.createElement("div"), { className: "comments__comment-infobar-right" });
+    comment_right_infobar.appendChild(comment_right_infobar_right);
+    comment_right_infobar_right.appendChild(createInfobarButton("fas fa-reply", "big", function () {
+        openReply(commentdata.ID, comment);
+    }));
+    let eldropdown = Object.assign(document.createElement("div"), { "className": "osekai__dropdown osekai__dropdown-hidden" });
+    function dropdownItem(name, callback, _class = "") {
+        var item = Object.assign(document.createElement("div"), { "className": "osekai__dropdown-item " + _class, "innerHTML": name });
+        item.addEventListener("click", callback);
+        return item;
+    }
+    eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> ` + GetStringRawNonAsync("comments", "report"), function () {
+        eldropdown.classList.toggle("osekai__dropdown-hidden");
+        doReport('comment', commentdata.ID);
+    }, "osekai__dropdown-item-red"))
+    if (bLoggedIn) {
+        if (nRights > 0 || (nUserId == commentdata.MedalID && nAppId == "3")) {
+            eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> ` + GetStringRawNonAsync("comments", "delete"), function () {
+                deleteComment(commentdata.ID);
+                eldropdown.classList.toggle("osekai__dropdown-hidden");
+            }, "osekai__dropdown-item-red"))
+            var name = GetStringRawNonAsync("comments", "pin");
+            if (commentdata.ParentCommenter) name = "Highlight";
+            var alreadyPinned = false;
+            if (commentdata.Pinned == 1) {
+                alreadyPinned = true;
+                var name = GetStringRawNonAsync("comments", "unpin");
+                if (commentdata.ParentCommenter) name = "Un-highlight";
+            }
+            eldropdown.appendChild(dropdownItem(name, function () {
+                pinComment(commentdata.ID, alreadyPinned);
+                eldropdown.classList.toggle("osekai__dropdown-hidden");
+            }))
+        }
+    }
+    comment_right_infobar_right.appendChild(createInfobarButton("fas fa-ellipsis-h", "small", function () {
+        console.log("opening dropdown");
+        eldropdown.classList.remove("osekai__dropdown-hidden");
+    }));
+    comment_right_infobar_right.appendChild(eldropdown);
+
+    comment.appendChild(comment_left);
+    comment.appendChild(comment_right);
+
+    return comment;
+}
+
 function Comments_Create(oParent, MedalID) {
     let nOrder = 0;
-    COMMENTS_col_medals[MedalID].forEach(oComment => {
+    var inPinned = false;
+    for (let oComment of COMMENTS_col_medals[MedalID]) {
         if (oComment == null || oComment.MedalID.toString() !== MedalID.toString()) return;
-        let oBox = document.createElement("div");
+
+        if (oComment.ParentCommenter == null && inPinned) {
+            inPinned = false;
+            COMMENTS_boxes[MedalID].push(Object.assign(document.createElement("div"), { "classList": "osekai__divider" }));
+        }
+
+        let oBox = generateComment(oComment);
         oBox.classList.add("comments__comment");
         oBox.setAttribute("CommentID", oComment.ID);
         oBox.id = "comment#" + nOrder;
         nOrder += 1;
-        if (oComment.ParentCommenter) oBox.classList.add("comments__reply");
         oBox.setAttribute("CommentCreator", oComment.Username);
 
-        var rolehtml = groupUtils.badgeHtmlFromCommaSeperatedList(oComment['Groups'], "small", 2);
-
-        var postedText = GetStringRawNonAsync("comments", "posted", [TimeAgo.inWords(new Date(oComment.PostDate).getTime())]);
-        if (oComment.ParentCommenter) {
-            var replyingText = GetStringRawNonAsync("comments", "replyingTo", [oComment.ParentCommenter]);
-        }
-
-        // this is cursed
-        var userText =  BBCodeParser.process(parser.parseFromString(oComment.PostText, "text/html").body.textContent).replaceAll(new RegExp(/(?<!=")(\b[\w]+:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/, 'g'), "<a href='$1' target='_blank'>$1</a>");
-
-        //document.getElementById("user__badge").innerHTML = role['BadgeText'];
-        //document.getElementById("user__badge").classList.add("badge-v2-" + role['Badge']);
-
-        oBox.innerHTML = oBox.innerHTML +
-            '<a href="/profiles?user=' + oComment.UserID + '"><img src="' + oComment.AvatarURL + '" class="comments__pb-user-pfp"></a>' +
-            '<div class="comments__comment-div">' +
-            '<div class="comments__comment-top">' +
-            '<div class="comments__comment-top-username_area">' +
-            '<a href="/profiles?user=' + oComment.UserID + '"><p class="comments__comment-top-username nolink">' + oComment.Username + '</p></a>' +
-            rolehtml +
-            '</div>' +
-            // this is cursed, so many steps of parsing and s
-            '<p class="comments__comment-top-text">' + userText + '</p>' +
-            '</div>' +
-            '<div class="comments__comment-bottom">' +
-            (oComment.UserID != nUserID || nRights > 1 ?
-                `<div class="comments__comment-report" onclick="doReport('comment', ` + oComment.ID + `)">` +
-                '<i aria-hidden="true" class="fas fa-exclamation-triangle"></i></div>'
-                : '') +
-            (oComment.UserID == nUserID || nRights > 0 ?
-                '<div class="comments__comment-delete" onclick="deleteComment(' + oComment.ID + ');"><i aria-hidden="true" class="fas fa-trash"></i></div>'
-                : '') +
-            '<div class="comments__cb-inner">' +
-            '<div class="comments__cbi-posted tooltip-v2" tooltip-content="' + new Date(oComment.PostDate).toUTCString() + '">' +
-            '<p class="comments__cbi-posted-text">' + postedText + '</p>' +
-            '</div>' +
-            (oComment.ParentCommenter ? '<div class="comments__cbi-replying">' +
-                '<p class="comments__cbi-replying-text"><i class="fas fa-reply"></i> ' + replyingText + '</p>' +
-                '</div>' : '') +
-            '</div>' +
-            (bLoggedIn ?
-                '<div onclick="openReply(\'' + oBox.id + '\');" class="comments__comment-reply"><i class="fas fa-reply"></i></div>'
-                : '') +
-            (bLoggedIn ?
-                (oComment.HasVoted ?
-                    '<div onclick="voteComment(' + oComment.ID + ');" class="comments__comment-vote comments__comment-vote-voted">' +
-                    '<p id="Comment__' + oComment.ID + '" class="comments__comment-vote-text">+' + (oComment.VoteSum ?? 0) + '</p>' +
-                    '</div>'
-                    : '<div onclick="voteComment(' + oComment.ID + ');" class="comments__comment-vote">' +
-                    '<p id="Comment__' + oComment.ID + '" class="comments__comment-vote-text">+' + (oComment.VoteSum ?? 0) + '</p>' +
-                    '</div>')
-                : '<div onclick="voteComment(' + oComment.ID + ');" class="comments__comment-vote">' +
-                '<p id="Comment__' + oComment.ID + '" class="comments__comment-vote-text">+' + (oComment.VoteSum ?? 0) + '</p>' +
-                '</div>') +
-            '</div>' +
-            '</div>';
-        //oImgContainer.setAttribute("data-tippy-content", new Date(oAchievement.achieved_at).toDateString());
-        //var date = new Date(oComment.PostDate).toUTCString();
-        //oBox.querySelector(".comments__comment-bottom").setAttribute("data-tippy-content-comment-date", date);
-
         COMMENTS_boxes[MedalID].push(oBox);
-    })
-    if (Object.keys(COMMENTS_col_medals[MedalID]).length == Object.keys(COMMENTS_boxes[MedalID]).length) Comments_Out(oParent, MedalID);
+        if (oComment.Pinned == 1) {
+            inPinned = true;
+        }
+    }
+    if (Object.keys(COMMENTS_col_medals[MedalID]).length <= Object.keys(COMMENTS_boxes[MedalID]).length) Comments_Out(oParent, MedalID);
+    else console.log("oh no");
 }
 
 function commentsSendClick(nVersionID = -1, nProfileId = -1) {
@@ -208,10 +295,21 @@ function commentsSendClick(nVersionID = -1, nProfileId = -1) {
     let strComment = document.getElementById("comments__input").value;
 
     if (strComment.includes("https://osu.ppy.sh/beatmapsets/")) {
-        openDialog("Are you sure you want to post this comment?", "Your comment looks like it contains an osu! beatmap URL.", "If you're trying to post a beatmap, you should instead use the 'Add' button on the beatmaps panel.", "Post Anyway", function () {
-            newComment(strComment, nVersionID, nProfileId);
-            document.getElementById("comments__input").value = "";
-        });
+        openDialog("Are you sure you want to post this comment?", "Your reply looks like it contains an osu! beatmap URL.", "If you're trying to post a beatmap, you should instead use the 'Add' button on the beatmaps panel.", [
+            {
+                "text": "Send Anyway",
+                "callback": function () {
+                    newComment(strComment, nVersionID, nProfileId);
+                    document.getElementById("comments__input").value = "";
+                },
+                "highlighted": true,
+            },
+            {
+                "text": "Cancel",
+                "callback": function () { },
+                "highlighted": false,
+            }
+        ]);
     } else {
         newComment(strComment, nVersionID, nProfileId);
         document.getElementById("comments__input").value = "";
@@ -240,7 +338,7 @@ function newComment(strText, nVersionId = -1, nProfileId = -1) {
     }
 }
 
-function voteComment(nID) {
+function voteComment(nID, element) {
     var xhr = createXHR(API_URL_COMMENTS);
     xhr.send("nObject=" + nID + "&nType=" + COMMENTS_type);
 
@@ -249,40 +347,43 @@ function voteComment(nID) {
         if (handleUndefined(oResponse)) return;
         Object.keys(oResponse).forEach(function (obj) {
             if (oResponse[obj].HasVoted == 1) {
-                document.getElementById("Comment__" + nID).innerHTML = "+" + (parseInt(document.getElementById("Comment__" + nID).innerHTML) - 1);
+                element.innerHTML = "+" + (parseInt(element.innerHTML) - 1);
             } else {
-                document.getElementById("Comment__" + nID).innerHTML = "+" + (parseInt(document.getElementById("Comment__" + nID).innerHTML) + 1);
+                element.innerHTML = "+" + (parseInt(element.innerHTML) + 1);
             }
-            document.getElementById("Comment__" + nID).parentElement.classList.toggle("comments__comment-vote-voted");
+            element.classList.toggle("comments__comment-votes-voted");
         });
     };
 }
 
-function openReply(strCommentId) {
-    if (handleUndefined(document.getElementById(strCommentId).nextSibling) || !(document.getElementById(strCommentId).nextSibling.id == "oReplyBox")) {
+function openReply(strCommentId, element) {
+    if (handleUndefined(element.nextSibling) || !(element.nextSibling.id == "oReplyBox")) {
         if (handleUndefined(document.getElementById("oReplyBox")) == false) document.getElementById("oReplyBox").remove();
-        let oReferenceNode = document.getElementById(strCommentId);
+        let oReferenceNode = element;
         let oReplyBox = document.createElement("div");
         oReplyBox.id = "oReplyBox";
-        oReplyBox.innerHTML = '<div class="comments__post-box comments__reply">' +
-            '<img src="https://a.ppy.sh/' + nUserID + '" class="comments__pb-user-pfp">' +
-            '<div class="comments__input-box">' +
-            '<div class="comments__input-box-textarea">' +
-            '<textarea onkeyup="textAreaAdjust(this)" style="overflow:hidden" id="reply__input" class="comments__input-box__text" rows="1"></textarea>' +
-            '</div>' +
-            '<button id="reply__send" class="comments__input-box__send">' +
-            '<i class="fas fa-paper-plane"></i>' +
-            '</button>' +
-            '</div>' +
-            '</div>';
 
-        handleUndefined(document.getElementById(strCommentId).nextSibling) ? oReferenceNode.parentNode.insertBefore(oReplyBox, null) : oReferenceNode.parentNode.insertBefore(oReplyBox, oReferenceNode.nextSibling);
+        oReplyBox.innerHTML = document.getElementById("comments__post_area").innerHTML.replace("comments__send", "reply__send").replace("comments__input", "reply__input").replace("comments__input-box__emoji", "hidden");
+        // emojis don't work in replies :D
+
+        handleUndefined(element.nextSibling) ? oReferenceNode.parentNode.insertBefore(oReplyBox, null) : oReferenceNode.parentNode.insertBefore(oReplyBox, oReferenceNode.nextSibling);
 
         document.getElementById("reply__send").addEventListener("click", () => {
             if (document.getElementById("reply__input").value.includes("https://osu.ppy.sh/beatmapsets/")) {
-                openDialog("Are you sure you want to post this comment?", "Your reply looks like it contains an osu! beatmap URL.", "If you're trying to post a beatmap, you should instead use the 'Add' button on the beatmaps panel.", "Post Anyway", function () {
-                    replySend();
-                });
+                openDialog("Are you sure you want to post this comment?", "Your reply looks like it contains an osu! beatmap URL.", "If you're trying to post a beatmap, you should instead use the 'Add' button on the beatmaps panel.", [
+                    {
+                        "text": "Send Anyway",
+                        "callback": function () {
+                            replySend();
+                        },
+                        "highlighted": true,
+                    },
+                    {
+                        "text": "Cancel",
+                        "callback": function () { },
+                        "highlighted": false,
+                    }
+                ]);
             } else {
                 replySend();
             }
@@ -332,6 +433,24 @@ function deleteComment(nID) {
     }
 }
 
+function pinComment(nID, alreadyPinned) {
+    if (alreadyPinned) {
+        // TODO: make this an actually nice popup, likewise with deletion
+        if (!confirm("Are you sure you want to pin this comment?")) return;
+    } else {
+        if (!confirm("Are you sure you want to unpin this comment?")) return;
+    }
+    var xhr = createXHR(API_URL_COMMENTS);
+    xhr.send("nCommentPin=" + nID);
+    xhr.onreadystatechange = function () {
+        var oResponse = getResponse(xhr);
+        if (handleUndefined(oResponse)) return;
+        if (oResponse.toString() == "Success!") {
+            RequireComments();
+        }
+    }
+}
+
 function textAreaAdjust(o) {
     //o.style.height = "1px";
     o.style.height = (o.scrollHeight) + "px";
@@ -355,11 +474,9 @@ function RequireComments() {
 }
 
 function Comments_Out(oParent, MedalID) {
-    let strHTML = "";
     COMMENTS_boxes[MedalID].forEach((oBox) => {
-        strHTML += oBox.outerHTML;
+        oParent.appendChild(oBox);
     });
-    oParent.innerHTML = strHTML;
 }
 
 function Comments_OpenEmojiPopup() {

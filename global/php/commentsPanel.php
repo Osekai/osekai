@@ -1,7 +1,10 @@
 <section class="osekai__panel" id="comments-panel">
     <div class="osekai__panel-header osekai__panel-header-with-buttons">
         <div class="osekai__panel-hwb-left">
-        <i class="fas fa-comments"></i><p><?= GetStringRaw("comments", "title"); ?></p>
+            <i class="fas fa-comments"></i>
+            <p>
+                <?= GetStringRaw("comments", "title"); ?>
+            </p>
         </div>
         <div class="osekai__panel-hwb-right">
             <div class="osekai__panel-header-button osekai__dropdown-opener" id="filter__button">
@@ -21,32 +24,38 @@
         </div>
     </div>
     <div class="osekai__panel-inner">
+    <?= LoginNagBox("you can post comments when logged in!", "small") ?>
+
         <div class="comments__area">
-            <div class="comments__post-box">
-                <img src="<?= getpfp(); ?>" class="comments__pb-user-pfp">
-                <div class="comments__input-box <?php if (!isset($_SESSION['osu'])) {
-                                                    echo 'osekai__input-disabled';
-                                                } else {
-                                                    echo '';
-                                                } ?>" )">
-                    <div class="comments__input-box-textarea">
-                        <textarea style="overflow:hidden" id="comments__input" class="comments__input-box__text" rows="1" onKeyPress="Comments_CloseEmojiPopup()"></textarea>
+            <div id="comments__post_area" class="comments__post <?php if (!isset($_SESSION['osu'])) {
+                echo 'comments__post-disabled';
+            } else {
+                echo '';
+            } ?>">
+                <div class="comments__post-left">
+                    <img src="<?= getpfp(); ?>" class="comments__pfp">
+                </div>
+                <div class="comments__post-right">
+                    <div class="comments__post-upper">
+                        <textarea rows="1" placeholder="<?= GetStringRaw("comments", "post.placeholder"); ?>"  onKeyPress="Comments_CloseEmojiPopup()" id="comments__input"></textarea>
                     </div>
-                    
-                        <div onclick="Comments_OpenEmojiPopup()" id="comments__emoji" class="comments__input-box__send comments__input-box__emoji">
+                    <div class="comments__post-lower">
+                        <div onclick="Comments_OpenEmojiPopup()" id="comments__emoji"
+                            class="comments__input-box__send comments__input-box__emoji">
                             <i class="fas fa-smile"></i>
                         </div>
-                        <div class="comments_emoji_popup_conainer comments_emoji_popup_conainer-hidden" id="comments__emoji_container">
+                        <div class="comments_emoji_popup_conainer comments_emoji_popup_conainer-hidden"
+                                id="comments__emoji_container">
+                            </div>
 
+                        <div class="comments__post-lower-right">
+                            <p><?= GetStringRaw("comments", "post.bbcodeSupport"); ?></p>
+                            <div class="comments__post-button" id="comments__send"><i class="fas fa-paper-plane"></i> <?= GetStringRaw("comments", "post"); ?></div>
                         </div>
-                    
-                    <button id="comments__send" class="comments__input-box__send">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
+                    </div>
                 </div>
             </div>
-            <div class="osekai__divider">
-            </div>
+            <div class="osekai__divider"></div>
             <div>
                 <div class="comments__main-comment-area" id="comments__box">
                 </div>

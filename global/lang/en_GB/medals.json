@@ -28,5 +28,15 @@
     "extraInfo.achievedBy": "Achieved By",
     "extraInfo.none": "We don't have any extra info for this medal.",
     "medalCount": "<strong>$1</strong> <light>medals</light>",
-    "medalCount.singular": "<strong>$1</strong> <light>medal</light>"
+    "medalCount.singular": "<strong>$1</strong> <light>medal</light>",
+    "toolbar.tab.medals": "Medals",
+    "toolbar.tab.favouriteMedals": "Favourite Medals",
+    "toolbar.tab.beatmapPacks": "Beatmap Packs",
+    "toolbar.homepage": "Homepage",
+    "toolbar.randomMedal": "Random Medal",
+    "beatmapPacks.withDT": "with DT",
+    "beatmapPacks.withDT.inline": "<strong>$1</strong> with DT",
+    "beatmapPacks.mapCount": "<strong>$1</strong> maps",
+    "favourite.add": "Favourite",
+    "favourite.remove": "Unfavourite"
 }

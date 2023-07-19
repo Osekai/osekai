@@ -363,10 +363,10 @@
 
 
 .rankings__home-v2-header {
-    padding: 30px;
-    text-align: center;
+    padding: 20px;
     border-radius: 8px;
-    background-color: #fff1;
+    background: linear-gradient(45deg, hsla(var(--accent_hue), var(--accent_saturation), calc(50% * var(--accent_valueoffset)), 0.9), hsla(var(--accent_hue), var(--accent_saturation), calc(70% * var(--accent_valueoffset)), 0.8));
+
     margin-bottom: 10px;
     font-size: 10px;
 }
@@ -380,24 +380,23 @@
 }
 
 .rankings__home-v2-button {
-    background: rgba(var(--accentdark), 0.1);
-    box-shadow: 0px 4px 18px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(16% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(30% * var(--accentdark_valueoffset)), 0.8));
     border-radius: 8px;
-    border: 1px solid rgb(var(--accent));
-    padding: 38px 24px;
+    padding: 31px 24px;
     justify-content: center;
     align-items: flex-start;
     display: flex;
     flex-direction: column;
     transition: all 0.15s ease;
     transform: perspective(50em);
+    box-shadow: inset 0px 0px 0px 2px #fff2;
 }
 
 .rankings__home-v2-button:hover {
-    background: rgba(var(--accent), 0.2);
-    box-shadow: 0px 4px 18px rgba(255, 255, 255, 0.304);
+    background: linear-gradient(hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(28% * var(--accentdark_valueoffset)), 0.9), hsla(var(--accentdark_hue), var(--accentdark_saturation), calc(40% * var(--accentdark_valueoffset)), 0.8));
     transform: perspective(50em) rotateX(10deg) translateY(-2px);
     cursor: pointer;
+    box-shadow: inset 0px 0px 50px 10px #fff2;
 }
 .rankings__home-v2-button:active {
     transform: perspective(50em) rotateX(1deg) translateY(2px);

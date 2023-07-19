@@ -2,6 +2,7 @@ var colMedals = [];
 var strCurrentMedalName = "";
 var strCurrentMedalMode = "";
 var nCurrentMedalID = 0;
+let FavMedals = null;
 
 if (!bLoggedIn) {
     document.getElementById("osekai__panel-disabled").querySelector('.osekai__flex_row').classList.add("osekai__input-disabled");
@@ -12,7 +13,6 @@ if (!bLoggedIn) {
 
 const tx = document.getElementsByTagName("textarea");
 for (let i = 0; i < tx.length; i++) {
-    tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
     tx[i].addEventListener("input", OnInput, false);
 }
 
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("styled-checkbox-1").checked = true;
     }
     if (new URLSearchParams(window.location.search).get("medal") == null) landingPage();
-    requestMedals(true, "");
+    requestMedals(true);
 });
 
 window.addEventListener('popstate', function (event) {
@@ -152,18 +152,63 @@ async function initColMedals() {
     });
 }
 
-async function requestMedals(init, strValue) {
+async function requestMedals(init, strValue = '', favsFilter = null) {
     if (init || Object.values(colMedals).length == 0)  // Init the colMedals object
         await initColMedals();
 
+    let query = strValue.trim();
+    while (query.includes('  ')) {
+        query = query.replace('  ', ' ');
+        query = query.trim();
+    }
+
     let filteredMedalsArrayByGroup = [];
     for (let v of Object.values(colMedals)) {
-        // Match Name, Solution, Description, Instructions and medal id
-        if (v.Name.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Solution?.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Description?.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.Instructions?.toLowerCase().includes(strValue.toLowerCase()) ||
-            v.MedalID == parseInt(strValue)) {
+        let medalMatches = false;
+        if (query == '') {
+            medalMatches = true;
+        } else {
+            let wordMatches = [];
+            for (const word of query.split(' ')) {
+                thisWordMatches = false;
+                if (v.Mods == null) v.Mods = '';
+                thisWordMatches = v.Mods.replace(',', '').toUpperCase().includes(word.toUpperCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+
+                thisWordMatches = v.Name.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Solution?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Description?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.Instructions?.toLowerCase().includes(word.toLowerCase());
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                thisWordMatches = v.MedalID == parseInt(word);
+                if (thisWordMatches) {
+                    wordMatches.push(true);
+                    continue;
+                }
+                wordMatches.push(false);
+            }
+            medalMatches = !wordMatches.includes(false);
+        }
+
+        if (medalMatches) {
             if (filteredMedalsArrayByGroup[v.Grouping] == null) filteredMedalsArrayByGroup[v.Grouping] = [];
             filteredMedalsArrayByGroup[v.Grouping].push(v);
         }
@@ -171,10 +216,13 @@ async function requestMedals(init, strValue) {
     if (MedalsAchievedFilterArray == null && document.getElementById("styled-checkbox-1").checked) {
         MedalsAchievedFilterArray = await getMedalsFilterArray();
     }
-    document.getElementById('oMedalSection').textContent = '';
+    document.getElementById(favsFilter == null ? 'oMedalSection' : 'favsSection').textContent = '';
     Object.keys(filteredMedalsArrayByGroup).forEach(async (group) => {
         let grids = [];
         filteredMedalsArrayByGroup[group].forEach((medal) => {
+            if (favsFilter != null && !favsFilter.includes(parseInt(medal.MedalID)))
+                return;
+
             if (localStorage.getItem("settings_medals__hidemedalswhenunobtainedfilteron") == "true" && document.getElementById("styled-checkbox-1").checked && MedalsAchievedFilterArray.includes(medal.MedalID)) {
                 return;
             }
@@ -225,9 +273,11 @@ async function requestMedals(init, strValue) {
         });
 
         let section = document.createElement('section');
+
         section.classList.add('osekai__panel');
         section.classList.add('osekai__panel-collapsable');
-
+        section.classList.add("medals__medal-panel");
+        section.classList.add(medals_grouping_classnames[group]);
         // Header
         let sectionHeader = document.createElement('div');
         sectionHeader.classList.add('osekai__panel-header');
@@ -311,12 +361,12 @@ async function requestMedals(init, strValue) {
             panelInner.appendChild(panelMedalsContainer);
             section.appendChild(panelInner);
             // Medal grid end
-            document.getElementById('oMedalSection').appendChild(section);
+            document.getElementById(favsFilter == null ? 'oMedalSection' : 'favsSection').appendChild(section);
         }
     });
     setTimeout(() => {
         tippy('[data-tippy-content]', {
-            appendTo: document.getElementById('oMedalSection'),
+            appendTo: document.getElementById(favsFilter == null ? 'oMedalSection' : 'favsSection'),
             arrow: true
         });
     }, 0);
@@ -325,12 +375,16 @@ async function requestMedals(init, strValue) {
     if (init && new URLSearchParams(window.location.search).get('medal') !== null) loadMedal(new URLSearchParams(window.location.search).get('medal'));
 }
 function landingPage() {
+    document.getElementById("expandbutton").classList.add("hidden");
+    set_breadcrums("{app}");
     document.getElementById("osekai__col1").classList.add("medals__nomedal");
     document.getElementById("3col_arrow").classList.add("medals__arrow-nomedal");
     document.getElementById("osekai__col__right").classList.add("hidden");
 }
 
 function leaveLandingPage() {
+    document.getElementById("expandbutton").classList.remove("hidden");
+
     if (document.getElementById("osekai__col1").classList.contains("medals__nomedal")) {
         document.getElementById("osekai__col1").classList.remove("medals__nomedal");
         document.getElementById("3col_arrow").classList.remove("medals__arrow-nomedal");
@@ -345,7 +399,7 @@ function changeState(strName) {
     window.history.pushState({}, "", decodeURIComponent(`${window.location.pathname}?${params}`));
     loadMedal(strName);
 }
-
+var beatmapPacksLoaded = false;
 async function loadMedal(strMedalName, updateAdminPanel = true) {
     document.getElementById("video_panel").classList.add("hidden");
 
@@ -357,12 +411,43 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
 
     }
 
+
     leaveLandingPage();
     //if(window.mobile) switch3col();
 
     strCurrentMedalName = colMedals[strMedalName].Name;
     strCurrentMedalMode = colMedals[strMedalName].Restriction;
     nCurrentMedalID = colMedals[strMedalName].MedalID;
+
+    {
+        if (FavMedals != null && nUserID != -1)
+            if (FavMedals.includes(parseInt(nCurrentMedalID))) {
+                document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.remove");
+                document.getElementById('favButton').classList.add('osekai__button-on');
+            } else {
+                document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.add");
+                document.getElementById('favButton').classList.remove('osekai__button-on');
+            }
+
+        // i want this shit isolated
+        if (FavMedals == null && nUserID != -1) {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', "/medals/api/favourite.php")
+            xhr.onload = () => {
+                let oResponse = getResponse(xhr);
+                console.log(`Fav medals: ${oResponse}`);
+                FavMedals = oResponse;
+                if (FavMedals.includes(parseInt(nCurrentMedalID))) {
+                    document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.remove");
+                    document.getElementById('favButton').classList.add('osekai__button-on');
+                } else {
+                    document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.add");
+                    document.getElementById('favButton').classList.remove('osekai__button-on');
+                }
+            }
+            xhr.send();
+        }
+    }
     if (document.getElementById("edit_button")) {
         document.getElementById("edit_button").href = "/admin/panel/apps/medals?id=" + nCurrentMedalID;
     }
@@ -413,13 +498,13 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     let oImg = document.getElementById("gamemodeImg")
     let strImgMode = strCurrentMedalMode.replace("osu", "standard");
     if (strImgMode != "NULL") {
-        document.getElementById("gamemodeImg").classList.remove("hidden");
+        document.getElementsByClassName("medals__sol-header-gamemode-tag")[0].classList.remove("hidden");
         oImg.src = '/global/img/gamemodes/' + strImgMode + '.svg';
         oImg.classList.add("medals__sol-gamemode");
         oImg.id = "gamemodeImg";
         oImg.alt = strImgMode;
     } else {
-        document.getElementById("gamemodeImg").classList.add("hidden");
+        document.getElementsByClassName("medals__sol-header-gamemode-tag")[0].classList.add("hidden");
     }
 
     if (strImgMode != "NULL") {
@@ -455,6 +540,12 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     // </mulraf> / End of removal
 
     getMods(colMedals[strMedalName].Mods);
+
+    for (var classname in medals_grouping_classnames) {
+        document.getElementsByClassName("medals__solution-panel-outer")[0].classList.remove(medals_grouping_classnames[classname]);
+    }
+    document.getElementsByClassName("medals__solution-panel-outer")[0].classList.add(medals_grouping_classnames[colMedals[strMedalName].Grouping])
+
     if (colMedals[strMedalName].PackID != null && colMedals[strMedalName].PackID != 0) {
         document.getElementById("oBeatmapContainer").classList.add("hidden");
         //document.getElementById("oBeatmapContainer_GetFromOsu_Button").href = "https://osu.ppy.sh/beatmaps/packs/" + colMedals[strMedalName].PackID;
@@ -474,30 +565,93 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
             resp = xhr.response;
             //console.log(xhr.response);
             resp = JSON.parse(resp);
+            console.log(resp);
             for (var i = 0; i < individual.length; i++) {
                 if (individual[i] == 0) continue;
                 best = true;
-                for (var j = 0; j < individual.length; j++) {
-                    if (resp[j] < resp[i]) {
-                        best = false;
+                var calcInvalid = false;
+
+                var length = 0;
+                for (var beatmap of resp[i]) {
+                    length += beatmap.Length;
+                }
+
+                if (length != 0) {
+                    for (var j = 0; j < individual.length; j++) {
+                        // note: packs with no pack for specific gamemode will still
+                        // return that gamemode array, just it'll be empty, so we have
+                        // to check, Just In Case (it fixes this entire routine on
+                        // every beatmap with 1 or more missing gamemodes)
+                        if (resp[j].length != 0) {
+                            let test_length = 0;
+                            for (var beatmap of resp[j]) {
+                                test_length += beatmap.Length;
+                            }
+                            console.log(test_length + "TIME");
+                            if (test_length != 0) {
+                                if (test_length < length) {
+                                    best = false;
+                                }
+                            } else {
+                                console.log("CALC INVALID");
+                                calcInvalid = true;
+                            }
+                        }
+                    }
+                } else {
+                    calcInvalid = true;
+                }
+
+                if (calcInvalid == true) {
+                    console.log("doing count check instead of length...");
+                    best = true;
+                    for (var j = 0; j < individual.length; j++) {
+                        if (resp[j].length != 0) {
+                            if (resp[j].length < resp[i].length) {
+                                best = false;
+                            }
+                        }
                     }
                 }
+
                 var gamemode = gamemodes[i];
                 var extraClasses = "";
+
                 if (best) { extraClasses += "medals__viewpack-best" };
+
                 html += `<a class="medals__viewpack ` + extraClasses + `" href="https://osu.ppy.sh/beatmaps/packs/${individual[i]}" style="--maincol: var(--${gamemode})" target="_blank">
-                ${icons[gamemode]}
-                <div class="medals__viewpack-textarea">
-                <div class="medals__viewpack-textarea-extrabg"></div>
-                    <div class="medals__viewpack-left">` + GetStringRawNonAsync("medals", "beatmap.viewOnOsu") + `</div>
-                    <div class="medals__viewpack-right"><strong>${resp[i]}</strong> maps</div>
+                <i class="oif-gamemode-${gamemode}"></i>
+                <div class="medals__viewpack-textarea-left">
+                    <div class="medals__viewpack-top">` + GetStringRawNonAsync("medals", "beatmap.viewOnOsu") + `</div>
+                    <div class="medals__viewpack-bottom">${GetStringRawNonAsync("medals", "beatmapPacks.mapCount", [resp[i].length])}</div>
                 </div>
+                `;
+
+                if (length != 0) {
+                    html += `<div class="medals__viewpack-textarea-right">
+                    <div class="medals__viewpack-top">${fancyTimeFormat(length)}</div>
+                    <div class="medals__viewpack-bottom">${GetStringRawNonAsync("medals", "beatmapPacks.withDT.inline", [fancyTimeFormat(length / 1.5)])}</div>
+                </div>`;
+                } else {
+                    html += `<div class="medals__viewpack-textarea-right">
+                    <div class="medals__viewpack-bottom">Pack length not<br>yet calculated.</div>
+                </div>`
+                }
+
+                html += `
+                <i class="fas fa-clock"></i>
             </a>`;
             }
             document.getElementById("oBeatmapContainer_GetFromOsu").innerHTML = html;
         }
         xhr.send();
 
+        if (beatmapPacksLoaded == true) {
+            for (var el of document.getElementsByClassName("medals__beatmapPack")) {
+                el.classList.remove("medals__beatmapPack-active");
+            }
+            document.querySelector("[m-bmp-medal-name=\"" + strMedalName + "\"]").classList.add("medals__beatmapPack-active");
+        }
     }
     else {
         document.getElementById("oBeatmapContainer").classList.remove("hidden");
@@ -526,6 +680,8 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     window.scrollTo({
         top: 0,
     })
+
+    set_breadcrums("{app}/" + strMedalName);
 }
 
 function requestBeatmaps(strKey, strValue, strUrl) {
@@ -908,3 +1064,199 @@ function loadExtraInfo(medalid) {
     }
     xhr.send();
 }
+
+
+function changeMedalFavState() {
+    const shouldDelete = FavMedals.find((e) => e == parseInt(nCurrentMedalID));
+
+    if (shouldDelete)
+        FavMedals.splice(FavMedals.indexOf(parseInt(nCurrentMedalID)), 1);
+    else
+        FavMedals.push(parseInt(nCurrentMedalID));
+    requestMedals(false, document.getElementById("txtMedalSearch").value, FavMedals);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open(shouldDelete ? 'DELETE' : 'PUT', '/medals/api/favourite.php', true);
+    xhr.send(JSON.stringify({ medal_id: parseInt(nCurrentMedalID) }));
+
+    if (FavMedals.includes(parseInt(nCurrentMedalID))) {
+        document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Unfavourite'; // TODO: translate
+        document.getElementById('favButton').classList.add('osekai__button-on');
+    } else {
+        document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i>Favourite'; // TODO: translate
+        document.getElementById('favButton').classList.remove('osekai__button-on');
+    }
+}
+
+function loadFavMedals() {
+    if (userInfo == null) {
+        console.log("waiting for userinfo")
+        setTimeout(loadBeatmapPacks, 100);
+        return;
+    }
+    console.log("loading favs medals...");
+
+    var container = document.getElementById("favsSection");
+    container.innerHTML = loader;
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/medals/api/favourite.php");
+    xhr.onload = function () {
+        var resp = JSON.parse(xhr.response);
+        container.innerHTML = "";
+        requestMedals(false, document.getElementById("txtMedalSearch").value, resp);
+    }
+    xhr.send();
+}
+
+function loadBeatmapPacks() {
+    if (userInfo == null && bLoggedIn) {
+        console.log("waiting for userinfo")
+        setTimeout(loadBeatmapPacks, 100);
+        return;
+    }
+    console.log("loading beatmap packs...");
+
+    var container = document.getElementById("beatmapPackList");
+    container.innerHTML = loader;
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/medals/api/beatmap_packs.php")
+    xhr.onload = function () {
+        var resp = JSON.parse(xhr.response);
+        container.innerHTML = "";
+
+
+        for (let medal of resp) {
+            let medalContainer = Object.assign(document.createElement("div"), { className: "medals__beatmapPack" });
+            medalContainer.setAttribute("m-bmp-medal-name", medal.name);
+            var medalContainerLeft = Object.assign(document.createElement("div"), { className: "medals__beatmapPack-left" });
+            var medalContainerRight = Object.assign(document.createElement("div"), { className: "medals__beatmapPack-right" });
+
+            var medalImage = Object.assign(document.createElement("img"), { src: medal.link });
+            var medalName = Object.assign(document.createElement("p"), { innerText: medal.name });
+
+            var packLength = Object.assign(document.createElement("p"), { innerHTML: "<i class=\"oif-gamemode-" + medal.fastest_gamemode + "\"></i> " + fancyTimeFormat(medal.fastest_time / 1.5) });
+            var packLengthSmall = Object.assign(document.createElement("small"), { innerText: GetStringRawNonAsync("medals", "beatmapPacks.withDT") });
+
+            medalContainerLeft.appendChild(medalImage);
+
+            if (bLoggedIn) {
+                for (var usermedal of userInfo['user_achievements']) {
+                    if (usermedal.achievement_id == medal.medalid) {
+                        console.log("achieved");
+                        medalContainer.classList.add("medals__beatmapPack-obtained");
+                        var checkmark = Object.assign(document.createElement("i"), { className: "fas fa-check" });
+                        medalContainerLeft.appendChild(checkmark);
+                    }
+                }
+            }
+
+            medalContainerLeft.appendChild(medalName);
+
+            medalContainerRight.appendChild(packLength);
+
+            if (medal.fastest_time == -1) {
+                packLength.innerHTML = "unknown"
+            } else {
+                medalContainerRight.appendChild(packLengthSmall);
+            }
+
+
+            medalContainer.appendChild(medalContainerLeft);
+            medalContainer.appendChild(medalContainerRight);
+
+            container.appendChild(medalContainer);
+
+            medalContainer.addEventListener("click", function () {
+                changeState(medal.name);
+            })
+        }
+
+        beatmapPacksLoaded = true;
+    }
+    xhr.send();
+}
+
+
+var particles = [];
+function runParticleAnim() {
+    particles = [];
+    var count = 0;
+    function addParticles() {
+        if (count > 200) {
+            return;
+        }
+        count++;
+        particles.push(particle.create(width / 2, height / 2, (Math.random() * 10) + 1, Math.random() * 10 * Math.PI * 20))
+        setTimeout(() => {
+
+            addParticles();
+        }, 0.2);
+    }
+    addParticles();
+    canvasupdate();
+}
+function resetParticleAnim() {
+    particles = [];
+}
+
+canvas = document.getElementById("particle_canvas");
+context = canvas.getContext("2d");
+width = canvas.width = window.innerWidth;
+height = canvas.height = window.innerHeight;
+
+function canvasupdate() {
+    if (particles == []) return;
+    context.clearRect(0, 0, width, height);
+    context.fillStyle = "#ffffff";
+    for (var i = 0; i < particles.length; i++) {
+        particles[i].update();
+        context.beginPath();
+        context.arc(particles[i].position.getX(), particles[i].position.getY(), 3, 0, 2 * Math.PI, false);
+        context.fill();
+    }
+
+    requestAnimationFrame(canvasupdate);
+}
+
+var original = "";
+function randomMedal() {
+    document.getElementById("randommedal").classList.remove("medals__randommedal-finished");
+    document.getElementById("randommedal").offsetHeight;
+    document.getElementById("randommedal_img_blur").offsetHeight;
+    document.getElementById("randommedal_img").offsetHeight;
+    document.getElementById("randommedal_img_glow").offsetHeight;
+    document.getElementById("randommedal_img_blur").src = "";
+
+    document.getElementById("randommedal").classList.remove("medals__randommedal-hidden");
+    function selectRandom() {
+        var keys = Object.keys(colMedals);
+        return colMedals[keys[keys.length * Math.random() << 0]];
+    }
+
+    function run(time, count) {
+        console.log(selectRandom());
+        var medal = selectRandom();
+        document.getElementById("randommedal_img").src = medal.Link;
+        document.getElementById("randommedal_img_glow").src = medal.Link;
+        if (count == 50) {
+            changeState(medal.Name);
+            document.getElementById("randommedal_img_blur").src = medal.Link;
+            document.getElementById("randommedal").classList.add("medals__randommedal-finished");
+            console.log("finished with count " + count + " and time " + time + "!")
+            runParticleAnim();
+            setTimeout(() => {
+                document.getElementById("randommedal").classList.add("medals__randommedal-hidden");
+            }, 3000);
+            setTimeout(() => {
+                resetParticleAnim();
+            }, 4000);
+            return;
+        }
+        console.log("continuing with time " + time + " and count " + count);
+        setTimeout(() => {
+            run(time + 6 * (count / 45), count + 1);
+        }, time);
+    }
+    run(4, 0);
+}
+

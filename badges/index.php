@@ -71,7 +71,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     notification_system();
     fontawesome();
     lazyloader();
-?>
+    ?>
 </head>
 
 <body>
@@ -157,7 +157,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                             </div>
                         </div>
                     </div>
-                    <div class="osekai__panel-inner osekai__badge-list" id="content">
+                    <div class="osekai__panel-inner osekai__badge-list grid_large" id="content">
 
                     </div>
                 </section>
