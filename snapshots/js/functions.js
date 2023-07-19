@@ -811,7 +811,7 @@ function upload_deletescreenshot(id) {
 
 function loadSplash() {
     if (!document.getElementById("home").classList.contains("hidden")) {
-        var xhr = createXHR("/snapshots/api/splash");
+        var xhr = createXHR("/snapshots/api/splash.php");
         xhr.send();
         xhr.onreadystatechange = function () {
             document.getElementById("splash").innerHTML = this.responseText;
