@@ -232,7 +232,7 @@ function generateComment(commentdata) {
         doReport('comment', commentdata.ID);
     }, "osekai__dropdown-item-red"))
     if (bLoggedIn) {
-        if (nRights > 0 || (nUserId == commentdata.MedalID && nAppId == "3")) {
+        if (nRights > 0 || (nUserID == commentdata.MedalID && nAppId == "3")) {
             eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> ` + GetStringRawNonAsync("comments", "delete"), function () {
                 deleteComment(commentdata.ID);
                 eldropdown.classList.toggle("osekai__dropdown-hidden");

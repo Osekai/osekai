@@ -1383,7 +1383,7 @@ input[type=number] {
 }
 
 .profiles__unachievedmedals-section {
-    background: linear-gradient(90.65deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.2) 54.98%, rgba(0, 0, 0, 0.2) 99.59%), rgb(var(--col));
+    background: linear-gradient(90.65deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.2) 54.98%, rgba(0, 0, 0, 0.2) 99.59%), var(--col);
     background-blend-mode: luminosity, normal;
     border-radius: 16px;
     width: 100%;
@@ -1392,7 +1392,7 @@ input[type=number] {
 }
 
 .profiles__unachievedmedals-section-grid .osekai__divider {
-    background-color: rgb(var(--col));
+    background-color: var(--col);
     margin: 15px 0px;
     height: 2px;
     opacity: 0.5;
@@ -1449,7 +1449,7 @@ input[type=number] {
 }
 
 .profiles__unachievedmedals-section-progress-medal {
-    background: linear-gradient(90.65deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 54.98%, rgba(0, 0, 0, 0.1) 99.59%), rgba(var(--col), 0.5);
+    background: linear-gradient(90.65deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.1) 54.98%, rgba(0, 0, 0, 0.1) 99.59%), var(--col);
     background-blend-mode: luminosity, normal;
     border-radius: 12px;
     padding: 12px;
