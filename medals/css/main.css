@@ -1472,7 +1472,7 @@ html {
 
     .medals__toolbar {
         margin: 26px;
-        z-index: 20;
+        z-index: 15;
         position: relative;
     }
 
