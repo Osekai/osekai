@@ -121,7 +121,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
 
 
 
-    document.getElementById("archived_by").innerHTML = await GetStringRaw("snapshots", "version.archivedBy", [`<strong class="user_hover" userid="${thisver["archive_info"]["archiver"]}`" hoverside="right">${thisver["archive_info"]["archiver"]}</strong>`]);
+    document.getElementById("archived_by").innerHTML = await GetStringRaw("snapshots", "version.archivedBy", [`<strong class="user_hover" userid="${thisver["archive_info"]["archiver"]}" hoverside="right">${thisver["archive_info"]["archiver"]}</strong>`]);
 
 
     if (thisver["archive_info"]["archiver_id"] != null && thisver["archive_info"]["archiver_id"] != "") {
