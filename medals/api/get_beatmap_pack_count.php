@@ -88,7 +88,7 @@ function GetPackPreload($id) {
     global $pr_packs;
     global $pr_beatmaps;
     if($pr_packs == null) {
-        $pr_packs = Database::execSimpleSelect("SELECT * FROM MedalsBeatmapPacks");
+        $pr_packs = Database::execSimpleSelect("SELECT * FROM MedalsBeatmapPacks WHERE Count != 0");
         $pr_beatmaps = Database::execSimpleSelect("SELECT * FROM BeatmapLengths");
     }
 
@@ -99,7 +99,7 @@ function GetPackPreload($id) {
             break;
         }
     }
-
+    if($pack == null) return;
     $beatmaps = json_decode($pack['Ids']);
     $return = [];
     foreach ($pr_beatmaps as $beatmap) {
