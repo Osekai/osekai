@@ -4,5 +4,12 @@
     "sorting.newest": "Most Recent",
     "delete.warning": "Do you really want to delete this comment?",
     "replyingTo": "<span class=\"comments__light\">replying to</span> $1",
-    "posted": "<span class=\"comments__light\">posted</span> $1"
+    "posted": "<span class=\"comments__light\">posted</span> $1",
+    "report": "Report",
+    "delete": "Delete",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "post.bbcodeSupport": "osekai supports bbcode!",
+    "post": "Post",
+    "post.placeholder": "Post a comment!"
 }

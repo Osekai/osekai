@@ -112,6 +112,7 @@ function frontend()
         <script type="text/javascript">
             const christmas = "<?= $christmas; ?>";
             const nAppId = "<?= $apps[$app]['id']; ?>";
+            const dCurrentApp = <?= json_encode($apps[$app]); ?>;
             const version = "<?= OSEKAI_VERSION ?>";
             //const medalAmount = 261; // this should be pulled from the database in the future
             const nUserID = <?php if (isset($_SESSION['osu']) && $_SESSION['osu'] != "") {
@@ -698,6 +699,17 @@ function rgbToHsl($r, $g, $b)
     // don't question the multiplications, it works
 }
 
+function LoginNagBox($reason, $size = "normal") {
+    if(loggedin()) return;
+    global $loginurl;
+    return '<a class="osekai__login-nag osekai__login-nag-'.$size.'" href="'.$loginurl.'">
+    <div class="osekai__login-nag-top">
+        <i class="oif-osu-logo"></i> <h3>log into osekai with osu!</h3>
+    </div>
+    <p>'.$reason.'</p>
+</a>';
+}
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/exceptions.php");
 
 function api_controller_base_classes()
@@ -760,4 +772,9 @@ function osekai_http_request()
 function json_validator() 
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/json_validator.php");
+}
+
+function search_service() 
+{
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/search_service.php");
 }
