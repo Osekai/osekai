@@ -54,3 +54,16 @@
 .medals__medal-panel .osekai__section-header {
     border-bottom: 1px solid rgb(var(--flat_bg_a3));
 }
+
+.medals__search__filters .osekai__panel-header {
+    background: rgb(var(--flat_bg_a3));
+}
+
+
+.medals__info-background-medal {
+    display: none;
+}
+.medals__info-background-overlay {
+    
+    background: rgb(var(--flat_bg_a3));
+}

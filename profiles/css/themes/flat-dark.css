@@ -64,3 +64,8 @@
 .profiles__cover-bottom {
     background: rgb(var(--flat_bg_a2));
 }
+
+.profiles__timeline {
+
+    background: rgb(var(--flat_bg_a4));
+}

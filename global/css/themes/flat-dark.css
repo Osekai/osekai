@@ -59,7 +59,7 @@ body, html {
     background: rgb(var(--flat_bg_a4)) !important;
 }
 
-.osekai__blur-overlay, .osekai__medal-popup, .badges__badge-overlay {
+.osekai__blur-overlay, .osekai__medal-popup, .badges__badge-overlay, .osekai__overlay {
     backdrop-filter: blur(5px);
     background: rgba(var(--flat_background), 0.5);
 }
@@ -233,4 +233,25 @@ body, html {
 .comments__post-button {
     background: rgb(var(--flat_active));
     color: rgb(var(--flat_bg_a1));
+}
+
+.osekai__apps-dropdown-other-content {
+    background: rgb(var(--flat_bg_a3));
+}
+
+
+.osekai__checkbox + label::before { 
+    border-color: rgb(var(--flat_active));
+}
+.osekai__apps-dropdown-bottomleft-extra-icon {
+    background: rgb(var(--flat_bg_a4));
+    color: rgb(var(--flat_text));
+}
+.osekai__apps-dropdown-bottomleft-extra:hover .osekai__apps-dropdown-bottomleft-extra-icon {
+    color: rgb(var(--flat_bg_a4)) ;
+    background: rgb(var(--flat_text));
+}
+
+.osekai__apps-dropdown-bottomleft-extra:hover .osekai__apps-dropdown-bottomleft-extra-icon  i {
+    color: rgb(var(--flat_bg_a4)) ;
 }

@@ -113,6 +113,11 @@ const themes = {
         "name": "Gruvbox",
         "css": ["themes/flat-dark.css", "themes/flat-gruvbox-dark.css"],
     },
+    "nord-dark": {
+        "internal": "nord",
+        "name": "Nord",
+        "css": ["themes/flat-dark.css", "themes/flat-nord.css"],
+    },
     "catppuccin-dark": {
         "internal": "catppuccin dark",
         "name": "Catppuccin",
