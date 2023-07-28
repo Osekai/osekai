@@ -258,7 +258,7 @@ function css()
     $colour = explode(",", $apps[$app]['color_dark']);
     $colourHsl = rgbToHsl($colour[0], $colour[1], $colour[2]);
     echo '<style>
-    html{
+    html {
         --accentdark: ' . $apps[$app]['color_dark'] . ';
         --accent: ' . $apps[$app]['color'] . ';
 

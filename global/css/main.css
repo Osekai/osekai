@@ -665,7 +665,7 @@ a {
     resize: none;
     background: none;
     border: none;
-    color: white;
+    color: inherit;
     font-size: 16px;
     line-height: 18px;
 }
@@ -760,7 +760,7 @@ a {
     padding-bottom: 7px;
     font-weight: 900;
     font-size: 16px;
-    color: white !important;
+    color:inherit !important;
     text-decoration: none !important;
     border-radius: 5px;
     background-color: transparent;
@@ -784,7 +784,7 @@ a {
     padding-bottom: 7px;
     font-weight: 900;
     font-size: 16px;
-    color: white;
+    color: inherit;
     border-radius: 5px;
     background-color: transparent;
     font-family: 'Comfortaa' !important;
@@ -845,6 +845,7 @@ a {
 }
 
 .osekai__button:hover {
+    cursor: pointer;
     color: rgba(var(--accentdark), 1) !important;
 }
 
@@ -2360,7 +2361,7 @@ option {
     margin-left: 10px;
     font-size: 15px;
     font-weight: 100;
-    color: white;
+    color: inherit;
     opacity: 0.5;
     transition: all 0.4s ease;
     pointer-events: none;

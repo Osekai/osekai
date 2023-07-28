@@ -218,7 +218,7 @@ cursor: pointer;
     font-family: inherit;
     border: 0px solid transparent;
     background-color: transparent;
-    color: white;
+    color: inherit;
     outline: 0px solid transparent !important;
     padding: 19px 14px;
     box-sizing: border-box;

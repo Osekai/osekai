@@ -1,0 +1,11 @@
+html {
+    --flat_background: 17, 17, 27;
+    --flat_bg_a1: 24, 24, 37;
+    --flat_bg_a2: 30, 30, 46;
+    --flat_bg_a3: 48, 49, 67;
+    --flat_bg_a4: 69, 71, 90;
+    --flat_bg_a5: 88, 91, 112;
+    --flat_bg_a6: 108, 112, 134;
+    --flat_active: 240,240,240;
+    --flat_text: 220,220,220;
+}

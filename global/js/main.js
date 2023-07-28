@@ -93,78 +93,70 @@ var colours = {
 var theme;
 
 const themes = {
-    "light": {
-        "internal": "light",
-        "name": "loading...",
-        "css": ["light.css"],
-    },
-    "dark": {
-        "internal": "dark",
+    "colourful": {
+        "internal": "colourful",
         "name": "loading...",
         "css": "none",
     },
+    "dark": {
+        "internal": "dark flat",
+        "name": "Dark",
+        "css": ["themes/flat-dark.css"],
+    },
+    "light": {
+        "internal": "light flat",
+        "name": "Light",
+        "css": ["themes/flat-dark.css", "themes/flat-light.css"],
+    },
+    "gruvbox-dark": {
+        "internal": "gruvbox dark",
+        "name": "Gruvbox",
+        "css": ["themes/flat-dark.css", "themes/flat-gruvbox-dark.css"],
+    },
+    "nord-dark": {
+        "internal": "nord",
+        "name": "Nord",
+        "css": ["themes/flat-dark.css", "themes/flat-nord.css"],
+    },
+    "catppuccin-dark": {
+        "internal": "catppuccin dark",
+        "name": "Catppuccin",
+        "css": ["themes/flat-dark.css", "themes/flat-catppuccin.css"],
+    },
     "ultradark": {
-        "internal": "ultradark",
+        "internal": "Ultra Dark",
         "name": "loading...",
-        "css": ["ultradark.css"],
-        "customAccent": {
-            "dark": "10, 8, 0",
-            "light": "255,255,255",
-            "lightOffset": 0,
-            "darkOffset": -0.15,
-        }
+        "css": ["themes/flat-dark.css", "themes/flat-ultradark.css"]
     },
-    "colddark": {
-        "internal": "colddark",
-        "name": "loading...",
-        "css": ["colddark.css"],
-        "customAccent": {
-            "dark": "0, 5, 10",
-            "light": "155, 213, 235",
-            "lightOffset": 0,
-            "darkOffset": 0,
-        }
-    },
-    "flatwhite": {
+    /* "flatwhite": {
         "internal": "softwhite",
         "name": "[experimental] Soft White",
-        "css": ["light.css", "softwhite.css"],
+        "css": ["themes/light.css", "softwhite.css"],
         "experimental": true
-    },
+    }, */
     "lightweight": {
         "internal": "lightweight",
         "name": "lightweight theme",
-        "css": ['lightweight.css']
-    },
-    "system": {
-        "internal": "system",
-        "name": "loading...",
-        "css": "none",
+        "css": ['themes/lightweight.css']
     },
     "custom": {
         "internal": "custom",
         "name": "loading...",
         "css": "none"
-    },
-    "custom-light": {
-        "internal": "custom-light",
-        "name": "loading...",
-        "css": ["light.css"]
     }
 }
 
 async function loadThemes() {
+    themes["colourful"].name = await GetStringRaw("navbar", "settings.theme.colourful");
     themes["light"].name = await GetStringRaw("navbar", "settings.theme.light");
     themes["dark"].name = await GetStringRaw("navbar", "settings.theme.dark");
     themes["ultradark"].name = await GetStringRaw("navbar", "settings.theme.ultraDark");
-    themes["colddark"].name = await GetStringRaw("navbar", "settings.theme.coldDark");
-    themes["system"].name = await GetStringRaw("navbar", "settings.theme.system");
+
     themes["custom"].name = await GetStringRaw("navbar", "settings.theme.custom");
-    themes["custom-light"].name = await GetStringRaw("navbar", "settings.theme.custom.lightMode");
     themes["lightweight"].name = await GetStringRaw("navbar", "settings.theme.lightweight");
 }
 
-theme = themes["system"];
+theme = themes["colourful"];
 loadThemes();
 
 function setTheme(stheme) {
@@ -227,26 +219,16 @@ function generateCustomThemeVars(accent, accentDark, valueOffsetOffset = 0, valu
 function updateTheme() {
     document.getElementById("custom_theme_container").innerHTML = "";
 
-    if (theme.internal == "system") {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // dark mode
-        } else {
-            // light mode
-            document.getElementById("css_cont").innerHTML = "<link id='" + theme + "' rel='stylesheet' type='text/css' href='/global/css/" + themes["light"].css[0] + "'>";
-            document.getElementById("css_cont").innerHTML += "<link id='" + theme + "' rel='stylesheet' type='text/css' href='css/" + themes["light"].css[0] + "'>";
+    document.getElementById("css_cont").innerHTML = "";
+    if (theme["css"] != "none") {
+        for (var i in theme['css']) {
+            document.getElementById("css_cont").innerHTML += "<link id='" + theme + "' rel='stylesheet' type='text/css' href='/global/css/" + theme["css"][i] + "?v=" + version + "'>";
+            document.getElementById("css_cont").innerHTML += "<link id='" + theme + "_relative' rel='stylesheet' type='text/css' href='css/" + theme["css"][i] + "?v=" + version + "'>";
         }
-    } else {
-        document.getElementById("css_cont").innerHTML = "";
-        if (theme["css"] != "none") {
-            for (var i in theme['css']) {
-                document.getElementById("css_cont").innerHTML += "<link id='" + theme + "' rel='stylesheet' type='text/css' href='/global/css/" + theme["css"][i] + "?v=" + version + "'>";
-                document.getElementById("css_cont").innerHTML += "<link id='" + theme + "_relative' rel='stylesheet' type='text/css' href='css/" + theme["css"][i] + "?v=" + version + "'>";
-            }
-        }
-        if (typeof theme["customAccent"] != 'undefined') {
+    }
+    if (typeof theme["customAccent"] != 'undefined') {
 
-            document.getElementById("custom_theme_container").innerHTML = `body {` + generateCustomThemeVars(theme["customAccent"].light, theme["customAccent"].dark, theme["customAccent"].lightOffset, theme["customAccent"].darkOffset) + `}`
-        }
+        document.getElementById("custom_theme_container").innerHTML = `body {` + generateCustomThemeVars(theme["customAccent"].light, theme["customAccent"].dark, theme["customAccent"].lightOffset, theme["customAccent"].darkOffset) + `}`
     }
 
     if (theme.internal == "custom" || theme.internal == "custom-light") {
@@ -327,9 +309,9 @@ function closeLoader() {
 
 window.openDialog = function (title, header, message, buttons = [], content = null) {
     var modal_overlay = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay osekai__modal-overlay-bland osekai__modal-overlay--hidden" });
-    var modal_overlay_close_layer = Object.assign(document.createElement("div"), {className: "osekai__modal-overlay-closelayer"});
+    var modal_overlay_close_layer = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay-closelayer" });
     modal_overlay.appendChild(modal_overlay_close_layer);
-    
+
     var modal_overlay_panel = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay-panel" });
     var modal_overlay_panel_top = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay-panel-top" });
     var modal_overlay_panel_bottom = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay-panel-bottom" });
@@ -349,7 +331,7 @@ window.openDialog = function (title, header, message, buttons = [], content = nu
         modal_overlay.remove();
     }
 
-    modal_overlay_close_layer.addEventListener("click", function() {close()});
+    modal_overlay_close_layer.addEventListener("click", function () { close() });
 
     if (content != null)
         modal_overlay_panel_bottom.appendChild(content);
@@ -476,8 +458,8 @@ if (christmas) {
 function defaultSettings() {
     if (window.localStorage.getItem('theme') == null) {
         console.log("defaulting theme");
-        setTheme("system");
-        window.localStorage.setItem('theme', "system");
+        setTheme("colourful");
+        window.localStorage.setItem('theme', "colourful");
     }
 }
 
@@ -763,7 +745,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         for (let oTabButton of oTabButtons) {
-            if(!oTabContainer.hasAttribute("otab-no-replace"))
+            if (!oTabContainer.hasAttribute("otab-no-replace"))
                 oTabButton.innerHTML = oTabButton.getAttribute("otab-button");
             oTabButton.addEventListener("click", function () {
                 switchTab(oTabButton.getAttribute("otab-button"));
