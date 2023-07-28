@@ -73,12 +73,12 @@
 
 
 .profiles__rank-nav {
-    color: rgba(255, 255, 255, 0.7);
+    color: inherit;
     font-weight: 100;
 }
 
 .profiles__rank-nav strong {
-    color: rgba(255, 255, 255, 1);
+    color: inherit;
     font-weight: 900;
 }
 
@@ -1346,7 +1346,8 @@ input[type=number] {
 }
 
 .profiles__userbanner-top-text pre {
-    color: #CCCCCC;
+    color: inherit;
+    opacity: 0.7;
     font-size: 15px;
     white-space: nowrap;
     width: 20vw;
@@ -1679,14 +1680,14 @@ input[type=number] {
 .profiles__cover-bottom_text {
     font-size: 14px;
     font-weight: 500;
-    color: #fffd;
+    color: inherit;
     mix-blend-mode: lighten;
 }
 
 #bar__social .profiles__cover-bottom_text {
     font-size: 16px;
     font-weight: bold;
-    color: #fff;
+    color: inherit;
 }
 
 .profiles__cover-bottom-inner {

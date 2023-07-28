@@ -6,12 +6,6 @@ RewriteBase /
 
 
 
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php [NC,L] 
-
-
 # rewrite to NON-WWW
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteCond %{HTTP_HOST} !=localhost
@@ -87,3 +81,9 @@ RewriteRule /teams/(.*) router.php [QSA,L]
 <FilesMatch ".(eot|otf|ttf|woff|woff2)">
     Header always set Access-Control-Allow-Origin "*"
 </FilesMatch>
+
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L] 

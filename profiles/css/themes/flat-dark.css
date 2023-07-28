@@ -1,0 +1,71 @@
+.profiles__user-bar,
+.profiles__top-bar-home {
+    background: rgb(var(--flat_bg_a2));
+}
+
+.profiles__graph-area {
+    background-color: rgb(var(--flat_bg_a3));
+}
+
+.profiles__panel,
+.profiles__medalinfo-section {
+    background: rgb(var(--flat_bg_a3));
+}
+
+.profiles__medalinfo-section-bar {
+    background: rgb(var(--flat_bg_a4));
+}
+
+.profiles__feature-introduction-goals {
+    background: rgb(var(--flat_bg_a3));
+}
+
+.profiles__goal-input-amount {
+    box-shadow: none;
+    background: rgb(var(--flat_bg_a3));
+}
+
+.profiles__goal-input {
+    background: rgb(var(--flat_bg_a4));
+}
+
+.osekai__section-header-left {
+    background: rgb(var(--flat_bg_a4));
+}
+
+.osekai__section-header {
+    border-bottom: 1px solid rgb(var(--flat_bg_a4));
+}
+
+.profiles__mhs-right {
+    background: rgb(var(--flat_bg_a3));
+}
+
+.profiles__userbanner-bottom-container {
+
+    background: rgb(var(--flat_bg_a3));
+}
+
+.profiles__userbanner {
+    background: rgb(var(--flat_bg_a4));
+}
+.profiles__userbanner-bottom-bottom {
+
+    background: rgb(var(--flat_bg_a2));
+}
+
+.osekai__pfp-blur-bg {
+    display: none;
+}
+
+.profiles__cover-userinfo {
+    background: rgb(var(--flat_bg_a1));
+}
+.profiles__cover-bottom {
+    background: rgb(var(--flat_bg_a2));
+}
+
+.profiles__timeline {
+
+    background: rgb(var(--flat_bg_a4));
+}

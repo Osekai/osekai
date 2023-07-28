@@ -1,0 +1,36 @@
+html {
+    --flat_background: 238,238,238;
+    --flat_bg_a1: 242,242,242;
+    --flat_bg_a2: 250,250,250;
+    --flat_bg_a3: 229,229,229;
+    --flat_bg_a4: 238,238,238;
+    --flat_bg_a5: 242,242,242;
+    --flat_bg_a6: 255,255,255;
+    --flat_active: var(--accent);
+    --flat_text: 30,30,30;
+}
+
+
+svg {
+    filter: invert(1);
+}
+i {
+    color: inherit;
+}
+.osekai__navbar-center-left img {
+    filter: invert(0.95);
+}
+.osekai__apps-dropdown-applist-app-icon img {
+    filter: invert(0.9);
+}
+
+.osekai__pagination {
+    filter: invert(1);
+}
+.osekai__apps-dropdown a {
+    color: inherit !important;
+}
+
+.osekai__apps-dropdown-applist-right-card-inner img {
+    filter: invert(1) !important;
+}

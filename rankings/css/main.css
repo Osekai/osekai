@@ -142,17 +142,19 @@
     border-radius: 20px;
     transition: all 0.1s ease;
     font-weight: 100;
-    color: #fffa;
+    opacity: 0.7;
 }
 
 .rankings__active {
+    opacity: 1;
     font-weight: 900;
-    color: #fff;
+    color: inherit;
 }
 
 .rankings__option:hover {
+    opacity: 0.9;
     background-color: #fff1;
-    color: #fff;
+    color: inherit;
     cursor: pointer;
 }
 
