@@ -1,0 +1,56 @@
+.medals__search {
+    background: rgb(var(--flat_bg_a1));
+}
+
+.medals__search__filters-icon {
+    background: rgb(var(--flat_bg_a2));
+}
+
+.medals__toolbar-buttons div {
+
+    background: rgb(var(--flat_bg_a2));
+}
+.medals__bmp3-bottom {
+    overflow: hidden;
+    background: rgb(var(--flat_bg_a4));
+}
+
+.medals__bmp3-r-vote {
+    background: rgb(var(--flat_bg_a3));
+}
+
+.medals__bmp3-panel-outer:hover .medals__bmp3-panel {
+    box-shadow: none !important;
+}
+
+
+.medals__bmp3-hover-area {
+    background: rgb(var(--flat_bg_a4));
+}
+
+.medals__bmp3-hover-button {
+    font-size: 12px;
+    background: rgb(var(--flat_bg_a3));
+}
+
+
+.medals__extrainfo-bar {
+
+    background: rgb(var(--flat_bg_a3));
+}
+
+.medals__extrainfo-bar-right {
+    box-shadow: 0px 0px 0px transparent;
+    background: rgb(var(--flat_bg_a2));
+}
+.medals__sol-header {
+    color: inherit !important;
+}
+
+.osekai__section-header-left {
+    background: rgb(var(--flat_bg_a3));
+}
+
+.medals__medal-panel .osekai__section-header {
+    border-bottom: 1px solid rgb(var(--flat_bg_a3));
+}

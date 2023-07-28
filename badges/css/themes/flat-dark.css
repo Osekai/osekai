@@ -1,0 +1,12 @@
+.badge.grid_large, .badge.list_2wide, .badge.list_1wide, .badges__badge-overlay-panel {
+    background: rgb(var(--flat_bg_a3));
+    border: 0px solid white;
+}
+
+.osekai__badge-list.ultra_compact .badge {
+    background: #0000;
+} 
+
+.badges__bopl-img-1x-cont {
+    background: rgb(var(--flat_bg_a2));
+}

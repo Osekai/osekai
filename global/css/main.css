@@ -760,7 +760,7 @@ a {
     padding-bottom: 7px;
     font-weight: 900;
     font-size: 16px;
-    color: white !important;
+    color:inherit !important;
     text-decoration: none !important;
     border-radius: 5px;
     background-color: transparent;
@@ -845,6 +845,7 @@ a {
 }
 
 .osekai__button:hover {
+    cursor: pointer;
     color: rgba(var(--accentdark), 1) !important;
 }
 

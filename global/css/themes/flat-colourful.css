@@ -1,0 +1,11 @@
+html {
+    --flat_background: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(5% * var(--accentdark_valueoffset))) !important;
+    --flat_bg_a1: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(8% * var(--accentdark_valueoffset))) !important;
+    --flat_bg_a2: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(11% * var(--accentdark_valueoffset))) !important;
+    --flat_bg_a3: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))) !important;
+    --flat_bg_a4: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(18% * var(--accentdark_valueoffset))) !important;
+    --flat_bg_a5: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(22% * var(--accentdark_valueoffset))) !important;
+    --flat_bg_a6: hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(26% * var(--accentdark_valueoffset))) !important;
+    --flat_active: 240,240,240 !important;
+    --flat_text: 220,220,220 !important;
+}
