@@ -470,7 +470,7 @@ foreach ($apps as $a) {
                 </p>
             </a>
             <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 255, 102, 170"
-                href="https://osu.ppy.sh/users/<?= $_SESSION['osu']['id']; ?>">
+                href="https://osu.ppy.sh/users/<?= $_SESSION['osu']['id']; ?>" target="_blank" rel="noopener">
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
                 <i class="oif-osu-logo"></i>
                 <p>
