@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '-1'); 
 $key = $_GET['key'];
 if(!isset($_GET['key'])) {
     $key = $_POST['key'];
