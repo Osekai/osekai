@@ -13,7 +13,7 @@ ini_set('display_startup_errors', 1);
 
 include("get_beatmap_pack_count.php");
 
-$packs = Database::execSimpleSelect('SELECT medalid, packid, name, link FROM Medals WHERE packid IS NOT NULL AND packid != "" AND packid != 0 AND packid != "0,0,0,0"');
+$packs = Database::execSimpleSelect('SELECT medalid, packid, name, link FROM Medals WHERE packid IS NOT NULL AND packid != "" AND packid != "0" AND packid != "0,0,0,0"');
 
 $gamemodes = ["standard", "taiko", "catch", "mania"];
 
