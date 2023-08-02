@@ -98,6 +98,24 @@
     height: 100%;
 }
 
+#gradient-canvas {
+    width: 100%;
+    height: 100%;
+      --gradient-color-4: #0d3e66;
+  --gradient-color-2: #1e3470;
+  --gradient-color-1: #134d70;
+  --gradient-color-3: #122147;
+
+  /* --gradient-color-4: #668fff;
+  --gradient-color-2: #ff66aa;
+  --gradient-color-3: #00c2e0;
+  --gradient-color-1: #3f4df5; */
+}
+
+.home__cover-middle, .home__cover-bottom {
+    opacity: 0.85;
+}
+
 .home__cover-background img {
     height: 100%;
     width: 100%;
@@ -755,3 +773,4 @@ code {
         display: none;
     }
 }
+
