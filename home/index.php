@@ -43,8 +43,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
         <div class="home__cover" onload="positionNav();">
             <div class="home__cover-background">
-                <img src="img/background.png">
-            </div>
+            <canvas id="gradient-canvas" data-transition-in></canvas>
+</div>
             <div class="home__cover-middle">
                 <div class="home__cover-middle-logo">
                     <!-- <img src="img/osekai.svg" class="home__logo"> -->
@@ -231,6 +231,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <div id="home__faq-list"></div>
 </body>
 <script src="js/main.js?v=<?= OSEKAI_VERSION ?>"></script>
+<script src="js/background.js?v=<?= OSEKAI_VERSION ?>" type="module"></script>
 <img src="img/background.png" onload="positionNav();" style="display: none;">
 <script>
     //document.getElementById("home").classList.remove('home__loader-wait')

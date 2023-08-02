@@ -1,0 +1,10 @@
+#gradient-canvas {
+    --gradient-color-4: #668fff !important;
+    --gradient-color-2: #ff66aa !important;
+    --gradient-color-3: #00c2e0 !important;
+    --gradient-color-1: #3f4df5 !important;
+}
+
+.home__cover-middle-logo {
+    filter: invert(1);
+}
