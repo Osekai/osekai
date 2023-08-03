@@ -1,7 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
-if ($_SESSION['role']['rights'] >= 1) {
+if (checkPermission("apps.snapshots.versions.upload")) {
     $admin_access = true;
 } else {
     $admin_access = false;

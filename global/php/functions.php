@@ -45,7 +45,53 @@ foreach ($appsTemp as $appa) {
 }
 
 
+$userPermissions = [];
+if(loggedin()) {
+    $groups = Database::execSelect("SELECT GroupAssignments.*, Groups.DefaultPermissions FROM GroupAssignments
+    LEFT JOIN Groups ON Groups.ID = GroupAssignments.GroupId
+    WHERE UserId = ?", "i", [$_SESSION['osu']['id']]);
+    foreach($groups as $group) {
+        if($group['DefaultPermissions'] == null) continue;
+        $perms = json_decode($group['DefaultPermissions']);
+        foreach($perms as $perm) {
+            if(!in_array($perm, $userPermissions)) {
+                $userPermissions[] = $perm;
+            }
+        }
+    }
 
+    $overrides = Database::execSelect("SELECT * FROM PermissionOverrides WHERE UserId = ?", "i", [$_SESSION['osu']['id']]);
+    if(count($overrides) == 1) {
+        foreach(json_decode($overrides[0]['Permissions']) as $perm) {
+            if(!in_array($perm, $userPermissions)) {
+                $userPermissions[] = $perm;
+            }
+        }
+    }
+
+    /* print_r($userPermissions); */
+}
+
+
+function checkPermission($permission) {
+    global $userPermissions;
+    
+    $parts = explode(".", $permission);
+    
+    for( $x = 0; $x < count($userPermissions); $x++) {
+        $split = explode(".", $userPermissions[$x]);
+        for( $y = 0; $y < count($split); $y++) {
+            if($split[$y] == "*" && $y <= count($parts)-1) return true;
+            if($split[$y] != $parts[$y]) break;
+            if($split[$y] == $parts[$y] && $y == count($parts)-1) return true;
+        }
+    }
+    return false;
+}
+
+/* echo "<br>medals.test: " . (checkPermission("medals.test") ? "yes" : "no");
+echo "<br>medals.no: " . (checkPermission("medals.no") ? "yes" : "no");
+echo "<br>snapshots.yes: " . (checkPermission("snapshots.yes") ? "yes" : "no"); */
 
 $restrictedState = false;
 
@@ -79,6 +125,7 @@ function frontend()
     global $sourcesNames;
     global $sources;
     global $enabled;
+    global $userPermissions;
 
 
     if (isset($app)) {
@@ -108,6 +155,7 @@ function frontend()
         $roles = Database::execSimpleSelect("SELECT * FROM AvailableRoles");
         $medals = Database::execSelect("CALL FUNC_GetMedals(?, '')", "s", ['']);
         $userGroups = Database::execSimpleSelect("SELECT * FROM Groups");
+
 ?>
         <script type="text/javascript">
             const christmas = "<?= $christmas; ?>";
@@ -125,12 +173,6 @@ function frontend()
                                 } else {
                                     echo "guest";
                                 } ?>';
-
-            const nRights = <?php if (isset($_SESSION['role']) && $_SESSION['role'] != "" && $_SESSION['role'] != null && $_SESSION['role']['rights'] != null) {
-                                echo $_SESSION['role']['rights'];
-                            } else {
-                                echo "-1";
-                            } ?>;
             const strRole = <?php if (isset($_SESSION['role']['name']) && $_SESSION['role']['name'] != "") {
                                 echo "'" . $_SESSION['role']['name'] . "'";
                             } else {
@@ -147,6 +189,7 @@ function frontend()
             const userGroups = <?= json_encode($userGroups); ?>;
             const medals = <?= json_encode($medals); ?>;
             const restrictedState = <?= isRestricted() ? "1" : "0"; ?>;
+            const userPermissions = <?= json_encode($userPermissions) ?>
         </script>
         <meta name="darkreader-lock">
         <?php
@@ -184,7 +227,7 @@ if (isset($app)) {
         exit;
     }
     if ($app == "admin" && MODE == "production") {
-        if ($_SESSION['role']['rights'] < 1) {
+        if (checkPermission("apps.adminLegacy")) {
             navbar();
             include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
             exit;

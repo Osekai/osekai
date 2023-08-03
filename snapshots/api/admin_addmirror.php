@@ -1,7 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
-if ($_SESSION['role']['rights'] >= 1 || $_POST['bykey'] == "f09jf03jf93290fj2") {
+if (checkPermission("apps.snapshots.versions.edit") || $_POST['bykey'] == "f09jf03jf93290fj2") {
     $admin_access = true;
 } else {
     $admin_access = false;

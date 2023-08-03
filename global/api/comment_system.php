@@ -200,7 +200,7 @@ if(isset($_POST['nCommentDeletion'])) {
 
         $is_own_profile_comment = isset($comment_data['ProfileID']) && intval($_SESSION['osu']['id']) === intval($comment_data['ProfileID']);
 
-        if($_SESSION['role']['rights'] > 0 || $is_own_profile_comment) {
+        if(checkPermission("comment.remove") || $is_own_profile_comment) {
             $on = "unknown";
             if($comment_data['MedalID'] != null) {
                 $on = "Medal " . Database::execSelect("SELECT name FROM Medals WHERE medalid = ?", "i", [$comment_data['MedalID']])[0]['name'];
@@ -235,7 +235,7 @@ if(isset($_POST['nCommentPin'])) {
 
         $is_own_profile_comment = isset($comment_data['ProfileID']) && intval($_SESSION['osu']['id']) === intval($comment_data['ProfileID']);
 
-        if($_SESSION['role']['rights'] > 0 || $is_own_profile_comment) {
+        if(checkPermission("comment.pin") || $is_own_profile_comment) {
             $on = "unknown";
             if($comment_data['MedalID'] != null) {
                 $on = "Medal " . Database::execSelect("SELECT name FROM Medals WHERE medalid = ?", "i", [$comment_data['MedalID']])[0]['name'];

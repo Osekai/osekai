@@ -38,9 +38,24 @@ $tooltipText = "This debug panel is so that you, and our team, can make sure Ose
                 <?= $gitBranchLink != "" ? '<a href="' . $gitBranchLink . '">' . $gitBranchName . '</a>' : $gitBranchName ?></strong>)
 
         <p style="font-size: 10px"><?= $gitDate; ?> UTC</p>
+
+        <p style="font-weight: 900; text-decoration: underline;" onclick="togglePermissionPanel()">View User Permissions</p>
     </div>
 </div>
+<div class="debug__permission-panel hidden" id="permissionPanel">
+<div class="debug__permission-panel-inner">
+<p style="margin-bottom: 10px; font-weight: 900; text-decoration: underline;" onclick="togglePermissionPanel()">Close</p>
 
+    <?php
+    foreach($userPermissions as $perm) {
+        echo $perm . "<br>";
+    }
+    ?>
+</div>
+</div>
 <script>
+    function togglePermissionPanel() {
+        document.getElementById("permissionPanel").classList.toggle("hidden");
+    }
     console.log("generated in: " + <?= $time; ?> + " seconds");
 </script>

@@ -66,7 +66,7 @@ if (isset($_GET['version'])) {
 
 
 
-if ($_SESSION['role']['rights'] >= 1) {
+if (checkPermission("apps.snapshots.admin")) {
     $admin_access = true;
 } else {
     $admin_access = false;
