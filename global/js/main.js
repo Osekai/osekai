@@ -834,3 +834,17 @@ var groupUtils = {
     }
 }
 
+
+function checkPermission(permission) {
+    parts = permission.split(".");
+
+    for(var x = 0; x < userPermissions.length; x++) {
+        var split = userPermissions[x].split(".");
+        for(var y = 0; y < split.length; y++) {
+            if(split[y] == "*" && y <= parts.length-1) return true
+            if(split[y] != parts[y]) break;
+            if(split[y] == parts[y] && y == parts.length-1) return true
+        }
+    }
+    return false;
+}
