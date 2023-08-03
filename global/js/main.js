@@ -836,7 +836,8 @@ var groupUtils = {
 
 
 function checkPermission(permission) {
-    parts = permission.split(".");
+    const parts = permission.split(".");
+
 
     for(var x = 0; x < userPermissions.length; x++) {
         var split = userPermissions[x].split(".");
