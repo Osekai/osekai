@@ -3260,6 +3260,31 @@ figcaption {
     padding: 8px 12px;
 }
 
+
+.debug__permission-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #111a;
+    z-index: 929;
+    font-family: monospace;
+}
+
+.debug__permission-panel-inner {
+    max-height: 50vh;
+    overflow-y: scroll;
+    padding: 20px;
+    background-color: #111c;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    width: 400px;
+}
+
 .debug:hover .debug__inner {
     backdrop-filter: blur(15px) saturate(3);
 }

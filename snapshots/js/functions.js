@@ -176,7 +176,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
         if (downloads[key]["name"] != "Osekai Servers") {
             downloadlink = downloads[key]["link"];
 
-            if (nRights > 0) {
+            if (checkPermission("app.snapshots.versions.edit")) {
                 var admin = `<div class="osekai__left snapshots__admin-download-controls">
                 <div onclick="deleteDownloadMirror(this, '` + downloads[key]["name"] + `')"</div>
                     <i class="far fa-trash-alt"></i>
@@ -254,7 +254,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     screenshot_grid.innerHTML = "";
 
     Object.keys(thisver["screenshots"]).forEach(function (key, index) {
-        if (nRights < 1) {
+        if (checkPermission("app.snapshots.versions.edit")) {
             screenshot_grid.innerHTML += `<img onclick="showScreenshotOverlay(this.src)" class="snapshots__image" src="` +
                 "versions/" + thisver["version_info"]["version"] + "/" + thisver['screenshots'][key]
                 + `">`;

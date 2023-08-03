@@ -251,7 +251,7 @@ if (isset($_GET['medal'])) {
                             </section>
                             <div class="osekai__panel-inner medals__info-bar">
                                 <?php if (isset($_SESSION['role'])) {
-                                    if ($_SESSION['role']['rights'] > 0) {
+                                    if (checkPermission("apps.medals.medal.edit")) {
                                         ?>
                                         <a class="osekai__button" style="margin-right: 8px;" href="" id="edit_button">Edit
                                             Medal</a>
@@ -272,7 +272,7 @@ if (isset($_GET['medal'])) {
                     </div>
                     <div class="osekai__3col_col3">
                         <?php if (isset($_SESSION['role'])) {
-                            if ($_SESSION['role']['rights'] > 0) {
+                            if (checkPermission("apps.medals.medal.legacyEdit")) {
                                 ?>
                                 <section class="osekai__panel osekai__panel-collapsable osekai__panel-collapsable-collapsed">
                                     <div class="osekai__panel-header">

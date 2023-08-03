@@ -732,31 +732,33 @@ INSERT INTO `GroupAssignments` (`UserId`, `GroupId`) VALUES
 DROP TABLE IF EXISTS `Groups`;
 CREATE TABLE `Groups` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` text COLLATE utf8mb4_bin NOT NULL,
-  `ShortName` text COLLATE utf8mb4_bin NOT NULL,
-  `Description` text COLLATE utf8mb4_bin,
-  `Colour` text COLLATE utf8mb4_bin,
+  `Name` text NOT NULL,
+  `ShortName` text NOT NULL,
+  `Description` text DEFAULT NULL,
+  `Colour` text DEFAULT NULL,
   `Order` int(11) DEFAULT NULL,
-  `Hidden` int(1) DEFAULT '0',
-  `ForceVisible` int(1) DEFAULT '0',
+  `Hidden` int(1) DEFAULT 0,
+  `ForceVisible` int(1) DEFAULT 0,
+  `DefaultPermissions` longtext DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`, `ForceVisible`) VALUES
-(1,	'??groups.communityManager.name??',	'CMT',	'??groups.communityManager.description??',	'255,124,89',	4,	0,	0),
-(2,	'??groups.developers.name??',	'DEV',	'??groups.developers.description??',	'99,128,255',	6,	0,	0),
-(3,	'??groups.appDeveloper.name??',	'APP DEV',	'??groups.appDeveloper.description??',	'87,200,180',	10,	0,	0),
-(4,	'??groups.toolsContributor.name??',	'TOOLS',	'??groups.toolsContributor.description??',	'30,90,144',	16,	0,	0),
-(5,	'??groups.translator.name??',	'TRANSLATOR',	'??groups.translator.description??',	'144,30,126',	18,	0,	0),
-(6,	'Supporter - Rank 1',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	24,	1,	1),
-(7,	'Supporter - Rank 2',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	22,	1,	1),
-(8,	'Supporter - Rank 3',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	20,	1,	1),
-(9,	'chromb',	'chromb',	'chromb',	'100,100,100',	1,	1,	0),
-(10,	'??groups.snapshotsModerator.name??',	'<i class=\"oif-app-snapshots\"></i> MOD',	'??groups.snapshotsModerator.description??',	'28,25,171',	14,	0,	0),
-(11,	'??groups.moderator.name??\r\n',	'MOD',	'??groups.moderator.description??\r\n',	'29,74,29',	12,	0,	0),
-(12,	'??groups.lead.name??\r\n',	'LEAD',	'??groups.lead.description??\r\n',	'99,199,255',	0,	0,	0),
-(13,	'??groups.social.name??',	'SOCIAL',	'??groups.social.description??',	'157,32,255',	8,	0,	0),
-(14,	'??groups.teamLead.name??',	'TEAM LEAD',	'??groups.teamLead.description??',	'150,20,20',	2,	0,	0);
+INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`, `ForceVisible`, `DefaultPermissions`) VALUES
+(1,	'??groups.communityManager.name??',	'CMT',	'??groups.communityManager.description??',	'255,124,89',	4,	0,	0,	'[\"app.medals.*\",\r\n\"comment.*\",\r\n\"app.snapshots.*\",\r\n\"app.admin\",\r\n\"app.admin.home.*\",\r\n\"app.admin.apps.*\",\r\n\"app.admin.reports.*\",\r\n\"app.admin.logs\",\r\n\"app.admin.user\"]'),
+(2,	'??groups.developers.name??',	'DEV',	'??groups.developers.description??',	'99,128,255',	6,	0,	0,	''),
+(3,	'??groups.appDeveloper.name??',	'APP DEV',	'??groups.appDeveloper.description??',	'87,200,180',	10,	0,	0,	NULL),
+(4,	'??groups.toolsContributor.name??',	'TOOLS',	'??groups.toolsContributor.description??',	'30,90,144',	16,	0,	0,	NULL),
+(5,	'??groups.translator.name??',	'TRANSLATOR',	'??groups.translator.description??',	'144,30,126',	18,	0,	0,	NULL),
+(6,	'Supporter - Rank 1',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	24,	1,	1,	NULL),
+(7,	'Supporter - Rank 2',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	22,	1,	1,	NULL),
+(8,	'Supporter - Rank 3',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	20,	1,	1,	NULL),
+(9,	'chromb',	'chromb',	'chromb',	'100,100,100',	1,	1,	0,	NULL),
+(10,	'??groups.snapshotsModerator.name??',	'<i class=\"oif-app-snapshots\"></i> MOD',	'??groups.snapshotsModerator.description??',	'28,25,171',	14,	0,	0,	NULL),
+(11,	'??groups.moderator.name??\r\n',	'MOD',	'??groups.moderator.description??\r\n',	'29,74,29',	12,	0,	0,	'[\"apps.medals.*\",\r\n\"apps.snapshots.*\",\r\n\"comment.*\",\r\n\"apps.admin\",\r\n\"apps.admin.home.dashboard\",\r\n\"apps.admin.home.dashboardImages\",\r\n\"apps.admin.apps.*\",\r\n\"apps.admin.reports.*\",\r\n\"apps.admin.logs\",\r\n\"apps.admin.user\"]'),
+(12,	'??groups.lead.name??\r\n',	'LEAD',	'??groups.lead.description??\r\n',	'99,199,255',	0,	0,	0,	'[\"*.*\"]'),
+(13,	'??groups.social.name??',	'SOCIAL',	'??groups.social.description??',	'157,32,255',	8,	0,	0,	NULL),
+(14,	'??groups.teamLead.name??',	'TEAM LEAD',	'??groups.teamLead.description??',	'150,20,20',	2,	0,	0,	'[\"*.*\"]');
+
 
 DROP VIEW IF EXISTS `MedalListing`;
 CREATE TABLE `MedalListing` (`MedalID` int(5), `Name` varchar(50), `Description` varchar(500), `PossessionRate` varchar(50), `link` varchar(70), `restriction` varchar(8), `grouping` varchar(30));
@@ -2491,3 +2493,11 @@ CREATE TABLE `FavouriteMedals` (
   `medal_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`medal_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+
+DROP TABLE IF EXISTS `PermissionOverrides`;
+CREATE TABLE `PermissionOverrides` (
+  `UserId` int(11) NOT NULL,
+  `Permissions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`Permissions`)),
+  PRIMARY KEY (`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+

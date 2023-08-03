@@ -54,7 +54,7 @@ if (isset($_POST['strUserID'])) {
 if (isset($_POST['strNewSolution'])) {
     Caching::wipeCacheFromPrefix("medals_");
     if (isset($_SESSION['osu']['id'])) {
-        if ($_SESSION['role']['rights'] > 0) {
+        if (checkPermission("apps.medals.medal.legacyEdit")) {
             Logging::PutLog("Edited medal using Legacy UI");
             Database::execOperation("INSERT INTO Solutions (medalid, solution, submittedby, mods) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE solution = ?, submittedby = ?, mods = ?", "issssss", array($_POST['nSolutionMedal'], htmlspecialchars($_POST['strNewSolution']), $_SESSION['osu']['username'], $_POST['strSolutionMods'], $_POST['strNewSolution'], $_SESSION['osu']['username'], $_POST['strSolutionMods']));
             Database::execOperation("UPDATE Medals SET packid = ?, video = ?, date = ?, firstachieveddate = ?, firstachievedby = ? WHERE medalid = ?", "ssssii", array($_POST['strSolutionPackID'], $_POST['strSolutionVideo'], $_POST['strSolutionDate'], $_POST['strFirstAchievedDate'], $_POST['strFirstAchievedId'], $_POST['nSolutionMedal']));

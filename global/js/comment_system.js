@@ -232,11 +232,16 @@ function generateComment(commentdata) {
         doReport('comment', commentdata.ID);
     }, "osekai__dropdown-item-red"))
     if (bLoggedIn) {
-        if (nRights > 0 || (nUserID == commentdata.MedalID && nAppId == "3")) {
+        if (checkPermission("comment.remove") || (nUserID == commentdata.MedalID && nAppId == "3") || (nUserID == commentdata.UserID)) {
+            // if they have permissions to remove, it's on their user profile (only on profiles), or it's their comment
             eldropdown.appendChild(dropdownItem(`<i class="fas fa-exclamation-triangle"></i> ` + GetStringRawNonAsync("comments", "delete"), function () {
                 deleteComment(commentdata.ID);
                 eldropdown.classList.toggle("osekai__dropdown-hidden");
             }, "osekai__dropdown-item-red"))
+        }
+
+        if (checkPermission("comment.pin") || (nUserID == commentdata.MedalID && nAppId == "3")) {
+            // if they have permissions to pin, or if it's on their profile (only on profiles)
             var name = GetStringRawNonAsync("comments", "pin");
             if (commentdata.ParentCommenter) name = "Highlight";
             var alreadyPinned = false;

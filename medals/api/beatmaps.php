@@ -24,7 +24,7 @@ if(isset($_POST['nObject'])) {
 if(isset($_POST['strDeletion'])) {
     if(isset($_SESSION['osu']['id'])) {
         Database::execOperation("INSERT INTO DeletedMaps (MedalName, BeatmapID, MapsetID, Gamemode, SongTitle, Artist, Mapper, Source, bpm, Difficulty, DifficultyName, DownloadUnavailable, DeletedMaps.Votes, SubmittedBy, DeletionDate, Note) SELECT MedalName, BeatmapID, MapsetID, Gamemode, SongTitle, Artist, Mapper, Source, bpm, Difficulty, DifficultyName, DownloadUnavailable, SUM(Votes.Vote), SubmittedBy, NOW(), Note FROM Beatmaps LEFT JOIN Votes ON Votes.ObjectID = Beatmaps.ID AND Votes.Type = '0' WHERE BeatmapID = ? AND MedalName = ?", "ss", array($_POST['strDeletion'], $_POST['strMedalName']));
-        if($_SESSION['role']['rights'] > 0) {
+        if(checkPermission("apps.medals.medal.legacyEdit")) {
             Database::execOperation("DELETE FROM Beatmaps WHERE BeatmapID = ? AND MedalName = ?", "ss", array($_POST['strDeletion'], $_POST['strMedalName']));
             echo json_encode("Success!");
         } else {
@@ -79,7 +79,7 @@ if(isset($_POST['bCheckLock'])) {
 
 if(isset($_POST['bCurrentlyLocked'])) {
     if(isset($_SESSION['osu']['id'])) {
-        if($_SESSION['role']['rights'] > 0) {
+        if(checkPermission("apps.medals.medal.legacyEdit")) {
             // Toggle the lock, if it is currently locked remove it from the table so it defaults to nonlocked
             if($_POST['bCurrentlyLocked'] == "false") {
                 Database::execOperation("INSERT IGNORE INTO MedalStructure (Locked, MedalID) VALUES ('1', ?)", "i", [$_POST['nMedalID']]);
@@ -94,7 +94,7 @@ if(isset($_POST['bCurrentlyLocked'])) {
 if(isset($_POST['strNoteChange'])) {
     if (isRestricted()) return;
     if(isset($_SESSION['osu']['id'])) {
-        if($_SESSION['role']['rights'] > 0) {
+        if(checkPermission("apps.medals.medal.legacyEdit")) {
             Logging::PutLog("<h1>Updated note on {$_POST['strMedalName']} (map ID {$_POST['strMapID']})</h1>");
             Database::execOperation("UPDATE Beatmaps SET Note = ? WHERE BeatmapID = ? AND MedalName = ?", "sss", array($_POST['strNoteChange'], $_POST['strMapID'], $_POST['strMedalName']));
             echo json_encode("Success!");
