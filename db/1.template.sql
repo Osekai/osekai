@@ -744,7 +744,7 @@ CREATE TABLE `Groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order`, `Hidden`, `ForceVisible`, `DefaultPermissions`) VALUES
-(1,	'??groups.communityManager.name??',	'CMT',	'??groups.communityManager.description??',	'255,124,89',	4,	0,	0,	'[\"app.medals.*\"\r\n\"comment.*\"\r\n\"app.snapshots.*\"\r\n\"app.admin\"\r\n\"app.admin.home.*\"\r\n\"app.admin.apps.*\"\r\n\"app.admin.reports.*\"\r\n\"app.admin.logs\"\r\n\"app.admin.user\"]'),
+(1,	'??groups.communityManager.name??',	'CMT',	'??groups.communityManager.description??',	'255,124,89',	4,	0,	0,	'[\"app.medals.*\",\r\n\"comment.*\",\r\n\"app.snapshots.*\",\r\n\"app.admin\",\r\n\"app.admin.home.*\",\r\n\"app.admin.apps.*\",\r\n\"app.admin.reports.*\",\r\n\"app.admin.logs\",\r\n\"app.admin.user\"]'),
 (2,	'??groups.developers.name??',	'DEV',	'??groups.developers.description??',	'99,128,255',	6,	0,	0,	''),
 (3,	'??groups.appDeveloper.name??',	'APP DEV',	'??groups.appDeveloper.description??',	'87,200,180',	10,	0,	0,	NULL),
 (4,	'??groups.toolsContributor.name??',	'TOOLS',	'??groups.toolsContributor.description??',	'30,90,144',	16,	0,	0,	NULL),
@@ -754,7 +754,7 @@ INSERT INTO `Groups` (`Id`, `Name`, `ShortName`, `Description`, `Colour`, `Order
 (8,	'Supporter - Rank 3',	'<i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i><i class=\"fas fa-heart\" aria-hidden=\"true\"></i>',	'',	'255,114,241',	20,	1,	1,	NULL),
 (9,	'chromb',	'chromb',	'chromb',	'100,100,100',	1,	1,	0,	NULL),
 (10,	'??groups.snapshotsModerator.name??',	'<i class=\"oif-app-snapshots\"></i> MOD',	'??groups.snapshotsModerator.description??',	'28,25,171',	14,	0,	0,	NULL),
-(11,	'??groups.moderator.name??\r\n',	'MOD',	'??groups.moderator.description??\r\n',	'29,74,29',	12,	0,	0,	'[\"apps.medals.*\"\r\n\"apps.snapshots.*\"\r\n\"comment.*\"\r\n\"apps.admin\"\r\n\"apps.admin.home.dashboard\"\r\n\"apps.admin.home.dashboardImages\"\r\n\"apps.admin.apps.*\"\r\n\"apps.admin.reports.*\"\r\n\"apps.admin.logs\"\r\n\"apps.admin.user\"]'),
+(11,	'??groups.moderator.name??\r\n',	'MOD',	'??groups.moderator.description??\r\n',	'29,74,29',	12,	0,	0,	'[\"apps.medals.*\",\r\n\"apps.snapshots.*\",\r\n\"comment.*\",\r\n\"apps.admin\",\r\n\"apps.admin.home.dashboard\",\r\n\"apps.admin.home.dashboardImages\",\r\n\"apps.admin.apps.*\",\r\n\"apps.admin.reports.*\",\r\n\"apps.admin.logs\",\r\n\"apps.admin.user\"]'),
 (12,	'??groups.lead.name??\r\n',	'LEAD',	'??groups.lead.description??\r\n',	'99,199,255',	0,	0,	0,	'[\"*.*\"]'),
 (13,	'??groups.social.name??',	'SOCIAL',	'??groups.social.description??',	'157,32,255',	8,	0,	0,	NULL),
 (14,	'??groups.teamLead.name??',	'TEAM LEAD',	'??groups.teamLead.description??',	'150,20,20',	2,	0,	0,	'[\"*.*\"]');
