@@ -720,7 +720,7 @@ function loadBeatmap(oBeatmap) {
     let CoverID = "https://assets.ppy.sh/beatmaps/" + oBeatmap.MapsetID + "/covers/cover.jpg";
     let MapUrl = "https://osu.ppy.sh/beatmapsets/" + oBeatmap.MapsetID + "#" + oBeatmap.Gamemode + "/" + oBeatmap.BeatmapID;
     let bCanDelete = false;
-    if (typeof nUserID !== 'undefined' && (nUserID.toString() == oBeatmap.SubmittedBy || checkPermission("app.medals.beatmap.remove"))) bCanDelete = true;
+    if (typeof nUserID !== 'undefined' && (nUserID.toString() == oBeatmap.SubmittedBy || checkPermission("apps.medals.beatmap.remove"))) bCanDelete = true;
     colNotes[oBeatmap.BeatmapID] = oBeatmap.Note;
 
 
@@ -912,7 +912,7 @@ function addBeatmap() {
 
 function addLock() {
     if (document.contains(document.getElementById("lock"))) document.getElementById("lock").remove();
-    if (checkPermission("app.medals.medal.legacyEdit")) {
+    if (checkPermission("apps.medals.medal.legacyEdit")) {
         let oElem = document.createElement("div");
         oElem.id = "lock";
         oElem.classList.add("osekai__mi-lock");
