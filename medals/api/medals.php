@@ -2,6 +2,10 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
 if (isset($_POST['strSearch']) || count($_POST) == 0) {
+    $type = "all";
+    if(isset($_POST['type'])) {
+        $type = "solutiontracker";
+    }
     if(isset($_POST['legacy'])) {
     // $cache = Caching::getCache("medals_" . $_POST['strSearch']);
     // if ($cache != null) {
@@ -28,6 +32,7 @@ if (isset($_POST['strSearch']) || count($_POST) == 0) {
         , Medals.restriction AS Restriction
         , Medals.grouping AS `Grouping`
         , Medals.instructions AS Instructions
+        , Medals.solutionfound AS SolutionFound
         , Solutions.solution AS Solution
         , Solutions.mods AS Mods
         , MedalStructure.Locked AS Locked
@@ -39,11 +44,11 @@ if (isset($_POST['strSearch']) || count($_POST) == 0) {
         , (CASE WHEN restriction = 'osu' THEN 2 WHEN restriction = 'taiko' THEN 3 WHEN restriction = 'fruits' THEN 4 WHEN restriction = 'mania' THEN 5 ELSE 1 END) AS ModeOrder 
         , Medals.ordering AS Ordering
         , MedalRarity.frequency As Rarity
-    FROM Medals 
-    LEFT JOIN Solutions ON Medals.medalid = Solutions.medalid 
+    FROM Medals LEFT JOIN Solutions ON Medals.medalid = Solutions.medalid 
     LEFT JOIN MedalStructure ON MedalStructure.MedalID = Medals.medalid 
-    LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid
-    ORDER BY ModeOrder, Ordering DESC, MedalID"));
+    LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid "
+    . ($type != "solutiontracker" ? "" : " WHERE Medals.solutiontrackerenabled = 1 ") .
+    "ORDER BY ModeOrder, Ordering DESC, MedalID"));
     }
 }
 
