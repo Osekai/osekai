@@ -1,0 +1,44 @@
+.st__medalpanel {
+    display: flex;
+    gap: 29px;
+    align-items: center;
+    padding: 32px;
+    background: linear-gradient(hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(20% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(15% * var(--accentdark_valueoffset))));
+    border-radius: 8px;
+    transition: all 0.12s ease;
+}
+.st__medalpanel-clickable {
+    user-select: none;
+}
+
+.st__medalpanel-clickable .st__medalpanel:hover {
+    filter: brightness(1.5);
+    transform: scale(1.01);
+}
+.st__medalpanel h1 {
+    font-size: 25px;
+    font-weight: 900;
+}
+.st__medalpanel h2 {
+    font-size: 18px;
+    opacity: 0.9;
+    font-weight: 600;
+}
+.st__medalpanel h3 {
+    font-size: 16px;
+    font-weight: 200;
+    opacity: 0.7;
+}
+
+.st__home-medal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 32px;
+}
+
+.st__page {
+    max-width: 1300px;
+    width: 100%;
+    padding: 20px;
+    margin: 0px auto;
+}
