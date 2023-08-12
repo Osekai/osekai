@@ -21,7 +21,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=admin
       - DB_NAME=osekai
-      - DB_HOSTNAME=database
+      - DB_HOSTNAME=osekai_database
     volumes:
       - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - ./docker/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
