@@ -1,14 +1,15 @@
 version: '3'
 
 services:
-  database:
+  osekai_database:
     image: mysql:5.7.42
     environment:
       - MYSQL_ROOT_PASSWORD=admin # Change it to a more secure one if needed
       - MYSQL_DATABASE=osekai
     volumes:
       - ./db:/docker-entrypoint-initdb.d:ro
-  website:
+      - ./db-data/:/var/lib/mysql
+  osekai_website:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     build: .
@@ -20,14 +21,14 @@ services:
       - DB_USER=root
       - DB_PASSWORD=admin
       - DB_NAME=osekai
-      - DB_HOSTNAME=database
+      - DB_HOSTNAME=osekai_database
     volumes:
       - ./docker/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - ./docker/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
       - ./:/var/www/html:rw
     ports:
       - 8080:80
-  adminer:
+  osekai_adminer:
     image: adminer
     ports:
       - 3000:8080
