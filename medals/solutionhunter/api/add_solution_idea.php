@@ -5,6 +5,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 include_once(__DIR__ . '/../php/services.php');
 include_once(__DIR__ . '/../php/models.php');
 
+json_validator();
 api_controller_base_classes();
 
 class AddSolutionIdeaDto {
@@ -43,10 +44,13 @@ class AddSolutionIdeaController extends ApiController {
         $addSolutionIdeaDto = AddSolutionIdeaDto::fromJsonArray(JsonBodyReader::read());
         
         $result = Database::wrapInTransaction(function () use ($addSolutionIdeaDto) {
-            return SolutionTrackerService::addSolutionAttempt(
-                $_SESSION['osu']['id'],
-                $addSolutionIdeaDto->medalId,
-                new SolutionTrackerText($addSolutionIdeaDto->text));
+            return SolutionTrackerService::addSolutionIdea(
+                SolutionIdea::create(
+                    new SolutionTrackerText($addSolutionIdeaDto->text),
+                    $addSolutionIdeaDto->medalId,
+                    new Submitter(intval($_SESSION['osu']['id']))
+                )
+            );
         });
 
         return match ($result) {

@@ -5,6 +5,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 include_once(__DIR__ . '/../php/services.php');
 include_once(__DIR__ . '/../php/models.php');
 
+json_validator();
 api_controller_base_classes();
 
 class AddSolutionAttemptDto {
@@ -44,15 +45,18 @@ class AddSolutionAttemptController extends ApiController {
 
         $result = Database::wrapInTransaction(function () use ($addSolutionAttemptDto) {
             return SolutionTrackerService::addSolutionAttempt(
-                $_SESSION['osu']['id'],
-                $addSolutionAttemptDto->medalId,
-                new SolutionTrackerText($addSolutionAttemptDto->text));
+                SolutionAttempt::create(
+                    new SolutionTrackerText($addSolutionAttemptDto->text),
+                    $addSolutionAttemptDto->medalId,
+                    new Submitter(intval($_SESSION['osu']['id']))
+                )
+            );
         });
 
         return match ($result) {
-            AddSolutionAttempt::Success => new OkApiResult(),
-            AddSolutionAttempt::UserAlreadySubmittedSolutionAttempt => new BadRequestApiResult("User already submitted an attempt for this medal"),
-            AddSolutionAttempt::SolutionTrackerNotEnabledForMedal => new BadRequestApiResult("The solution tracker is not enabled for this medal"),
+            AddSolutionAttemptResult::Success => new OkApiResult(),
+            AddSolutionAttemptResult::UserAlreadySubmittedSolutionAttempt => new BadRequestApiResult("User already submitted an attempt for this medal"),
+            AddSolutionAttemptResult::SolutionTrackerNotEnabledForMedal => new BadRequestApiResult("The solution tracker is not enabled for this medal"),
         };      
     }
 }
