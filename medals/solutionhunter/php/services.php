@@ -31,7 +31,7 @@ final class SolutionTrackerService {
         if (!$solutionTrackerEnabledForMedal)
             return AddSolutionIdeaResult::SolutionTrackerNotEnabledForMedal;
 
-        Database::execOperation("INSERT INTO SolutionTracker (`MedalId`, `UserId`, `Text`, `Type`, `Status`) VALUES (?, ?, ?, 1, 1)",
+        Database::execOperation("INSERT INTO SolutionTracker (`MedalId`, `UserId`, `Text`, `Type`, `Status`) VALUES (?, ?, ?, 1, 0)",
             "iis",
             [$medalId, $submitterId, $text->asString()]);
 
@@ -55,7 +55,7 @@ final class SolutionTrackerService {
         if (!$solutionTrackerEnabledForMedal)
             return AddSolutionAttempt::SolutionTrackerNotEnabledForMedal;
 
-        Database::execOperation("INSERT INTO SolutionTracker (`MedalId`, `UserId`, `Text`, `Type`, `Status`) VALUES (?, ?, ?, 2, 0)",
+        Database::execOperation("INSERT INTO SolutionTracker (`MedalId`, `UserId`, `Text`, `Type`, `Status`) VALUES (?, ?, ?, 2, 1)",
             "iis",
             [$medalId, $submitterId, $text->asString()]);
 
