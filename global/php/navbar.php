@@ -117,6 +117,11 @@ addOtherApp("fas fa-layer-group", "/misc/groups", GetStringRaw("navbar", "otherA
     </div>
 </div>
 
+
+<div class="osekai__alerts-container-br" id="alerts_container_br">
+    
+</div>
+
 <div class="graceful__loading-overlay"></div>
 
 <style id="cardstyle">
