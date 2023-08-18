@@ -760,7 +760,7 @@ a {
     padding-bottom: 7px;
     font-weight: 900;
     font-size: 16px;
-    color:inherit !important;
+    color: inherit !important;
     text-decoration: none !important;
     border-radius: 5px;
     background-color: transparent;
@@ -4276,6 +4276,7 @@ input[type='range']:focus::-ms-fill-upper {
     margin-bottom: -16px;
 }
 
+
 .osekai__navbar-alert-close {
     margin-left: auto;
     background-color: #fff2;
@@ -4286,6 +4287,43 @@ input[type='range']:focus::-ms-fill-upper {
     border-radius: 90px;
     justify-content: center;
     transition: all 0.1s ease;
+}
+
+.osekai__alerts-container-br {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 100vw;
+    max-width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 92;
+}
+
+.osekai__alerts-container-br .osekai__navbar-alert-inner {
+    margin-left: 8px !important;
+}
+
+.osekai__alerts-container-br p {
+    font-size: 16px;
+    padding: 20px 0px;
+}
+
+.osekai__alerts-container-br i {
+    font-size: 18px;
+}
+
+@media (max-width: 900px) {
+    .osekai__navbar-alert-inner p {
+        font-size: 14px;
+        padding: 14px 0px;
+    }
+    .osekai__navbar-alert-inner i {
+        font-size: 16px;
+    }
 }
 
 .osekai__navbar-alert-close:hover {
@@ -4912,6 +4950,7 @@ input[type='range']:focus::-ms-fill-upper {
 .osekai__login-nag-small i {
     font-size: 30px;
 }
+
 .osekai__login-nag-small h3 {
     font-size: 18px;
 }
@@ -4996,7 +5035,8 @@ input[type='range']:focus::-ms-fill-upper {
     align-items: center;
     margin: 0px -6px;
     padding: 6px;
-    border-radius: 8px;;
+    border-radius: 8px;
+    ;
     gap: 8px;
 
 }
@@ -5012,11 +5052,13 @@ input[type='range']:focus::-ms-fill-upper {
 .osekai__navbar-search {
     transition: all 0.4s ease;
 }
+
 .osekai__navbar-search .fa-search {
     position: absolute;
     left: 3px;
     transition: all 0.3s ease;
 }
+
 .osekai__navbar-search input {
     transition: transform 0.5s ease, color 1.5s ease;
 }
@@ -5027,6 +5069,7 @@ input[type='range']:focus::-ms-fill-upper {
     margin-right: 10px;
     width: calc(358px - 300px);
 }
+
 .osekai__navbar-search-inactive input {
     transform: translateX(calc(328px - 300px));
     position: absolute;
@@ -5042,6 +5085,7 @@ input[type='range']:focus::-ms-fill-upper {
     mix-blend-mode: overlay;
     color: #fff0;
 }
+
 .osekai__navbar-search-inactive input:hover {
     background-color: #fff4;
     border: 1px solid #fff8;
@@ -5062,24 +5106,30 @@ input[type='range']:focus::-ms-fill-upper {
     .osekai__navbar-bottom {
         height: 50px;
     }
+
     .osekai__navbar-center {
         height: 55px;
     }
+
     .osekai__navbar__app-button {
         font-size: 14px;
         width: 32px;
         height: 32px;
     }
+
     .osekai__navbar-right img {
         height: 32px;
     }
-    .osekai__navbar-left, .osekai__navbar-right {
+
+    .osekai__navbar-left,
+    .osekai__navbar-right {
         width: 55px;
     }
+
     .osekai__navbar-center-left img {
         height: 32px;
-    } 
-    
+    }
+
     .osekai__navbar-breadcrumbs {
         font-size: 14px;
     }
@@ -5089,21 +5139,26 @@ input[type='range']:focus::-ms-fill-upper {
     .osekai__navbar-breadcrumb {
         display: none;
     }
+
     .osekai__navbar-breadcrumb:last-child {
         display: inherit;
     }
 }
+
 @media (max-width: 450px) {
     .osekai__navbar-center-left img {
         display: none;
     }
+
     .osekai__navbar-breadcrumbs {
         margin-left: 14px;
     }
+
     .osekai__navbar-button {
         padding: 6px;
         font-size: 17px;
     }
+
     .osekai__navbar-search-inactive .fa-search {
         transform: translateX(calc(345px - 300px)) translateY(-1px);
         font-size: 17px;
@@ -5112,7 +5167,7 @@ input[type='range']:focus::-ms-fill-upper {
     .osekai__navbar-search-inactive input {
         transform: translateX(calc(336px - 300px));
     }
-    
+
 }
 
 @media (max-width: 400px) {
@@ -5121,4 +5176,3 @@ input[type='range']:focus::-ms-fill-upper {
         display: none;
     }
 }
-

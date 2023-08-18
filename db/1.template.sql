@@ -148,11 +148,12 @@ CREATE TABLE `Alerts` (
   `Name` text NOT NULL,
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
-  `Permanent` int(11) NOT NULL,
+  `Permanent` int(1) NOT NULL,
   `Type` text NOT NULL,
   `Text` text NOT NULL,
   `Apps` text NOT NULL,
   `Link` text NOT NULL,
+  `Placement` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
