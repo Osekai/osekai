@@ -1,17 +1,20 @@
 <?php
 $locales = [
+    /* english */
     'en_GB' => [
         'name' => 'English (UK)',
         'code' => 'en_GB',
         'short' => 'en',
         'flag' => "https://assets.ppy.sh/old-flags/GB.png",
     ],
+    /* german */
     'de_DE' => [
         'name' => 'Deutsch',
         'code' => 'de_DE',
         'short' => 'de',
         'flag' => "https://assets.ppy.sh/old-flags/DE.png",
     ],
+    /* french */
     'fr_FR' => [
         'name' => 'Français',
         "wip" => false,
@@ -19,12 +22,14 @@ $locales = [
         'short' => 'fr',
         'flag' => "https://assets.ppy.sh/old-flags/FR.png",
     ],
+    /* portugese (brazil) */
     'pt_BR' => [
         'name' => 'Português (Brasil)',
         'code' => 'pt_BR',
         'short' => 'pt',
         'flag' => "https://assets.ppy.sh/old-flags/BR.png",
     ],
+    /* dutch */
     'nl_NL' => [
         'name' => 'Nederlands',
         "wip" => false,
@@ -32,18 +37,21 @@ $locales = [
         'short' => 'nl',
         'flag' => "https://assets.ppy.sh/old-flags/NL.png",
     ],
+    /* indonesian */
     "id_ID" => [
         "name" => "Indonesia",
         "code" => "id_ID",
         "short" => "id",
         "flag" => "https://assets.ppy.sh/old-flags/ID.png",
     ],
+    /* slovak */
     "sk_SK" => [
         "name" => "Slovenčina",
         "code" => "sk_SK",
         "short" => "sk",
         "flag" => "https://assets.ppy.sh/old-flags/SK.png",
     ],
+    /* debug */
     "db_DB" => [
         "name" => "Debug",
         "code" => "db_DB",
@@ -51,36 +59,42 @@ $locales = [
         "short" => "db",
         "flag" => "https://assets.ppy.sh/old-flags/XX.png",
     ],
+    /* croatian */
     "hr_HR" => [
         "name" => "Hrvatski",
         "code" => "hr_HR",
         "short" => "hr",
         "flag" => "https://assets.ppy.sh/old-flags/HR.png",
     ],
+    /* polish */
     "pl_PL" => [
         "name" => "Polski",
         "code" => "pl_PL",
         "short" => "pl",
         "flag" => "https://assets.ppy.sh/old-flags/PL.png",
     ],
+    /* finnish */
     "fi_FI" => [
         "name" => "Suomi",
         "code" => "fi_FI",
         "short" => "fi",
         "flag" => "https://assets.ppy.sh/old-flags/FI.png",
     ],
+    /* russian */
     'ru_RU' => [
         'name' => 'Русский',
         'code' => 'ru_RU',
         'short' => 'ru',
         'flag' => "https://assets.ppy.sh/old-flags/RU.png",
     ],
+    /* ukrainian */
     'uk_UA' => [
         'name' => 'Українська',
         'code' => 'uk_UA',
         'short' => 'uk',
         'flag' => "https://assets.ppy.sh/old-flags/UA.png",
     ],
+    /* korean */
     "ko_KR" => [
         "name" => "한국어",
         "wip" => true,
@@ -92,6 +106,7 @@ $locales = [
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">',
         "extra_css" => 'body { font-family: "Comfortaa", "Noto Sans KR", sans-serif !important; }',
     ],
+    /* japanese */
     "ja_JP" => [
         "name" => "日本語",
         "wip" => true,
@@ -126,7 +141,8 @@ $locales = [
     /* hebrew */
     "he_IL" => [
         "name" => "עברית",
-        "wip" => true, // until RTL finished
+        "wip" => true,
+        // until RTL finished
         "experimental" => false,
         "code" => "he_IL",
         "short" => "he",
@@ -194,6 +210,7 @@ $locales = [
         "short" => "es",
         "flag" => "https://assets.ppy.sh/old-flags/ES.png",
     ],
+    /* tagalog */
     "tl_PH" => [
         "name" => "Tagalog",
         "wip" => true,
@@ -208,6 +225,13 @@ $locales = [
         "short" => "bg",
         "flag" => "https://assets.ppy.sh/old-flags/BG.png"
     ],
+    /* hungarian */
+    "hu_HU" => [
+        "name" => "Magyar",
+        "code" => "hu_HU",
+        "short" => "hu",
+        "flag" => "https://assets.ppy.sh/old-flags/HU.png"
+    ],
     /* portugese */
     "pt_PT" => [
         "name" => "Português",
@@ -217,11 +241,19 @@ $locales = [
         "short" => "pt",
         "flag" => "https://assets.ppy.sh/old-flags/PT.png"
     ],
+    /* vietnamese */
     "vi_VN" => [
         "name" => "Tiếng Việt",
         "code" => "vi_VN",
         "short" => "vi",
         "flag" => "https://assets.ppy.sh/old-flags/VN.png"
+    ],
+    /* czech */
+    "cs_CZ" => [
+        "name" => "čeština",
+        "code" => "cs_CZ",
+        "short" => "cs",
+        "flag" => "https://assets.ppy.sh/old-flags/CS.png"
     ]
 
 ];
