@@ -621,9 +621,9 @@ var alertTypes = {
                         {text}
                     </p>
                 </div>
-                <div class="osekai__navbar-alert-close">
+                <object class="osekai__navbar-alert-close">
                     <i class="fas fa-times"></i>
-                </div>
+                </object>
             </div>
         </div>
         </a>`
@@ -638,9 +638,11 @@ var alertTypes = {
                         {text}
                     </p>
                 </div>
-                <div class="osekai__navbar-alert-close">
+                <object class="osekai__navbar-alert-close">
+                <a href="#">
                     <i class="fas fa-times"></i>
-                </div>
+                    </a>
+                </object>
             </div>
         </div></a>`
     }
@@ -663,6 +665,7 @@ function closeAlert(alert, el) {
 
 function getAlerts() {
     var container = document.getElementById("alerts_container");
+    var container2 = document.getElementById("alerts_container_br");
     container.classList.add("hidden");
     container.innerHTML = "";
 
@@ -698,8 +701,13 @@ function getAlerts() {
                 } else {
                     htmlObject.querySelector(".osekai__navbar-alert-close").remove();
                 }
-                container.appendChild(htmlObject);
-                container.classList.remove("hidden");
+                var _container = container;
+                if(alert['Placement'] == 1) {
+                    _container = container2;
+                }
+
+                _container.appendChild(htmlObject);
+                _container.classList.remove("hidden");
             }
         }
         positionNav();
