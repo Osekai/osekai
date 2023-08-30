@@ -25,7 +25,7 @@ class FavouriteMedalApiController extends ApiController
 
         $requestJson = JsonBodyReader::read();
         
-        if (!JsonValidator::validate_associative_array($requestJson, [
+        if (!JsonValidator::validateAssociativeArray($requestJson, [
             'medal_id' => (new JsonValidatorRule())->must_be_int()
         ])) {
             return new BadArgumentsApiResult(["message" => "Invalid medal_id"]);
@@ -47,7 +47,7 @@ class FavouriteMedalApiController extends ApiController
 
         $requestJson = JsonBodyReader::read();
         
-        if (!JsonValidator::validate_associative_array($requestJson, [
+        if (!JsonValidator::validateAssociativeArray($requestJson, [
             'medal_id' => (new JsonValidatorRule())->must_be_int()
         ])) {
             return new BadArgumentsApiResult(["message" => "Invalid medal_id"]);

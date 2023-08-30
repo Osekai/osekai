@@ -1,17 +1,17 @@
-<div class="teams__page">
-    <div class="teams__page-navigation">
-        <div class="teams__page-navigation-home">
+<div class="osekai__tab-page">
+    <div class="osekai__tab-page-navigation">
+        <div class="osekai__tab-page-navigation-home">
             <i class="fas fa-home"></i>
         </div>
-        <div class="teams__page-navigation-pages">
+        <div class="osekai__tab-page-navigation-pages">
             
             
         </div>
-        <div class="teams__page-navigation-menu">
+        <div class="osekai__tab-page-navigation-menu">
             <i class="fas fa-circle"></i>
         </div>
     </div>
-    <div id="teams_page" class="teams__page-content">
+    <div id="teams_page" class="osekai__tab-page-content">
         
     </div>
 </div>

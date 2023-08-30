@@ -58,7 +58,7 @@
 }
 
 .profiles__user-bar-pfp {
-    height: 40px;
+    height: 32px;
     border-radius: 900px;
     margin-right: 10px;
 }
@@ -1118,6 +1118,7 @@ input[type=number] {
 
 .profiles__user-bar-user {
     display: flex;
+    margin-left: 12px;
     align-items: center;
 }
 

@@ -58,10 +58,17 @@ class NotImplementedApiResult extends ApiResult {
 }
 
 class BadArgumentsApiResult extends ApiResult {
+    public function __construct(mixed $error = "Bad arguments") {
+        parent::__construct($error, 400);
+    }
+}
+
+class BadRequestApiResult extends ApiResult {
     public function __construct(mixed $error = "Bad request") {
         parent::__construct($error, 400);
     }
 }
+
 
 class ResourceNotFoundApiResult extends ApiResult {
     public function __construct(mixed $error = "Resource not found") {
