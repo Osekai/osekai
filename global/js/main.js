@@ -702,7 +702,7 @@ function getAlerts() {
                     htmlObject.querySelector(".osekai__navbar-alert-close").remove();
                 }
                 var _container = container;
-                if(alert['Placement'] == 1) {
+                if (alert['Placement'] == 1) {
                     _container = container2;
                 }
 
@@ -715,16 +715,44 @@ function getAlerts() {
 
 }
 
+function insertParam(key, value) {
+    if (!window.history.pushState) {
+        return;
+    }
+
+    if (!key) {
+        return;
+    }
+
+    var url = new URL(window.location.href);
+    var params = new window.URLSearchParams(window.location.search);
+    if (value === undefined || value === null) {
+        params.delete(key);
+    } else {
+        params.set(key, value);
+    }
+
+    url.search = params;
+    url = url.toString();
+    window.history.pushState({url: url}, null, url);
+
+}
+
+function getParam(key) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(key);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     getAlerts();
 
     var oTabContainers = document.querySelectorAll("[otab-container]");
     for (let oTabContainer of oTabContainers) {
-
+        // TODO: store open page in url
         let oTabs = oTabContainer.querySelectorAll("[otab-name]")
         var oTabButtons = oTabContainer.querySelectorAll("[otab-button]")
-        function switchTab(tabName) {
+        var last_tab = "";
+        function switchTab(tabName, push = true) {
             for (var tab of oTabs) {
                 if (tab.getAttribute("otab-name") == tabName) {
                     tab.classList.remove("osekai__otab-hidden");
@@ -744,6 +772,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     button.classList.remove("osekai__otab-button-active");
                 }
             }
+            if (last_tab != tabName && push == true) insertParam(oTabContainer.getAttribute("otab-container"), tabName)
+            last_tab = tabName;
         }
 
         for (let oTab of oTabs) {
@@ -753,12 +783,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         for (let oTabButton of oTabButtons) {
-            if (!oTabContainer.hasAttribute("otab-no-replace"))
-                oTabButton.innerHTML = oTabButton.getAttribute("otab-button");
+            oTabButton.innerHTML = oTabButton.getAttribute("otab-button");
             oTabButton.addEventListener("click", function () {
                 switchTab(oTabButton.getAttribute("otab-button"));
             });
         }
+
+        function loadFromUrl() {
+            if (getParam(oTabContainer.getAttribute("otab-container")) != null) {
+                switchTab(getParam(oTabContainer.getAttribute("otab-container")), false)
+            }
+        }
+        window.addEventListener("popstate", function () {
+            loadFromUrl();
+        })
+        loadFromUrl();
     }
 });
 
@@ -847,12 +886,12 @@ function checkPermission(permission) {
     const parts = permission.split(".");
 
 
-    for(var x = 0; x < userPermissions.length; x++) {
+    for (var x = 0; x < userPermissions.length; x++) {
         var split = userPermissions[x].split(".");
-        for(var y = 0; y < split.length; y++) {
-            if(split[y] == "*" && y <= parts.length-1) return true
-            if(split[y] != parts[y]) break;
-            if(split[y] == parts[y] && y == parts.length-1) return true
+        for (var y = 0; y < split.length; y++) {
+            if (split[y] == "*" && y <= parts.length - 1) return true
+            if (split[y] != parts[y]) break;
+            if (split[y] == parts[y] && y == parts.length - 1) return true
         }
     }
     return false;
