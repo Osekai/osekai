@@ -315,7 +315,7 @@ frontend();
                         </div>
                     </div>
                 </div>
-                <div class="osekai__tab-page-content-inner" otab-name="Home">
+                <div class="osekai__tab-page-content-inner" otab-name="Home" otab-default>
                     <div class="osekai__2col-panels">
                         <div class="osekai__2col_col1">
                             <section class="osekai__panel profiles__cover">
