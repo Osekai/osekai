@@ -726,7 +726,8 @@ function insertParam(key, value) {
 
     var url = new URL(window.location.href);
     var params = new window.URLSearchParams(window.location.search);
-    if (value === undefined || value === null) {
+    if (typeof value == 'undefined' || value === null) {
+
         params.delete(key);
     } else {
         params.set(key, value);
