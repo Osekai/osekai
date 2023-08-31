@@ -1,0 +1,42 @@
+.osekai__tab-page-content {
+    --sidebar-width: 300px;
+    position: relative;
+}
+
+
+.teams__page-sidebar {
+    width: var(--sidebar-width);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    /* ! temporary */
+    background-color: black; 
+    height: 70vh;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.teams__sidebar-hidden .teams__page-sidebar {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+.teams__page-inner {
+    display: flex;
+}
+
+.teams__sidebar-padding {
+    transition: width 0.3s ease;
+    width: calc(var(--sidebar-width) + 25px); /* padding */
+}
+
+
+.teams__sidebar-hidden .teams__sidebar-padding {
+    width: 0px;
+}
+
+.teams__page-inner {
+    width: 100%;
+}
+
+.teams__page-content {
+    flex: 1;
+}
