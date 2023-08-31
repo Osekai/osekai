@@ -5,6 +5,12 @@ include("../pages.php");
 if (isset($_REQUEST['page'])) {
     foreach ($pages as $ref_page) {
         if ($ref_page['name'] == $_REQUEST['page']) {
+            if (isset($_POST['team'])) {
+                $team = [
+                    "Tag" => "@osekai",
+                ];
+                // ! TODO ^ make it use api
+            }
             if (isset($_REQUEST['subpage'])) {
                 foreach ($ref_page['pages'] as $ref_page_inner) {
                     if($ref_page_inner['name'] == $_REQUEST['subpage']) {

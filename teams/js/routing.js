@@ -5,7 +5,7 @@ var cur_page_parent = null;
 var teams_page = document.getElementById("teams_page");
 
 function switchUrl(url) {
-    window.history.pushState('test', 'Test', url);
+    window.history.pushState('test', 'Test', "/teams/" + url);
     switchPage();
 }
 
@@ -20,11 +20,29 @@ window.onpopstate = function (event) {
     switchPage();
 }
 
+
+var teamname = "";
+var attributes = {};
+
+function setNavBar() {
+    var navbar = document.getElementById("pages");
+    navbar.innerHTML = "";
+    for(let page of cur_page_parent['pages']) {
+        let item = Object.assign(document.createElement("p"), {"className": "osekai__tab-page-navigation-item", "innerText": page.name});
+        navbar.appendChild(item);
+        item.addEventListener("click", function() { 
+            switchUrl(cur_url[0] + "/" + page.name)
+        });
+    }
+}
+
 function switchPage() {
+    attributes = {};
     teams_page.innerHTML = loader;
     updatePage();
-    console.log(cur_url);
 
+    console.log(cur_url);
+    console.log(teams_pages);
     if (typeof teams_pages[cur_url[0]] !== "undefined") {
         /* for(var page of teams_pages[cur_url[1]]['pages']) {
 
@@ -52,14 +70,47 @@ function switchPage() {
             if (found == false) cur_page = teams_pages[cur_url[0]]['pages'][0];
 
             cur_page_parent = teams_pages[cur_url[0]];
+
+            if (cur_page_parent['name'] == "team") return;
         } else {
             cur_page = teams_pages[cur_url[0]];
             cur_page_parent = null;
         }
+        setNavBar();
         loadPage();
     } else {
-        console.log("404");
-        teams_page.innerHTML = "404";
+        if (cur_url[0].startsWith("@")) {
+            console.log("is team");
+            teamname = cur_url[0];
+            attributes['team'] = cur_url[0];
+            cur_page_parent = teams_pages["team"];
+            var found_page = false;
+            console.log(cur_url[1]);
+            if (cur_url[1] == "" || typeof (cur_url[1]) == "undefined") {
+                cur_page = teams_pages["team"]["pages"][0];
+                found_page = true;
+            }
+            else {
+                for (var page of cur_page_parent['pages']) {
+                    if (page.name == cur_url[1]) {
+                        found_page = true;
+                        cur_page = page;
+                    }
+                }
+            }
+            //cur_page = teams_pages["team"]["pages"][0];
+            if (!found_page) {
+                console.log("404");
+                teams_page.innerHTML = "404";
+                return
+            }
+            setNavBar();
+            loadPage();
+            return;
+        } else {
+            console.log("404");
+            teams_page.innerHTML = "404";
+        }
     }
 }
 
@@ -72,6 +123,9 @@ function loadPage() {
         data.append('subpage', cur_page.name);
     } else {
         data.append('page', cur_page.name);
+    }
+    for (var attribute in attributes) {
+        data.append(attribute, attributes[attribute]);
     }
     xhr.onload = function () {
         // do something to response
