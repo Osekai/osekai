@@ -3,7 +3,7 @@
         <div class="osekai__tab-page-navigation-home">
             <i class="fas fa-home"></i>
         </div>
-        <div class="osekai__tab-page-navigation-pages">
+        <div class="osekai__tab-page-navigation-pages" id="pages">
             
             
         </div>
