@@ -41,6 +41,13 @@ addOtherApp("fas fa-layer-group", "/misc/groups", GetStringRaw("navbar", "otherA
         <div class="osekai__navbar-warning hidden" id="cantContactOsu">
             <?= GetStringRaw("navbar", "misc.cantContactOsu"); ?>
         </div>
+        <div class="osekai__navbar-warning osekai__noaccel hidden" id="noHardwareAccel">
+        <?= GetStringRaw("navbar", "misc.hardwareAccel.warning"); ?>
+        <span onclick="hardwareAccelLearnMore()"><?= GetStringRaw("navbar", "misc.hardwareAccel.learnMore"); ?></span>
+        </div>
+        <div class="osekai__navbar-warning osekai__noaccel hidden" id="hardwareAccelOn">
+        <?= GetStringRaw("navbar", "misc.hardwareAccel.fixed"); ?>
+        </div>
         <?php if (isRestricted()) { ?>
             <div class="osekai__navbar-restriction">
                 <div class="osekai__navbar-restriction-icon">
