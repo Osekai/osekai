@@ -1,4 +1,5 @@
 <?php
+$useJS = false;
 $app = "teams";
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 include("../pages.php");
@@ -13,7 +14,7 @@ if (isset($_REQUEST['page'])) {
             }
             if (isset($_REQUEST['subpage'])) {
                 foreach ($ref_page['pages'] as $ref_page_inner) {
-                    if($ref_page_inner['name'] == $_REQUEST['subpage']) {
+                    if ($ref_page_inner['name'] == $_REQUEST['subpage']) {
                         include("../views/" . $ref_page_inner['page']);
                     }
                 }

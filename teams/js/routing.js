@@ -114,6 +114,8 @@ function switchPage() {
     }
 }
 
+var teams_js = document.getElementById("teams_js");
+var teams_css = document.getElementById("teams_css");
 function loadPage() {
     var data = new FormData();
     var xhr = new XMLHttpRequest();
@@ -129,7 +131,16 @@ function loadPage() {
     }
     xhr.onload = function () {
         // do something to response
+        teams_css.innerHTML = "";
+        var stylesheet = document.createElement("link");
+        stylesheet.rel = "stylesheet";
+        stylesheet.href = "/teams/css/" + cur_page_parent.name + "/" + cur_page.name + ".css";
+        teams_css.appendChild(stylesheet);
         teams_page.innerHTML = xhr.responseText;
+        teams_js.innerHTML = "";
+        var script = document.createElement('script');
+        script.src = "/teams/js/" + cur_page_parent.name + "/" + cur_page.name + ".js";
+        teams_js.appendChild(script);
     };
     xhr.open('POST', '/teams/views/load_view.php', true);
     xhr.send(data);

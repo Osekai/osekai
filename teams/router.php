@@ -21,8 +21,10 @@ const teams_pages = <?= json_encode($pages); ?>;
 </head>
 
 <body>
+    <div id="teams_css"></div>
     <?php navbar(); ?>
     <?php include ("templates/tabbed_page.php"); ?>
+    <div id="teams_js"></div>
     <script type="text/javascript" src="/teams/js/routing.js?v=<?= OSEKAI_VERSION ?>"></script>
     <script type="text/javascript" src="/teams/js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
 </body>
