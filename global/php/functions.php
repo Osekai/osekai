@@ -227,7 +227,7 @@ if (isset($app)) {
         exit;
     }
     if ($app == "admin" && MODE == "production") {
-        if (checkPermission("apps.adminLegacy")) {
+        if (!checkPermission("apps.adminLegacy")) {
             navbar();
             include($_SERVER['DOCUMENT_ROOT'] . "/404/index.php");
             exit;

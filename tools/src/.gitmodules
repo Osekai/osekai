@@ -1,0 +1,9 @@
+[submodule "ppcalc"]
+	path = ppcalc
+	url = https://github.com/Osekai/tools-ppcalc
+[submodule "stdev-ppcalc"]
+	path = stdev-ppcalc
+	url = https://github.com/Osekai/tools-stdev_pp_calculator
+[submodule "medal-percentage-calc"]
+	path = medal-percentage-calc
+	url = https://github.com/Osekai/tools-medal-percentage
