@@ -42,5 +42,12 @@
     "otherApps.userGroups": "User Groups",
     "misc.cantContactOsu": "Osekai cannot contact osu!'s servers. This may be because osu! is down, or you could be connected to a private server. If you are connected to a private server, please disconnect from it.",
     "misc.restriction.title": "Your account on Osekai has been restricted.",
-    "misc.restriction.description": "To appeal this, please contact us on the <a href=\"https://discord.com/invite/8qpNTs6\">osu! Medal Hunters Discord server</a>"
+    "misc.restriction.description": "To appeal this, please contact us on the <a href=\"https://discord.com/invite/8qpNTs6\">osu! Medal Hunters Discord server</a>",
+    "misc.hardwareAccel.warning": "Your browser does not have hardware acceleration on. Osekai will likely run slower than usual. We've automatically enabled lightweight mode.",
+    "misc.hardwareAccel.learnMore": "Learn more.",
+    "misc.hardwareAccel.popup.title": "Your browser does not have hardware acceleration on.",
+    "misc.hardwareAccel.popup.subtitle": "This means Osekai will likely be laggy.",
+    "misc.hardwareAccel.popup.content": "Hardware acceleration means that your browser uses your computer's GPU to render the page, and at the moment, your browser seemingly has this disabled. Please check your browser settings to see if you can turn it on.<br><br>On Chromium-based browsers (Edge, Opera, Chrome, etc) this will likely be under the [System] tab. And in Firefox, it will be in the [Performance] section of the General tab.",
+    "misc.hardwareAccel.popup.hide": "Hide Warning",
+    "misc.hardwareAccel.fixed": "Your browser now has hardware acceleration on. We've reset your theme back to default. Refresh to hide this notification."
 }

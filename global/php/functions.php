@@ -11,6 +11,7 @@ $time_start = microtime(true);
 $request_time = $_SERVER['REQUEST_TIME_FLOAT'];
 $christmas = false;
 
+if(!isset($useJS))
 $useJS = true;
 
 // report errors. this is disabled later in the code somewhere, unsure where

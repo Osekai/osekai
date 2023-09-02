@@ -59,11 +59,6 @@ RedirectMatch 404 ^/tools/src/(.*)/index.php$
 
 # ! < TEAMS REWRITING > ! #
 
-RewriteBase /teams/
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule /teams/(.*) router.php [QSA,L]
-
 # ! </ TEAMS REWRITING > ! #
 
 
@@ -82,8 +77,14 @@ RewriteRule /teams/(.*) router.php [QSA,L]
     Header always set Access-Control-Allow-Origin "*"
 </FilesMatch>
 
-RewriteBase /
 
+
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L] 
+
+RewriteBase /teams/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ router.php [QSA,L]
