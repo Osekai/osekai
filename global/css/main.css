@@ -5261,3 +5261,17 @@ input[type='range']:focus::-ms-fill-upper {
 .osekai__tab-page-content-inner.osekai__otab-hidden .osekai__2col-panels {
     /* position: fixed !important; */
 }
+
+.osekai__noaccel {
+    display: flex;
+    align-items: center;
+    background-color: rgba(var(--accent), 1) !important;
+}
+
+.osekai__noaccel span {
+    margin-left: auto;
+    background-color: #fffc;
+    color: rgba(var(--accent), 1);
+    padding: 8px 12px;
+    border-radius: 4px;
+}
