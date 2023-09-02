@@ -84,7 +84,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L] 
 
-RewriteBase /teams/
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)$ router.php [QSA,L]
+
+# ! reason for comment: causes every url which should 404 to instead go to teams, breaks half the sites
+# (tldr do this in a .htaccess in the /teams/ folder instead)
+#RewriteBase /teams/
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.+)$ router.php [QSA,L]
