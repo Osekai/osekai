@@ -899,9 +899,9 @@ function checkPermission(permission) {
 }
 
 function hardwareAccelLearnMore() {
-    openDialog(GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.title"), 
-    GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.subtitle"), 
-    GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.content"), [
+    openDialog(GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.title"),
+        GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.subtitle"),
+        GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.content"), [
         {
             "text": GetStringRawNonAsync("general", "ok"),
             "callback": function () { },
@@ -957,15 +957,15 @@ console.log(renderer);
 //? sadly no way to detect firefox, so we'll just check chrome
 
 if (renderer.includes("SwiftShader")) {
-    if(localStorage.getItem("hideHardwareAccelWarning") == null) {
-    document.getElementById("noHardwareAccel").classList.remove("hidden");
-    if(localStorage.getItem("noaccelSwitched") == null) {
-        localStorage.setItem("noaccelSwitched", true);
-        setTheme("lightweight");
+    if (localStorage.getItem("hideHardwareAccelWarning") == null) {
+        document.getElementById("noHardwareAccel").classList.remove("hidden");
+        if (localStorage.getItem("noaccelSwitched") == null) {
+            localStorage.setItem("noaccelSwitched", true);
+            setTheme("lightweight");
+        }
     }
-}
 } else {
-    if(localStorage.getItem("noaccelSwitched") == "true") {
+    if (localStorage.getItem("noaccelSwitched") == "true") {
         localStorage.removeItem("noaccelSwitched");
         localStorage.removeItem("hideHardwareAccelWarning");
         setTheme("colourful");
