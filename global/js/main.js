@@ -319,9 +319,9 @@ window.openDialog = function (title, header, message, buttons = [], content = nu
     modal_overlay_panel.appendChild(modal_overlay_panel_top);
     modal_overlay_panel.appendChild(modal_overlay_panel_bottom);
 
-    var title = Object.assign(document.createElement("h1"), { innerText: title });
-    var sub = Object.assign(document.createElement("h3"), { innerText: header });
-    var message = Object.assign(document.createElement("p"), { innerText: message });
+    var title = Object.assign(document.createElement("h1"), { innerHTML: title });
+    var sub = Object.assign(document.createElement("h3"), { innerHTML: header });
+    var message = Object.assign(document.createElement("p"), { innerHTML: message });
 
     modal_overlay_panel_bottom.appendChild(title);
     modal_overlay_panel_bottom.appendChild(sub);
@@ -735,7 +735,7 @@ function insertParam(key, value) {
 
     url.search = params;
     url = url.toString();
-    window.history.pushState({url: url}, null, url);
+    window.history.pushState({ url: url }, null, url);
 
 }
 
@@ -896,4 +896,79 @@ function checkPermission(permission) {
         }
     }
     return false;
+}
+
+function hardwareAccelLearnMore() {
+    openDialog(GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.title"),
+        GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.subtitle"),
+        GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.content"), [
+        {
+            "text": GetStringRawNonAsync("general", "ok"),
+            "callback": function () { },
+            "highlighted": true,
+        },
+        {
+            "text": GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.hide"),
+            "callback": function () {
+                localStorage.setItem("hideHardwareAccelWarning", true);
+                document.getElementById("noHardwareAccel").classList.add("hidden");
+
+            },
+            "highlighted": false,
+        }
+    ]);
+}
+
+var canvas = document.createElement('canvas');
+var gl;
+var debugInfo;
+var vendor;
+var renderer;
+
+try {
+    gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+} catch (e) {
+}
+
+if (gl) {
+    debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+    vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+    renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+}
+
+console.log(debugInfo);
+console.log(vendor);
+console.log(renderer);
+
+// !chrome
+// no acccel:
+//  vendor: Google Inc. (Google)
+//  renderer: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)
+// accel:
+//  vendor: Google Inc. (NVIDIA Corporation)
+//  renderer: ANGLE (NVIDIA Corporation, NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2, OpenGL 4.5.0)
+//!firefox
+// no acccel:
+//  vendor: NVIDIA Corporation
+//  renderer: NVIDIA GeForce GTX 980/PCIe/SSE2
+// accel:
+//  vendor: NVIDIA Corporation
+//  renderer: NVIDIA GeForce GTX 980/PCIe/SSE2
+//? sadly no way to detect firefox, so we'll just check chrome
+
+if (renderer.includes("SwiftShader")) {
+    if (localStorage.getItem("hideHardwareAccelWarning") == null) {
+        document.getElementById("noHardwareAccel").classList.remove("hidden");
+        if (localStorage.getItem("noaccelSwitched") == null) {
+            localStorage.setItem("noaccelSwitched", true);
+            setTheme("lightweight");
+        }
+    }
+} else {
+    if (localStorage.getItem("noaccelSwitched") == "true") {
+        localStorage.removeItem("noaccelSwitched");
+        localStorage.removeItem("hideHardwareAccelWarning");
+        setTheme("colourful");
+        document.getElementById("hardwareAccelOn").classList.remove("hidden");
+    }
 }
