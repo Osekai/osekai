@@ -79,6 +79,7 @@ document.getElementById("filter__votes").addEventListener("click", function () {
 });
 
 let MedalsAchievedFilterArray = null;
+var filterAchievedEnabled = false;
 async function getMedalsFilterArray() {
     return new Promise((resolve) => {
         var xhr = new XMLHttpRequest();
@@ -94,6 +95,7 @@ async function getMedalsFilterArray() {
     });
 }
 async function filterAchieved(on, request) {
+    filterAchievedEnabled = on;
     if (MedalsAchievedFilterArray == null && on) {
         MedalsAchievedFilterArray = await getMedalsFilterArray();
     }
@@ -1219,6 +1221,8 @@ function canvasupdate() {
 }
 
 var original = "";
+
+var medalArray = [];
 function randomMedal() {
     document.getElementById("randommedal").classList.remove("medals__randommedal-finished");
     document.getElementById("randommedal").offsetHeight;
@@ -1228,13 +1232,37 @@ function randomMedal() {
     document.getElementById("randommedal_img_blur").src = "";
 
     document.getElementById("randommedal").classList.remove("medals__randommedal-hidden");
+
+    var userMedals = "";
+
+    medalArray = [];
+    for (let medal in colMedals) {
+        if (filterAchievedEnabled == true) {
+            let achieved = false;
+            console.log(colMedals[medal]);
+            for(let achieved of MedalsAchievedFilterArray) {
+                if(colMedals[medal].MedalID == achieved) {
+                    console.log("ACHIEVED :3");
+                    achieved = true;
+                }
+            }
+            if(achieved == false) {
+                medalArray.push(colMedals[medal]);
+            } else {
+                console.log(colMedals[medal].Name + " is achieved");
+            }
+        } else {
+            medalArray.push(colMedals[medal]);
+        }
+    }
+
     function selectRandom() {
-        var keys = Object.keys(colMedals);
-        return colMedals[keys[keys.length * Math.random() << 0]];
+        console.log(medalArray);
+        var keys = Object.keys(medalArray);
+        return medalArray[keys[keys.length * Math.random() << 0]];
     }
 
     function run(time, count) {
-        console.log(selectRandom());
         var medal = selectRandom();
         document.getElementById("randommedal_img").src = medal.Link;
         document.getElementById("randommedal_img_glow").src = medal.Link;

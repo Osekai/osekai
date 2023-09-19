@@ -381,12 +381,12 @@ foreach ($apps as $a) {
                 <i class="fab fa-twitter"></i>
             </div>
         </a>
-        <a rel="me" href="https://social.untone.uk/@osekai" class="osekai__apps-dropdown-bottomleft-extra">
+        <a rel="me" href="https://bsky.app/profile/osekai.net" class="osekai__apps-dropdown-bottomleft-extra">
             <p>
-                <?= GetStringRaw("navbar", "apps.mastodon"); ?>
+                <?= GetStringRaw("navbar", "apps.bluesky"); ?>
             </p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
-                <i class="fab fa-mastodon"></i>
+                <i class="fas fa-circle"></i>
             </div>
         </a>
         <a class="osekai__apps-dropdown-bottomleft-extra" href="https://discord.com/invite/8qpNTs6">
