@@ -1222,7 +1222,6 @@ function canvasupdate() {
 
 var original = "";
 
-var medalArray = [];
 function randomMedal() {
     document.getElementById("randommedal").classList.remove("medals__randommedal-finished");
     document.getElementById("randommedal").offsetHeight;
@@ -1235,18 +1234,16 @@ function randomMedal() {
 
     var userMedals = "";
 
-    medalArray = [];
+    var medalArray = [];
     for (let medal in colMedals) {
         if (filterAchievedEnabled == true) {
-            let achieved = false;
-            console.log(colMedals[medal]);
+            let isachieved = false;
             for(let achieved of MedalsAchievedFilterArray) {
                 if(colMedals[medal].MedalID == achieved) {
-                    console.log("ACHIEVED :3");
-                    achieved = true;
+                    isachieved = true;
                 }
             }
-            if(achieved == false) {
+            if(isachieved == false) {
                 medalArray.push(colMedals[medal]);
             } else {
                 console.log(colMedals[medal].Name + " is achieved");
