@@ -70,7 +70,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             </div>
         </div>
         <div class="home__panel-container">
-            <a class="home__long-panel home__panel-hoverable"
+           <!--  <a class="home__long-panel home__panel-hoverable"
                 style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/newmedals.png'); height: 200px; margin-bottom: 20px; margin-top: -10px; justify-content: center; align-items: center;"
                 href="https://discord.gg/8qpNTs6">
                 <img class="home__long-img" src="img/medalhunters-logo.png" style="transform: scale(1.3);">
@@ -80,6 +80,21 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </h1>
                     <p>
                         Join the hunt on the osu! Medal Hunters Discord server!
+                    </p>
+                </div>
+            </a> -->
+            <a class="home__long-panel home__panel-hoverable"
+                style="--paccent: 0, 0, 0; --paccent-bright: 255, 255, 255; background-image: url('img/bluesky.png');
+                margin-bottom: 20px;"
+                href="https://bsky.app/profile/osekai.net">
+                <div class="home__vertical-glowbar"></div>
+                <img class="home__long-img" src="img/bluesky-logo.png">
+                <div class="home__long-texts">
+                <h1>
+                        <?= GetStringRaw("home", "bsky"); ?>
+                    </h1>
+                    <p>
+                        <?= GetStringRaw("home", "bsky.main"); ?>
                     </p>
                 </div>
             </a>

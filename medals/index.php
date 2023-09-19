@@ -149,6 +149,7 @@ if (isset($_GET['medal'])) {
                                         <p class="osekai__checkbox-label">
                                             <?= GetStringRaw("medals", "searchbar.filters.unobtainedMedals"); ?>
                                         </p>
+                                        <small>This option applies to the randomization button.</small>
                                     </div>
                                 </div>
                             </div>
