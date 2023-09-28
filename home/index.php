@@ -43,8 +43,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
         <div class="home__cover" onload="positionNav();">
             <div class="home__cover-background">
-            <canvas id="gradient-canvas" data-transition-in></canvas>
-</div>
+                <canvas id="gradient-canvas" data-transition-in></canvas>
+            </div>
             <div class="home__cover-middle">
                 <div class="home__cover-middle-logo">
                     <!-- <img src="img/osekai.svg" class="home__logo"> -->
@@ -70,7 +70,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             </div>
         </div>
         <div class="home__panel-container">
-           <!--  <a class="home__long-panel home__panel-hoverable"
+            <!--  <a class="home__long-panel home__panel-hoverable"
                 style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/newmedals.png'); height: 200px; margin-bottom: 20px; margin-top: -10px; justify-content: center; align-items: center;"
                 href="https://discord.gg/8qpNTs6">
                 <img class="home__long-img" src="img/medalhunters-logo.png" style="transform: scale(1.3);">
@@ -83,21 +83,37 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </p>
                 </div>
             </a> -->
-            <a class="home__long-panel home__panel-hoverable"
-                style="--paccent: 0, 0, 0; --paccent-bright: 255, 255, 255; background-image: url('img/bluesky.png');
-                margin-bottom: 20px;"
-                href="https://bsky.app/profile/osekai.net">
-                <div class="home__vertical-glowbar"></div>
-                <img class="home__long-img" src="img/bluesky-logo.png">
-                <div class="home__long-texts">
-                <h1>
-                        <?= GetStringRaw("home", "bsky"); ?>
-                    </h1>
-                    <p>
-                        <?= GetStringRaw("home", "bsky.main"); ?>
-                    </p>
-                </div>
-            </a>
+
+            <div class="home__panel-row2" style="margin-bottom: 25px; margin-top: 0px; padding-top: 0px;">
+                <a class="home__long-panel home__panel-hoverable"
+                    style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/medalhunters-bg.png');"
+                    href="https://discord.gg/8qpNTs6">
+                    <div class="home__vertical-glowbar"></div>
+                    <img class="home__long-img" src="img/medalhunters-logo.png" style="transform: scale(1.3);">
+                    <div class="home__long-texts">
+                        <h1>
+                            <?= GetStringRaw("home", "discord.omh.title"); ?>
+                        </h1>
+                        <p>
+                            <?= GetStringRaw("home", "discord.omh.text"); ?>
+                        </p>
+                    </div>
+                </a>
+                <a class="home__long-panel home__panel-hoverable"
+                    style="--paccent: 0, 0, 0; --paccent-bright: 46, 170, 249; background-image: url('/global/img/discord.jpg');"
+                    href="https://discord.gg/Rj3AYEkJj4">
+                    <div class="home__vertical-glowbar"></div>
+                    <img class="home__long-img" src="/global/img/branding/vector/osekai_light.svg" >
+                    <div class="home__long-texts">
+                        <h1>
+                            <?= GetStringRaw("home", "discord.osekai.title"); ?>
+                        </h1>
+                        <p>
+                            <?= GetStringRaw("home", "discord.osekai.text"); ?>
+                        </p>
+                    </div>
+                </a>
+            </div>
             <a class="home__panel home__panel-hoverable" style="--paccent: 45, 59, 90; --paccent-bright: 102, 143, 255;"
                 href="/profiles">
                 <img class="home__panel-img" src="img/profiles.png">
@@ -117,20 +133,20 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </div>
             </a>
-            <a class="home__long-panel home__panel-hoverable"
-                style="--paccent: 0, 0, 0; --paccent-bright: 255, 255, 255; background-image: url('img/oss-bg.jpg');"
-                href="https://github.com/osekai/osekai">
+            <a class="home__long-panel home__panel-hoverable" style="--paccent: 0, 0, 0; --paccent-bright: 255, 255, 255; background-image: url('img/bluesky.png');
+                margin-bottom: 20px;" href="https://bsky.app/profile/osekai.net">
                 <div class="home__vertical-glowbar"></div>
-                <img class="home__long-img" src="img/oss-icon.svg">
+                <img class="home__long-img" src="img/bluesky-logo.png">
                 <div class="home__long-texts">
                     <h1>
-                        <?= GetStringRaw("home", "oss"); ?>
+                        <?= GetStringRaw("home", "bsky"); ?>
                     </h1>
                     <p>
-                        <?= GetStringRaw("home", "oss.main"); ?>
+                        <?= GetStringRaw("home", "bsky.main"); ?>
                     </p>
                 </div>
             </a>
+
             <div class="home__panel-row2">
                 <a class="home__panel home__panel-hoverable home__panel_vertical"
                     style="--paccent: 102, 34, 68; --paccent-bright: 255, 102, 170;" href="/medals">
@@ -160,19 +176,20 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                 </a>
             </div>
             <a class="home__long-panel home__panel-hoverable"
-                style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/medalhunters-bg.png');"
-                href="https://discord.gg/8qpNTs6">
+                style="--paccent: 0, 0, 0; --paccent-bright: 255, 255, 255; background-image: url('img/oss-bg.jpg');"
+                href="https://github.com/osekai/osekai">
                 <div class="home__vertical-glowbar"></div>
-                <img class="home__long-img" src="img/medalhunters-logo.png" style="transform: scale(1.3);">
+                <img class="home__long-img" src="img/oss-icon.svg">
                 <div class="home__long-texts">
                     <h1>
-                        <?= GetStringRaw("home", "discord.title"); ?>
+                        <?= GetStringRaw("home", "oss"); ?>
                     </h1>
                     <p>
-                        <?= GetStringRaw("home", "discord.text"); ?>
+                        <?= GetStringRaw("home", "oss.main"); ?>
                     </p>
                 </div>
             </a>
+            
             <div class="home__panel-row2">
                 <a class="home__panel home__panel-hoverable home__panel_vertical"
                     style="--paccent: 0, 66, 79; --paccent-bright: 0, 194, 224;" href="/rankings">

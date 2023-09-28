@@ -221,6 +221,12 @@ foreach ($apps as $a) {
                     <?= GetStringRaw("navbar", "apps.twitter"); ?>
                 </p>
             </a>
+            <a class="osekai__apps-dropdown-mobile-button" href="https://discord.gg/Rj3AYEkJj4">
+                <i class="fab fa-discord"></i>
+                <p>
+                    <?= GetStringRaw("navbar", "apps.discord.osekai"); ?>
+                </p>
+            </a>
             <a class="osekai__apps-dropdown-mobile-button" href="https://discord.com/invite/8qpNTs6">
                 <i class="fab fa-discord"></i>
                 <p>
@@ -389,17 +395,17 @@ foreach ($apps as $a) {
                 <i class="fas fa-circle"></i>
             </div>
         </a>
-        <a class="osekai__apps-dropdown-bottomleft-extra" href="https://discord.com/invite/8qpNTs6">
+        <a class="osekai__apps-dropdown-bottomleft-extra" href="https://discord.gg/Rj3AYEkJj4">
             <p>
-                <?= GetStringRaw("navbar", "apps.discord"); ?>
+                <?= GetStringRaw("navbar", "apps.discord.osekai"); ?>
             </p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fab fa-discord"></i>
             </div>
         </a>
-        <a class="osekai__apps-dropdown-bottomleft-extra" href="https://discord.gg/uZ9CsQBvqM">
+        <a class="osekai__apps-dropdown-bottomleft-extra" href="https://discord.com/invite/8qpNTs6">
             <p>
-                <?= GetStringRaw("navbar", "apps.developmentDiscord"); ?>
+                <?= GetStringRaw("navbar", "apps.discord"); ?>
             </p>
             <div class="osekai__apps-dropdown-bottomleft-extra-icon">
                 <i class="fab fa-discord"></i>
@@ -412,9 +418,7 @@ foreach ($apps as $a) {
             <a href="https://github.com/Osekai/osekai">
                 <?= GetStringRaw("navbar", "apps.github"); ?>
             </a>
-            <a href="https://github.com/Osekai/api-docs/wiki">
-                <?= GetStringRaw("navbar", "apps.apiDocumentation"); ?>
-            </a>
+            <a href="https://discord.gg/uZ9CsQBvqM"><?= GetStringRaw("navbar", "apps.developmentDiscord"); ?></a>
             <a href="<?= ROOT_URL; ?>legal/contact"><?= GetStringRaw("navbar", "apps.contact"); ?></a>
             <a href="<?= ROOT_URL; ?>legal/licences"><?= GetStringRaw("navbar", "apps.licences"); ?></a>
             <a href="<?= ROOT_URL; ?>legal/privacy"><?= GetStringRaw("navbar", "apps.privacy"); ?></a>
