@@ -188,7 +188,7 @@ $medalrank = $userinfo['user_achievements_total']['global_rank'];
 $svg = str_replace("[USN]", $username, $svg);
 $svg = str_replace("[PP]", $pp, $svg);
 $svg = str_replace("[RNK]", $rank, $svg);
-$svg = str_replace("[RMN]", $rarestmedal, $svg);
+$svg = str_replace("[RMN]", htmlentities($rarestmedal), $svg);
 
 if (!isset($_GET['no-angle'])) {
     $svg = str_replace("{GX1}", $x1, $svg);
