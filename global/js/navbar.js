@@ -464,9 +464,9 @@ async function initSettingsPages() {
             var section = settingUtils.genericSection();
             var snowflakesDefault = false;
             var snowflakesOption = "settings_global__snowflakes-nochristmas";
-            if (christmas) {
+            if (halloween) {
                 var snowflakesDefault = true;
-                var snowflakesOption = "settings_global__snowflakes";
+                var snowflakesOption = "settings_global__snowflakeshalloween";
             }
             settingUtils.linkedCheckbox(GetStringRawNonAsync("navbar", "settings.snowflakes"), snowflakesOption, section, snowflakesDefault, snowflakes);
             htmlInner.appendChild(section);
