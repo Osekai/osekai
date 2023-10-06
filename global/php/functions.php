@@ -293,6 +293,9 @@ function css()
     }
 
     // set the accent
+
+    $apps[$app]['color_dark'] = "60,20,10";
+    $apps[$app]['color'] = "180,60,10";
     if (isset($accent_override)) {
         $apps[$app]['color_dark'] = implode(",", $accent_override[1]);
         $apps[$app]['color'] = implode(",", $accent_override[0]);
@@ -301,6 +304,7 @@ function css()
     $colourDarkHsl = rgbToHsl($colourDark[0], $colourDark[1], $colourDark[2]);
     $colour = explode(",", $apps[$app]['color_dark']);
     $colourHsl = rgbToHsl($colour[0], $colour[1], $colour[2]);
+
     echo '<style>
     html {
         --accentdark: ' . $apps[$app]['color_dark'] . ';
