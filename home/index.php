@@ -77,7 +77,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             <img src="/home/img/coe.svg">
             <div>
                 <h1>We're coming to COE!</h1>
-                <P>Click here to learn more.</p>
+                <p>Click here to learn more.</p>
             </div>
 </a>
             <!--  <a class="home__long-panel home__panel-hoverable"
