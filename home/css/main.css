@@ -785,7 +785,7 @@ code {
     display: flex;
     align-items: center;
     text-align: right;
-    color: #394154;
+    color: #394154 !important;
     justify-content: space-between;
     border-radius: 16px;
     transition: all 0.4s ease;
