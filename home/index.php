@@ -69,7 +69,17 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                 <i class="fas fa-chevron-down"></i>
             </div>
         </div>
+
         <div class="home__panel-container">
+        <a class="home__oac" href="/coe">
+            <img class="glow" src="/home/img/coe.png">
+            <img class="backdrop" src="/home/img/coe.png">
+            <img src="/home/img/coe.svg">
+            <div>
+                <h1>We're coming to COE!</h1>
+                <p>Click here to learn more.</p>
+            </div>
+</a>
             <!--  <a class="home__long-panel home__panel-hoverable"
                 style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/newmedals.png'); height: 200px; margin-bottom: 20px; margin-top: -10px; justify-content: center; align-items: center;"
                 href="https://discord.gg/8qpNTs6">
@@ -103,7 +113,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     style="--paccent: 0, 0, 0; --paccent-bright: 46, 170, 249; background-image: url('/global/img/discord.jpg');"
                     href="https://discord.gg/Rj3AYEkJj4">
                     <div class="home__vertical-glowbar"></div>
-                    <img class="home__long-img" src="/global/img/branding/vector/osekai_light.svg" >
+                    <img class="home__long-img" src="/global/img/branding/vector/osekai_light.svg">
                     <div class="home__long-texts">
                         <h1>
                             <?= GetStringRaw("home", "discord.osekai.title"); ?>
@@ -189,7 +199,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </p>
                 </div>
             </a>
-            
+
             <div class="home__panel-row2">
                 <a class="home__panel home__panel-hoverable home__panel_vertical"
                     style="--paccent: 0, 66, 79; --paccent-bright: 0, 194, 224;" href="/rankings">
