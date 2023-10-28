@@ -78,7 +78,9 @@ addMember(
         social("https://twitter.com/MegaMix_Craft", "Twitter"),
         social("https://github.com/minusQuantumNeko/", "Github"),
         social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com"),
-        social("https://twitch.tv/megamix_craft", "Twitch")
+        social("https://bsky.app/profile/megamix.dev", "Bluesky"),
+        social("https://twitch.tv/megamix_craft", "Twitch"),
+        social("https://megamix.dev", "Website")
     ]
 );
 addMember(
@@ -183,7 +185,7 @@ addMember(
 addMember(
     1699875,
     "Remyria",
-    "Alumni",
+    "Alumni (Community Manager)",
     null,
     [
         social("https://www.youtube.com/@Remyria", "Youtube"),
