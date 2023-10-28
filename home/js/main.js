@@ -85,6 +85,7 @@ function LoadTeam() {
         "Speedrun.com": "fas fa-trophy",
         "osu! Profile": "oif-osu-logo",
         "Osekai Profiles": "oif-app-profiles",
+        "Bluesky": "fas fa-square",
     };
 
     var xhr = new XMLHttpRequest();

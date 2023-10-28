@@ -62,10 +62,9 @@ addMember(
     "??home.team.role.tanza??",
     "Hubz",
     [
-        social("https://twitter.com/Tanza3D", "Twitter"),
-        social("https://twitch.tv/tanza_live", "Twitch"),
-        social("https://www.hubza.co.uk/", "Website"),
-        social("https://social.untone.uk/@tanza", "Mastodon")
+        social("https://bsky.app/profile/tanza.me", "Bluesky"),
+        social("https://twitch.tv/tanza3d", "Twitch"),
+        social("https://tanza.me", "Website")
     ]
 );
 addMember(
@@ -79,8 +78,7 @@ addMember(
         social("https://twitter.com/MegaMix_Craft", "Twitter"),
         social("https://github.com/minusQuantumNeko/", "Github"),
         social("https://www.speedrun.com/user/MegaMix_Craft", "Speedrun.com"),
-        social("https://twitch.tv/megamix_craft", "Twitch"),
-        social("https://social.untone.uk/@MegaMix_Craft", "Mastodon")
+        social("https://twitch.tv/megamix_craft", "Twitch")
     ]
 );
 addMember(
@@ -115,11 +113,25 @@ addMember(
     ]
 );
 addMember(
-    14125695,
-    "TheEggo",
-    "??home.team.role.generic.snapshotsDeveloper??",
+    10238680,
+    "chromb",
+    "chromb",
+    "chromb",
+    [
+        social("https://www.youtube.com/channel/UCq37paEnfI4pmwE5j3rO5eg", "Youtube"),
+        social("https://twitch.tv/chr0mb", "Twitch")
+    ]
+);
+addMember(
+    12453848,
+    "Glassive",
+    "??home.team.role.generic.communityManager??",
     null,
-    []
+    [
+        social("https://www.youtube.com/channel/UCYCBrtnOc_aRISqUQRMRTzw", "Youtube"),
+        social("https://bsky.app/profile/glassive.bsky.social", "Bluesky"),
+        social("https://www.twitch.tv/glassive_", "Twitch")
+    ] 
 );
 addMember(
     2211396,
@@ -136,25 +148,11 @@ addMember(
     []
 );
 addMember(
-    10238680,
-    "chromb",
-    "??home.team.role.generic.communityManager??",
+    14125695,
+    "TheEggo",
+    "??home.team.role.generic.snapshotsDeveloper??",
     null,
-    [
-        social("https://www.youtube.com/channel/UCq37paEnfI4pmwE5j3rO5eg", "Youtube"),
-        social("https://twitch.tv/chr0mb", "Twitch")
-    ]
-);
-addMember(
-    1699875,
-    "Remyria",
-    "??home.team.role.generic.communityManager??",
-    null,
-    [
-        social("https://www.youtube.com/@Remyria", "Youtube"),
-        social("https://twitch.tv/remyria", "Twitch"),
-        social("https://www.speedrun.com/user/Remyria", "Speedrun.com")
-    ]
+    []
 );
 addMember(
     13175102,
@@ -167,11 +165,31 @@ addMember(
     ]
 );
 addMember(
+    14889628,
+    "Tomy",
+    "??home.team.role.generic.moderator??",
+    null,
+    [
+        social("https://github.com/TomyDoesThings", "Github"),
+    ]
+);
+addMember(
     16487835,
     "ILuvSkins",
     "??home.team.role.generic.snapshotsManager??",
     null,
     []
+);
+addMember(
+    1699875,
+    "Remyria",
+    "Alumni",
+    null,
+    [
+        social("https://www.youtube.com/@Remyria", "Youtube"),
+        social("https://twitch.tv/remyria", "Twitch"),
+        social("https://www.speedrun.com/user/Remyria", "Speedrun.com")
+    ]
 );
 
 cleanTeam();
