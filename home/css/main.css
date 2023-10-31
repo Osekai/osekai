@@ -690,13 +690,13 @@ code {
 
 .home__team-member-info-texts-badges {
     margin-left: 6px;
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .home__team-member-info-texts-badges object {
     margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 .home__team-member-socials-inner {

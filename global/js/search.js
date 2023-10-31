@@ -68,10 +68,10 @@ document.addEventListener("click", function (e) {
 
 var search_startDelay = null;
 
-// & the second the user even selects the input, the ui will be opened and set to a 
+// & the second the user even selects the input, the ui will be opened and set to a
 // & loading circle, so that will be managed here that will also allow the user to
 // & switch what app they're searching if wanted. close when unselected as well
-// & (can probably use some other existing code for that) 
+// & (can probably use some other existing code for that)
 
 
 function search_searchItem(data) {
@@ -104,6 +104,7 @@ function search_initOverlay() {
     let search_apps_el = Object.assign(document.createElement("div"), { "className": "osekai__navbar-search-overlay-apps" });
     for (let app of search_apps) {
         let el = Object.assign(document.createElement("i"), { "className": "tooltip-v2 " + app.icon });
+        el.setAttribute("tooltip-content", app.readable_name);
         if (app.name == search_cur_app) {
             el.classList.add("active")
         }
@@ -129,7 +130,7 @@ function search_closeOverlay() {
 }
 var loaderopened = false;
 function search_startSearch() {
-    // timeout here, since apparently search_input.value does not have the brain power to update fast enough for us 
+    // timeout here, since apparently search_input.value does not have the brain power to update fast enough for us
     setTimeout(function () {
         if (search_input.value != "") {
             console.log("searching with value " + search_input.value)
