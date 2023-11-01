@@ -447,9 +447,9 @@ function snowflakes(enabled) {
 // so that if you have never turned them on, during christmas they'll auto-turn on
 var snowflakesDefault = false;
 var snowflakesOption = "settings_global__snowflakes-nochristmas";
-if (halloween) {
+if (christmas) {
     var snowflakesDefault = true;
-    var snowflakesOption = "settings_global__snowflakeshalloween";
+    var snowflakesOption = "settings_global__snowflakes";
 }
 
 

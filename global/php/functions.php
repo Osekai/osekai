@@ -9,7 +9,7 @@ if (isset($app)) {
 
 $time_start = microtime(true);
 $request_time = $_SERVER['REQUEST_TIME_FLOAT'];
-$halloween = false;
+$christmas = false;
 
 if(!isset($useJS))
 $useJS = true;
@@ -117,7 +117,7 @@ $userGroups = null;
 function frontend()
 {
     global $useJS;
-    global $halloween;
+    global $christmas;
     global $apps;
     global $manual_frontend;
     global $app;
@@ -159,7 +159,7 @@ function frontend()
 
 ?>
         <script type="text/javascript">
-            const halloween = "<?= $halloween; ?>";
+            const christmas = "<?= $christmas; ?>";
             const nAppId = "<?= $apps[$app]['id']; ?>";
             const dCurrentApp = <?= json_encode($apps[$app]); ?>;
             const version = "<?= OSEKAI_VERSION ?>";
@@ -375,7 +375,7 @@ function navbar()
     global $server_root;
     global $actual_link;
     global $loginurl;
-    global $halloween;
+    global $christmas;
     global $otherApps; // what the fuck
 
     $_SESSION['redirect_url'] = true;
