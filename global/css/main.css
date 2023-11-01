@@ -4883,8 +4883,7 @@ input[type='range']:focus::-ms-fill-upper {
     animation-duration: 10s, 3s;
     animation-timing-function: linear, ease-in-out;
     animation-iteration-count: infinite, infinite;
-    animation-play-state: running, running;
-    filter: drop-shadow(0px 0px 5px #ff0);
+    animation-play-state: running, running
 }
 
 .osekai__otab-hidden {
