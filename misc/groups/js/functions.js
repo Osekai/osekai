@@ -76,8 +76,6 @@ window.addEventListener('popstate', function (event) {
 
 
 async function loadGroup(id, push = false) {
-    console.log("Loading group: " + id);
-
     var found = false;
 
     var html = "";
@@ -108,7 +106,6 @@ async function loadGroup(id, push = false) {
                     }
                 }
                 user['Groups'] = groupUtils.orderBadgeArray(user['Groups']);
-                console.log(user);
                 html += `
                 <a class="groups__userpanel nolink" style="--colour: ${user['Groups'][0]['Colour']}" href="https://osekai.net/profiles/?user=${user['UserId']}">
                     <img src="https://a.ppy.sh/${user['UserId']}" class="osekai__pfp-blur-bg">
