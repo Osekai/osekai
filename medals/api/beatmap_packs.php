@@ -4,16 +4,14 @@
 // ? do it all so i think it's reasonable lol
 // ? can implement caching at a later date
 
+require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
+
 $cache = Caching::getCache("beatmap_packs");
 
 if($cache != null) {
     echo $cache;
     exit;
 }
-
-
-
-require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
 error_reporting(E_ERROR);
 ini_set('display_errors', 1);
