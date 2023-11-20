@@ -160,7 +160,6 @@ theme = themes["colourful"];
 loadThemes();
 
 function setTheme(stheme) {
-    console.log("setting theme to " + stheme);
     if (typeof stheme == "string") {
         for (var i in themes) {
             if (themes[i].internal == stheme) {
@@ -184,8 +183,6 @@ var customTheme = {
 if (window.localStorage.getItem('accent_dark') != null) {
     customTheme.accent_dark = window.localStorage.getItem('accent_dark').split(",");
     customTheme.accent = window.localStorage.getItem('accent').split(",");
-    console.log(window.localStorage.getItem('accent_dark'));
-    console.log(customTheme.accent_dark);
 }
 
 var accentDark_picker = document.getElementById("custom_colpicker_accent-dark");
@@ -201,7 +198,6 @@ function generateCustomThemeVars(accent, accentDark, valueOffsetOffset = 0, valu
     var accent_split = String(accent).split(",");
     var accentDark_hsl = colours.RGBToHSL(accentDark_split[0], accentDark_split[1], accentDark_split[2]);
     var accent_hsl = colours.RGBToHSL(accent_split[0], accent_split[1], accent_split[2]);
-    console.log("$(*(*" + accentDark);
     return `--accentdark: ${accentDark} !important;
             --accent: ${accent} !important;
             
@@ -358,8 +354,6 @@ window.openDialog = function (title, header, message, buttons = [], content = nu
 
     modal_overlay.appendChild(modal_overlay_panel);
 
-    console.log("appending...?");
-
     document.body.appendChild(modal_overlay);
     setTimeout(function () {
         // need this so it plays the animation... UGHHHH
@@ -457,7 +451,6 @@ if (christmas) {
 
 function defaultSettings() {
     if (window.localStorage.getItem('theme') == null) {
-        console.log("defaulting theme");
         setTheme("colourful");
         window.localStorage.setItem('theme', "colourful");
     }
@@ -532,7 +525,6 @@ window.addEventListener('click', function (e) {
             colItems.classList.add("osekai__dropdown-hidden");
         });
     }
-    console.log(e.target.classList);
     if (e.target.closest(".osekai__group-dropdown-arrow") == null) {
         document.querySelectorAll(".osekai__group-dropdown").forEach((colItems) => {
             colItems.classList.add("osekai__group-dropdown-hidden");
@@ -649,7 +641,6 @@ var alertTypes = {
 }
 
 function closeAlert(alert, el) {
-    console.log("deleting " + alert['Id']);
     el.remove();
     positionNav();
 
@@ -677,7 +668,6 @@ function getAlerts() {
     let xhr = createXHR("/api/alerts.php?app=" + nAppId);
     xhr.send();
     xhr.onload = function () {
-        console.log(xhr.responseText);
         var oResponse = JSON.parse(xhr.responseText);
         for (var x = 0; x < oResponse.length; x++) {
             let alert = oResponse[x];
@@ -758,7 +748,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (tab.getAttribute("otab-name") == tabName) {
                     tab.classList.remove("osekai__otab-hidden");
                     if (tab.getAttribute("otab-callback")) {
-                        console.log(tab.getAttribute("otab-callback"));
                         window[tab.getAttribute("otab-callback")]();
                     }
                 } else {
@@ -778,8 +767,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (getParam(oTabContainer.getAttribute("otab-container")) == null) {
-            console.log(oTabContainer.getAttribute("otab-container") + " is not set in url")
-            console.log(getParam(oTabContainer.getAttribute("otab-container")));
             for (let oTab of oTabs) {
                 if (oTab.getAttribute("otab-default") == "") {
                     switchTab(oTab.getAttribute("otab-name"));
@@ -828,13 +815,11 @@ var groupUtils = {
         return array.sort((a, b) => a.Order - b.Order)
     },
     badgeHtmlFromArray: function (array, size = "small", limit = "none") {
-        console.log(array);
         var orderedList = [];
         for (var x = 0; x < array.length; x++) {
             orderedList.push(this.getGroupFromId(array[x]));
         }
         orderedList = this.orderBadgeArray(orderedList);
-        console.log(orderedList);
         var finalHtml = "";
         let hiddenGroups = []
         let createExtraDropdown = false;
@@ -941,10 +926,6 @@ if (gl) {
     vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
     renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
 }
-
-console.log(debugInfo);
-console.log(vendor);
-console.log(renderer);
 
 // !chrome
 // no acccel:

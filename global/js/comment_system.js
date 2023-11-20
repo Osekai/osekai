@@ -99,7 +99,6 @@ async function Comments_Require(MedalID, oParent, bReload = false, VersionId = -
 };
 
 function Comments_HierarchySort(hashArr, key, result, MedalID) {
-    console.log("Resorting with " + COMMENTS_mode);
     if (hashArr[key] == undefined) return;
     var arr = hashArr[key].sort((a, b) => {
         if (a.Pinned == 1) return -1;
@@ -109,7 +108,6 @@ function Comments_HierarchySort(hashArr, key, result, MedalID) {
             if (parseInt(a.VoteSum ?? 0) < parseInt(b.VoteSum ?? 0)) return 1;
             return a.PostDate < b.PostDate ? 1 : -1;
         } else if (COMMENTS_mode == 2) {
-            console.log("a");
             return a.PostDate < b.PostDate ? 1 : -1;
         }
     });

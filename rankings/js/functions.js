@@ -290,7 +290,6 @@ function dbhandler(app) {
             }
             document.querySelectorAll(".osekai__replace__loader").forEach(oLoader => oLoader.remove());
         });
-        console.log(this.app);
         this.creator.addCountryImgEventListeners();
         set_breadcrums("{app}/" + this.app.parent.name + "/" + this.app.name);
     }
@@ -526,7 +525,6 @@ function elementCreator(dbhandler) {
     }
     this.CreateTotalAcc = function (oEntry, oRanking) {
         if (!oEntry.hasOwnProperty("tacc")) this.dbhandler.Fail();
-        console.log(oEntry);
         let oWrapper = this.CreateDefaultWrapper(oRanking.parentNode.parentNode.parentNode.id == "mobile");
 
         if (oRanking.parentNode.parentNode.parentNode.id == "mobile") {
@@ -676,7 +674,6 @@ function elementCreator(dbhandler) {
     this.CreateKudosu = function (oEntry, oRanking) {
         if (!oEntry.hasOwnProperty("kudosu")) this.dbhandler.Fail();
         let oWrapper = this.CreateDefaultWrapper(oRanking.parentNode.parentNode.parentNode.id == "mobile");
-        console.log(oEntry);
 
         if (oRanking.parentNode.parentNode.parentNode.id == "mobile") {
             let oTopBar = this.createMobileTopBar(oEntry, this.createMobileCount(oEntry.kudosu, GetStringRawNonAsync(APP_SHORT, "bar.mappers.kudosu.kudosu")), false);
@@ -1345,7 +1342,7 @@ function LoadCurrentState() {
     xhr.onload = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var oResponse = JSON.parse(xhr.responseText);
-            console.log(oResponse);
+            
             document.getElementById("currenttask_name").innerHTML = oResponse['CurrentLoop'];   
             var percentage = Math.round((oResponse['CurrentCount'] / oResponse['TotalCount'] * 100)*100) / 100;
             if(lastSeconds != oResponse['EtaSeconds']) {
@@ -1394,7 +1391,6 @@ function LoadStateHistory() {
     xhr.onload = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var oResponse = JSON.parse(xhr.responseText);
-            console.log(oResponse);
             var html = ``;
             for(var x = 0; x < oResponse.length; x++) {
                 html += `<div class="rankings__task rankings__task-finished">

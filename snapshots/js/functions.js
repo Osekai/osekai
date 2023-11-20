@@ -68,16 +68,12 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
             active[i].classList.remove("snapshots__list-version-active");
         }
 
-        console.log("finding button for " + vername);
-
-
         var truever = null;
         // go through all versions and see if their id is the same
         var versionButtons = document.getElementsByClassName("snapshots__list-version");
         for (var i = 0; i < versionButtons.length; i++) {
             if (versionButtons[i].classList.contains("ver_id_" + vername)) {
                 versionButtons[i].classList.add("snapshots__list-version-active");
-                console.log("found it");
                 truever = versionButtons[i];
             }
         }
@@ -95,7 +91,6 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
 
     var thisver;
 
-    console.log(data);
     data.forEach(function (version, index) {
         if (version["version_info"]["id"] == vername) {
             thisver = version;
@@ -137,20 +132,16 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     if (thisver["archive_info"]["description"] == null || thisver["archive_info"]["description"] == "") {
         document.getElementById("descriptionInner").classList.add("hidden");
     } else {
-        console.log(thisver["archive_info"]["description"]);
         document.getElementById("descriptionInner").classList.remove("hidden");
     }
     // downloads
     document.getElementById("downloads_list").innerHTML = "";
 
     var downloads = thisver["downloads"];
-    console.log(downloads);
-
 
 
     for (var key in downloads) {
         var downloadlink;
-        console.log(downloads[key]["name"]);
         if (downloads[key]["name"] == "Osekai Servers") {
             downloadlink = "versions/" + thisver["version_info"]["version"] + "/" + downloads[key]["link"]
 
@@ -172,7 +163,6 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
 
     Object.keys(downloads).forEach(function (key, index) {
         var downloadlink;
-        console.log(downloads[key]["name"]);
         if (downloads[key]["name"] != "Osekai Servers") {
             downloadlink = downloads[key]["link"];
 
@@ -284,7 +274,7 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/update_counter', true);
     xhr.onload = function () {
-        console.log(this.responseText);
+        
     };
     xhr.send(form);
 
@@ -302,7 +292,7 @@ function deleteDownloadMirror(from, name) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/admin_deletemirror', true);
     xhr.onload = function () {
-        console.log(this.responseText);
+        
     };
     xhr.send(form);
     from.closest(".snapshots__download-outer").remove();
@@ -318,7 +308,7 @@ function addDownloadMirror(name, link) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/admin_addmirror', true);
     xhr.onload = function () {
-        console.log(this.responseText);
+        
     };
     xhr.send(form);
 }
@@ -344,7 +334,7 @@ function adminDeleteScreenshot(id, index, obje) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/admin_deletescreenshot', true);
     xhr.onload = function () {
-        console.log(this.responseText);
+        
     };
     xhr.send(form);
     document.getElementById("screenshot_" + index).remove();
@@ -361,14 +351,13 @@ function download(url) {
 
 function downloadVer(id, downloadlink) {
     download(downloadlink);
-    console.log(downloadlink);
     var form = new FormData();
     form.append('verID', id);
     form.append('type', "download");
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/snapshots/api/update_counter', true);
     xhr.onload = function () {
-        console.log(this.responseText);
+        
     };
     xhr.send(form);
 }
@@ -623,7 +612,7 @@ function refreshSubmissions() {
         var sublist = document.getElementById("submission_list");
         sublist.innerHTML = "";
         var oResponse = getResponse(xhr);
-        console.log(oResponse);
+        
         if (handleUndefined(oResponse)) return;
         submissions = oResponse;
         oResponse.forEach(function (item, index) {
@@ -669,7 +658,7 @@ function switchWIP(index) {
         xhr.send("id=" + submissions[index]['id'] + "&processing=0");
         xhr.onreadystatechange = function () {
             var oResponse = getResponse(xhr);
-            console.log(oResponse);
+            
             if (handleUndefined(oResponse)) return;
         };
     }
@@ -680,7 +669,7 @@ function switchWIP(index) {
         xhr.send("id=" + submissions[index]['id'] + "&processing=1");
         xhr.onreadystatechange = function () {
             var oResponse = getResponse(xhr);
-            console.log(oResponse);
+            
             if (handleUndefined(oResponse)) return;
         };
     }
