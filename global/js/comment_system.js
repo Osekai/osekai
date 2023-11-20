@@ -9,7 +9,8 @@ var COMMENTS_col_hash = [];
 var COMMENTS_boxes = [];
 var COMMENTS_mode = 1;
 var COMMENTS_type = 1;
-
+var OPARENT = null;
+var MEDALID = null;
 window.addEventListener('click', function (e) {
     if (!document.getElementById('filter__button').contains(e.target)) document.getElementById("filter__list").classList.add("osekai__dropdown-hidden");
 });
@@ -22,6 +23,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
     <i class="fas fa-chevron-down" aria-hidden="true"></i>
 </div>`;
     }
+
+    document.getElementById("filter__votes").addEventListener("click", function() {
+        COMMENTS_mode = 1;
+        Comments_Sort(OPARENT, MEDALID);
+        Comments_Out(OPARENT, MEDALID);
+    })
+    document.getElementById("filter__date").addEventListener("click", function() {
+        COMMENTS_mode = 2;
+        Comments_Sort(OPARENT, MEDALID);
+        Comments_Out(OPARENT, MEDALID);
+    })
 });
 
 async function Comments_Require(MedalID, oParent, bReload = false, VersionId = -1, ProfileId = -1) {
@@ -43,9 +55,7 @@ async function Comments_Require(MedalID, oParent, bReload = false, VersionId = -
     COMMENTS_boxes[MedalID] = [];
     oParent.innerHTML = loader;
 
-    console.log("[Locale] loading comments locale");
     await loadSource("comments");
-    console.log("[Locale] loaded comments locale");
 
     var xhr = createXHR(API_URL_COMMENTS);
     if (VersionId !== -1) {
@@ -53,7 +63,6 @@ async function Comments_Require(MedalID, oParent, bReload = false, VersionId = -
     } else if (ProfileId !== -1) {
         xhr.send(REQUIRED_KEY_COMMENTS + "&nProfileId=" + ProfileId);
     } else {
-        console.log(MedalID);
         xhr.send(REQUIRED_KEY_COMMENTS + "&strMedalID=" + MedalID);
     }
     xhr.onreadystatechange = function () {
@@ -62,10 +71,11 @@ async function Comments_Require(MedalID, oParent, bReload = false, VersionId = -
             oParent.innerHTML = "";
             return;
         }
-        console.log(oResponse);
         Object.keys(oResponse).forEach(function (obj) {
             if (oResponse[obj] !== null && oResponse[obj].MedalID == MedalID) COMMENTS_col_medals[MedalID].push(oResponse[obj]);
         });
+        MEDALID = MedalID;
+        OPARENT = oParent;
         Comments_Sort(oParent, MedalID);
         tippy("[data-tippy-content-comment-date]", {
             content: function (reference) {
@@ -113,7 +123,6 @@ function Comments_Sort(oParent, MedalID, VersionId = -1, ProfileID = -1) {
     if (ProfileID !== -1) MedalID = ProfileID;
     if (VersionId !== -1) MedalID = VersionId;
     if (COMMENTS_col_medals[MedalID] == undefined) return;
-    console.log(MedalID);
     COMMENTS_boxes[MedalID] = [];
     COMMENTS_col_hash = [];
 
@@ -129,7 +138,6 @@ function Comments_Sort(oParent, MedalID, VersionId = -1, ProfileID = -1) {
 }
 
 function generateComment(commentdata) {
-    console.log(commentdata);
     var comment = Object.assign(document.createElement("div"), { className: "comments__comment" });
     if (commentdata.Pinned) {
         comment.classList.add("comments__comment-pinned");
@@ -146,7 +154,6 @@ function generateComment(commentdata) {
             comment_left_votes.classList.add("comments__comment-votes-voted");
         }
         comment_left_votes.addEventListener("click", function () {
-            console.log("clicked :D");
             voteComment(commentdata.ID, comment_left_votes);
         })
     }
@@ -257,7 +264,6 @@ function generateComment(commentdata) {
         }
     }
     comment_right_infobar_right.appendChild(createInfobarButton("fas fa-ellipsis-h", "small", function () {
-        console.log("opening dropdown");
         eldropdown.classList.remove("osekai__dropdown-hidden");
     }));
     comment_right_infobar_right.appendChild(eldropdown);
@@ -401,7 +407,6 @@ function openReply(strCommentId, element) {
 function replySend() {
     Comments_CloseEmojiPopup();
     let oReplyBox = document.getElementById("oReplyBox");
-    console.log(oReplyBox.previousSibling.outerHTML);
     newReply(document.getElementById("reply__input").value, oReplyBox.previousSibling.getAttribute("CommentID"), oReplyBox.previousSibling.getAttribute("CommentCreator"));
     document.getElementById("reply__input").value = "";
 }
@@ -479,6 +484,7 @@ function RequireComments() {
 }
 
 function Comments_Out(oParent, MedalID) {
+    oParent.innerHTML = "";
     COMMENTS_boxes[MedalID].forEach((oBox) => {
         oParent.appendChild(oBox);
     });

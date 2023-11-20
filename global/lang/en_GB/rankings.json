@@ -57,6 +57,7 @@
     "bar.mappers.loved.lovedMaps": "loved maps",
     "bar.mappers.subscribers.subscribers": "subscribers",
     "bar.badges.badges.badges": "badges",
+    "bar.mappers.kudosu.kudosu": "kudosu",
     "pagination.previous": "prev",
     "pagination.next": "next",
     "search.username": "Username",
@@ -73,5 +74,6 @@
     "tasks.task.updating": "Running Update",
     "tasks.type.default": "Default",
     "tasks.type.full": "Full",
+    "tasks.type.medals": "Medal Recheck",
     "tasks.task.usersProcessed": "$1 users processed"
 }

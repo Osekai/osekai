@@ -115,6 +115,7 @@ function search_initOverlay() {
                 _appel.classList.remove("active");
             }
             el.classList.add("active")
+            search_startSearch();
         })
     }
     search_inner = Object.assign(document.createElement("div"), { "className": "osekai__navbar-search-overlay-inner" });
@@ -133,7 +134,6 @@ function search_startSearch() {
     // timeout here, since apparently search_input.value does not have the brain power to update fast enough for us
     setTimeout(function () {
         if (search_input.value != "") {
-            console.log("searching with value " + search_input.value)
             if (loaderopened == false) {
                 loaderopened = true;
                 search_inner.innerHTML = loader;
@@ -151,7 +151,6 @@ function search_startSearch() {
 }
 
 function search_doSearch() {
-    console.log("attempting search!");
     loaderopened = false;
     var search_query = search_input.value;
     var data = new FormData();
@@ -162,7 +161,6 @@ function search_doSearch() {
     xhr.open("POST", "/global/api/search.php", true);
     xhr.onload = function () {
         var response = JSON.parse(xhr.response);
-        console.log(response);
         search_inner.innerHTML = "";
         search_inner.appendChild(search_searchResult(response));
     }

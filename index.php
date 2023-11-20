@@ -314,7 +314,6 @@ medal_popup_v2();
     picker1.on('change', function (r, g, b, a) {
         picker1_col = [r, g, b];
         picker.getElementsByTagName("input")[0].value = rgbToHex(r, g, b);
-        console.log(rgbToHex(r, g, b));
         picker.style.background = rgbToHex(r, g, b);
     });
 </script>

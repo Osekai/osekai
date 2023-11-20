@@ -36,18 +36,12 @@ function newColourBar(id, changeCallback, col1 = null, col2 = null) {
     function updateUI(changeInputs = false) {
         var gradient_1_col_hex = rgbToHex(gradient_1_col[0], gradient_1_col[1], gradient_1_col[2]);
         var gradient_2_col_hex = rgbToHex(gradient_2_col[0], gradient_2_col[1], gradient_2_col[2]);
-        console.log(gradient_1_col_hex);
-        console.log(gradient_2_col_hex);
         bar_left.style.background = gradient_1_col_hex;
         bar_right.style.background = gradient_2_col_hex;
         if(changeInputs)
         {
             bar_left_input.value = gradient_1_col_hex;
             bar_right_input.value = gradient_2_col_hex;
-            //picker1.enter();
-            //picker1.exit();
-            //picker2.enter();
-            //picker2.exit();
         }
         bar_bar.style.background = "linear-gradient(to right, " + gradient_1_col_hex + ", " + gradient_2_col_hex + ")";
     }
@@ -134,7 +128,6 @@ function newColourPicker(id, changeCallback, col1 = null) {
 
     function updateUI(changeInputs = false) {
         var col_hex = rgbToHex(col[0], col[1], col[2]);
-        console.log(col_hex);
         element.style.background = col_hex;
         if(changeInputs)
         {
@@ -167,7 +160,6 @@ function newColourPicker(id, changeCallback, col1 = null) {
             return;
         }
         col = [r, g, b];
-        console.log("CP updating with colour " + col);
         this.source.value = rgbToHex(r, g, b);
         updateUI();
         dirty = true;
@@ -180,7 +172,6 @@ function newColourPicker(id, changeCallback, col1 = null) {
     input.addEventListener("change", function () {
         var hex = this.value;
         var rgb = hexToRgb(hex);
-        console.log("CP input changing with colour " + rgb);
         if (rgb) {
             col = [rgb.r, rgb.g, rgb.b];
             picker1.exit();
@@ -194,7 +185,6 @@ function newColourPicker(id, changeCallback, col1 = null) {
 
 
     if (col1 != null) {
-        console.log("loading CP with default of " + col1);
         col = col1;
         input.value = rgbToHex(col[0], col[1], col[2]);
         updateUI();

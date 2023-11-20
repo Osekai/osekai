@@ -36,14 +36,28 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
     <!-- it refuses to position!!!! -->
     <?php navbar(); ?>
 
+
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" fill="none" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28">
+            <defs>
+
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="none" stroke-width="0.1px" stroke="#fff2" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="none" stroke-width="0.1px" stroke="#fff2" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="none" stroke-width="0.1px" stroke="#fff2" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="none" stroke-width="0.1px" stroke="#fff2" />
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="none" stroke-width="0.1px" stroke="#fff2" />
+            </g>
+        </svg>
     <div class="osekai__panel-container nopadding home__loader-wait" id="home">
         <!-- <div class="home__warning-bar">
             This is an experimental new style for the Osekai Homepage. What you're seeing is <del>very early in development.</del> almost done!
         </div> -->
-
         <div class="home__cover" onload="positionNav();">
             <div class="home__cover-background">
-                <canvas id="gradient-canvas" data-transition-in></canvas>
+                <img src="/home/img/new-bg.jpg">
             </div>
             <div class="home__cover-middle">
                 <div class="home__cover-middle-logo">
@@ -71,15 +85,15 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
         </div>
 
         <div class="home__panel-container">
-        <a class="home__oac" href="/coe">
-            <img class="glow" src="/home/img/coe.png">
-            <img class="backdrop" src="/home/img/coe.png">
-            <img src="/home/img/coe.svg">
-            <div>
-                <h1>We're coming to COE!</h1>
-                <p>Click here to learn more.</p>
-            </div>
-</a>
+            <a class="home__oac" href="/coe">
+                <img class="glow" src="/home/img/coe.png">
+                <img class="backdrop" src="/home/img/coe.png">
+                <img src="/home/img/coe.svg">
+                <div>
+                    <h1>We're coming to COE!</h1>
+                    <p>Click here to learn more.</p>
+                </div>
+            </a>
             <!--  <a class="home__long-panel home__panel-hoverable"
                 style="--paccent: 0, 0, 0; --paccent-bright: 167, 218, 245; background-image: url('img/newmedals.png'); height: 200px; margin-bottom: 20px; margin-top: -10px; justify-content: center; align-items: center;"
                 href="https://discord.gg/8qpNTs6">
