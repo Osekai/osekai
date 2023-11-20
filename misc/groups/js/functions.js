@@ -75,7 +75,7 @@ window.addEventListener('popstate', function (event) {
 });
 
 
-async function loadGroup(id, push = false) {;
+async function loadGroup(id, push = false) {
     var found = false;
 
     var html = "";
