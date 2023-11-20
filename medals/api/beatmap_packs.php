@@ -4,6 +4,14 @@
 // ? do it all so i think it's reasonable lol
 // ? can implement caching at a later date
 
+$cache = Caching::getCache("beatmap_packs");
+
+if($cache != null) {
+    echo $cache;
+    exit;
+}
+
+
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
@@ -71,3 +79,5 @@ usort($packs,function($first,$second){
 } */
 
 echo json_encode($packs);
+
+Caching::saveCache("beatmap_packs", "3000", json_encode($packs));

@@ -777,14 +777,18 @@ document.addEventListener("DOMContentLoaded", function () {
             last_tab = tabName;
         }
 
-        for (let oTab of oTabs) {
-            if (oTab.getAttribute("otab-default") == "") {
-                switchTab(oTab.getAttribute("otab-name"));
+        if (getParam(oTabContainer.getAttribute("otab-container")) == null) {
+            console.log(oTabContainer.getAttribute("otab-container") + " is not set in url")
+            console.log(getParam(oTabContainer.getAttribute("otab-container")));
+            for (let oTab of oTabs) {
+                if (oTab.getAttribute("otab-default") == "") {
+                    switchTab(oTab.getAttribute("otab-name"));
+                }
             }
         }
 
         for (let oTabButton of oTabButtons) {
-            if(oTabContainer.getAttribute("otab-no-replace") == null) {
+            if (oTabContainer.getAttribute("otab-no-replace") == null) {
                 oTabButton.innerHTML = oTabButton.getAttribute("otab-button");
             }
             oTabButton.addEventListener("click", function () {

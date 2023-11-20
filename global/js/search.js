@@ -115,6 +115,7 @@ function search_initOverlay() {
                 _appel.classList.remove("active");
             }
             el.classList.add("active")
+            search_startSearch();
         })
     }
     search_inner = Object.assign(document.createElement("div"), { "className": "osekai__navbar-search-overlay-inner" });
