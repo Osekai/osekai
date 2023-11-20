@@ -253,7 +253,7 @@ $locales = [
         "name" => "čeština",
         "code" => "cs_CZ",
         "short" => "cs",
-        "flag" => "https://assets.ppy.sh/old-flags/CS.png"
+        "flag" => "https://assets.ppy.sh/old-flags/CZ.png"
     ]
 
 ];
