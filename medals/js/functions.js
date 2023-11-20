@@ -408,7 +408,6 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     if (window.mobile == true &&
         (document.getElementsByClassName("osekai__3col_col1")[0].classList.contains("osekai__3col_col1_hide") == false || landingPage == true)) {
         switch3col();
-        console.log("trying to hide the 3col");
     } else {
 
     }
@@ -437,7 +436,6 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
             xhr.open('GET', "/medals/api/favourite.php")
             xhr.onload = () => {
                 let oResponse = getResponse(xhr);
-                console.log(`Fav medals: ${oResponse}`);
                 FavMedals = oResponse;
                 if (FavMedals.includes(parseInt(nCurrentMedalID))) {
                     document.getElementById('favButton').innerHTML = '<i class="fas fa-star"></i> ' + GetStringRawNonAsync("medals", "favourite.remove");
@@ -567,7 +565,6 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
             resp = xhr.response;
             //console.log(xhr.response);
             resp = JSON.parse(resp);
-            console.log(resp);
             for (var i = 0; i < individual.length; i++) {
                 if (individual[i] == 0) continue;
                 best = true;
@@ -589,13 +586,11 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
                             for (var beatmap of resp[j]) {
                                 test_length += beatmap.Length;
                             }
-                            console.log(test_length + "TIME");
                             if (test_length != 0) {
                                 if (test_length < length) {
                                     best = false;
                                 }
                             } else {
-                                console.log("CALC INVALID");
                                 calcInvalid = true;
                             }
                         }
@@ -605,7 +600,6 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
                 }
 
                 if (calcInvalid == true) {
-                    console.log("doing count check instead of length...");
                     best = true;
                     for (var j = 0; j < individual.length; j++) {
                         if (resp[j].length != 0) {
@@ -1046,7 +1040,6 @@ function loadExtraInfo(medalid) {
     xhr.onload = function () {
         var resp = JSON.parse(xhr.response);
         container.innerHTML = "";
-        console.log(resp);
         var any = false;
         if (resp.date != null && resp.date != "0000-00-00") {
             any = true;
@@ -1092,11 +1085,9 @@ function changeMedalFavState() {
 
 function loadFavMedals() {
     if (userInfo == null) {
-        console.log("waiting for userinfo")
         setTimeout(loadBeatmapPacks, 100);
         return;
     }
-    console.log("loading favs medals...");
 
     var container = document.getElementById("favsSection");
     container.innerHTML = loader;
@@ -1112,11 +1103,9 @@ function loadFavMedals() {
 
 function loadBeatmapPacks() {
     if (userInfo == null && bLoggedIn) {
-        console.log("waiting for userinfo")
         setTimeout(loadBeatmapPacks, 100);
         return;
     }
-    console.log("loading beatmap packs...");
 
     var container = document.getElementById("beatmapPackList");
     container.innerHTML = loader;
@@ -1144,7 +1133,6 @@ function loadBeatmapPacks() {
             if (bLoggedIn) {
                 for (var usermedal of userInfo['user_achievements']) {
                     if (usermedal.achievement_id == medal.medalid) {
-                        console.log("achieved");
                         medalContainer.classList.add("medals__beatmapPack-obtained");
                         var checkmark = Object.assign(document.createElement("i"), { className: "fas fa-check" });
                         medalContainerLeft.appendChild(checkmark);
@@ -1245,8 +1233,6 @@ function randomMedal() {
             }
             if(isachieved == false) {
                 medalArray.push(colMedals[medal]);
-            } else {
-                console.log(colMedals[medal].Name + " is achieved");
             }
         } else {
             medalArray.push(colMedals[medal]);
@@ -1254,7 +1240,6 @@ function randomMedal() {
     }
 
     function selectRandom() {
-        console.log(medalArray);
         var keys = Object.keys(medalArray);
         return medalArray[keys[keys.length * Math.random() << 0]];
     }
@@ -1267,7 +1252,6 @@ function randomMedal() {
             changeState(medal.Name);
             document.getElementById("randommedal_img_blur").src = medal.Link;
             document.getElementById("randommedal").classList.add("medals__randommedal-finished");
-            console.log("finished with count " + count + " and time " + time + "!")
             runParticleAnim();
             setTimeout(() => {
                 document.getElementById("randommedal").classList.add("medals__randommedal-hidden");
@@ -1277,7 +1261,6 @@ function randomMedal() {
             }, 4000);
             return;
         }
-        console.log("continuing with time " + time + " and count " + count);
         setTimeout(() => {
             run(time + 6 * (count / 45), count + 1);
         }, time);

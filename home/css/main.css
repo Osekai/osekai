@@ -60,9 +60,8 @@
     .home__loader-wait .home__cover-background {
         opacity: 0;
     }
-
     .home__cover-background {
-        transition: all 1s ease;
+        transition: opacity 1s ease;
     }
 }
 
@@ -122,6 +121,15 @@
     object-fit: cover;
     flex: 1;
     position: relative;
+}
+.waves {
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    bottom: 5vh;
+    z-index: 2;
+    height: 80vh;
+    mix-blend-mode: overlay;
 }
 
 .home__cover-middle {
@@ -272,7 +280,7 @@
     border: 1px solid rgb(var(--paccent-bright));
     box-sizing: border-box;
     height: 21vw;
-    flex: 1;
+    
 }
 
 .home__new-badge {
@@ -878,3 +886,59 @@ code {
         max-height: 100vh !important;
     }
 }
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+.parallax>use {
+    background-blend-mode: overlay;
+    animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+    animation-delay: -10s;
+    animation-duration: 29s;
+}
+
+.parallax>use:nth-child(2) {
+    animation-delay: -4s;
+    animation-duration: 40s;
+}
+
+.parallax>use:nth-child(3) {
+    animation-delay: -20s;
+    animation-duration: 33s;
+}
+
+.parallax>use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 40s;
+}
+
+.parallax>use:nth-child(5) {
+    animation-delay: -4s;
+    animation-duration: 29s;
+}
+
+.parallax>use:nth-child(6) {
+    animation-delay: -7s;
+    animation-duration: 35s;
+}
+
+.parallax>use:nth-child(7) {
+    animation-delay: -1s;
+    animation-duration: 33s;
+}
+
+.parallax>use:nth-child(8) {
+    animation-delay: -9s;
+    animation-duration: 40s;
+}
+
+

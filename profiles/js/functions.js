@@ -529,7 +529,6 @@ async function FillData(uid, mode, completeReload = true) {
 
             let oLastMode = "";
             let oLastModeSection;
-            console.log(oData.unachieved);
             function getMaxMedalsGroup(group) {
                 const max_count = medals.filter((m) => typeof m.grouping == 'undefined' ? m.Grouping == group : m.grouping == group).length;
                 const unachieved_count = oData.unachieved.filter((m) => typeof m.grouping == 'undefined' ? m.Grouping == group : m.grouping == group).length;
@@ -644,8 +643,6 @@ async function FillData(uid, mode, completeReload = true) {
                 if (document.getElementById(oSectionID)) {
                     let oBar = document.getElementById(oBarID);
 
-                    console.log(groupings[oAchievement.grouping]);
-                    console.log((groupings[oAchievement.grouping]["max"] + "/" + groupings[oAchievement.grouping]["has"]))
                     oBar.style.width = ((groupings[oAchievement.grouping]["has"] / groupings[oAchievement.grouping]["max"]) * 100) + "%";
 
                     let oImg = document.createElement("img");
@@ -766,7 +763,6 @@ async function FillData(uid, mode, completeReload = true) {
         UserBanner.InitUserBanner();
         document.getElementById("banner-panel").classList.remove("hidden");
     } else {
-        console.log("UserBanner: Not the current user");
         document.getElementById("banner-panel").classList.add("hidden");
     }
 
@@ -1699,11 +1695,8 @@ var UserBanner = {
         }
         if (type == 'customstyle') {
             dropdown = document.getElementById('dropdown-section-customstyle')
-            console.log(name);
             text = UserBanner.AvailableCustomBackgroundStyles[name].name;
         }
-        console.log("setting " + type + " to " + text)
-        console.log(dropdown);
         dropdown.querySelector("#dropdown__themes-text").innerHTML = text;
     },
     cb: null,

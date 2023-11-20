@@ -111,6 +111,7 @@ if(isset($_POST['bGetComments'])) {
         Comments.PostText, 
         Comments.UserID, 
         Comments.PostDate, 
+        Comments.Pinned,
         Comments.ParentCommenter, 
         Coalesce(Comments.ParentComment, 0) AS Parent, 
         Comments.Username, Comments.AvatarURL, 

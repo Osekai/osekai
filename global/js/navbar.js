@@ -270,7 +270,6 @@ function CreateNotifications(Notifications, UI) {
 }
 
 function CreateNotificationItem(List, Notification) {
-    console.log("Getting Notifications");
     let Outer = document.createElement("div");
     Outer.classList.add("osekai__nav-dropdown-v2-notification");
 
