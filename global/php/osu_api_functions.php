@@ -45,6 +45,7 @@ function GetHeaders()
 
 function curlRequestUser($strSearch)
 {
+    if (IsExpired() == true) GetBearer();
     $handle = curl_init();
     curl_setopt($handle, CURLOPT_URL, "https://osu.ppy.sh/api/v2/users/" . $strSearch);
     curl_setopt($handle, CURLOPT_HTTPHEADER, GetHeaders());
