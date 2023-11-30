@@ -1,5 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
+header("Access-Control-Allow-Origin: *");
 
 // return json
 header('Content-Type: application/json');
