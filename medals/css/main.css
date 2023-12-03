@@ -128,7 +128,7 @@
     transition: all 0.3s ease;
 }
 
-.medals__search-input {
+.medals__search input {
     padding: 0px;
     margin: 0px;
     color: white;
@@ -153,7 +153,7 @@
 }
 
 .medals__info {
-    padding: 30px;
+    padding: 35px;;
     display: flex;
     background: transparent;
     align-items: center;
@@ -171,7 +171,7 @@
     font-family: Comfortaa;
     font-style: normal;
     font-weight: normal;
-    font-size: 30px;
+    font-size: 35px;;
     line-height: 100%;
 }
 
@@ -206,7 +206,7 @@
 }
 
 .medals__info-sol {
-    padding: 25px 30px;
+    padding: 25px 35px;;
 }
 
 .medals__solution {
@@ -1186,7 +1186,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 14px 30px;
+    padding: 14px 35px;;
 }
 
 .medals__info-bar-texts-right {
@@ -1712,3 +1712,93 @@ html {
         top: calc(42px + var(--navheight) + 50px + 10px + 50px)
     }
 }
+
+.medals__diff-vote  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.medals__diff-vote h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.medals__diff-vote i {
+    font-size: 35px;;
+    color: #ff66aa;
+    
+    margin-right: 14px;
+}
+.medals__diff-vote > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.medals__diff-vote > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.medals__diff-vote > div > div > p {
+    position: absolute;
+    pointer-events: none;
+}
+.medals__diff-vote small {
+    margin-top: 8px;
+}
+.medals__diff-vote a {
+    margin-left: 12px;
+}
+.medals__diff-vote  input[type='range'] {
+    border-radius: 8px;
+    -webkit-appearance: none;
+    background: linear-gradient(to right, hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset))));
+    height: 35px;;
+    overflow: hidden;
+    width: 400px;
+  }
+  
+  .medals__diff-vote  input[type='range']::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 35px;;
+  }
+  
+  .medals__diff-vote  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: linear-gradient(to right, hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset))));
+    border-radius: 50%;
+    box-shadow: -210px 0 0 200px #ff66aa;
+    cursor: pointer;
+    height: 35px;;
+    width: 2px;
+    border: 0;
+  }
+  
+  .medals__diff-vote  input[type='range']::-moz-range-thumb {
+    background: linear-gradient(to right, hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset))));
+    border-radius: 50%;
+    box-shadow: -1010px 0 0 1000px #ff66aa;
+    cursor: pointer;
+    height: 35px;;
+    width: 2px;
+    border: 0;
+    opacity: 0;
+  }
+  
+  .medals__diff-vote  input[type="range"]::-moz-range-track {
+    background: linear-gradient(to right, hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset))));
+  }
+  .medals__diff-vote  input[type="range"]::-moz-range-progress {
+    background-color: #ff66aa;
+    height: 35px;
+  }
+  .medals__diff-vote  input[type="range"]::-ms-fill-upper {
+    background: linear-gradient(to right, hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(14% * var(--accentdark_valueoffset))), hsl(var(--accentdark_hue), var(--accentdark_saturation), calc(10% * var(--accentdark_valueoffset))));
+  }
+  .medals__diff-vote  input[type="range"]::-ms-fill-lower {
+    background-color: #ff66aa;
+  }
