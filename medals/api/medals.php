@@ -25,7 +25,7 @@ if (isset($_POST['strSearch']) || count($_POST) == 0) {
         // Caching::cleanCache();
     //}
     } else {
-        echo json_encode(Database::execSimpleSelect("SELECT Medals.medalid AS MedalID
+        echo json_encode(Database::execSelect("SELECT Medals.medalid AS MedalID
         , Medals.name AS Name
         , Medals.link AS Link
         , Medals.description AS Description
@@ -44,11 +44,13 @@ if (isset($_POST['strSearch']) || count($_POST) == 0) {
         , (CASE WHEN restriction = 'osu' THEN 2 WHEN restriction = 'taiko' THEN 3 WHEN restriction = 'fruits' THEN 4 WHEN restriction = 'mania' THEN 5 ELSE 1 END) AS ModeOrder 
         , Medals.ordering AS Ordering
         , MedalRarity.frequency As Rarity
+        , (CASE WHEN MedalVote.user_id IS NOT NULL THEN 1 ELSE 0 END) AS HasVoted
     FROM Medals LEFT JOIN Solutions ON Medals.medalid = Solutions.medalid 
     LEFT JOIN MedalStructure ON MedalStructure.MedalID = Medals.medalid 
+    LEFT JOIN MedalVote ON MedalVote.medal_id = Medals.medalid AND MedalVote.user_id = ?
     LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid "
     . ($type != "solutiontracker" ? "" : " WHERE Medals.solutiontrackerenabled = 1 ") .
-    "ORDER BY ModeOrder, Ordering DESC, MedalID"));
+    "ORDER BY ModeOrder, Ordering DESC, MedalID", "i", [$_SESSION['osu']['id']]));
     }
 }
 

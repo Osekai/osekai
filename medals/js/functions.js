@@ -402,7 +402,9 @@ function changeState(strName) {
     loadMedal(strName);
 }
 var beatmapPacksLoaded = false;
+var medalname = "";
 async function loadMedal(strMedalName, updateAdminPanel = true) {
+    medalname = strMedalName;
     document.getElementById("video_panel").classList.add("hidden");
 
     if (window.mobile == true &&
@@ -419,6 +421,13 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     strCurrentMedalName = colMedals[strMedalName].Name;
     strCurrentMedalMode = colMedals[strMedalName].Restriction;
     nCurrentMedalID = colMedals[strMedalName].MedalID;
+
+    document.getElementById("votepanel-thanks").classList.add("hidden");
+    if (colMedals[strMedalName].HasVoted == false) {
+        document.getElementById("votepanel").classList.remove("hidden");
+    } else {
+        document.getElementById("votepanel").classList.add("hidden");
+    }
 
     {
         if (FavMedals != null && nUserID != -1)
@@ -1226,12 +1235,12 @@ function randomMedal() {
     for (let medal in colMedals) {
         if (filterAchievedEnabled == true) {
             let isachieved = false;
-            for(let achieved of MedalsAchievedFilterArray) {
-                if(colMedals[medal].MedalID == achieved) {
+            for (let achieved of MedalsAchievedFilterArray) {
+                if (colMedals[medal].MedalID == achieved) {
                     isachieved = true;
                 }
             }
-            if(isachieved == false) {
+            if (isachieved == false) {
                 medalArray.push(colMedals[medal]);
             }
         } else {
@@ -1268,3 +1277,27 @@ function randomMedal() {
     run(4, 0);
 }
 
+
+document.getElementById("vote-range-text").innerHTML = document.getElementById("vote-range").value;
+
+document.getElementById("vote-range").addEventListener("input", () => {
+    document.getElementById("vote-range-text").innerHTML = document.getElementById("vote-range").value;
+
+    document.getElementById("vote-range-text").style ="font-weight: " + (document.getElementById("vote-range").value * 90) + "; transform: scale(" + (0.9 + (document.getElementById("vote-range").value / 22)) + ");"; 
+})
+
+document.getElementById("cast-vote").addEventListener("click", function() {
+    var data = new FormData();
+    var xhr = new XMLHttpRequest();
+
+    data.append("medal_id", nCurrentMedalID);
+    data.append("value", document.getElementById("vote-range").value);
+
+    xhr.open("POST", "/medals/api/vote_medal.php", true)
+    xhr.send(data);
+    colMedals[medalname].HasVoted = true;
+    
+    document.getElementById("votepanel").classList.add("hidden");
+    
+    document.getElementById("votepanel-thanks").classList.remove("hidden");
+})
