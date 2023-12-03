@@ -1278,13 +1278,13 @@ function randomMedal() {
 }
 
 
-document.getElementById("vote-range-text").innerHTML = document.getElementById("vote-range").value;
+document.getElementById("vote-range-text").innerText = document.getElementById("vote-range").value;
 
 document.getElementById("vote-range").addEventListener("input", () => {
-    document.getElementById("vote-range-text").innerHTML = document.getElementById("vote-range").value;
+    document.getElementById("vote-range-text").innerText = document.getElementById("vote-range").value;
 
     document.getElementById("vote-range-text").style ="font-weight: " + (document.getElementById("vote-range").value * 90) + "; transform: scale(" + (0.9 + (document.getElementById("vote-range").value / 22)) + ");"; 
-})
+});
 
 document.getElementById("cast-vote").addEventListener("click", function() {
     var data = new FormData();
@@ -1298,6 +1298,5 @@ document.getElementById("cast-vote").addEventListener("click", function() {
     colMedals[medalname].HasVoted = true;
     
     document.getElementById("votepanel").classList.add("hidden");
-    
     document.getElementById("votepanel-thanks").classList.remove("hidden");
-})
+});
