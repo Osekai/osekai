@@ -421,13 +421,14 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
     strCurrentMedalName = colMedals[strMedalName].Name;
     strCurrentMedalMode = colMedals[strMedalName].Restriction;
     nCurrentMedalID = colMedals[strMedalName].MedalID;
-
+    if(bLoggedIn) {
     document.getElementById("votepanel-thanks").classList.add("hidden");
     if (colMedals[strMedalName].HasVoted == false) {
         document.getElementById("votepanel").classList.remove("hidden");
     } else {
         document.getElementById("votepanel").classList.add("hidden");
     }
+}
 
     {
         if (FavMedals != null && nUserID != -1)
@@ -1278,6 +1279,7 @@ function randomMedal() {
 }
 
 
+if(bLoggedIn) {
 document.getElementById("vote-range-text").innerText = document.getElementById("vote-range").value;
 
 document.getElementById("vote-range").addEventListener("input", () => {
@@ -1300,3 +1302,5 @@ document.getElementById("cast-vote").addEventListener("click", function() {
     document.getElementById("votepanel").classList.add("hidden");
     document.getElementById("votepanel-thanks").classList.remove("hidden");
 });
+
+}
