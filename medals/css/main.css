@@ -1765,6 +1765,7 @@ html {
   .medals__diff-vote  input[type='range']::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     height: 35px;;
+    background-color: transparent !important;
   }
   
   .medals__diff-vote  input[type='range']::-webkit-slider-thumb {
