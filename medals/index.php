@@ -110,9 +110,15 @@ if (isset($_GET['medal'])) {
     <div otab-container otab-no-replace>
         <div class="medals__toolbar">
             <div class="medals__toolbar-buttons medals__toolbar-left">
-                <div otab-button="Medals" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.medals"); ?>"><i class="oif-medal"></i></div>
-                <div otab-button="Favourite Medals" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.favouriteMedals"); ?>"><i class="fas fa-star"></i></div>
-                <div otab-button="Beatmap Packs" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.beatmapPacks"); ?>"><i class="fas fa-layer-group"></i></div>
+                <div otab-button="Medals" class="tooltip-v2"
+                    tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.medals"); ?>"><i class="oif-medal"></i>
+                </div>
+                <div otab-button="Favourite Medals" class="tooltip-v2"
+                    tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.favouriteMedals"); ?>"><i
+                        class="fas fa-star"></i></div>
+                <div otab-button="Beatmap Packs" class="tooltip-v2"
+                    tooltip-content="<?= GetStringRaw("medals", "toolbar.tab.beatmapPacks"); ?>"><i
+                        class="fas fa-layer-group"></i></div>
             </div>
 
             <div class="medals__toolbar-middle">
@@ -158,8 +164,12 @@ if (isset($_GET['medal'])) {
                 </div>
             </div>
             <div class="medals__toolbar-buttons medals__toolbar-right">
-                <div onclick="randomMedal();" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.randomMedal"); ?>"><i class="fas fa-dice"></i></div>
-                <div onclick="landingPage()" id="expandbutton" class="tooltip-v2" tooltip-content="<?= GetStringRaw("medals", "toolbar.homepage"); ?>"><i class="fas fa-expand"></i></div>
+                <div onclick="randomMedal();" class="tooltip-v2"
+                    tooltip-content="<?= GetStringRaw("medals", "toolbar.randomMedal"); ?>"><i class="fas fa-dice"></i>
+                </div>
+                <div onclick="landingPage()" id="expandbutton" class="tooltip-v2"
+                    tooltip-content="<?= GetStringRaw("medals", "toolbar.homepage"); ?>"><i class="fas fa-expand"></i>
+                </div>
             </div>
         </div>
         <div class="osekai__panel-container osekai__sidebar-panel-container">
@@ -171,20 +181,20 @@ if (isset($_GET['medal'])) {
                             <p style="padding: 10px;">
                                 Favourite Medals
                             </p>
-                          
+
                             <div id="favsSection" class="medals__medal-section">
                                 <?php
-                                if(loggedin()) { ?>
-                                <div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'>
-                                        <circle class='ring' cx='25' cy='25' r='22.5' />
-                                        <circle class='line' cx='25' cy='25' r='22.5' />
-                                    </svg></div>
+                                if (loggedin()) { ?>
+                                    <div class='osekai__replace__loader'><svg viewBox='0 0 50 50' class='spinner'>
+                                            <circle class='ring' cx='25' cy='25' r='22.5' />
+                                            <circle class='line' cx='25' cy='25' r='22.5' />
+                                        </svg></div>
 
                                     <?php
-                                    } else {
-                                        echo "Please log in.";
-                                    } 
-                                    ?>
+                                } else {
+                                    echo "Please log in.";
+                                }
+                                ?>
                             </div>
                         </div>
                         <div class="medals__scroller osekai__otab-hidden" otab-name="Beatmap Packs"
@@ -192,7 +202,7 @@ if (isset($_GET['medal'])) {
                             <div class="osekai__panel">
                                 <div class="osekai__panel-header">
                                     <p>
-                                    <?= GetStringRaw("medals", "toolbar.tab.beatmapPacks"); ?>
+                                        <?= GetStringRaw("medals", "toolbar.tab.beatmapPacks"); ?>
                                     </p>
                                 </div>
                                 <div class="osekai__panel-inner">
@@ -269,6 +279,23 @@ if (isset($_GET['medal'])) {
                                 </div>
                             </div>
                         </section>
+                        <?php
+                        if (loggedin()) {
+                            ?>
+                            <section class="medals__diff-vote" id="votepanel">
+                                <h1><i class="fas fa-vote-yea"></i> How difficult is this medal?</h1>
+                                <div>
+                                    <div><input id="vote-range" type="range" max="10" min="0" step="0.1">
+                                        <p id="vote-range-text">0.5</p>
+                                    </div> <a id="cast-vote" class="osekai__button osekai__button-highlighted">Submit
+                                        Vote</a>
+                                </div>
+                                <small>You can't change your vote for this medal!</small>
+                            </section>
+                            <section class="medals__diff-vote" id="votepanel-thanks">
+                                <h1><i class="fas fa-smile"></i> Thanks for voting! :)</h1>
+                            </section>
+                        <?php } ?>
                         <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/commentsPanel.php"); ?>
                     </div>
                     <div class="osekai__3col_col3">
