@@ -113,7 +113,7 @@ if (loggedin()) {
                     <line class="path line" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2" />
                 </svg>
                 <h1>oh, something went wrong!</h1>
-                <p>please contact me on discord at Hubz#6283 and we'll try to sort this out ASAP!</p>
+                <p>please contact us in the Osekai Authenticator Support channel and we'll try to sort this out ASAP!</p>
                 <p>error: <?= $error; ?></p>
             <?php } ?>
         </div>
