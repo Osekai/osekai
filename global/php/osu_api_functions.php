@@ -102,7 +102,7 @@ function v2_getUser($userID, $mode = null, $sendMedals = true, $useAllMedals = t
             if ($useAllMedals == false) {
                 $oMedals = Database::execSelect("SELECT * From Medals LEFT JOIN MedalRarity ON MedalRarity.id = Medals.medalid " .
                     "LEFT JOIN (SELECT COUNT(medalid) AS MedalCount FROM Medals WHERE restriction = 'NULL' Or restriction = ?) t ON 1 = 1 " .
-                    "WHERE (restriction = 'NULL' Or restriction = ?)", "ssssssssss", array($mode, $mode));
+                    "WHERE (restriction = 'NULL' Or restriction = ?)", "ss", array($mode, $mode));
             }
             $colData['max_medals'] = $oMedals[0]['MedalCount'];
 
