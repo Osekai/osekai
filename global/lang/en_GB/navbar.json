@@ -12,6 +12,7 @@
     "settings.theme.light": "Light",
     "settings.theme.dark": "Dark",
     "settings.theme.colourful": "Colourful",
+    "settings.theme.classic": "Classic",
     "settings.theme.ultraDark": "Ultra Dark",
     "settings.theme.system": "system theme",
     "settings.theme.custom": "Custom theme",

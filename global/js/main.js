@@ -153,10 +153,10 @@ const themes = {
 
 async function loadThemes() {
     themes["colourful"].name = await GetStringRaw("navbar", "settings.theme.colourful");
+    themes["classic"].name = await GetStringRaw("navbar", "settings.theme.classic");
     themes["light"].name = await GetStringRaw("navbar", "settings.theme.light");
     themes["dark"].name = await GetStringRaw("navbar", "settings.theme.dark");
     themes["ultradark"].name = await GetStringRaw("navbar", "settings.theme.ultraDark");
-
     themes["custom"].name = await GetStringRaw("navbar", "settings.theme.custom");
     themes["lightweight"].name = await GetStringRaw("navbar", "settings.theme.lightweight");
 }
