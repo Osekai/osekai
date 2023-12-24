@@ -347,7 +347,7 @@ function comments_system()
 function chart_js()
 {
     echo '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
-    echo '<script src="https://cdn.jsdelivr.net/npm/moment"></script>';
+    echo '<script src="https://cdn.jsdelivr.net/npm/moment@latest/dist/moment.min.js"></script>';
     echo '<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>';
 }
 
