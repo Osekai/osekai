@@ -96,6 +96,11 @@ const themes = {
     "colourful": {
         "internal": "colourful",
         "name": "loading...",
+        "css": ["themes/flat-dark.css", "themes/colourful.css"],
+    },
+    "classic": {
+        "internal": "classic",
+        "name": "loading...",
         "css": "none",
     },
     "dark": {
@@ -203,6 +208,7 @@ function generateCustomThemeVars(accent, accentDark, valueOffsetOffset = 0, valu
             
             --accentdark_hue: ${accentDark_hsl[0]}deg;
             --accent_hue: ${accent_hsl[0]}deg;
+            --accent_hue_nodeg: ${accent_hsl[0]};
             --accentdark_saturation: ${accentDark_hsl[1]}%;
             --accent_saturation: ${accent_hsl[1]}%;
             --accentdark_value: ${accentDark_hsl[2]}%;

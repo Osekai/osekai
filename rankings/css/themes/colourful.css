@@ -1,0 +1,31 @@
+.rankings__home-v2-header {
+    background: var(--flat_bg_a2);
+}
+.rankings__home-v2-button {
+    box-shadow: 0px 0px 0px transparent !important;
+    background: var(--flat_bg_a1);
+}
+
+.rankings__home-v2-button:hover {
+    background: var(--flat_bg_a3);
+}
+
+.rankings__cascade {
+    border-radius: 0px;
+    background: transparent;
+    background-color: transparent;
+    box-shadow: 0px 0px 0px transparent;
+}
+
+.rankings__bar {
+    background: transparent;
+    background-color: transparent;
+    padding: 2px 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid var(--flat_bg_a3);
+    box-shadow: 0px 0px 0px transparent;
+}
+
+.rankings__inner {
+    gap: 4px;
+}

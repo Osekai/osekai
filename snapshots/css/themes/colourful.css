@@ -1,0 +1,18 @@
+.snapshots__search {
+    background-color: var(--flat_bg_a2);
+}
+
+.snapshots__list-version-info-row1 {
+    background-color: var(--flat_bg_a3);
+}
+.snapshots__list-version-info-row2 {
+    background-color: var(--flat_bg_a4);
+}
+
+.snapshots__scroller::after {
+    display: none;
+}
+
+.snapshots__version-header {
+    background: var(--flat_bg_a4) !important;
+}

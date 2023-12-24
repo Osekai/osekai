@@ -308,6 +308,7 @@ function css()
 
         --accentdark_hue: ' . $colourDarkHsl[0] . 'deg;
         --accent_hue: ' . $colourHsl[0] . 'deg;
+        --accent_hue_nodeg: ' . $colourHsl[0] . ';
         --accentdark_saturation: ' . $colourDarkHsl[1] . '%;
         --accent_saturation: ' . $colourHsl[1] . '%;
         --accentdark_value: ' . $colourDarkHsl[2] . '%;
