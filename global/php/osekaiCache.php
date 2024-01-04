@@ -30,9 +30,7 @@ class Caching
         Database::execOperation("DELETE FROM GlobalCache WHERE Title = ?", "s", [$name]);
         // if expiry is not a date, it is a number of seconds
         if (is_numeric($expiry)) {
-            $expiry = date("Y-m-d H:i:s", time() + $expiry);
-        } else {
-            $expiry = $expiry;
+            $expiry = date("Y-m-d H:i:s", time() + ($expiry * 2));
         }
 
         Database::execOperation("INSERT INTO GlobalCache (Title, Expiration, Data, Date) VALUES (?, ?, ?, CURRENT_TIMESTAMP)", "sss", [$name, $expiry, $data]);
