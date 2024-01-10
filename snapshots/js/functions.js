@@ -713,7 +713,7 @@ function admin_deleteVer() {
 
 
 
-    openDialog("You are deleting a version", "Are you sure you want to delete " + version['version_info']['version'] + "?", "THIS CAN NOT BE UNDONE.", [
+    openDialog("You are deleting a version", "Are you sure you want to delete " + _version['version_info']['version'] + "?", "THIS CAN NOT BE UNDONE.", [
         {
             "text": "Nevermind",
             "callback": function () {
