@@ -284,8 +284,8 @@ async function loadVersion(vername, pushstate = true, fromButton = false) {
 }
 
 function deleteDownloadMirror(from, name) {
-    version = data[currentindex];
-    var id = version['version_info']['id'];
+    _version = data[currentindex];
+    var id = _version['version_info']['id'];
     var form = new FormData();
     form.append('id', id);
     form.append('downloadName', name);
@@ -299,8 +299,8 @@ function deleteDownloadMirror(from, name) {
 }
 
 function addDownloadMirror(name, link) {
-    version = data[currentindex];
-    var id = version['version_info']['id'];
+    _version = data[currentindex];
+    var id = _version['version_info']['id'];
     var form = new FormData();
     form.append('id', id);
     form.append('downloadName', name);
@@ -707,9 +707,9 @@ function changeSubmissionStatus(id, userid) {
 }
 
 function admin_deleteVer() {
-    version = data[currentindex];
-    var id = version['version_info']['id'];
-    var name = version['version_info']['version'];
+    _version = data[currentindex];
+    var id = _version['version_info']['id'];
+    var name = _version['version_info']['version'];
 
 
 
