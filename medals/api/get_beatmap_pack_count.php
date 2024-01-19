@@ -71,24 +71,15 @@ function LengthCalculation_Calculate()
 
 function GetPack($id)
 {
-    $pack = Database::execSelect("SELECT Ids FROM MedalsBeatmapPacks WHERE Id = ? AND Count != 0", "s", [$id])[0];
-
-    if (!$pack) {
-        return [];
-    }
-
+    // TODO: Caching?
+    //echo "getting pack ". $id . "<br>";
+    $pack = Database::execSelect("SELECT * FROM MedalsBeatmapPacks WHERE Id = ? AND Count != 0", "s", [$id])[0];
     $beatmaps = json_decode($pack['Ids']);
-
-    if (empty($beatmaps)) {
-        return [];
+    $return = [];
+    foreach ($beatmaps as $beatmap) {
+        $return[] = Database::execSelect("SELECT * FROM BeatmapLengths WHERE Id = ?", "i", [$beatmap])[0];
     }
-
-    $types = str_repeat('s', count($beatmaps));
-    $placeholders = implode(',', array_fill(0, count($beatmaps), '?'));
-
-    $beatmapLengths = Database::execSelect("SELECT * FROM BeatmapLengths WHERE Id IN ($placeholders)", $types, $beatmaps);
-
-    return $beatmapLengths;
+    return $return;
 }
 
 $pr_packs = null;
