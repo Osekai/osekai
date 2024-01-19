@@ -84,17 +84,6 @@ addMember(
     ]
 );
 addMember(
-    9350342,
-    "EXtremeExploit",
-    "??home.team.role.generic.developer??",
-    "Pedrito",
-    [
-        social("https://github.com/EXtremeExploit/", "Github"),
-        social("https://www.twitch.tv/extremeexploit_", "Twitch"),
-        social("https://pedro.moe/", "Website")
-    ]
-);
-addMember(
     7197172,
     "jiniux",
     "??home.team.role.generic.developer??",
@@ -143,13 +132,6 @@ addMember(
     [social("https://github.com/MaxOhn", "Github")]
 );
 addMember(
-    3357640,
-    "Electroyan",
-    "??home.team.role.generic.rankingsDataEngineer??",
-    null,
-    []
-);
-addMember(
     14125695,
     "TheEggo",
     "??home.team.role.generic.snapshotsDeveloper??",
@@ -176,6 +158,19 @@ addMember(
     ]
 );
 addMember(
+    13475402,
+    "Retiu",
+    "??home.team.role.generic.moderator??",
+    null,
+    [
+        social("https://bsky.app/profile/retiu.me", "Bluesky"),
+        social("https://twitch.tv/retiutheproto", "Twitch"),
+        social("https://instagram.com/dj_stuiter", "Instagram"),
+        social("https://youtube.com/@retiutheproto", "Youtube"),
+        social("https://retiu.me", "Website")
+    ]
+);
+addMember(
     16487835,
     "ILuvSkins",
     "??home.team.role.generic.snapshotsManager??",
@@ -191,6 +186,24 @@ addMember(
         social("https://www.youtube.com/@Remyria", "Youtube"),
         social("https://twitch.tv/remyria", "Twitch"),
         social("https://www.speedrun.com/user/Remyria", "Speedrun.com")
+    ]
+);
+addMember(
+    3357640,
+    "Electroyan",
+    "Alumni (??home.team.role.generic.rankingsDataEngineer??)",
+    null,
+    []
+);
+addMember(
+    9350342,
+    "EXtremeExploit",
+    "Alumni (??home.team.role.generic.developer??)",
+    "Pedrito",
+    [
+        social("https://github.com/EXtremeExploit/", "Github"),
+        social("https://www.twitch.tv/extremeexploit_", "Twitch"),
+        social("https://pedro.moe/", "Website")
     ]
 );
 

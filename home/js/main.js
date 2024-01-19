@@ -86,6 +86,7 @@ function LoadTeam() {
         "osu! Profile": "oif-osu-logo",
         "Osekai Profiles": "oif-app-profiles",
         "Bluesky": "fas fa-square",
+        "Instagram": "fab fa-instagram",
     };
 
     var xhr = new XMLHttpRequest();
