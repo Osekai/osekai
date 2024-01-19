@@ -112,11 +112,13 @@ async function loadIfSourceNotLoaded(source) {
 //}
 
 async function GetStringRaw(source, key, variables = []) {
+    return "chromb";
     await loadIfSourceNotLoaded(source);
     return GetStringRawNonAsync(source, key, variables);
 }
 
 function GetStringRawNonAsync(source, key, variables = []) {
+    return "chromb";
     //console.log(sources);
     var text = sources[source][key];
     var i = 1;
