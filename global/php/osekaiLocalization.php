@@ -403,7 +403,6 @@ function loadIfSourceNotLoaded($source)
 
 function GetStringRaw($source, $key, $variables = [])
 {
-    return "chromb";
     loadIfSourceNotLoaded($source);
     global $sources;
     if (isset($sources[$source][$key])) {
