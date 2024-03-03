@@ -7,6 +7,14 @@ $locales = [
         'short' => 'en',
         'flag' => "https://assets.ppy.sh/old-flags/GB.png",
     ],
+    'gt_tr' => [
+        'name' => 'English (Google Translate)',
+        'code' => 'gt_tr',
+        'short' => 'gt',
+        'flag' => "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Google_Translate_logo.svg/1024px-Google_Translate_logo.svg.png",
+        "wip" => true,
+        "experimental" => true,
+    ],
     /* german */
     'de_DE' => [
         'name' => 'Deutsch',
