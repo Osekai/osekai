@@ -1,0 +1,271 @@
+:root {
+    --beatmap: #FF8A00;
+    --comment: #DB00FF;
+    --bug: #E34826;
+    --pending: #FFB800;
+    --open: #00FF85;
+    --resolved: #17E350;
+    --closed: #937171;
+}
+
+.basic-page-sidebar{
+    max-width: 522px;
+}
+
+.basic-page-item-list {
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+}
+
+.basic-page-inner-content {
+    display: flex;
+    gap:0;
+    background-color: #222;
+}
+
+.basic-page-item-list .report-item {
+    cursor: pointer;
+}
+
+.basic-page-inner-content .report-item.resolved {
+    border-right: 7px solid var(--resolved);
+}
+
+.basic-page-inner-content .report-item.open {
+    border-right: 7px solid var(--open);
+}
+
+.basic-page-inner-content .report-item.closed {
+    border-right: 7px solid var(--closed);
+}
+
+.basic-page-inner-content .report-item.pending {
+    border-right: 7px solid var(--pending);
+}
+
+.report-item {
+    max-width: 100%;
+}
+
+.report-item .item-title-bar {
+    height: 38px;
+    line-height: 38px;
+    background-color: #444;
+    display:flex;
+    align-items: center;
+    gap:8px;
+}
+
+.basic-page-item-list .report-item.selected {
+    border-right: 6px solid white;
+}
+
+.report-item .item-title-bar span.title {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.report-item.beatmap .item-title-bar span.title {
+    background-color: var(--beatmap);
+}
+
+.report-item.comment .item-title-bar span.title {
+    background-color: var(--comment);
+}
+
+.report-item.bug .item-title-bar span.title {
+    background-color: var(--bug);
+}
+
+.report-item .item-title-bar span.title {
+    color:black;
+    padding: 0px 20px;
+}
+
+.status-badge.pending {
+    border: 1px solid var(--pending);
+    color:var(--pending);
+}
+
+.status-badge.open {
+    border: 1px solid var(--open);
+    color: var(--open);
+}
+
+.status-badge.closed {
+    border: 1px solid var(--closed);
+    color: var(--closed);
+}
+
+.status-badge.resolved {
+    border: 1px solid var(--resolved);
+    color: var(--resolved);
+}
+
+.status-badge {
+    border-radius: 11.5px;
+    padding: 0px 9px;
+    height: 24px;
+    line-height: 23px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-badge.selected {
+    color:black;
+}
+
+.status-badge.selected.resolved {
+    background-color: var(--resolved);
+}
+
+.status-badge.selected.closed {
+    background-color: var(--closed);
+}
+
+.report-item .app-shield {
+    display: flex;
+    align-items: center;
+}
+
+.report-item:not(:has(.report-id)) .app-shield {
+    margin-left: auto;
+    gap: 5px;
+    margin-right: 8px;
+}
+
+.report-item .app-shield img {
+    height:22px;
+}
+
+.report-item .report-id {
+    margin-left: auto;
+    margin-right: 10px;
+    color: #aaa;
+}
+
+/* We change colous of the desciption backgound depending on the location of said div. */
+.report-item .item-description {
+    background-color: #333;
+}
+
+.basic-page-item-list .report-item .item-description {
+    background-color: #222;
+}
+
+.basic-page-item-list .report-item.selected .item-description {
+    background-color: #555;
+}
+
+.report-item .item-description {
+    padding: 14px;
+}
+
+.basic-page-inner-content .report-item .item-description {
+    display:flex;
+    align-items: center;
+}
+
+.user-container {
+    margin-left: 18px
+}
+
+.report-item.beatmap .item-description {
+    border-left: 10px solid var(--beatmap);
+}
+
+.report-item.comment .item-description {
+    border-left: 10px solid var(--comment);
+}
+
+.report-item.bug .item-description {
+    border-left: 10px solid var(--bug);
+}
+.item-description .user-information {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.report-item .item-description .username {
+    font-weight: bold;
+    color:white;
+}
+
+.report-item .item-description .date {
+    color: #ccc;
+}
+
+.report-item .item-description .user-message {
+    font-size: 14px;
+}
+
+/* Some a-hole decided to do the longest possible report... thanks for that..*/
+.basic-page-item-list .report-item .item-description .user-message {
+    overflow: hidden;
+    max-height: 1rem;
+    text-overflow: ellipsis;
+}
+
+.report-item img {
+    height:65px;
+}
+
+.report-description {
+    border-top: 2px solid #eee;
+    background-color: #1a1a1a;
+    display:flex;
+    flex-direction: row;
+    height:100%;
+    gap: 50px;
+    padding: 20px;
+}
+
+
+.column {
+    display:flex;
+    flex-direction: column;
+    gap: 11px;
+    flex:1;
+}
+
+.report-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.report-list span {
+    font-weight: lighter;
+    font-size:14px;
+}
+
+.status-badge-list {
+    display: flex;
+    flex-direction: row;
+    padding-top: 8px;
+    gap: 8px;
+}
+
+.status-badge-list .status-badge {
+    cursor: pointer;
+}
+
+.status-badge-list .status-badge:hover {
+    filter: brightness(85%);
+}
+
+.report-actions {
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.report-actions button {
+    width:100%;
+}
+
+a {
+    color:white;
+}

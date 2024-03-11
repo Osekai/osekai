@@ -1,0 +1,222 @@
+.medals__infobadge {
+    font-size: 12px;
+    padding: 2px 8px;
+    background-color: #222;
+    border-radius: 90px;
+}
+
+.medals__infobadge-complete {
+    border: 1px solid #76FF60;
+    color: #76FF60;
+}
+
+.medals__infobadge-incomplete {
+    border: 1px solid #F83E60;
+    color: #F83E60;
+}
+
+.medals__modswitches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.medals__modswitch {
+    display: flex;
+    padding: 5px;
+    padding-top: 0px;
+    background-color: #333;
+    flex-direction: column;
+    cursor: pointer;
+    user-select: none;
+}
+
+.medals__modswitch h1 {
+    padding: 8px;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.medals__modswitch div {
+    background: #222222;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 22px;
+}
+
+.medals__modswitch.active div {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 9px rgba(255, 255, 255, 0.25);
+}
+
+.medals__medal-details p {
+    /* i'm not sure about this */
+    margin-top: 6px;
+    margin-bottom: 2px;
+}
+
+.medals__medal-info {
+    display: flex;
+    overflow: hidden !important;
+    margin-bottom: 25px;
+}
+
+.medals__medal-info.hidden {
+    display: none;
+}
+
+.medals__medal-info img {
+    z-index: 1;
+    width: auto;
+    height: 100px;
+}
+
+.medals__medal-info-text {
+    z-index: 2;
+    margin-left: 21px;
+}
+
+.medals__medal-info-text h1 {
+    font-size: 25px;
+}
+
+.medals__medal-info-description, .medals__medal-info-solution {
+    font-size: 14px;
+}
+
+
+.medals__medal-details, .medals__medal-beatmap-options {
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.medals__first-achieved {
+    display: flex;
+    justify-content: space-between;
+}
+
+.medals__first-achieved-user-form {
+    margin-left: 10px;
+}
+
+.medals__first-achieved-date-form {
+    width: 60%;
+}
+
+.medals__beatmap-packs-ids {
+    background-color: #2A2A2A;
+    display:none;
+    padding: 15px;
+    margin-top: 7px;
+}
+
+.medals__beatmap-packs-ids.open {
+    display: block;
+}
+
+.medals__beatmap-packs-ids input {
+    margin-bottom: 12px;
+}
+
+.medals__live-beatmaps, .medals__deleted-beatmaps {
+    width: 50%;
+}
+
+.medals__beatmap-panel {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.medals__beatmap-details {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.medals__beatmap-details h1 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.medals__beatmap-details p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #DDDDDD;
+}
+
+.medals__beatmap-options {
+    /* Set background to 80% opacity of #111111*/
+    background-color: #111111;
+    opacity: 0.8;
+    display: flex;
+    bottom: 0;
+    text-align: center;
+    height: 30px;
+    align-items: center;
+}
+
+.medals__beatmap-options a {
+    padding-left: 13px;
+    text-decoration: none;
+    color: #DDDDDD;
+}
+
+.medals__beatmap-options a:hover {
+    color: #FFFFFF;
+}
+
+.medals__beatmap-options a.text-danger {
+    color: #F83E60;
+}
+
+.medals__beatmap-options a.text-danger:hover {
+    color: #ff5c7a;
+}
+
+.medals__deleted-beatmap {
+    border-left: #FF0000 6px solid;
+}
+
+.medals__beatmap-options a.text-success {
+    color: #A2FF45;
+}
+
+.medals__beatmap-options a.text-success:hover {
+    color: #c2ff65;
+}
+
+.medals__live-beatmaps-list, .medals__deleted-beatmaps-list {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.medals__modal-beatmap-info {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.medals__modal-beatmap-info div {
+    width: 50%;
+}
+
+label.checkbox {
+    padding: 0 !important;
+}
+
+a.button {
+    text-align: center;
+}
+
+@media (max-width: 1800px) {
+    .medals__medal-details, .medals__medal-beatmap-options {
+        width: 100%;
+    }
+    .medals__live-beatmaps, .medals__deleted-beatmaps {
+        width: 100%;
+    }
+}

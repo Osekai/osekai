@@ -1,0 +1,46 @@
+.logs__item {
+    display: flex;
+    padding: 10px;
+    display: flex;
+    background-color: #333;
+    margin-bottom: 6px;
+}
+
+.logs__item img {
+    height: 64px;
+}
+
+.logs__item-texts {
+    line-height: 1.1;
+    margin-left: 10px;
+}
+
+.logs__item-texts-username {
+    font-weight: 800;
+    font-size: 16.7247px;
+    line-height: 18px;
+    color: #DDDDDD;
+}
+
+.logs__item-texts-data h1 {
+    font-weight: 400;
+    font-size: 19.114px;
+    line-height: 105.5%;
+    color: #EEEEEE;
+}
+
+.logs__item-texts-data p {
+    font-weight: 500;
+    font-size: 16.7247px;
+    line-height: 105.5%;
+    color: #bbb;
+}
+
+.logs__item-texts-data p light {
+    font-weight: 300;
+    opacity: 0.7;
+}
+.logs__item-texts-data p strong {
+    color: #ccc;
+    font-weight: 700;
+}

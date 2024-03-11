@@ -1,0 +1,92 @@
+.basic-page{
+    line-height: normal;
+}
+
+#group__user-list {
+    display: flex;
+    padding: 24px;
+    gap: 6px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.group__user {
+    background: #333;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.group__user img {
+    height: 64px;
+    width: 64px;
+    margin-right: 12px;
+}
+
+.group__user .group__user-name {
+    font-size: 24px;
+}
+
+.group__user-roles {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+.role-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.role-button-wrapper:hover .role-button.role-button.remove::after {
+    color: #aaa;
+}
+
+.role-button {
+    background: #222;
+    user-select: none;
+    font-size: 12px;
+    color: #fff;
+    padding: 0px 6px;
+}
+
+.role-button.add {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;    
+    font-family: "Font Awesome 5 Free";
+    font-size: 18px;
+}
+
+.role-button.add::after {
+    content: "\2b";
+}
+
+.role-button.add:hover::after {
+    color: #aaa;
+}
+
+.role-button.remove {
+    padding: 5px 6px;
+    font-family: "Font Awesome 5 Free";
+}
+
+.role-button.remove::after {
+    content: "\f00d";
+}
+
+.role-tag-role {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 4px 6px;
+}
+
+.group__user user {
+    font-size: 24px;
+}
