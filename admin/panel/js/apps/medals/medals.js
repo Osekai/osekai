@@ -384,7 +384,7 @@ function saveMedal(medal, callback) {
     xhr.onload = function () { this.callback.apply(this); };
     xhr.onerror = function () { console.log("Error saving medal."); };
     xhr.send(
-        `strSolutionMods=${medal.Mods}&strNewSolution=${encodeURIComponent(medal.Solution)}&strSolutionPackID=${medal.PackID}&strSolutionVideo=${medal.Video}&strFirstAchievedDate=${medal.FirstAchievedDate}&strFirstAchievedId=${medal.FirstAchievedBy}&nMedalId=${medal.MedalID}&bBeatmapLockState=${medal.Locked}&strSolutionDate=${medal.Date}`
+        `strSolutionMods=${medal.Mods}&strNewSolution=${encodeURIComponent(medal.Solution)}&strSolutionPackID=${medal.PackID}&strSolutionVideo=${medal.Video}&strFirstAchievedDate=${medal.FirstAchievedDate}&strFirstAchievedId=${medal.FirstAchievedBy}&nMedalId=${medal.MedalID}&bBeatmapLockState=${medal.Locked}&strSolutionDate=${medal.Date}&strSolutionLazer=${medal.Lazer}`
     );
 }
 
@@ -457,6 +457,9 @@ function displayMedalInformation() {
 
     // Beatmap Options //
     document.getElementById("medals__lock-submissions").checked = medal.Locked === 1 ? "checked" : ""; // TODO: Why no work?!?
+console.log(medal);
+
+    document.getElementById("medals__lazer").checked = medal.Lazer === 1 ? "checked" : ""; 
 
     if (medal.PackID != null && medal.PackID != "" && medal.PackID != "0") // Thrill of Chaos uses "0" for some reason.
     {
@@ -546,6 +549,7 @@ function updateMedal() {
     medal.FirstAchievedDate = document.getElementById("medals__first-achieved-date").value;
     medal.FirstAchievedBy = document.getElementById("medals__first-achieved-user").value;
     medal.Locked = document.getElementById("medals__lock-submissions").checked;
+    medal.Lazer = document.getElementById("medals__lazer").checked;
     if (document.getElementById("medals__beatmap-packs").checked == true) {
         medal.PackID = `${document.getElementById("medals__beatmap-pack-osu").value},${document.getElementById("medals__beatmap-pack-taiko").value},${document.getElementById("medals__beatmap-pack-catch").value},${document.getElementById("medals__beatmap-pack-mania").value}`;
     } else {

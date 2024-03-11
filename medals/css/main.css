@@ -166,7 +166,27 @@
 .osekai__mi-text {
     margin-left: 25px;
 }
-
+.osekai__mi-text > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.stable__only {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    margin-left: 5px;
+    margin-top: 3px;
+    padding: 7px 14px;
+    border-radius: 90px;
+    background-color: var(--flat_bg_a5);
+}
+.stable__only.hidden {
+    display: none !important;
+}
+.stable__only i {
+    margin-right: 2px;
+}
 .osekai__mit-title {
     font-family: Comfortaa;
     font-style: normal;

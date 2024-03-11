@@ -18,7 +18,12 @@ if($firstAchievedDate == "") {
     $firstAchievedDate = null;
 }
 
-Database::execOperation("UPDATE Medals SET packid = ?, video = ?, date = ?, firstachieveddate = ?, firstachievedby = ? WHERE medalid = ?", "ssssii", array($_POST['strSolutionPackID'], $_POST['strSolutionVideo'], $solutionDate, $firstAchievedDate, $_POST['strFirstAchievedId'], $_POST['nMedalId']));
+$lazer = 0;
+
+if($_POST['strSolutionLazer'] == "true") $lazer = 1; 
+
+
+Database::execOperation("UPDATE Medals SET lazer = ?, packid = ?, video = ?, date = ?, firstachieveddate = ?, firstachievedby = ? WHERE medalid = ?", "issssii", array($lazer, $_POST['strSolutionPackID'], $_POST['strSolutionVideo'], $solutionDate, $firstAchievedDate, $_POST['strFirstAchievedId'], $_POST['nMedalId']));
 if ($_POST['bBeatmapLockState'] == "true") {
     Database::execOperation("INSERT IGNORE INTO MedalStructure (Locked, MedalID) VALUES ('1', ?)", "i", array($_POST['nMedalId']));
 } else {

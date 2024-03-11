@@ -41,6 +41,7 @@ if (isset($_POST['strSearch']) || count($_POST) == 0) {
         , Medals.packid as PackID
         , Medals.firstachieveddate as FirstAchievedDate
         , Medals.firstachievedby as FirstAchievedBy
+        , Medals.lazer as Lazer
         , (CASE WHEN restriction = 'osu' THEN 2 WHEN restriction = 'taiko' THEN 3 WHEN restriction = 'fruits' THEN 4 WHEN restriction = 'mania' THEN 5 ELSE 1 END) AS ModeOrder 
         , Medals.ordering AS Ordering
         , MedalRarity.frequency As Rarity
