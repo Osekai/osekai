@@ -1,1 +1,0 @@
-Team Home for <?= $team['Tag']; ?>
