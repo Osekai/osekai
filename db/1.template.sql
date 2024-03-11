@@ -80,6 +80,7 @@ SELECT Medals.medalid AS MedalID
 	, Medals.link AS Link
 	, Medals.description AS Description
 	, Medals.restriction AS Restriction
+	, Medals.lazer AS Lazer
 	, Medals.grouping AS `Grouping`
 	, Medals.instructions AS Instructions
 	, Solutions.solution AS Solution

@@ -79,6 +79,9 @@
                     <textarea class="input" id="medals__medal-solution-textarea"></textarea>
                     <p>Video</p>
                     <input type="text" class="input input-pattern" placeholder="None" id="medals__medal-solution-video" pattern="[0-9A-z-_]{11}">
+                    <label for="medals__lazer" class="checkbox" id="medals__lazer-label">
+                        <input type="checkbox" id="medals__lazer">Supports Lazer</input>
+                    </label>
                 </section>
                 <section>
                     <h1>Mods</h1>
@@ -103,10 +106,10 @@
             <div class="medals__medal-beatmap-options">
                 <h1>Beatmap Options</h1>
                 <label for="medals__lock-submissions" class="checkbox" id="medals__lock-submissions-label">
-                    <input type="checkbox" id="medals__lock-submissions">Lock Submissions
+                    <input type="checkbox" id="medals__lock-submissions">Lock Submissions</input>
                 </label>
                 <label for="medals__beatmap-packs" class="checkbox">
-                    <input type="checkbox" id="medals__beatmap-packs">Beatmap Packs
+                    <input type="checkbox" id="medals__beatmap-packs">Beatmap Packs</input>
                 </label>
                 <div class="medals__beatmap-packs-ids">
                     <p>osu!</p>

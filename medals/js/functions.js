@@ -678,6 +678,14 @@ async function loadMedal(strMedalName, updateAdminPanel = true) {
         document.getElementById("video_panel").classList.add("hidden");
         document.getElementById("video").src = "";
     }
+
+    console.log(colMedals[strMedalName])
+    if(colMedals[strMedalName].Lazer == 0) {
+        document.getElementById("stable-only").classList.remove("hidden");
+    } else {
+        
+        document.getElementById("stable-only").classList.add("hidden");
+    }
     loadExtraInfo(nCurrentMedalID);
     addLock();
     checkLock(allowAddMap);
@@ -917,6 +925,7 @@ function addBeatmap() {
 }
 
 function addLock() {
+    return;
     if (document.contains(document.getElementById("lock"))) document.getElementById("lock").remove();
     if (checkPermission("apps.medals.medal.legacyEdit")) {
         let oElem = document.createElement("div");
