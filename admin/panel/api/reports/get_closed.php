@@ -1,0 +1,2 @@
+<?php
+echo json_encode(Database::execSelect("SELECT Reports.*, Ranking.name FROM Reports LEFT JOIN Ranking as Ranking on Ranking.id = Reports.ReporterId LIMIT 50 OFFSET ?", "i", [$_REQUEST['nOffset']]));

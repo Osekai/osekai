@@ -1,0 +1,2 @@
+# osekai-admin
+admin panel

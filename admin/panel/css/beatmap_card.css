@@ -1,0 +1,40 @@
+.beatmap-card--container{
+    height:111px;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.beatmap-card--header {
+    margin-top: 8px;
+    margin-left: 10px;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.beatmap-card--footer {
+    margin:10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.beatmap-card--header h3{
+    font-size: 18px;
+    margin:0;
+}
+
+.beatmap-card--header span {
+    font-size: 14px;
+}
+
+.beatmap-card--footer span {
+    font-size: 13px;
+}
+
+a {
+    font-weight: bold;
+    color:white;
+    text-decoration: underline;
+}
