@@ -8,3 +8,5 @@ db-data/
 # Editor stuff
 .vscode
 .vs
+admin/panel/fun/
+admin/panel/fun/*
