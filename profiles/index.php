@@ -23,7 +23,7 @@ if (isset($_GET['user'])) {
     if (isset($user)) {
         $user = json_decode($user, true);
 
-        if($_GET['user'] != $user['id']) {
+        if ($_GET['user'] != $user['id']) {
             // redirects from username, so you can go to https://osekai.net/profiles?user=Tanza3D and it'll auto-redirect
             redirect("/profiles?user=" . $user['id']);
             exit;
@@ -88,10 +88,10 @@ frontend();
 
     font();
     css();
-        
+
     xhr_requests();
     osu_api();
-    
+
     medal_popup_v2();
 
     notification_system();
@@ -115,17 +115,19 @@ frontend();
             <div class="osekai__2col_col1">
                 <?php print_home_panel(); ?>
                 <?php if (loggedin()) { ?>
-                <div class="profiles__sidebar-button" onclick="loadCurrentUser();">
-                    <img class="profiles__sb-pfp" src="https://a.ppy.sh/<?= $_SESSION['osu']['id']; ?>">
-                    <img class="profiles__sb-pfp profiles__sb-pfp-outline"
-                        src="https://a.ppy.sh/<?= $_SESSION['osu']['id']; ?>">
-                    <img class="profiles__sb-background" src="https://a.ppy.sh/<?= $_SESSION['osu']['id']; ?>">
-                    <div class="texts">
-                        <p><?= GetStringRaw("profiles", "home.yourProfile.title"); ?></p>
-                        <h1><?= GetStringRaw("profiles", "home.yourProfile.subtitle"); ?></h1>
+                    <div class="profiles__sidebar-button" onclick="loadCurrentUser();">
+                        <img class="profiles__sb-pfp" src="https://a.ppy.sh/<?= $_SESSION['osu']['id']; ?>">
+                        <img class="profiles__sb-pfp profiles__sb-pfp-outline" src="https://a.ppy.sh/<?= $_SESSION['osu']['id']; ?>">
+                        <img class="profiles__sb-background" src="https://a.ppy.sh/<?= $_SESSION['osu']['id']; ?>">
+                        <div class="texts">
+                            <p><?= GetStringRaw("profiles", "home.yourProfile.title"); ?></p>
+                            <h1><?= GetStringRaw("profiles", "home.yourProfile.subtitle"); ?></h1>
+                        </div>
                     </div>
-                </div>
                 <?php } ?>
+
+
+                <ad-area type="square"></ad-area>
 
                 <section class="osekai__panel" style="margin-top: 25px;">
                     <div class="osekai__panel-header">
@@ -144,26 +146,29 @@ frontend();
                     </div>
                 </section>
 
-                <?php if(loggedin()) { ?>
-                <section class="osekai__panel">
-                    <div class="osekai__panel-header">
-                        <i class="fas fa-eye"></i>
-                        <p>
-                            <?php  echo GetStringRaw("profiles", "home.recentlyViewed.title"); ?>
-                        </p>
-                    </div>
-                    <div class="osekai__panel-inner profiles__ranking" id="recentlyviewed">
-                        <!-- <div class="profiles__ranking-user" onclick="loadUser(4637369);"><img src="https://a.ppy.sh/4637369" class="profiles__ranking-pfp">
+                <?php if (loggedin()) { ?>
+                    <section class="osekai__panel">
+                        <div class="osekai__panel-header">
+                            <i class="fas fa-eye"></i>
+                            <p>
+                                <?php echo GetStringRaw("profiles", "home.recentlyViewed.title"); ?>
+                            </p>
+                        </div>
+                        <div class="osekai__panel-inner profiles__ranking" id="recentlyviewed">
+                            <!-- <div class="profiles__ranking-user" onclick="loadUser(4637369);"><img src="https://a.ppy.sh/4637369" class="profiles__ranking-pfp">
                             <div class="profiles__ranking-texts">
                                 <p class="profiles__ranking-username">?</p>
                             </div>
                             <p class="profiles__ranking-rank"><span>#</span>?</p>
                         </div> -->
-                    </div>
-                </section>
+                        </div>
+                    </section>
                 <?php } ?>
             </div>
+
             <div class="osekai__2col_col2">
+
+                <ad-area type="banner"></ad-area>
                 <section class="osekai__panel">
                     <div class="osekai__panel-header-with-buttons">
                         <div class="osekai__panel-hwb-left">
@@ -171,19 +176,14 @@ frontend();
                             <p><?= GetStringRaw("profiles", "home.globalRankings.title"); ?></p>
                         </div>
                         <div id="mode__list__home" class="osekai__panel-hwb-right" style="padding-right: 7px;">
-                            <img mode="all" tooltip-content="all mode" class="profiles__gamemode-button tooltip-v2"
-                                src="/global/img/gamemodes/all.svg">
-                            <img mode="osu" tooltip-content="standard"
-                                class="profiles__gamemode-button tooltip-v2 profiles__gamemode-button-active"
-                                src="/global/img/gamemodes/standard.svg">
-                            <img mode="taiko" tooltip-content="taiko" class="profiles__gamemode-button tooltip-v2"
-                                src="/global/img/gamemodes/taiko.svg">
-                            <img mode="fruits" tooltip-content="catch" class="profiles__gamemode-button tooltip-v2"
-                                src="/global/img/gamemodes/fruits.svg">
-                            <img mode="mania" tooltip-content="mania" class="profiles__gamemode-button tooltip-v2"
-                                src="/global/img/gamemodes/mania.svg">
+                            <img mode="all" tooltip-content="all mode" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/all.svg">
+                            <img mode="osu" tooltip-content="standard" class="profiles__gamemode-button tooltip-v2 profiles__gamemode-button-active" src="/global/img/gamemodes/standard.svg">
+                            <img mode="taiko" tooltip-content="taiko" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/taiko.svg">
+                            <img mode="fruits" tooltip-content="catch" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/fruits.svg">
+                            <img mode="mania" tooltip-content="mania" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/mania.svg">
                         </div>
                     </div>
+
                     <div id="profiles__ranking" class="osekai__panel-inner profiles__ranking">
                     </div>
                 </section>
@@ -211,17 +211,11 @@ frontend();
                 </div>
                 <div class="osekai__tab-page-navigation-menu">
                     <div id="mode__list" class="osekai__left osekai__center-flex-row">
-                        <img mode="all" tooltip-content="all mode" class="profiles__gamemode-button tooltip-v2"
-                            src="/global/img/gamemodes/all.svg">
-                        <img mode="osu" tooltip-content="standard"
-                            class="profiles__gamemode-button tooltip-v2 profiles__gamemode-button-active"
-                            src="/global/img/gamemodes/standard.svg">
-                        <img mode="taiko" tooltip-content="taiko" class="profiles__gamemode-button tooltip-v2"
-                            src="/global/img/gamemodes/taiko.svg">
-                        <img mode="fruits" tooltip-content="catch" class="profiles__gamemode-button tooltip-v2"
-                            src="/global/img/gamemodes/fruits.svg">
-                        <img mode="mania" tooltip-content="mania" class="profiles__gamemode-button tooltip-v2"
-                            src="/global/img/gamemodes/mania.svg">
+                        <img mode="all" tooltip-content="all mode" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/all.svg">
+                        <img mode="osu" tooltip-content="standard" class="profiles__gamemode-button tooltip-v2 profiles__gamemode-button-active" src="/global/img/gamemodes/standard.svg">
+                        <img mode="taiko" tooltip-content="taiko" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/taiko.svg">
+                        <img mode="fruits" tooltip-content="catch" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/fruits.svg">
+                        <img mode="mania" tooltip-content="mania" class="profiles__gamemode-button tooltip-v2" src="/global/img/gamemodes/mania.svg">
                     </div>
                 </div>
             </div>
@@ -230,6 +224,8 @@ frontend();
                 <div class="osekai__tab-page-content-inner" otab-name="Medals">
                     <div class="osekai__2col-panels">
                         <div class="osekai__2col_col1">
+
+                            <ad-area type="banner"></ad-area>
                             <section class="osekai__panel">
                                 <div class="osekai__panel-header">
                                     <i class="oif-medal"></i>
@@ -237,12 +233,10 @@ frontend();
                                 </div>
                                 <div class="profiles__osekai__panel-nav osekai__panel-nav osekai__flex_row">
                                     <div class="profiles__rank-nav">
-                                        <?= GetStringRaw("profiles", "profile.medals.medals"); ?> <strong
-                                            id="medal__count">?</strong>
+                                        <?= GetStringRaw("profiles", "profile.medals.medals"); ?> <strong id="medal__count">?</strong>
                                     </div>
                                     <div class="profiles__rank-nav">
-                                        <?= GetStringRaw("profiles", "profile.medals.rank"); ?> <strong
-                                            id="medal__rank__global">?</strong>
+                                        <?= GetStringRaw("profiles", "profile.medals.rank"); ?> <strong id="medal__rank__global">?</strong>
                                     </div>
                                 </div>
                                 <div id="medals__graph__area" class="profiles__graph-area">
@@ -250,22 +244,18 @@ frontend();
                                         <canvas id="medals__chart"></canvas>
                                     </div>
                                 </div>
+
                                 <div class="osekai__panel-inner osekai__flex-vertical-container">
                                     <div id="completion__bar__scheme" class="profiles__medalinfo-section">
                                         <div class="profiles__medals-section-top">
-                                            <p><?= GetStringRaw("profiles", "profile.medals.completion"); ?> <span
-                                                    id="completion__amount"
-                                                    class="profiles__medal-progress-percentage">?</span></p>
-                                            <p
-                                                class="profiles__medals-section-top-right profiles__medals-section-top-right-percentage">
+                                            <p><?= GetStringRaw("profiles", "profile.medals.completion"); ?> <span id="completion__amount" class="profiles__medal-progress-percentage">?</span></p>
+                                            <p class="profiles__medals-section-top-right profiles__medals-section-top-right-percentage">
                                                 <strong id="medals__to__go">? medals to go</strong>
-                                                <?= GetStringRaw("profiles", "profile.medals.until"); ?> <strong><span
-                                                        id="next__club">?</span>!</strong>
+                                                <?= GetStringRaw("profiles", "profile.medals.until"); ?> <strong><span id="next__club">?</span>!</strong>
                                             </p>
                                         </div>
                                         <div class="profiles__medalinfo-section-bar">
-                                            <div
-                                                class="osekai__progress-bar osekai__progress-bar-custom osekai__progress-bar-clubs">
+                                            <div class="osekai__progress-bar osekai__progress-bar-custom osekai__progress-bar-clubs">
                                                 <div id="completion__bar" class="osekai__progress-bar-inner"></div>
                                             </div>
                                         </div>
@@ -279,12 +269,9 @@ frontend();
                                             </p>
                                         </div>
                                         <div class="profiles__medalinfo-section_rarest-medalinfo">
-                                            <img id="rarest__medal__bg"
-                                                src="https://assets.ppy.sh/medals/web/all-secret-5050.png"
-                                                class="background">
+                                            <img id="rarest__medal__bg" src="https://assets.ppy.sh/medals/web/all-secret-5050.png" class="background">
                                             <div class="profiles__medalinfo-section_rarest-medalinfo-left">
-                                                <img id="rarest__medal__img"
-                                                    src="https://assets.ppy.sh/medals/web/all-secret-5050.png">
+                                                <img id="rarest__medal__img" src="https://assets.ppy.sh/medals/web/all-secret-5050.png">
                                                 <div class="texts">
                                                     <h2 id="rarest__medal__title">Loading</h2>
                                                     <p id="rarest__medal__description">Please wait...</p>
@@ -301,6 +288,7 @@ frontend();
 
                             </section>
 
+                            <ad-area type="banner"></ad-area>
                         </div>
                         <div class="osekai__2col_col2">
 
@@ -325,11 +313,8 @@ frontend();
                                     <div class="profiles__cover-userinfo">
                                         <img selector="cover_blur_img" class="osekai__pfp-blur-bg">
                                         <div class="profiles__cover-userinfo-inner">
-                                            <a tooltip-content="View profile on osu.ppy.sh" id="osu_link"
-                                                target="_blank" class="profiles__cover-link tooltip-v2"><i
-                                                    class="fas fa-external-link-alt"></i></a>
-                                            <img class="profiles__cover-info-pfp" src="https://a.ppy.sh/1"
-                                                selector="pfp">
+                                            <a tooltip-content="View profile on osu.ppy.sh" id="osu_link" target="_blank" class="profiles__cover-link tooltip-v2"><i class="fas fa-external-link-alt"></i></a>
+                                            <img class="profiles__cover-info-pfp" src="https://a.ppy.sh/1" selector="pfp">
                                             <div class="profiles__cover-info-content">
                                                 <div id="name__sub" class="profiles__cover-info-sub">
                                                     <?= GetStringRaw("general", "loading.longer"); ?></div>
@@ -343,18 +328,15 @@ frontend();
                                     <div class="profiles__cover-bottom-inner">
                                         <div id="bar__social" class="profiles__cover-bottom-row">
                                             <div class="profiles__cover-bottom_text">
-                                                <p><i class="fab fa-discord"></i><a target="_blank"
-                                                        id="discord"><?= GetStringRaw("general", "loading.longer"); ?></a>
+                                                <p><i class="fab fa-discord"></i><a target="_blank" id="discord"><?= GetStringRaw("general", "loading.longer"); ?></a>
                                                 </p>
                                             </div>
                                             <div class="profiles__cover-bottom_text">
-                                                <p><i class="fab fa-twitter"></i><a target="_blank"
-                                                        id="twitter"><?= GetStringRaw("general", "loading.longer"); ?></a>
+                                                <p><i class="fab fa-twitter"></i><a target="_blank" id="twitter"><?= GetStringRaw("general", "loading.longer"); ?></a>
                                                 </p>
                                             </div>
                                             <div class="profiles__cover-bottom_text">
-                                                <p><i class="fas fa-link"></i><a target="_blank"
-                                                        id="website"><?= GetStringRaw("general", "loading.longer"); ?></a>
+                                                <p><i class="fas fa-link"></i><a target="_blank" id="website"><?= GetStringRaw("general", "loading.longer"); ?></a>
                                                 </p>
                                             </div>
                                         </div>
@@ -385,10 +367,13 @@ frontend();
                                     </div>
                                 </div>
                             </section>
+                            
+            <ad-area type="banner"></ad-area>
                             <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/commentsPanel.php"); ?>
                         </div>
                         <div class="osekai__2col_col2">
-                            
+                    
+            <ad-area type="square"></ad-area>
                             <section class="osekai__panel">
                                 <div class="osekai__panel-header">
                                     <i class="fas fa-chart-line"></i>
@@ -396,21 +381,17 @@ frontend();
                                 </div>
                                 <div class="profiles__osekai__panel-nav osekai__panel-nav osekai__flex_row">
                                     <div class="profiles__rank-nav forcetooltip">
-                                        <?= GetStringRaw("profiles", "profile.stats.globalRank"); ?> <strong
-                                            id="current__global__rank">?</strong>
+                                        <?= GetStringRaw("profiles", "profile.stats.globalRank"); ?> <strong id="current__global__rank">?</strong>
                                     </div>
                                     <div class="profiles__rank-nav forcetooltip">
-                                        <?= GetStringRaw("profiles", "profile.stats.countryRank"); ?> <strong
-                                            id="current__country__rank">?</strong>
+                                        <?= GetStringRaw("profiles", "profile.stats.countryRank"); ?> <strong id="current__country__rank">?</strong>
                                     </div>
                                     <div class="osekai__left osekai__flex_row w-auto g-18">
                                         <div class="profiles__rank-nav">
-                                            <?= GetStringRaw("profiles", "profile.stats.accuracy"); ?> <strong
-                                                id="accuracy">?</strong>
+                                            <?= GetStringRaw("profiles", "profile.stats.accuracy"); ?> <strong id="accuracy">?</strong>
                                         </div>
                                         <div class="profiles__rank-nav">
-                                            <?= GetStringRaw("profiles", "profile.stats.pp"); ?> <strong
-                                                id="pp__count">?</strong>
+                                            <?= GetStringRaw("profiles", "profile.stats.pp"); ?> <strong id="pp__count">?</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -419,18 +400,16 @@ frontend();
                                         <canvas id="stats__chart"></canvas>
                                     </div>
                                 </div>
+                                
                                 <div class="osekai__panel-inner osekai__flex-vertical-container">
                                     <div class="profiles__panel-row">
                                         <div class="profiles__panel profiles__panel-maxwidth">
-                                            <p><?= GetStringRaw("profiles", "profile.stats.playtime"); ?> <strong
-                                                    id="play__time">?</strong></p>
-                                            <p><?= GetStringRaw("profiles", "profile.stats.plays"); ?> <strong
-                                                    id="play__count">?</strong></p>
+                                            <p><?= GetStringRaw("profiles", "profile.stats.playtime"); ?> <strong id="play__time">?</strong></p>
+                                            <p><?= GetStringRaw("profiles", "profile.stats.plays"); ?> <strong id="play__count">?</strong></p>
                                         </div>
                                         <div class="profiles__panel profiles__panel-ranks">
                                             <div class="profiles__vertical-rank">
-                                                <img
-                                                    src="https://osu.ppy.sh/assets/images/GradeSmall-SS-Silver.6681366c.svg">
+                                                <img src="https://osu.ppy.sh/assets/images/GradeSmall-SS-Silver.6681366c.svg">
                                                 <p id="ssh__count">?</p>
                                             </div>
                                             <div class="profiles__vertical-rank">
@@ -438,8 +417,7 @@ frontend();
                                                 <p id="ss__count">?</p>
                                             </div>
                                             <div class="profiles__vertical-rank">
-                                                <img
-                                                    src="https://osu.ppy.sh/assets/images/GradeSmall-S-Silver.811ae28c.svg">
+                                                <img src="https://osu.ppy.sh/assets/images/GradeSmall-S-Silver.811ae28c.svg">
                                                 <p id="sh__count">?</p>
                                             </div>
                                             <div class="profiles__vertical-rank">
@@ -454,6 +432,7 @@ frontend();
                                     </div>
                                 </div>
                             </section>
+                            
                             <section class="osekai__panel">
                                 <div id="AddEntryPanel" class="osekai__panel-header-with-buttons">
                                     <div class="osekai__panel-hwb-left">
@@ -470,13 +449,11 @@ frontend();
                                     <div id="timeline__dots" class="profiles__timeline">
                                         <div selector="timeline__dot" class="profiles__timeline-dot" style="--pos: 0%">
                                         </div>
-                                        <div selector="timeline__dot" class="profiles__timeline-dot"
-                                            style="--pos: 100%">
+                                        <div selector="timeline__dot" class="profiles__timeline-dot" style="--pos: 100%">
                                         </div>
                                     </div>
                                     <div class="profiles__info-panel-container">
-                                        <div id="timeline__info"
-                                            class="profiles__info-panel profiles__info-panel-closed">
+                                        <div id="timeline__info" class="profiles__info-panel profiles__info-panel-closed">
                                             <div id="timeline__header" class="profiles__info-panel-header">March 2001
                                             </div>
                                             <div class="profiles__info-panel-row">
@@ -497,6 +474,7 @@ frontend();
                                     </div>
                                 </div>
                             </section>
+                            <ad-area type="square"> </ad-area>
                             <section id="goals__section" class="osekai__panel">
                                 <div class="osekai__panel-header">
                                     <i class="fas fa-bullseye"></i>
@@ -504,8 +482,7 @@ frontend();
 
                                 </div>
                                 <div class="osekai__panel-inner osekai__flex-vertical-container">
-                                    <div class="profiles__feature-introduction profiles__feature-introduction-goals hidden"
-                                        id="goals__welcome">
+                                    <div class="profiles__feature-introduction profiles__feature-introduction-goals hidden" id="goals__welcome">
                                         <div class="profiles__feature-introduction-toprow">
                                             <h1><?= GetStringRaw("profiles", "profile.goals.welcome.title"); ?></h1>
                                             <p><?= GetStringRaw("profiles", "profile.goals.welcome.close"); ?></p>
@@ -515,55 +492,31 @@ frontend();
                                         </div>
                                     </div>
                                     <div selector="user__control" class="profiles__goal-input">
-                                        <div id="goals__dropdown"
-                                            class="profiles__goal-dropdown-content osekai__dropdown osekai__dropdown-hidden">
+                                        <div id="goals__dropdown" class="profiles__goal-dropdown-content osekai__dropdown osekai__dropdown-hidden">
                                             <p class="profiles__dropdown-header">
                                                 <?= GetStringRaw("profiles", "profile.goals.goalType"); ?></p>
-                                            <div id="btn-goals__PP"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/pp.svg">
+                                            <div id="btn-goals__PP" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/pp.svg">
                                                 <?= GetStringRaw("profiles", "profile.goals.pp"); ?></div>
-                                            <div id="btn-goals__Rank"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/rank.svg">
+                                            <div id="btn-goals__Rank" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/rank.svg">
                                                 <?= GetStringRaw("profiles", "profile.goals.rank"); ?></div>
-                                            <div id="btn-goals__Country Rank"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/rank.svg"> country rank</div>
-                                            <div id="btn-goals__Medals"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/medals.svg">
+                                            <div id="btn-goals__Country Rank" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/rank.svg"> country rank</div>
+                                            <div id="btn-goals__Medals" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/medals.svg">
                                                 <?= GetStringRaw("profiles", "profile.goals.medals"); ?></div>
-                                            <div id="btn-goals__% Medals"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/medals.svg"> medal %</div>
-                                            <div id="btn-goals__SS Count"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/ss.svg">
+                                            <div id="btn-goals__% Medals" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/medals.svg"> medal %</div>
+                                            <div id="btn-goals__SS Count" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/ss.svg">
                                                 <?= GetStringRaw("profiles", "profile.goals.ssCount"); ?></div>
-                                            <div id="btn-goals__Badges"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/badges.svg">
+                                            <div id="btn-goals__Badges" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/badges.svg">
                                                 <?= GetStringRaw("profiles", "profile.goals.badges"); ?></div>
-                                            <div id="btn-goals__Level"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/level.svg">
+                                            <div id="btn-goals__Level" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/level.svg">
                                                 <?= GetStringRaw("profiles", "profile.goals.level"); ?></div>
-                                            <div id="btn-goals__Ranked Score"
-                                                class="osekai__dropdown-item profiles__goal-dropdown-button"><img
-                                                    src="img/goals/vector/level.svg"> ranked score</div>
+                                            <div id="btn-goals__Ranked Score" class="osekai__dropdown-item profiles__goal-dropdown-button"><img src="img/goals/vector/level.svg"> ranked score</div>
                                         </div>
-                                        <div id="goals__dropdown__button"
-                                            class="profiles__goal-dropdown osekai__dropdown-opener">
-                                            <img id="current__goaltype" class="profiles__goal-type"
-                                                src="img/goals/vector/medals.svg">
+                                        <div id="goals__dropdown__button" class="profiles__goal-dropdown osekai__dropdown-opener">
+                                            <img id="current__goaltype" class="profiles__goal-type" src="img/goals/vector/medals.svg">
                                             <i class="fas fa-caret-down"></i>
                                         </div>
 
-                                        <input id="goal__input" type="number"
-                                            onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"
-                                            placeholder="<?= GetStringRaw("profiles", "profile.goals.input.placeholder"); ?>"
-                                            class="profiles__goal-input-amount">
+                                        <input id="goal__input" type="number" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" placeholder="<?= GetStringRaw("profiles", "profile.goals.input.placeholder"); ?>" class="profiles__goal-input-amount">
                                         <div id="goals__add__button" class="profiles__goal-add">
                                             <i class="fas fa-plus"></i>
                                         </div>
@@ -575,150 +528,127 @@ frontend();
                             </section>
                             <section class="osekai__panel" id="banner-panel">
 
-<div class="osekai__panel-header">
-    <i class="fas fa-user"></i>
-    <p><?= GetStringRaw("profiles", "profile.banner.title"); ?></p>
-</div>
-<div class="osekai__panel-inner osekai__flex-vertical-container">
-    <div class="profiles__userbanner">
-        <div class="profiles__banner-loading-overlay" id="banner-full-loader">
-            <svg viewBox="0 0 50 50" class="spinner">
-                <circle class="ring" cx="25" cy="25" r="22.5"></circle>
-                <circle class="line" cx="25" cy="25" r="22.5"></circle>
-            </svg>
-        </div>
-        <div class="profiles__userbanner-top">
-            <div class="profiles__userbanner-top-toggle">
-                <div id="banner-toggle-type_bbcode"
-                    class="profiles__userbanner-top-toggle-item"
-                    onclick="UserBanner.SwitchUrl('bbcode')">
-                    <?= GetStringRaw("profiles", "profile.banner.copyType.bbcode"); ?>
-                </div>
-                <div id="banner-toggle-type_raw"
-                    class="profiles__userbanner-top-toggle-item"
-                    onclick="UserBanner.SwitchUrl('raw')">
-                    <?= GetStringRaw("profiles", "profile.banner.copyType.raw"); ?>
-                </div>
-            </div>
-            <div class="profiles__userbanner-top-text">
-                <pre
-                    id="banner-copy-placeholder"><?= GetStringRaw("general", "loading.longer"); ?></pre>
-            </div>
-            <div class="profiles__userbanner-top-copy" onclick="UserBanner.CopyUrl();">
-                <i class="fas fa-clipboard"></i>
-            </div>
-        </div>
-        <div class="profiles__userbanner-bottom-container">
-            <div class="profiles__userbanner-display">
-                <div class="profiles__userbanner-image">
-                    <img class="profiles__userbanner-image-svg-container" src="" alt=""
-                        id="banner-image">
-                    <div class="profiles__userbanner-image-loader" id="banner-loader">
-                        <svg viewBox="0 0 50 50" class="spinner">
-                            <circle class="ring" cx="25" cy="25" r="22.5"></circle>
-                            <circle class="line" cx="25" cy="25" r="22.5"></circle>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="profiles__userbanner-bottom">
-                <div class="profiles__userbanner-bottom-top">
-                    <div class="profiles__dropdown-with-header"
-                        id="dropdown-section-backdrop">
-                        <p class="profiles__userbanner-dropdown-header">
-                            <?= GetStringRaw("profiles", "profile.banner.backdropStyle.title"); ?>
-                        </p>
-                        <div class="osekai__dropdown-button-inner osekai__dropdown-opener"
-                            onclick="UserBanner.OpenDropdown('banner-dropdown-background-style')">
-                            <p id="dropdown__themes-text">Club Glows</p>
-                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                        </div>
-                        <div class="osekai__dropdown osekai__dropdown-hidden"
-                            id="banner-dropdown-background-style">
-                        </div>
-                    </div>
-                    <div class="profiles__dropdown-with-header"
-                        id="dropdown-section-foreground">
-                        <p class="profiles__userbanner-dropdown-header">
-                            <?= GetStringRaw("profiles", "profile.banner.foregroundStyle.title"); ?>
-                        </p>
-                        <div class="osekai__dropdown-button-inner osekai__dropdown-opener"
-                            onclick="UserBanner.OpenDropdown('banner-dropdown-foreground-style')">
-                            <p id="dropdown__themes-text">Medal-Oriented</p>
-                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                        </div>
-                        <div class="osekai__dropdown osekai__dropdown-hidden"
-                            id="banner-dropdown-foreground-style">
-                        </div>
-                    </div>
-                </div>
-                <div class="profiles__userbanner-bottom-bottom"
-                    id="custom-background-settings">
-                    <h1><?= GetStringRaw("profiles", "profile.banner.customBackground.title"); ?>
-                    </h1>
-                    <div class="profiles__userbanner-bottom-right-controlbar">
-                        <div class="profiles__userbanner-bottom-right-controlbar-dropdown"
-                            id="dropdown-section-customstyle">
-                            <p class="profiles__userbanner-dropdown-header">
-                                <?= GetStringRaw("profiles", "profile.banner.customBackground.style.title"); ?>
-                            </p>
-                            <div class="osekai__dropdown-button-inner osekai__dropdown-opener"
-                                onclick="UserBanner.OpenDropdown('banner-dropdown-custom-style')">
-                                <p id="dropdown__themes-text">Gradient</p>
-                                <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                            </div>
-                            <div class="osekai__dropdown osekai__dropdown-hidden"
-                                id="banner-dropdown-custom-style">
-                            </div>
-                        </div>
-                        <div class="profiles__gradient-picker"
-                            id="banner-gradient-picker">
-                            <p class="profiles__userbanner-dropdown-header">
-                                <?= GetStringRaw("profiles", "profile.banner.customBackground.gradient"); ?>
-                            </p>
-                            <div class="osekai__gradient-bar" id="colourbar">
-                                <div class="osekai__gradient-bar-left"><input
-                                        type="text"></input></div>
-                                <div class="osekai__gradient-bar-bar"></div>
-                                <div class="osekai__gradient-bar-right"><input
-                                        type="text"></input></div>
-                            </div>
-                        </div>
-                        <div class="profiles__angle-picker" id="banner-angle-picker">
-                            <p class="profiles__userbanner-dropdown-header">
-                                <?= GetStringRaw("profiles", "profile.banner.customBackground.angle"); ?>
-                            </p>
-                            <div class="osekai__slider-with-input">
-                                <div class="osekai__slider-input-container">
-                                    <input type="text" id="angle-input" value="0"
-                                        class="osekai__input"
-                                        onchange="UserBanner.UpdateAngle('input')">
+                                <div class="osekai__panel-header">
+                                    <i class="fas fa-user"></i>
+                                    <p><?= GetStringRaw("profiles", "profile.banner.title"); ?></p>
                                 </div>
-                                <div class="osekai__slider-container">
-                                    <input type="range" min="0" max="360" value="0"
-                                        class="osekai__slider" id="angle-slider"
-                                        onchange="UserBanner.UpdateAngle('slider')">
+                                <div class="osekai__panel-inner osekai__flex-vertical-container">
+                                    
+            <ad-area type="banner"></ad-area>
+                                    <div class="profiles__userbanner">
+                                        <div class="profiles__banner-loading-overlay" id="banner-full-loader">
+                                            <svg viewBox="0 0 50 50" class="spinner">
+                                                <circle class="ring" cx="25" cy="25" r="22.5"></circle>
+                                                <circle class="line" cx="25" cy="25" r="22.5"></circle>
+                                            </svg>
+                                        </div>
+                                        <div class="profiles__userbanner-top">
+                                            <div class="profiles__userbanner-top-toggle">
+                                                <div id="banner-toggle-type_bbcode" class="profiles__userbanner-top-toggle-item" onclick="UserBanner.SwitchUrl('bbcode')">
+                                                    <?= GetStringRaw("profiles", "profile.banner.copyType.bbcode"); ?>
+                                                </div>
+                                                <div id="banner-toggle-type_raw" class="profiles__userbanner-top-toggle-item" onclick="UserBanner.SwitchUrl('raw')">
+                                                    <?= GetStringRaw("profiles", "profile.banner.copyType.raw"); ?>
+                                                </div>
+                                            </div>
+                                            <div class="profiles__userbanner-top-text">
+                                                <pre id="banner-copy-placeholder"><?= GetStringRaw("general", "loading.longer"); ?></pre>
+                                            </div>
+                                            <div class="profiles__userbanner-top-copy" onclick="UserBanner.CopyUrl();">
+                                                <i class="fas fa-clipboard"></i>
+                                            </div>
+                                        </div>
+                                        <div class="profiles__userbanner-bottom-container">
+                                            <div class="profiles__userbanner-display">
+                                                <div class="profiles__userbanner-image">
+                                                    <img class="profiles__userbanner-image-svg-container" src="" alt="" id="banner-image">
+                                                    <div class="profiles__userbanner-image-loader" id="banner-loader">
+                                                        <svg viewBox="0 0 50 50" class="spinner">
+                                                            <circle class="ring" cx="25" cy="25" r="22.5"></circle>
+                                                            <circle class="line" cx="25" cy="25" r="22.5"></circle>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="profiles__userbanner-bottom">
+                                                <div class="profiles__userbanner-bottom-top">
+                                                    <div class="profiles__dropdown-with-header" id="dropdown-section-backdrop">
+                                                        <p class="profiles__userbanner-dropdown-header">
+                                                            <?= GetStringRaw("profiles", "profile.banner.backdropStyle.title"); ?>
+                                                        </p>
+                                                        <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="UserBanner.OpenDropdown('banner-dropdown-background-style')">
+                                                            <p id="dropdown__themes-text">Club Glows</p>
+                                                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                                        </div>
+                                                        <div class="osekai__dropdown osekai__dropdown-hidden" id="banner-dropdown-background-style">
+                                                        </div>
+                                                    </div>
+                                                    <div class="profiles__dropdown-with-header" id="dropdown-section-foreground">
+                                                        <p class="profiles__userbanner-dropdown-header">
+                                                            <?= GetStringRaw("profiles", "profile.banner.foregroundStyle.title"); ?>
+                                                        </p>
+                                                        <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="UserBanner.OpenDropdown('banner-dropdown-foreground-style')">
+                                                            <p id="dropdown__themes-text">Medal-Oriented</p>
+                                                            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                                        </div>
+                                                        <div class="osekai__dropdown osekai__dropdown-hidden" id="banner-dropdown-foreground-style">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profiles__userbanner-bottom-bottom" id="custom-background-settings">
+                                                    <h1><?= GetStringRaw("profiles", "profile.banner.customBackground.title"); ?>
+                                                    </h1>
+                                                    <div class="profiles__userbanner-bottom-right-controlbar">
+                                                        <div class="profiles__userbanner-bottom-right-controlbar-dropdown" id="dropdown-section-customstyle">
+                                                            <p class="profiles__userbanner-dropdown-header">
+                                                                <?= GetStringRaw("profiles", "profile.banner.customBackground.style.title"); ?>
+                                                            </p>
+                                                            <div class="osekai__dropdown-button-inner osekai__dropdown-opener" onclick="UserBanner.OpenDropdown('banner-dropdown-custom-style')">
+                                                                <p id="dropdown__themes-text">Gradient</p>
+                                                                <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                                            </div>
+                                                            <div class="osekai__dropdown osekai__dropdown-hidden" id="banner-dropdown-custom-style">
+                                                            </div>
+                                                        </div>
+                                                        <div class="profiles__gradient-picker" id="banner-gradient-picker">
+                                                            <p class="profiles__userbanner-dropdown-header">
+                                                                <?= GetStringRaw("profiles", "profile.banner.customBackground.gradient"); ?>
+                                                            </p>
+                                                            <div class="osekai__gradient-bar" id="colourbar">
+                                                                <div class="osekai__gradient-bar-left"><input type="text"></input></div>
+                                                                <div class="osekai__gradient-bar-bar"></div>
+                                                                <div class="osekai__gradient-bar-right"><input type="text"></input></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="profiles__angle-picker" id="banner-angle-picker">
+                                                            <p class="profiles__userbanner-dropdown-header">
+                                                                <?= GetStringRaw("profiles", "profile.banner.customBackground.angle"); ?>
+                                                            </p>
+                                                            <div class="osekai__slider-with-input">
+                                                                <div class="osekai__slider-input-container">
+                                                                    <input type="text" id="angle-input" value="0" class="osekai__input" onchange="UserBanner.UpdateAngle('input')">
+                                                                </div>
+                                                                <div class="osekai__slider-container">
+                                                                    <input type="range" min="0" max="360" value="0" class="osekai__slider" id="angle-slider" onchange="UserBanner.UpdateAngle('slider')">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="profiles__gradient-picker hidden" id="banner-solid-picker">
+                                                            <p class="profiles__userbanner-dropdown-header">
+                                                                <?= GetStringRaw("profiles", "profile.banner.customBackground.colour"); ?>
+                                                            </p>
+                                                            <div class="osekai__colour-picker" id="colour-solid-picker">
+                                                                <input type="text"></input>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="osekai__button osekai__button-solid profiles__custom-save-button" onclick="UserBanner.SaveSettings(true)">Save</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="profiles__gradient-picker hidden"
-                            id="banner-solid-picker">
-                            <p class="profiles__userbanner-dropdown-header">
-                                <?= GetStringRaw("profiles", "profile.banner.customBackground.colour"); ?>
-                            </p>
-                            <div class="osekai__colour-picker" id="colour-solid-picker">
-                                <input type="text"></input>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="osekai__button osekai__button-solid profiles__custom-save-button"
-                        onclick="UserBanner.SaveSettings(true)">Save</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
+                            </section>
 
                             <!-- snapshots integration -->
                             <section class="osekai__panel" id="snapshots--panel">
@@ -727,8 +657,7 @@ frontend();
                                     <p><?= GetStringRaw("profiles", "profile.snapshots.title"); ?></light>
                                     </p>
                                 </div>
-                                <div class="osekai__panel-inner osekai__flex-vertical-container"
-                                    id="snapshots--container">
+                                <div class="osekai__panel-inner osekai__flex-vertical-container" id="snapshots--container">
 
                                 </div>
                             </section>

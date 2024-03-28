@@ -209,6 +209,7 @@ if (isset($_GET['medal'])) {
                 <div class="osekai__3col_col1_spacer"></div>
                 <div id="osekai__col__right" class="osekai__3col_right hidden">
                     <div class="osekai__3col_col2">
+                        
                         <section class="osekai__panel medals__solution-panel-outer">
                             <section class="osekai__panel medals__solution-panel">
                                 <div class="medals__info osekai__panel-header" id="medal__info">
@@ -263,6 +264,8 @@ if (isset($_GET['medal'])) {
                                 </div>
                             </div>
                         </section>
+                        
+                        <ad-area type="banner"></ad-area>
                         <?php
                         if (loggedin()) {
                         ?>
@@ -281,8 +284,11 @@ if (isset($_GET['medal'])) {
                             </section>
                         <?php } ?>
                         <?php include($_SERVER['DOCUMENT_ROOT'] . "/global/php/commentsPanel.php"); ?>
+                        
+                        <ad-area type="square"></ad-area>
                     </div>
                     <div class="osekai__3col_col3">
+                        <ad-area type="square"></ad-area>
                         <?php if (isset($_SESSION['role'])) {
                             if (checkPermission("apps.medals.medal.legacyEdit")) {
                         ?>
@@ -361,6 +367,8 @@ if (isset($_GET['medal'])) {
                             <div id="oExtraInfoContainer" class="osekai__panel-inner">
                             </div>
                         </section>
+                        
+            <ad-area type="banner"></ad-area>
                     </div>
                 </div>
             </div>
