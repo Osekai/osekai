@@ -1,4 +1,5 @@
 <?php
+exit;
 require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
 
 error_reporting(E_ERROR);

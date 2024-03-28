@@ -1,4 +1,5 @@
 <?php
+exit;
 ini_set('memory_limit','2048M');
 // Tanza 2023-05-13
 // ? i'm so sorry for this mess, but it takes 118ms to
