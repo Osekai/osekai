@@ -363,6 +363,12 @@ async function requestMedals(init, strValue = '', favsFilter = null) {
             panelInner.appendChild(panelMedalsContainer);
             section.appendChild(panelInner);
             // Medal grid end
+            var ad = document.createElement("ad-area");
+            ad.setAttribute("type", "banner");
+            var square = Math.random();
+            if(square > 0.7) ad.setAttribute("type", "square");
+
+            document.getElementById(favsFilter == null ? 'oMedalSection' : 'favsSection').appendChild(ad)
             document.getElementById(favsFilter == null ? 'oMedalSection' : 'favsSection').appendChild(section);
         }
     });

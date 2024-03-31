@@ -965,3 +965,46 @@ if (renderer.includes("SwiftShader")) {
         document.getElementById("hardwareAccelOn").classList.remove("hidden");
     }
 }
+
+
+class AdArea extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    createAd() {
+        this.innerHTML = "";
+        var type = this.getAttribute("type");
+        var filteredAds = ads.filter(ad => ad.Filename.startsWith(type));
+        console.log(filteredAds);
+
+        if (filteredAds.length > 0) {
+            var randomIndex = Math.floor(Math.random() * filteredAds.length);
+
+            var randomAd = filteredAds[randomIndex];
+
+            var adElement = document.createElement("a");
+            var adImage = document.createElement("img");
+
+            if(randomAd.Link != "") adElement.href = randomAd.Link;
+
+            adImage.src = "/internal/ads/" + randomAd.Filename;
+
+            adElement.appendChild(adImage);
+
+            this.appendChild(adElement);
+        } else {
+            // If no ads match the type, display a message
+            this.textContent = "No ads available for this type.";
+        }
+    }
+
+    connectedCallback() {
+        this.createAd();
+        setInterval(() => {
+            this.createAd();
+        }, 250000)
+    }
+}
+
+customElements.define("ad-area", AdArea);

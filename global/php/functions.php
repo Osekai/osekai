@@ -190,7 +190,8 @@ function frontend()
             const userGroups = <?= json_encode($userGroups); ?>;
             const medals = <?= json_encode($medals); ?>;
             const restrictedState = <?= isRestricted() ? "1" : "0"; ?>;
-            const userPermissions = <?= json_encode($userPermissions) ?>
+            const userPermissions = <?= json_encode($userPermissions) ?>;
+            const ads = <?= json_encode(Database::execSimpleSelect("SELECT * FROM Ads")) ?>
         </script>
         <meta name="darkreader-lock">
         <?php

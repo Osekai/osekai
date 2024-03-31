@@ -149,6 +149,9 @@ $meta = '<meta charset="utf-8">
                         </div>
                     </div>
                 </div>
+
+                
+            <ad-area type="square"></ad-area>
                 <div class="osekai__panel">
                     <div class="osekai__panel-header">
                         <p>Tasks</p>
@@ -185,6 +188,8 @@ $meta = '<meta charset="utf-8">
                 </div>
             </div>
             <div class="osekai__home-2col-col2">
+                
+            <ad-area type="banner"></ad-area>
                 <div class="rankings__home-v2-header medals-v2">
                     <h1><?= GetStringRaw("rankings", "general.medals.title"); ?></h1>
                 </div>
@@ -233,6 +238,8 @@ $meta = '<meta charset="utf-8">
                         <p><?= GetStringRaw("rankings", "general.allmode.replays.subheader"); ?></p>
                     </div>
                 </div>
+                
+            <ad-area type="banner"></ad-area>
                 <div class="rankings__home-v2-header mappers-v2">
                     <h1><?= GetStringRaw("rankings", "general.mappers.title"); ?></h1>
                 </div>
@@ -265,6 +272,8 @@ $meta = '<meta charset="utf-8">
                     </div>
                 </div>
             </div>
+            
+            <ad-area type="banner"></ad-area>
         </div>
 
         <!-- </HOME V2> -->
@@ -352,6 +361,7 @@ $meta = '<meta charset="utf-8">
             </section>
         </div>
         <div class="osekai__1col-panels" id="desktop">
+            <ad-area type="banner"></ad-area>
             <section class="osekai__panel">
                 <div class="osekai__panel-header-with-buttons">
                     <div class="osekai__panel-hwb-left">
@@ -398,6 +408,8 @@ $meta = '<meta charset="utf-8">
                 <div class="osekai__panel-inner rankings__inner" selector="rankings__main">
                 </div>
             </section>
+            
+            <ad-area type="banner"></ad-area>
         </div>
     </div>
     <script type="text/javascript" src="./js/functions.js?v=<?= OSEKAI_VERSION ?>"></script>
