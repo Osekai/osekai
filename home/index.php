@@ -84,9 +84,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             </div>
         </div>
 
-
-        <ad-area type="banner"></ad-area>
-
         <div class="home__panel-container">
             <a class="home__oac" href="/coe">
                 <img class="glow" src="/home/img/coe.png">
@@ -141,9 +138,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </a>
             </div>
-
-            <ad-area type="banner"></ad-area>
-
             <a class="home__panel home__panel-hoverable" style="--paccent: 45, 59, 90; --paccent-bright: 102, 143, 255;"
                 href="/profiles">
                 <img class="home__panel-img" src="img/profiles.png">
@@ -176,9 +170,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </p>
                 </div>
             </a>
-
-
-            <ad-area type="banner"></ad-area>
 
             <div class="home__panel-row2">
                 <a class="home__panel home__panel-hoverable home__panel_vertical"
@@ -251,10 +242,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </a>
             </div>
-
-
-            <ad-area type="banner"></ad-area>
-
             <a class="home__long-panel home__panel-hoverable"
                 style="--paccent: 0, 0, 0; --paccent-bright: 237, 132, 213; background-image: url('img/support.png');"
                 href="/donate">
@@ -288,10 +275,6 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                     </div>
                 </div>
             </div>
-
-
-            <ad-area type="banner"></ad-area>
-
             <div class="home__panel home__team">
                 <h1>
                     <?= GetStringRaw("home", "team.title"); ?>

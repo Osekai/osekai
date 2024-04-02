@@ -464,9 +464,7 @@ if (checkPermission("apps.snapshots.admin")) {
                                 <p id="description" class="snapshots__version-header-description">loading...</p>
                             </div>
                         </div>
-                        
                     </section>
-            <ad-area type="banner"></ad-area>
                     <section class="osekai__panel">
                         <?php if ($admin_access == false) { ?>
                             <div class="osekai__panel-header">
@@ -515,9 +513,6 @@ if (checkPermission("apps.snapshots.admin")) {
                             </div>
                         </section>
                     <?php } ?>
-
-                    
-            <ad-area type="square"></ad-area>
                     <section class="osekai__panel" id="video_panel">
                         <div class="osekai__panel-header">
                             <?= GetStringRaw("general", "video.title"); ?>
@@ -597,8 +592,6 @@ if (checkPermission("apps.snapshots.admin")) {
                                 <a class="osekai__button" href="https://osu.ppy.sh/oauth/authorize?response_type=code&amp;client_id=5878&amp;redirect_uri=https%3A%2F%2Fosekai.net%2Fglobal%2Fphp%2Flogin.php" onclick="openLoader('Logging you in...'); hide_dropdowns();">Log In with osu!</a>
                             </div>
                         </section>
-                        
-            <ad-area type="square"></ad-area>
                     </div>
                 <?php } ?>
 

@@ -92,18 +92,11 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
             <h1 id="bop_desc" class="badges__bopr-desc">description</h1>
             <p id="bop_achieved" class="badges__bopr-first-achieved">first achieved</p>
             <p id="bop_amount" class="badges__bopr-amount">amount</p>
-            <ad-area type="banner"></ad-area>
-
+            <div class="osekai__divider"></div>
             <p class="badges__bopr-players-header"><?= GetStringRaw("badges", "badge.popup.playersWhoHave"); ?></p>
-
-
-            
             <div class="badges__bopr-players-list" id="bop_users">
 
             </div>
-
-            
-            <ad-area type="banner"></ad-area>
         </div>
     </div>
 
@@ -164,10 +157,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
                             </div>
                         </div>
                     </div>
-                    
-            <ad-area type="banner"></ad-area>
                     <div class="osekai__panel-inner osekai__badge-list grid_large" id="content">
-                        
+
                     </div>
                 </section>
             </div>
