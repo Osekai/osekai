@@ -146,7 +146,7 @@ css();
                                         <img src="https://a.ppy.sh/<?= $topdonators[$k]['osuId']; ?>">
                                         <div class="donate__panel-texts">
                                             <h1>
-                                                <a href="https://osu.ppy.sh/users/<?= $topdonators[$k]['osuId']; ?>">
+                                                <a href="https://osekai.net/profiles/?user=<?= $topdonators[$k]['osuId']; ?>">
                                                     <?= $topdonators[$k]['Username']; ?>
                                                 </a>
                                             </h1>
