@@ -74,7 +74,7 @@ css();
                             <a class="osekai__button" id="btnPaypal">
                                 <?= GetStringRaw("donate", "donate.paypal") ?>
                             </a>
-                            <a class="osekai__button" id="btnPaysafecard">
+                            <a class="osekai__button hidden" id="btnPaysafecard">
                                 <?= GetStringRaw("donate", "donate.paysafecard") ?>
                             </a>
                         </div>
@@ -146,7 +146,9 @@ css();
                                         <img src="https://a.ppy.sh/<?= $topdonators[$k]['osuId']; ?>">
                                         <div class="donate__panel-texts">
                                             <h1>
-                                                <?= $topdonators[$k]['Username']; ?>
+                                                <a href="https://osekai.net/profiles/?user=<?= $topdonators[$k]['osuId']; ?>">
+                                                    <?= $topdonators[$k]['Username']; ?>
+                                                </a>
                                             </h1>
                                             <p>
                                                 €
