@@ -4195,7 +4195,7 @@ input[type='range']:focus::-ms-fill-upper {
 
 .osekai__navbar-alert-warning-bad {
     --accent: #ff0404;
-    --accentdark: #504737;
+    --accentdark: #410000;
 }
 
 .osekai__navbar-alert-glowing-icon {
