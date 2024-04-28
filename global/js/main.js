@@ -24,7 +24,7 @@ function checkMobile() {
     }
 }
 
-setTimeout(function () {
+setTimeout(function() {
     var panels = document.getElementsByClassName("osekai__panel-container");
     for (var i = 0; i < panels.length; i++) {
         if (!panels[i].classList.contains("hidden")) {
@@ -34,7 +34,7 @@ setTimeout(function () {
     }
 }, 10);
 
-setTimeout(function () {
+setTimeout(function() {
     var panels = document.getElementsByClassName("osekai__panel-container");
     for (var i = 0; i < panels.length; i++) {
         if (panels[i].classList.contains("wait-forload")) {
@@ -45,7 +45,7 @@ setTimeout(function () {
 }, 600);
 
 var colours = {
-    RGBToHSL: function (r, g, b) {
+    RGBToHSL: function(r, g, b) {
         var oldR = r;
         var oldG = g;
         var oldB = b;
@@ -244,22 +244,22 @@ function updateTheme() {
         // the user the brightness of the colour they've selected. fine, it works, but bit annoying
         window.localStorage.setItem("accent_dark", customTheme.accent_dark);
         window.localStorage.setItem("accent", customTheme.accent);
-        window.addEventListener('settings-load', function () {
+        window.addEventListener('settings-load', function() {
             document.getElementById("dropdown-settings-custom-theme").classList.remove("greyed");
             if (cp_accent == null) {
-                cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function (col) {
+                cp_accentdark = new newColourPicker("custom_colpicker_accent-dark", function(col) {
                     customTheme.accent_dark = col;
                     updateTheme();
                 }, customTheme.accent_dark);
 
-                cp_accent = new newColourPicker("custom_colpicker_accent", function (col) {
+                cp_accent = new newColourPicker("custom_colpicker_accent", function(col) {
                     customTheme.accent = col;
                     updateTheme();
                 }, customTheme.accent);
             }
         });
     } else {
-        window.addEventListener('settings-load', function () {
+        window.addEventListener('settings-load', function() {
             document.getElementById("dropdown-settings-custom-theme").classList.add("greyed");
         });
     }
@@ -271,10 +271,10 @@ function updateTheme() {
 
 
 localStorage.setItem("url", location.href);
-window.addEventListener("hashchange", function () {
+window.addEventListener("hashchange", function() {
     localStorage.setItem("url", location.href);
 });
-window.addEventListener("popstate", function () {
+window.addEventListener("popstate", function() {
     localStorage.setItem("url", location.href);
 });
 
@@ -309,7 +309,7 @@ function closeLoader() {
     }
 }
 
-window.openDialog = function (title, header, message, buttons = [], content = null) {
+window.openDialog = function(title, header, message, buttons = [], content = null) {
     var modal_overlay = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay osekai__modal-overlay-bland osekai__modal-overlay--hidden" });
     var modal_overlay_close_layer = Object.assign(document.createElement("div"), { className: "osekai__modal-overlay-closelayer" });
     modal_overlay.appendChild(modal_overlay_close_layer);
@@ -333,7 +333,7 @@ window.openDialog = function (title, header, message, buttons = [], content = nu
         modal_overlay.remove();
     }
 
-    modal_overlay_close_layer.addEventListener("click", function () { close() });
+    modal_overlay_close_layer.addEventListener("click", function() { close() });
 
     if (content != null)
         modal_overlay_panel_bottom.appendChild(content);
@@ -361,7 +361,7 @@ window.openDialog = function (title, header, message, buttons = [], content = nu
     modal_overlay.appendChild(modal_overlay_panel);
 
     document.body.appendChild(modal_overlay);
-    setTimeout(function () {
+    setTimeout(function() {
         // need this so it plays the animation... UGHHHH
         modal_overlay.classList.remove("osekai__modal-overlay--hidden");
     }, 100);
@@ -376,7 +376,7 @@ function gracefullyExit() {
     var root = document.getElementsByTagName('html')[0]; // '0' to assign the first (and only `HTML` tag)
     root.classList.add("osekai__loadnewpage");
 
-    setTimeout(function () {
+    setTimeout(function() {
         root.innerHTML += `<div class="osekai__loadnewpage_text"><p>Loading Page...</p></div>`;
         root.classList.add("osekai__loadnewpage_over2s");
         root.classList.remove("osekai__loadnewpage");
@@ -399,7 +399,7 @@ function getCookie(cname) {
 }
 
 if (getCookie("fromLegacy") == 1) {
-    setTimeout(function () {
+    setTimeout(function() {
         document.getElementById("welcome_panel").classList.remove("osekai__eclipse-welcome-hidden");
     }, 1200);
     document.cookie = "fromLegacy=0; expires=Thu, 18 Dec 2021 12:00:00 UTC; path=/";
@@ -479,14 +479,14 @@ function setLanguage(code) {
     // /api/setLanguage?language=en
     var xhttp = new XMLHttpRequest();
 
-    GetStringRaw("medals", "searchbar.placeholder").then(function (text) {
+    GetStringRaw("medals", "searchbar.placeholder").then(function(text) {
         //console.log(text);
     });
 
-    GetStringRaw("general", "language.switch").then(function (text) {
+    GetStringRaw("general", "language.switch").then(function(text) {
         openLoader(text);
         hide_dropdowns();
-        xhttp.onreadystatechange = function () {
+        xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 /// reload
                 location.reload();
@@ -525,7 +525,7 @@ function cantContactOsu() {
 let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
 let active = false;
 
-window.addEventListener('click', function (e) {
+window.addEventListener('click', function(e) {
     if (!e.target.classList.contains("osekai__dropdown") && !e.target.classList.contains("osekai__dropdown-item") && !e.target.classList.contains("osekai__dropdown-opener") && (e.target.closest(".osekai__dropdown-opener") == null)) {
         document.querySelectorAll(".osekai__dropdown").forEach((colItems) => {
             colItems.classList.add("osekai__dropdown-hidden");
@@ -570,13 +570,13 @@ function linkify(inputText) {
 
 function mutation() {
     // wait 0.1 seconds
-    setTimeout(function () {
+    setTimeout(function() {
         var collapsablePanels = document.getElementsByClassName("osekai__panel-collapsable");
         for (var x = 0; x < collapsablePanels.length; x++) {
             if (!collapsablePanels[x].classList.contains("osekai__panel-collapsable-initialized")) {
                 collapsablePanels[x].classList.add("osekai__panel-collapsable-initialized");
                 let el = collapsablePanels[x];
-                collapsablePanels[x].querySelector(".fa-chevron-down").addEventListener("click", function () {
+                collapsablePanels[x].querySelector(".fa-chevron-down").addEventListener("click", function() {
                     el.classList.toggle("osekai__panel-collapsable-collapsed")
                 });
             }
@@ -597,7 +597,7 @@ function mutation() {
 
 
 // replace with tippy every time DOM updates using mutation observer
-var mutationObserver = new MutationObserver(function (mutations) {
+var mutationObserver = new MutationObserver(function(mutations) {
     mutation();
 });
 
@@ -643,7 +643,25 @@ var alertTypes = {
                 </object>
             </div>
         </div></a>`
-    }
+    },
+    "badwarning": {
+        "template": `<a>
+        <div class="osekai__navbar-alert osekai__navbar-alert-warning osekai__navbar-alert-warning-bad"> 
+            <div class="osekai__navbar-alert-inner">
+                <div class="osekai__navbar-alert-inner-text">
+                    <i class="fas fa-exclamation-triangle osekai__navbar-alert-glowing-icon"></i>
+                    <p>
+                        {text}
+                    </p>
+                </div>
+                <object class="osekai__navbar-alert-close">
+                <a href="#">
+                    <i class="fas fa-times"></i>
+                    </a>
+                </object>
+            </div>
+        </div></a>`
+    },
 }
 
 function closeAlert(alert, el) {
@@ -673,7 +691,7 @@ function getAlerts() {
 
     let xhr = createXHR("/api/alerts.php?app=" + nAppId);
     xhr.send();
-    xhr.onload = function () {
+    xhr.onload = function() {
         var oResponse = JSON.parse(xhr.responseText);
         for (var x = 0; x < oResponse.length; x++) {
             let alert = oResponse[x];
@@ -740,7 +758,7 @@ function getParam(key) {
     return urlParams.get(key);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     getAlerts();
 
     var oTabContainers = document.querySelectorAll("[otab-container]");
@@ -749,6 +767,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let oTabs = oTabContainer.querySelectorAll("[otab-name]")
         var oTabButtons = oTabContainer.querySelectorAll("[otab-button]")
         var last_tab = "";
+
         function switchTab(tabName, push = true) {
             for (var tab of oTabs) {
                 if (tab.getAttribute("otab-name") == tabName) {
@@ -784,7 +803,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (oTabContainer.getAttribute("otab-no-replace") == null) {
                 oTabButton.innerHTML = oTabButton.getAttribute("otab-button");
             }
-            oTabButton.addEventListener("click", function () {
+            oTabButton.addEventListener("click", function() {
                 switchTab(oTabButton.getAttribute("otab-button"));
             });
         }
@@ -794,7 +813,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 switchTab(getParam(oTabContainer.getAttribute("otab-container")), false)
             }
         }
-        window.addEventListener("popstate", function () {
+        window.addEventListener("popstate", function() {
             loadFromUrl();
         })
         loadFromUrl();
@@ -805,22 +824,22 @@ loadSource("groups");
 
 var groupDropdownCounter = 0; // global, dumb shit
 var groupUtils = {
-    getGroupFromId: function (id) {
+    getGroupFromId: function(id) {
         for (var x = 0; x < userGroups.length; x++) {
             if (userGroups[x]['Id'] == id) {
                 return userGroups[x];
             }
         }
     },
-    badgeHtmlFromGroupId: function (id, size = "small") {
+    badgeHtmlFromGroupId: function(id, size = "small") {
         var group = this.getGroupFromId(id);
         // this is technically illegal according to html spec but i don't care
         return `<object class="tooltip-v2" tooltip-content="${LocalizeTextNonAsync(group.Name)}"><a href="/misc/groups/?group=${id}" class="osekai__group-badge osekai__group-badge-${size}" style="--colour: ${group['Colour']}">${group['ShortName']}</a></object>`;
     },
-    orderBadgeArray: function (array) {
+    orderBadgeArray: function(array) {
         return array.sort((a, b) => a.Order - b.Order)
     },
-    badgeHtmlFromArray: function (array, size = "small", limit = "none") {
+    badgeHtmlFromArray: function(array, size = "small", limit = "none") {
         var orderedList = [];
         for (var x = 0; x < array.length; x++) {
             orderedList.push(this.getGroupFromId(array[x]));
@@ -846,7 +865,7 @@ var groupUtils = {
         }
         return finalHtml;
     },
-    badgeHtmlFromCommaSeperatedList: function (list, size = "small", limit = "none") {
+    badgeHtmlFromCommaSeperatedList: function(list, size = "small", limit = "none") {
         if (list == null) return "";
         var array = [];
         var split = list.split(",");
@@ -855,7 +874,7 @@ var groupUtils = {
         }
         return this.badgeHtmlFromArray(array, size, limit);
     },
-    openDropdown: function (arrow, list) {
+    openDropdown: function(arrow, list) {
         if (arrow.querySelector("div")) {
             if (arrow.querySelector("div").classList.contains("osekai__group-dropdown-hidden")) {
                 var dropdowns = document.getElementsByClassName("osekai__group-dropdown");
@@ -898,22 +917,21 @@ function checkPermission(permission) {
 function hardwareAccelLearnMore() {
     openDialog(GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.title"),
         GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.subtitle"),
-        GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.content"), [
-        {
-            "text": GetStringRawNonAsync("general", "ok"),
-            "callback": function () { },
-            "highlighted": true,
-        },
-        {
-            "text": GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.hide"),
-            "callback": function () {
-                localStorage.setItem("hideHardwareAccelWarning", true);
-                document.getElementById("noHardwareAccel").classList.add("hidden");
-
+        GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.content"), [{
+                "text": GetStringRawNonAsync("general", "ok"),
+                "callback": function() {},
+                "highlighted": true,
             },
-            "highlighted": false,
-        }
-    ]);
+            {
+                "text": GetStringRawNonAsync("navbar", "misc.hardwareAccel.popup.hide"),
+                "callback": function() {
+                    localStorage.setItem("hideHardwareAccelWarning", true);
+                    document.getElementById("noHardwareAccel").classList.add("hidden");
+
+                },
+                "highlighted": false,
+            }
+        ]);
 }
 
 var canvas = document.createElement('canvas');
@@ -924,8 +942,7 @@ var renderer;
 
 try {
     gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-} catch (e) {
-}
+} catch (e) {}
 
 if (gl) {
     debugInfo = gl.getExtension('WEBGL_debug_renderer_info');

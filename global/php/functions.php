@@ -129,6 +129,7 @@ function frontend()
     global $userPermissions;
 
 
+
     if (isset($app)) {
 
         if (MODE != "production" && ENVIRONMENT == "php_development_server") {
@@ -212,7 +213,9 @@ function frontend()
 if (!(isset($manual_frontend) && $manual_frontend === true))
     frontend();
 
+
 if (!isset($app)) {
+
     $useJS = false;
     include_once($_SERVER['DOCUMENT_ROOT'] . "//global/php/osekaiLocalization.php");
 }
@@ -823,3 +826,5 @@ function search_service()
 {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/services/search_service.php");
 }
+
+
