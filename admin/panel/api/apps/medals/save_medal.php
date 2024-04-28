@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 $solutions_old = Database::execSelect("SELECT * FROM Solutions WHERE medalid = ?", "i", [$_POST['nMedalId']])[0];
 $medals_old = Database::execSelect("SELECT * FROM Medals WHERE medalid = ?", "i", [$_POST['nMedalId']])[0];
 
-Database::execOperation("INSERT INTO Solutions (medalid, solution, submittedby, mods) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE solution = ?, submittedby = ?, mods = ?", "issssss", array($_POST['nMedalId'], htmlspecialchars($_POST['strNewSolution']), $_SESSION['osu']['username'], $_POST['strSolutionMods'], $_POST['strNewSolution'], $_SESSION['osu']['username'], $_POST['strSolutionMods']));
+Database::execOperation("INSERT INTO Solutions (medalid, solution, submittedby, mods) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE solution = ?, submittedby = ?, mods = ?", "issssss", array($_POST['nMedalId'], htmlspecialchars($_POST['strNewSolution']), $_SESSION['osu']['username'], $_POST['strSolutionMods'], $_POST['strNewSolution'], $_SESSION['osu']['username'], rawurldecode($_POST['strSolutionMods'])));
 
 $solutionDate = $_POST['strSolutionDate'];
 $firstAchievedDate = $_POST['strFirstAchievedDate'];
