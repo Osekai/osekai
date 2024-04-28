@@ -5192,3 +5192,7 @@ input[type='range']:focus::-ms-fill-upper {
 .osekai__navbar-left {
     display: none;
 }
+
+.medals__diff-vote {
+    display: none;
+}
