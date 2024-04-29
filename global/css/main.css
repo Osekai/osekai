@@ -5189,10 +5189,3 @@ input[type='range']:focus::-ms-fill-upper {
     border-radius: 4px;
 }
 
-.osekai__navbar-left {
-    display: none;
-}
-
-.medals__diff-vote {
-    display: none;
-}

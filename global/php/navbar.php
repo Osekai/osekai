@@ -477,7 +477,7 @@ foreach ($apps as $a) {
                     </p>
                 </a>
             <?php } ?>
-            <a style="display: none" class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 104, 143, 255"
+            <a class="osekai__nav-dropdown-v2-lowerpanel-button" style="--col: 104, 143, 255"
                 href="/profiles?user=<?= $_SESSION['osu']['id']; ?>">
                 <div class="osekai__nav-dropdown-v2-lowerpanel-button-bar"></div>
                 <i class="oif-app-profiles"></i>
