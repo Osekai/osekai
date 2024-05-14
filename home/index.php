@@ -85,7 +85,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/global/php/functions.php");
         </div>
 
         <div class="home__panel-container">
-            <a class="home__oac" href="/coe">
+            <a class="home__oac hidden" href="/coe">
                 <img class="glow" src="/home/img/coe.png">
                 <img class="backdrop" src="/home/img/coe.png">
                 <img src="/home/img/coe.svg">
