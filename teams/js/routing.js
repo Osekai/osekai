@@ -28,7 +28,7 @@ function setNavBar() {
     var navbar = document.getElementById("pages");
     navbar.innerHTML = "";
     for(let page of cur_page_parent['pages']) {
-        let item = Object.assign(document.createElement("p"), {"className": "osekai__tab-page-navigation-item", "innerText": page.name});
+        let item = Object.assign(document.createElement("p"), {"className": "osekai__tab-page-navigation-item", "innerText": page.display_name});
         navbar.appendChild(item);
         item.addEventListener("click", function() { 
             switchUrl(cur_url[0] + "/" + page.name)

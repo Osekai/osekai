@@ -31,7 +31,7 @@ function page($name, $displayname, $page) {
 }
 
 addDepthPage("home", "Home", [
-    page("dashboard", "Dashboard", "home/dashboard.php"),
+    page("dashboard", "Your Home", "home/dashboard.php"),
     page("rankings", "Rankings", "home/rankings.php"),
     page("settings", "User Settings", "home/settings.php")
 ]);

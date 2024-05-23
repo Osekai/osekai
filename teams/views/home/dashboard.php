@@ -1,4 +1,4 @@
-Dashboard
-
-<div class="osekai__button" onclick="toggleSidebarButton()">Toggle sidebar</div>
-NOTE: sidebar toggle should only be done when switching page. shouldn't be user-initiated
+<div class="teams__welcome_hero">
+    <img rel="preload" alt="Osekai Teams" src="/teams/img/logo.svg">
+    <span>Welcome back, <strong><?php ECHO $_SESSION["osu"]["username"] ?>.</strong></span>
+</div>

@@ -1,0 +1,18 @@
+.teams__welcome_hero {
+    border-radius: 8px;
+    min-height: 200px;
+    max-width: 1283px;
+    background-image: url(/teams/img/Desktop-gate-logo-w-bl3x_12.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin:0;
+}
+
+.teams__welcome_hero span{
+    align-self: flex-end;
+    position:absolute;
+}

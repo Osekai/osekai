@@ -21,13 +21,9 @@
 }
 .teams__page-inner {
     display: flex;
-}
-
-.teams__sidebar-padding {
+    margin-left: calc(var(--sidebar-width) + 25px); /* padding */
     transition: width 0.3s ease;
-    width: calc(var(--sidebar-width) + 25px); /* padding */
 }
-
 
 .teams__sidebar-hidden .teams__sidebar-padding {
     width: 0px;

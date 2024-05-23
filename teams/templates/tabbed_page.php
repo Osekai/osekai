@@ -16,9 +16,6 @@
 
         </div>
         <div class="teams__page-inner">
-            <div class="teams__sidebar-padding">
-
-            </div>
             <div class="teams__page-content" id="teams_page">
 
             </div>
